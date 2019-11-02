@@ -56,7 +56,7 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 
 *Note: Binaries are in 32-bit format and **do not** require installing or administrator privileges.*
 
-Upon running the application for the first time you will be presented with a tutorial;
+Upon running the application for the first time you will be presented with a **tutorial**;
 this will show you the ropes and should only take 2 minutes.
 If you need to review the tutorial, you can open it from the *Help* menu or by pressing *F1*.
 
