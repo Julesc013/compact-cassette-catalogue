@@ -1,3 +1,5 @@
+![Compact Cassette Catalogue banner](Resources/banner.png)
+
 # Compact Cassette Catalogue
 
 **Cataloging application for blank compact cassette tapes.**
