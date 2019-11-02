@@ -8,6 +8,12 @@ Note: Alpha versions included as early Beta versions.
 
 
 
+### Beta 0.6 – XX November 2019
+
+- Opening version checker now supports "x.x.xbx" version numbers.
+
+
+
 ### Beta 0.5.4 – 26 October 2019
 
 - Fixed bug where program reads wrong combination box selections (specifically models).
