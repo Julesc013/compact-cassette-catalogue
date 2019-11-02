@@ -67,6 +67,7 @@ If you need to review the tutorial, you can open it from the *Help* menu or by p
 - .NET Framework 4.6.1
 - 8MB of RAM.
 - 400KB of hard drive space.
+
 #### Recommended
 - 128MB of RAM.
 - 80MB of hard drive space.
