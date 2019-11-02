@@ -9,7 +9,7 @@ Module varGlobals
 
     'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPP-VER !!!
     'About program information
-    Public Const VERSION As String = "0.5.4"
+    Public Const VERSION As String = "0.6.0b1"
     Public Const VERSIONSTAGE As String = "Beta"
     Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 10, 26, 17, 45, 0, DateTimeKind.Local) 'Y M D, h m s
     'About catalogue information

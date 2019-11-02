@@ -5,6 +5,7 @@
 
 Imports System.Xml
 Imports System.IO
+Imports System.Text.RegularExpressions
 
 Public Class frmMain
 
@@ -334,11 +335,12 @@ Public Class frmMain
 
                 If xmlFileText.ReadLine().Contains("File Version") Then
                     'Disect line into version numbers (and strip out tag headers)
-                    'Only works for 3 digit (x.x.x) version numbers
+                    'Only works for 3 digit with snapshot numbers (x.x.xbx) version numbers
 
-                    Dim numbers As String() = xmlFileText.ReadLine().Split("."c)
-                    numbers(0) = numbers(0).Split(">"c)(1)
-                    numbers(2) = numbers(2).Split("<"c)(0)
+                    Dim numbers As String() = xmlFileText.ReadLine().Split("."c) 'Split <1.2.3b4> into {<1,2,3b4>}
+                    numbers(0) = numbers(0).Split(">"c)(1) 'Split <x1 into 1
+                    numbers(2) = numbers(2).Split("<"c)(0) 'Split 3b4> into 3b4
+                    numbers(2) = Regex.Split(numbers(2), "[a-zA-z]")(0) 'Split 3b4 into 3
                     fileVersion = numbers(0) & "." & numbers(1) & "." & numbers(2)
                 End If
 
