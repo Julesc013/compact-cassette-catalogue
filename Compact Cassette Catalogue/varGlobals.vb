@@ -7,11 +7,11 @@ Imports System.Text.RegularExpressions
 
 Module varGlobals
 
-    'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPP-VER !!!
+    'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     'About program information
     Public Const VERSION As String = "0.6.0b1"
     Public Const VERSIONSTAGE As String = "Beta"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 10, 26, 17, 45, 0, DateTimeKind.Local) 'Y M D, h m s
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 11, 2, 23, 0, 0, DateTimeKind.Local) 'Y M D, h m s
     'About catalogue information
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}

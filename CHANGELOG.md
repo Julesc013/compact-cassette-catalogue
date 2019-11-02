@@ -10,7 +10,7 @@ Note: Alpha versions included as early Beta versions.
 
 ### Beta 0.6 – XX November 2019
 
-- Opening version checker now supports "x.x.xbx" version numbers.
+- File version checker now supports "x.x.xbx" version numbers.
 
 
 
