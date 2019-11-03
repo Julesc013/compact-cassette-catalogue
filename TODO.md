@@ -2,6 +2,7 @@
 
 - make changes to existing tapes ((each box/value change sets updated=true) add checking code (replace true = true))
 - delete tapes n shit
+- add other noise reduction options
 - when editing/deleting existing things, don't forget changed=True
 - if tape-info is changed, mark as "updates" to be made to tapes
 - offer to update & save if that hasn't been done before an action
