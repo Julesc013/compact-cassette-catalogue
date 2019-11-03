@@ -63,8 +63,8 @@ If you need to review the tutorial, you can open it from the *Help* menu or by p
 ## System requirements.
 
 #### Minimum
-- Windows XP SP3 or higher (32-bit or 64-bit).
-- .NET Framework 4.0
+- Windows Vista SP2 or higher (32-bit or 64-bit).
+- .NET Framework 4.6
 - 12MB of RAM.
 - 400KB of hard drive space.
 #### Recommended
