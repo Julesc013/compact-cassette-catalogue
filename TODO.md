@@ -15,6 +15,7 @@
 
 ### Short Term
 
+- Rebuild UI so that it doesnt clip on later .NET versions.
 - only nr/bias/speed selectable if deck supports it.
 - add user settings.
 - add more filters for decks
