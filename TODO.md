@@ -1,5 +1,6 @@
 ### Betas
 
+- change ADD BUTTON test to "Save changes via main form."
 - make changes to existing tapes ((each box/value change sets updated=true) add checking code (replace true = true))
 - delete tapes n shit
 - add other noise reduction options
