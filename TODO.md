@@ -16,6 +16,7 @@
 ### Short Term
 
 - Rebuild UI so that it doesnt clip on later .NET versions.
+- BATCH ADDING of tapes (do all settings then specify amount to add).
 - only nr/bias/speed selectable if deck supports it.
 - add user settings.
 - add more filters for decks
