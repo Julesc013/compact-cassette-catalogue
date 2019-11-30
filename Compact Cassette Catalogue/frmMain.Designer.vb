@@ -148,10 +148,10 @@ Partial Class frmMain
         Me.grpNotes = New System.Windows.Forms.GroupBox()
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.grpModel = New System.Windows.Forms.GroupBox()
-        Me.txtRegion = New System.Windows.Forms.TextBox()
+        Me.cmbRegion = New System.Windows.Forms.ComboBox()
+        Me.numLength = New System.Windows.Forms.NumericUpDown()
+        Me.numYear = New System.Windows.Forms.NumericUpDown()
         Me.txtModel = New System.Windows.Forms.TextBox()
-        Me.txtLength = New System.Windows.Forms.TextBox()
-        Me.txtYear = New System.Windows.Forms.TextBox()
         Me.lblRegion = New System.Windows.Forms.Label()
         Me.lblLength = New System.Windows.Forms.Label()
         Me.lblYear = New System.Windows.Forms.Label()
@@ -192,6 +192,8 @@ Partial Class frmMain
         Me.grpBasic.SuspendLayout()
         Me.grpNotes.SuspendLayout()
         Me.grpModel.SuspendLayout()
+        CType(Me.numLength, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numYear, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpFind.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpScroll.SuspendLayout()
@@ -208,9 +210,11 @@ Partial Class frmMain
         Me.grpIdentification.Controls.Add(Me.lblLong)
         Me.grpIdentification.Controls.Add(Me.lblShort)
         Me.grpIdentification.Enabled = False
-        Me.grpIdentification.Location = New System.Drawing.Point(12, 90)
+        Me.grpIdentification.Location = New System.Drawing.Point(9, 73)
+        Me.grpIdentification.Margin = New System.Windows.Forms.Padding(2)
         Me.grpIdentification.Name = "grpIdentification"
-        Me.grpIdentification.Size = New System.Drawing.Size(571, 50)
+        Me.grpIdentification.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpIdentification.Size = New System.Drawing.Size(428, 41)
         Me.grpIdentification.TabIndex = 4
         Me.grpIdentification.TabStop = False
         Me.grpIdentification.Text = "Identification"
@@ -218,70 +222,78 @@ Partial Class frmMain
         'lblMax
         '
         Me.lblMax.AutoSize = True
-        Me.lblMax.Location = New System.Drawing.Point(493, 24)
+        Me.lblMax.Location = New System.Drawing.Point(370, 20)
+        Me.lblMax.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblMax.Name = "lblMax"
-        Me.lblMax.Size = New System.Drawing.Size(12, 17)
+        Me.lblMax.Size = New System.Drawing.Size(12, 13)
         Me.lblMax.TabIndex = 6
         Me.lblMax.Text = "/"
         '
         'txtIndex
         '
-        Me.txtIndex.Location = New System.Drawing.Point(430, 21)
+        Me.txtIndex.Location = New System.Drawing.Point(322, 17)
+        Me.txtIndex.Margin = New System.Windows.Forms.Padding(2)
         Me.txtIndex.Name = "txtIndex"
         Me.txtIndex.ReadOnly = True
-        Me.txtIndex.Size = New System.Drawing.Size(59, 22)
+        Me.txtIndex.Size = New System.Drawing.Size(45, 20)
         Me.txtIndex.TabIndex = 5
         Me.txtIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtTotal
         '
-        Me.txtTotal.Location = New System.Drawing.Point(507, 21)
+        Me.txtTotal.Location = New System.Drawing.Point(380, 17)
+        Me.txtTotal.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.ReadOnly = True
-        Me.txtTotal.Size = New System.Drawing.Size(58, 22)
+        Me.txtTotal.Size = New System.Drawing.Size(44, 20)
         Me.txtTotal.TabIndex = 3
         Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblIndex
         '
         Me.lblIndex.AutoSize = True
-        Me.lblIndex.Location = New System.Drawing.Point(362, 24)
+        Me.lblIndex.Location = New System.Drawing.Point(272, 20)
+        Me.lblIndex.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblIndex.Name = "lblIndex"
-        Me.lblIndex.Size = New System.Drawing.Size(62, 17)
+        Me.lblIndex.Size = New System.Drawing.Size(47, 13)
         Me.lblIndex.TabIndex = 4
         Me.lblIndex.Text = "Number:"
         '
         'txtLong
         '
-        Me.txtLong.Location = New System.Drawing.Point(218, 21)
+        Me.txtLong.Location = New System.Drawing.Point(164, 17)
+        Me.txtLong.Margin = New System.Windows.Forms.Padding(2)
         Me.txtLong.Name = "txtLong"
         Me.txtLong.ReadOnly = True
-        Me.txtLong.Size = New System.Drawing.Size(138, 22)
+        Me.txtLong.Size = New System.Drawing.Size(104, 20)
         Me.txtLong.TabIndex = 2
         '
         'txtShort
         '
-        Me.txtShort.Location = New System.Drawing.Point(58, 21)
+        Me.txtShort.Location = New System.Drawing.Point(44, 17)
+        Me.txtShort.Margin = New System.Windows.Forms.Padding(2)
         Me.txtShort.Name = "txtShort"
         Me.txtShort.ReadOnly = True
-        Me.txtShort.Size = New System.Drawing.Size(104, 22)
+        Me.txtShort.Size = New System.Drawing.Size(79, 20)
         Me.txtShort.TabIndex = 1
         '
         'lblLong
         '
         Me.lblLong.AutoSize = True
-        Me.lblLong.Location = New System.Drawing.Point(168, 24)
+        Me.lblLong.Location = New System.Drawing.Point(126, 20)
+        Me.lblLong.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLong.Name = "lblLong"
-        Me.lblLong.Size = New System.Drawing.Size(44, 17)
+        Me.lblLong.Size = New System.Drawing.Size(34, 13)
         Me.lblLong.TabIndex = 1
         Me.lblLong.Text = "Long:"
         '
         'lblShort
         '
         Me.lblShort.AutoSize = True
-        Me.lblShort.Location = New System.Drawing.Point(6, 24)
+        Me.lblShort.Location = New System.Drawing.Point(4, 20)
+        Me.lblShort.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblShort.Name = "lblShort"
-        Me.lblShort.Size = New System.Drawing.Size(46, 17)
+        Me.lblShort.Size = New System.Drawing.Size(35, 13)
         Me.lblShort.TabIndex = 0
         Me.lblShort.Text = "Short:"
         '
@@ -291,7 +303,8 @@ Partial Class frmMain
         Me.menuStripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.ToolsToolStripMenuItem1, Me.HelpToolStripMenuItem})
         Me.menuStripMain.Location = New System.Drawing.Point(0, 0)
         Me.menuStripMain.Name = "menuStripMain"
-        Me.menuStripMain.Size = New System.Drawing.Size(878, 28)
+        Me.menuStripMain.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
+        Me.menuStripMain.Size = New System.Drawing.Size(658, 24)
         Me.menuStripMain.TabIndex = 8
         Me.menuStripMain.Text = "Menu Strip"
         '
@@ -299,28 +312,28 @@ Partial Class frmMain
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenCatalogueToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ToolStripSeparator1, Me.PreferencesToolStripMenuItem, Me.ToolStripSeparator4, Me.CloseToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(46, 24)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
         'NewToolStripMenuItem
         '
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
         Me.NewToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(233, 26)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(186, 22)
         Me.NewToolStripMenuItem.Text = "New"
         '
         'OpenCatalogueToolStripMenuItem
         '
         Me.OpenCatalogueToolStripMenuItem.Name = "OpenCatalogueToolStripMenuItem"
         Me.OpenCatalogueToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.OpenCatalogueToolStripMenuItem.Size = New System.Drawing.Size(233, 26)
+        Me.OpenCatalogueToolStripMenuItem.Size = New System.Drawing.Size(186, 22)
         Me.OpenCatalogueToolStripMenuItem.Text = "Open"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(233, 26)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(186, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
         '
         'SaveAsToolStripMenuItem
@@ -328,78 +341,78 @@ Partial Class frmMain
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
         Me.SaveAsToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(233, 26)
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(186, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save As"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(230, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(183, 6)
         '
         'PreferencesToolStripMenuItem
         '
         Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
         Me.PreferencesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2
-        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(233, 26)
+        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(186, 22)
         Me.PreferencesToolStripMenuItem.Text = "Settings"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(230, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(183, 6)
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(233, 26)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(186, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'EditToolStripMenuItem
         '
         Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewTapeToolStripMenuItem, Me.NewModelToolStripMenuItem, Me.NewManufactererToolStripMenuItem, Me.ToolStripSeparator2, Me.NewDeckToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(49, 24)
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "Edit"
         '
         'NewTapeToolStripMenuItem
         '
         Me.NewTapeToolStripMenuItem.Name = "NewTapeToolStripMenuItem"
         Me.NewTapeToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.NewTapeToolStripMenuItem.Size = New System.Drawing.Size(222, 26)
+        Me.NewTapeToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.NewTapeToolStripMenuItem.Text = "Add Tape"
         '
         'NewModelToolStripMenuItem
         '
         Me.NewModelToolStripMenuItem.Name = "NewModelToolStripMenuItem"
         Me.NewModelToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.NewModelToolStripMenuItem.Size = New System.Drawing.Size(222, 26)
+        Me.NewModelToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.NewModelToolStripMenuItem.Text = "Add Model"
         '
         'NewManufactererToolStripMenuItem
         '
         Me.NewManufactererToolStripMenuItem.Name = "NewManufactererToolStripMenuItem"
         Me.NewManufactererToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.B), System.Windows.Forms.Keys)
-        Me.NewManufactererToolStripMenuItem.Size = New System.Drawing.Size(222, 26)
+        Me.NewManufactererToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.NewManufactererToolStripMenuItem.Text = "Add Brand"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(219, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(175, 6)
         '
         'NewDeckToolStripMenuItem
         '
         Me.NewDeckToolStripMenuItem.Name = "NewDeckToolStripMenuItem"
         Me.NewDeckToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.NewDeckToolStripMenuItem.Size = New System.Drawing.Size(222, 26)
+        Me.NewDeckToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.NewDeckToolStripMenuItem.Text = "Add Deck"
         '
         'ToolsToolStripMenuItem
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchTapesToolStripMenuItem, Me.SearchModelsToolStripMenuItem, Me.SearchManufacturersToolStripMenuItem, Me.ToolStripSeparator5, Me.ViewDecksToolStripMenuItem, Me.ToolStripSeparator6, Me.ViewStatisticsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(55, 24)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.ToolsToolStripMenuItem.Text = "Data"
         '
         'SearchTapesToolStripMenuItem
@@ -407,85 +420,85 @@ Partial Class frmMain
         Me.SearchTapesToolStripMenuItem.Name = "SearchTapesToolStripMenuItem"
         Me.SearchTapesToolStripMenuItem.ShortcutKeyDisplayString = ""
         Me.SearchTapesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4
-        Me.SearchTapesToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
+        Me.SearchTapesToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SearchTapesToolStripMenuItem.Text = "View Tapes"
         '
         'SearchModelsToolStripMenuItem
         '
         Me.SearchModelsToolStripMenuItem.Name = "SearchModelsToolStripMenuItem"
         Me.SearchModelsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.SearchModelsToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
+        Me.SearchModelsToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SearchModelsToolStripMenuItem.Text = "View Models"
         '
         'SearchManufacturersToolStripMenuItem
         '
         Me.SearchManufacturersToolStripMenuItem.Name = "SearchManufacturersToolStripMenuItem"
         Me.SearchManufacturersToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6
-        Me.SearchManufacturersToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
+        Me.SearchManufacturersToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SearchManufacturersToolStripMenuItem.Text = "View Brands"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(164, 6)
         '
         'ViewDecksToolStripMenuItem
         '
         Me.ViewDecksToolStripMenuItem.Name = "ViewDecksToolStripMenuItem"
         Me.ViewDecksToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7
-        Me.ViewDecksToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
+        Me.ViewDecksToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.ViewDecksToolStripMenuItem.Text = "View Decks"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(164, 6)
         '
         'ViewStatisticsToolStripMenuItem
         '
         Me.ViewStatisticsToolStripMenuItem.Name = "ViewStatisticsToolStripMenuItem"
         Me.ViewStatisticsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8
-        Me.ViewStatisticsToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
+        Me.ViewStatisticsToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.ViewStatisticsToolStripMenuItem.Text = "View Statistics"
         '
         'ToolsToolStripMenuItem1
         '
         Me.ToolsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowConsoleToolStripMenuItem})
         Me.ToolsToolStripMenuItem1.Name = "ToolsToolStripMenuItem1"
-        Me.ToolsToolStripMenuItem1.Size = New System.Drawing.Size(58, 24)
+        Me.ToolsToolStripMenuItem1.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem1.Text = "Tools"
         '
         'ShowConsoleToolStripMenuItem
         '
         Me.ShowConsoleToolStripMenuItem.Name = "ShowConsoleToolStripMenuItem"
         Me.ShowConsoleToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3
-        Me.ShowConsoleToolStripMenuItem.Size = New System.Drawing.Size(209, 26)
+        Me.ShowConsoleToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.ShowConsoleToolStripMenuItem.Text = "Show Console"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TutorialToolStripMenuItem, Me.FeedbackToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(55, 24)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'TutorialToolStripMenuItem
         '
         Me.TutorialToolStripMenuItem.Name = "TutorialToolStripMenuItem"
         Me.TutorialToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
+        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
         Me.TutorialToolStripMenuItem.Text = "Tutorial"
         '
         'FeedbackToolStripMenuItem
         '
         Me.FeedbackToolStripMenuItem.Name = "FeedbackToolStripMenuItem"
-        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
+        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
         Me.FeedbackToolStripMenuItem.Text = "Feedback"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'grpData
@@ -497,9 +510,11 @@ Partial Class frmMain
         Me.grpData.Controls.Add(Me.grpNotes)
         Me.grpData.Controls.Add(Me.grpModel)
         Me.grpData.Enabled = False
-        Me.grpData.Location = New System.Drawing.Point(12, 146)
+        Me.grpData.Location = New System.Drawing.Point(9, 119)
+        Me.grpData.Margin = New System.Windows.Forms.Padding(2)
         Me.grpData.Name = "grpData"
-        Me.grpData.Size = New System.Drawing.Size(854, 426)
+        Me.grpData.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpData.Size = New System.Drawing.Size(640, 346)
         Me.grpData.TabIndex = 5
         Me.grpData.TabStop = False
         Me.grpData.Text = "Data"
@@ -519,20 +534,23 @@ Partial Class frmMain
         Me.grpSideB.Controls.Add(Me.lblRecordedB)
         Me.grpSideB.Controls.Add(Me.lblDeckB)
         Me.grpSideB.Enabled = False
-        Me.grpSideB.Location = New System.Drawing.Point(571, 21)
+        Me.grpSideB.Location = New System.Drawing.Point(428, 17)
+        Me.grpSideB.Margin = New System.Windows.Forms.Padding(2)
         Me.grpSideB.Name = "grpSideB"
-        Me.grpSideB.Size = New System.Drawing.Size(277, 399)
+        Me.grpSideB.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpSideB.Size = New System.Drawing.Size(208, 324)
         Me.grpSideB.TabIndex = 5
         Me.grpSideB.TabStop = False
         Me.grpSideB.Text = "Side B"
         '
         'numPeakB
         '
-        Me.numPeakB.Location = New System.Drawing.Point(226, 108)
+        Me.numPeakB.Location = New System.Drawing.Point(170, 88)
+        Me.numPeakB.Margin = New System.Windows.Forms.Padding(2)
         Me.numPeakB.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numPeakB.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numPeakB.Name = "numPeakB"
-        Me.numPeakB.Size = New System.Drawing.Size(45, 22)
+        Me.numPeakB.Size = New System.Drawing.Size(34, 20)
         Me.numPeakB.TabIndex = 5
         '
         'grpConfigB
@@ -554,9 +572,11 @@ Partial Class frmMain
         Me.grpConfigB.Controls.Add(Me.lblLevelB)
         Me.grpConfigB.Controls.Add(Me.numLevelCalB)
         Me.grpConfigB.Controls.Add(Me.lblLevelCalB)
-        Me.grpConfigB.Location = New System.Drawing.Point(6, 137)
+        Me.grpConfigB.Location = New System.Drawing.Point(4, 111)
+        Me.grpConfigB.Margin = New System.Windows.Forms.Padding(2)
         Me.grpConfigB.Name = "grpConfigB"
-        Me.grpConfigB.Size = New System.Drawing.Size(265, 141)
+        Me.grpConfigB.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpConfigB.Size = New System.Drawing.Size(199, 115)
         Me.grpConfigB.TabIndex = 34
         Me.grpConfigB.TabStop = False
         Me.grpConfigB.Text = "Configuration"
@@ -564,9 +584,10 @@ Partial Class frmMain
         'chkDubbedB
         '
         Me.chkDubbedB.AutoSize = True
-        Me.chkDubbedB.Location = New System.Drawing.Point(148, 111)
+        Me.chkDubbedB.Location = New System.Drawing.Point(111, 90)
+        Me.chkDubbedB.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDubbedB.Name = "chkDubbedB"
-        Me.chkDubbedB.Size = New System.Drawing.Size(56, 21)
+        Me.chkDubbedB.Size = New System.Drawing.Size(46, 17)
         Me.chkDubbedB.TabIndex = 9
         Me.chkDubbedB.Text = "Dub"
         Me.chkDubbedB.UseVisualStyleBackColor = True
@@ -576,17 +597,19 @@ Partial Class frmMain
         Me.cmbNRB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbNRB.FormattingEnabled = True
         Me.cmbNRB.Items.AddRange(New Object() {"None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
-        Me.cmbNRB.Location = New System.Drawing.Point(45, 21)
+        Me.cmbNRB.Location = New System.Drawing.Point(34, 17)
+        Me.cmbNRB.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbNRB.Name = "cmbNRB"
-        Me.cmbNRB.Size = New System.Drawing.Size(101, 24)
+        Me.cmbNRB.Size = New System.Drawing.Size(77, 21)
         Me.cmbNRB.TabIndex = 1
         '
         'lblNRB
         '
         Me.lblNRB.AutoSize = True
-        Me.lblNRB.Location = New System.Drawing.Point(6, 24)
+        Me.lblNRB.Location = New System.Drawing.Point(4, 20)
+        Me.lblNRB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNRB.Name = "lblNRB"
-        Me.lblNRB.Size = New System.Drawing.Size(32, 17)
+        Me.lblNRB.Size = New System.Drawing.Size(26, 13)
         Me.lblNRB.TabIndex = 4
         Me.lblNRB.Text = "NR:"
         '
@@ -595,17 +618,19 @@ Partial Class frmMain
         Me.cmbSpeedB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSpeedB.FormattingEnabled = True
         Me.cmbSpeedB.Items.AddRange(New Object() {"15/16 IPS", "1⅞ IPS", "3¾ IPS"})
-        Me.cmbSpeedB.Location = New System.Drawing.Point(62, 109)
+        Me.cmbSpeedB.Location = New System.Drawing.Point(46, 89)
+        Me.cmbSpeedB.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbSpeedB.Name = "cmbSpeedB"
-        Me.cmbSpeedB.Size = New System.Drawing.Size(77, 24)
+        Me.cmbSpeedB.Size = New System.Drawing.Size(59, 21)
         Me.cmbSpeedB.TabIndex = 8
         '
         'chkHXB
         '
         Me.chkHXB.AutoSize = True
-        Me.chkHXB.Location = New System.Drawing.Point(205, 82)
+        Me.chkHXB.Location = New System.Drawing.Point(154, 67)
+        Me.chkHXB.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHXB.Name = "chkHXB"
-        Me.chkHXB.Size = New System.Drawing.Size(49, 21)
+        Me.chkHXB.Size = New System.Drawing.Size(41, 17)
         Me.chkHXB.TabIndex = 7
         Me.chkHXB.Text = "HX"
         Me.chkHXB.UseVisualStyleBackColor = True
@@ -613,9 +638,10 @@ Partial Class frmMain
         'chkMPXB
         '
         Me.chkMPXB.AutoSize = True
-        Me.chkMPXB.Location = New System.Drawing.Point(205, 111)
+        Me.chkMPXB.Location = New System.Drawing.Point(154, 90)
+        Me.chkMPXB.Margin = New System.Windows.Forms.Padding(2)
         Me.chkMPXB.Name = "chkMPXB"
-        Me.chkMPXB.Size = New System.Drawing.Size(59, 21)
+        Me.chkMPXB.Size = New System.Drawing.Size(49, 17)
         Me.chkMPXB.TabIndex = 10
         Me.chkMPXB.Text = "MPX"
         Me.chkMPXB.UseVisualStyleBackColor = True
@@ -623,9 +649,10 @@ Partial Class frmMain
         'lblSpeedB
         '
         Me.lblSpeedB.AutoSize = True
-        Me.lblSpeedB.Location = New System.Drawing.Point(6, 112)
+        Me.lblSpeedB.Location = New System.Drawing.Point(4, 91)
+        Me.lblSpeedB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSpeedB.Name = "lblSpeedB"
-        Me.lblSpeedB.Size = New System.Drawing.Size(53, 17)
+        Me.lblSpeedB.Size = New System.Drawing.Size(41, 13)
         Me.lblSpeedB.TabIndex = 31
         Me.lblSpeedB.Text = "Speed:"
         '
@@ -634,17 +661,19 @@ Partial Class frmMain
         Me.cmbBiasB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBiasB.FormattingEnabled = True
         Me.cmbBiasB.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferro-Chrome)", "Type IV (Metal)"})
-        Me.cmbBiasB.Location = New System.Drawing.Point(45, 51)
+        Me.cmbBiasB.Location = New System.Drawing.Point(34, 41)
+        Me.cmbBiasB.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbBiasB.Name = "cmbBiasB"
-        Me.cmbBiasB.Size = New System.Drawing.Size(133, 24)
+        Me.cmbBiasB.Size = New System.Drawing.Size(101, 21)
         Me.cmbBiasB.TabIndex = 3
         '
         'lblBiasB
         '
         Me.lblBiasB.AutoSize = True
-        Me.lblBiasB.Location = New System.Drawing.Point(6, 54)
+        Me.lblBiasB.Location = New System.Drawing.Point(4, 44)
+        Me.lblBiasB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblBiasB.Name = "lblBiasB"
-        Me.lblBiasB.Size = New System.Drawing.Size(39, 17)
+        Me.lblBiasB.Size = New System.Drawing.Size(30, 13)
         Me.lblBiasB.TabIndex = 22
         Me.lblBiasB.Text = "Bias:"
         '
@@ -653,35 +682,39 @@ Partial Class frmMain
         Me.cmbEQB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbEQB.FormattingEnabled = True
         Me.cmbEQB.Items.AddRange(New Object() {"120μs", "70μs"})
-        Me.cmbEQB.Location = New System.Drawing.Point(190, 21)
+        Me.cmbEQB.Location = New System.Drawing.Point(142, 17)
+        Me.cmbEQB.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbEQB.Name = "cmbEQB"
-        Me.cmbEQB.Size = New System.Drawing.Size(69, 24)
+        Me.cmbEQB.Size = New System.Drawing.Size(53, 21)
         Me.cmbEQB.TabIndex = 2
         '
         'numBiasCalB
         '
-        Me.numBiasCalB.Location = New System.Drawing.Point(214, 52)
+        Me.numBiasCalB.Location = New System.Drawing.Point(160, 42)
+        Me.numBiasCalB.Margin = New System.Windows.Forms.Padding(2)
         Me.numBiasCalB.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.numBiasCalB.Minimum = New Decimal(New Integer() {20, 0, 0, -2147483648})
         Me.numBiasCalB.Name = "numBiasCalB"
-        Me.numBiasCalB.Size = New System.Drawing.Size(45, 22)
+        Me.numBiasCalB.Size = New System.Drawing.Size(34, 20)
         Me.numBiasCalB.TabIndex = 4
         '
         'lblBiasCalB
         '
         Me.lblBiasCalB.AutoSize = True
-        Me.lblBiasCalB.Location = New System.Drawing.Point(180, 54)
+        Me.lblBiasCalB.Location = New System.Drawing.Point(135, 44)
+        Me.lblBiasCalB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblBiasCalB.Name = "lblBiasCalB"
-        Me.lblBiasCalB.Size = New System.Drawing.Size(32, 17)
+        Me.lblBiasCalB.Size = New System.Drawing.Size(24, 13)
         Me.lblBiasCalB.TabIndex = 23
         Me.lblBiasCalB.Text = "±%:"
         '
         'lblEQB
         '
         Me.lblEQB.AutoSize = True
-        Me.lblEQB.Location = New System.Drawing.Point(152, 24)
+        Me.lblEQB.Location = New System.Drawing.Point(114, 20)
+        Me.lblEQB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblEQB.Name = "lblEQB"
-        Me.lblEQB.Size = New System.Drawing.Size(32, 17)
+        Me.lblEQB.Size = New System.Drawing.Size(25, 13)
         Me.lblEQB.TabIndex = 27
         Me.lblEQB.Text = "EQ:"
         '
@@ -689,19 +722,21 @@ Partial Class frmMain
         '
         Me.numLevelB.DecimalPlaces = 2
         Me.numLevelB.Increment = New Decimal(New Integer() {25, 0, 0, 131072})
-        Me.numLevelB.Location = New System.Drawing.Point(55, 81)
+        Me.numLevelB.Location = New System.Drawing.Point(41, 66)
+        Me.numLevelB.Margin = New System.Windows.Forms.Padding(2)
         Me.numLevelB.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numLevelB.Name = "numLevelB"
-        Me.numLevelB.Size = New System.Drawing.Size(50, 22)
+        Me.numLevelB.Size = New System.Drawing.Size(38, 20)
         Me.numLevelB.TabIndex = 5
         Me.numLevelB.Value = New Decimal(New Integer() {5, 0, 0, 0})
         '
         'lblLevelB
         '
         Me.lblLevelB.AutoSize = True
-        Me.lblLevelB.Location = New System.Drawing.Point(6, 83)
+        Me.lblLevelB.Location = New System.Drawing.Point(4, 67)
+        Me.lblLevelB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLevelB.Name = "lblLevelB"
-        Me.lblLevelB.Size = New System.Drawing.Size(46, 17)
+        Me.lblLevelB.Size = New System.Drawing.Size(36, 13)
         Me.lblLevelB.TabIndex = 26
         Me.lblLevelB.Text = "Level:"
         '
@@ -709,37 +744,41 @@ Partial Class frmMain
         '
         Me.numLevelCalB.DecimalPlaces = 1
         Me.numLevelCalB.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.numLevelCalB.Location = New System.Drawing.Point(148, 81)
+        Me.numLevelCalB.Location = New System.Drawing.Point(111, 66)
+        Me.numLevelCalB.Margin = New System.Windows.Forms.Padding(2)
         Me.numLevelCalB.Maximum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.numLevelCalB.Minimum = New Decimal(New Integer() {3, 0, 0, -2147483648})
         Me.numLevelCalB.Name = "numLevelCalB"
-        Me.numLevelCalB.Size = New System.Drawing.Size(48, 22)
+        Me.numLevelCalB.Size = New System.Drawing.Size(36, 20)
         Me.numLevelCalB.TabIndex = 6
         '
         'lblLevelCalB
         '
         Me.lblLevelCalB.AutoSize = True
-        Me.lblLevelCalB.Location = New System.Drawing.Point(109, 83)
+        Me.lblLevelCalB.Location = New System.Drawing.Point(82, 67)
+        Me.lblLevelCalB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLevelCalB.Name = "lblLevelCalB"
-        Me.lblLevelCalB.Size = New System.Drawing.Size(37, 17)
+        Me.lblLevelCalB.Size = New System.Drawing.Size(29, 13)
         Me.lblLevelCalB.TabIndex = 25
         Me.lblLevelCalB.Text = "±dB:"
         '
         'lblPeakB
         '
         Me.lblPeakB.AutoSize = True
-        Me.lblPeakB.Location = New System.Drawing.Point(149, 110)
+        Me.lblPeakB.Location = New System.Drawing.Point(112, 89)
+        Me.lblPeakB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPeakB.Name = "lblPeakB"
-        Me.lblPeakB.Size = New System.Drawing.Size(75, 17)
+        Me.lblPeakB.Size = New System.Drawing.Size(57, 13)
         Me.lblPeakB.TabIndex = 37
         Me.lblPeakB.Text = "Peak (dB):"
         '
         'lblNameB
         '
         Me.lblNameB.AutoSize = True
-        Me.lblNameB.Location = New System.Drawing.Point(6, 24)
+        Me.lblNameB.Location = New System.Drawing.Point(4, 20)
+        Me.lblNameB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNameB.Name = "lblNameB"
-        Me.lblNameB.Size = New System.Drawing.Size(49, 17)
+        Me.lblNameB.Size = New System.Drawing.Size(38, 13)
         Me.lblNameB.TabIndex = 13
         Me.lblNameB.Text = "Name:"
         '
@@ -748,25 +787,28 @@ Partial Class frmMain
         Me.cmbInputB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbInputB.FormattingEnabled = True
         Me.cmbInputB.Items.AddRange(New Object() {"Casette", "Reel", "FM", "AM", "DAB", "Record", "CD", "DVD", "VHS", "TV", "Phone", "Other"})
-        Me.cmbInputB.Location = New System.Drawing.Point(51, 107)
+        Me.cmbInputB.Location = New System.Drawing.Point(38, 87)
+        Me.cmbInputB.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbInputB.Name = "cmbInputB"
-        Me.cmbInputB.Size = New System.Drawing.Size(92, 24)
+        Me.cmbInputB.Size = New System.Drawing.Size(70, 21)
         Me.cmbInputB.TabIndex = 4
         '
         'lblInputB
         '
         Me.lblInputB.AutoSize = True
-        Me.lblInputB.Location = New System.Drawing.Point(6, 110)
+        Me.lblInputB.Location = New System.Drawing.Point(4, 89)
+        Me.lblInputB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblInputB.Name = "lblInputB"
-        Me.lblInputB.Size = New System.Drawing.Size(43, 17)
+        Me.lblInputB.Size = New System.Drawing.Size(34, 13)
         Me.lblInputB.TabIndex = 35
         Me.lblInputB.Text = "Input:"
         '
         'txtNameB
         '
-        Me.txtNameB.Location = New System.Drawing.Point(61, 21)
+        Me.txtNameB.Location = New System.Drawing.Point(46, 17)
+        Me.txtNameB.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNameB.Name = "txtNameB"
-        Me.txtNameB.Size = New System.Drawing.Size(210, 22)
+        Me.txtNameB.Size = New System.Drawing.Size(158, 20)
         Me.txtNameB.TabIndex = 1
         '
         'grpContentsB
@@ -777,9 +819,11 @@ Partial Class frmMain
         Me.grpContentsB.Controls.Add(Me.txtArtistB)
         Me.grpContentsB.Controls.Add(Me.lblContentsB)
         Me.grpContentsB.Controls.Add(Me.cmbContentsB)
-        Me.grpContentsB.Location = New System.Drawing.Point(6, 284)
+        Me.grpContentsB.Location = New System.Drawing.Point(4, 231)
+        Me.grpContentsB.Margin = New System.Windows.Forms.Padding(2)
         Me.grpContentsB.Name = "grpContentsB"
-        Me.grpContentsB.Size = New System.Drawing.Size(265, 109)
+        Me.grpContentsB.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpContentsB.Size = New System.Drawing.Size(199, 89)
         Me.grpContentsB.TabIndex = 11
         Me.grpContentsB.TabStop = False
         Me.grpContentsB.Text = "Contents"
@@ -787,41 +831,46 @@ Partial Class frmMain
         'lblTitleB
         '
         Me.lblTitleB.AutoSize = True
-        Me.lblTitleB.Location = New System.Drawing.Point(6, 82)
+        Me.lblTitleB.Location = New System.Drawing.Point(4, 67)
+        Me.lblTitleB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTitleB.Name = "lblTitleB"
-        Me.lblTitleB.Size = New System.Drawing.Size(39, 17)
+        Me.lblTitleB.Size = New System.Drawing.Size(30, 13)
         Me.lblTitleB.TabIndex = 18
         Me.lblTitleB.Text = "Title:"
         '
         'lblArtistB
         '
         Me.lblArtistB.AutoSize = True
-        Me.lblArtistB.Location = New System.Drawing.Point(6, 54)
+        Me.lblArtistB.Location = New System.Drawing.Point(4, 44)
+        Me.lblArtistB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblArtistB.Name = "lblArtistB"
-        Me.lblArtistB.Size = New System.Drawing.Size(44, 17)
+        Me.lblArtistB.Size = New System.Drawing.Size(33, 13)
         Me.lblArtistB.TabIndex = 17
         Me.lblArtistB.Text = "Artist:"
         '
         'txtTitleB
         '
-        Me.txtTitleB.Location = New System.Drawing.Point(55, 79)
+        Me.txtTitleB.Location = New System.Drawing.Point(41, 64)
+        Me.txtTitleB.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTitleB.Name = "txtTitleB"
-        Me.txtTitleB.Size = New System.Drawing.Size(204, 22)
+        Me.txtTitleB.Size = New System.Drawing.Size(154, 20)
         Me.txtTitleB.TabIndex = 3
         '
         'txtArtistB
         '
-        Me.txtArtistB.Location = New System.Drawing.Point(55, 51)
+        Me.txtArtistB.Location = New System.Drawing.Point(41, 41)
+        Me.txtArtistB.Margin = New System.Windows.Forms.Padding(2)
         Me.txtArtistB.Name = "txtArtistB"
-        Me.txtArtistB.Size = New System.Drawing.Size(204, 22)
+        Me.txtArtistB.Size = New System.Drawing.Size(154, 20)
         Me.txtArtistB.TabIndex = 2
         '
         'lblContentsB
         '
         Me.lblContentsB.AutoSize = True
-        Me.lblContentsB.Location = New System.Drawing.Point(6, 24)
+        Me.lblContentsB.Location = New System.Drawing.Point(4, 20)
+        Me.lblContentsB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblContentsB.Name = "lblContentsB"
-        Me.lblContentsB.Size = New System.Drawing.Size(44, 17)
+        Me.lblContentsB.Size = New System.Drawing.Size(34, 13)
         Me.lblContentsB.TabIndex = 14
         Me.lblContentsB.Text = "Type:"
         '
@@ -830,17 +879,19 @@ Partial Class frmMain
         Me.cmbContentsB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbContentsB.FormattingEnabled = True
         Me.cmbContentsB.Items.AddRange(New Object() {"Mixtape", "Album", "Compilation", "Soundtrack", "EP", "Single"})
-        Me.cmbContentsB.Location = New System.Drawing.Point(55, 21)
+        Me.cmbContentsB.Location = New System.Drawing.Point(41, 17)
+        Me.cmbContentsB.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbContentsB.Name = "cmbContentsB"
-        Me.cmbContentsB.Size = New System.Drawing.Size(204, 24)
+        Me.cmbContentsB.Size = New System.Drawing.Size(154, 21)
         Me.cmbContentsB.TabIndex = 1
         '
         'datRecordedB
         '
         Me.datRecordedB.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datRecordedB.Location = New System.Drawing.Point(120, 49)
+        Me.datRecordedB.Location = New System.Drawing.Point(90, 40)
+        Me.datRecordedB.Margin = New System.Windows.Forms.Padding(2)
         Me.datRecordedB.Name = "datRecordedB"
-        Me.datRecordedB.Size = New System.Drawing.Size(151, 22)
+        Me.datRecordedB.Size = New System.Drawing.Size(114, 20)
         Me.datRecordedB.TabIndex = 2
         Me.datRecordedB.Value = New Date(2019, 1, 1, 0, 0, 0, 0)
         '
@@ -848,27 +899,30 @@ Partial Class frmMain
         '
         Me.cmbDeckB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbDeckB.FormattingEnabled = True
-        Me.cmbDeckB.Location = New System.Drawing.Point(51, 77)
+        Me.cmbDeckB.Location = New System.Drawing.Point(38, 63)
+        Me.cmbDeckB.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbDeckB.Name = "cmbDeckB"
-        Me.cmbDeckB.Size = New System.Drawing.Size(220, 24)
+        Me.cmbDeckB.Size = New System.Drawing.Size(166, 21)
         Me.cmbDeckB.Sorted = True
         Me.cmbDeckB.TabIndex = 3
         '
         'lblRecordedB
         '
         Me.lblRecordedB.AutoSize = True
-        Me.lblRecordedB.Location = New System.Drawing.Point(6, 52)
+        Me.lblRecordedB.Location = New System.Drawing.Point(4, 42)
+        Me.lblRecordedB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblRecordedB.Name = "lblRecordedB"
-        Me.lblRecordedB.Size = New System.Drawing.Size(108, 17)
+        Me.lblRecordedB.Size = New System.Drawing.Size(83, 13)
         Me.lblRecordedB.TabIndex = 11
         Me.lblRecordedB.Text = "Date Recorded:"
         '
         'lblDeckB
         '
         Me.lblDeckB.AutoSize = True
-        Me.lblDeckB.Location = New System.Drawing.Point(7, 80)
+        Me.lblDeckB.Location = New System.Drawing.Point(5, 65)
+        Me.lblDeckB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDeckB.Name = "lblDeckB"
-        Me.lblDeckB.Size = New System.Drawing.Size(44, 17)
+        Me.lblDeckB.Size = New System.Drawing.Size(36, 13)
         Me.lblDeckB.TabIndex = 45
         Me.lblDeckB.Text = "Deck:"
         '
@@ -877,9 +931,11 @@ Partial Class frmMain
         Me.grpTaped.Controls.Add(Me.lblSides)
         Me.grpTaped.Controls.Add(Me.chkTapedB)
         Me.grpTaped.Controls.Add(Me.chkTapedA)
-        Me.grpTaped.Location = New System.Drawing.Point(218, 136)
+        Me.grpTaped.Location = New System.Drawing.Point(164, 110)
+        Me.grpTaped.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTaped.Name = "grpTaped"
-        Me.grpTaped.Size = New System.Drawing.Size(64, 109)
+        Me.grpTaped.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpTaped.Size = New System.Drawing.Size(48, 89)
         Me.grpTaped.TabIndex = 3
         Me.grpTaped.TabStop = False
         Me.grpTaped.Text = "Taped"
@@ -887,18 +943,20 @@ Partial Class frmMain
         'lblSides
         '
         Me.lblSides.AutoSize = True
-        Me.lblSides.Location = New System.Drawing.Point(6, 24)
+        Me.lblSides.Location = New System.Drawing.Point(4, 20)
+        Me.lblSides.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSides.Name = "lblSides"
-        Me.lblSides.Size = New System.Drawing.Size(47, 17)
+        Me.lblSides.Size = New System.Drawing.Size(36, 13)
         Me.lblSides.TabIndex = 14
         Me.lblSides.Text = "Sides:"
         '
         'chkTapedB
         '
         Me.chkTapedB.AutoSize = True
-        Me.chkTapedB.Location = New System.Drawing.Point(9, 81)
+        Me.chkTapedB.Location = New System.Drawing.Point(7, 66)
+        Me.chkTapedB.Margin = New System.Windows.Forms.Padding(2)
         Me.chkTapedB.Name = "chkTapedB"
-        Me.chkTapedB.Size = New System.Drawing.Size(39, 21)
+        Me.chkTapedB.Size = New System.Drawing.Size(33, 17)
         Me.chkTapedB.TabIndex = 2
         Me.chkTapedB.Text = "B"
         Me.chkTapedB.UseVisualStyleBackColor = True
@@ -906,9 +964,10 @@ Partial Class frmMain
         'chkTapedA
         '
         Me.chkTapedA.AutoSize = True
-        Me.chkTapedA.Location = New System.Drawing.Point(9, 53)
+        Me.chkTapedA.Location = New System.Drawing.Point(7, 43)
+        Me.chkTapedA.Margin = New System.Windows.Forms.Padding(2)
         Me.chkTapedA.Name = "chkTapedA"
-        Me.chkTapedA.Size = New System.Drawing.Size(39, 21)
+        Me.chkTapedA.Size = New System.Drawing.Size(33, 17)
         Me.chkTapedA.TabIndex = 1
         Me.chkTapedA.Text = "A"
         Me.chkTapedA.UseVisualStyleBackColor = True
@@ -928,28 +987,32 @@ Partial Class frmMain
         Me.grpSideA.Controls.Add(Me.cmbDeckA)
         Me.grpSideA.Controls.Add(Me.lblDeckA)
         Me.grpSideA.Enabled = False
-        Me.grpSideA.Location = New System.Drawing.Point(288, 21)
+        Me.grpSideA.Location = New System.Drawing.Point(216, 17)
+        Me.grpSideA.Margin = New System.Windows.Forms.Padding(2)
         Me.grpSideA.Name = "grpSideA"
-        Me.grpSideA.Size = New System.Drawing.Size(277, 399)
+        Me.grpSideA.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpSideA.Size = New System.Drawing.Size(208, 324)
         Me.grpSideA.TabIndex = 4
         Me.grpSideA.TabStop = False
         Me.grpSideA.Text = "Side A"
         '
         'numPeakA
         '
-        Me.numPeakA.Location = New System.Drawing.Point(225, 108)
+        Me.numPeakA.Location = New System.Drawing.Point(169, 88)
+        Me.numPeakA.Margin = New System.Windows.Forms.Padding(2)
         Me.numPeakA.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numPeakA.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numPeakA.Name = "numPeakA"
-        Me.numPeakA.Size = New System.Drawing.Size(45, 22)
+        Me.numPeakA.Size = New System.Drawing.Size(34, 20)
         Me.numPeakA.TabIndex = 5
         '
         'lblPeakA
         '
         Me.lblPeakA.AutoSize = True
-        Me.lblPeakA.Location = New System.Drawing.Point(148, 110)
+        Me.lblPeakA.Location = New System.Drawing.Point(111, 89)
+        Me.lblPeakA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPeakA.Name = "lblPeakA"
-        Me.lblPeakA.Size = New System.Drawing.Size(75, 17)
+        Me.lblPeakA.Size = New System.Drawing.Size(57, 13)
         Me.lblPeakA.TabIndex = 33
         Me.lblPeakA.Text = "Peak (dB):"
         '
@@ -958,17 +1021,19 @@ Partial Class frmMain
         Me.cmbInputA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbInputA.FormattingEnabled = True
         Me.cmbInputA.Items.AddRange(New Object() {"Casette", "Reel", "FM", "AM", "DAB", "Record", "CD", "DVD", "VHS", "TV", "Phone", "Other"})
-        Me.cmbInputA.Location = New System.Drawing.Point(51, 107)
+        Me.cmbInputA.Location = New System.Drawing.Point(38, 87)
+        Me.cmbInputA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbInputA.Name = "cmbInputA"
-        Me.cmbInputA.Size = New System.Drawing.Size(91, 24)
+        Me.cmbInputA.Size = New System.Drawing.Size(69, 21)
         Me.cmbInputA.TabIndex = 4
         '
         'lblInputA
         '
         Me.lblInputA.AutoSize = True
-        Me.lblInputA.Location = New System.Drawing.Point(6, 110)
+        Me.lblInputA.Location = New System.Drawing.Point(4, 89)
+        Me.lblInputA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblInputA.Name = "lblInputA"
-        Me.lblInputA.Size = New System.Drawing.Size(43, 17)
+        Me.lblInputA.Size = New System.Drawing.Size(34, 13)
         Me.lblInputA.TabIndex = 31
         Me.lblInputA.Text = "Input:"
         '
@@ -991,9 +1056,11 @@ Partial Class frmMain
         Me.grpConfigA.Controls.Add(Me.lblLevelA)
         Me.grpConfigA.Controls.Add(Me.numLevelCalA)
         Me.grpConfigA.Controls.Add(Me.lblLevelCalA)
-        Me.grpConfigA.Location = New System.Drawing.Point(6, 137)
+        Me.grpConfigA.Location = New System.Drawing.Point(4, 111)
+        Me.grpConfigA.Margin = New System.Windows.Forms.Padding(2)
         Me.grpConfigA.Name = "grpConfigA"
-        Me.grpConfigA.Size = New System.Drawing.Size(265, 141)
+        Me.grpConfigA.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpConfigA.Size = New System.Drawing.Size(199, 115)
         Me.grpConfigA.TabIndex = 14
         Me.grpConfigA.TabStop = False
         Me.grpConfigA.Text = "Configuration"
@@ -1001,9 +1068,10 @@ Partial Class frmMain
         'chkDubbedA
         '
         Me.chkDubbedA.AutoSize = True
-        Me.chkDubbedA.Location = New System.Drawing.Point(148, 111)
+        Me.chkDubbedA.Location = New System.Drawing.Point(111, 90)
+        Me.chkDubbedA.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDubbedA.Name = "chkDubbedA"
-        Me.chkDubbedA.Size = New System.Drawing.Size(56, 21)
+        Me.chkDubbedA.Size = New System.Drawing.Size(46, 17)
         Me.chkDubbedA.TabIndex = 9
         Me.chkDubbedA.Text = "Dub"
         Me.chkDubbedA.UseVisualStyleBackColor = True
@@ -1013,17 +1081,19 @@ Partial Class frmMain
         Me.cmbNRA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbNRA.FormattingEnabled = True
         Me.cmbNRA.Items.AddRange(New Object() {"None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
-        Me.cmbNRA.Location = New System.Drawing.Point(45, 21)
+        Me.cmbNRA.Location = New System.Drawing.Point(34, 17)
+        Me.cmbNRA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbNRA.Name = "cmbNRA"
-        Me.cmbNRA.Size = New System.Drawing.Size(101, 24)
+        Me.cmbNRA.Size = New System.Drawing.Size(77, 21)
         Me.cmbNRA.TabIndex = 1
         '
         'lblNRA
         '
         Me.lblNRA.AutoSize = True
-        Me.lblNRA.Location = New System.Drawing.Point(6, 24)
+        Me.lblNRA.Location = New System.Drawing.Point(4, 20)
+        Me.lblNRA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNRA.Name = "lblNRA"
-        Me.lblNRA.Size = New System.Drawing.Size(32, 17)
+        Me.lblNRA.Size = New System.Drawing.Size(26, 13)
         Me.lblNRA.TabIndex = 4
         Me.lblNRA.Text = "NR:"
         '
@@ -1032,17 +1102,19 @@ Partial Class frmMain
         Me.cmbSpeedA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSpeedA.FormattingEnabled = True
         Me.cmbSpeedA.Items.AddRange(New Object() {"15/16 IPS", "1⅞ IPS", "3¾ IPS"})
-        Me.cmbSpeedA.Location = New System.Drawing.Point(62, 109)
+        Me.cmbSpeedA.Location = New System.Drawing.Point(46, 89)
+        Me.cmbSpeedA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbSpeedA.Name = "cmbSpeedA"
-        Me.cmbSpeedA.Size = New System.Drawing.Size(77, 24)
+        Me.cmbSpeedA.Size = New System.Drawing.Size(59, 21)
         Me.cmbSpeedA.TabIndex = 8
         '
         'chkHXA
         '
         Me.chkHXA.AutoSize = True
-        Me.chkHXA.Location = New System.Drawing.Point(205, 82)
+        Me.chkHXA.Location = New System.Drawing.Point(154, 67)
+        Me.chkHXA.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHXA.Name = "chkHXA"
-        Me.chkHXA.Size = New System.Drawing.Size(49, 21)
+        Me.chkHXA.Size = New System.Drawing.Size(41, 17)
         Me.chkHXA.TabIndex = 7
         Me.chkHXA.Text = "HX"
         Me.chkHXA.UseVisualStyleBackColor = True
@@ -1050,9 +1122,10 @@ Partial Class frmMain
         'chkMPXA
         '
         Me.chkMPXA.AutoSize = True
-        Me.chkMPXA.Location = New System.Drawing.Point(205, 111)
+        Me.chkMPXA.Location = New System.Drawing.Point(154, 90)
+        Me.chkMPXA.Margin = New System.Windows.Forms.Padding(2)
         Me.chkMPXA.Name = "chkMPXA"
-        Me.chkMPXA.Size = New System.Drawing.Size(59, 21)
+        Me.chkMPXA.Size = New System.Drawing.Size(49, 17)
         Me.chkMPXA.TabIndex = 10
         Me.chkMPXA.Text = "MPX"
         Me.chkMPXA.UseVisualStyleBackColor = True
@@ -1060,9 +1133,10 @@ Partial Class frmMain
         'lblSpeed
         '
         Me.lblSpeed.AutoSize = True
-        Me.lblSpeed.Location = New System.Drawing.Point(6, 112)
+        Me.lblSpeed.Location = New System.Drawing.Point(4, 91)
+        Me.lblSpeed.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSpeed.Name = "lblSpeed"
-        Me.lblSpeed.Size = New System.Drawing.Size(53, 17)
+        Me.lblSpeed.Size = New System.Drawing.Size(41, 13)
         Me.lblSpeed.TabIndex = 31
         Me.lblSpeed.Text = "Speed:"
         '
@@ -1071,17 +1145,19 @@ Partial Class frmMain
         Me.cmbBiasA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBiasA.FormattingEnabled = True
         Me.cmbBiasA.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferro-Chrome)", "Type IV (Metal)"})
-        Me.cmbBiasA.Location = New System.Drawing.Point(45, 51)
+        Me.cmbBiasA.Location = New System.Drawing.Point(34, 41)
+        Me.cmbBiasA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbBiasA.Name = "cmbBiasA"
-        Me.cmbBiasA.Size = New System.Drawing.Size(133, 24)
+        Me.cmbBiasA.Size = New System.Drawing.Size(101, 21)
         Me.cmbBiasA.TabIndex = 3
         '
         'lblBiasA
         '
         Me.lblBiasA.AutoSize = True
-        Me.lblBiasA.Location = New System.Drawing.Point(6, 54)
+        Me.lblBiasA.Location = New System.Drawing.Point(4, 44)
+        Me.lblBiasA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblBiasA.Name = "lblBiasA"
-        Me.lblBiasA.Size = New System.Drawing.Size(39, 17)
+        Me.lblBiasA.Size = New System.Drawing.Size(30, 13)
         Me.lblBiasA.TabIndex = 22
         Me.lblBiasA.Text = "Bias:"
         '
@@ -1090,35 +1166,39 @@ Partial Class frmMain
         Me.cmbEQA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbEQA.FormattingEnabled = True
         Me.cmbEQA.Items.AddRange(New Object() {"120μs", "70μs"})
-        Me.cmbEQA.Location = New System.Drawing.Point(190, 21)
+        Me.cmbEQA.Location = New System.Drawing.Point(142, 17)
+        Me.cmbEQA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbEQA.Name = "cmbEQA"
-        Me.cmbEQA.Size = New System.Drawing.Size(69, 24)
+        Me.cmbEQA.Size = New System.Drawing.Size(53, 21)
         Me.cmbEQA.TabIndex = 2
         '
         'numBiasCalA
         '
-        Me.numBiasCalA.Location = New System.Drawing.Point(214, 52)
+        Me.numBiasCalA.Location = New System.Drawing.Point(160, 42)
+        Me.numBiasCalA.Margin = New System.Windows.Forms.Padding(2)
         Me.numBiasCalA.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.numBiasCalA.Minimum = New Decimal(New Integer() {20, 0, 0, -2147483648})
         Me.numBiasCalA.Name = "numBiasCalA"
-        Me.numBiasCalA.Size = New System.Drawing.Size(45, 22)
+        Me.numBiasCalA.Size = New System.Drawing.Size(34, 20)
         Me.numBiasCalA.TabIndex = 4
         '
         'lblBiasCalA
         '
         Me.lblBiasCalA.AutoSize = True
-        Me.lblBiasCalA.Location = New System.Drawing.Point(180, 54)
+        Me.lblBiasCalA.Location = New System.Drawing.Point(135, 44)
+        Me.lblBiasCalA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblBiasCalA.Name = "lblBiasCalA"
-        Me.lblBiasCalA.Size = New System.Drawing.Size(32, 17)
+        Me.lblBiasCalA.Size = New System.Drawing.Size(24, 13)
         Me.lblBiasCalA.TabIndex = 23
         Me.lblBiasCalA.Text = "±%:"
         '
         'lblEQA
         '
         Me.lblEQA.AutoSize = True
-        Me.lblEQA.Location = New System.Drawing.Point(152, 24)
+        Me.lblEQA.Location = New System.Drawing.Point(114, 20)
+        Me.lblEQA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblEQA.Name = "lblEQA"
-        Me.lblEQA.Size = New System.Drawing.Size(32, 17)
+        Me.lblEQA.Size = New System.Drawing.Size(25, 13)
         Me.lblEQA.TabIndex = 27
         Me.lblEQA.Text = "EQ:"
         '
@@ -1126,19 +1206,21 @@ Partial Class frmMain
         '
         Me.numLevelA.DecimalPlaces = 2
         Me.numLevelA.Increment = New Decimal(New Integer() {25, 0, 0, 131072})
-        Me.numLevelA.Location = New System.Drawing.Point(55, 81)
+        Me.numLevelA.Location = New System.Drawing.Point(41, 66)
+        Me.numLevelA.Margin = New System.Windows.Forms.Padding(2)
         Me.numLevelA.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numLevelA.Name = "numLevelA"
-        Me.numLevelA.Size = New System.Drawing.Size(50, 22)
+        Me.numLevelA.Size = New System.Drawing.Size(38, 20)
         Me.numLevelA.TabIndex = 5
         Me.numLevelA.Value = New Decimal(New Integer() {5, 0, 0, 0})
         '
         'lblLevelA
         '
         Me.lblLevelA.AutoSize = True
-        Me.lblLevelA.Location = New System.Drawing.Point(6, 83)
+        Me.lblLevelA.Location = New System.Drawing.Point(4, 67)
+        Me.lblLevelA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLevelA.Name = "lblLevelA"
-        Me.lblLevelA.Size = New System.Drawing.Size(46, 17)
+        Me.lblLevelA.Size = New System.Drawing.Size(36, 13)
         Me.lblLevelA.TabIndex = 26
         Me.lblLevelA.Text = "Level:"
         '
@@ -1146,36 +1228,40 @@ Partial Class frmMain
         '
         Me.numLevelCalA.DecimalPlaces = 1
         Me.numLevelCalA.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.numLevelCalA.Location = New System.Drawing.Point(148, 81)
+        Me.numLevelCalA.Location = New System.Drawing.Point(111, 66)
+        Me.numLevelCalA.Margin = New System.Windows.Forms.Padding(2)
         Me.numLevelCalA.Maximum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.numLevelCalA.Minimum = New Decimal(New Integer() {3, 0, 0, -2147483648})
         Me.numLevelCalA.Name = "numLevelCalA"
-        Me.numLevelCalA.Size = New System.Drawing.Size(48, 22)
+        Me.numLevelCalA.Size = New System.Drawing.Size(36, 20)
         Me.numLevelCalA.TabIndex = 6
         '
         'lblLevelCalA
         '
         Me.lblLevelCalA.AutoSize = True
-        Me.lblLevelCalA.Location = New System.Drawing.Point(109, 83)
+        Me.lblLevelCalA.Location = New System.Drawing.Point(82, 67)
+        Me.lblLevelCalA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLevelCalA.Name = "lblLevelCalA"
-        Me.lblLevelCalA.Size = New System.Drawing.Size(37, 17)
+        Me.lblLevelCalA.Size = New System.Drawing.Size(29, 13)
         Me.lblLevelCalA.TabIndex = 25
         Me.lblLevelCalA.Text = "±dB:"
         '
         'lblNameA
         '
         Me.lblNameA.AutoSize = True
-        Me.lblNameA.Location = New System.Drawing.Point(6, 24)
+        Me.lblNameA.Location = New System.Drawing.Point(4, 20)
+        Me.lblNameA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNameA.Name = "lblNameA"
-        Me.lblNameA.Size = New System.Drawing.Size(49, 17)
+        Me.lblNameA.Size = New System.Drawing.Size(38, 13)
         Me.lblNameA.TabIndex = 13
         Me.lblNameA.Text = "Name:"
         '
         'txtNameA
         '
-        Me.txtNameA.Location = New System.Drawing.Point(61, 21)
+        Me.txtNameA.Location = New System.Drawing.Point(46, 17)
+        Me.txtNameA.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNameA.Name = "txtNameA"
-        Me.txtNameA.Size = New System.Drawing.Size(210, 22)
+        Me.txtNameA.Size = New System.Drawing.Size(158, 20)
         Me.txtNameA.TabIndex = 1
         '
         'grpContentsA
@@ -1186,9 +1272,11 @@ Partial Class frmMain
         Me.grpContentsA.Controls.Add(Me.txtArtistA)
         Me.grpContentsA.Controls.Add(Me.lblContentsA)
         Me.grpContentsA.Controls.Add(Me.cmbContentsA)
-        Me.grpContentsA.Location = New System.Drawing.Point(6, 284)
+        Me.grpContentsA.Location = New System.Drawing.Point(4, 231)
+        Me.grpContentsA.Margin = New System.Windows.Forms.Padding(2)
         Me.grpContentsA.Name = "grpContentsA"
-        Me.grpContentsA.Size = New System.Drawing.Size(265, 109)
+        Me.grpContentsA.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpContentsA.Size = New System.Drawing.Size(199, 89)
         Me.grpContentsA.TabIndex = 11
         Me.grpContentsA.TabStop = False
         Me.grpContentsA.Text = "Contents"
@@ -1196,41 +1284,46 @@ Partial Class frmMain
         'lblTitleA
         '
         Me.lblTitleA.AutoSize = True
-        Me.lblTitleA.Location = New System.Drawing.Point(6, 82)
+        Me.lblTitleA.Location = New System.Drawing.Point(4, 67)
+        Me.lblTitleA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTitleA.Name = "lblTitleA"
-        Me.lblTitleA.Size = New System.Drawing.Size(39, 17)
+        Me.lblTitleA.Size = New System.Drawing.Size(30, 13)
         Me.lblTitleA.TabIndex = 18
         Me.lblTitleA.Text = "Title:"
         '
         'lblArtistA
         '
         Me.lblArtistA.AutoSize = True
-        Me.lblArtistA.Location = New System.Drawing.Point(6, 54)
+        Me.lblArtistA.Location = New System.Drawing.Point(4, 44)
+        Me.lblArtistA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblArtistA.Name = "lblArtistA"
-        Me.lblArtistA.Size = New System.Drawing.Size(44, 17)
+        Me.lblArtistA.Size = New System.Drawing.Size(33, 13)
         Me.lblArtistA.TabIndex = 17
         Me.lblArtistA.Text = "Artist:"
         '
         'txtTitleA
         '
-        Me.txtTitleA.Location = New System.Drawing.Point(55, 79)
+        Me.txtTitleA.Location = New System.Drawing.Point(41, 64)
+        Me.txtTitleA.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTitleA.Name = "txtTitleA"
-        Me.txtTitleA.Size = New System.Drawing.Size(204, 22)
+        Me.txtTitleA.Size = New System.Drawing.Size(154, 20)
         Me.txtTitleA.TabIndex = 3
         '
         'txtArtistA
         '
-        Me.txtArtistA.Location = New System.Drawing.Point(55, 51)
+        Me.txtArtistA.Location = New System.Drawing.Point(41, 41)
+        Me.txtArtistA.Margin = New System.Windows.Forms.Padding(2)
         Me.txtArtistA.Name = "txtArtistA"
-        Me.txtArtistA.Size = New System.Drawing.Size(204, 22)
+        Me.txtArtistA.Size = New System.Drawing.Size(154, 20)
         Me.txtArtistA.TabIndex = 2
         '
         'lblContentsA
         '
         Me.lblContentsA.AutoSize = True
-        Me.lblContentsA.Location = New System.Drawing.Point(6, 24)
+        Me.lblContentsA.Location = New System.Drawing.Point(4, 20)
+        Me.lblContentsA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblContentsA.Name = "lblContentsA"
-        Me.lblContentsA.Size = New System.Drawing.Size(44, 17)
+        Me.lblContentsA.Size = New System.Drawing.Size(34, 13)
         Me.lblContentsA.TabIndex = 14
         Me.lblContentsA.Text = "Type:"
         '
@@ -1239,26 +1332,29 @@ Partial Class frmMain
         Me.cmbContentsA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbContentsA.FormattingEnabled = True
         Me.cmbContentsA.Items.AddRange(New Object() {"Mixtape", "Album", "Compilation", "Soundtrack", "EP", "Single"})
-        Me.cmbContentsA.Location = New System.Drawing.Point(55, 21)
+        Me.cmbContentsA.Location = New System.Drawing.Point(41, 17)
+        Me.cmbContentsA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbContentsA.Name = "cmbContentsA"
-        Me.cmbContentsA.Size = New System.Drawing.Size(204, 24)
+        Me.cmbContentsA.Size = New System.Drawing.Size(154, 21)
         Me.cmbContentsA.TabIndex = 1
         '
         'datRecordedA
         '
         Me.datRecordedA.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datRecordedA.Location = New System.Drawing.Point(120, 49)
+        Me.datRecordedA.Location = New System.Drawing.Point(90, 40)
+        Me.datRecordedA.Margin = New System.Windows.Forms.Padding(2)
         Me.datRecordedA.Name = "datRecordedA"
-        Me.datRecordedA.Size = New System.Drawing.Size(151, 22)
+        Me.datRecordedA.Size = New System.Drawing.Size(114, 20)
         Me.datRecordedA.TabIndex = 2
         Me.datRecordedA.Value = New Date(2019, 1, 1, 0, 0, 0, 0)
         '
         'lblRecordedA
         '
         Me.lblRecordedA.AutoSize = True
-        Me.lblRecordedA.Location = New System.Drawing.Point(6, 52)
+        Me.lblRecordedA.Location = New System.Drawing.Point(4, 42)
+        Me.lblRecordedA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblRecordedA.Name = "lblRecordedA"
-        Me.lblRecordedA.Size = New System.Drawing.Size(108, 17)
+        Me.lblRecordedA.Size = New System.Drawing.Size(83, 13)
         Me.lblRecordedA.TabIndex = 11
         Me.lblRecordedA.Text = "Date Recorded:"
         '
@@ -1266,18 +1362,20 @@ Partial Class frmMain
         '
         Me.cmbDeckA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbDeckA.FormattingEnabled = True
-        Me.cmbDeckA.Location = New System.Drawing.Point(51, 77)
+        Me.cmbDeckA.Location = New System.Drawing.Point(38, 63)
+        Me.cmbDeckA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbDeckA.Name = "cmbDeckA"
-        Me.cmbDeckA.Size = New System.Drawing.Size(220, 24)
+        Me.cmbDeckA.Size = New System.Drawing.Size(166, 21)
         Me.cmbDeckA.Sorted = True
         Me.cmbDeckA.TabIndex = 3
         '
         'lblDeckA
         '
         Me.lblDeckA.AutoSize = True
-        Me.lblDeckA.Location = New System.Drawing.Point(6, 80)
+        Me.lblDeckA.Location = New System.Drawing.Point(4, 65)
+        Me.lblDeckA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDeckA.Name = "lblDeckA"
-        Me.lblDeckA.Size = New System.Drawing.Size(44, 17)
+        Me.lblDeckA.Size = New System.Drawing.Size(36, 13)
         Me.lblDeckA.TabIndex = 29
         Me.lblDeckA.Text = "Deck:"
         '
@@ -1288,27 +1386,31 @@ Partial Class frmMain
         Me.grpBasic.Controls.Add(Me.lblCondition)
         Me.grpBasic.Controls.Add(Me.lblNumber)
         Me.grpBasic.Controls.Add(Me.cmbCondition)
-        Me.grpBasic.Location = New System.Drawing.Point(6, 136)
+        Me.grpBasic.Location = New System.Drawing.Point(4, 110)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Size = New System.Drawing.Size(206, 109)
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpBasic.Size = New System.Drawing.Size(154, 89)
         Me.grpBasic.TabIndex = 2
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
         '
         'txtNumber
         '
-        Me.txtNumber.Location = New System.Drawing.Point(151, 22)
+        Me.txtNumber.Location = New System.Drawing.Point(113, 18)
+        Me.txtNumber.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNumber.Name = "txtNumber"
         Me.txtNumber.ReadOnly = True
-        Me.txtNumber.Size = New System.Drawing.Size(49, 22)
+        Me.txtNumber.Size = New System.Drawing.Size(38, 20)
         Me.txtNumber.TabIndex = 1
         '
         'chkPackaged
         '
         Me.chkPackaged.AutoSize = True
-        Me.chkPackaged.Location = New System.Drawing.Point(9, 81)
+        Me.chkPackaged.Location = New System.Drawing.Point(7, 66)
+        Me.chkPackaged.Margin = New System.Windows.Forms.Padding(2)
         Me.chkPackaged.Name = "chkPackaged"
-        Me.chkPackaged.Size = New System.Drawing.Size(137, 21)
+        Me.chkPackaged.Size = New System.Drawing.Size(108, 17)
         Me.chkPackaged.TabIndex = 3
         Me.chkPackaged.Text = "Still In Packaging"
         Me.chkPackaged.UseVisualStyleBackColor = True
@@ -1316,18 +1418,20 @@ Partial Class frmMain
         'lblCondition
         '
         Me.lblCondition.AutoSize = True
-        Me.lblCondition.Location = New System.Drawing.Point(5, 54)
+        Me.lblCondition.Location = New System.Drawing.Point(4, 44)
+        Me.lblCondition.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblCondition.Name = "lblCondition"
-        Me.lblCondition.Size = New System.Drawing.Size(71, 17)
+        Me.lblCondition.Size = New System.Drawing.Size(54, 13)
         Me.lblCondition.TabIndex = 9
         Me.lblCondition.Text = "Condition:"
         '
         'lblNumber
         '
         Me.lblNumber.AutoSize = True
-        Me.lblNumber.Location = New System.Drawing.Point(5, 25)
+        Me.lblNumber.Location = New System.Drawing.Point(4, 20)
+        Me.lblNumber.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNumber.Name = "lblNumber"
-        Me.lblNumber.Size = New System.Drawing.Size(140, 17)
+        Me.lblNumber.Size = New System.Drawing.Size(104, 13)
         Me.lblNumber.TabIndex = 11
         Me.lblNumber.Text = "Number (Per Model):"
         '
@@ -1336,112 +1440,131 @@ Partial Class frmMain
         Me.cmbCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCondition.FormattingEnabled = True
         Me.cmbCondition.Items.AddRange(New Object() {"Mint", "Near Mint", "Very Good Plus", "Very Good", "Good Plus", "Good", "Fair", "Poor", "Broken"})
-        Me.cmbCondition.Location = New System.Drawing.Point(76, 51)
+        Me.cmbCondition.Location = New System.Drawing.Point(57, 41)
+        Me.cmbCondition.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbCondition.Name = "cmbCondition"
-        Me.cmbCondition.Size = New System.Drawing.Size(124, 24)
+        Me.cmbCondition.Size = New System.Drawing.Size(94, 21)
         Me.cmbCondition.TabIndex = 2
         '
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(6, 251)
+        Me.grpNotes.Location = New System.Drawing.Point(4, 204)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
-        Me.grpNotes.Size = New System.Drawing.Size(276, 169)
+        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpNotes.Size = New System.Drawing.Size(207, 137)
         Me.grpNotes.TabIndex = 6
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(6, 21)
+        Me.txtNotes.Location = New System.Drawing.Point(4, 17)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(264, 142)
+        Me.txtNotes.Size = New System.Drawing.Size(199, 116)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
         'grpModel
         '
-        Me.grpModel.Controls.Add(Me.txtRegion)
+        Me.grpModel.Controls.Add(Me.cmbRegion)
+        Me.grpModel.Controls.Add(Me.numLength)
+        Me.grpModel.Controls.Add(Me.numYear)
         Me.grpModel.Controls.Add(Me.txtModel)
-        Me.grpModel.Controls.Add(Me.txtLength)
-        Me.grpModel.Controls.Add(Me.txtYear)
         Me.grpModel.Controls.Add(Me.lblRegion)
         Me.grpModel.Controls.Add(Me.lblLength)
         Me.grpModel.Controls.Add(Me.lblYear)
         Me.grpModel.Controls.Add(Me.lblModel)
-        Me.grpModel.Location = New System.Drawing.Point(6, 21)
+        Me.grpModel.Location = New System.Drawing.Point(4, 17)
+        Me.grpModel.Margin = New System.Windows.Forms.Padding(2)
         Me.grpModel.Name = "grpModel"
-        Me.grpModel.Size = New System.Drawing.Size(276, 109)
+        Me.grpModel.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpModel.Size = New System.Drawing.Size(207, 89)
         Me.grpModel.TabIndex = 1
         Me.grpModel.TabStop = False
         Me.grpModel.Text = "Model"
         '
-        'txtRegion
+        'cmbRegion
         '
-        Me.txtRegion.Location = New System.Drawing.Point(62, 79)
-        Me.txtRegion.Name = "txtRegion"
-        Me.txtRegion.ReadOnly = True
-        Me.txtRegion.Size = New System.Drawing.Size(208, 22)
-        Me.txtRegion.TabIndex = 4
+        Me.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbRegion.FormattingEnabled = True
+        Me.cmbRegion.Items.AddRange(New Object() {"Europe", "USA", "Japan", "Europe/USA", "Europe/Japan", "USA/Japan", "Europe/USA/Japan", "Unkown"})
+        Me.cmbRegion.Location = New System.Drawing.Point(46, 64)
+        Me.cmbRegion.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbRegion.Name = "cmbRegion"
+        Me.cmbRegion.Size = New System.Drawing.Size(156, 21)
+        Me.cmbRegion.TabIndex = 25
+        '
+        'numLength
+        '
+        Me.numLength.Location = New System.Drawing.Point(149, 41)
+        Me.numLength.Margin = New System.Windows.Forms.Padding(2)
+        Me.numLength.Maximum = New Decimal(New Integer() {180, 0, 0, 0})
+        Me.numLength.Name = "numLength"
+        Me.numLength.Size = New System.Drawing.Size(52, 20)
+        Me.numLength.TabIndex = 24
+        Me.numLength.Value = New Decimal(New Integer() {90, 0, 0, 0})
+        '
+        'numYear
+        '
+        Me.numYear.Location = New System.Drawing.Point(46, 41)
+        Me.numYear.Margin = New System.Windows.Forms.Padding(2)
+        Me.numYear.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
+        Me.numYear.Minimum = New Decimal(New Integer() {1963, 0, 0, 0})
+        Me.numYear.Name = "numYear"
+        Me.numYear.Size = New System.Drawing.Size(52, 20)
+        Me.numYear.TabIndex = 23
+        Me.numYear.Value = New Decimal(New Integer() {1990, 0, 0, 0})
         '
         'txtModel
         '
-        Me.txtModel.Location = New System.Drawing.Point(62, 21)
+        Me.txtModel.Location = New System.Drawing.Point(46, 17)
+        Me.txtModel.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModel.Name = "txtModel"
         Me.txtModel.ReadOnly = True
-        Me.txtModel.Size = New System.Drawing.Size(208, 22)
+        Me.txtModel.Size = New System.Drawing.Size(157, 20)
         Me.txtModel.TabIndex = 1
-        '
-        'txtLength
-        '
-        Me.txtLength.Location = New System.Drawing.Point(200, 51)
-        Me.txtLength.Name = "txtLength"
-        Me.txtLength.ReadOnly = True
-        Me.txtLength.Size = New System.Drawing.Size(70, 22)
-        Me.txtLength.TabIndex = 3
-        '
-        'txtYear
-        '
-        Me.txtYear.Location = New System.Drawing.Point(63, 51)
-        Me.txtYear.Name = "txtYear"
-        Me.txtYear.ReadOnly = True
-        Me.txtYear.Size = New System.Drawing.Size(69, 22)
-        Me.txtYear.TabIndex = 2
         '
         'lblRegion
         '
         Me.lblRegion.AutoSize = True
-        Me.lblRegion.Location = New System.Drawing.Point(6, 82)
+        Me.lblRegion.Location = New System.Drawing.Point(4, 67)
+        Me.lblRegion.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblRegion.Name = "lblRegion"
-        Me.lblRegion.Size = New System.Drawing.Size(57, 17)
+        Me.lblRegion.Size = New System.Drawing.Size(44, 13)
         Me.lblRegion.TabIndex = 22
         Me.lblRegion.Text = "Region:"
         '
         'lblLength
         '
         Me.lblLength.AutoSize = True
-        Me.lblLength.Location = New System.Drawing.Point(138, 53)
+        Me.lblLength.Location = New System.Drawing.Point(104, 43)
+        Me.lblLength.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLength.Name = "lblLength"
-        Me.lblLength.Size = New System.Drawing.Size(56, 17)
+        Me.lblLength.Size = New System.Drawing.Size(43, 13)
         Me.lblLength.TabIndex = 20
         Me.lblLength.Text = "Length:"
         '
         'lblYear
         '
         Me.lblYear.AutoSize = True
-        Me.lblYear.Location = New System.Drawing.Point(6, 53)
+        Me.lblYear.Location = New System.Drawing.Point(4, 43)
+        Me.lblYear.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblYear.Name = "lblYear"
-        Me.lblYear.Size = New System.Drawing.Size(42, 17)
+        Me.lblYear.Size = New System.Drawing.Size(32, 13)
         Me.lblYear.TabIndex = 17
         Me.lblYear.Text = "Year:"
         '
         'lblModel
         '
         Me.lblModel.AutoSize = True
-        Me.lblModel.Location = New System.Drawing.Point(6, 24)
+        Me.lblModel.Location = New System.Drawing.Point(4, 20)
+        Me.lblModel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblModel.Name = "lblModel"
-        Me.lblModel.Size = New System.Drawing.Size(50, 17)
+        Me.lblModel.Size = New System.Drawing.Size(39, 13)
         Me.lblModel.TabIndex = 15
         Me.lblModel.Text = "Model:"
         '
@@ -1451,9 +1574,11 @@ Partial Class frmMain
         Me.grpFind.Controls.Add(Me.txtTerm)
         Me.grpFind.Controls.Add(Me.btnFind)
         Me.grpFind.Enabled = False
-        Me.grpFind.Location = New System.Drawing.Point(12, 31)
+        Me.grpFind.Location = New System.Drawing.Point(9, 25)
+        Me.grpFind.Margin = New System.Windows.Forms.Padding(2)
         Me.grpFind.Name = "grpFind"
-        Me.grpFind.Size = New System.Drawing.Size(495, 53)
+        Me.grpFind.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpFind.Size = New System.Drawing.Size(371, 43)
         Me.grpFind.TabIndex = 1
         Me.grpFind.TabStop = False
         Me.grpFind.Text = "Find"
@@ -1463,23 +1588,26 @@ Partial Class frmMain
         Me.cmbField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbField.FormattingEnabled = True
         Me.cmbField.Items.AddRange(New Object() {"All Fields", "Identifier", "Name/Label", "Brand", "Model", "Year", "Length", "Condition", "Noise Reduction", "Date Recorded", "Contents Type", "Artist", "Title", "Notes", "Index (Storage)"})
-        Me.cmbField.Location = New System.Drawing.Point(288, 22)
+        Me.cmbField.Location = New System.Drawing.Point(216, 18)
+        Me.cmbField.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbField.Name = "cmbField"
-        Me.cmbField.Size = New System.Drawing.Size(136, 24)
+        Me.cmbField.Size = New System.Drawing.Size(103, 21)
         Me.cmbField.TabIndex = 2
         '
         'txtTerm
         '
-        Me.txtTerm.Location = New System.Drawing.Point(6, 23)
+        Me.txtTerm.Location = New System.Drawing.Point(4, 19)
+        Me.txtTerm.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTerm.Name = "txtTerm"
-        Me.txtTerm.Size = New System.Drawing.Size(276, 22)
+        Me.txtTerm.Size = New System.Drawing.Size(208, 20)
         Me.txtTerm.TabIndex = 1
         '
         'btnFind
         '
-        Me.btnFind.Location = New System.Drawing.Point(430, 21)
+        Me.btnFind.Location = New System.Drawing.Point(322, 17)
+        Me.btnFind.Margin = New System.Windows.Forms.Padding(2)
         Me.btnFind.Name = "btnFind"
-        Me.btnFind.Size = New System.Drawing.Size(59, 25)
+        Me.btnFind.Size = New System.Drawing.Size(44, 20)
         Me.btnFind.TabIndex = 3
         Me.btnFind.Text = "Find"
         Me.btnFind.UseVisualStyleBackColor = True
@@ -1491,9 +1619,11 @@ Partial Class frmMain
         Me.grpActions.Controls.Add(Me.btnSave)
         Me.grpActions.Controls.Add(Me.btnDelete)
         Me.grpActions.Controls.Add(Me.btnAdd)
-        Me.grpActions.Location = New System.Drawing.Point(589, 31)
+        Me.grpActions.Location = New System.Drawing.Point(442, 25)
+        Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
-        Me.grpActions.Size = New System.Drawing.Size(277, 109)
+        Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpActions.Size = New System.Drawing.Size(208, 89)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
@@ -1501,25 +1631,28 @@ Partial Class frmMain
         'btnUpdate
         '
         Me.btnUpdate.Enabled = False
-        Me.btnUpdate.Location = New System.Drawing.Point(6, 52)
+        Me.btnUpdate.Location = New System.Drawing.Point(4, 42)
+        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(2)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(129, 25)
+        Me.btnUpdate.Size = New System.Drawing.Size(97, 20)
         Me.btnUpdate.TabIndex = 7
         Me.btnUpdate.Text = "Update Tape"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'lblAbout
         '
-        Me.lblAbout.Location = New System.Drawing.Point(6, 83)
+        Me.lblAbout.Location = New System.Drawing.Point(4, 67)
+        Me.lblAbout.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAbout.Name = "lblAbout"
-        Me.lblAbout.Size = New System.Drawing.Size(265, 19)
+        Me.lblAbout.Size = New System.Drawing.Size(199, 15)
         Me.lblAbout.TabIndex = 6
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(141, 52)
+        Me.btnSave.Location = New System.Drawing.Point(106, 42)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(130, 25)
+        Me.btnSave.Size = New System.Drawing.Size(98, 20)
         Me.btnSave.TabIndex = 3
         Me.btnSave.Text = "Save to File"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -1527,18 +1660,20 @@ Partial Class frmMain
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(141, 21)
+        Me.btnDelete.Location = New System.Drawing.Point(106, 17)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(130, 25)
+        Me.btnDelete.Size = New System.Drawing.Size(98, 20)
         Me.btnDelete.TabIndex = 2
         Me.btnDelete.Text = "Delete Tape"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(6, 21)
+        Me.btnAdd.Location = New System.Drawing.Point(4, 17)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(129, 25)
+        Me.btnAdd.Size = New System.Drawing.Size(97, 20)
         Me.btnAdd.TabIndex = 1
         Me.btnAdd.Text = "Add Tape"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -1548,27 +1683,31 @@ Partial Class frmMain
         Me.grpScroll.Controls.Add(Me.btnNext)
         Me.grpScroll.Controls.Add(Me.btnPrevious)
         Me.grpScroll.Enabled = False
-        Me.grpScroll.Location = New System.Drawing.Point(513, 31)
+        Me.grpScroll.Location = New System.Drawing.Point(385, 25)
+        Me.grpScroll.Margin = New System.Windows.Forms.Padding(2)
         Me.grpScroll.Name = "grpScroll"
-        Me.grpScroll.Size = New System.Drawing.Size(70, 53)
+        Me.grpScroll.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpScroll.Size = New System.Drawing.Size(52, 43)
         Me.grpScroll.TabIndex = 2
         Me.grpScroll.TabStop = False
         Me.grpScroll.Text = "Scroll"
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(38, 21)
+        Me.btnNext.Location = New System.Drawing.Point(28, 17)
+        Me.btnNext.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNext.Name = "btnNext"
-        Me.btnNext.Size = New System.Drawing.Size(26, 25)
+        Me.btnNext.Size = New System.Drawing.Size(20, 20)
         Me.btnNext.TabIndex = 2
         Me.btnNext.Text = ">"
         Me.btnNext.UseVisualStyleBackColor = True
         '
         'btnPrevious
         '
-        Me.btnPrevious.Location = New System.Drawing.Point(6, 21)
+        Me.btnPrevious.Location = New System.Drawing.Point(4, 17)
+        Me.btnPrevious.Margin = New System.Windows.Forms.Padding(2)
         Me.btnPrevious.Name = "btnPrevious"
-        Me.btnPrevious.Size = New System.Drawing.Size(26, 25)
+        Me.btnPrevious.Size = New System.Drawing.Size(20, 20)
         Me.btnPrevious.TabIndex = 1
         Me.btnPrevious.Text = "<"
         Me.btnPrevious.UseVisualStyleBackColor = True
@@ -1590,9 +1729,9 @@ Partial Class frmMain
         '
         'frmMain
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(878, 583)
+        Me.ClientSize = New System.Drawing.Size(658, 474)
         Me.Controls.Add(Me.grpScroll)
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.grpIdentification)
@@ -1602,6 +1741,7 @@ Partial Class frmMain
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.menuStripMain
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmMain"
         Me.Text = "Compact Cassette Catalogue"
@@ -1638,6 +1778,8 @@ Partial Class frmMain
         Me.grpNotes.PerformLayout()
         Me.grpModel.ResumeLayout(False)
         Me.grpModel.PerformLayout()
+        CType(Me.numLength, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numYear, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpFind.ResumeLayout(False)
         Me.grpFind.PerformLayout()
         Me.grpActions.ResumeLayout(False)
@@ -1786,13 +1928,13 @@ Partial Class frmMain
     Friend WithEvents txtIndex As TextBox
     Friend WithEvents lblMax As Label
     Friend WithEvents txtNumber As TextBox
-    Friend WithEvents txtRegion As TextBox
     Friend WithEvents txtModel As TextBox
-    Friend WithEvents txtLength As TextBox
-    Friend WithEvents txtYear As TextBox
     Friend WithEvents ToolsToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ShowConsoleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents btnUpdate As Button
     Friend WithEvents TutorialToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FeedbackToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cmbRegion As ComboBox
+    Friend WithEvents numLength As NumericUpDown
+    Friend WithEvents numYear As NumericUpDown
 End Class

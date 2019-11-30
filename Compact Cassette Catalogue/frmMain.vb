@@ -45,6 +45,7 @@ Public Class frmMain
         datRecordedB.MinDate = CDate("30/8/1963")
         datRecordedA.MaxDate = Date.Today
         datRecordedB.MaxDate = Date.Today
+        numYear.Maximum = Date.Today.Year
 
         'Load console
         frmConsole.Show()
@@ -115,11 +116,199 @@ Public Class frmMain
 
         If updates = True Then
 
-            Dim condition As Integer = getCondition(cmbCondition.SelectedIndex)
-
             Try
 
-                'check if okay to save (validate boxes) ''temp
+                'Open existing data row
+                Dim tape As DataRow = tapes.Rows(thisTapeIndex)
+                Dim identifierShort As String = CStr(tape("IdentifierShort"))
+                Dim number As Integer = CInt(tape("Number"))
+                Dim modelCode As String = CStr(tape("Model"))
+
+                ''model Name from identification/code
+                'Dim modelRow As DataRow = models.Rows.Find(modelCode)
+                'Dim modelName As String = CStr(modelRow("Brand")) & " " & CStr(modelRow("Model"))
+                ''Find model type
+                'thisModelType = CInt(modelCode.Substring(2, 1))
+
+
+                'Validate all new data entered
+
+                Dim packaged As Boolean = chkPackaged.Checked
+                Dim tapedA As Boolean = chkTapedA.Checked
+                Dim tapedB As Boolean = chkTapedB.Checked
+
+                If packaged = False Then
+
+                    If tapedA = True And txtNameA.Text = Nothing Then
+                        Throw New Exception("No name for side A.")
+                    End If
+
+                    If tapedB = True And txtNameB.Text = Nothing Then
+                        Throw New Exception("No name for side B.")
+                    End If
+
+                End If
+
+
+                'Get and update new long Identifier
+
+                Dim year As Integer = CInt(numYear.Value)
+                Dim length As Decimal = numLength.Value
+
+
+                Dim yearString As String = Str(year)
+                Dim yearCode As String = yearString.Substring(yearString.Length - 2) 'Last two digits of the year
+
+                Dim lengthCode As String = Str(CInt(length)).Replace(" ", Nothing)
+
+                If lengthCode.Length > 2 Then
+                    'There is no rounding here so "129 minutes" becomes "X2"
+                    'Change 100 to X0, 110 to X1, and 190 to X9 (inclusive).
+                    lengthCode = "X" & lengthCode.Substring(1, 1)
+                ElseIf lengthCode.Length < 2 Then
+                    lengthCode = "0" & lengthCode
+                End If
+
+                'Add leading zeroes to number-code (then remove extra zeroes)
+                Dim numberCode As String = "00" & CStr(Number)
+                numberCode = numberCode.Substring(numberCode.Length - 3, 3)
+
+                Dim identifier As String = CStr(modelCode) & yearCode & lengthCode & numberCode 'Format: MMTmmYYLL###
+
+                Dim condition As Integer = getCondition(cmbCondition.SelectedIndex)
+
+                Dim biasCodeA As Integer = cmbBiasA.SelectedIndex + 1
+                Dim biasCodeB As Integer = cmbBiasB.SelectedIndex + 1
+
+
+                'Get values for recorded sides
+
+                'A side values
+                Dim peakA As Integer = Nothing
+                Dim biasCalA As Integer = Nothing
+
+                Dim nameA As String = Nothing
+                Dim recordedA As Date = Nothing
+                Dim deckA As String = Nothing
+                Dim inputA As String = Nothing
+                Dim speedA As String = Nothing
+
+                Dim NRA As String = Nothing
+                Dim HXA As Boolean = Nothing
+                Dim MPXA As Boolean = Nothing
+                Dim dubbedA As Boolean = Nothing
+
+                Dim EQA As String = Nothing
+                Dim levelA As Decimal = Nothing
+                Dim levelCalA As Decimal = Nothing
+
+                Dim contentsA As String = Nothing
+                Dim artistA As String = Nothing
+                Dim titleA As String = Nothing
+
+                'B side values
+                Dim peakB As Integer = Nothing
+                Dim biasCalB As Integer = Nothing
+
+                Dim nameB As String = Nothing
+                Dim recordedB As Date = Nothing
+                Dim deckB As String = Nothing
+                Dim inputB As String = Nothing
+                Dim speedB As String = Nothing
+
+                Dim NRB As String = Nothing
+                Dim HXB As Boolean = Nothing
+                Dim MPXB As Boolean = Nothing
+                Dim dubbedB As Boolean = Nothing
+
+                Dim EQB As String = Nothing
+                Dim levelB As Decimal = Nothing
+                Dim levelCalB As Decimal = Nothing
+
+                Dim contentsB As String = Nothing
+                Dim artistB As String = Nothing
+                Dim titleB As String = Nothing
+
+                'Only save real values if that side has been marked as recorded
+                If packaged = False Then
+
+                    If tapedA = True Then
+
+                        nameA = txtNameA.Text
+                        recordedA = datRecordedA.Value
+                        deckA = cmbDeckA.Text
+                        inputA = cmbInputA.Text
+                        speedA = cmbSpeedA.Text
+
+                        NRA = cmbNRA.Text
+                        HXA = chkHXA.Checked
+                        MPXA = chkMPXA.Checked
+                        dubbedA = chkDubbedA.Checked
+
+                        EQA = cmbEQA.Text
+                        levelA = numLevelA.Value
+                        levelCalA = numLevelCalA.Value
+
+                        contentsA = cmbContentsA.Text
+                        artistA = txtArtistA.Text
+                        titleA = txtTitleA.Text
+
+                    End If
+
+                    If tapedB = True Then
+
+                        nameB = txtNameB.Text
+                        recordedB = datRecordedB.Value
+                        deckB = cmbDeckB.Text
+                        inputB = cmbInputB.Text
+                        speedB = cmbSpeedB.Text
+
+                        NRB = cmbNRB.Text
+                        HXB = chkHXB.Checked
+                        MPXB = chkMPXB.Checked
+                        dubbedB = chkDubbedB.Checked
+
+                        EQB = cmbEQB.Text
+                        levelB = numLevelB.Value
+                        levelCalB = numLevelCalB.Value
+
+                        contentsB = cmbContentsB.Text
+                        artistB = txtArtistB.Text
+                        titleB = txtTitleB.Text
+
+                    End If
+
+                End If
+
+
+                'Write data to record
+
+                Dim thisTape As Object() = {modelCode, year, length, cmbRegion.Text, Number, identifier, identifierShort, condition, packaged, tapedA, tapedB, nameA, recordedA, deckA, inputA, peakA, NRA, HXA, MPXA, dubbedA, speedA, biasCodeA, biasCalA, EQA, levelA, levelCalA, contentsA, artistA, titleA, nameB, recordedB, deckB, inputB, peakB, NRB, HXB, MPXB, dubbedB, speedB, biasCodeB, biasCalB, EQB, levelB, levelCalB, contentsB, artistB, titleB, DateTime.Now, txtNotes.Text} 'The data to be written for this tape entry
+
+                tapes.Rows(thisTapeIndex)("columnName") = "0"
+
+                'Write new data to existing row
+                Dim counter As Integer = 0
+
+                For Each thisObject As Object In thisTape
+
+                    tapes.Rows(thisTapeIndex)(counter) = thisObject
+                    counter += 1
+
+                Next
+
+                updates = False
+                changes = True
+                'Update title bar
+                Me.Text = fileName & "* - C3"
+
+                'Show confirmation message
+                Dim message As String = "Updated tape " & identifierShort & " successfully."
+                If My.Settings.showMessages = True Then
+                    MsgBox(message, MsgBoxStyle.Information, "Successfully Updated Tape")
+                End If
+                consoleAdd(message)
+
 
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Cannot Save Incomplete Tape")
@@ -127,12 +316,14 @@ Public Class frmMain
 
             End Try
 
-            'Write data to record
-            ''temp
-
         Else
 
-            'show message.. no changes to update tape with ''temp
+            'No changes to update tape with
+            Dim message As String = "No changes to update tape with."
+            If My.Settings.showMessages = True Then
+                MsgBox(message, MsgBoxStyle.Information, "No Updates to Tape")
+            End If
+            'consoleAdd(message)
 
         End If
 
@@ -146,14 +337,10 @@ Public Class frmMain
 
             If result = vbYes Then
 
-                If True = True Then ''TEMP check if all new values are valid and if 
-
-                    updateTape()
+                updateTape()
 
                     'SAVE CHANGES
                     saveChangesActual(saveAs, False)
-
-                End If
 
             ElseIf result = vbNo Then
 
@@ -262,14 +449,10 @@ Public Class frmMain
 
             If result = vbYes Then
 
-                If True = True Then ''TEMP check if all new values are valid and if 
-
-                    updateTape()
+                updateTape()
 
                     'CHECK CHANGES
                     openCatalogueCheckChanges()
-
-                End If
 
             ElseIf result = vbNo Then
 
@@ -406,6 +589,18 @@ Public Class frmMain
 
     End Sub
 
+    Private Sub updateMade()
+        'Made an update to a field in the main form
+
+        If updates = False Then
+
+            updates = True
+            'Update title bar
+            Me.Text = fileName & "* - C3"
+        End If
+
+    End Sub
+
     Private Sub updateScrollers()
 
         'Ensure users can't scroll out-of-bounds
@@ -447,9 +642,9 @@ Public Class frmMain
 
         'Populate groups and elements
         txtModel.Text = modelName
-        txtYear.Text = CStr(tape("Year"))
-        txtLength.Text = CStr(tape("Length"))
-        txtRegion.Text = CStr(tape("Region"))
+        numYear.Value = CInt(tape("Year"))
+        numLength.Value = CInt(tape("Length"))
+        cmbRegion.Text = CStr(tape("Region"))
         txtNumber.Text = CStr(tape("Number"))
 
         Dim condition As Integer = getCondition(CInt(tape("Condition")))
@@ -621,6 +816,8 @@ Public Class frmMain
 
     Private Sub ChkTapedA_CheckedChanged(sender As Object, e As EventArgs) Handles chkTapedA.CheckedChanged
 
+        updateMade()
+
         If chkTapedA.Checked = True Then
 
             deckCount = CInt(counters.Rows(0)("Number"))
@@ -679,6 +876,8 @@ Public Class frmMain
     End Sub
 
     Private Sub ChkTapedB_CheckedChanged(sender As Object, e As EventArgs) Handles chkTapedB.CheckedChanged
+
+        updateMade()
 
         If chkTapedB.Checked = True Then
 
@@ -761,6 +960,8 @@ Public Class frmMain
 
     Private Sub ChkPackaged_CheckedChanged(sender As Object, e As EventArgs) Handles chkPackaged.CheckedChanged
 
+        updateMade()
+
         If chkPackaged.Checked = True Then
             chkTapedA.Checked = False
             chkTapedB.Checked = False
@@ -781,14 +982,10 @@ Public Class frmMain
 
             If result = vbYes Then
 
-                If True = True Then 'check if all new values are valid and if 
-
-                    updateTape()
+                updateTape()
 
                     'ADD A NEW TAPE
                     addNewTapeActual()
-
-                End If
 
             ElseIf result = vbNo Then
 
@@ -897,16 +1094,12 @@ Public Class frmMain
 
             If result = vbYes Then
 
-                If True = True Then 'check if all new values are valid and if 
-
-                    updateTape()
+                updateTape()
 
                     'SCROLL PREVIOUS
 
                     thisTapeIndex -= 1
                     displayTape()
-
-                End If
 
             ElseIf result = vbNo Then
                 'SCROLL PREVIOUS
@@ -935,16 +1128,12 @@ Public Class frmMain
 
             If result = vbYes Then
 
-                If True = True Then 'check if all new values are valid and if 
-
-                    updateTape()
+                updateTape()
 
                     'SCROLL NEXT
 
                     thisTapeIndex += 1
                     displayTape()
-
-                End If
 
             ElseIf result = vbNo Then
                 'SCROLL NEXT
@@ -996,14 +1185,10 @@ Public Class frmMain
 
             If result = vbYes Then
 
-                If True = True Then 'check if all new values are valid and if 
-
-                    updateTape()
+                updateTape()
 
                     'NEW CAT
                     newCatalogueCheckChanges()
-
-                End If
 
             ElseIf result = vbNo Then
 
@@ -1053,16 +1238,7 @@ Public Class frmMain
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
-        'check data is valid then write to record
-        If True = True Then ''TEMP check if all new values are valid and if 
-
-            updateTape()
-
-            changes = True 'temp
-            'Update title bar
-            Me.Text = fileName & "* - C3"
-
-        End If
+        updateTape()
 
     End Sub
 
@@ -1073,4 +1249,249 @@ Public Class frmMain
 
     End Sub
 
+    Private Sub numYear_ValueChanged(sender As Object, e As EventArgs) Handles numYear.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numLength_ValueChanged(sender As Object, e As EventArgs) Handles numLength.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbRegion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbRegion.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbCondition_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCondition.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtNotes_TextChanged(sender As Object, e As EventArgs) Handles txtNotes.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtNameA_TextChanged(sender As Object, e As EventArgs) Handles txtNameA.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub datRecordedA_ValueChanged(sender As Object, e As EventArgs) Handles datRecordedA.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbDeckA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDeckA.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbInputA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbInputA.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numPeakA_ValueChanged(sender As Object, e As EventArgs) Handles numPeakA.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbNRA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNRA.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbEQA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEQA.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbBiasA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBiasA.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numBiasCalA_ValueChanged(sender As Object, e As EventArgs) Handles numBiasCalA.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numLevelA_ValueChanged(sender As Object, e As EventArgs) Handles numLevelA.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numLevelCalA_ValueChanged(sender As Object, e As EventArgs) Handles numLevelCalA.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkHXA_CheckedChanged(sender As Object, e As EventArgs) Handles chkHXA.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbSpeedA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSpeedA.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkDubbedA_CheckedChanged(sender As Object, e As EventArgs) Handles chkDubbedA.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkMPXA_CheckedChanged(sender As Object, e As EventArgs) Handles chkMPXA.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbContentsA_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbContentsA.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtArtistA_TextChanged(sender As Object, e As EventArgs) Handles txtArtistA.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtTitleA_TextChanged(sender As Object, e As EventArgs) Handles txtTitleA.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtNameB_TextChanged(sender As Object, e As EventArgs) Handles txtNameB.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub datRecordedB_ValueChanged(sender As Object, e As EventArgs) Handles datRecordedB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbDeckB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDeckB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbInputB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbInputB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numPeakB_ValueChanged(sender As Object, e As EventArgs) Handles numPeakB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbNRB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNRB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbEQB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEQB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbBiasB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBiasB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numBiasCalB_ValueChanged(sender As Object, e As EventArgs) Handles numBiasCalB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numLevelB_ValueChanged(sender As Object, e As EventArgs) Handles numLevelB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numLevelCalB_ValueChanged(sender As Object, e As EventArgs) Handles numLevelCalB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkHXB_CheckedChanged(sender As Object, e As EventArgs) Handles chkHXB.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbSpeedB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSpeedB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkDubbedB_CheckedChanged(sender As Object, e As EventArgs) Handles chkDubbedB.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkMPXB_CheckedChanged(sender As Object, e As EventArgs) Handles chkMPXB.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbContentsB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbContentsB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtArtistB_TextChanged(sender As Object, e As EventArgs) Handles txtArtistB.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtTitleB_TextChanged(sender As Object, e As EventArgs) Handles txtTitleB.TextChanged
+
+        updateMade()
+
+    End Sub
 End Class

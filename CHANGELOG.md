@@ -10,6 +10,7 @@ Note: Alpha versions included as early Beta versions.
 
 ### Beta 0.6 – XX November 2019
 
+- Can now update information of existing tapes.
 - File version checker now supports "x.x.xbx" version numbers.
 - .NET Framework changed to version 4.6.
   - Added Windows Vista support.

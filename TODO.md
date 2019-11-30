@@ -1,9 +1,8 @@
 ### Betas
 
-- make changes to existing tapes ((each box/value change sets updated=true) add checking code (replace true = true))
+- UPDATES is always TRUE
 - delete tapes n shit
 - when editing/deleting existing things, don't forget changed=True
-- if tape-info is changed, mark as "updates" to be made to tapes
 - offer to update & save if that hasn't been done before an action
 - VIEW DATA IN LISTS VIEWS
 - make changes to existing models/decks/brands
