@@ -1,5 +1,5 @@
-﻿' Module: Main & Add New Tape
-' Purpose: To add new tapes and access the other functions of the program.
+﻿' Module: Main & Edit Tape
+' Purpose: To edit existing tapes and access the other functions of the program.
 ' Author: Jules Carboni
 ' Date Created: 22 Aug 2019
 
@@ -10,7 +10,7 @@ Imports System.Text.RegularExpressions
 Public Class frmMain
 
     'Declare variables
-
+    Dim updatesMask As Boolean = True
     'Initialise tape index to last tape
     Dim thisTapeIndex As Integer = tapeCount - 1
     Dim thisModelType As Integer
@@ -21,11 +21,14 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'Update varaibles
+        ''Update varaibles
         'deckCount = CInt(counters.Rows(0)("Number"))
         'brandCount = CInt(counters.Rows(1)("Number"))
         'modelCount = CInt(counters.Rows(2)("Number"))
         'tapeCount = CInt(counters.Rows(3)("Number"))
+        ''Re-assert variables that for some reasion change
+        'changes = False
+        'updates = False
 
         'Display about information
         lblAbout.Text = "© Jules Carboni, " & VERSIONSTAGE & " " & VERSION & " (" & VERSIONDATE.ToString("d/M/yy") & ")"
@@ -59,6 +62,10 @@ Public Class frmMain
     End Sub
 
     Public Sub loadData()
+
+        'Mask update routines
+        updatesMask = True
+
         'Load data (decks, brands and models)
 
         deckCount = CInt(counters.Rows(0)("Number"))
@@ -90,7 +97,9 @@ Public Class frmMain
 
             'Enable groups and elements
             btnDelete.Enabled = True
+            DeleteTapeToolStripMenuItem.Enabled = True
             btnUpdate.Enabled = True
+            UpdateTapeToolStripMenuItem.Enabled = True
             grpIdentification.Enabled = True
             grpData.Enabled = True
 
@@ -104,11 +113,16 @@ Public Class frmMain
 
             'Disnable groups and elements
             btnDelete.Enabled = False
+            DeleteTapeToolStripMenuItem.Enabled = False
             btnUpdate.Enabled = False
+            UpdateTapeToolStripMenuItem.Enabled = False
             grpIdentification.Enabled = False
             grpData.Enabled = False
 
         End If
+
+        'Unmask update routines
+        updatesMask = False
 
     End Sub
 
@@ -284,8 +298,6 @@ Public Class frmMain
                 'Write data to record
 
                 Dim thisTape As Object() = {modelCode, year, length, cmbRegion.Text, Number, identifier, identifierShort, condition, packaged, tapedA, tapedB, nameA, recordedA, deckA, inputA, peakA, NRA, HXA, MPXA, dubbedA, speedA, biasCodeA, biasCalA, EQA, levelA, levelCalA, contentsA, artistA, titleA, nameB, recordedB, deckB, inputB, peakB, NRB, HXB, MPXB, dubbedB, speedB, biasCodeB, biasCalB, EQB, levelB, levelCalB, contentsB, artistB, titleB, DateTime.Now, txtNotes.Text} 'The data to be written for this tape entry
-
-                tapes.Rows(thisTapeIndex)("columnName") = "0"
 
                 'Write new data to existing row
                 Dim counter As Integer = 0
@@ -592,7 +604,7 @@ Public Class frmMain
     Private Sub updateMade()
         'Made an update to a field in the main form
 
-        If updates = False Then
+        If updates = False And updatesMask = False Then
 
             updates = True
             'Update title bar
@@ -620,6 +632,9 @@ Public Class frmMain
     End Sub
 
     Private Sub displayTape()
+
+        'Mask update routines
+        updatesMask = True
 
         'Ensure users can't scroll out-of-bounds
         updateScrollers()
@@ -786,6 +801,9 @@ Public Class frmMain
 
         'Load notes
         txtNotes.Text = CStr(tape("Notes"))
+
+        'Unmask update routines
+        updatesMask = False
 
     End Sub
 
@@ -1067,6 +1085,7 @@ Public Class frmMain
         'remove record
         'Move Scroll index to previous (if only cannot scroll back (no un-removed)
         'if no tapes left, disable group boxes)
+        'CALL LOAD DATA ROUTINE
 
         changes = True
         'Update title bar
@@ -1492,6 +1511,12 @@ Public Class frmMain
     Private Sub txtTitleB_TextChanged(sender As Object, e As EventArgs) Handles txtTitleB.TextChanged
 
         updateMade()
+
+    End Sub
+
+    Private Sub UpdateTapeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateTapeToolStripMenuItem.Click
+
+        updateTape()
 
     End Sub
 End Class

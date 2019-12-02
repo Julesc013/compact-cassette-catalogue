@@ -171,6 +171,9 @@ Partial Class frmMain
         Me.btnPrevious = New System.Windows.Forms.Button()
         Me.dlgOpen = New System.Windows.Forms.OpenFileDialog()
         Me.dlgSaveAs = New System.Windows.Forms.SaveFileDialog()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UpdateTapeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteTapeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
         Me.grpData.SuspendLayout()
@@ -370,7 +373,7 @@ Partial Class frmMain
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewTapeToolStripMenuItem, Me.NewModelToolStripMenuItem, Me.NewManufactererToolStripMenuItem, Me.ToolStripSeparator2, Me.NewDeckToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewTapeToolStripMenuItem, Me.NewModelToolStripMenuItem, Me.NewManufactererToolStripMenuItem, Me.ToolStripSeparator2, Me.NewDeckToolStripMenuItem, Me.ToolStripSeparator3, Me.UpdateTapeToolStripMenuItem, Me.DeleteTapeToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "Edit"
@@ -379,33 +382,33 @@ Partial Class frmMain
         '
         Me.NewTapeToolStripMenuItem.Name = "NewTapeToolStripMenuItem"
         Me.NewTapeToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.NewTapeToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.NewTapeToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.NewTapeToolStripMenuItem.Text = "Add Tape"
         '
         'NewModelToolStripMenuItem
         '
         Me.NewModelToolStripMenuItem.Name = "NewModelToolStripMenuItem"
         Me.NewModelToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.NewModelToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.NewModelToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.NewModelToolStripMenuItem.Text = "Add Model"
         '
         'NewManufactererToolStripMenuItem
         '
         Me.NewManufactererToolStripMenuItem.Name = "NewManufactererToolStripMenuItem"
         Me.NewManufactererToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.B), System.Windows.Forms.Keys)
-        Me.NewManufactererToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.NewManufactererToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.NewManufactererToolStripMenuItem.Text = "Add Brand"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(175, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(210, 6)
         '
         'NewDeckToolStripMenuItem
         '
         Me.NewDeckToolStripMenuItem.Name = "NewDeckToolStripMenuItem"
         Me.NewDeckToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.NewDeckToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.NewDeckToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.NewDeckToolStripMenuItem.Text = "Add Deck"
         '
         'ToolsToolStripMenuItem
@@ -420,45 +423,45 @@ Partial Class frmMain
         Me.SearchTapesToolStripMenuItem.Name = "SearchTapesToolStripMenuItem"
         Me.SearchTapesToolStripMenuItem.ShortcutKeyDisplayString = ""
         Me.SearchTapesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4
-        Me.SearchTapesToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SearchTapesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SearchTapesToolStripMenuItem.Text = "View Tapes"
         '
         'SearchModelsToolStripMenuItem
         '
         Me.SearchModelsToolStripMenuItem.Name = "SearchModelsToolStripMenuItem"
         Me.SearchModelsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.SearchModelsToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SearchModelsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SearchModelsToolStripMenuItem.Text = "View Models"
         '
         'SearchManufacturersToolStripMenuItem
         '
         Me.SearchManufacturersToolStripMenuItem.Name = "SearchManufacturersToolStripMenuItem"
         Me.SearchManufacturersToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6
-        Me.SearchManufacturersToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SearchManufacturersToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SearchManufacturersToolStripMenuItem.Text = "View Brands"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(164, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
         '
         'ViewDecksToolStripMenuItem
         '
         Me.ViewDecksToolStripMenuItem.Name = "ViewDecksToolStripMenuItem"
         Me.ViewDecksToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7
-        Me.ViewDecksToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.ViewDecksToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewDecksToolStripMenuItem.Text = "View Decks"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(164, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(177, 6)
         '
         'ViewStatisticsToolStripMenuItem
         '
         Me.ViewStatisticsToolStripMenuItem.Name = "ViewStatisticsToolStripMenuItem"
         Me.ViewStatisticsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8
-        Me.ViewStatisticsToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.ViewStatisticsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewStatisticsToolStripMenuItem.Text = "View Statistics"
         '
         'ToolsToolStripMenuItem1
@@ -472,7 +475,7 @@ Partial Class frmMain
         '
         Me.ShowConsoleToolStripMenuItem.Name = "ShowConsoleToolStripMenuItem"
         Me.ShowConsoleToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3
-        Me.ShowConsoleToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.ShowConsoleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowConsoleToolStripMenuItem.Text = "Show Console"
         '
         'HelpToolStripMenuItem
@@ -486,19 +489,19 @@ Partial Class frmMain
         '
         Me.TutorialToolStripMenuItem.Name = "TutorialToolStripMenuItem"
         Me.TutorialToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TutorialToolStripMenuItem.Text = "Tutorial"
         '
         'FeedbackToolStripMenuItem
         '
         Me.FeedbackToolStripMenuItem.Name = "FeedbackToolStripMenuItem"
-        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.FeedbackToolStripMenuItem.Text = "Feedback"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'grpData
@@ -1727,6 +1730,28 @@ Partial Class frmMain
         Me.dlgSaveAs.FilterIndex = 0
         Me.dlgSaveAs.Title = "Save Catalogue As"
         '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(210, 6)
+        '
+        'UpdateTapeToolStripMenuItem
+        '
+        Me.UpdateTapeToolStripMenuItem.Enabled = False
+        Me.UpdateTapeToolStripMenuItem.Name = "UpdateTapeToolStripMenuItem"
+        Me.UpdateTapeToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
+        Me.UpdateTapeToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.UpdateTapeToolStripMenuItem.Text = "Update Tape"
+        '
+        'DeleteTapeToolStripMenuItem
+        '
+        Me.DeleteTapeToolStripMenuItem.Enabled = False
+        Me.DeleteTapeToolStripMenuItem.Name = "DeleteTapeToolStripMenuItem"
+        Me.DeleteTapeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.DeleteTapeToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.DeleteTapeToolStripMenuItem.Text = "Delete Tape"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1937,4 +1962,7 @@ Partial Class frmMain
     Friend WithEvents cmbRegion As ComboBox
     Friend WithEvents numLength As NumericUpDown
     Friend WithEvents numYear As NumericUpDown
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents UpdateTapeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteTapeToolStripMenuItem As ToolStripMenuItem
 End Class
