@@ -1,5 +1,7 @@
 ### Betas
 
+- change ADD BUTTON test to "Save changes via main form."
+- add other noise reduction options
 - VIEW DATA IN LISTS VIEWS
 - make changes to existing models/decks/brands
 - fix regex validation
@@ -15,6 +17,10 @@
 ### Short Term
 
 - search stuff
+- Rebuild UI so that it doesnt clip on later .NET versions.
+- BATCH ADDING of tapes (do all settings then specify amount to add).
+- only nr/bias/speed selectable if deck supports it.
+- add user settings.
 - add more filters for decks
 - add more filters for tapes
 

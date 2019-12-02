@@ -1,3 +1,5 @@
+![Compact Cassette Catalogue banner](Resources/banner.png)
+
 # Compact Cassette Catalogue
 
 **Cataloging application for blank compact cassette tapes.**
@@ -71,5 +73,4 @@ If you need to review the tutorial, you can open it from the *Help* menu or by p
 - 128MB of RAM.
 - 80MB of hard drive space.
 
-
-**© Jules Carboni, 2019.**
+**Copyright © 2019 Jules Carboni**
