@@ -8,7 +8,7 @@ Note: Alpha versions included as early Beta versions.
 
 
 
-### Beta 0.6 – XX November 2019
+### Beta 0.6 – 2 December 2019
 
 - Can now update information of existing tapes.
 - Can now delete existing tapes.
