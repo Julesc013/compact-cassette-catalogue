@@ -65,14 +65,12 @@ If you need to review the tutorial, you can open it from the *Help* menu or by p
 ## System requirements.
 
 #### Minimum
-- Windows 7 SP1 or higher (32-bit or 64-bit)
-- .NET Framework 4.6.1
-- 8MB of RAM
-- 400KB of hard drive space
-
+- Windows Vista SP2 or higher (32-bit or 64-bit).
+- .NET Framework 4.6
+- 8MB of RAM.
+- 400KB of hard drive space.
 #### Recommended
-- 128MB of RAM
-- 80MB of hard drive space
-
+- 128MB of RAM.
+- 80MB of hard drive space.
 
 **Copyright © 2019 Jules Carboni**

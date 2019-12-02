@@ -7,11 +7,11 @@ Imports System.Text.RegularExpressions
 
 Module varGlobals
 
-    'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPP-VER !!!
+    'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     'About program information
-    Public Const VERSION As String = "0.5.4"
+    Public Const VERSION As String = "0.6.0"
     Public Const VERSIONSTAGE As String = "Beta"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 10, 26, 17, 45, 0, DateTimeKind.Local) 'Y M D, h m s
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 2, 21, 45, 0, DateTimeKind.Local) 'Y M D, h m s
     'About catalogue information
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
@@ -79,6 +79,7 @@ Module varGlobals
 
     Function makeCounters() As DataTable
 
+        'Note: These tables are not the primary source for counters (see above), they are only for saving to file.
         'Create table to store tapes
         Dim table As New DataTable
 
@@ -216,7 +217,7 @@ Module varGlobals
 
         'Create columns
         ''table.Columns.Add(New DataColumn("Index", GetType(Integer)))
-        table.Columns.Add(New DataColumn("Model", GetType(String))) 'Model Identifier
+        table.Columns.Add(New DataColumn("Model", GetType(String))) 'Model Identifier (code)
         table.Columns.Add(New DataColumn("Year", GetType(Integer)))
         table.Columns.Add(New DataColumn("Length", GetType(Decimal)))
         table.Columns.Add(New DataColumn("Region", GetType(String)))
