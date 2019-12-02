@@ -1,6 +1,5 @@
 ### Betas
 
-- change ADD BUTTON test to "Save changes via main form."
 - add other noise reduction options
 - VIEW DATA IN LISTS VIEWS
 - make changes to existing models/decks/brands

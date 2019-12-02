@@ -99,9 +99,10 @@ Partial Class frmDeckNew
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(12, 356)
+        Me.btnAdd.Location = New System.Drawing.Point(9, 289)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(170, 25)
+        Me.btnAdd.Size = New System.Drawing.Size(128, 20)
         Me.btnAdd.TabIndex = 8
         Me.btnAdd.Text = "Add Deck"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -109,19 +110,22 @@ Partial Class frmDeckNew
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(452, 292)
+        Me.grpNotes.Location = New System.Drawing.Point(339, 237)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpNotes.Name = "grpNotes"
-        Me.grpNotes.Size = New System.Drawing.Size(196, 89)
+        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNotes.Size = New System.Drawing.Size(147, 72)
         Me.grpNotes.TabIndex = 7
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(6, 21)
+        Me.txtNotes.Location = New System.Drawing.Point(4, 17)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(184, 62)
+        Me.txtNotes.Size = New System.Drawing.Size(139, 51)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
@@ -135,9 +139,11 @@ Partial Class frmDeckNew
         Me.grpBasic.Controls.Add(Me.cmbCondition)
         Me.grpBasic.Controls.Add(Me.numYear)
         Me.grpBasic.Controls.Add(Me.lblYear)
-        Me.grpBasic.Location = New System.Drawing.Point(12, 12)
+        Me.grpBasic.Location = New System.Drawing.Point(9, 10)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Size = New System.Drawing.Size(276, 137)
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpBasic.Size = New System.Drawing.Size(207, 111)
         Me.grpBasic.TabIndex = 1
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
@@ -145,44 +151,49 @@ Partial Class frmDeckNew
         'lblModel
         '
         Me.lblModel.AutoSize = True
-        Me.lblModel.Location = New System.Drawing.Point(6, 52)
+        Me.lblModel.Location = New System.Drawing.Point(4, 42)
+        Me.lblModel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblModel.Name = "lblModel"
-        Me.lblModel.Size = New System.Drawing.Size(91, 17)
+        Me.lblModel.Size = New System.Drawing.Size(72, 13)
         Me.lblModel.TabIndex = 24
         Me.lblModel.Text = "Model/Name:"
         '
         'lblManufacturer
         '
         Me.lblManufacturer.AutoSize = True
-        Me.lblManufacturer.Location = New System.Drawing.Point(6, 24)
+        Me.lblManufacturer.Location = New System.Drawing.Point(4, 20)
+        Me.lblManufacturer.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblManufacturer.Name = "lblManufacturer"
-        Me.lblManufacturer.Size = New System.Drawing.Size(96, 17)
+        Me.lblManufacturer.Size = New System.Drawing.Size(73, 13)
         Me.lblManufacturer.TabIndex = 23
         Me.lblManufacturer.Text = "Manufacturer:"
         '
         'lblCondition
         '
         Me.lblCondition.AutoSize = True
-        Me.lblCondition.Location = New System.Drawing.Point(6, 108)
+        Me.lblCondition.Location = New System.Drawing.Point(4, 88)
+        Me.lblCondition.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblCondition.Name = "lblCondition"
-        Me.lblCondition.Size = New System.Drawing.Size(71, 17)
+        Me.lblCondition.Size = New System.Drawing.Size(54, 13)
         Me.lblCondition.TabIndex = 9
         Me.lblCondition.Text = "Condition:"
         '
         'txtModel
         '
-        Me.txtModel.Location = New System.Drawing.Point(108, 49)
+        Me.txtModel.Location = New System.Drawing.Point(81, 40)
+        Me.txtModel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtModel.MaxLength = 100
         Me.txtModel.Name = "txtModel"
-        Me.txtModel.Size = New System.Drawing.Size(162, 22)
+        Me.txtModel.Size = New System.Drawing.Size(122, 20)
         Me.txtModel.TabIndex = 2
         '
         'txtManufacturer
         '
-        Me.txtManufacturer.Location = New System.Drawing.Point(108, 21)
+        Me.txtManufacturer.Location = New System.Drawing.Point(81, 17)
+        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtManufacturer.MaxLength = 100
         Me.txtManufacturer.Name = "txtManufacturer"
-        Me.txtManufacturer.Size = New System.Drawing.Size(162, 22)
+        Me.txtManufacturer.Size = New System.Drawing.Size(122, 20)
         Me.txtManufacturer.TabIndex = 1
         '
         'cmbCondition
@@ -190,45 +201,50 @@ Partial Class frmDeckNew
         Me.cmbCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCondition.FormattingEnabled = True
         Me.cmbCondition.Items.AddRange(New Object() {"Mint", "Near Mint", "Very Good Plus", "Very Good", "Good Plus", "Good", "Fair", "Poor", "Broken"})
-        Me.cmbCondition.Location = New System.Drawing.Point(108, 105)
+        Me.cmbCondition.Location = New System.Drawing.Point(81, 85)
+        Me.cmbCondition.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cmbCondition.Name = "cmbCondition"
-        Me.cmbCondition.Size = New System.Drawing.Size(162, 24)
+        Me.cmbCondition.Size = New System.Drawing.Size(122, 21)
         Me.cmbCondition.TabIndex = 4
         '
         'numYear
         '
-        Me.numYear.Location = New System.Drawing.Point(108, 77)
+        Me.numYear.Location = New System.Drawing.Point(81, 63)
+        Me.numYear.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.numYear.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         Me.numYear.Minimum = New Decimal(New Integer() {1963, 0, 0, 0})
         Me.numYear.Name = "numYear"
-        Me.numYear.Size = New System.Drawing.Size(62, 22)
+        Me.numYear.Size = New System.Drawing.Size(46, 20)
         Me.numYear.TabIndex = 3
         Me.numYear.Value = New Decimal(New Integer() {1980, 0, 0, 0})
         '
         'lblYear
         '
         Me.lblYear.AutoSize = True
-        Me.lblYear.Location = New System.Drawing.Point(6, 79)
+        Me.lblYear.Location = New System.Drawing.Point(4, 64)
+        Me.lblYear.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblYear.Name = "lblYear"
-        Me.lblYear.Size = New System.Drawing.Size(42, 17)
+        Me.lblYear.Size = New System.Drawing.Size(32, 13)
         Me.lblYear.TabIndex = 17
         Me.lblYear.Text = "Year:"
         '
         'lblAdd
         '
         Me.lblAdd.AutoSize = True
-        Me.lblAdd.Location = New System.Drawing.Point(187, 360)
+        Me.lblAdd.Location = New System.Drawing.Point(140, 292)
+        Me.lblAdd.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAdd.Name = "lblAdd"
-        Me.lblAdd.Size = New System.Drawing.Size(202, 17)
+        Me.lblAdd.Size = New System.Drawing.Size(144, 13)
         Me.lblAdd.TabIndex = 36
-        Me.lblAdd.Text = "Save new decks via main form."
+        Me.lblAdd.Text = "Save changes via main form."
         '
         'lblHeads
         '
         Me.lblHeads.AutoSize = True
-        Me.lblHeads.Location = New System.Drawing.Point(6, 24)
+        Me.lblHeads.Location = New System.Drawing.Point(4, 20)
+        Me.lblHeads.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblHeads.Name = "lblHeads"
-        Me.lblHeads.Size = New System.Drawing.Size(53, 17)
+        Me.lblHeads.Size = New System.Drawing.Size(41, 13)
         Me.lblHeads.TabIndex = 33
         Me.lblHeads.Text = "Heads:"
         '
@@ -237,26 +253,29 @@ Partial Class frmDeckNew
         Me.cmbHeads.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbHeads.FormattingEnabled = True
         Me.cmbHeads.Items.AddRange(New Object() {"One (No Rec.)", "Two", "Three"})
-        Me.cmbHeads.Location = New System.Drawing.Point(65, 21)
+        Me.cmbHeads.Location = New System.Drawing.Point(49, 17)
+        Me.cmbHeads.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cmbHeads.Name = "cmbHeads"
-        Me.cmbHeads.Size = New System.Drawing.Size(125, 24)
+        Me.cmbHeads.Size = New System.Drawing.Size(95, 21)
         Me.cmbHeads.TabIndex = 1
         '
         'lblWells
         '
         Me.lblWells.AutoSize = True
-        Me.lblWells.Location = New System.Drawing.Point(6, 54)
+        Me.lblWells.Location = New System.Drawing.Point(4, 44)
+        Me.lblWells.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblWells.Name = "lblWells"
-        Me.lblWells.Size = New System.Drawing.Size(46, 17)
+        Me.lblWells.Size = New System.Drawing.Size(36, 13)
         Me.lblWells.TabIndex = 35
         Me.lblWells.Text = "Wells:"
         '
         'chkSpeedSlow
         '
         Me.chkSpeedSlow.AutoSize = True
-        Me.chkSpeedSlow.Location = New System.Drawing.Point(9, 105)
+        Me.chkSpeedSlow.Location = New System.Drawing.Point(7, 85)
+        Me.chkSpeedSlow.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkSpeedSlow.Name = "chkSpeedSlow"
-        Me.chkSpeedSlow.Size = New System.Drawing.Size(66, 21)
+        Me.chkSpeedSlow.Size = New System.Drawing.Size(55, 17)
         Me.chkSpeedSlow.TabIndex = 41
         Me.chkSpeedSlow.Text = "15/16"
         Me.chkSpeedSlow.UseVisualStyleBackColor = True
@@ -266,17 +285,19 @@ Partial Class frmDeckNew
         Me.cmbWells.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbWells.FormattingEnabled = True
         Me.cmbWells.Items.AddRange(New Object() {"One", "Two", "Three"})
-        Me.cmbWells.Location = New System.Drawing.Point(65, 51)
+        Me.cmbWells.Location = New System.Drawing.Point(49, 41)
+        Me.cmbWells.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cmbWells.Name = "cmbWells"
-        Me.cmbWells.Size = New System.Drawing.Size(125, 24)
+        Me.cmbWells.Size = New System.Drawing.Size(95, 21)
         Me.cmbWells.TabIndex = 2
         '
         'chkSpeedFast
         '
         Me.chkSpeedFast.AutoSize = True
-        Me.chkSpeedFast.Location = New System.Drawing.Point(137, 105)
+        Me.chkSpeedFast.Location = New System.Drawing.Point(103, 85)
+        Me.chkSpeedFast.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkSpeedFast.Name = "chkSpeedFast"
-        Me.chkSpeedFast.Size = New System.Drawing.Size(50, 21)
+        Me.chkSpeedFast.Size = New System.Drawing.Size(40, 17)
         Me.chkSpeedFast.TabIndex = 5
         Me.chkSpeedFast.Text = "3¾"
         Me.chkSpeedFast.UseVisualStyleBackColor = True
@@ -284,9 +305,10 @@ Partial Class frmDeckNew
         'lblSpeeds
         '
         Me.lblSpeeds.AutoSize = True
-        Me.lblSpeeds.Location = New System.Drawing.Point(6, 85)
+        Me.lblSpeeds.Location = New System.Drawing.Point(4, 69)
+        Me.lblSpeeds.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSpeeds.Name = "lblSpeeds"
-        Me.lblSpeeds.Size = New System.Drawing.Size(95, 17)
+        Me.lblSpeeds.Size = New System.Drawing.Size(72, 13)
         Me.lblSpeeds.TabIndex = 33
         Me.lblSpeeds.Text = "Speeds (IPS):"
         '
@@ -295,9 +317,10 @@ Partial Class frmDeckNew
         Me.chkSpeedNormal.AutoSize = True
         Me.chkSpeedNormal.Checked = True
         Me.chkSpeedNormal.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkSpeedNormal.Location = New System.Drawing.Point(81, 105)
+        Me.chkSpeedNormal.Location = New System.Drawing.Point(61, 85)
+        Me.chkSpeedNormal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkSpeedNormal.Name = "chkSpeedNormal"
-        Me.chkSpeedNormal.Size = New System.Drawing.Size(50, 21)
+        Me.chkSpeedNormal.Size = New System.Drawing.Size(40, 17)
         Me.chkSpeedNormal.TabIndex = 4
         Me.chkSpeedNormal.Text = "1⅞"
         Me.chkSpeedNormal.UseVisualStyleBackColor = True
@@ -312,9 +335,11 @@ Partial Class frmDeckNew
         Me.grpTransport.Controls.Add(Me.lblWells)
         Me.grpTransport.Controls.Add(Me.cmbHeads)
         Me.grpTransport.Controls.Add(Me.lblHeads)
-        Me.grpTransport.Location = New System.Drawing.Point(452, 155)
+        Me.grpTransport.Location = New System.Drawing.Point(339, 126)
+        Me.grpTransport.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpTransport.Name = "grpTransport"
-        Me.grpTransport.Size = New System.Drawing.Size(196, 131)
+        Me.grpTransport.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpTransport.Size = New System.Drawing.Size(147, 106)
         Me.grpTransport.TabIndex = 6
         Me.grpTransport.TabStop = False
         Me.grpTransport.Text = "Transport"
@@ -322,18 +347,20 @@ Partial Class frmDeckNew
         'lblDolby
         '
         Me.lblDolby.AutoSize = True
-        Me.lblDolby.Location = New System.Drawing.Point(6, 44)
+        Me.lblDolby.Location = New System.Drawing.Point(4, 36)
+        Me.lblDolby.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDolby.Name = "lblDolby"
-        Me.lblDolby.Size = New System.Drawing.Size(48, 17)
+        Me.lblDolby.Size = New System.Drawing.Size(37, 13)
         Me.lblDolby.TabIndex = 32
         Me.lblDolby.Text = "Dolby:"
         '
         'chkDolbyB
         '
         Me.chkDolbyB.AutoSize = True
-        Me.chkDolbyB.Location = New System.Drawing.Point(9, 64)
+        Me.chkDolbyB.Location = New System.Drawing.Point(7, 52)
+        Me.chkDolbyB.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkDolbyB.Name = "chkDolbyB"
-        Me.chkDolbyB.Size = New System.Drawing.Size(39, 21)
+        Me.chkDolbyB.Size = New System.Drawing.Size(33, 17)
         Me.chkDolbyB.TabIndex = 3
         Me.chkDolbyB.Text = "B"
         Me.chkDolbyB.UseVisualStyleBackColor = True
@@ -341,9 +368,10 @@ Partial Class frmDeckNew
         'chkDolbyS
         '
         Me.chkDolbyS.AutoSize = True
-        Me.chkDolbyS.Location = New System.Drawing.Point(107, 64)
+        Me.chkDolbyS.Location = New System.Drawing.Point(80, 52)
+        Me.chkDolbyS.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkDolbyS.Name = "chkDolbyS"
-        Me.chkDolbyS.Size = New System.Drawing.Size(39, 21)
+        Me.chkDolbyS.Size = New System.Drawing.Size(33, 17)
         Me.chkDolbyS.TabIndex = 5
         Me.chkDolbyS.Text = "S"
         Me.chkDolbyS.UseVisualStyleBackColor = True
@@ -351,9 +379,10 @@ Partial Class frmDeckNew
         'chkDolbyC
         '
         Me.chkDolbyC.AutoSize = True
-        Me.chkDolbyC.Location = New System.Drawing.Point(58, 64)
+        Me.chkDolbyC.Location = New System.Drawing.Point(44, 52)
+        Me.chkDolbyC.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkDolbyC.Name = "chkDolbyC"
-        Me.chkDolbyC.Size = New System.Drawing.Size(39, 21)
+        Me.chkDolbyC.Size = New System.Drawing.Size(33, 17)
         Me.chkDolbyC.TabIndex = 4
         Me.chkDolbyC.Text = "C"
         Me.chkDolbyC.UseVisualStyleBackColor = True
@@ -361,18 +390,20 @@ Partial Class frmDeckNew
         'lblDBX
         '
         Me.lblDBX.AutoSize = True
-        Me.lblDBX.Location = New System.Drawing.Point(6, 88)
+        Me.lblDBX.Location = New System.Drawing.Point(4, 72)
+        Me.lblDBX.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDBX.Name = "lblDBX"
-        Me.lblDBX.Size = New System.Drawing.Size(40, 17)
+        Me.lblDBX.Size = New System.Drawing.Size(32, 13)
         Me.lblDBX.TabIndex = 36
         Me.lblDBX.Text = "DBX:"
         '
         'chkHX
         '
         Me.chkHX.AutoSize = True
-        Me.chkHX.Location = New System.Drawing.Point(9, 20)
+        Me.chkHX.Location = New System.Drawing.Point(7, 16)
+        Me.chkHX.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkHX.Name = "chkHX"
-        Me.chkHX.Size = New System.Drawing.Size(75, 21)
+        Me.chkHX.Size = New System.Drawing.Size(60, 17)
         Me.chkHX.TabIndex = 1
         Me.chkHX.Text = "HX Pro"
         Me.chkHX.UseVisualStyleBackColor = True
@@ -380,9 +411,10 @@ Partial Class frmDeckNew
         'chkDBX1
         '
         Me.chkDBX1.AutoSize = True
-        Me.chkDBX1.Location = New System.Drawing.Point(9, 108)
+        Me.chkDBX1.Location = New System.Drawing.Point(7, 88)
+        Me.chkDBX1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkDBX1.Name = "chkDBX1"
-        Me.chkDBX1.Size = New System.Drawing.Size(69, 21)
+        Me.chkDBX1.Size = New System.Drawing.Size(56, 17)
         Me.chkDBX1.TabIndex = 6
         Me.chkDBX1.Text = "Type I"
         Me.chkDBX1.UseVisualStyleBackColor = True
@@ -390,9 +422,10 @@ Partial Class frmDeckNew
         'chkDBX2
         '
         Me.chkDBX2.AutoSize = True
-        Me.chkDBX2.Location = New System.Drawing.Point(84, 108)
+        Me.chkDBX2.Location = New System.Drawing.Point(63, 88)
+        Me.chkDBX2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkDBX2.Name = "chkDBX2"
-        Me.chkDBX2.Size = New System.Drawing.Size(72, 21)
+        Me.chkDBX2.Size = New System.Drawing.Size(59, 17)
         Me.chkDBX2.TabIndex = 7
         Me.chkDBX2.Text = "Type II"
         Me.chkDBX2.UseVisualStyleBackColor = True
@@ -400,9 +433,10 @@ Partial Class frmDeckNew
         'chkMPX
         '
         Me.chkMPX.AutoSize = True
-        Me.chkMPX.Location = New System.Drawing.Point(84, 20)
+        Me.chkMPX.Location = New System.Drawing.Point(63, 16)
+        Me.chkMPX.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkMPX.Name = "chkMPX"
-        Me.chkMPX.Size = New System.Drawing.Size(59, 21)
+        Me.chkMPX.Size = New System.Drawing.Size(49, 17)
         Me.chkMPX.TabIndex = 2
         Me.chkMPX.Text = "MPX"
         Me.chkMPX.UseVisualStyleBackColor = True
@@ -418,9 +452,11 @@ Partial Class frmDeckNew
         Me.grpNR.Controls.Add(Me.chkDolbyS)
         Me.grpNR.Controls.Add(Me.chkDolbyB)
         Me.grpNR.Controls.Add(Me.lblDolby)
-        Me.grpNR.Location = New System.Drawing.Point(488, 12)
+        Me.grpNR.Location = New System.Drawing.Point(366, 10)
+        Me.grpNR.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpNR.Name = "grpNR"
-        Me.grpNR.Size = New System.Drawing.Size(160, 137)
+        Me.grpNR.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNR.Size = New System.Drawing.Size(120, 111)
         Me.grpNR.TabIndex = 3
         Me.grpNR.TabStop = False
         Me.grpNR.Text = "NR"
@@ -430,9 +466,10 @@ Partial Class frmDeckNew
         Me.chkType1.AutoSize = True
         Me.chkType1.Checked = True
         Me.chkType1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkType1.Location = New System.Drawing.Point(9, 23)
+        Me.chkType1.Location = New System.Drawing.Point(7, 19)
+        Me.chkType1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkType1.Name = "chkType1"
-        Me.chkType1.Size = New System.Drawing.Size(119, 21)
+        Me.chkType1.Size = New System.Drawing.Size(91, 17)
         Me.chkType1.TabIndex = 1
         Me.chkType1.Text = "Type I (Ferric)"
         Me.chkType1.UseVisualStyleBackColor = True
@@ -440,9 +477,10 @@ Partial Class frmDeckNew
         'chkType2
         '
         Me.chkType2.AutoSize = True
-        Me.chkType2.Location = New System.Drawing.Point(9, 51)
+        Me.chkType2.Location = New System.Drawing.Point(7, 41)
+        Me.chkType2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkType2.Name = "chkType2"
-        Me.chkType2.Size = New System.Drawing.Size(135, 21)
+        Me.chkType2.Size = New System.Drawing.Size(104, 17)
         Me.chkType2.TabIndex = 2
         Me.chkType2.Text = "Type II (Chrome)"
         Me.chkType2.UseVisualStyleBackColor = True
@@ -450,9 +488,10 @@ Partial Class frmDeckNew
         'chkType3
         '
         Me.chkType3.AutoSize = True
-        Me.chkType3.Location = New System.Drawing.Point(9, 78)
+        Me.chkType3.Location = New System.Drawing.Point(7, 63)
+        Me.chkType3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkType3.Name = "chkType3"
-        Me.chkType3.Size = New System.Drawing.Size(177, 21)
+        Me.chkType3.Size = New System.Drawing.Size(134, 17)
         Me.chkType3.TabIndex = 3
         Me.chkType3.Text = "Type III (Ferro-Chrome)"
         Me.chkType3.UseVisualStyleBackColor = True
@@ -460,9 +499,10 @@ Partial Class frmDeckNew
         'chkType4
         '
         Me.chkType4.AutoSize = True
-        Me.chkType4.Location = New System.Drawing.Point(9, 107)
+        Me.chkType4.Location = New System.Drawing.Point(7, 87)
+        Me.chkType4.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkType4.Name = "chkType4"
-        Me.chkType4.Size = New System.Drawing.Size(126, 21)
+        Me.chkType4.Size = New System.Drawing.Size(98, 17)
         Me.chkType4.TabIndex = 4
         Me.chkType4.Text = "Type IV (Metal)"
         Me.chkType4.UseVisualStyleBackColor = True
@@ -473,9 +513,11 @@ Partial Class frmDeckNew
         Me.grpTypes.Controls.Add(Me.chkType3)
         Me.grpTypes.Controls.Add(Me.chkType2)
         Me.grpTypes.Controls.Add(Me.chkType1)
-        Me.grpTypes.Location = New System.Drawing.Point(294, 12)
+        Me.grpTypes.Location = New System.Drawing.Point(220, 10)
+        Me.grpTypes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpTypes.Name = "grpTypes"
-        Me.grpTypes.Size = New System.Drawing.Size(188, 137)
+        Me.grpTypes.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpTypes.Size = New System.Drawing.Size(141, 111)
         Me.grpTypes.TabIndex = 2
         Me.grpTypes.TabStop = False
         Me.grpTypes.Text = "Types"
@@ -485,9 +527,10 @@ Partial Class frmDeckNew
         Me.chkStereo.AutoSize = True
         Me.chkStereo.Checked = True
         Me.chkStereo.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkStereo.Location = New System.Drawing.Point(9, 19)
+        Me.chkStereo.Location = New System.Drawing.Point(7, 15)
+        Me.chkStereo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkStereo.Name = "chkStereo"
-        Me.chkStereo.Size = New System.Drawing.Size(72, 21)
+        Me.chkStereo.Size = New System.Drawing.Size(57, 17)
         Me.chkStereo.TabIndex = 1
         Me.chkStereo.Text = "Stereo"
         Me.chkStereo.UseVisualStyleBackColor = True
@@ -495,18 +538,20 @@ Partial Class frmDeckNew
         'lblDubbing
         '
         Me.lblDubbing.AutoSize = True
-        Me.lblDubbing.Location = New System.Drawing.Point(6, 151)
+        Me.lblDubbing.Location = New System.Drawing.Point(4, 123)
+        Me.lblDubbing.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDubbing.Name = "lblDubbing"
-        Me.lblDubbing.Size = New System.Drawing.Size(65, 17)
+        Me.lblDubbing.Size = New System.Drawing.Size(50, 13)
         Me.lblDubbing.TabIndex = 36
         Me.lblDubbing.Text = "Dubbing:"
         '
         'chkDubbingDouble
         '
         Me.chkDubbingDouble.AutoSize = True
-        Me.chkDubbingDouble.Location = New System.Drawing.Point(9, 169)
+        Me.chkDubbingDouble.Location = New System.Drawing.Point(7, 137)
+        Me.chkDubbingDouble.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkDubbingDouble.Name = "chkDubbingDouble"
-        Me.chkDubbingDouble.Size = New System.Drawing.Size(108, 21)
+        Me.chkDubbingDouble.Size = New System.Drawing.Size(87, 17)
         Me.chkDubbingDouble.TabIndex = 6
         Me.chkDubbingDouble.Text = "Double/High"
         Me.chkDubbingDouble.UseVisualStyleBackColor = True
@@ -514,9 +559,10 @@ Partial Class frmDeckNew
         'chkDubbingHalf
         '
         Me.chkDubbingHalf.AutoSize = True
-        Me.chkDubbingHalf.Location = New System.Drawing.Point(120, 169)
+        Me.chkDubbingHalf.Location = New System.Drawing.Point(90, 137)
+        Me.chkDubbingHalf.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkDubbingHalf.Name = "chkDubbingHalf"
-        Me.chkDubbingHalf.Size = New System.Drawing.Size(55, 21)
+        Me.chkDubbingHalf.Size = New System.Drawing.Size(45, 17)
         Me.chkDubbingHalf.TabIndex = 7
         Me.chkDubbingHalf.Text = "Half"
         Me.chkDubbingHalf.UseVisualStyleBackColor = True
@@ -524,9 +570,10 @@ Partial Class frmDeckNew
         'chkReverse
         '
         Me.chkReverse.AutoSize = True
-        Me.chkReverse.Location = New System.Drawing.Point(9, 73)
+        Me.chkReverse.Location = New System.Drawing.Point(7, 59)
+        Me.chkReverse.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkReverse.Name = "chkReverse"
-        Me.chkReverse.Size = New System.Drawing.Size(116, 21)
+        Me.chkReverse.Size = New System.Drawing.Size(91, 17)
         Me.chkReverse.TabIndex = 3
         Me.chkReverse.Text = "Auto Reverse"
         Me.chkReverse.UseVisualStyleBackColor = True
@@ -534,9 +581,10 @@ Partial Class frmDeckNew
         'chkCalibration
         '
         Me.chkCalibration.AutoSize = True
-        Me.chkCalibration.Location = New System.Drawing.Point(9, 100)
+        Me.chkCalibration.Location = New System.Drawing.Point(7, 81)
+        Me.chkCalibration.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkCalibration.Name = "chkCalibration"
-        Me.chkCalibration.Size = New System.Drawing.Size(97, 21)
+        Me.chkCalibration.Size = New System.Drawing.Size(75, 17)
         Me.chkCalibration.TabIndex = 4
         Me.chkCalibration.Text = "Calibration"
         Me.chkCalibration.UseVisualStyleBackColor = True
@@ -544,9 +592,10 @@ Partial Class frmDeckNew
         'chkSearch
         '
         Me.chkSearch.AutoSize = True
-        Me.chkSearch.Location = New System.Drawing.Point(9, 46)
+        Me.chkSearch.Location = New System.Drawing.Point(7, 37)
+        Me.chkSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkSearch.Name = "chkSearch"
-        Me.chkSearch.Size = New System.Drawing.Size(133, 21)
+        Me.chkSearch.Size = New System.Drawing.Size(102, 17)
         Me.chkSearch.TabIndex = 2
         Me.chkSearch.Text = "Program Search"
         Me.chkSearch.UseVisualStyleBackColor = True
@@ -554,9 +603,10 @@ Partial Class frmDeckNew
         'chkAzimuth
         '
         Me.chkAzimuth.AutoSize = True
-        Me.chkAzimuth.Location = New System.Drawing.Point(9, 127)
+        Me.chkAzimuth.Location = New System.Drawing.Point(7, 103)
+        Me.chkAzimuth.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkAzimuth.Name = "chkAzimuth"
-        Me.chkAzimuth.Size = New System.Drawing.Size(149, 21)
+        Me.chkAzimuth.Size = New System.Drawing.Size(114, 17)
         Me.chkAzimuth.TabIndex = 5
         Me.chkAzimuth.Text = "Azimuth Correction"
         Me.chkAzimuth.UseVisualStyleBackColor = True
@@ -571,9 +621,11 @@ Partial Class frmDeckNew
         Me.grpFeatures.Controls.Add(Me.chkDubbingDouble)
         Me.grpFeatures.Controls.Add(Me.lblDubbing)
         Me.grpFeatures.Controls.Add(Me.chkStereo)
-        Me.grpFeatures.Location = New System.Drawing.Point(12, 155)
+        Me.grpFeatures.Location = New System.Drawing.Point(9, 126)
+        Me.grpFeatures.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpFeatures.Name = "grpFeatures"
-        Me.grpFeatures.Size = New System.Drawing.Size(179, 195)
+        Me.grpFeatures.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpFeatures.Size = New System.Drawing.Size(134, 158)
         Me.grpFeatures.TabIndex = 4
         Me.grpFeatures.TabStop = False
         Me.grpFeatures.Text = "Features"
@@ -581,19 +633,21 @@ Partial Class frmDeckNew
         'numFrequencyMin
         '
         Me.numFrequencyMin.Increment = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.numFrequencyMin.Location = New System.Drawing.Point(190, 23)
+        Me.numFrequencyMin.Location = New System.Drawing.Point(142, 19)
+        Me.numFrequencyMin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.numFrequencyMin.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
         Me.numFrequencyMin.Name = "numFrequencyMin"
-        Me.numFrequencyMin.Size = New System.Drawing.Size(52, 22)
+        Me.numFrequencyMin.Size = New System.Drawing.Size(39, 20)
         Me.numFrequencyMin.TabIndex = 1
         Me.numFrequencyMin.Value = New Decimal(New Integer() {30, 0, 0, 0})
         '
         'lvlFrequency
         '
         Me.lvlFrequency.AutoSize = True
-        Me.lvlFrequency.Location = New System.Drawing.Point(6, 25)
+        Me.lvlFrequency.Location = New System.Drawing.Point(4, 20)
+        Me.lvlFrequency.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lvlFrequency.Name = "lvlFrequency"
-        Me.lvlFrequency.Size = New System.Drawing.Size(178, 17)
+        Me.lvlFrequency.Size = New System.Drawing.Size(133, 13)
         Me.lvlFrequency.TabIndex = 33
         Me.lvlFrequency.Text = "Frequency Response (Hz):"
         '
@@ -601,28 +655,31 @@ Partial Class frmDeckNew
         '
         Me.numFrequencyMax.DecimalPlaces = 1
         Me.numFrequencyMax.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
-        Me.numFrequencyMax.Location = New System.Drawing.Point(190, 51)
+        Me.numFrequencyMax.Location = New System.Drawing.Point(142, 41)
+        Me.numFrequencyMax.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.numFrequencyMax.Maximum = New Decimal(New Integer() {30, 0, 0, 0})
         Me.numFrequencyMax.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numFrequencyMax.Name = "numFrequencyMax"
-        Me.numFrequencyMax.Size = New System.Drawing.Size(52, 22)
+        Me.numFrequencyMax.Size = New System.Drawing.Size(39, 20)
         Me.numFrequencyMax.TabIndex = 2
         Me.numFrequencyMax.Value = New Decimal(New Integer() {17, 0, 0, 0})
         '
         'lblFrequencyTo
         '
         Me.lblFrequencyTo.AutoSize = True
-        Me.lblFrequencyTo.Location = New System.Drawing.Point(20, 53)
+        Me.lblFrequencyTo.Location = New System.Drawing.Point(15, 43)
+        Me.lblFrequencyTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblFrequencyTo.Name = "lblFrequencyTo"
-        Me.lblFrequencyTo.Size = New System.Drawing.Size(70, 17)
+        Me.lblFrequencyTo.Size = New System.Drawing.Size(53, 13)
         Me.lblFrequencyTo.TabIndex = 35
         Me.lblFrequencyTo.Text = "…to (kHz):"
         '
         'numSignalRatio
         '
-        Me.numSignalRatio.Location = New System.Drawing.Point(190, 79)
+        Me.numSignalRatio.Location = New System.Drawing.Point(142, 64)
+        Me.numSignalRatio.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.numSignalRatio.Name = "numSignalRatio"
-        Me.numSignalRatio.Size = New System.Drawing.Size(52, 22)
+        Me.numSignalRatio.Size = New System.Drawing.Size(39, 20)
         Me.numSignalRatio.TabIndex = 3
         Me.numSignalRatio.Value = New Decimal(New Integer() {60, 0, 0, 0})
         '
@@ -631,26 +688,29 @@ Partial Class frmDeckNew
         Me.cmbSignalRatioNR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSignalRatioNR.FormattingEnabled = True
         Me.cmbSignalRatioNR.Items.AddRange(New Object() {"None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
-        Me.cmbSignalRatioNR.Location = New System.Drawing.Point(138, 107)
+        Me.cmbSignalRatioNR.Location = New System.Drawing.Point(104, 87)
+        Me.cmbSignalRatioNR.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cmbSignalRatioNR.Name = "cmbSignalRatioNR"
-        Me.cmbSignalRatioNR.Size = New System.Drawing.Size(104, 24)
+        Me.cmbSignalRatioNR.Size = New System.Drawing.Size(79, 21)
         Me.cmbSignalRatioNR.TabIndex = 4
         '
         'lblSignalRatio
         '
         Me.lblSignalRatio.AutoSize = True
-        Me.lblSignalRatio.Location = New System.Drawing.Point(6, 81)
+        Me.lblSignalRatio.Location = New System.Drawing.Point(4, 66)
+        Me.lblSignalRatio.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSignalRatio.Name = "lblSignalRatio"
-        Me.lblSignalRatio.Size = New System.Drawing.Size(175, 17)
+        Me.lblSignalRatio.Size = New System.Drawing.Size(131, 13)
         Me.lblSignalRatio.TabIndex = 37
         Me.lblSignalRatio.Text = "Signal to Noise Ratio (dB):"
         '
         'lblSignalRatioNR
         '
         Me.lblSignalRatioNR.AutoSize = True
-        Me.lblSignalRatioNR.Location = New System.Drawing.Point(20, 110)
+        Me.lblSignalRatioNR.Location = New System.Drawing.Point(15, 89)
+        Me.lblSignalRatioNR.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSignalRatioNR.Name = "lblSignalRatioNR"
-        Me.lblSignalRatioNR.Size = New System.Drawing.Size(68, 17)
+        Me.lblSignalRatioNR.Size = New System.Drawing.Size(54, 13)
         Me.lblSignalRatioNR.TabIndex = 38
         Me.lblSignalRatioNR.Text = "…with NR:"
         '
@@ -658,19 +718,21 @@ Partial Class frmDeckNew
         '
         Me.numWowFlutter.DecimalPlaces = 2
         Me.numWowFlutter.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
-        Me.numWowFlutter.Location = New System.Drawing.Point(178, 137)
+        Me.numWowFlutter.Location = New System.Drawing.Point(134, 111)
+        Me.numWowFlutter.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.numWowFlutter.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numWowFlutter.Name = "numWowFlutter"
-        Me.numWowFlutter.Size = New System.Drawing.Size(64, 22)
+        Me.numWowFlutter.Size = New System.Drawing.Size(48, 20)
         Me.numWowFlutter.TabIndex = 5
         Me.numWowFlutter.Value = New Decimal(New Integer() {1, 0, 0, 65536})
         '
         'lblWowFlutter
         '
         Me.lblWowFlutter.AutoSize = True
-        Me.lblWowFlutter.Location = New System.Drawing.Point(6, 139)
+        Me.lblWowFlutter.Location = New System.Drawing.Point(4, 113)
+        Me.lblWowFlutter.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblWowFlutter.Name = "lblWowFlutter"
-        Me.lblWowFlutter.Size = New System.Drawing.Size(125, 17)
+        Me.lblWowFlutter.Size = New System.Drawing.Size(93, 13)
         Me.lblWowFlutter.TabIndex = 40
         Me.lblWowFlutter.Text = "Wow && Flutter (%):"
         '
@@ -678,19 +740,21 @@ Partial Class frmDeckNew
         '
         Me.numDistortion.DecimalPlaces = 2
         Me.numDistortion.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.numDistortion.Location = New System.Drawing.Point(178, 165)
+        Me.numDistortion.Location = New System.Drawing.Point(134, 134)
+        Me.numDistortion.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.numDistortion.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numDistortion.Name = "numDistortion"
-        Me.numDistortion.Size = New System.Drawing.Size(64, 22)
+        Me.numDistortion.Size = New System.Drawing.Size(48, 20)
         Me.numDistortion.TabIndex = 6
         Me.numDistortion.Value = New Decimal(New Integer() {15, 0, 0, 65536})
         '
         'lblDistortion
         '
         Me.lblDistortion.AutoSize = True
-        Me.lblDistortion.Location = New System.Drawing.Point(6, 167)
+        Me.lblDistortion.Location = New System.Drawing.Point(4, 136)
+        Me.lblDistortion.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDistortion.Name = "lblDistortion"
-        Me.lblDistortion.Size = New System.Drawing.Size(166, 17)
+        Me.lblDistortion.Size = New System.Drawing.Size(123, 13)
         Me.lblDistortion.TabIndex = 42
         Me.lblDistortion.Text = "Total Harmonic Dist. (%):"
         '
@@ -708,18 +772,20 @@ Partial Class frmDeckNew
         Me.grpSpecifications.Controls.Add(Me.numFrequencyMax)
         Me.grpSpecifications.Controls.Add(Me.lvlFrequency)
         Me.grpSpecifications.Controls.Add(Me.numFrequencyMin)
-        Me.grpSpecifications.Location = New System.Drawing.Point(197, 155)
+        Me.grpSpecifications.Location = New System.Drawing.Point(148, 126)
+        Me.grpSpecifications.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpSpecifications.Name = "grpSpecifications"
-        Me.grpSpecifications.Size = New System.Drawing.Size(249, 195)
+        Me.grpSpecifications.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpSpecifications.Size = New System.Drawing.Size(187, 158)
         Me.grpSpecifications.TabIndex = 5
         Me.grpSpecifications.TabStop = False
         Me.grpSpecifications.Text = "Specifications"
         '
         'frmDeckNew
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(660, 393)
+        Me.ClientSize = New System.Drawing.Size(495, 319)
         Me.Controls.Add(Me.grpSpecifications)
         Me.Controls.Add(Me.lblAdd)
         Me.Controls.Add(Me.grpFeatures)
@@ -731,6 +797,7 @@ Partial Class frmDeckNew
         Me.Controls.Add(Me.grpNotes)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.MaximizeBox = False
         Me.Name = "frmDeckNew"
         Me.Text = "Add New Deck"
