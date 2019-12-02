@@ -1,9 +1,5 @@
 ### Betas
 
-- UPDATES is always TRUE
-- delete tapes n shit
-- when editing/deleting existing things, don't forget changed=True
-- offer to update & save if that hasn't been done before an action
 - VIEW DATA IN LISTS VIEWS
 - make changes to existing models/decks/brands
 - fix regex validation

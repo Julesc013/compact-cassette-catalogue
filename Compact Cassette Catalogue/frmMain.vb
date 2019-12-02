@@ -63,6 +63,9 @@ Public Class frmMain
 
     Public Sub loadData()
 
+        'Call this when adding/deleting tapes, models, brands or decks.
+
+
         'Mask update routines
         updatesMask = True
 
@@ -88,7 +91,7 @@ Public Class frmMain
 
         End If
 
-        'Load latest tape is any exist
+        'Load latest tape if any exist
         If tapeCount > 0 Then
 
             'Enable scrolling and searching only if there is more than one record
@@ -336,6 +339,49 @@ Public Class frmMain
                 MsgBox(message, MsgBoxStyle.Information, "No Updates to Tape")
             End If
             'consoleAdd(message)
+
+        End If
+
+    End Sub
+
+    Private Sub deleteTape()
+
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete the current tape?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            'Get tape identification
+            Dim tape As DataRow = tapes.Rows(thisTapeIndex)
+            Dim identifierShort As String = CStr(tape("IdentifierShort"))
+
+
+            'Get index for updating model-specific counter when tape deleted
+            Dim modelCode As String = CStr(tape("Model"))
+            Dim modelRowReal As DataRow = models.Rows.Find(modelCode)
+            Dim modelIndex As Integer = models.Rows.IndexOf(modelRowReal)
+
+            'Remove the record for this tape
+            tapes.Rows.Remove(tape)
+
+            'Update tape and model counters
+            tapeCount -= 1
+            counters.Rows(3)("Number") = tapeCount
+            Dim number As Integer = CInt(models.Rows(modelIndex)("Number"))
+            models.Rows(modelIndex)("Number") = number - 1
+
+            'Reload data and display latest tape
+            loadData()
+
+            changes = True
+            'Update title bar
+            Me.Text = fileName & "* - C3"
+
+            'Show confirmation message
+            Dim message As String = "Deleted tape " & identifierShort & " successfully."
+            'If My.Settings.showMessages = True Then
+            '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Tape")
+            'End If
+            consoleAdd(message)
 
         End If
 
@@ -1081,15 +1127,7 @@ Public Class frmMain
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        'confirm
-        'remove record
-        'Move Scroll index to previous (if only cannot scroll back (no un-removed)
-        'if no tapes left, disable group boxes)
-        'CALL LOAD DATA ROUTINE
-
-        changes = True
-        'Update title bar
-        Me.Text = fileName & "* - C3"
+        deleteTape()
 
     End Sub
 
@@ -1517,6 +1555,12 @@ Public Class frmMain
     Private Sub UpdateTapeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateTapeToolStripMenuItem.Click
 
         updateTape()
+
+    End Sub
+
+    Private Sub DeleteTapeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteTapeToolStripMenuItem.Click
+
+        deleteTape()
 
     End Sub
 End Class
