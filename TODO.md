@@ -11,6 +11,8 @@
 
 
 
+- Clean up code (commented out lines)
+
 ### Short Term
 
 - search stuff
