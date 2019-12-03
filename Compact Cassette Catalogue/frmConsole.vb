@@ -54,9 +54,9 @@ Public Class frmConsole
                     If arguments.Length = 1 Then
 
                         lstConsole.Items.Add("Built in commands:")
-                        lstConsole.Items.Add(vbTab & "Clear")
-                        lstConsole.Items.Add(vbTab & "Time")
-                        lstConsole.Items.Add(vbTab & "<Setting> [Value]")
+                        lstConsole.Items.Add("    " & "Clear")
+                        lstConsole.Items.Add("    " & "Time")
+                        lstConsole.Items.Add("    " & "<Setting> [Value]")
 
                     ElseIf arguments.Length = 2 Then
 
@@ -70,10 +70,12 @@ Public Class frmConsole
 
                             lstConsole.Items.Add("Display the time the program was loaded.")
 
-                        ElseIf {"setting", "settings", "[setting]", "[settings]"}.Contains(arguments(1)) Then
+                        ElseIf {"setting", "settings", "<setting>", "<settings>", "[setting]", "[settings]"}.Contains(arguments(1)) Then
 
-                            lstConsole.Items.Add("Change program settings:" & vbNewLine &
-                                             "  showMessages [True|False]")
+                            'Show all available settings for change.
+                            lstConsole.Items.Add("Change program settings:")
+                            lstConsole.Items.Add("    " & "showMessages [True|False]")
+                            lstConsole.Items.Add("    " & "defaultDirectory [Existing folder directory]")
 
                         End If
 
@@ -160,7 +162,7 @@ Public Class frmConsole
 
                 Case = "defaultdirectory"
 
-                    message = "Bad syntax, use: defaultDirectory [Valid folder directory]"
+                    message = "Bad syntax, use: defaultDirectory [Existing folder directory]"
 
                     If arguments.Length = 1 Then
                         'Display current value
