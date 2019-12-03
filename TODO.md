@@ -1,14 +1,13 @@
 ### Betas
 
 - make changes to existing models/decks/brands
+- view existing items lists
+
+
+
 - fix regex validation
 - fix console scrolling bug
-- console output. consol;e HELP settings<?
 - fix visual design
-
-
-
-- view existing items lists
 
 
 
