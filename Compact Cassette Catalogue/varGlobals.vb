@@ -29,8 +29,9 @@ Module varGlobals
     Public timeLoaded As String
 
     'Define regular expressions
-    Public regexAlphanumeric As Regex = New Regex("/^[a-z\d\-\s]+$/i") 'Alternatively: "/^[a-z0-9]+([-\s]{1}[a-z0-9]+)*$/i"
-    Public regexAlphabetic As Regex = New Regex("/^[a-z]*$/i")
+    'Public regexAlphanumeric As Regex = New Regex("/^[a-z\d\-\s]+$/i") 'Alternatively: "/^[a-z0-9]+([-\s]{1}[a-z0-9]+)*$/i"
+    'Public regexAlphabetic As Regex = New Regex("/^[a-z]*$/i")
+    'Public regexAlphanumericBasic As Regex = New Regex("[^a-z0-9]") 'TEMP (doesnt work for hyphens).
 
     'Create data set for catalogue
     Public catalogue As DataSet = New DataSet("Catalogue")

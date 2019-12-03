@@ -7,33 +7,32 @@
 
 - fix regex validation
 - fix console scrolling bug
-- fix visual design
+- Rebuild UI so that it doesnt clip on later .NET versions. (TEST WITH OTHER COMPUTERS)
 
 
 
 - Clean up code (commented out lines)
+- Grey out unfinished options (statistics and search)
+
+
 
 ### Short Term
 
+- View statistics
+
 - search stuff
-- Rebuild UI so that it doesnt clip on later .NET versions.
-- BATCH ADDING of tapes (do all settings then specify amount to add).
-- only nr/bias/speed selectable if deck supports it.
-- add user settings.
+
+
+
+- only nr/bias/speed selectable if deck supports it?
+
 - add more filters for decks
 - add more filters for tapes
 
 
 
-- View statistics
-
-
-
 - Feedback (link to website form or to Bug/Feature reporting form)
-
-
-
-- only nr/bias/speed selectable if deck supports it.
+- update available notification (link to GitHub)
 
 
 
@@ -44,31 +43,28 @@
 
 
 
-- add auto-refresh
+- BATCH ADDING of tapes (do all input data then specify amount to add).
+
+
+
 - add resizablility
+- add and remove fields from view forms (CHANGE TO DATA*GRID*VIEW)
+- comboboxes populated programatically
+
+
+
 - Grapher to visualise
   - recordings made during all time
   - total num tapes over time
   - new tapes added each month
   - total length over time
-- add and remove fields from view forms
-
-
-
-- change listview to datagridview
-- comboboxes populated programatically
 
 
 
 ### Long Term
 
 - write tutorial (hyperlink to About and to Documentation)
-- update available notification (link to GitHub)
-
-
-
 - Write documentation (with 'get started quick' guide)
-- auto updater (links on website)
 
 
 

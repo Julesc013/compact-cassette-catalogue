@@ -47,7 +47,7 @@ Partial Class frmModelNew
         'txtModel
         '
         Me.txtModel.Location = New System.Drawing.Point(46, 66)
-        Me.txtModel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtModel.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModel.MaxLength = 100
         Me.txtModel.Name = "txtModel"
         Me.txtModel.Size = New System.Drawing.Size(109, 20)
@@ -74,9 +74,9 @@ Partial Class frmModelNew
         Me.grpBasic.Controls.Add(Me.lblBrand)
         Me.grpBasic.Controls.Add(Me.txtModel)
         Me.grpBasic.Location = New System.Drawing.Point(9, 10)
-        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Size = New System.Drawing.Size(159, 112)
         Me.grpBasic.TabIndex = 1
         Me.grpBasic.TabStop = False
@@ -95,7 +95,7 @@ Partial Class frmModelNew
         'txtCode
         '
         Me.txtCode.Location = New System.Drawing.Point(46, 89)
-        Me.txtCode.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCode.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCode.MaxLength = 2
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Size = New System.Drawing.Size(109, 20)
@@ -107,7 +107,7 @@ Partial Class frmModelNew
         Me.cmbType.FormattingEnabled = True
         Me.cmbType.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferro-Chrome)", "Type IV (Metal)"})
         Me.cmbType.Location = New System.Drawing.Point(46, 41)
-        Me.cmbType.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbType.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbType.Name = "cmbType"
         Me.cmbType.Size = New System.Drawing.Size(109, 21)
         Me.cmbType.TabIndex = 2
@@ -127,7 +127,7 @@ Partial Class frmModelNew
         Me.cmbBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBrand.FormattingEnabled = True
         Me.cmbBrand.Location = New System.Drawing.Point(46, 17)
-        Me.cmbBrand.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbBrand.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbBrand.Name = "cmbBrand"
         Me.cmbBrand.Size = New System.Drawing.Size(109, 21)
         Me.cmbBrand.Sorted = True
@@ -146,7 +146,7 @@ Partial Class frmModelNew
         'txtNotes
         '
         Me.txtNotes.Location = New System.Drawing.Point(4, 17)
-        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(151, 45)
@@ -157,9 +157,9 @@ Partial Class frmModelNew
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
         Me.grpNotes.Location = New System.Drawing.Point(172, 55)
-        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
-        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Size = New System.Drawing.Size(159, 67)
         Me.grpNotes.TabIndex = 3
         Me.grpNotes.TabStop = False
@@ -168,7 +168,7 @@ Partial Class frmModelNew
         'btnAdd
         '
         Me.btnAdd.Location = New System.Drawing.Point(9, 127)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(159, 20)
         Me.btnAdd.TabIndex = 4
@@ -190,9 +190,9 @@ Partial Class frmModelNew
         Me.grpExtra.Controls.Add(Me.lblName)
         Me.grpExtra.Controls.Add(Me.txtName)
         Me.grpExtra.Location = New System.Drawing.Point(172, 10)
-        Me.grpExtra.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpExtra.Margin = New System.Windows.Forms.Padding(2)
         Me.grpExtra.Name = "grpExtra"
-        Me.grpExtra.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpExtra.Padding = New System.Windows.Forms.Padding(2)
         Me.grpExtra.Size = New System.Drawing.Size(159, 41)
         Me.grpExtra.TabIndex = 2
         Me.grpExtra.TabStop = False
@@ -211,7 +211,7 @@ Partial Class frmModelNew
         'txtName
         '
         Me.txtName.Location = New System.Drawing.Point(46, 17)
-        Me.txtName.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtName.MaxLength = 100
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(109, 20)
@@ -229,7 +229,7 @@ Partial Class frmModelNew
         Me.Controls.Add(Me.lblAdd)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmModelNew"
         Me.Text = "Add New Model"
