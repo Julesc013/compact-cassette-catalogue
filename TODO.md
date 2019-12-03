@@ -1,10 +1,9 @@
 ### Betas
 
-- add other noise reduction options
-- VIEW DATA IN LISTS VIEWS
 - make changes to existing models/decks/brands
 - fix regex validation
 - fix console scrolling bug
+- console output. consol;e HELP settings<?
 - fix visual design
 
 
@@ -87,3 +86,4 @@
 - support for 1, 2 and 4+ point version numbers (eg 1.3 and 1.4.2.1)
 - ability to save as and edit as older file versions
 - file associations
+- More verbose process logging (to an output file, not console)

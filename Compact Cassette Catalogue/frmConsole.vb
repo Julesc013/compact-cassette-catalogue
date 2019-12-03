@@ -83,7 +83,7 @@ Public Class frmConsole
 
                     End If
 
-                Case = "clear"
+                Case = "clear", "cls"
 
                     If arguments.Length = 1 Then
 
@@ -107,6 +107,30 @@ Public Class frmConsole
 
                     End If
 
+                Case = "quit", "exit", "close"
+
+                    If arguments.Length = 1 Then
+
+                        frmMain.closeApplication() 'Close safely.
+
+                    Else
+
+                        message = "Bad syntax, use: quit"
+
+                    End If
+
+                Case = "kill"
+
+                    If arguments.Length = 1 Then
+
+                        Application.Exit() 'Close violently.
+
+                    Else
+
+                        message = "Bad syntax, use: kill"
+
+                    End If
+
                 Case = "showmessages"
 
                     message = "Bad syntax, use: showMessages [True|False]"
@@ -125,7 +149,10 @@ Public Class frmConsole
                             Dim toggle As Boolean = CBool(arguments(1))
                             My.Settings.showMessages = toggle
 
-                            message = "Set showMessages to " & CStr(toggle)
+                            'Build message.
+                            Dim now As DateTime = DateTime.Now
+                            Dim stamp As String = "[" & consoleStamp(now) & "]"
+                            message = stamp & " Set showMessages to " & CStr(toggle)
 
                         End If
 
@@ -138,7 +165,7 @@ Public Class frmConsole
                     If arguments.Length = 1 Then
                         'Display current value
 
-                        message = "showMessages currently is " & CStr(My.Settings.defaultDirectory)
+                        message = "defaultDirectory currently is " & CStr(My.Settings.defaultDirectory)
 
                     ElseIf arguments.Length = 2 Then
                         'Update value
@@ -150,7 +177,10 @@ Public Class frmConsole
 
                             My.Settings.defaultDirectory = folderpath
 
-                            message = "Set defaultDirectory to " & CStr(filePath)
+                            'Build message.
+                            Dim now As DateTime = DateTime.Now
+                            Dim stamp As String = "[" & consoleStamp(now) & "]"
+                            message = stamp & " Set defaultDirectory to " & CStr(filePath)
 
                         End If
 

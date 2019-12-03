@@ -430,10 +430,20 @@ Public Class frmMain
             If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
                 'If user has given a valid file path.
 
+
                 'Lock in selected file path
+
                 filePath = selectedPath
                 Dim fileTree As String() = selectedPath.Split("\"c)
                 fileName = fileTree(fileTree.Length - 1)
+
+                'Create file directory string
+                fileDirectory = Nothing
+                Dim folder As Integer
+                For folder = 0 To fileTree.Length - 2 'Every string except the final (the file name).
+                    fileDirectory += fileTree(folder) & "\"
+                Next
+
 
                 'Update file information
                 information.Rows(5)("Value") = DateTime.Now.ToString
@@ -579,7 +589,7 @@ Public Class frmMain
                     'Only works for 3 digit with snapshot numbers (x.x.xbx) version numbers
 
                     Dim numbers As String() = xmlFileText.ReadLine().Split("."c) 'Split <1.2.3b4> into {<1,2,3b4>}
-                    numbers(0) = numbers(0).Split(">"c)(1) 'Split <x1 into 1
+                    numbers(0) = numbers(0).Split(">"c)(1) 'Split <1 into 1
                     numbers(2) = numbers(2).Split("<"c)(0) 'Split 3b4> into 3b4
                     numbers(2) = Regex.Split(numbers(2), "[a-zA-z]")(0) 'Split 3b4 into 3
                     fileVersion = numbers(0) & "." & numbers(1) & "." & numbers(2)
@@ -591,11 +601,20 @@ Public Class frmMain
             If VERSIONFILESUPPORTED.Contains(fileVersion) Then
 
                 'Lock in selected file path
+
                 filePath = selectedPath
                 Dim fileTree As String() = selectedPath.Split("\"c)
                 fileName = fileTree(fileTree.Length - 1)
 
-                'Temp Disable strict loading rules
+                'Create file directory string
+                fileDirectory = Nothing
+                Dim folder As Integer
+                For folder = 0 To fileTree.Length - 2 'Every string except the final (the file name).
+                    fileDirectory += fileTree(folder) & "\"
+                Next
+
+
+                'Temporarily Disable strict loading rules
                 catalogue.EnforceConstraints = False
                 'Clear the existing dataset
                 catalogue.Clear()
@@ -1083,7 +1102,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub closeApplication()
+    Public Sub closeApplication()
         'Check for unsaved changes to the whole catalogue, offer to save, then close
 
         If changes = True Then
@@ -1563,4 +1582,19 @@ Public Class frmMain
         deleteTape()
 
     End Sub
+
+    Private Sub OutputConsoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OutputConsoleToolStripMenuItem.Click
+
+        'Output the console to a log file and save it.
+
+        ' Write the string to a new file (date and time included in file name).
+        Using outputFile As New StreamWriter(fileDirectory & "console-output_" & DateTime.Now.ToString("yyMMdd-HHmmss") & ".txt")
+            For Each line As String In frmConsole.lstConsole.Items 'Write each line in the current console window.
+                outputFile.WriteLine(line)
+            Next
+
+        End Using
+
+    End Sub
+
 End Class

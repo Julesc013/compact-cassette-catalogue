@@ -16,9 +16,10 @@ Module varGlobals
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
 
-    'Current file (and directory)
-    Public filePath As String = Nothing 'If nothing, cannot save (must save-as)
-    Public fileName As String = "New Catalogue"
+    'Current file (and directory). If path is nothing, cannot save (must save-as).
+    Public filePath As String = Nothing 'Includes file name.
+    Public fileDirectory As String = Nothing 'Directory only.
+    Public fileName As String = "New Catalogue" 'Name only.
 
     'Has a change been made since last save?
     Public changes As Boolean = False
@@ -311,11 +312,18 @@ Module varGlobals
 
     Sub consoleAdd(message As String)
 
+        'Add line to console.
         Dim now As DateTime = DateTime.Now
-        Dim stamp As String = now.ToString("dd/MM/yy HH:mm:ss")
-
-        frmConsole.lstConsole.Items.Add("[" & stamp & "] " & message)
+        Dim stamp As String = "[" & consoleStamp(now) & "]"
+        frmConsole.lstConsole.Items.Add(stamp & " " & message)
 
     End Sub
+
+    Function consoleStamp(dateTime As DateTime) As String
+
+        'Turn the provided time into a console-formatted time stamp.
+        Return dateTime.ToString("dd/MM/yy HH:mm:ss")
+
+    End Function
 
 End Module

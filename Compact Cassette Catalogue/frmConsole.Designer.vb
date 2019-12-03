@@ -31,24 +31,26 @@ Partial Class frmConsole
         'lstConsole
         '
         Me.lstConsole.FormattingEnabled = True
-        Me.lstConsole.ItemHeight = 16
-        Me.lstConsole.Location = New System.Drawing.Point(12, 12)
+        Me.lstConsole.Location = New System.Drawing.Point(9, 10)
+        Me.lstConsole.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.lstConsole.Name = "lstConsole"
-        Me.lstConsole.Size = New System.Drawing.Size(476, 196)
+        Me.lstConsole.Size = New System.Drawing.Size(358, 160)
         Me.lstConsole.TabIndex = 3
         '
         'txtCommand
         '
-        Me.txtCommand.Location = New System.Drawing.Point(12, 215)
+        Me.txtCommand.Location = New System.Drawing.Point(9, 175)
+        Me.txtCommand.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtCommand.Name = "txtCommand"
-        Me.txtCommand.Size = New System.Drawing.Size(350, 22)
+        Me.txtCommand.Size = New System.Drawing.Size(264, 20)
         Me.txtCommand.TabIndex = 1
         '
         'btnEnter
         '
-        Me.btnEnter.Location = New System.Drawing.Point(368, 214)
+        Me.btnEnter.Location = New System.Drawing.Point(276, 174)
+        Me.btnEnter.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnEnter.Name = "btnEnter"
-        Me.btnEnter.Size = New System.Drawing.Size(121, 24)
+        Me.btnEnter.Size = New System.Drawing.Size(91, 20)
         Me.btnEnter.TabIndex = 2
         Me.btnEnter.Text = "Enter"
         Me.btnEnter.UseVisualStyleBackColor = True
@@ -56,14 +58,15 @@ Partial Class frmConsole
         'frmConsole
         '
         Me.AcceptButton = Me.btnEnter
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(500, 249)
+        Me.ClientSize = New System.Drawing.Size(375, 202)
         Me.Controls.Add(Me.btnEnter)
         Me.Controls.Add(Me.txtCommand)
         Me.Controls.Add(Me.lstConsole)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.MaximizeBox = False
         Me.Name = "frmConsole"
         Me.Text = "Log Console"
