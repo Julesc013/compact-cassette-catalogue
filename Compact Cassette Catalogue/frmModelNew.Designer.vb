@@ -105,7 +105,7 @@ Partial Class frmModelNew
         '
         Me.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbType.FormattingEnabled = True
-        Me.cmbType.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferro-Chrome)", "Type IV (Metal)"})
+        Me.cmbType.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferrichrome)", "Type IV (Metal)"})
         Me.cmbType.Location = New System.Drawing.Point(46, 41)
         Me.cmbType.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbType.Name = "cmbType"

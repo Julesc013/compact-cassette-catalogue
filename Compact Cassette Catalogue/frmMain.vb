@@ -725,7 +725,7 @@ Public Class frmMain
         numYear.Value = CInt(tape("Year"))
         numLength.Value = CInt(tape("Length"))
         cmbRegion.Text = CStr(tape("Region"))
-        txtNumber.Text = CStr(tape("Number"))
+        'txtNumber.Text = CStr(tape("Number"))
 
         Dim condition As Integer = getCondition(CInt(tape("Condition")))
         cmbCondition.SelectedIndex = condition
@@ -1463,109 +1463,109 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub txtNameB_TextChanged(sender As Object, e As EventArgs) Handles txtNameB.TextChanged
+    Private Sub txtNameB_TextChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub datRecordedB_ValueChanged(sender As Object, e As EventArgs) Handles datRecordedB.ValueChanged
+    Private Sub datRecordedB_ValueChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub cmbDeckB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDeckB.SelectedIndexChanged
+    Private Sub cmbDeckB_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub cmbInputB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbInputB.SelectedIndexChanged
+    Private Sub cmbInputB_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub numPeakB_ValueChanged(sender As Object, e As EventArgs) Handles numPeakB.ValueChanged
+    Private Sub numPeakB_ValueChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub cmbNRB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNRB.SelectedIndexChanged
+    Private Sub cmbNRB_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub cmbEQB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEQB.SelectedIndexChanged
+    Private Sub cmbEQB_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub cmbBiasB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBiasB.SelectedIndexChanged
+    Private Sub cmbBiasB_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub numBiasCalB_ValueChanged(sender As Object, e As EventArgs) Handles numBiasCalB.ValueChanged
+    Private Sub numBiasCalB_ValueChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub numLevelB_ValueChanged(sender As Object, e As EventArgs) Handles numLevelB.ValueChanged
+    Private Sub numLevelB_ValueChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub numLevelCalB_ValueChanged(sender As Object, e As EventArgs) Handles numLevelCalB.ValueChanged
+    Private Sub numLevelCalB_ValueChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub chkHXB_CheckedChanged(sender As Object, e As EventArgs) Handles chkHXB.CheckedChanged
+    Private Sub chkHXB_CheckedChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub cmbSpeedB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSpeedB.SelectedIndexChanged
+    Private Sub cmbSpeedB_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub chkDubbedB_CheckedChanged(sender As Object, e As EventArgs) Handles chkDubbedB.CheckedChanged
+    Private Sub chkDubbedB_CheckedChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub chkMPXB_CheckedChanged(sender As Object, e As EventArgs) Handles chkMPXB.CheckedChanged
+    Private Sub chkMPXB_CheckedChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub cmbContentsB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbContentsB.SelectedIndexChanged
+    Private Sub cmbContentsB_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub txtArtistB_TextChanged(sender As Object, e As EventArgs) Handles txtArtistB.TextChanged
+    Private Sub txtArtistB_TextChanged(sender As Object, e As EventArgs)
 
         updateMade()
 
     End Sub
 
-    Private Sub txtTitleB_TextChanged(sender As Object, e As EventArgs) Handles txtTitleB.TextChanged
+    Private Sub txtTitleB_TextChanged(sender As Object, e As EventArgs)
 
         updateMade()
 

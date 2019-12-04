@@ -86,42 +86,6 @@ Partial Class frmMain
         Me.lblLength = New System.Windows.Forms.Label()
         Me.lblYear = New System.Windows.Forms.Label()
         Me.lblModel = New System.Windows.Forms.Label()
-        Me.grpSideB = New System.Windows.Forms.GroupBox()
-        Me.numPeakB = New System.Windows.Forms.NumericUpDown()
-        Me.grpConfigB = New System.Windows.Forms.GroupBox()
-        Me.chkDubbedB = New System.Windows.Forms.CheckBox()
-        Me.cmbNRB = New System.Windows.Forms.ComboBox()
-        Me.lblNRB = New System.Windows.Forms.Label()
-        Me.cmbSpeedB = New System.Windows.Forms.ComboBox()
-        Me.chkHXB = New System.Windows.Forms.CheckBox()
-        Me.chkMPXB = New System.Windows.Forms.CheckBox()
-        Me.lblSpeedB = New System.Windows.Forms.Label()
-        Me.cmbBiasB = New System.Windows.Forms.ComboBox()
-        Me.lblBiasB = New System.Windows.Forms.Label()
-        Me.cmbEQB = New System.Windows.Forms.ComboBox()
-        Me.numBiasCalB = New System.Windows.Forms.NumericUpDown()
-        Me.lblBiasCalB = New System.Windows.Forms.Label()
-        Me.lblEQB = New System.Windows.Forms.Label()
-        Me.numLevelB = New System.Windows.Forms.NumericUpDown()
-        Me.lblLevelB = New System.Windows.Forms.Label()
-        Me.numLevelCalB = New System.Windows.Forms.NumericUpDown()
-        Me.lblLevelCalB = New System.Windows.Forms.Label()
-        Me.lblPeakB = New System.Windows.Forms.Label()
-        Me.lblNameB = New System.Windows.Forms.Label()
-        Me.cmbInputB = New System.Windows.Forms.ComboBox()
-        Me.lblInputB = New System.Windows.Forms.Label()
-        Me.txtNameB = New System.Windows.Forms.TextBox()
-        Me.grpContentsB = New System.Windows.Forms.GroupBox()
-        Me.lblTitleB = New System.Windows.Forms.Label()
-        Me.lblArtistB = New System.Windows.Forms.Label()
-        Me.txtTitleB = New System.Windows.Forms.TextBox()
-        Me.txtArtistB = New System.Windows.Forms.TextBox()
-        Me.lblContentsB = New System.Windows.Forms.Label()
-        Me.cmbContentsB = New System.Windows.Forms.ComboBox()
-        Me.datRecordedB = New System.Windows.Forms.DateTimePicker()
-        Me.cmbDeckB = New System.Windows.Forms.ComboBox()
-        Me.lblRecordedB = New System.Windows.Forms.Label()
-        Me.lblDeckB = New System.Windows.Forms.Label()
         Me.grpSideA = New System.Windows.Forms.GroupBox()
         Me.numPeakA = New System.Windows.Forms.NumericUpDown()
         Me.lblPeakA = New System.Windows.Forms.Label()
@@ -174,6 +138,43 @@ Partial Class frmMain
         Me.dlgOpen = New System.Windows.Forms.OpenFileDialog()
         Me.dlgSaveAs = New System.Windows.Forms.SaveFileDialog()
         Me.lblProcessingA = New System.Windows.Forms.Label()
+        Me.grpSideB = New System.Windows.Forms.GroupBox()
+        Me.numPeakB = New System.Windows.Forms.NumericUpDown()
+        Me.lblPeakB = New System.Windows.Forms.Label()
+        Me.cmbInputB = New System.Windows.Forms.ComboBox()
+        Me.lblInputB = New System.Windows.Forms.Label()
+        Me.grpConfigB = New System.Windows.Forms.GroupBox()
+        Me.lblProcessingB = New System.Windows.Forms.Label()
+        Me.chkDubbedB = New System.Windows.Forms.CheckBox()
+        Me.cmbNRB = New System.Windows.Forms.ComboBox()
+        Me.lblNRB = New System.Windows.Forms.Label()
+        Me.cmbSpeedB = New System.Windows.Forms.ComboBox()
+        Me.chkHXB = New System.Windows.Forms.CheckBox()
+        Me.chkMPXB = New System.Windows.Forms.CheckBox()
+        Me.lblSpeedB = New System.Windows.Forms.Label()
+        Me.grpContentsB = New System.Windows.Forms.GroupBox()
+        Me.lblTitleB = New System.Windows.Forms.Label()
+        Me.lblArtistB = New System.Windows.Forms.Label()
+        Me.txtTitleB = New System.Windows.Forms.TextBox()
+        Me.txtArtistB = New System.Windows.Forms.TextBox()
+        Me.lblContentsB = New System.Windows.Forms.Label()
+        Me.cmbContentsB = New System.Windows.Forms.ComboBox()
+        Me.cmbBiasB = New System.Windows.Forms.ComboBox()
+        Me.lblBiasB = New System.Windows.Forms.Label()
+        Me.cmbEQB = New System.Windows.Forms.ComboBox()
+        Me.numBiasCalB = New System.Windows.Forms.NumericUpDown()
+        Me.lblBiasCalB = New System.Windows.Forms.Label()
+        Me.lblEQB = New System.Windows.Forms.Label()
+        Me.numLevelB = New System.Windows.Forms.NumericUpDown()
+        Me.lblLevelB = New System.Windows.Forms.Label()
+        Me.numLevelCalB = New System.Windows.Forms.NumericUpDown()
+        Me.lblLevelCalB = New System.Windows.Forms.Label()
+        Me.lblNameB = New System.Windows.Forms.Label()
+        Me.txtNameB = New System.Windows.Forms.TextBox()
+        Me.datRecordedB = New System.Windows.Forms.DateTimePicker()
+        Me.lblRecordedB = New System.Windows.Forms.Label()
+        Me.cmbDeckB = New System.Windows.Forms.ComboBox()
+        Me.lblDeckB = New System.Windows.Forms.Label()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
         Me.grpData.SuspendLayout()
@@ -183,13 +184,6 @@ Partial Class frmMain
         Me.grpModel.SuspendLayout()
         CType(Me.numLength, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numYear, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.grpSideB.SuspendLayout()
-        CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.grpConfigB.SuspendLayout()
-        CType(Me.numBiasCalB, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.numLevelB, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.numLevelCalB, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.grpContentsB.SuspendLayout()
         Me.grpSideA.SuspendLayout()
         CType(Me.numPeakA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpConfigA.SuspendLayout()
@@ -200,6 +194,13 @@ Partial Class frmMain
         Me.grpFind.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpScroll.SuspendLayout()
+        Me.grpSideB.SuspendLayout()
+        CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpConfigB.SuspendLayout()
+        Me.grpContentsB.SuspendLayout()
+        CType(Me.numBiasCalB, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numLevelB, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numLevelCalB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpIdentification
@@ -217,7 +218,7 @@ Partial Class frmMain
         Me.grpIdentification.Margin = New System.Windows.Forms.Padding(2)
         Me.grpIdentification.Name = "grpIdentification"
         Me.grpIdentification.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpIdentification.Size = New System.Drawing.Size(431, 43)
+        Me.grpIdentification.Size = New System.Drawing.Size(437, 43)
         Me.grpIdentification.TabIndex = 4
         Me.grpIdentification.TabStop = False
         Me.grpIdentification.Text = "Identification"
@@ -225,7 +226,7 @@ Partial Class frmMain
         'lblMax
         '
         Me.lblMax.AutoSize = True
-        Me.lblMax.Location = New System.Drawing.Point(369, 20)
+        Me.lblMax.Location = New System.Drawing.Point(375, 20)
         Me.lblMax.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblMax.Name = "lblMax"
         Me.lblMax.Size = New System.Drawing.Size(12, 13)
@@ -234,7 +235,7 @@ Partial Class frmMain
         '
         'txtIndex
         '
-        Me.txtIndex.Location = New System.Drawing.Point(322, 17)
+        Me.txtIndex.Location = New System.Drawing.Point(328, 17)
         Me.txtIndex.Margin = New System.Windows.Forms.Padding(2)
         Me.txtIndex.Name = "txtIndex"
         Me.txtIndex.ReadOnly = True
@@ -244,7 +245,7 @@ Partial Class frmMain
         '
         'txtTotal
         '
-        Me.txtTotal.Location = New System.Drawing.Point(382, 17)
+        Me.txtTotal.Location = New System.Drawing.Point(388, 17)
         Me.txtTotal.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.ReadOnly = True
@@ -255,7 +256,7 @@ Partial Class frmMain
         'lblIndex
         '
         Me.lblIndex.AutoSize = True
-        Me.lblIndex.Location = New System.Drawing.Point(271, 21)
+        Me.lblIndex.Location = New System.Drawing.Point(278, 21)
         Me.lblIndex.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblIndex.Name = "lblIndex"
         Me.lblIndex.Size = New System.Drawing.Size(47, 13)
@@ -268,7 +269,7 @@ Partial Class frmMain
         Me.txtLong.Margin = New System.Windows.Forms.Padding(2)
         Me.txtLong.Name = "txtLong"
         Me.txtLong.ReadOnly = True
-        Me.txtLong.Size = New System.Drawing.Size(103, 20)
+        Me.txtLong.Size = New System.Drawing.Size(109, 20)
         Me.txtLong.TabIndex = 2
         '
         'txtShort
@@ -283,7 +284,7 @@ Partial Class frmMain
         'lblLong
         '
         Me.lblLong.AutoSize = True
-        Me.lblLong.Location = New System.Drawing.Point(126, 20)
+        Me.lblLong.Location = New System.Drawing.Point(127, 20)
         Me.lblLong.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLong.Name = "lblLong"
         Me.lblLong.Size = New System.Drawing.Size(34, 13)
@@ -307,7 +308,7 @@ Partial Class frmMain
         Me.menuStripMain.Location = New System.Drawing.Point(0, 0)
         Me.menuStripMain.Name = "menuStripMain"
         Me.menuStripMain.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.menuStripMain.Size = New System.Drawing.Size(1213, 24)
+        Me.menuStripMain.Size = New System.Drawing.Size(750, 24)
         Me.menuStripMain.TabIndex = 8
         Me.menuStripMain.Text = "Menu Strip"
         '
@@ -545,7 +546,7 @@ Partial Class frmMain
         Me.grpData.Margin = New System.Windows.Forms.Padding(2)
         Me.grpData.Name = "grpData"
         Me.grpData.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpData.Size = New System.Drawing.Size(1191, 653)
+        Me.grpData.Size = New System.Drawing.Size(728, 374)
         Me.grpData.TabIndex = 5
         Me.grpData.TabStop = False
         Me.grpData.Text = "Data"
@@ -649,7 +650,7 @@ Partial Class frmMain
         Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
         Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpNotes.Size = New System.Drawing.Size(259, 273)
+        Me.grpNotes.Size = New System.Drawing.Size(259, 208)
         Me.grpNotes.TabIndex = 6
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
@@ -660,7 +661,7 @@ Partial Class frmMain
         Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(249, 228)
+        Me.txtNotes.Size = New System.Drawing.Size(249, 186)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
@@ -764,413 +765,6 @@ Partial Class frmMain
         Me.lblModel.TabIndex = 15
         Me.lblModel.Text = "Model:"
         '
-        'grpSideB
-        '
-        Me.grpSideB.Controls.Add(Me.numPeakB)
-        Me.grpSideB.Controls.Add(Me.grpConfigB)
-        Me.grpSideB.Controls.Add(Me.lblPeakB)
-        Me.grpSideB.Controls.Add(Me.lblNameB)
-        Me.grpSideB.Controls.Add(Me.cmbInputB)
-        Me.grpSideB.Controls.Add(Me.lblInputB)
-        Me.grpSideB.Controls.Add(Me.txtNameB)
-        Me.grpSideB.Controls.Add(Me.grpContentsB)
-        Me.grpSideB.Controls.Add(Me.datRecordedB)
-        Me.grpSideB.Controls.Add(Me.cmbDeckB)
-        Me.grpSideB.Controls.Add(Me.lblRecordedB)
-        Me.grpSideB.Controls.Add(Me.lblDeckB)
-        Me.grpSideB.Enabled = False
-        Me.grpSideB.Location = New System.Drawing.Point(614, 17)
-        Me.grpSideB.Margin = New System.Windows.Forms.Padding(2)
-        Me.grpSideB.Name = "grpSideB"
-        Me.grpSideB.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpSideB.Size = New System.Drawing.Size(343, 417)
-        Me.grpSideB.TabIndex = 5
-        Me.grpSideB.TabStop = False
-        Me.grpSideB.Text = "Side B"
-        '
-        'numPeakB
-        '
-        Me.numPeakB.Location = New System.Drawing.Point(170, 88)
-        Me.numPeakB.Margin = New System.Windows.Forms.Padding(2)
-        Me.numPeakB.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
-        Me.numPeakB.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
-        Me.numPeakB.Name = "numPeakB"
-        Me.numPeakB.Size = New System.Drawing.Size(34, 20)
-        Me.numPeakB.TabIndex = 5
-        '
-        'grpConfigB
-        '
-        Me.grpConfigB.Controls.Add(Me.chkDubbedB)
-        Me.grpConfigB.Controls.Add(Me.cmbNRB)
-        Me.grpConfigB.Controls.Add(Me.lblNRB)
-        Me.grpConfigB.Controls.Add(Me.cmbSpeedB)
-        Me.grpConfigB.Controls.Add(Me.chkHXB)
-        Me.grpConfigB.Controls.Add(Me.chkMPXB)
-        Me.grpConfigB.Controls.Add(Me.lblSpeedB)
-        Me.grpConfigB.Controls.Add(Me.cmbBiasB)
-        Me.grpConfigB.Controls.Add(Me.lblBiasB)
-        Me.grpConfigB.Controls.Add(Me.cmbEQB)
-        Me.grpConfigB.Controls.Add(Me.numBiasCalB)
-        Me.grpConfigB.Controls.Add(Me.lblBiasCalB)
-        Me.grpConfigB.Controls.Add(Me.lblEQB)
-        Me.grpConfigB.Controls.Add(Me.numLevelB)
-        Me.grpConfigB.Controls.Add(Me.lblLevelB)
-        Me.grpConfigB.Controls.Add(Me.numLevelCalB)
-        Me.grpConfigB.Controls.Add(Me.lblLevelCalB)
-        Me.grpConfigB.Location = New System.Drawing.Point(7, 144)
-        Me.grpConfigB.Margin = New System.Windows.Forms.Padding(2)
-        Me.grpConfigB.Name = "grpConfigB"
-        Me.grpConfigB.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpConfigB.Size = New System.Drawing.Size(302, 173)
-        Me.grpConfigB.TabIndex = 34
-        Me.grpConfigB.TabStop = False
-        Me.grpConfigB.Text = "Configuration"
-        '
-        'chkDubbedB
-        '
-        Me.chkDubbedB.AutoSize = True
-        Me.chkDubbedB.Location = New System.Drawing.Point(111, 90)
-        Me.chkDubbedB.Margin = New System.Windows.Forms.Padding(2)
-        Me.chkDubbedB.Name = "chkDubbedB"
-        Me.chkDubbedB.Size = New System.Drawing.Size(46, 17)
-        Me.chkDubbedB.TabIndex = 9
-        Me.chkDubbedB.Text = "Dub"
-        Me.chkDubbedB.UseVisualStyleBackColor = True
-        '
-        'cmbNRB
-        '
-        Me.cmbNRB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbNRB.FormattingEnabled = True
-        Me.cmbNRB.Items.AddRange(New Object() {"None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
-        Me.cmbNRB.Location = New System.Drawing.Point(34, 17)
-        Me.cmbNRB.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbNRB.Name = "cmbNRB"
-        Me.cmbNRB.Size = New System.Drawing.Size(77, 21)
-        Me.cmbNRB.TabIndex = 1
-        '
-        'lblNRB
-        '
-        Me.lblNRB.AutoSize = True
-        Me.lblNRB.Location = New System.Drawing.Point(4, 20)
-        Me.lblNRB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblNRB.Name = "lblNRB"
-        Me.lblNRB.Size = New System.Drawing.Size(26, 13)
-        Me.lblNRB.TabIndex = 4
-        Me.lblNRB.Text = "NR:"
-        '
-        'cmbSpeedB
-        '
-        Me.cmbSpeedB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbSpeedB.FormattingEnabled = True
-        Me.cmbSpeedB.Items.AddRange(New Object() {"15/16", "1⅞", "3¾"})
-        Me.cmbSpeedB.Location = New System.Drawing.Point(48, 90)
-        Me.cmbSpeedB.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbSpeedB.Name = "cmbSpeedB"
-        Me.cmbSpeedB.Size = New System.Drawing.Size(59, 21)
-        Me.cmbSpeedB.TabIndex = 8
-        '
-        'chkHXB
-        '
-        Me.chkHXB.AutoSize = True
-        Me.chkHXB.Location = New System.Drawing.Point(154, 67)
-        Me.chkHXB.Margin = New System.Windows.Forms.Padding(2)
-        Me.chkHXB.Name = "chkHXB"
-        Me.chkHXB.Size = New System.Drawing.Size(41, 17)
-        Me.chkHXB.TabIndex = 7
-        Me.chkHXB.Text = "HX"
-        Me.chkHXB.UseVisualStyleBackColor = True
-        '
-        'chkMPXB
-        '
-        Me.chkMPXB.AutoSize = True
-        Me.chkMPXB.Location = New System.Drawing.Point(154, 90)
-        Me.chkMPXB.Margin = New System.Windows.Forms.Padding(2)
-        Me.chkMPXB.Name = "chkMPXB"
-        Me.chkMPXB.Size = New System.Drawing.Size(49, 17)
-        Me.chkMPXB.TabIndex = 10
-        Me.chkMPXB.Text = "MPX"
-        Me.chkMPXB.UseVisualStyleBackColor = True
-        '
-        'lblSpeedB
-        '
-        Me.lblSpeedB.AutoSize = True
-        Me.lblSpeedB.Location = New System.Drawing.Point(4, 91)
-        Me.lblSpeedB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblSpeedB.Name = "lblSpeedB"
-        Me.lblSpeedB.Size = New System.Drawing.Size(41, 13)
-        Me.lblSpeedB.TabIndex = 31
-        Me.lblSpeedB.Text = "Speed:"
-        '
-        'cmbBiasB
-        '
-        Me.cmbBiasB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbBiasB.FormattingEnabled = True
-        Me.cmbBiasB.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferro-Chrome)", "Type IV (Metal)"})
-        Me.cmbBiasB.Location = New System.Drawing.Point(34, 41)
-        Me.cmbBiasB.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbBiasB.Name = "cmbBiasB"
-        Me.cmbBiasB.Size = New System.Drawing.Size(101, 21)
-        Me.cmbBiasB.TabIndex = 3
-        '
-        'lblBiasB
-        '
-        Me.lblBiasB.AutoSize = True
-        Me.lblBiasB.Location = New System.Drawing.Point(4, 44)
-        Me.lblBiasB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblBiasB.Name = "lblBiasB"
-        Me.lblBiasB.Size = New System.Drawing.Size(30, 13)
-        Me.lblBiasB.TabIndex = 22
-        Me.lblBiasB.Text = "Bias:"
-        '
-        'cmbEQB
-        '
-        Me.cmbEQB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbEQB.FormattingEnabled = True
-        Me.cmbEQB.Items.AddRange(New Object() {"120μs", "70μs"})
-        Me.cmbEQB.Location = New System.Drawing.Point(142, 17)
-        Me.cmbEQB.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbEQB.Name = "cmbEQB"
-        Me.cmbEQB.Size = New System.Drawing.Size(53, 21)
-        Me.cmbEQB.TabIndex = 2
-        '
-        'numBiasCalB
-        '
-        Me.numBiasCalB.Location = New System.Drawing.Point(160, 42)
-        Me.numBiasCalB.Margin = New System.Windows.Forms.Padding(2)
-        Me.numBiasCalB.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.numBiasCalB.Minimum = New Decimal(New Integer() {20, 0, 0, -2147483648})
-        Me.numBiasCalB.Name = "numBiasCalB"
-        Me.numBiasCalB.Size = New System.Drawing.Size(34, 20)
-        Me.numBiasCalB.TabIndex = 4
-        '
-        'lblBiasCalB
-        '
-        Me.lblBiasCalB.AutoSize = True
-        Me.lblBiasCalB.Location = New System.Drawing.Point(135, 44)
-        Me.lblBiasCalB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblBiasCalB.Name = "lblBiasCalB"
-        Me.lblBiasCalB.Size = New System.Drawing.Size(24, 13)
-        Me.lblBiasCalB.TabIndex = 23
-        Me.lblBiasCalB.Text = "±%:"
-        '
-        'lblEQB
-        '
-        Me.lblEQB.AutoSize = True
-        Me.lblEQB.Location = New System.Drawing.Point(114, 20)
-        Me.lblEQB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblEQB.Name = "lblEQB"
-        Me.lblEQB.Size = New System.Drawing.Size(25, 13)
-        Me.lblEQB.TabIndex = 27
-        Me.lblEQB.Text = "EQ:"
-        '
-        'numLevelB
-        '
-        Me.numLevelB.DecimalPlaces = 2
-        Me.numLevelB.Increment = New Decimal(New Integer() {25, 0, 0, 131072})
-        Me.numLevelB.Location = New System.Drawing.Point(41, 66)
-        Me.numLevelB.Margin = New System.Windows.Forms.Padding(2)
-        Me.numLevelB.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
-        Me.numLevelB.Name = "numLevelB"
-        Me.numLevelB.Size = New System.Drawing.Size(38, 20)
-        Me.numLevelB.TabIndex = 5
-        Me.numLevelB.Value = New Decimal(New Integer() {5, 0, 0, 0})
-        '
-        'lblLevelB
-        '
-        Me.lblLevelB.AutoSize = True
-        Me.lblLevelB.Location = New System.Drawing.Point(4, 67)
-        Me.lblLevelB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblLevelB.Name = "lblLevelB"
-        Me.lblLevelB.Size = New System.Drawing.Size(36, 13)
-        Me.lblLevelB.TabIndex = 26
-        Me.lblLevelB.Text = "Level:"
-        '
-        'numLevelCalB
-        '
-        Me.numLevelCalB.DecimalPlaces = 1
-        Me.numLevelCalB.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.numLevelCalB.Location = New System.Drawing.Point(111, 66)
-        Me.numLevelCalB.Margin = New System.Windows.Forms.Padding(2)
-        Me.numLevelCalB.Maximum = New Decimal(New Integer() {3, 0, 0, 0})
-        Me.numLevelCalB.Minimum = New Decimal(New Integer() {3, 0, 0, -2147483648})
-        Me.numLevelCalB.Name = "numLevelCalB"
-        Me.numLevelCalB.Size = New System.Drawing.Size(36, 20)
-        Me.numLevelCalB.TabIndex = 6
-        '
-        'lblLevelCalB
-        '
-        Me.lblLevelCalB.AutoSize = True
-        Me.lblLevelCalB.Location = New System.Drawing.Point(82, 67)
-        Me.lblLevelCalB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblLevelCalB.Name = "lblLevelCalB"
-        Me.lblLevelCalB.Size = New System.Drawing.Size(29, 13)
-        Me.lblLevelCalB.TabIndex = 25
-        Me.lblLevelCalB.Text = "±dB:"
-        '
-        'lblPeakB
-        '
-        Me.lblPeakB.AutoSize = True
-        Me.lblPeakB.Location = New System.Drawing.Point(112, 89)
-        Me.lblPeakB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblPeakB.Name = "lblPeakB"
-        Me.lblPeakB.Size = New System.Drawing.Size(57, 13)
-        Me.lblPeakB.TabIndex = 37
-        Me.lblPeakB.Text = "Peak (dB):"
-        '
-        'lblNameB
-        '
-        Me.lblNameB.AutoSize = True
-        Me.lblNameB.Location = New System.Drawing.Point(4, 20)
-        Me.lblNameB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblNameB.Name = "lblNameB"
-        Me.lblNameB.Size = New System.Drawing.Size(38, 13)
-        Me.lblNameB.TabIndex = 13
-        Me.lblNameB.Text = "Name:"
-        '
-        'cmbInputB
-        '
-        Me.cmbInputB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbInputB.FormattingEnabled = True
-        Me.cmbInputB.Items.AddRange(New Object() {"Cassette", "Reel", "FM", "AM", "DAB", "Record", "CD", "DVD", "VHS", "TV", "Phone", "Other"})
-        Me.cmbInputB.Location = New System.Drawing.Point(38, 87)
-        Me.cmbInputB.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbInputB.Name = "cmbInputB"
-        Me.cmbInputB.Size = New System.Drawing.Size(70, 21)
-        Me.cmbInputB.TabIndex = 4
-        '
-        'lblInputB
-        '
-        Me.lblInputB.AutoSize = True
-        Me.lblInputB.Location = New System.Drawing.Point(4, 89)
-        Me.lblInputB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblInputB.Name = "lblInputB"
-        Me.lblInputB.Size = New System.Drawing.Size(34, 13)
-        Me.lblInputB.TabIndex = 35
-        Me.lblInputB.Text = "Input:"
-        '
-        'txtNameB
-        '
-        Me.txtNameB.Location = New System.Drawing.Point(46, 17)
-        Me.txtNameB.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtNameB.Name = "txtNameB"
-        Me.txtNameB.Size = New System.Drawing.Size(158, 20)
-        Me.txtNameB.TabIndex = 1
-        '
-        'grpContentsB
-        '
-        Me.grpContentsB.Controls.Add(Me.lblTitleB)
-        Me.grpContentsB.Controls.Add(Me.lblArtistB)
-        Me.grpContentsB.Controls.Add(Me.txtTitleB)
-        Me.grpContentsB.Controls.Add(Me.txtArtistB)
-        Me.grpContentsB.Controls.Add(Me.lblContentsB)
-        Me.grpContentsB.Controls.Add(Me.cmbContentsB)
-        Me.grpContentsB.Location = New System.Drawing.Point(131, 317)
-        Me.grpContentsB.Margin = New System.Windows.Forms.Padding(2)
-        Me.grpContentsB.Name = "grpContentsB"
-        Me.grpContentsB.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpContentsB.Size = New System.Drawing.Size(199, 89)
-        Me.grpContentsB.TabIndex = 11
-        Me.grpContentsB.TabStop = False
-        Me.grpContentsB.Text = "Contents"
-        '
-        'lblTitleB
-        '
-        Me.lblTitleB.AutoSize = True
-        Me.lblTitleB.Location = New System.Drawing.Point(4, 67)
-        Me.lblTitleB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblTitleB.Name = "lblTitleB"
-        Me.lblTitleB.Size = New System.Drawing.Size(30, 13)
-        Me.lblTitleB.TabIndex = 18
-        Me.lblTitleB.Text = "Title:"
-        '
-        'lblArtistB
-        '
-        Me.lblArtistB.AutoSize = True
-        Me.lblArtistB.Location = New System.Drawing.Point(4, 44)
-        Me.lblArtistB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblArtistB.Name = "lblArtistB"
-        Me.lblArtistB.Size = New System.Drawing.Size(33, 13)
-        Me.lblArtistB.TabIndex = 17
-        Me.lblArtistB.Text = "Artist:"
-        '
-        'txtTitleB
-        '
-        Me.txtTitleB.Location = New System.Drawing.Point(41, 64)
-        Me.txtTitleB.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtTitleB.Name = "txtTitleB"
-        Me.txtTitleB.Size = New System.Drawing.Size(154, 20)
-        Me.txtTitleB.TabIndex = 3
-        '
-        'txtArtistB
-        '
-        Me.txtArtistB.Location = New System.Drawing.Point(41, 41)
-        Me.txtArtistB.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtArtistB.Name = "txtArtistB"
-        Me.txtArtistB.Size = New System.Drawing.Size(154, 20)
-        Me.txtArtistB.TabIndex = 2
-        '
-        'lblContentsB
-        '
-        Me.lblContentsB.AutoSize = True
-        Me.lblContentsB.Location = New System.Drawing.Point(4, 20)
-        Me.lblContentsB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblContentsB.Name = "lblContentsB"
-        Me.lblContentsB.Size = New System.Drawing.Size(34, 13)
-        Me.lblContentsB.TabIndex = 14
-        Me.lblContentsB.Text = "Type:"
-        '
-        'cmbContentsB
-        '
-        Me.cmbContentsB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbContentsB.FormattingEnabled = True
-        Me.cmbContentsB.Items.AddRange(New Object() {"Mixtape", "Album", "Compilation", "Soundtrack", "EP", "Single"})
-        Me.cmbContentsB.Location = New System.Drawing.Point(41, 17)
-        Me.cmbContentsB.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbContentsB.Name = "cmbContentsB"
-        Me.cmbContentsB.Size = New System.Drawing.Size(154, 21)
-        Me.cmbContentsB.TabIndex = 1
-        '
-        'datRecordedB
-        '
-        Me.datRecordedB.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datRecordedB.Location = New System.Drawing.Point(90, 40)
-        Me.datRecordedB.Margin = New System.Windows.Forms.Padding(2)
-        Me.datRecordedB.Name = "datRecordedB"
-        Me.datRecordedB.Size = New System.Drawing.Size(114, 20)
-        Me.datRecordedB.TabIndex = 2
-        Me.datRecordedB.Value = New Date(2019, 1, 1, 0, 0, 0, 0)
-        '
-        'cmbDeckB
-        '
-        Me.cmbDeckB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbDeckB.FormattingEnabled = True
-        Me.cmbDeckB.Location = New System.Drawing.Point(38, 63)
-        Me.cmbDeckB.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbDeckB.Name = "cmbDeckB"
-        Me.cmbDeckB.Size = New System.Drawing.Size(166, 21)
-        Me.cmbDeckB.Sorted = True
-        Me.cmbDeckB.TabIndex = 3
-        '
-        'lblRecordedB
-        '
-        Me.lblRecordedB.AutoSize = True
-        Me.lblRecordedB.Location = New System.Drawing.Point(4, 42)
-        Me.lblRecordedB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRecordedB.Name = "lblRecordedB"
-        Me.lblRecordedB.Size = New System.Drawing.Size(83, 13)
-        Me.lblRecordedB.TabIndex = 11
-        Me.lblRecordedB.Text = "Date Recorded:"
-        '
-        'lblDeckB
-        '
-        Me.lblDeckB.AutoSize = True
-        Me.lblDeckB.Location = New System.Drawing.Point(5, 65)
-        Me.lblDeckB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblDeckB.Name = "lblDeckB"
-        Me.lblDeckB.Size = New System.Drawing.Size(36, 13)
-        Me.lblDeckB.TabIndex = 45
-        Me.lblDeckB.Text = "Deck:"
-        '
         'grpSideA
         '
         Me.grpSideA.Controls.Add(Me.numPeakA)
@@ -1189,7 +783,7 @@ Partial Class frmMain
         Me.grpSideA.Margin = New System.Windows.Forms.Padding(2)
         Me.grpSideA.Name = "grpSideA"
         Me.grpSideA.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpSideA.Size = New System.Drawing.Size(343, 417)
+        Me.grpSideA.Size = New System.Drawing.Size(226, 352)
         Me.grpSideA.TabIndex = 4
         Me.grpSideA.TabStop = False
         Me.grpSideA.Text = "Side A"
@@ -1284,7 +878,7 @@ Partial Class frmMain
         Me.cmbNRA.Location = New System.Drawing.Point(41, 17)
         Me.cmbNRA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbNRA.Name = "cmbNRA"
-        Me.cmbNRA.Size = New System.Drawing.Size(97, 21)
+        Me.cmbNRA.Size = New System.Drawing.Size(75, 21)
         Me.cmbNRA.TabIndex = 1
         '
         'lblNRA
@@ -1301,17 +895,17 @@ Partial Class frmMain
         '
         Me.cmbSpeedA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSpeedA.FormattingEnabled = True
-        Me.cmbSpeedA.Items.AddRange(New Object() {"15/16", "1⅞", "3¾"})
-        Me.cmbSpeedA.Location = New System.Drawing.Point(85, 91)
+        Me.cmbSpeedA.Items.AddRange(New Object() {"15/16", "1 7/8", "3 3/4"})
+        Me.cmbSpeedA.Location = New System.Drawing.Point(72, 91)
         Me.cmbSpeedA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbSpeedA.Name = "cmbSpeedA"
-        Me.cmbSpeedA.Size = New System.Drawing.Size(53, 21)
+        Me.cmbSpeedA.Size = New System.Drawing.Size(66, 21)
         Me.cmbSpeedA.TabIndex = 8
         '
         'chkHXA
         '
         Me.chkHXA.AutoSize = True
-        Me.chkHXA.Location = New System.Drawing.Point(95, 116)
+        Me.chkHXA.Location = New System.Drawing.Point(97, 116)
         Me.chkHXA.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHXA.Name = "chkHXA"
         Me.chkHXA.Size = New System.Drawing.Size(41, 17)
@@ -1344,7 +938,7 @@ Partial Class frmMain
         '
         Me.cmbBiasA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBiasA.FormattingEnabled = True
-        Me.cmbBiasA.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferro-Chrome)", "Type IV (Metal)"})
+        Me.cmbBiasA.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferrichrome)", "Type IV (Metal)"})
         Me.cmbBiasA.Location = New System.Drawing.Point(41, 42)
         Me.cmbBiasA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbBiasA.Name = "cmbBiasA"
@@ -1366,10 +960,10 @@ Partial Class frmMain
         Me.cmbEQA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbEQA.FormattingEnabled = True
         Me.cmbEQA.Items.AddRange(New Object() {"120μs", "70μs"})
-        Me.cmbEQA.Location = New System.Drawing.Point(175, 17)
+        Me.cmbEQA.Location = New System.Drawing.Point(149, 17)
         Me.cmbEQA.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbEQA.Name = "cmbEQA"
-        Me.cmbEQA.Size = New System.Drawing.Size(36, 21)
+        Me.cmbEQA.Size = New System.Drawing.Size(62, 21)
         Me.cmbEQA.TabIndex = 2
         '
         'numBiasCalA
@@ -1395,7 +989,7 @@ Partial Class frmMain
         'lblEQA
         '
         Me.lblEQA.AutoSize = True
-        Me.lblEQA.Location = New System.Drawing.Point(146, 20)
+        Me.lblEQA.Location = New System.Drawing.Point(120, 20)
         Me.lblEQA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblEQA.Name = "lblEQA"
         Me.lblEQA.Size = New System.Drawing.Size(25, 13)
@@ -1406,11 +1000,11 @@ Partial Class frmMain
         '
         Me.numLevelA.DecimalPlaces = 2
         Me.numLevelA.Increment = New Decimal(New Integer() {25, 0, 0, 131072})
-        Me.numLevelA.Location = New System.Drawing.Point(85, 67)
+        Me.numLevelA.Location = New System.Drawing.Point(72, 67)
         Me.numLevelA.Margin = New System.Windows.Forms.Padding(2)
         Me.numLevelA.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numLevelA.Name = "numLevelA"
-        Me.numLevelA.Size = New System.Drawing.Size(53, 20)
+        Me.numLevelA.Size = New System.Drawing.Size(66, 20)
         Me.numLevelA.TabIndex = 5
         Me.numLevelA.Value = New Decimal(New Integer() {5, 0, 0, 0})
         '
@@ -1589,7 +1183,7 @@ Partial Class frmMain
         Me.grpFind.Margin = New System.Windows.Forms.Padding(2)
         Me.grpFind.Name = "grpFind"
         Me.grpFind.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpFind.Size = New System.Drawing.Size(487, 44)
+        Me.grpFind.Size = New System.Drawing.Size(493, 44)
         Me.grpFind.TabIndex = 1
         Me.grpFind.TabStop = False
         Me.grpFind.Text = "Find"
@@ -1599,10 +1193,10 @@ Partial Class frmMain
         Me.cmbField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbField.FormattingEnabled = True
         Me.cmbField.Items.AddRange(New Object() {"All Fields", "Identifier", "Name/Label", "Brand", "Model", "Year", "Length", "Condition", "Noise Reduction", "Date Recorded", "Contents Type", "Artist", "Title", "Notes", "Index (Storage)"})
-        Me.cmbField.Location = New System.Drawing.Point(310, 17)
+        Me.cmbField.Location = New System.Drawing.Point(313, 17)
         Me.cmbField.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbField.Name = "cmbField"
-        Me.cmbField.Size = New System.Drawing.Size(125, 21)
+        Me.cmbField.Size = New System.Drawing.Size(128, 21)
         Me.cmbField.TabIndex = 2
         '
         'txtTerm
@@ -1610,12 +1204,12 @@ Partial Class frmMain
         Me.txtTerm.Location = New System.Drawing.Point(5, 18)
         Me.txtTerm.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTerm.Name = "txtTerm"
-        Me.txtTerm.Size = New System.Drawing.Size(301, 20)
+        Me.txtTerm.Size = New System.Drawing.Size(304, 20)
         Me.txtTerm.TabIndex = 1
         '
         'btnFind
         '
-        Me.btnFind.Location = New System.Drawing.Point(439, 17)
+        Me.btnFind.Location = New System.Drawing.Point(445, 17)
         Me.btnFind.Margin = New System.Windows.Forms.Padding(2)
         Me.btnFind.Name = "btnFind"
         Me.btnFind.Size = New System.Drawing.Size(44, 21)
@@ -1630,11 +1224,11 @@ Partial Class frmMain
         Me.grpActions.Controls.Add(Me.btnSave)
         Me.grpActions.Controls.Add(Me.btnDelete)
         Me.grpActions.Controls.Add(Me.btnAdd)
-        Me.grpActions.Location = New System.Drawing.Point(502, 26)
+        Me.grpActions.Location = New System.Drawing.Point(508, 26)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpActions.Size = New System.Drawing.Size(206, 91)
+        Me.grpActions.Size = New System.Drawing.Size(231, 91)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
@@ -1642,28 +1236,28 @@ Partial Class frmMain
         'btnUpdate
         '
         Me.btnUpdate.Enabled = False
-        Me.btnUpdate.Location = New System.Drawing.Point(4, 42)
+        Me.btnUpdate.Location = New System.Drawing.Point(5, 41)
         Me.btnUpdate.Margin = New System.Windows.Forms.Padding(2)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(97, 21)
+        Me.btnUpdate.Size = New System.Drawing.Size(109, 21)
         Me.btnUpdate.TabIndex = 7
         Me.btnUpdate.Text = "Update Tape"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'lblAbout
         '
-        Me.lblAbout.Location = New System.Drawing.Point(4, 67)
+        Me.lblAbout.Location = New System.Drawing.Point(5, 67)
         Me.lblAbout.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAbout.Name = "lblAbout"
-        Me.lblAbout.Size = New System.Drawing.Size(199, 15)
+        Me.lblAbout.Size = New System.Drawing.Size(221, 15)
         Me.lblAbout.TabIndex = 6
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(105, 42)
+        Me.btnSave.Location = New System.Drawing.Point(117, 41)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(97, 21)
+        Me.btnSave.Size = New System.Drawing.Size(109, 21)
         Me.btnSave.TabIndex = 3
         Me.btnSave.Text = "Save to File"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -1671,20 +1265,20 @@ Partial Class frmMain
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(105, 17)
+        Me.btnDelete.Location = New System.Drawing.Point(117, 17)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(97, 21)
+        Me.btnDelete.Size = New System.Drawing.Size(109, 21)
         Me.btnDelete.TabIndex = 2
         Me.btnDelete.Text = "Delete Tape"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(4, 17)
+        Me.btnAdd.Location = New System.Drawing.Point(5, 17)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(97, 21)
+        Me.btnAdd.Size = New System.Drawing.Size(109, 21)
         Me.btnAdd.TabIndex = 1
         Me.btnAdd.Text = "Add Tape"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -1694,7 +1288,7 @@ Partial Class frmMain
         Me.grpScroll.Controls.Add(Me.btnNext)
         Me.grpScroll.Controls.Add(Me.btnPrevious)
         Me.grpScroll.Enabled = False
-        Me.grpScroll.Location = New System.Drawing.Point(446, 74)
+        Me.grpScroll.Location = New System.Drawing.Point(452, 74)
         Me.grpScroll.Margin = New System.Windows.Forms.Padding(2)
         Me.grpScroll.Name = "grpScroll"
         Me.grpScroll.Padding = New System.Windows.Forms.Padding(2)
@@ -1748,11 +1342,429 @@ Partial Class frmMain
         Me.lblProcessingA.TabIndex = 32
         Me.lblProcessingA.Text = "Processing:"
         '
+        'grpSideB
+        '
+        Me.grpSideB.Controls.Add(Me.numPeakB)
+        Me.grpSideB.Controls.Add(Me.lblPeakB)
+        Me.grpSideB.Controls.Add(Me.cmbInputB)
+        Me.grpSideB.Controls.Add(Me.lblInputB)
+        Me.grpSideB.Controls.Add(Me.grpConfigB)
+        Me.grpSideB.Controls.Add(Me.lblNameB)
+        Me.grpSideB.Controls.Add(Me.txtNameB)
+        Me.grpSideB.Controls.Add(Me.datRecordedB)
+        Me.grpSideB.Controls.Add(Me.lblRecordedB)
+        Me.grpSideB.Controls.Add(Me.cmbDeckB)
+        Me.grpSideB.Controls.Add(Me.lblDeckB)
+        Me.grpSideB.Enabled = False
+        Me.grpSideB.Location = New System.Drawing.Point(497, 17)
+        Me.grpSideB.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpSideB.Name = "grpSideB"
+        Me.grpSideB.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpSideB.Size = New System.Drawing.Size(226, 352)
+        Me.grpSideB.TabIndex = 34
+        Me.grpSideB.TabStop = False
+        Me.grpSideB.Text = "Side B"
+        '
+        'numPeakB
+        '
+        Me.numPeakB.Location = New System.Drawing.Point(180, 90)
+        Me.numPeakB.Margin = New System.Windows.Forms.Padding(2)
+        Me.numPeakB.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numPeakB.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
+        Me.numPeakB.Name = "numPeakB"
+        Me.numPeakB.Size = New System.Drawing.Size(36, 20)
+        Me.numPeakB.TabIndex = 5
+        '
+        'lblPeakB
+        '
+        Me.lblPeakB.AutoSize = True
+        Me.lblPeakB.Location = New System.Drawing.Point(123, 93)
+        Me.lblPeakB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblPeakB.Name = "lblPeakB"
+        Me.lblPeakB.Size = New System.Drawing.Size(57, 13)
+        Me.lblPeakB.TabIndex = 33
+        Me.lblPeakB.Text = "Peak (dB):"
+        '
+        'cmbInputB
+        '
+        Me.cmbInputB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbInputB.FormattingEnabled = True
+        Me.cmbInputB.Items.AddRange(New Object() {"Cassette", "Reel", "FM", "AM", "DAB", "Record", "CD", "DVD", "VHS", "TV", "Phone", "Other"})
+        Me.cmbInputB.Location = New System.Drawing.Point(46, 90)
+        Me.cmbInputB.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbInputB.Name = "cmbInputB"
+        Me.cmbInputB.Size = New System.Drawing.Size(75, 21)
+        Me.cmbInputB.TabIndex = 4
+        '
+        'lblInputB
+        '
+        Me.lblInputB.AutoSize = True
+        Me.lblInputB.Location = New System.Drawing.Point(4, 93)
+        Me.lblInputB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblInputB.Name = "lblInputB"
+        Me.lblInputB.Size = New System.Drawing.Size(34, 13)
+        Me.lblInputB.TabIndex = 31
+        Me.lblInputB.Text = "Input:"
+        '
+        'grpConfigB
+        '
+        Me.grpConfigB.Controls.Add(Me.lblProcessingB)
+        Me.grpConfigB.Controls.Add(Me.chkDubbedB)
+        Me.grpConfigB.Controls.Add(Me.cmbNRB)
+        Me.grpConfigB.Controls.Add(Me.lblNRB)
+        Me.grpConfigB.Controls.Add(Me.cmbSpeedB)
+        Me.grpConfigB.Controls.Add(Me.chkHXB)
+        Me.grpConfigB.Controls.Add(Me.chkMPXB)
+        Me.grpConfigB.Controls.Add(Me.lblSpeedB)
+        Me.grpConfigB.Controls.Add(Me.grpContentsB)
+        Me.grpConfigB.Controls.Add(Me.cmbBiasB)
+        Me.grpConfigB.Controls.Add(Me.lblBiasB)
+        Me.grpConfigB.Controls.Add(Me.cmbEQB)
+        Me.grpConfigB.Controls.Add(Me.numBiasCalB)
+        Me.grpConfigB.Controls.Add(Me.lblBiasCalB)
+        Me.grpConfigB.Controls.Add(Me.lblEQB)
+        Me.grpConfigB.Controls.Add(Me.numLevelB)
+        Me.grpConfigB.Controls.Add(Me.lblLevelB)
+        Me.grpConfigB.Controls.Add(Me.numLevelCalB)
+        Me.grpConfigB.Controls.Add(Me.lblLevelCalB)
+        Me.grpConfigB.Location = New System.Drawing.Point(5, 115)
+        Me.grpConfigB.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpConfigB.Name = "grpConfigB"
+        Me.grpConfigB.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpConfigB.Size = New System.Drawing.Size(216, 232)
+        Me.grpConfigB.TabIndex = 14
+        Me.grpConfigB.TabStop = False
+        Me.grpConfigB.Text = "Configuration"
+        '
+        'lblProcessingB
+        '
+        Me.lblProcessingB.AutoSize = True
+        Me.lblProcessingB.Location = New System.Drawing.Point(4, 117)
+        Me.lblProcessingB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblProcessingB.Name = "lblProcessingB"
+        Me.lblProcessingB.Size = New System.Drawing.Size(62, 13)
+        Me.lblProcessingB.TabIndex = 32
+        Me.lblProcessingB.Text = "Processing:"
+        '
+        'chkDubbedB
+        '
+        Me.chkDubbedB.AutoSize = True
+        Me.chkDubbedB.Location = New System.Drawing.Point(149, 93)
+        Me.chkDubbedB.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkDubbedB.Name = "chkDubbedB"
+        Me.chkDubbedB.Size = New System.Drawing.Size(64, 17)
+        Me.chkDubbedB.TabIndex = 9
+        Me.chkDubbedB.Text = "Dubbed"
+        Me.chkDubbedB.UseVisualStyleBackColor = True
+        '
+        'cmbNRB
+        '
+        Me.cmbNRB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbNRB.FormattingEnabled = True
+        Me.cmbNRB.Items.AddRange(New Object() {"None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
+        Me.cmbNRB.Location = New System.Drawing.Point(41, 17)
+        Me.cmbNRB.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbNRB.Name = "cmbNRB"
+        Me.cmbNRB.Size = New System.Drawing.Size(75, 21)
+        Me.cmbNRB.TabIndex = 1
+        '
+        'lblNRB
+        '
+        Me.lblNRB.AutoSize = True
+        Me.lblNRB.Location = New System.Drawing.Point(4, 20)
+        Me.lblNRB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblNRB.Name = "lblNRB"
+        Me.lblNRB.Size = New System.Drawing.Size(26, 13)
+        Me.lblNRB.TabIndex = 4
+        Me.lblNRB.Text = "NR:"
+        '
+        'cmbSpeedB
+        '
+        Me.cmbSpeedB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSpeedB.FormattingEnabled = True
+        Me.cmbSpeedB.Items.AddRange(New Object() {"15/16", "1 7/8", "3 3/4"})
+        Me.cmbSpeedB.Location = New System.Drawing.Point(72, 91)
+        Me.cmbSpeedB.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbSpeedB.Name = "cmbSpeedB"
+        Me.cmbSpeedB.Size = New System.Drawing.Size(66, 21)
+        Me.cmbSpeedB.TabIndex = 8
+        '
+        'chkHXB
+        '
+        Me.chkHXB.AutoSize = True
+        Me.chkHXB.Location = New System.Drawing.Point(97, 116)
+        Me.chkHXB.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkHXB.Name = "chkHXB"
+        Me.chkHXB.Size = New System.Drawing.Size(41, 17)
+        Me.chkHXB.TabIndex = 7
+        Me.chkHXB.Text = "HX"
+        Me.chkHXB.UseVisualStyleBackColor = True
+        '
+        'chkMPXB
+        '
+        Me.chkMPXB.AutoSize = True
+        Me.chkMPXB.Location = New System.Drawing.Point(149, 116)
+        Me.chkMPXB.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkMPXB.Name = "chkMPXB"
+        Me.chkMPXB.Size = New System.Drawing.Size(49, 17)
+        Me.chkMPXB.TabIndex = 10
+        Me.chkMPXB.Text = "MPX"
+        Me.chkMPXB.UseVisualStyleBackColor = True
+        '
+        'lblSpeedB
+        '
+        Me.lblSpeedB.AutoSize = True
+        Me.lblSpeedB.Location = New System.Drawing.Point(4, 94)
+        Me.lblSpeedB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblSpeedB.Name = "lblSpeedB"
+        Me.lblSpeedB.Size = New System.Drawing.Size(67, 13)
+        Me.lblSpeedB.TabIndex = 31
+        Me.lblSpeedB.Text = "Speed (IPS):"
+        '
+        'grpContentsB
+        '
+        Me.grpContentsB.Controls.Add(Me.lblTitleB)
+        Me.grpContentsB.Controls.Add(Me.lblArtistB)
+        Me.grpContentsB.Controls.Add(Me.txtTitleB)
+        Me.grpContentsB.Controls.Add(Me.txtArtistB)
+        Me.grpContentsB.Controls.Add(Me.lblContentsB)
+        Me.grpContentsB.Controls.Add(Me.cmbContentsB)
+        Me.grpContentsB.Location = New System.Drawing.Point(5, 137)
+        Me.grpContentsB.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpContentsB.Name = "grpContentsB"
+        Me.grpContentsB.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpContentsB.Size = New System.Drawing.Size(206, 90)
+        Me.grpContentsB.TabIndex = 11
+        Me.grpContentsB.TabStop = False
+        Me.grpContentsB.Text = "Contents"
+        '
+        'lblTitleB
+        '
+        Me.lblTitleB.AutoSize = True
+        Me.lblTitleB.Location = New System.Drawing.Point(4, 67)
+        Me.lblTitleB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblTitleB.Name = "lblTitleB"
+        Me.lblTitleB.Size = New System.Drawing.Size(30, 13)
+        Me.lblTitleB.TabIndex = 18
+        Me.lblTitleB.Text = "Title:"
+        '
+        'lblArtistB
+        '
+        Me.lblArtistB.AutoSize = True
+        Me.lblArtistB.Location = New System.Drawing.Point(4, 44)
+        Me.lblArtistB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblArtistB.Name = "lblArtistB"
+        Me.lblArtistB.Size = New System.Drawing.Size(33, 13)
+        Me.lblArtistB.TabIndex = 17
+        Me.lblArtistB.Text = "Artist:"
+        '
+        'txtTitleB
+        '
+        Me.txtTitleB.Location = New System.Drawing.Point(41, 64)
+        Me.txtTitleB.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtTitleB.Name = "txtTitleB"
+        Me.txtTitleB.Size = New System.Drawing.Size(160, 20)
+        Me.txtTitleB.TabIndex = 3
+        '
+        'txtArtistB
+        '
+        Me.txtArtistB.Location = New System.Drawing.Point(41, 41)
+        Me.txtArtistB.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtArtistB.Name = "txtArtistB"
+        Me.txtArtistB.Size = New System.Drawing.Size(160, 20)
+        Me.txtArtistB.TabIndex = 2
+        '
+        'lblContentsB
+        '
+        Me.lblContentsB.AutoSize = True
+        Me.lblContentsB.Location = New System.Drawing.Point(4, 20)
+        Me.lblContentsB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblContentsB.Name = "lblContentsB"
+        Me.lblContentsB.Size = New System.Drawing.Size(34, 13)
+        Me.lblContentsB.TabIndex = 14
+        Me.lblContentsB.Text = "Type:"
+        '
+        'cmbContentsB
+        '
+        Me.cmbContentsB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbContentsB.FormattingEnabled = True
+        Me.cmbContentsB.Items.AddRange(New Object() {"Mixtape", "Album", "Compilation", "Soundtrack", "EP", "Single"})
+        Me.cmbContentsB.Location = New System.Drawing.Point(41, 17)
+        Me.cmbContentsB.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbContentsB.Name = "cmbContentsB"
+        Me.cmbContentsB.Size = New System.Drawing.Size(160, 21)
+        Me.cmbContentsB.TabIndex = 1
+        '
+        'cmbBiasB
+        '
+        Me.cmbBiasB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbBiasB.FormattingEnabled = True
+        Me.cmbBiasB.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferrichrome)", "Type IV (Metal)"})
+        Me.cmbBiasB.Location = New System.Drawing.Point(41, 42)
+        Me.cmbBiasB.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbBiasB.Name = "cmbBiasB"
+        Me.cmbBiasB.Size = New System.Drawing.Size(97, 21)
+        Me.cmbBiasB.TabIndex = 3
+        '
+        'lblBiasB
+        '
+        Me.lblBiasB.AutoSize = True
+        Me.lblBiasB.Location = New System.Drawing.Point(4, 45)
+        Me.lblBiasB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblBiasB.Name = "lblBiasB"
+        Me.lblBiasB.Size = New System.Drawing.Size(30, 13)
+        Me.lblBiasB.TabIndex = 22
+        Me.lblBiasB.Text = "Bias:"
+        '
+        'cmbEQB
+        '
+        Me.cmbEQB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbEQB.FormattingEnabled = True
+        Me.cmbEQB.Items.AddRange(New Object() {"120μs", "70μs"})
+        Me.cmbEQB.Location = New System.Drawing.Point(149, 17)
+        Me.cmbEQB.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbEQB.Name = "cmbEQB"
+        Me.cmbEQB.Size = New System.Drawing.Size(62, 21)
+        Me.cmbEQB.TabIndex = 2
+        '
+        'numBiasCalB
+        '
+        Me.numBiasCalB.Location = New System.Drawing.Point(175, 42)
+        Me.numBiasCalB.Margin = New System.Windows.Forms.Padding(2)
+        Me.numBiasCalB.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.numBiasCalB.Minimum = New Decimal(New Integer() {20, 0, 0, -2147483648})
+        Me.numBiasCalB.Name = "numBiasCalB"
+        Me.numBiasCalB.Size = New System.Drawing.Size(36, 20)
+        Me.numBiasCalB.TabIndex = 4
+        '
+        'lblBiasCalB
+        '
+        Me.lblBiasCalB.AutoSize = True
+        Me.lblBiasCalB.Location = New System.Drawing.Point(147, 45)
+        Me.lblBiasCalB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblBiasCalB.Name = "lblBiasCalB"
+        Me.lblBiasCalB.Size = New System.Drawing.Size(24, 13)
+        Me.lblBiasCalB.TabIndex = 23
+        Me.lblBiasCalB.Text = "±%:"
+        '
+        'lblEQB
+        '
+        Me.lblEQB.AutoSize = True
+        Me.lblEQB.Location = New System.Drawing.Point(120, 20)
+        Me.lblEQB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblEQB.Name = "lblEQB"
+        Me.lblEQB.Size = New System.Drawing.Size(25, 13)
+        Me.lblEQB.TabIndex = 27
+        Me.lblEQB.Text = "EQ:"
+        '
+        'numLevelB
+        '
+        Me.numLevelB.DecimalPlaces = 2
+        Me.numLevelB.Increment = New Decimal(New Integer() {25, 0, 0, 131072})
+        Me.numLevelB.Location = New System.Drawing.Point(72, 67)
+        Me.numLevelB.Margin = New System.Windows.Forms.Padding(2)
+        Me.numLevelB.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numLevelB.Name = "numLevelB"
+        Me.numLevelB.Size = New System.Drawing.Size(66, 20)
+        Me.numLevelB.TabIndex = 5
+        Me.numLevelB.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        '
+        'lblLevelB
+        '
+        Me.lblLevelB.AutoSize = True
+        Me.lblLevelB.Location = New System.Drawing.Point(4, 69)
+        Me.lblLevelB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblLevelB.Name = "lblLevelB"
+        Me.lblLevelB.Size = New System.Drawing.Size(58, 13)
+        Me.lblLevelB.TabIndex = 26
+        Me.lblLevelB.Text = "Level (dB):"
+        '
+        'numLevelCalB
+        '
+        Me.numLevelCalB.DecimalPlaces = 1
+        Me.numLevelCalB.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.numLevelCalB.Location = New System.Drawing.Point(175, 67)
+        Me.numLevelCalB.Margin = New System.Windows.Forms.Padding(2)
+        Me.numLevelCalB.Maximum = New Decimal(New Integer() {3, 0, 0, 0})
+        Me.numLevelCalB.Minimum = New Decimal(New Integer() {3, 0, 0, -2147483648})
+        Me.numLevelCalB.Name = "numLevelCalB"
+        Me.numLevelCalB.Size = New System.Drawing.Size(36, 20)
+        Me.numLevelCalB.TabIndex = 6
+        '
+        'lblLevelCalB
+        '
+        Me.lblLevelCalB.AutoSize = True
+        Me.lblLevelCalB.Location = New System.Drawing.Point(142, 69)
+        Me.lblLevelCalB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblLevelCalB.Name = "lblLevelCalB"
+        Me.lblLevelCalB.Size = New System.Drawing.Size(29, 13)
+        Me.lblLevelCalB.TabIndex = 25
+        Me.lblLevelCalB.Text = "±dB:"
+        '
+        'lblNameB
+        '
+        Me.lblNameB.AutoSize = True
+        Me.lblNameB.Location = New System.Drawing.Point(4, 20)
+        Me.lblNameB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblNameB.Name = "lblNameB"
+        Me.lblNameB.Size = New System.Drawing.Size(38, 13)
+        Me.lblNameB.TabIndex = 13
+        Me.lblNameB.Text = "Name:"
+        '
+        'txtNameB
+        '
+        Me.txtNameB.Location = New System.Drawing.Point(46, 17)
+        Me.txtNameB.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNameB.Name = "txtNameB"
+        Me.txtNameB.Size = New System.Drawing.Size(170, 20)
+        Me.txtNameB.TabIndex = 1
+        '
+        'datRecordedB
+        '
+        Me.datRecordedB.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datRecordedB.Location = New System.Drawing.Point(90, 41)
+        Me.datRecordedB.Margin = New System.Windows.Forms.Padding(2)
+        Me.datRecordedB.Name = "datRecordedB"
+        Me.datRecordedB.Size = New System.Drawing.Size(126, 20)
+        Me.datRecordedB.TabIndex = 2
+        Me.datRecordedB.Value = New Date(2019, 1, 1, 0, 0, 0, 0)
+        '
+        'lblRecordedB
+        '
+        Me.lblRecordedB.AutoSize = True
+        Me.lblRecordedB.Location = New System.Drawing.Point(4, 43)
+        Me.lblRecordedB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblRecordedB.Name = "lblRecordedB"
+        Me.lblRecordedB.Size = New System.Drawing.Size(83, 13)
+        Me.lblRecordedB.TabIndex = 11
+        Me.lblRecordedB.Text = "Date Recorded:"
+        '
+        'cmbDeckB
+        '
+        Me.cmbDeckB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbDeckB.FormattingEnabled = True
+        Me.cmbDeckB.Location = New System.Drawing.Point(46, 65)
+        Me.cmbDeckB.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbDeckB.Name = "cmbDeckB"
+        Me.cmbDeckB.Size = New System.Drawing.Size(170, 21)
+        Me.cmbDeckB.Sorted = True
+        Me.cmbDeckB.TabIndex = 3
+        '
+        'lblDeckB
+        '
+        Me.lblDeckB.AutoSize = True
+        Me.lblDeckB.Location = New System.Drawing.Point(4, 68)
+        Me.lblDeckB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblDeckB.Name = "lblDeckB"
+        Me.lblDeckB.Size = New System.Drawing.Size(36, 13)
+        Me.lblDeckB.TabIndex = 29
+        Me.lblDeckB.Text = "Deck:"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1213, 785)
+        Me.ClientSize = New System.Drawing.Size(750, 504)
         Me.Controls.Add(Me.grpScroll)
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.grpIdentification)
@@ -1781,16 +1793,6 @@ Partial Class frmMain
         Me.grpModel.PerformLayout()
         CType(Me.numLength, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.numYear, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.grpSideB.ResumeLayout(False)
-        Me.grpSideB.PerformLayout()
-        CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.grpConfigB.ResumeLayout(False)
-        Me.grpConfigB.PerformLayout()
-        CType(Me.numBiasCalB, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.numLevelB, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.numLevelCalB, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.grpContentsB.ResumeLayout(False)
-        Me.grpContentsB.PerformLayout()
         Me.grpSideA.ResumeLayout(False)
         Me.grpSideA.PerformLayout()
         CType(Me.numPeakA, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1805,6 +1807,16 @@ Partial Class frmMain
         Me.grpFind.PerformLayout()
         Me.grpActions.ResumeLayout(False)
         Me.grpScroll.ResumeLayout(False)
+        Me.grpSideB.ResumeLayout(False)
+        Me.grpSideB.PerformLayout()
+        CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpConfigB.ResumeLayout(False)
+        Me.grpConfigB.PerformLayout()
+        Me.grpContentsB.ResumeLayout(False)
+        Me.grpContentsB.PerformLayout()
+        CType(Me.numBiasCalB, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numLevelB, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numLevelCalB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1861,18 +1873,6 @@ Partial Class frmMain
     Friend WithEvents txtTotal As TextBox
     Friend WithEvents lblIndex As Label
     Friend WithEvents grpSideA As GroupBox
-    Friend WithEvents grpSideB As GroupBox
-    Friend WithEvents lblNameB As Label
-    Friend WithEvents txtNameB As TextBox
-    Friend WithEvents datRecordedB As DateTimePicker
-    Friend WithEvents lblRecordedB As Label
-    Friend WithEvents grpContentsB As GroupBox
-    Friend WithEvents lblTitleB As Label
-    Friend WithEvents lblArtistB As Label
-    Friend WithEvents txtTitleB As TextBox
-    Friend WithEvents txtArtistB As TextBox
-    Friend WithEvents lblContentsB As Label
-    Friend WithEvents cmbContentsB As ComboBox
     Friend WithEvents lblNameA As Label
     Friend WithEvents txtNameA As TextBox
     Friend WithEvents lblTitleA As Label
@@ -1904,8 +1904,6 @@ Partial Class frmMain
     Friend WithEvents lblEQA As Label
     Friend WithEvents cmbDeckA As ComboBox
     Friend WithEvents lblDeckA As Label
-    Friend WithEvents cmbDeckB As ComboBox
-    Friend WithEvents lblDeckB As Label
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents NewDeckToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewDecksToolStripMenuItem As ToolStripMenuItem
@@ -1914,28 +1912,6 @@ Partial Class frmMain
     Friend WithEvents cmbSpeedA As ComboBox
     Friend WithEvents chkDubbedA As CheckBox
     Friend WithEvents grpConfigA As GroupBox
-    Friend WithEvents grpConfigB As GroupBox
-    Friend WithEvents chkDubbedB As CheckBox
-    Friend WithEvents cmbNRB As ComboBox
-    Friend WithEvents lblNRB As Label
-    Friend WithEvents cmbSpeedB As ComboBox
-    Friend WithEvents chkHXB As CheckBox
-    Friend WithEvents chkMPXB As CheckBox
-    Friend WithEvents lblSpeedB As Label
-    Friend WithEvents cmbBiasB As ComboBox
-    Friend WithEvents lblBiasB As Label
-    Friend WithEvents cmbEQB As ComboBox
-    Friend WithEvents numBiasCalB As NumericUpDown
-    Friend WithEvents lblBiasCalB As Label
-    Friend WithEvents lblEQB As Label
-    Friend WithEvents numLevelB As NumericUpDown
-    Friend WithEvents lblLevelB As Label
-    Friend WithEvents numLevelCalB As NumericUpDown
-    Friend WithEvents lblLevelCalB As Label
-    Friend WithEvents numPeakB As NumericUpDown
-    Friend WithEvents lblPeakB As Label
-    Friend WithEvents cmbInputB As ComboBox
-    Friend WithEvents lblInputB As Label
     Friend WithEvents numPeakA As NumericUpDown
     Friend WithEvents lblPeakA As Label
     Friend WithEvents cmbInputA As ComboBox
@@ -1961,4 +1937,41 @@ Partial Class frmMain
     Friend WithEvents DeleteTapeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OutputConsoleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents lblProcessingA As Label
+    Friend WithEvents grpSideB As GroupBox
+    Friend WithEvents numPeakB As NumericUpDown
+    Friend WithEvents lblPeakB As Label
+    Friend WithEvents cmbInputB As ComboBox
+    Friend WithEvents lblInputB As Label
+    Friend WithEvents grpConfigB As GroupBox
+    Friend WithEvents lblProcessingB As Label
+    Friend WithEvents chkDubbedB As CheckBox
+    Friend WithEvents cmbNRB As ComboBox
+    Friend WithEvents lblNRB As Label
+    Friend WithEvents cmbSpeedB As ComboBox
+    Friend WithEvents chkHXB As CheckBox
+    Friend WithEvents chkMPXB As CheckBox
+    Friend WithEvents lblSpeedB As Label
+    Friend WithEvents grpContentsB As GroupBox
+    Friend WithEvents lblTitleB As Label
+    Friend WithEvents lblArtistB As Label
+    Friend WithEvents txtTitleB As TextBox
+    Friend WithEvents txtArtistB As TextBox
+    Friend WithEvents lblContentsB As Label
+    Friend WithEvents cmbContentsB As ComboBox
+    Friend WithEvents cmbBiasB As ComboBox
+    Friend WithEvents lblBiasB As Label
+    Friend WithEvents cmbEQB As ComboBox
+    Friend WithEvents numBiasCalB As NumericUpDown
+    Friend WithEvents lblBiasCalB As Label
+    Friend WithEvents lblEQB As Label
+    Friend WithEvents numLevelB As NumericUpDown
+    Friend WithEvents lblLevelB As Label
+    Friend WithEvents numLevelCalB As NumericUpDown
+    Friend WithEvents lblLevelCalB As Label
+    Friend WithEvents lblNameB As Label
+    Friend WithEvents txtNameB As TextBox
+    Friend WithEvents datRecordedB As DateTimePicker
+    Friend WithEvents lblRecordedB As Label
+    Friend WithEvents cmbDeckB As ComboBox
+    Friend WithEvents lblDeckB As Label
 End Class

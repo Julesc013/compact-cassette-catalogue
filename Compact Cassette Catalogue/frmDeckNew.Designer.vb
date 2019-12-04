@@ -100,7 +100,7 @@ Partial Class frmDeckNew
         'btnAdd
         '
         Me.btnAdd.Location = New System.Drawing.Point(9, 289)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(128, 20)
         Me.btnAdd.TabIndex = 8
@@ -111,9 +111,9 @@ Partial Class frmDeckNew
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
         Me.grpNotes.Location = New System.Drawing.Point(339, 237)
-        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
-        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Size = New System.Drawing.Size(147, 72)
         Me.grpNotes.TabIndex = 7
         Me.grpNotes.TabStop = False
@@ -122,7 +122,7 @@ Partial Class frmDeckNew
         'txtNotes
         '
         Me.txtNotes.Location = New System.Drawing.Point(4, 17)
-        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(139, 51)
@@ -140,9 +140,9 @@ Partial Class frmDeckNew
         Me.grpBasic.Controls.Add(Me.numYear)
         Me.grpBasic.Controls.Add(Me.lblYear)
         Me.grpBasic.Location = New System.Drawing.Point(9, 10)
-        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Size = New System.Drawing.Size(207, 111)
         Me.grpBasic.TabIndex = 1
         Me.grpBasic.TabStop = False
@@ -181,7 +181,7 @@ Partial Class frmDeckNew
         'txtModel
         '
         Me.txtModel.Location = New System.Drawing.Point(81, 40)
-        Me.txtModel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtModel.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModel.MaxLength = 100
         Me.txtModel.Name = "txtModel"
         Me.txtModel.Size = New System.Drawing.Size(122, 20)
@@ -190,7 +190,7 @@ Partial Class frmDeckNew
         'txtManufacturer
         '
         Me.txtManufacturer.Location = New System.Drawing.Point(81, 17)
-        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(2)
         Me.txtManufacturer.MaxLength = 100
         Me.txtManufacturer.Name = "txtManufacturer"
         Me.txtManufacturer.Size = New System.Drawing.Size(122, 20)
@@ -202,7 +202,7 @@ Partial Class frmDeckNew
         Me.cmbCondition.FormattingEnabled = True
         Me.cmbCondition.Items.AddRange(New Object() {"Mint", "Near Mint", "Very Good Plus", "Very Good", "Good Plus", "Good", "Fair", "Poor", "Broken"})
         Me.cmbCondition.Location = New System.Drawing.Point(81, 85)
-        Me.cmbCondition.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbCondition.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbCondition.Name = "cmbCondition"
         Me.cmbCondition.Size = New System.Drawing.Size(122, 21)
         Me.cmbCondition.TabIndex = 4
@@ -210,7 +210,7 @@ Partial Class frmDeckNew
         'numYear
         '
         Me.numYear.Location = New System.Drawing.Point(81, 63)
-        Me.numYear.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.numYear.Margin = New System.Windows.Forms.Padding(2)
         Me.numYear.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         Me.numYear.Minimum = New Decimal(New Integer() {1963, 0, 0, 0})
         Me.numYear.Name = "numYear"
@@ -254,7 +254,7 @@ Partial Class frmDeckNew
         Me.cmbHeads.FormattingEnabled = True
         Me.cmbHeads.Items.AddRange(New Object() {"One (No Rec.)", "Two", "Three"})
         Me.cmbHeads.Location = New System.Drawing.Point(49, 17)
-        Me.cmbHeads.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbHeads.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbHeads.Name = "cmbHeads"
         Me.cmbHeads.Size = New System.Drawing.Size(95, 21)
         Me.cmbHeads.TabIndex = 1
@@ -273,7 +273,7 @@ Partial Class frmDeckNew
         '
         Me.chkSpeedSlow.AutoSize = True
         Me.chkSpeedSlow.Location = New System.Drawing.Point(7, 85)
-        Me.chkSpeedSlow.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkSpeedSlow.Margin = New System.Windows.Forms.Padding(2)
         Me.chkSpeedSlow.Name = "chkSpeedSlow"
         Me.chkSpeedSlow.Size = New System.Drawing.Size(55, 17)
         Me.chkSpeedSlow.TabIndex = 41
@@ -286,7 +286,7 @@ Partial Class frmDeckNew
         Me.cmbWells.FormattingEnabled = True
         Me.cmbWells.Items.AddRange(New Object() {"One", "Two", "Three"})
         Me.cmbWells.Location = New System.Drawing.Point(49, 41)
-        Me.cmbWells.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbWells.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbWells.Name = "cmbWells"
         Me.cmbWells.Size = New System.Drawing.Size(95, 21)
         Me.cmbWells.TabIndex = 2
@@ -295,7 +295,7 @@ Partial Class frmDeckNew
         '
         Me.chkSpeedFast.AutoSize = True
         Me.chkSpeedFast.Location = New System.Drawing.Point(103, 85)
-        Me.chkSpeedFast.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkSpeedFast.Margin = New System.Windows.Forms.Padding(2)
         Me.chkSpeedFast.Name = "chkSpeedFast"
         Me.chkSpeedFast.Size = New System.Drawing.Size(40, 17)
         Me.chkSpeedFast.TabIndex = 5
@@ -318,7 +318,7 @@ Partial Class frmDeckNew
         Me.chkSpeedNormal.Checked = True
         Me.chkSpeedNormal.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkSpeedNormal.Location = New System.Drawing.Point(61, 85)
-        Me.chkSpeedNormal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkSpeedNormal.Margin = New System.Windows.Forms.Padding(2)
         Me.chkSpeedNormal.Name = "chkSpeedNormal"
         Me.chkSpeedNormal.Size = New System.Drawing.Size(40, 17)
         Me.chkSpeedNormal.TabIndex = 4
@@ -336,9 +336,9 @@ Partial Class frmDeckNew
         Me.grpTransport.Controls.Add(Me.cmbHeads)
         Me.grpTransport.Controls.Add(Me.lblHeads)
         Me.grpTransport.Location = New System.Drawing.Point(339, 126)
-        Me.grpTransport.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpTransport.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTransport.Name = "grpTransport"
-        Me.grpTransport.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpTransport.Padding = New System.Windows.Forms.Padding(2)
         Me.grpTransport.Size = New System.Drawing.Size(147, 106)
         Me.grpTransport.TabIndex = 6
         Me.grpTransport.TabStop = False
@@ -358,7 +358,7 @@ Partial Class frmDeckNew
         '
         Me.chkDolbyB.AutoSize = True
         Me.chkDolbyB.Location = New System.Drawing.Point(7, 52)
-        Me.chkDolbyB.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkDolbyB.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDolbyB.Name = "chkDolbyB"
         Me.chkDolbyB.Size = New System.Drawing.Size(33, 17)
         Me.chkDolbyB.TabIndex = 3
@@ -369,7 +369,7 @@ Partial Class frmDeckNew
         '
         Me.chkDolbyS.AutoSize = True
         Me.chkDolbyS.Location = New System.Drawing.Point(80, 52)
-        Me.chkDolbyS.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkDolbyS.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDolbyS.Name = "chkDolbyS"
         Me.chkDolbyS.Size = New System.Drawing.Size(33, 17)
         Me.chkDolbyS.TabIndex = 5
@@ -380,7 +380,7 @@ Partial Class frmDeckNew
         '
         Me.chkDolbyC.AutoSize = True
         Me.chkDolbyC.Location = New System.Drawing.Point(44, 52)
-        Me.chkDolbyC.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkDolbyC.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDolbyC.Name = "chkDolbyC"
         Me.chkDolbyC.Size = New System.Drawing.Size(33, 17)
         Me.chkDolbyC.TabIndex = 4
@@ -401,7 +401,7 @@ Partial Class frmDeckNew
         '
         Me.chkHX.AutoSize = True
         Me.chkHX.Location = New System.Drawing.Point(7, 16)
-        Me.chkHX.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkHX.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHX.Name = "chkHX"
         Me.chkHX.Size = New System.Drawing.Size(60, 17)
         Me.chkHX.TabIndex = 1
@@ -412,7 +412,7 @@ Partial Class frmDeckNew
         '
         Me.chkDBX1.AutoSize = True
         Me.chkDBX1.Location = New System.Drawing.Point(7, 88)
-        Me.chkDBX1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkDBX1.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDBX1.Name = "chkDBX1"
         Me.chkDBX1.Size = New System.Drawing.Size(56, 17)
         Me.chkDBX1.TabIndex = 6
@@ -423,7 +423,7 @@ Partial Class frmDeckNew
         '
         Me.chkDBX2.AutoSize = True
         Me.chkDBX2.Location = New System.Drawing.Point(63, 88)
-        Me.chkDBX2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkDBX2.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDBX2.Name = "chkDBX2"
         Me.chkDBX2.Size = New System.Drawing.Size(59, 17)
         Me.chkDBX2.TabIndex = 7
@@ -434,7 +434,7 @@ Partial Class frmDeckNew
         '
         Me.chkMPX.AutoSize = True
         Me.chkMPX.Location = New System.Drawing.Point(63, 16)
-        Me.chkMPX.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkMPX.Margin = New System.Windows.Forms.Padding(2)
         Me.chkMPX.Name = "chkMPX"
         Me.chkMPX.Size = New System.Drawing.Size(49, 17)
         Me.chkMPX.TabIndex = 2
@@ -453,9 +453,9 @@ Partial Class frmDeckNew
         Me.grpNR.Controls.Add(Me.chkDolbyB)
         Me.grpNR.Controls.Add(Me.lblDolby)
         Me.grpNR.Location = New System.Drawing.Point(366, 10)
-        Me.grpNR.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNR.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNR.Name = "grpNR"
-        Me.grpNR.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNR.Padding = New System.Windows.Forms.Padding(2)
         Me.grpNR.Size = New System.Drawing.Size(120, 111)
         Me.grpNR.TabIndex = 3
         Me.grpNR.TabStop = False
@@ -467,7 +467,7 @@ Partial Class frmDeckNew
         Me.chkType1.Checked = True
         Me.chkType1.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkType1.Location = New System.Drawing.Point(7, 19)
-        Me.chkType1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkType1.Margin = New System.Windows.Forms.Padding(2)
         Me.chkType1.Name = "chkType1"
         Me.chkType1.Size = New System.Drawing.Size(91, 17)
         Me.chkType1.TabIndex = 1
@@ -478,7 +478,7 @@ Partial Class frmDeckNew
         '
         Me.chkType2.AutoSize = True
         Me.chkType2.Location = New System.Drawing.Point(7, 41)
-        Me.chkType2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkType2.Margin = New System.Windows.Forms.Padding(2)
         Me.chkType2.Name = "chkType2"
         Me.chkType2.Size = New System.Drawing.Size(104, 17)
         Me.chkType2.TabIndex = 2
@@ -489,18 +489,18 @@ Partial Class frmDeckNew
         '
         Me.chkType3.AutoSize = True
         Me.chkType3.Location = New System.Drawing.Point(7, 63)
-        Me.chkType3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkType3.Margin = New System.Windows.Forms.Padding(2)
         Me.chkType3.Name = "chkType3"
-        Me.chkType3.Size = New System.Drawing.Size(134, 17)
+        Me.chkType3.Size = New System.Drawing.Size(126, 17)
         Me.chkType3.TabIndex = 3
-        Me.chkType3.Text = "Type III (Ferro-Chrome)"
+        Me.chkType3.Text = "Type III (Ferrichrome)"
         Me.chkType3.UseVisualStyleBackColor = True
         '
         'chkType4
         '
         Me.chkType4.AutoSize = True
         Me.chkType4.Location = New System.Drawing.Point(7, 87)
-        Me.chkType4.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkType4.Margin = New System.Windows.Forms.Padding(2)
         Me.chkType4.Name = "chkType4"
         Me.chkType4.Size = New System.Drawing.Size(98, 17)
         Me.chkType4.TabIndex = 4
@@ -514,9 +514,9 @@ Partial Class frmDeckNew
         Me.grpTypes.Controls.Add(Me.chkType2)
         Me.grpTypes.Controls.Add(Me.chkType1)
         Me.grpTypes.Location = New System.Drawing.Point(220, 10)
-        Me.grpTypes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpTypes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTypes.Name = "grpTypes"
-        Me.grpTypes.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpTypes.Padding = New System.Windows.Forms.Padding(2)
         Me.grpTypes.Size = New System.Drawing.Size(141, 111)
         Me.grpTypes.TabIndex = 2
         Me.grpTypes.TabStop = False
@@ -528,7 +528,7 @@ Partial Class frmDeckNew
         Me.chkStereo.Checked = True
         Me.chkStereo.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkStereo.Location = New System.Drawing.Point(7, 15)
-        Me.chkStereo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkStereo.Margin = New System.Windows.Forms.Padding(2)
         Me.chkStereo.Name = "chkStereo"
         Me.chkStereo.Size = New System.Drawing.Size(57, 17)
         Me.chkStereo.TabIndex = 1
@@ -549,7 +549,7 @@ Partial Class frmDeckNew
         '
         Me.chkDubbingDouble.AutoSize = True
         Me.chkDubbingDouble.Location = New System.Drawing.Point(7, 137)
-        Me.chkDubbingDouble.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkDubbingDouble.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDubbingDouble.Name = "chkDubbingDouble"
         Me.chkDubbingDouble.Size = New System.Drawing.Size(87, 17)
         Me.chkDubbingDouble.TabIndex = 6
@@ -560,7 +560,7 @@ Partial Class frmDeckNew
         '
         Me.chkDubbingHalf.AutoSize = True
         Me.chkDubbingHalf.Location = New System.Drawing.Point(90, 137)
-        Me.chkDubbingHalf.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkDubbingHalf.Margin = New System.Windows.Forms.Padding(2)
         Me.chkDubbingHalf.Name = "chkDubbingHalf"
         Me.chkDubbingHalf.Size = New System.Drawing.Size(45, 17)
         Me.chkDubbingHalf.TabIndex = 7
@@ -571,7 +571,7 @@ Partial Class frmDeckNew
         '
         Me.chkReverse.AutoSize = True
         Me.chkReverse.Location = New System.Drawing.Point(7, 59)
-        Me.chkReverse.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkReverse.Margin = New System.Windows.Forms.Padding(2)
         Me.chkReverse.Name = "chkReverse"
         Me.chkReverse.Size = New System.Drawing.Size(91, 17)
         Me.chkReverse.TabIndex = 3
@@ -582,7 +582,7 @@ Partial Class frmDeckNew
         '
         Me.chkCalibration.AutoSize = True
         Me.chkCalibration.Location = New System.Drawing.Point(7, 81)
-        Me.chkCalibration.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkCalibration.Margin = New System.Windows.Forms.Padding(2)
         Me.chkCalibration.Name = "chkCalibration"
         Me.chkCalibration.Size = New System.Drawing.Size(75, 17)
         Me.chkCalibration.TabIndex = 4
@@ -593,7 +593,7 @@ Partial Class frmDeckNew
         '
         Me.chkSearch.AutoSize = True
         Me.chkSearch.Location = New System.Drawing.Point(7, 37)
-        Me.chkSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.chkSearch.Name = "chkSearch"
         Me.chkSearch.Size = New System.Drawing.Size(102, 17)
         Me.chkSearch.TabIndex = 2
@@ -604,7 +604,7 @@ Partial Class frmDeckNew
         '
         Me.chkAzimuth.AutoSize = True
         Me.chkAzimuth.Location = New System.Drawing.Point(7, 103)
-        Me.chkAzimuth.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkAzimuth.Margin = New System.Windows.Forms.Padding(2)
         Me.chkAzimuth.Name = "chkAzimuth"
         Me.chkAzimuth.Size = New System.Drawing.Size(114, 17)
         Me.chkAzimuth.TabIndex = 5
@@ -622,9 +622,9 @@ Partial Class frmDeckNew
         Me.grpFeatures.Controls.Add(Me.lblDubbing)
         Me.grpFeatures.Controls.Add(Me.chkStereo)
         Me.grpFeatures.Location = New System.Drawing.Point(9, 126)
-        Me.grpFeatures.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpFeatures.Margin = New System.Windows.Forms.Padding(2)
         Me.grpFeatures.Name = "grpFeatures"
-        Me.grpFeatures.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpFeatures.Padding = New System.Windows.Forms.Padding(2)
         Me.grpFeatures.Size = New System.Drawing.Size(134, 158)
         Me.grpFeatures.TabIndex = 4
         Me.grpFeatures.TabStop = False
@@ -634,7 +634,7 @@ Partial Class frmDeckNew
         '
         Me.numFrequencyMin.Increment = New Decimal(New Integer() {5, 0, 0, 0})
         Me.numFrequencyMin.Location = New System.Drawing.Point(142, 19)
-        Me.numFrequencyMin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.numFrequencyMin.Margin = New System.Windows.Forms.Padding(2)
         Me.numFrequencyMin.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
         Me.numFrequencyMin.Name = "numFrequencyMin"
         Me.numFrequencyMin.Size = New System.Drawing.Size(39, 20)
@@ -656,7 +656,7 @@ Partial Class frmDeckNew
         Me.numFrequencyMax.DecimalPlaces = 1
         Me.numFrequencyMax.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
         Me.numFrequencyMax.Location = New System.Drawing.Point(142, 41)
-        Me.numFrequencyMax.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.numFrequencyMax.Margin = New System.Windows.Forms.Padding(2)
         Me.numFrequencyMax.Maximum = New Decimal(New Integer() {30, 0, 0, 0})
         Me.numFrequencyMax.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numFrequencyMax.Name = "numFrequencyMax"
@@ -677,7 +677,7 @@ Partial Class frmDeckNew
         'numSignalRatio
         '
         Me.numSignalRatio.Location = New System.Drawing.Point(142, 64)
-        Me.numSignalRatio.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.numSignalRatio.Margin = New System.Windows.Forms.Padding(2)
         Me.numSignalRatio.Name = "numSignalRatio"
         Me.numSignalRatio.Size = New System.Drawing.Size(39, 20)
         Me.numSignalRatio.TabIndex = 3
@@ -689,7 +689,7 @@ Partial Class frmDeckNew
         Me.cmbSignalRatioNR.FormattingEnabled = True
         Me.cmbSignalRatioNR.Items.AddRange(New Object() {"None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
         Me.cmbSignalRatioNR.Location = New System.Drawing.Point(104, 87)
-        Me.cmbSignalRatioNR.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbSignalRatioNR.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbSignalRatioNR.Name = "cmbSignalRatioNR"
         Me.cmbSignalRatioNR.Size = New System.Drawing.Size(79, 21)
         Me.cmbSignalRatioNR.TabIndex = 4
@@ -719,7 +719,7 @@ Partial Class frmDeckNew
         Me.numWowFlutter.DecimalPlaces = 2
         Me.numWowFlutter.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
         Me.numWowFlutter.Location = New System.Drawing.Point(134, 111)
-        Me.numWowFlutter.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.numWowFlutter.Margin = New System.Windows.Forms.Padding(2)
         Me.numWowFlutter.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numWowFlutter.Name = "numWowFlutter"
         Me.numWowFlutter.Size = New System.Drawing.Size(48, 20)
@@ -741,7 +741,7 @@ Partial Class frmDeckNew
         Me.numDistortion.DecimalPlaces = 2
         Me.numDistortion.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
         Me.numDistortion.Location = New System.Drawing.Point(134, 134)
-        Me.numDistortion.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.numDistortion.Margin = New System.Windows.Forms.Padding(2)
         Me.numDistortion.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.numDistortion.Name = "numDistortion"
         Me.numDistortion.Size = New System.Drawing.Size(48, 20)
@@ -773,9 +773,9 @@ Partial Class frmDeckNew
         Me.grpSpecifications.Controls.Add(Me.lvlFrequency)
         Me.grpSpecifications.Controls.Add(Me.numFrequencyMin)
         Me.grpSpecifications.Location = New System.Drawing.Point(148, 126)
-        Me.grpSpecifications.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpSpecifications.Margin = New System.Windows.Forms.Padding(2)
         Me.grpSpecifications.Name = "grpSpecifications"
-        Me.grpSpecifications.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpSpecifications.Padding = New System.Windows.Forms.Padding(2)
         Me.grpSpecifications.Size = New System.Drawing.Size(187, 158)
         Me.grpSpecifications.TabIndex = 5
         Me.grpSpecifications.TabStop = False
@@ -797,7 +797,7 @@ Partial Class frmDeckNew
         Me.Controls.Add(Me.grpNotes)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmDeckNew"
         Me.Text = "Add New Deck"
