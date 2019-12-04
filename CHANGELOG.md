@@ -8,6 +8,12 @@ Note: Alpha versions included as early Beta versions.
 
 
 
+### Beta 0.6.2 – 4 December 2019
+
+- Fixed broken UI.
+
+
+
 ### Beta 0.6.1 – 4 December 2019
 
 - Can now write console output to a log file.

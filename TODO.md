@@ -5,8 +5,6 @@
 
 
 
-- fix regex validation
-- fix console scrolling bug
 - Rebuild UI so that it doesnt clip on later .NET versions. (TEST WITH OTHER COMPUTERS)
 
 
@@ -77,6 +75,11 @@
 
 - make all updates and changes checkings into one funciton with a case statement at the end
 - ability to add an image of each tape
+
+
+
+- fix regex validation
+- fix console scrolling bug
 
 
 
