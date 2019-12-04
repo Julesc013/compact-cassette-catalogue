@@ -11,6 +11,8 @@ Note: Alpha versions included as early Beta versions.
 ### Beta 0.6.2 – 4 December 2019
 
 - Rebuilt UI.
+- Added console output header.
+- Fixed updates-to-tape bug.
 
 
 

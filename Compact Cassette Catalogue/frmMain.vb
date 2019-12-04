@@ -1475,10 +1475,19 @@ Public Class frmMain
     Private Sub OutputConsoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OutputConsoleToolStripMenuItem.Click
 
         'Output the console to a log file and save it.
+        'Write the string to a new file (date and time included in file name).
 
-        ' Write the string to a new file (date and time included in file name).
-        Using outputFile As New StreamWriter(fileDirectory & "console-output_" & DateTime.Now.ToString("yyMMdd-HHmmss") & ".txt")
-            For Each line As String In frmConsole.lstConsole.Items 'Write each line in the current console window.
+        Dim outputTime As DateTime = DateTime.Now
+        Dim outputName As String = "console-output_" & outputTime.ToString("yyMMdd-HHmmss") & ".txt"
+
+        Using outputFile As New StreamWriter(fileDirectory & outputName)
+
+            'Write header.
+            outputFile.WriteLine("Compact Cassette Catalogue (v" & CStr(VERSION) & ") Console Output at " & outputTime.ToString)
+            outputFile.WriteLine("--------------------------------")
+
+            'Write each line in the current console window.
+            For Each line As String In frmConsole.lstConsole.Items
                 outputFile.WriteLine(line)
             Next
 
