@@ -64,117 +64,6 @@
 
     End Sub
 
-    Private Sub ChkTapedA_CheckedChanged(sender As Object, e As EventArgs) Handles chkTapedA.CheckedChanged
-
-        If chkTapedA.Checked = True Then
-
-            deckCount = CInt(counters.Rows(0)("Number"))
-
-            'Check that at least 1 deck exists
-            If deckCount >= 1 Then
-
-                'Set defaults
-                datRecordedA.Value = Date.Today
-                cmbDeckA.SelectedIndex = 0
-                'cmbDeckA.SelectedIndex = cmbDeckA.Items.Count - 1 'Latest deck
-
-                cmbInputA.SelectedIndex = 10 'Phone input
-                cmbNRA.SelectedIndex = 1 'Dolby B
-                cmbSpeedA.SelectedIndex = 1 'Normal speed
-                cmbContentsA.SelectedIndex = 0
-                numLevelA.Value = CDec(5)
-
-                If modelType = 1 Then 'If normal bias
-                    cmbEQA.SelectedIndex = 0 '120us
-                Else
-                    cmbEQA.SelectedIndex = 1 '70us
-                End If
-                cmbBiasA.SelectedIndex = modelType - 1
-
-                'The rest of the defaults
-                txtNameA.Text = Nothing
-                txtArtistA.Text = Nothing
-                txtTitleA.Text = Nothing
-                numPeakA.Value = 0
-                numBiasCalA.Value = 0
-                numLevelCalA.Value = 0
-                chkHXA.Checked = False
-                chkMPXA.Checked = False
-                chkDubbedA.Checked = False
-
-                'Enable data entry for side A
-                grpSideA.Enabled = True
-
-            Else
-
-                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
-                chkTapedA.Checked = False
-
-            End If
-
-        Else
-            grpSideA.Enabled = False
-
-        End If
-
-    End Sub
-
-    Private Sub ChkTapedB_CheckedChanged(sender As Object, e As EventArgs) Handles chkTapedB.CheckedChanged
-
-
-        If chkTapedB.Checked = True Then
-
-            deckCount = CInt(counters.Rows(0)("Number"))
-
-            'Check that at least 1 deck exists
-            If deckCount >= 1 Then
-
-                'Set defaults
-                datRecordedB.Value = Date.Today
-                cmbDeckB.SelectedIndex = 0
-                'cmbDeckB.SelectedIndex = cmbDeckB.Items.Count - 1 'Latest deck
-
-                cmbInputB.SelectedIndex = 10 'Phone input
-                cmbNRB.SelectedIndex = 1 'Dolby B
-                cmbSpeedB.SelectedIndex = 1 'Normal speed
-                cmbContentsB.SelectedIndex = 0
-                numLevelB.Value = CDec(5)
-
-                If modelType = 1 Then 'If normal bias
-                    cmbEQB.SelectedIndex = 0 '120us
-                Else
-                    cmbEQB.SelectedIndex = 1 '70us
-                End If
-                cmbBiasB.SelectedIndex = modelType - 1
-
-                'The rest of the defaults
-                txtNameB.Text = Nothing
-                txtArtistB.Text = Nothing
-                txtTitleB.Text = Nothing
-                numPeakB.Value = 0
-                numBiasCalB.Value = 0
-                numLevelCalB.Value = 0
-                chkHXB.Checked = False
-                chkMPXB.Checked = False
-                chkDubbedB.Checked = False
-
-                'Enable data entry for side B
-                grpSideB.Enabled = True
-
-            Else
-
-                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
-                chkTapedB.Checked = False
-
-            End If
-
-        Else
-            grpSideB.Enabled = False
-
-        End If
-
-    End Sub
-
     Private Sub CmbModel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbModel.SelectedIndexChanged
         'Get next index and generate code
 
@@ -227,7 +116,7 @@
         modelIndex = models.Rows.IndexOf(modelRowReal)
 
         number = CInt(modelRow("Number")) 'If 0 tapes, then new index is 0.
-        txtNumber.Text = CStr(number)
+        'txtNumber.Text = CStr(number)
 
         numYear.Enabled = True
         numLength.Enabled = True
@@ -433,7 +322,117 @@
 
     End Sub
 
-    Private Sub ChkPackaged_CheckedChanged(sender As Object, e As EventArgs) Handles chkPackaged.CheckedChanged
+    Private Sub chkTapedA_CheckedChanged(sender As Object, e As EventArgs) Handles chkTapedA.CheckedChanged
+
+        If chkTapedA.Checked = True Then
+
+            deckCount = CInt(counters.Rows(0)("Number"))
+
+            'Check that at least 1 deck exists
+            If deckCount >= 1 Then
+
+                'Set defaults
+                datRecordedA.Value = Date.Today
+                cmbDeckA.SelectedIndex = 0
+                'cmbDeckA.SelectedIndex = cmbDeckA.Items.Count - 1 'Latest deck
+
+                cmbInputA.SelectedIndex = 10 'Phone input
+                cmbNRA.SelectedIndex = 1 'Dolby B
+                cmbSpeedA.SelectedIndex = 1 'Normal speed
+                cmbContentsA.SelectedIndex = 0
+                numLevelA.Value = CDec(5)
+
+                If modelType = 1 Then 'If normal bias
+                    cmbEQA.SelectedIndex = 0 '120us
+                Else
+                    cmbEQA.SelectedIndex = 1 '70us
+                End If
+                cmbBiasA.SelectedIndex = modelType - 1
+
+                'The rest of the defaults
+                txtNameA.Text = Nothing
+                txtArtistA.Text = Nothing
+                txtTitleA.Text = Nothing
+                numPeakA.Value = 0
+                numBiasCalA.Value = 0
+                numLevelCalA.Value = 0
+                chkHXA.Checked = False
+                chkMPXA.Checked = False
+                chkDubbedA.Checked = False
+
+                'Enable data entry for side A
+                grpSideA.Enabled = True
+
+            Else
+
+                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
+                chkTapedA.Checked = False
+
+            End If
+
+        Else
+            grpSideA.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub chkTapedB_CheckedChanged(sender As Object, e As EventArgs) Handles chkTapedB.CheckedChanged
+
+        If chkTapedB.Checked = True Then
+
+            deckCount = CInt(counters.Rows(0)("Number"))
+
+            'Check that at least 1 deck exists
+            If deckCount >= 1 Then
+
+                'Set defaults
+                datRecordedB.Value = Date.Today
+                cmbDeckB.SelectedIndex = 0
+                'cmbDeckB.SelectedIndex = cmbDeckB.Items.Count - 1 'Latest deck
+
+                cmbInputB.SelectedIndex = 10 'Phone input
+                cmbNRB.SelectedIndex = 1 'Dolby B
+                cmbSpeedB.SelectedIndex = 1 'Normal speed
+                cmbContentsB.SelectedIndex = 0
+                numLevelB.Value = CDec(5)
+
+                If modelType = 1 Then 'If normal bias
+                    cmbEQB.SelectedIndex = 0 '120us
+                Else
+                    cmbEQB.SelectedIndex = 1 '70us
+                End If
+                cmbBiasB.SelectedIndex = modelType - 1
+
+                'The rest of the defaults
+                txtNameB.Text = Nothing
+                txtArtistB.Text = Nothing
+                txtTitleB.Text = Nothing
+                numPeakB.Value = 0
+                numBiasCalB.Value = 0
+                numLevelCalB.Value = 0
+                chkHXB.Checked = False
+                chkMPXB.Checked = False
+                chkDubbedB.Checked = False
+
+                'Enable data entry for side B
+                grpSideB.Enabled = True
+
+            Else
+
+                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
+                chkTapedB.Checked = False
+
+            End If
+
+        Else
+            grpSideB.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub chkPackaged_CheckedChanged(sender As Object, e As EventArgs) Handles chkPackaged.CheckedChanged
 
         If chkPackaged.Checked = True Then
             chkTapedA.Checked = False
@@ -446,6 +445,7 @@
         End If
 
     End Sub
+
 
     'Private Sub when_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNotes.KeyDown, MyBase.KeyDown
     '    'Escape keypress (don't trigger accept-button)

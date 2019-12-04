@@ -369,12 +369,14 @@ Public Class frmMain
             Dim number As Integer = CInt(models.Rows(modelIndex)("Number"))
             models.Rows(modelIndex)("Number") = number - 1
 
-            'Reload data and display latest tape
-            loadData()
-
+            'Reset change detection variables
+            updates = False
             changes = True
             'Update title bar
             Me.Text = fileName & "* - C3"
+
+            'Reload data and display latest tape
+            loadData()
 
             'Show confirmation message
             Dim message As String = "Deleted tape " & identifierShort & " successfully."
@@ -421,6 +423,8 @@ Public Class frmMain
         'If there is no filepath, it is not saved
         Dim saved As Boolean = filePath IsNot Nothing
 
+        Dim message As String = Nothing
+
         If saved = False Or saveAs = True Then
             'SAVE AS NEW FILE
 
@@ -430,9 +434,7 @@ Public Class frmMain
             If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
                 'If user has given a valid file path.
 
-
                 'Lock in selected file path
-
                 filePath = selectedPath
                 Dim fileTree As String() = selectedPath.Split("\"c)
                 fileName = fileTree(fileTree.Length - 1)
@@ -444,27 +446,8 @@ Public Class frmMain
                     fileDirectory += fileTree(folder) & "\"
                 Next
 
-
-                'Update file information
-                information.Rows(5)("Value") = DateTime.Now.ToString
-
-                catalogue.WriteXml(filePath)
-
-                'Reset changes variable
-                changes = False
-                'Update title bar
-                Me.Text = fileName & " - C3"
-
-                'Show confirmation message
-                Dim message As String = "Saved catalogue successfully (as new file)."
-                'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Saved Catalogue")
-                'End If
-                consoleAdd(message)
-
-                If thenOpen = True Then
-                    openCatalogueActual()
-                End If
+                'Make confirmation message
+                Message = "Saved catalogue successfully (as new file)."
 
             ElseIf dlgResult <> DialogResult.Cancel Then
                 'If user did NOT deliberately cancel save procedure.
@@ -475,29 +458,36 @@ Public Class frmMain
             End If
 
         Else
+
             'SAVE OVERWRITE FILE
 
-            'Update file information
-            information.Rows(5)("Value") = DateTime.Now.ToString
+            'Make confirmation message
+            Message = "Saved catalogue successfully (overwrote file)."
 
-            catalogue.WriteXml(filePath)
+        End If
 
-            'Reset changes variable
-            changes = False
-            'Update title bar
-            Me.Text = fileName & " - C3"
+        'Update file information
+        information.Rows(5)("Value") = DateTime.Now.ToString
 
-            'Show confirmation message
-            Dim message As String = "Saved catalogue successfully (overwrote file)."
-            'If My.Settings.showMessages = True Then
-            '    MsgBox(message, MsgBoxStyle.Information, "Successfully Saved Catalogue")
-            'End If
-            consoleAdd(message)
+        catalogue.WriteXml(filePath)
 
-            If thenOpen = True Then
-                openCatalogueActual()
-            End If
+        'Discard updates made to current tape and reload from saved data.
+        'Reset changes variable
+        updates = False
+        changes = False
+        'Update title bar
+        Me.Text = fileName & " - C3"
+        'Reload from saved data
+        loadData()
 
+        'Show confirmation message
+        'If My.Settings.showMessages = True Then
+        '    MsgBox(message, MsgBoxStyle.Information, "Successfully Saved Catalogue")
+        'End If
+        consoleAdd(message)
+
+        If thenOpen = True Then
+            openCatalogueActual()
         End If
 
     End Sub
@@ -674,6 +664,7 @@ Public Class frmMain
             updates = True
             'Update title bar
             Me.Text = fileName & "* - C3"
+
         End If
 
     End Sub
@@ -1172,10 +1163,10 @@ Public Class frmMain
 
                 updateTape()
 
-                    'SCROLL PREVIOUS
+                'SCROLL PREVIOUS
 
-                    thisTapeIndex -= 1
-                    displayTape()
+                thisTapeIndex -= 1
+                displayTape()
 
             ElseIf result = vbNo Then
                 'SCROLL PREVIOUS
@@ -1193,6 +1184,9 @@ Public Class frmMain
             displayTape()
 
         End If
+
+        'Reset updates variable
+        updates = False
 
     End Sub
 
@@ -1227,6 +1221,9 @@ Public Class frmMain
             displayTape()
 
         End If
+
+        'Reset updates variable
+        updates = False
 
     End Sub
 
@@ -1463,114 +1460,6 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub txtNameB_TextChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub datRecordedB_ValueChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub cmbDeckB_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub cmbInputB_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub numPeakB_ValueChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub cmbNRB_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub cmbEQB_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub cmbBiasB_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub numBiasCalB_ValueChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub numLevelB_ValueChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub numLevelCalB_ValueChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub chkHXB_CheckedChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub cmbSpeedB_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub chkDubbedB_CheckedChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub chkMPXB_CheckedChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub cmbContentsB_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub txtArtistB_TextChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
-    Private Sub txtTitleB_TextChanged(sender As Object, e As EventArgs)
-
-        updateMade()
-
-    End Sub
-
     Private Sub UpdateTapeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateTapeToolStripMenuItem.Click
 
         updateTape()
@@ -1594,6 +1483,114 @@ Public Class frmMain
             Next
 
         End Using
+
+    End Sub
+
+    Private Sub txtNameB_TextChanged(sender As Object, e As EventArgs) Handles txtNameB.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub datRecordedB_ValueChanged(sender As Object, e As EventArgs) Handles datRecordedB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbDeckB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDeckB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbInputB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbInputB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numPeakB_ValueChanged(sender As Object, e As EventArgs) Handles numPeakB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbNRB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNRB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbEQB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEQB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbBiasB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBiasB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numBiasCalB_ValueChanged(sender As Object, e As EventArgs) Handles numBiasCalB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numLevelB_ValueChanged(sender As Object, e As EventArgs) Handles numLevelB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub numLevelCalB_ValueChanged(sender As Object, e As EventArgs) Handles numLevelCalB.ValueChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbSpeedB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSpeedB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkDubbedB_CheckedChanged(sender As Object, e As EventArgs) Handles chkDubbedB.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkHXB_CheckedChanged(sender As Object, e As EventArgs) Handles chkHXB.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub chkMPXB_CheckedChanged(sender As Object, e As EventArgs) Handles chkMPXB.CheckedChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub cmbContentsB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbContentsB.SelectedIndexChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtArtistB_TextChanged(sender As Object, e As EventArgs) Handles txtArtistB.TextChanged
+
+        updateMade()
+
+    End Sub
+
+    Private Sub txtTitleB_TextChanged(sender As Object, e As EventArgs) Handles txtTitleB.TextChanged
+
+        updateMade()
 
     End Sub
 
