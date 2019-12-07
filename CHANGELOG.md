@@ -10,6 +10,7 @@
 
 - 
 - *List views* replaced with *data grid views*.
+- Disabled access to incomplete functions.
 
 
 

@@ -1,6 +1,8 @@
 ﻿Public Class frmViewBrands
+    Private Sub frmViewBrands_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        'Set the table as the data-grid-view's data source so that it auto-populates. 
+        dataBrands.DataSource = brands
 
     End Sub
 

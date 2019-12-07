@@ -239,6 +239,20 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\Compact_Cassette_Catalogue.My.MyApplication.datasource" />
+    <None Include="My Project\DataSources\Compact_Cassette_Catalogue.My.MySettings.datasource" />
+    <None Include="My Project\DataSources\frmBrandNew.datasource" />
+    <None Include="My Project\DataSources\frmConsole.datasource" />
+    <None Include="My Project\DataSources\frmDeckNew.datasource" />
+    <None Include="My Project\DataSources\frmDecks.datasource" />
+    <None Include="My Project\DataSources\frmFindResults.datasource" />
+    <None Include="My Project\DataSources\frmMain.datasource" />
+    <None Include="My Project\DataSources\frmModelNew.datasource" />
+    <None Include="My Project\DataSources\frmModels.datasource" />
+    <None Include="My Project\DataSources\frmStatistics.datasource" />
+    <None Include="My Project\DataSources\frmTapeNew.datasource" />
+    <None Include="My Project\DataSources\frmTapes.datasource" />
+    <None Include="My Project\DataSources\frmViewBrands.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

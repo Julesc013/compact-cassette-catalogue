@@ -44,7 +44,7 @@ Module varGlobals
     Public models As DataTable = makeModels()
     Public tapes As DataTable = makeTapes()
 
-    'When adding tables, update add tables section of frmMain.vb
+    'When adding tables, update 'add tables to dataset' section of frmMain.vb
 
     'Add references to counters
     Public deckCount As Integer

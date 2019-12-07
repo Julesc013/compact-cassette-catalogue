@@ -175,6 +175,9 @@ Partial Class frmMain
         Me.btnPrevious = New System.Windows.Forms.Button()
         Me.dlgOpen = New System.Windows.Forms.OpenFileDialog()
         Me.dlgSaveAs = New System.Windows.Forms.SaveFileDialog()
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
+        Me.HelpGuideToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
         Me.grpData.SuspendLayout()
@@ -510,28 +513,29 @@ Partial Class frmMain
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TutorialToolStripMenuItem, Me.FeedbackToolStripMenuItem, Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpGuideToolStripMenuItem, Me.TutorialToolStripMenuItem, Me.ToolStripSeparator7, Me.FeedbackToolStripMenuItem, Me.ToolStripSeparator8, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'TutorialToolStripMenuItem
         '
+        Me.TutorialToolStripMenuItem.Enabled = False
         Me.TutorialToolStripMenuItem.Name = "TutorialToolStripMenuItem"
-        Me.TutorialToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TutorialToolStripMenuItem.Text = "Tutorial"
         '
         'FeedbackToolStripMenuItem
         '
+        Me.FeedbackToolStripMenuItem.Enabled = False
         Me.FeedbackToolStripMenuItem.Name = "FeedbackToolStripMenuItem"
-        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.FeedbackToolStripMenuItem.Text = "Feedback"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'grpData
@@ -1761,6 +1765,24 @@ Partial Class frmMain
         Me.dlgSaveAs.FilterIndex = 0
         Me.dlgSaveAs.Title = "Save Catalogue As"
         '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(177, 6)
+        '
+        'HelpGuideToolStripMenuItem
+        '
+        Me.HelpGuideToolStripMenuItem.Enabled = False
+        Me.HelpGuideToolStripMenuItem.Name = "HelpGuideToolStripMenuItem"
+        Me.HelpGuideToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
+        Me.HelpGuideToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.HelpGuideToolStripMenuItem.Text = "View Help"
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(177, 6)
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1975,4 +1997,7 @@ Partial Class frmMain
     Friend WithEvents lblRecordedB As Label
     Friend WithEvents cmbDeckB As ComboBox
     Friend WithEvents lblDeckB As Label
+    Friend WithEvents HelpGuideToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
 End Class

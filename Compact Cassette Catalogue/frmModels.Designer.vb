@@ -24,15 +24,8 @@ Partial Class frmModels
     Private Sub InitializeComponent()
         Me.chkTypeBetter = New System.Windows.Forms.CheckBox()
         Me.grpModels = New System.Windows.Forms.GroupBox()
-        Me.lstModels = New System.Windows.Forms.ListView()
-        Me.colIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colType = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colModel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colCode = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -49,10 +42,11 @@ Partial Class frmModels
         Me.cmbModel = New System.Windows.Forms.ComboBox()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.btnEdit = New System.Windows.Forms.Button()
+        Me.dataModels = New System.Windows.Forms.DataGridView()
         Me.grpModels.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpFilters.SuspendLayout()
+        CType(Me.dataModels, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkTypeBetter
@@ -69,7 +63,7 @@ Partial Class frmModels
         '
         'grpModels
         '
-        Me.grpModels.Controls.Add(Me.lstModels)
+        Me.grpModels.Controls.Add(Me.dataModels)
         Me.grpModels.Location = New System.Drawing.Point(193, 11)
         Me.grpModels.Margin = New System.Windows.Forms.Padding(2)
         Me.grpModels.Name = "grpModels"
@@ -78,53 +72,6 @@ Partial Class frmModels
         Me.grpModels.TabIndex = 2
         Me.grpModels.TabStop = False
         Me.grpModels.Text = "Models"
-        '
-        'lstModels
-        '
-        Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colBrand, Me.colType, Me.colModel, Me.colCode, Me.colName, Me.colNotes})
-        Me.lstModels.HideSelection = False
-        Me.lstModels.Location = New System.Drawing.Point(5, 17)
-        Me.lstModels.Margin = New System.Windows.Forms.Padding(2)
-        Me.lstModels.Name = "lstModels"
-        Me.lstModels.Size = New System.Drawing.Size(529, 382)
-        Me.lstModels.TabIndex = 0
-        Me.lstModels.UseCompatibleStateImageBehavior = False
-        Me.lstModels.View = System.Windows.Forms.View.Details
-        '
-        'colIdentifier
-        '
-        Me.colIdentifier.Text = "Identifier"
-        Me.colIdentifier.Width = 68
-        '
-        'colBrand
-        '
-        Me.colBrand.Text = "Brand"
-        Me.colBrand.Width = 93
-        '
-        'colType
-        '
-        Me.colType.Text = "Type"
-        Me.colType.Width = 74
-        '
-        'colModel
-        '
-        Me.colModel.Text = "Model"
-        Me.colModel.Width = 132
-        '
-        'colCode
-        '
-        Me.colCode.Text = "Code"
-        Me.colCode.Width = 40
-        '
-        'colName
-        '
-        Me.colName.Text = "Full Name"
-        Me.colName.Width = 133
-        '
-        'colNotes
-        '
-        Me.colNotes.Text = "Notes"
-        Me.colNotes.Width = 140
         '
         'grpActions
         '
@@ -140,6 +87,17 @@ Partial Class frmModels
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
+        '
+        'btnEdit
+        '
+        Me.btnEdit.Enabled = False
+        Me.btnEdit.Location = New System.Drawing.Point(4, 42)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(83, 21)
+        Me.btnEdit.TabIndex = 14
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
         '
         'btnRefresh
         '
@@ -316,16 +274,16 @@ Partial Class frmModels
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'btnEdit
+        'dataModels
         '
-        Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(4, 42)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(83, 21)
-        Me.btnEdit.TabIndex = 14
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.UseVisualStyleBackColor = True
+        Me.dataModels.AllowUserToAddRows = False
+        Me.dataModels.AllowUserToDeleteRows = False
+        Me.dataModels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataModels.Location = New System.Drawing.Point(5, 18)
+        Me.dataModels.Name = "dataModels"
+        Me.dataModels.ReadOnly = True
+        Me.dataModels.Size = New System.Drawing.Size(529, 381)
+        Me.dataModels.TabIndex = 1
         '
         'frmModels
         '
@@ -348,6 +306,7 @@ Partial Class frmModels
         Me.grpActions.PerformLayout()
         Me.grpFilters.ResumeLayout(False)
         Me.grpFilters.PerformLayout()
+        CType(Me.dataModels, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -355,11 +314,6 @@ Partial Class frmModels
 
     Friend WithEvents chkTypeBetter As CheckBox
     Friend WithEvents grpModels As GroupBox
-    Friend WithEvents lstModels As ListView
-    Friend WithEvents colIdentifier As ColumnHeader
-    Friend WithEvents colBrand As ColumnHeader
-    Friend WithEvents colModel As ColumnHeader
-    Friend WithEvents colType As ColumnHeader
     Friend WithEvents grpActions As GroupBox
     Friend WithEvents btnRefresh As Button
     Friend WithEvents Label1 As Label
@@ -373,12 +327,10 @@ Partial Class frmModels
     Friend WithEvents cmbBrand As ComboBox
     Private WithEvents lblBrand As Label
     Private WithEvents lblModel As Label
-    Friend WithEvents colName As ColumnHeader
-    Friend WithEvents colNotes As ColumnHeader
     Friend WithEvents txtName As TextBox
     Private WithEvents lblName As Label
-    Friend WithEvents colCode As ColumnHeader
     Friend WithEvents lblResults As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents btnEdit As Button
+    Friend WithEvents dataModels As DataGridView
 End Class

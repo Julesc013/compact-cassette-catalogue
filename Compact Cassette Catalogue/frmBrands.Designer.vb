@@ -23,7 +23,6 @@ Partial Class frmViewBrands
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmViewBrands))
-        Me.colCode = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.btnRefresh = New System.Windows.Forms.Button()
@@ -32,21 +31,15 @@ Partial Class frmViewBrands
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.grpActions = New System.Windows.Forms.GroupBox()
         Me.btnEdit = New System.Windows.Forms.Button()
-        Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpModels = New System.Windows.Forms.GroupBox()
-        Me.lstModels = New System.Windows.Forms.ListView()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.dataBrands = New System.Windows.Forms.DataGridView()
         Me.grpFilters.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpModels.SuspendLayout()
+        CType(Me.dataBrands, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'colCode
-        '
-        Me.colCode.Text = "Code"
-        Me.colCode.Width = 51
         '
         'TextBox1
         '
@@ -136,19 +129,9 @@ Partial Class frmViewBrands
         Me.btnEdit.Text = "Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
         '
-        'colNotes
-        '
-        Me.colNotes.Text = "Notes"
-        Me.colNotes.Width = 210
-        '
-        'colBrand
-        '
-        Me.colBrand.Text = "Brand"
-        Me.colBrand.Width = 169
-        '
         'grpModels
         '
-        Me.grpModels.Controls.Add(Me.lstModels)
+        Me.grpModels.Controls.Add(Me.dataBrands)
         Me.grpModels.Location = New System.Drawing.Point(209, 11)
         Me.grpModels.Margin = New System.Windows.Forms.Padding(2)
         Me.grpModels.Name = "grpModels"
@@ -157,18 +140,6 @@ Partial Class frmViewBrands
         Me.grpModels.TabIndex = 2
         Me.grpModels.TabStop = False
         Me.grpModels.Text = "Models"
-        '
-        'lstModels
-        '
-        Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colCode, Me.colBrand, Me.colNotes})
-        Me.lstModels.HideSelection = False
-        Me.lstModels.Location = New System.Drawing.Point(4, 17)
-        Me.lstModels.Margin = New System.Windows.Forms.Padding(2)
-        Me.lstModels.Name = "lstModels"
-        Me.lstModels.Size = New System.Drawing.Size(420, 302)
-        Me.lstModels.TabIndex = 0
-        Me.lstModels.UseCompatibleStateImageBehavior = False
-        Me.lstModels.View = System.Windows.Forms.View.Details
         '
         'lblResults
         '
@@ -190,6 +161,17 @@ Partial Class frmViewBrands
         Me.TextBox2.Size = New System.Drawing.Size(107, 20)
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'dataBrands
+        '
+        Me.dataBrands.AllowUserToAddRows = False
+        Me.dataBrands.AllowUserToDeleteRows = False
+        Me.dataBrands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataBrands.Location = New System.Drawing.Point(5, 18)
+        Me.dataBrands.Name = "dataBrands"
+        Me.dataBrands.ReadOnly = True
+        Me.dataBrands.Size = New System.Drawing.Size(418, 300)
+        Me.dataBrands.TabIndex = 0
         '
         'frmViewBrands
         '
@@ -213,12 +195,11 @@ Partial Class frmViewBrands
         Me.grpActions.ResumeLayout(False)
         Me.grpActions.PerformLayout()
         Me.grpModels.ResumeLayout(False)
+        CType(Me.dataBrands, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents colCode As ColumnHeader
     Friend WithEvents TextBox1 As TextBox
     Private WithEvents lblNotes As Label
     Friend WithEvents btnRefresh As Button
@@ -226,11 +207,9 @@ Partial Class frmViewBrands
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents btnDelete As Button
     Friend WithEvents grpActions As GroupBox
-    Friend WithEvents colNotes As ColumnHeader
-    Friend WithEvents colBrand As ColumnHeader
     Friend WithEvents grpModels As GroupBox
-    Friend WithEvents lstModels As ListView
     Friend WithEvents lblResults As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents btnEdit As Button
+    Friend WithEvents dataBrands As DataGridView
 End Class
