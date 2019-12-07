@@ -5,10 +5,6 @@
 
 
 
-- Rebuild UI so that it doesnt clip on later .NET versions. (TEST WITH OTHER COMPUTERS)
-
-
-
 - Clean up code (commented out lines)
 - Grey out unfinished options (statistics and search)
 
