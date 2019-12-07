@@ -39,14 +39,34 @@ Partial Class frmDecks
         Me.lblYear = New System.Windows.Forms.Label()
         Me.lblManufacturer = New System.Windows.Forms.Label()
         Me.grpFilters = New System.Windows.Forms.GroupBox()
-        Me.dataDecks = New System.Windows.Forms.DataGridView()
+        Me.lstDecks = New System.Windows.Forms.ListView()
+        Me.colManufacturer = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colDeck = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colTypes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colHeads = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colSpeeds = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNRs = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colHX = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colMPX = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colStereo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colWells = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colDubbing = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colAutoReverse = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colProgramSearch = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colCalibration = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colAzimuth = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colFrequency = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colSignalRatio = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colWowFlutter = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colDistortion = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         CType(Me.numYearMin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpTapes.SuspendLayout()
         Me.grpActions.SuspendLayout()
         CType(Me.numYearMax, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpBasic.SuspendLayout()
         Me.grpFilters.SuspendLayout()
-        CType(Me.dataDecks, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'numYearMin
@@ -72,7 +92,7 @@ Partial Class frmDecks
         '
         'grpTapes
         '
-        Me.grpTapes.Controls.Add(Me.dataDecks)
+        Me.grpTapes.Controls.Add(Me.lstDecks)
         Me.grpTapes.Location = New System.Drawing.Point(219, 11)
         Me.grpTapes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTapes.Name = "grpTapes"
@@ -229,16 +249,120 @@ Partial Class frmDecks
         Me.grpFilters.TabStop = False
         Me.grpFilters.Text = "Filters"
         '
-        'dataDecks
+        'lstDecks
         '
-        Me.dataDecks.AllowUserToAddRows = False
-        Me.dataDecks.AllowUserToDeleteRows = False
-        Me.dataDecks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataDecks.Location = New System.Drawing.Point(5, 18)
-        Me.dataDecks.Name = "dataDecks"
-        Me.dataDecks.ReadOnly = True
-        Me.dataDecks.Size = New System.Drawing.Size(936, 286)
-        Me.dataDecks.TabIndex = 1
+        Me.lstDecks.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colManufacturer, Me.colDeck, Me.ColumnHeader7, Me.colTypes, Me.colHeads, Me.colSpeeds, Me.colNRs, Me.colHX, Me.colMPX, Me.colStereo, Me.colWells, Me.colDubbing, Me.colAutoReverse, Me.colProgramSearch, Me.colCalibration, Me.colAzimuth, Me.colFrequency, Me.colSignalRatio, Me.colWowFlutter, Me.colDistortion, Me.ColumnHeader8})
+        Me.lstDecks.HideSelection = False
+        Me.lstDecks.Location = New System.Drawing.Point(5, 17)
+        Me.lstDecks.Margin = New System.Windows.Forms.Padding(2)
+        Me.lstDecks.Name = "lstDecks"
+        Me.lstDecks.Size = New System.Drawing.Size(936, 287)
+        Me.lstDecks.TabIndex = 46
+        Me.lstDecks.UseCompatibleStateImageBehavior = False
+        Me.lstDecks.View = System.Windows.Forms.View.Details
+        '
+        'colManufacturer
+        '
+        Me.colManufacturer.Text = "Manufacturer"
+        Me.colManufacturer.Width = 95
+        '
+        'colDeck
+        '
+        Me.colDeck.Text = "Model"
+        Me.colDeck.Width = 71
+        '
+        'ColumnHeader7
+        '
+        Me.ColumnHeader7.Text = "Year"
+        Me.ColumnHeader7.Width = 47
+        '
+        'colTypes
+        '
+        Me.colTypes.Text = "Types"
+        Me.colTypes.Width = 55
+        '
+        'colHeads
+        '
+        Me.colHeads.Text = "Heads"
+        Me.colHeads.Width = 54
+        '
+        'colSpeeds
+        '
+        Me.colSpeeds.Text = "Speeds"
+        '
+        'colNRs
+        '
+        Me.colNRs.Text = "NRs"
+        Me.colNRs.Width = 54
+        '
+        'colHX
+        '
+        Me.colHX.Text = "HX"
+        Me.colHX.Width = 35
+        '
+        'colMPX
+        '
+        Me.colMPX.Text = "MPX"
+        Me.colMPX.Width = 40
+        '
+        'colStereo
+        '
+        Me.colStereo.Text = "Stereo"
+        Me.colStereo.Width = 54
+        '
+        'colWells
+        '
+        Me.colWells.Text = "Wells"
+        Me.colWells.Width = 47
+        '
+        'colDubbing
+        '
+        Me.colDubbing.Text = "Dubbing"
+        Me.colDubbing.Width = 64
+        '
+        'colAutoReverse
+        '
+        Me.colAutoReverse.Text = "Reverse"
+        Me.colAutoReverse.Width = 65
+        '
+        'colProgramSearch
+        '
+        Me.colProgramSearch.Text = "Search Program"
+        Me.colProgramSearch.Width = 64
+        '
+        'colCalibration
+        '
+        Me.colCalibration.Text = "Calibration"
+        Me.colCalibration.Width = 57
+        '
+        'colAzimuth
+        '
+        Me.colAzimuth.Text = "Azimuth Correction"
+        Me.colAzimuth.Width = 69
+        '
+        'colFrequency
+        '
+        Me.colFrequency.Text = "Frequency Response"
+        Me.colFrequency.Width = 87
+        '
+        'colSignalRatio
+        '
+        Me.colSignalRatio.Text = "Signal Noise Ratio"
+        '
+        'colWowFlutter
+        '
+        Me.colWowFlutter.Text = "Wow & Flutter"
+        Me.colWowFlutter.Width = 52
+        '
+        'colDistortion
+        '
+        Me.colDistortion.Text = "Harmonic Distortion"
+        Me.colDistortion.Width = 57
+        '
+        'ColumnHeader8
+        '
+        Me.ColumnHeader8.Text = "Condition"
+        Me.ColumnHeader8.Width = 54
         '
         'frmDecks
         '
@@ -265,7 +389,6 @@ Partial Class frmDecks
         Me.grpBasic.ResumeLayout(False)
         Me.grpBasic.PerformLayout()
         Me.grpFilters.ResumeLayout(False)
-        CType(Me.dataDecks, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -286,5 +409,26 @@ Partial Class frmDecks
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents txtManufacturer As TextBox
     Friend WithEvents btnEdit As Button
-    Friend WithEvents dataDecks As DataGridView
+    Friend WithEvents lstDecks As ListView
+    Friend WithEvents colManufacturer As ColumnHeader
+    Friend WithEvents colDeck As ColumnHeader
+    Friend WithEvents ColumnHeader7 As ColumnHeader
+    Friend WithEvents colTypes As ColumnHeader
+    Friend WithEvents colHeads As ColumnHeader
+    Friend WithEvents colSpeeds As ColumnHeader
+    Friend WithEvents colNRs As ColumnHeader
+    Friend WithEvents colHX As ColumnHeader
+    Friend WithEvents colMPX As ColumnHeader
+    Friend WithEvents colStereo As ColumnHeader
+    Friend WithEvents colWells As ColumnHeader
+    Friend WithEvents colDubbing As ColumnHeader
+    Friend WithEvents colAutoReverse As ColumnHeader
+    Friend WithEvents colProgramSearch As ColumnHeader
+    Friend WithEvents colCalibration As ColumnHeader
+    Friend WithEvents colAzimuth As ColumnHeader
+    Friend WithEvents colFrequency As ColumnHeader
+    Friend WithEvents colSignalRatio As ColumnHeader
+    Friend WithEvents colWowFlutter As ColumnHeader
+    Friend WithEvents colDistortion As ColumnHeader
+    Friend WithEvents ColumnHeader8 As ColumnHeader
 End Class

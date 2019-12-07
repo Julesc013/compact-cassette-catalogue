@@ -34,11 +34,13 @@ Partial Class frmViewBrands
         Me.grpModels = New System.Windows.Forms.GroupBox()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.dataBrands = New System.Windows.Forms.DataGridView()
+        Me.lstBrands = New System.Windows.Forms.ListView()
+        Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpFilters.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpModels.SuspendLayout()
-        CType(Me.dataBrands, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TextBox1
@@ -131,7 +133,7 @@ Partial Class frmViewBrands
         '
         'grpModels
         '
-        Me.grpModels.Controls.Add(Me.dataBrands)
+        Me.grpModels.Controls.Add(Me.lstBrands)
         Me.grpModels.Location = New System.Drawing.Point(209, 11)
         Me.grpModels.Margin = New System.Windows.Forms.Padding(2)
         Me.grpModels.Name = "grpModels"
@@ -162,16 +164,32 @@ Partial Class frmViewBrands
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'dataBrands
+        'lstBrands
         '
-        Me.dataBrands.AllowUserToAddRows = False
-        Me.dataBrands.AllowUserToDeleteRows = False
-        Me.dataBrands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataBrands.Location = New System.Drawing.Point(5, 18)
-        Me.dataBrands.Name = "dataBrands"
-        Me.dataBrands.ReadOnly = True
-        Me.dataBrands.Size = New System.Drawing.Size(418, 300)
-        Me.dataBrands.TabIndex = 0
+        Me.lstBrands.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader9, Me.ColumnHeader10, Me.ColumnHeader11})
+        Me.lstBrands.HideSelection = False
+        Me.lstBrands.Location = New System.Drawing.Point(4, 17)
+        Me.lstBrands.Margin = New System.Windows.Forms.Padding(2)
+        Me.lstBrands.Name = "lstBrands"
+        Me.lstBrands.Size = New System.Drawing.Size(420, 302)
+        Me.lstBrands.TabIndex = 45
+        Me.lstBrands.UseCompatibleStateImageBehavior = False
+        Me.lstBrands.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader9
+        '
+        Me.ColumnHeader9.Text = "Code"
+        Me.ColumnHeader9.Width = 51
+        '
+        'ColumnHeader10
+        '
+        Me.ColumnHeader10.Text = "Brand"
+        Me.ColumnHeader10.Width = 169
+        '
+        'ColumnHeader11
+        '
+        Me.ColumnHeader11.Text = "Notes"
+        Me.ColumnHeader11.Width = 210
         '
         'frmViewBrands
         '
@@ -195,7 +213,6 @@ Partial Class frmViewBrands
         Me.grpActions.ResumeLayout(False)
         Me.grpActions.PerformLayout()
         Me.grpModels.ResumeLayout(False)
-        CType(Me.dataBrands, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,5 +228,8 @@ Partial Class frmViewBrands
     Friend WithEvents lblResults As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents btnEdit As Button
-    Friend WithEvents dataBrands As DataGridView
+    Friend WithEvents lstBrands As ListView
+    Friend WithEvents ColumnHeader9 As ColumnHeader
+    Friend WithEvents ColumnHeader10 As ColumnHeader
+    Friend WithEvents ColumnHeader11 As ColumnHeader
 End Class

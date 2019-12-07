@@ -42,11 +42,17 @@ Partial Class frmModels
         Me.cmbModel = New System.Windows.Forms.ComboBox()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.dataModels = New System.Windows.Forms.DataGridView()
+        Me.lstModels = New System.Windows.Forms.ListView()
+        Me.colIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colType = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colModel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colCode = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpModels.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpFilters.SuspendLayout()
-        CType(Me.dataModels, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkTypeBetter
@@ -63,7 +69,7 @@ Partial Class frmModels
         '
         'grpModels
         '
-        Me.grpModels.Controls.Add(Me.dataModels)
+        Me.grpModels.Controls.Add(Me.lstModels)
         Me.grpModels.Location = New System.Drawing.Point(193, 11)
         Me.grpModels.Margin = New System.Windows.Forms.Padding(2)
         Me.grpModels.Name = "grpModels"
@@ -274,16 +280,52 @@ Partial Class frmModels
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'dataModels
+        'lstModels
         '
-        Me.dataModels.AllowUserToAddRows = False
-        Me.dataModels.AllowUserToDeleteRows = False
-        Me.dataModels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataModels.Location = New System.Drawing.Point(5, 18)
-        Me.dataModels.Name = "dataModels"
-        Me.dataModels.ReadOnly = True
-        Me.dataModels.Size = New System.Drawing.Size(529, 381)
-        Me.dataModels.TabIndex = 1
+        Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colBrand, Me.colType, Me.colModel, Me.colCode, Me.colName, Me.colNotes})
+        Me.lstModels.HideSelection = False
+        Me.lstModels.Location = New System.Drawing.Point(5, 17)
+        Me.lstModels.Margin = New System.Windows.Forms.Padding(2)
+        Me.lstModels.Name = "lstModels"
+        Me.lstModels.Size = New System.Drawing.Size(529, 382)
+        Me.lstModels.TabIndex = 43
+        Me.lstModels.UseCompatibleStateImageBehavior = False
+        Me.lstModels.View = System.Windows.Forms.View.Details
+        '
+        'colIdentifier
+        '
+        Me.colIdentifier.Text = "Identifier"
+        Me.colIdentifier.Width = 68
+        '
+        'colBrand
+        '
+        Me.colBrand.Text = "Brand"
+        Me.colBrand.Width = 93
+        '
+        'colType
+        '
+        Me.colType.Text = "Type"
+        Me.colType.Width = 74
+        '
+        'colModel
+        '
+        Me.colModel.Text = "Model"
+        Me.colModel.Width = 132
+        '
+        'colCode
+        '
+        Me.colCode.Text = "Code"
+        Me.colCode.Width = 40
+        '
+        'colName
+        '
+        Me.colName.Text = "Full Name"
+        Me.colName.Width = 133
+        '
+        'colNotes
+        '
+        Me.colNotes.Text = "Notes"
+        Me.colNotes.Width = 140
         '
         'frmModels
         '
@@ -306,7 +348,6 @@ Partial Class frmModels
         Me.grpActions.PerformLayout()
         Me.grpFilters.ResumeLayout(False)
         Me.grpFilters.PerformLayout()
-        CType(Me.dataModels, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -332,5 +373,12 @@ Partial Class frmModels
     Friend WithEvents lblResults As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents btnEdit As Button
-    Friend WithEvents dataModels As DataGridView
+    Friend WithEvents lstModels As ListView
+    Friend WithEvents colIdentifier As ColumnHeader
+    Friend WithEvents colBrand As ColumnHeader
+    Friend WithEvents colType As ColumnHeader
+    Friend WithEvents colModel As ColumnHeader
+    Friend WithEvents colCode As ColumnHeader
+    Friend WithEvents colName As ColumnHeader
+    Friend WithEvents colNotes As ColumnHeader
 End Class

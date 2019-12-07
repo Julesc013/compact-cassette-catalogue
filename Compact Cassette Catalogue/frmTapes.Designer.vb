@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmTapes
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmTapes
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTapes))
         Me.grpFilters = New System.Windows.Forms.GroupBox()
@@ -71,7 +71,21 @@ Partial Class frmTapes
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.dataTapes = New System.Windows.Forms.DataGridView()
+        Me.lstTapes = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colYear = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colLength = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colRecorded = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colContents = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNoise = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colAlbum = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colTitle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpFilters.SuspendLayout()
         Me.grpContents.SuspendLayout()
         Me.grpTape.SuspendLayout()
@@ -82,7 +96,6 @@ Partial Class frmTapes
         CType(Me.numYearMax, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpTapes.SuspendLayout()
         Me.grpActions.SuspendLayout()
-        CType(Me.dataTapes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpFilters
@@ -539,7 +552,7 @@ Partial Class frmTapes
         '
         'grpTapes
         '
-        Me.grpTapes.Controls.Add(Me.dataTapes)
+        Me.grpTapes.Controls.Add(Me.lstTapes)
         Me.grpTapes.Location = New System.Drawing.Point(202, 11)
         Me.grpTapes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTapes.Name = "grpTapes"
@@ -627,16 +640,87 @@ Partial Class frmTapes
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'dataTapes
+        'lstTapes
         '
-        Me.dataTapes.AllowUserToAddRows = False
-        Me.dataTapes.AllowUserToDeleteRows = False
-        Me.dataTapes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataTapes.Location = New System.Drawing.Point(5, 18)
-        Me.dataTapes.Name = "dataTapes"
-        Me.dataTapes.ReadOnly = True
-        Me.dataTapes.Size = New System.Drawing.Size(894, 632)
-        Me.dataTapes.TabIndex = 1
+        Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.colYear, Me.colLength, Me.colCondition, Me.colRecorded, Me.colContents, Me.colNoise, Me.colAlbum, Me.colTitle, Me.ColumnHeader6})
+        Me.lstTapes.HideSelection = False
+        Me.lstTapes.Location = New System.Drawing.Point(5, 17)
+        Me.lstTapes.Margin = New System.Windows.Forms.Padding(2)
+        Me.lstTapes.Name = "lstTapes"
+        Me.lstTapes.Size = New System.Drawing.Size(894, 633)
+        Me.lstTapes.TabIndex = 43
+        Me.lstTapes.UseCompatibleStateImageBehavior = False
+        Me.lstTapes.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "Identifier"
+        Me.ColumnHeader1.Width = 82
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Name"
+        Me.ColumnHeader2.Width = 165
+        '
+        'ColumnHeader3
+        '
+        Me.ColumnHeader3.Text = "Brand"
+        Me.ColumnHeader3.Width = 91
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "Model"
+        Me.ColumnHeader4.Width = 78
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "Type"
+        Me.ColumnHeader5.Width = 51
+        '
+        'colYear
+        '
+        Me.colYear.Text = "Year"
+        Me.colYear.Width = 44
+        '
+        'colLength
+        '
+        Me.colLength.Text = "Length"
+        Me.colLength.Width = 48
+        '
+        'colCondition
+        '
+        Me.colCondition.Text = "Condition"
+        Me.colCondition.Width = 59
+        '
+        'colRecorded
+        '
+        Me.colRecorded.Text = "Dates Recorded"
+        Me.colRecorded.Width = 114
+        '
+        'colContents
+        '
+        Me.colContents.Text = "Contents"
+        Me.colContents.Width = 74
+        '
+        'colNoise
+        '
+        Me.colNoise.Text = "NRs"
+        Me.colNoise.Width = 41
+        '
+        'colAlbum
+        '
+        Me.colAlbum.Text = "Artists"
+        Me.colAlbum.Width = 81
+        '
+        'colTitle
+        '
+        Me.colTitle.Text = "Titles"
+        Me.colTitle.Width = 86
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "Notes"
+        Me.ColumnHeader6.Width = 90
         '
         'frmTapes
         '
@@ -669,7 +753,6 @@ Partial Class frmTapes
         Me.grpTapes.ResumeLayout(False)
         Me.grpActions.ResumeLayout(False)
         Me.grpActions.PerformLayout()
-        CType(Me.dataTapes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -723,5 +806,19 @@ Partial Class frmTapes
     Friend WithEvents lblDeck As Label
     Friend WithEvents lblResults As Label
     Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents dataTapes As DataGridView
+    Friend WithEvents lstTapes As ListView
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents ColumnHeader3 As ColumnHeader
+    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents colYear As ColumnHeader
+    Friend WithEvents colLength As ColumnHeader
+    Friend WithEvents colCondition As ColumnHeader
+    Friend WithEvents colRecorded As ColumnHeader
+    Friend WithEvents colContents As ColumnHeader
+    Friend WithEvents colNoise As ColumnHeader
+    Friend WithEvents colAlbum As ColumnHeader
+    Friend WithEvents colTitle As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
 End Class
