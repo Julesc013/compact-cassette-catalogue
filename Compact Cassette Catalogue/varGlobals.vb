@@ -9,9 +9,9 @@ Module varGlobals
 
     'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     'About program information
-    Public Const VERSION As String = "0.6.1"
+    Public Const VERSION As String = "0.6.2"
     Public Const VERSIONSTAGE As String = "Beta"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 4, 0, 45, 0, DateTimeKind.Local) 'Y M D, h m s
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 7, 16, 0, 0, DateTimeKind.Local) 'Y M D, h m s
     'About catalogue information
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
