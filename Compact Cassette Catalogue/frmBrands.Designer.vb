@@ -31,13 +31,13 @@ Partial Class frmViewBrands
         Me.grpFilters = New System.Windows.Forms.GroupBox()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpModels = New System.Windows.Forms.GroupBox()
         Me.lstModels = New System.Windows.Forms.ListView()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.btnEdit = New System.Windows.Forms.Button()
         Me.grpFilters.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpModels.SuspendLayout()
@@ -51,7 +51,7 @@ Partial Class frmViewBrands
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(46, 17)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(145, 20)
         Me.TextBox1.TabIndex = 1
@@ -69,7 +69,7 @@ Partial Class frmViewBrands
         'btnRefresh
         '
         Me.btnRefresh.Location = New System.Drawing.Point(4, 17)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(188, 21)
         Me.btnRefresh.TabIndex = 1
@@ -91,9 +91,9 @@ Partial Class frmViewBrands
         Me.grpFilters.Controls.Add(Me.TextBox1)
         Me.grpFilters.Controls.Add(Me.lblNotes)
         Me.grpFilters.Location = New System.Drawing.Point(9, 10)
-        Me.grpFilters.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpFilters.Margin = New System.Windows.Forms.Padding(2)
         Me.grpFilters.Name = "grpFilters"
-        Me.grpFilters.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpFilters.Padding = New System.Windows.Forms.Padding(2)
         Me.grpFilters.Size = New System.Drawing.Size(196, 43)
         Me.grpFilters.TabIndex = 1
         Me.grpFilters.TabStop = False
@@ -103,7 +103,7 @@ Partial Class frmViewBrands
         '
         Me.btnDelete.Enabled = False
         Me.btnDelete.Location = New System.Drawing.Point(99, 42)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(93, 21)
         Me.btnDelete.TabIndex = 2
@@ -117,13 +117,24 @@ Partial Class frmViewBrands
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
         Me.grpActions.Location = New System.Drawing.Point(9, 250)
-        Me.grpActions.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
-        Me.grpActions.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
         Me.grpActions.Size = New System.Drawing.Size(196, 85)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
+        '
+        'btnEdit
+        '
+        Me.btnEdit.Enabled = False
+        Me.btnEdit.Location = New System.Drawing.Point(4, 42)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(93, 21)
+        Me.btnEdit.TabIndex = 14
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
         '
         'colNotes
         '
@@ -139,9 +150,9 @@ Partial Class frmViewBrands
         '
         Me.grpModels.Controls.Add(Me.lstModels)
         Me.grpModels.Location = New System.Drawing.Point(209, 11)
-        Me.grpModels.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpModels.Margin = New System.Windows.Forms.Padding(2)
         Me.grpModels.Name = "grpModels"
-        Me.grpModels.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpModels.Padding = New System.Windows.Forms.Padding(2)
         Me.grpModels.Size = New System.Drawing.Size(428, 324)
         Me.grpModels.TabIndex = 2
         Me.grpModels.TabStop = False
@@ -152,7 +163,7 @@ Partial Class frmViewBrands
         Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colCode, Me.colBrand, Me.colNotes})
         Me.lstModels.HideSelection = False
         Me.lstModels.Location = New System.Drawing.Point(4, 17)
-        Me.lstModels.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.lstModels.Margin = New System.Windows.Forms.Padding(2)
         Me.lstModels.Name = "lstModels"
         Me.lstModels.Size = New System.Drawing.Size(420, 302)
         Me.lstModels.TabIndex = 0
@@ -173,23 +184,12 @@ Partial Class frmViewBrands
         '
         Me.TextBox2.Enabled = False
         Me.TextBox2.Location = New System.Drawing.Point(98, 226)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
         Me.TextBox2.Size = New System.Drawing.Size(107, 20)
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'btnEdit
-        '
-        Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(4, 42)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(93, 21)
-        Me.btnEdit.TabIndex = 14
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.UseVisualStyleBackColor = True
         '
         'frmViewBrands
         '
@@ -204,7 +204,7 @@ Partial Class frmViewBrands
         Me.Controls.Add(Me.grpModels)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmViewBrands"
         Me.Text = "View Brands"

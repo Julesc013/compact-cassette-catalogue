@@ -2,11 +2,22 @@
 
 
 
+## Releases
+
+
+
+### Version 1.0 – 7 December 2019
+
+- 
+- *List views* replaced with *data grid views*.
+
+
+
 ## Betas
 
 
 
-### Beta 0.6.2 – 4 December 2019
+### Beta 0.6.2 – 7 December 2019
 
 - Rebuilt UI to fix element alignment.
 - Added console output header.
@@ -17,8 +28,8 @@
 ### Beta 0.6.1 – 4 December 2019
 
 - Can now write console output to a log file.
-- Improved console help command.
-- Added close and kill commands.
+- Improved console *help* command.
+- Added close and *kill* commands.
 - Bug fixes.
 
 
@@ -27,7 +38,7 @@
 
 - Can now update information of existing tapes.
 - Can now delete existing tapes.
-- File version checker now supports "x.x.xbx" version numbers.
+- File version checker now supports *'x.x.xbx'* version numbers.
 - .NET Framework changed to version 4.6.
   - Added Windows Vista support.
 
@@ -56,14 +67,14 @@
 
 ### Beta 0.5.1 – 25 October 2019
 
-- File version updated to 1.1.0 (see below for changes).
+- File version updated to *1.1.0* (see below for changes).
 - Modification date updated at time of save.
 
 
 
 ### Beta 0.5 – 25 October 2019
 
-- Added ability to load saved catalogues (file format version 1.0.2 only).
+- Added ability to load saved catalogues (file format version *1.0.2* only).
 - Optimised console output function (included date and time with logs).
 - Loading now writes updated program data to the file.
 - Loading files checks against list of supported file versions.

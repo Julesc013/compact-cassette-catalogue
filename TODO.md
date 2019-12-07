@@ -1,7 +1,7 @@
 ### Betas
 
-- make changes to existing models/decks/brands
 - view existing items lists
+- make changes to existing models/decks/brands
 
 
 
