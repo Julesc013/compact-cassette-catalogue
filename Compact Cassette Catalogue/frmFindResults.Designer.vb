@@ -41,43 +41,49 @@ Partial Class frmFindResults
         Me.colAlbum = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colTitle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btnDelete = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblResults
         '
         Me.lblResults.AutoSize = True
-        Me.lblResults.Location = New System.Drawing.Point(12, 375)
+        Me.lblResults.Location = New System.Drawing.Point(11, 307)
+        Me.lblResults.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblResults.Name = "lblResults"
-        Me.lblResults.Size = New System.Drawing.Size(120, 17)
+        Me.lblResults.Size = New System.Drawing.Size(88, 13)
         Me.lblResults.TabIndex = 32
         Me.lblResults.Text = "Results (Filtered):"
         '
         'btnEdit
         '
         Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(907, 371)
+        Me.btnEdit.Location = New System.Drawing.Point(919, 303)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(193, 25)
+        Me.btnEdit.Size = New System.Drawing.Size(87, 21)
         Me.btnEdit.TabIndex = 2
-        Me.btnEdit.Text = "Edit Tape"
+        Me.btnEdit.Text = "Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
         '
         'TextBox2
         '
         Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(138, 372)
+        Me.TextBox2.Location = New System.Drawing.Point(103, 304)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(105, 22)
+        Me.TextBox2.Size = New System.Drawing.Size(87, 20)
         Me.TextBox2.TabIndex = 2
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lstTapes
         '
         Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colName, Me.colBrand, Me.colModel, Me.colType, Me.colYear, Me.colLength, Me.colCondition, Me.colRecorded, Me.colContents, Me.colNoise, Me.colAlbum, Me.colTitle, Me.colNotes})
-        Me.lstTapes.Location = New System.Drawing.Point(12, 12)
+        Me.lstTapes.HideSelection = False
+        Me.lstTapes.Location = New System.Drawing.Point(11, 11)
+        Me.lstTapes.Margin = New System.Windows.Forms.Padding(2)
         Me.lstTapes.Name = "lstTapes"
-        Me.lstTapes.Size = New System.Drawing.Size(1088, 353)
+        Me.lstTapes.Size = New System.Drawing.Size(1086, 288)
         Me.lstTapes.TabIndex = 1
         Me.lstTapes.UseCompatibleStateImageBehavior = False
         Me.lstTapes.View = System.Windows.Forms.View.Details
@@ -152,18 +158,31 @@ Partial Class frmFindResults
         Me.colNotes.Text = "Notes"
         Me.colNotes.Width = 90
         '
+        'btnDelete
+        '
+        Me.btnDelete.Enabled = False
+        Me.btnDelete.Location = New System.Drawing.Point(1010, 303)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(87, 21)
+        Me.btnDelete.TabIndex = 33
+        Me.btnDelete.Text = "Delete"
+        Me.btnDelete.UseVisualStyleBackColor = True
+        '
         'frmFindResults
         '
         Me.AcceptButton = Me.btnEdit
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1112, 407)
+        Me.ClientSize = New System.Drawing.Size(1107, 334)
+        Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.lstTapes)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmFindResults"
         Me.Text = "Find Results"
@@ -190,4 +209,5 @@ Partial Class frmFindResults
     Friend WithEvents colAlbum As ColumnHeader
     Friend WithEvents colTitle As ColumnHeader
     Friend WithEvents colNotes As ColumnHeader
+    Friend WithEvents btnDelete As Button
 End Class

@@ -25,7 +25,7 @@
 - only nr/bias/speed selectable if deck supports it?
 
 - add more filters for decks
-- add more filters for tapes
+- add more filters for tapes (eg speed and such)
 
 
 

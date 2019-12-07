@@ -37,6 +37,7 @@ Partial Class frmViewBrands
         Me.lstModels = New System.Windows.Forms.ListView()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.grpFilters.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpModels.SuspendLayout()
@@ -49,25 +50,28 @@ Partial Class frmViewBrands
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(61, 21)
+        Me.TextBox1.Location = New System.Drawing.Point(46, 17)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(167, 22)
+        Me.TextBox1.Size = New System.Drawing.Size(145, 20)
         Me.TextBox1.TabIndex = 1
         '
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(6, 24)
+        Me.lblNotes.Location = New System.Drawing.Point(4, 20)
+        Me.lblNotes.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNotes.Name = "lblNotes"
-        Me.lblNotes.Size = New System.Drawing.Size(49, 17)
+        Me.lblNotes.Size = New System.Drawing.Size(38, 13)
         Me.lblNotes.TabIndex = 8
         Me.lblNotes.Text = "Notes:"
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(6, 21)
+        Me.btnRefresh.Location = New System.Drawing.Point(4, 17)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(222, 25)
+        Me.btnRefresh.Size = New System.Drawing.Size(188, 21)
         Me.btnRefresh.TabIndex = 1
         Me.btnRefresh.Text = "Refresh List"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -75,19 +79,22 @@ Partial Class frmViewBrands
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 80)
+        Me.Label1.Location = New System.Drawing.Point(4, 65)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(209, 17)
+        Me.Label1.Size = New System.Drawing.Size(154, 13)
         Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Confirm deletions via main form."
+        Me.Label1.Text = "Confirm changes via main form."
         '
         'grpFilters
         '
         Me.grpFilters.Controls.Add(Me.TextBox1)
         Me.grpFilters.Controls.Add(Me.lblNotes)
-        Me.grpFilters.Location = New System.Drawing.Point(12, 12)
+        Me.grpFilters.Location = New System.Drawing.Point(9, 10)
+        Me.grpFilters.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpFilters.Name = "grpFilters"
-        Me.grpFilters.Size = New System.Drawing.Size(234, 49)
+        Me.grpFilters.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpFilters.Size = New System.Drawing.Size(196, 43)
         Me.grpFilters.TabIndex = 1
         Me.grpFilters.TabStop = False
         Me.grpFilters.Text = "Filters"
@@ -95,21 +102,25 @@ Partial Class frmViewBrands
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(6, 52)
+        Me.btnDelete.Location = New System.Drawing.Point(99, 42)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(222, 25)
+        Me.btnDelete.Size = New System.Drawing.Size(93, 21)
         Me.btnDelete.TabIndex = 2
-        Me.btnDelete.Text = "Delete Brand"
+        Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'grpActions
         '
+        Me.grpActions.Controls.Add(Me.btnEdit)
         Me.grpActions.Controls.Add(Me.btnRefresh)
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
-        Me.grpActions.Location = New System.Drawing.Point(12, 276)
+        Me.grpActions.Location = New System.Drawing.Point(9, 250)
+        Me.grpActions.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpActions.Name = "grpActions"
-        Me.grpActions.Size = New System.Drawing.Size(234, 105)
+        Me.grpActions.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpActions.Size = New System.Drawing.Size(196, 85)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
@@ -117,7 +128,7 @@ Partial Class frmViewBrands
         'colNotes
         '
         Me.colNotes.Text = "Notes"
-        Me.colNotes.Width = 218
+        Me.colNotes.Width = 210
         '
         'colBrand
         '
@@ -127,9 +138,11 @@ Partial Class frmViewBrands
         'grpModels
         '
         Me.grpModels.Controls.Add(Me.lstModels)
-        Me.grpModels.Location = New System.Drawing.Point(252, 12)
+        Me.grpModels.Location = New System.Drawing.Point(209, 11)
+        Me.grpModels.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.grpModels.Name = "grpModels"
-        Me.grpModels.Size = New System.Drawing.Size(457, 369)
+        Me.grpModels.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpModels.Size = New System.Drawing.Size(428, 324)
         Me.grpModels.TabIndex = 2
         Me.grpModels.TabStop = False
         Me.grpModels.Text = "Models"
@@ -137,9 +150,11 @@ Partial Class frmViewBrands
         'lstModels
         '
         Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colCode, Me.colBrand, Me.colNotes})
-        Me.lstModels.Location = New System.Drawing.Point(6, 21)
+        Me.lstModels.HideSelection = False
+        Me.lstModels.Location = New System.Drawing.Point(4, 17)
+        Me.lstModels.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.lstModels.Name = "lstModels"
-        Me.lstModels.Size = New System.Drawing.Size(445, 342)
+        Me.lstModels.Size = New System.Drawing.Size(420, 302)
         Me.lstModels.TabIndex = 0
         Me.lstModels.UseCompatibleStateImageBehavior = False
         Me.lstModels.View = System.Windows.Forms.View.Details
@@ -147,28 +162,41 @@ Partial Class frmViewBrands
         'lblResults
         '
         Me.lblResults.AutoSize = True
-        Me.lblResults.Location = New System.Drawing.Point(12, 251)
+        Me.lblResults.Location = New System.Drawing.Point(6, 229)
+        Me.lblResults.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblResults.Name = "lblResults"
-        Me.lblResults.Size = New System.Drawing.Size(120, 17)
+        Me.lblResults.Size = New System.Drawing.Size(88, 13)
         Me.lblResults.TabIndex = 35
         Me.lblResults.Text = "Results (Filtered):"
         '
         'TextBox2
         '
         Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(135, 248)
+        Me.TextBox2.Location = New System.Drawing.Point(98, 226)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(111, 22)
+        Me.TextBox2.Size = New System.Drawing.Size(107, 20)
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'btnEdit
+        '
+        Me.btnEdit.Enabled = False
+        Me.btnEdit.Location = New System.Drawing.Point(4, 42)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(93, 21)
+        Me.btnEdit.TabIndex = 14
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
         '
         'frmViewBrands
         '
         Me.AcceptButton = Me.btnRefresh
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(721, 392)
+        Me.ClientSize = New System.Drawing.Size(647, 343)
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.grpFilters)
@@ -176,6 +204,7 @@ Partial Class frmViewBrands
         Me.Controls.Add(Me.grpModels)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.MaximizeBox = False
         Me.Name = "frmViewBrands"
         Me.Text = "View Brands"
@@ -203,4 +232,5 @@ Partial Class frmViewBrands
     Friend WithEvents lstModels As ListView
     Friend WithEvents lblResults As Label
     Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents btnEdit As Button
 End Class

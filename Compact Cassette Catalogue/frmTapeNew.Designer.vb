@@ -321,12 +321,12 @@ Partial Class frmTapeNew
         'chkHXB
         '
         Me.chkHXB.AutoSize = True
-        Me.chkHXB.Location = New System.Drawing.Point(97, 116)
+        Me.chkHXB.Location = New System.Drawing.Point(78, 116)
         Me.chkHXB.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHXB.Name = "chkHXB"
-        Me.chkHXB.Size = New System.Drawing.Size(41, 17)
+        Me.chkHXB.Size = New System.Drawing.Size(60, 17)
         Me.chkHXB.TabIndex = 7
-        Me.chkHXB.Text = "HX"
+        Me.chkHXB.Text = "HX-Pro"
         Me.chkHXB.UseVisualStyleBackColor = True
         '
         'chkMPXB
@@ -853,12 +853,12 @@ Partial Class frmTapeNew
         'chkHXA
         '
         Me.chkHXA.AutoSize = True
-        Me.chkHXA.Location = New System.Drawing.Point(97, 116)
+        Me.chkHXA.Location = New System.Drawing.Point(78, 116)
         Me.chkHXA.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHXA.Name = "chkHXA"
-        Me.chkHXA.Size = New System.Drawing.Size(41, 17)
+        Me.chkHXA.Size = New System.Drawing.Size(60, 17)
         Me.chkHXA.TabIndex = 7
-        Me.chkHXA.Text = "HX"
+        Me.chkHXA.Text = "HX-Pro"
         Me.chkHXA.UseVisualStyleBackColor = True
         '
         'chkMPXA

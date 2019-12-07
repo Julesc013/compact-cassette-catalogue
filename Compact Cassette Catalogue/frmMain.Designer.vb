@@ -702,12 +702,12 @@ Partial Class frmMain
         'chkHXB
         '
         Me.chkHXB.AutoSize = True
-        Me.chkHXB.Location = New System.Drawing.Point(97, 116)
+        Me.chkHXB.Location = New System.Drawing.Point(78, 116)
         Me.chkHXB.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHXB.Name = "chkHXB"
-        Me.chkHXB.Size = New System.Drawing.Size(41, 17)
+        Me.chkHXB.Size = New System.Drawing.Size(60, 17)
         Me.chkHXB.TabIndex = 7
-        Me.chkHXB.Text = "HX"
+        Me.chkHXB.Text = "HX-Pro"
         Me.chkHXB.UseVisualStyleBackColor = True
         '
         'chkMPXB
@@ -1021,11 +1021,11 @@ Partial Class frmMain
         Me.grpBasic.Controls.Add(Me.chkPackaged)
         Me.grpBasic.Controls.Add(Me.lblCondition)
         Me.grpBasic.Controls.Add(Me.cmbCondition)
-        Me.grpBasic.Location = New System.Drawing.Point(4, 113)
+        Me.grpBasic.Location = New System.Drawing.Point(5, 113)
         Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
         Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpBasic.Size = New System.Drawing.Size(259, 44)
+        Me.grpBasic.Size = New System.Drawing.Size(258, 44)
         Me.grpBasic.TabIndex = 2
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
@@ -1065,11 +1065,11 @@ Partial Class frmMain
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(4, 161)
+        Me.grpNotes.Location = New System.Drawing.Point(5, 161)
         Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
         Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpNotes.Size = New System.Drawing.Size(259, 208)
+        Me.grpNotes.Size = New System.Drawing.Size(258, 208)
         Me.grpNotes.TabIndex = 6
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
@@ -1080,7 +1080,7 @@ Partial Class frmMain
         Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(249, 186)
+        Me.txtNotes.Size = New System.Drawing.Size(248, 185)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
@@ -1234,12 +1234,12 @@ Partial Class frmMain
         'chkHXA
         '
         Me.chkHXA.AutoSize = True
-        Me.chkHXA.Location = New System.Drawing.Point(97, 116)
+        Me.chkHXA.Location = New System.Drawing.Point(78, 116)
         Me.chkHXA.Margin = New System.Windows.Forms.Padding(2)
         Me.chkHXA.Name = "chkHXA"
-        Me.chkHXA.Size = New System.Drawing.Size(41, 17)
+        Me.chkHXA.Size = New System.Drawing.Size(60, 17)
         Me.chkHXA.TabIndex = 7
-        Me.chkHXA.Text = "HX"
+        Me.chkHXA.Text = "HX-Pro"
         Me.chkHXA.UseVisualStyleBackColor = True
         '
         'chkMPXA
@@ -1512,11 +1512,11 @@ Partial Class frmMain
         Me.grpModel.Controls.Add(Me.lblLength)
         Me.grpModel.Controls.Add(Me.lblYear)
         Me.grpModel.Controls.Add(Me.lblModel)
-        Me.grpModel.Location = New System.Drawing.Point(4, 17)
+        Me.grpModel.Location = New System.Drawing.Point(5, 17)
         Me.grpModel.Margin = New System.Windows.Forms.Padding(2)
         Me.grpModel.Name = "grpModel"
         Me.grpModel.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpModel.Size = New System.Drawing.Size(203, 92)
+        Me.grpModel.Size = New System.Drawing.Size(202, 92)
         Me.grpModel.TabIndex = 1
         Me.grpModel.TabStop = False
         Me.grpModel.Text = "Model"
@@ -1529,7 +1529,7 @@ Partial Class frmMain
         Me.cmbRegion.Location = New System.Drawing.Point(49, 65)
         Me.cmbRegion.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbRegion.Name = "cmbRegion"
-        Me.cmbRegion.Size = New System.Drawing.Size(149, 21)
+        Me.cmbRegion.Size = New System.Drawing.Size(148, 21)
         Me.cmbRegion.TabIndex = 25
         '
         'numLength
@@ -1538,7 +1538,7 @@ Partial Class frmMain
         Me.numLength.Margin = New System.Windows.Forms.Padding(2)
         Me.numLength.Maximum = New Decimal(New Integer() {180, 0, 0, 0})
         Me.numLength.Name = "numLength"
-        Me.numLength.Size = New System.Drawing.Size(46, 20)
+        Me.numLength.Size = New System.Drawing.Size(45, 20)
         Me.numLength.TabIndex = 24
         Me.numLength.Value = New Decimal(New Integer() {90, 0, 0, 0})
         '
@@ -1559,7 +1559,7 @@ Partial Class frmMain
         Me.txtModel.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModel.Name = "txtModel"
         Me.txtModel.ReadOnly = True
-        Me.txtModel.Size = New System.Drawing.Size(149, 20)
+        Me.txtModel.Size = New System.Drawing.Size(148, 20)
         Me.txtModel.TabIndex = 1
         '
         'lblRegion

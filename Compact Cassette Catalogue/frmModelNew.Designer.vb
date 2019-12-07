@@ -46,7 +46,7 @@ Partial Class frmModelNew
         '
         'txtModel
         '
-        Me.txtModel.Location = New System.Drawing.Point(46, 66)
+        Me.txtModel.Location = New System.Drawing.Point(46, 67)
         Me.txtModel.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModel.MaxLength = 100
         Me.txtModel.Name = "txtModel"
@@ -56,7 +56,7 @@ Partial Class frmModelNew
         'lblModel
         '
         Me.lblModel.AutoSize = True
-        Me.lblModel.Location = New System.Drawing.Point(4, 68)
+        Me.lblModel.Location = New System.Drawing.Point(4, 70)
         Me.lblModel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblModel.Name = "lblModel"
         Me.lblModel.Size = New System.Drawing.Size(39, 13)
@@ -73,11 +73,11 @@ Partial Class frmModelNew
         Me.grpBasic.Controls.Add(Me.lblModel)
         Me.grpBasic.Controls.Add(Me.lblBrand)
         Me.grpBasic.Controls.Add(Me.txtModel)
-        Me.grpBasic.Location = New System.Drawing.Point(9, 10)
+        Me.grpBasic.Location = New System.Drawing.Point(11, 11)
         Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
         Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpBasic.Size = New System.Drawing.Size(159, 112)
+        Me.grpBasic.Size = New System.Drawing.Size(160, 117)
         Me.grpBasic.TabIndex = 1
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
@@ -85,7 +85,7 @@ Partial Class frmModelNew
         'lblCode
         '
         Me.lblCode.AutoSize = True
-        Me.lblCode.Location = New System.Drawing.Point(4, 91)
+        Me.lblCode.Location = New System.Drawing.Point(4, 94)
         Me.lblCode.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblCode.Name = "lblCode"
         Me.lblCode.Size = New System.Drawing.Size(35, 13)
@@ -94,7 +94,7 @@ Partial Class frmModelNew
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(46, 89)
+        Me.txtCode.Location = New System.Drawing.Point(46, 91)
         Me.txtCode.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCode.MaxLength = 2
         Me.txtCode.Name = "txtCode"
@@ -106,7 +106,7 @@ Partial Class frmModelNew
         Me.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbType.FormattingEnabled = True
         Me.cmbType.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferrichrome)", "Type IV (Metal)"})
-        Me.cmbType.Location = New System.Drawing.Point(46, 41)
+        Me.cmbType.Location = New System.Drawing.Point(46, 42)
         Me.cmbType.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbType.Name = "cmbType"
         Me.cmbType.Size = New System.Drawing.Size(109, 21)
@@ -115,7 +115,7 @@ Partial Class frmModelNew
         'lblType
         '
         Me.lblType.AutoSize = True
-        Me.lblType.Location = New System.Drawing.Point(4, 44)
+        Me.lblType.Location = New System.Drawing.Point(4, 45)
         Me.lblType.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblType.Name = "lblType"
         Me.lblType.Size = New System.Drawing.Size(34, 13)
@@ -145,32 +145,32 @@ Partial Class frmModelNew
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(4, 17)
+        Me.txtNotes.Location = New System.Drawing.Point(5, 17)
         Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(151, 45)
+        Me.txtNotes.Size = New System.Drawing.Size(150, 47)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(172, 55)
+        Me.grpNotes.Location = New System.Drawing.Point(175, 58)
         Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
         Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpNotes.Size = New System.Drawing.Size(159, 67)
+        Me.grpNotes.Size = New System.Drawing.Size(160, 70)
         Me.grpNotes.TabIndex = 3
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(9, 127)
+        Me.btnAdd.Location = New System.Drawing.Point(11, 132)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(159, 20)
+        Me.btnAdd.Size = New System.Drawing.Size(160, 21)
         Me.btnAdd.TabIndex = 4
         Me.btnAdd.Text = "Add Model"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -178,7 +178,7 @@ Partial Class frmModelNew
         'lblAdd
         '
         Me.lblAdd.AutoSize = True
-        Me.lblAdd.Location = New System.Drawing.Point(170, 130)
+        Me.lblAdd.Location = New System.Drawing.Point(179, 136)
         Me.lblAdd.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(144, 13)
@@ -189,11 +189,11 @@ Partial Class frmModelNew
         '
         Me.grpExtra.Controls.Add(Me.lblName)
         Me.grpExtra.Controls.Add(Me.txtName)
-        Me.grpExtra.Location = New System.Drawing.Point(172, 10)
+        Me.grpExtra.Location = New System.Drawing.Point(175, 11)
         Me.grpExtra.Margin = New System.Windows.Forms.Padding(2)
         Me.grpExtra.Name = "grpExtra"
         Me.grpExtra.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpExtra.Size = New System.Drawing.Size(159, 41)
+        Me.grpExtra.Size = New System.Drawing.Size(160, 43)
         Me.grpExtra.TabIndex = 2
         Me.grpExtra.TabStop = False
         Me.grpExtra.Text = "Extra"
@@ -221,7 +221,7 @@ Partial Class frmModelNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(340, 156)
+        Me.ClientSize = New System.Drawing.Size(346, 163)
         Me.Controls.Add(Me.grpExtra)
         Me.Controls.Add(Me.grpBasic)
         Me.Controls.Add(Me.grpNotes)

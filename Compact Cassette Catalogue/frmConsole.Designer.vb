@@ -32,7 +32,7 @@ Partial Class frmConsole
         '
         Me.lstConsole.FormattingEnabled = True
         Me.lstConsole.Location = New System.Drawing.Point(9, 10)
-        Me.lstConsole.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.lstConsole.Margin = New System.Windows.Forms.Padding(2)
         Me.lstConsole.Name = "lstConsole"
         Me.lstConsole.Size = New System.Drawing.Size(358, 160)
         Me.lstConsole.TabIndex = 3
@@ -40,7 +40,7 @@ Partial Class frmConsole
         'txtCommand
         '
         Me.txtCommand.Location = New System.Drawing.Point(9, 175)
-        Me.txtCommand.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCommand.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCommand.Name = "txtCommand"
         Me.txtCommand.Size = New System.Drawing.Size(264, 20)
         Me.txtCommand.TabIndex = 1
@@ -48,9 +48,9 @@ Partial Class frmConsole
         'btnEnter
         '
         Me.btnEnter.Location = New System.Drawing.Point(276, 174)
-        Me.btnEnter.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEnter.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEnter.Name = "btnEnter"
-        Me.btnEnter.Size = New System.Drawing.Size(91, 20)
+        Me.btnEnter.Size = New System.Drawing.Size(91, 21)
         Me.btnEnter.TabIndex = 2
         Me.btnEnter.Text = "Enter"
         Me.btnEnter.UseVisualStyleBackColor = True
@@ -66,7 +66,7 @@ Partial Class frmConsole
         Me.Controls.Add(Me.lstConsole)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmConsole"
         Me.Text = "Log Console"

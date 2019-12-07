@@ -49,6 +49,7 @@ Partial Class frmDecks
         Me.colDistortion = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -70,29 +71,33 @@ Partial Class frmDecks
         '
         'numYearMin
         '
-        Me.numYearMin.Location = New System.Drawing.Point(54, 49)
+        Me.numYearMin.Location = New System.Drawing.Point(57, 41)
+        Me.numYearMin.Margin = New System.Windows.Forms.Padding(2)
         Me.numYearMin.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         Me.numYearMin.Minimum = New Decimal(New Integer() {1962, 0, 0, 0})
         Me.numYearMin.Name = "numYearMin"
-        Me.numYearMin.Size = New System.Drawing.Size(66, 22)
+        Me.numYearMin.Size = New System.Drawing.Size(54, 20)
         Me.numYearMin.TabIndex = 2
         Me.numYearMin.Value = New Decimal(New Integer() {1962, 0, 0, 0})
         '
         'lblResults
         '
         Me.lblResults.AutoSize = True
-        Me.lblResults.Location = New System.Drawing.Point(12, 218)
+        Me.lblResults.Location = New System.Drawing.Point(11, 216)
+        Me.lblResults.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblResults.Name = "lblResults"
-        Me.lblResults.Size = New System.Drawing.Size(120, 17)
+        Me.lblResults.Size = New System.Drawing.Size(88, 13)
         Me.lblResults.TabIndex = 33
         Me.lblResults.Text = "Results (Filtered):"
         '
         'grpTapes
         '
         Me.grpTapes.Controls.Add(Me.lstTapes)
-        Me.grpTapes.Location = New System.Drawing.Point(252, 12)
+        Me.grpTapes.Location = New System.Drawing.Point(219, 11)
+        Me.grpTapes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTapes.Name = "grpTapes"
-        Me.grpTapes.Size = New System.Drawing.Size(1258, 336)
+        Me.grpTapes.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpTapes.Size = New System.Drawing.Size(946, 310)
         Me.grpTapes.TabIndex = 2
         Me.grpTapes.TabStop = False
         Me.grpTapes.Text = "Tapes"
@@ -100,9 +105,11 @@ Partial Class frmDecks
         'lstTapes
         '
         Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colManufacturer, Me.colDeck, Me.colYear, Me.colTypes, Me.colHeads, Me.colSpeeds, Me.colNRs, Me.colHX, Me.colMPX, Me.colStereo, Me.colWells, Me.colDubbing, Me.colAutoReverse, Me.colProgramSearch, Me.colCalibration, Me.colAzimuth, Me.colFrequency, Me.colSignalRatio, Me.colWowFlutter, Me.colDistortion, Me.colCondition})
-        Me.lstTapes.Location = New System.Drawing.Point(6, 21)
+        Me.lstTapes.HideSelection = False
+        Me.lstTapes.Location = New System.Drawing.Point(5, 17)
+        Me.lstTapes.Margin = New System.Windows.Forms.Padding(2)
         Me.lstTapes.Name = "lstTapes"
-        Me.lstTapes.Size = New System.Drawing.Size(1246, 309)
+        Me.lstTapes.Size = New System.Drawing.Size(936, 287)
         Me.lstTapes.TabIndex = 0
         Me.lstTapes.UseCompatibleStateImageBehavior = False
         Me.lstTapes.View = System.Windows.Forms.View.Details
@@ -212,21 +219,36 @@ Partial Class frmDecks
         '
         'grpActions
         '
+        Me.grpActions.Controls.Add(Me.btnEdit)
         Me.grpActions.Controls.Add(Me.btnRefresh)
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
-        Me.grpActions.Location = New System.Drawing.Point(12, 243)
+        Me.grpActions.Location = New System.Drawing.Point(11, 237)
+        Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
-        Me.grpActions.Size = New System.Drawing.Size(234, 105)
+        Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpActions.Size = New System.Drawing.Size(204, 84)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
         '
+        'btnEdit
+        '
+        Me.btnEdit.Enabled = False
+        Me.btnEdit.Location = New System.Drawing.Point(5, 42)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(95, 21)
+        Me.btnEdit.TabIndex = 14
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(6, 21)
+        Me.btnRefresh.Location = New System.Drawing.Point(5, 17)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(222, 25)
+        Me.btnRefresh.Size = New System.Drawing.Size(194, 21)
         Me.btnRefresh.TabIndex = 1
         Me.btnRefresh.Text = "Refresh List"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -234,39 +256,43 @@ Partial Class frmDecks
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 80)
+        Me.Label1.Location = New System.Drawing.Point(4, 65)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(209, 17)
+        Me.Label1.Size = New System.Drawing.Size(144, 13)
         Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Confirm deletions via main form."
+        Me.Label1.Text = "Save changes via main form."
         '
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(6, 52)
+        Me.btnDelete.Location = New System.Drawing.Point(104, 42)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(222, 25)
+        Me.btnDelete.Size = New System.Drawing.Size(95, 21)
         Me.btnDelete.TabIndex = 2
-        Me.btnDelete.Text = "Delete Deck"
+        Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'TextBox2
         '
         Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(135, 215)
+        Me.TextBox2.Location = New System.Drawing.Point(115, 213)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(111, 22)
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
         Me.TextBox2.TabIndex = 4
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'numYearMax
         '
-        Me.numYearMax.Location = New System.Drawing.Point(150, 49)
+        Me.numYearMax.Location = New System.Drawing.Point(135, 41)
+        Me.numYearMax.Margin = New System.Windows.Forms.Padding(2)
         Me.numYearMax.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         Me.numYearMax.Minimum = New Decimal(New Integer() {1962, 0, 0, 0})
         Me.numYearMax.Name = "numYearMax"
-        Me.numYearMax.Size = New System.Drawing.Size(66, 22)
+        Me.numYearMax.Size = New System.Drawing.Size(54, 20)
         Me.numYearMax.TabIndex = 3
         Me.numYearMax.Value = New Decimal(New Integer() {1962, 0, 0, 0})
         '
@@ -278,54 +304,62 @@ Partial Class frmDecks
         Me.grpBasic.Controls.Add(Me.lblYearTo)
         Me.grpBasic.Controls.Add(Me.lblYear)
         Me.grpBasic.Controls.Add(Me.lblManufacturer)
-        Me.grpBasic.Location = New System.Drawing.Point(6, 21)
+        Me.grpBasic.Location = New System.Drawing.Point(5, 16)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Size = New System.Drawing.Size(222, 78)
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpBasic.Size = New System.Drawing.Size(194, 67)
         Me.grpBasic.TabIndex = 1
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
         '
         'txtManufacturer
         '
-        Me.txtManufacturer.Location = New System.Drawing.Point(108, 21)
+        Me.txtManufacturer.Location = New System.Drawing.Point(81, 17)
+        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(2)
         Me.txtManufacturer.MaxLength = 100
         Me.txtManufacturer.Name = "txtManufacturer"
-        Me.txtManufacturer.Size = New System.Drawing.Size(108, 22)
+        Me.txtManufacturer.Size = New System.Drawing.Size(108, 20)
         Me.txtManufacturer.TabIndex = 1
         '
         'lblYearTo
         '
         Me.lblYearTo.AutoSize = True
-        Me.lblYearTo.Location = New System.Drawing.Point(126, 51)
+        Me.lblYearTo.Location = New System.Drawing.Point(115, 43)
+        Me.lblYearTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblYearTo.Name = "lblYearTo"
-        Me.lblYearTo.Size = New System.Drawing.Size(20, 17)
+        Me.lblYearTo.Size = New System.Drawing.Size(16, 13)
         Me.lblYearTo.TabIndex = 11
         Me.lblYearTo.Text = "to"
         '
         'lblYear
         '
         Me.lblYear.AutoSize = True
-        Me.lblYear.Location = New System.Drawing.Point(6, 51)
+        Me.lblYear.Location = New System.Drawing.Point(4, 43)
+        Me.lblYear.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblYear.Name = "lblYear"
-        Me.lblYear.Size = New System.Drawing.Size(42, 17)
+        Me.lblYear.Size = New System.Drawing.Size(32, 13)
         Me.lblYear.TabIndex = 2
         Me.lblYear.Text = "Year:"
         '
         'lblManufacturer
         '
         Me.lblManufacturer.AutoSize = True
-        Me.lblManufacturer.Location = New System.Drawing.Point(6, 24)
+        Me.lblManufacturer.Location = New System.Drawing.Point(4, 20)
+        Me.lblManufacturer.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblManufacturer.Name = "lblManufacturer"
-        Me.lblManufacturer.Size = New System.Drawing.Size(96, 17)
+        Me.lblManufacturer.Size = New System.Drawing.Size(73, 13)
         Me.lblManufacturer.TabIndex = 1
         Me.lblManufacturer.Text = "Manufacturer:"
         '
         'grpFilters
         '
         Me.grpFilters.Controls.Add(Me.grpBasic)
-        Me.grpFilters.Location = New System.Drawing.Point(12, 12)
+        Me.grpFilters.Location = New System.Drawing.Point(11, 11)
+        Me.grpFilters.Margin = New System.Windows.Forms.Padding(2)
         Me.grpFilters.Name = "grpFilters"
-        Me.grpFilters.Size = New System.Drawing.Size(234, 105)
+        Me.grpFilters.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpFilters.Size = New System.Drawing.Size(204, 88)
         Me.grpFilters.TabIndex = 1
         Me.grpFilters.TabStop = False
         Me.grpFilters.Text = "Filters"
@@ -333,9 +367,9 @@ Partial Class frmDecks
         'frmDecks
         '
         Me.AcceptButton = Me.btnRefresh
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1522, 360)
+        Me.ClientSize = New System.Drawing.Size(1177, 331)
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.grpTapes)
         Me.Controls.Add(Me.grpActions)
@@ -343,6 +377,7 @@ Partial Class frmDecks
         Me.Controls.Add(Me.grpFilters)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmDecks"
         Me.Text = "View Decks"
@@ -395,4 +430,5 @@ Partial Class frmDecks
     Friend WithEvents colDistortion As ColumnHeader
     Friend WithEvents txtManufacturer As TextBox
     Friend WithEvents colCondition As ColumnHeader
+    Friend WithEvents btnEdit As Button
 End Class

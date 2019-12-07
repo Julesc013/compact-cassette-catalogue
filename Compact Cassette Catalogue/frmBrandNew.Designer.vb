@@ -39,11 +39,11 @@ Partial Class frmBrandNew
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(9, 78)
-        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpNotes.Location = New System.Drawing.Point(11, 82)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
-        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.grpNotes.Size = New System.Drawing.Size(207, 72)
+        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpNotes.Size = New System.Drawing.Size(208, 73)
         Me.grpNotes.TabIndex = 2
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
@@ -51,10 +51,10 @@ Partial Class frmBrandNew
         'txtNotes
         '
         Me.txtNotes.Location = New System.Drawing.Point(4, 17)
-        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(199, 51)
+        Me.txtNotes.Size = New System.Drawing.Size(200, 51)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
@@ -64,11 +64,11 @@ Partial Class frmBrandNew
         Me.grpBasic.Controls.Add(Me.lblBrand)
         Me.grpBasic.Controls.Add(Me.txtCode)
         Me.grpBasic.Controls.Add(Me.txtBrand)
-        Me.grpBasic.Location = New System.Drawing.Point(9, 10)
-        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grpBasic.Location = New System.Drawing.Point(11, 11)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.grpBasic.Size = New System.Drawing.Size(207, 63)
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpBasic.Size = New System.Drawing.Size(208, 67)
         Me.grpBasic.TabIndex = 1
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
@@ -76,7 +76,7 @@ Partial Class frmBrandNew
         'lblCode
         '
         Me.lblCode.AutoSize = True
-        Me.lblCode.Location = New System.Drawing.Point(4, 42)
+        Me.lblCode.Location = New System.Drawing.Point(4, 44)
         Me.lblCode.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblCode.Name = "lblCode"
         Me.lblCode.Size = New System.Drawing.Size(35, 13)
@@ -95,8 +95,8 @@ Partial Class frmBrandNew
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(46, 40)
-        Me.txtCode.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtCode.Location = New System.Drawing.Point(46, 41)
+        Me.txtCode.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCode.MaxLength = 2
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Size = New System.Drawing.Size(36, 20)
@@ -105,16 +105,16 @@ Partial Class frmBrandNew
         'txtBrand
         '
         Me.txtBrand.Location = New System.Drawing.Point(46, 17)
-        Me.txtBrand.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtBrand.Margin = New System.Windows.Forms.Padding(2)
         Me.txtBrand.MaxLength = 100
         Me.txtBrand.Name = "txtBrand"
-        Me.txtBrand.Size = New System.Drawing.Size(157, 20)
+        Me.txtBrand.Size = New System.Drawing.Size(158, 20)
         Me.txtBrand.TabIndex = 1
         '
         'lblAdd
         '
         Me.lblAdd.AutoSize = True
-        Me.lblAdd.Location = New System.Drawing.Point(95, 158)
+        Me.lblAdd.Location = New System.Drawing.Point(119, 163)
         Me.lblAdd.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(100, 13)
@@ -123,10 +123,10 @@ Partial Class frmBrandNew
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(9, 155)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAdd.Location = New System.Drawing.Point(11, 159)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(82, 20)
+        Me.btnAdd.Size = New System.Drawing.Size(104, 20)
         Me.btnAdd.TabIndex = 3
         Me.btnAdd.Text = "Add Brand"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -135,13 +135,13 @@ Partial Class frmBrandNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(226, 184)
+        Me.ClientSize = New System.Drawing.Size(230, 189)
         Me.Controls.Add(Me.grpNotes)
         Me.Controls.Add(Me.grpBasic)
         Me.Controls.Add(Me.lblAdd)
         Me.Controls.Add(Me.btnAdd)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmBrandNew"
         Me.Text = "Add New Brand"
