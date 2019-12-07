@@ -1,5 +1,3 @@
-![Compact Cassette Catalogue banner](Resources/banner.png)
-
 # Compact Cassette Catalogue
 
 **Cataloging application for blank compact cassette tapes.**
@@ -18,7 +16,7 @@ It is a **user friendly** and **feature rich** alternative to a database.
 I created *C3* for myself because:
 1. I prefer *aesthetically minimal j-cards* which are often devoid of useful information...
 Which Dolby did I use when I recorded this?
-2. And I find it handy to be able to open up a list view of all my blank tapes, filter for the brand, type and length I want, and easily *select the perfect tape* for my new mix.
+2. I find it handy to be able to open up a list view of all my blank tapes, filter for the brand, type and length I want, and easily *select the perfect tape* for my new mix.
 
 Note: *C3* is not geared towards *pre-recorded* tapes, [Discogs](https://www.discogs.com/ "Discogs - Music Database and Marketplace") does that job exceptionally, though it is fully capable.
 
