@@ -112,22 +112,22 @@ Partial Class frmDeckNew
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(367, 203)
+        Me.grpNotes.Location = New System.Drawing.Point(367, 205)
         Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
         Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpNotes.Size = New System.Drawing.Size(189, 92)
+        Me.grpNotes.Size = New System.Drawing.Size(189, 90)
         Me.grpNotes.TabIndex = 7
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(4, 17)
+        Me.txtNotes.Location = New System.Drawing.Point(4, 19)
         Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(180, 69)
+        Me.txtNotes.Size = New System.Drawing.Size(180, 65)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
@@ -264,7 +264,7 @@ Partial Class frmDeckNew
         'lblWells
         '
         Me.lblWells.AutoSize = True
-        Me.lblWells.Location = New System.Drawing.Point(4, 44)
+        Me.lblWells.Location = New System.Drawing.Point(4, 46)
         Me.lblWells.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblWells.Name = "lblWells"
         Me.lblWells.Size = New System.Drawing.Size(36, 13)
@@ -287,7 +287,7 @@ Partial Class frmDeckNew
         Me.cmbWells.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbWells.FormattingEnabled = True
         Me.cmbWells.Items.AddRange(New Object() {"One", "Two", "Three"})
-        Me.cmbWells.Location = New System.Drawing.Point(44, 41)
+        Me.cmbWells.Location = New System.Drawing.Point(44, 43)
         Me.cmbWells.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbWells.Name = "cmbWells"
         Me.cmbWells.Size = New System.Drawing.Size(140, 21)
@@ -337,7 +337,7 @@ Partial Class frmDeckNew
         Me.grpTransport.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTransport.Name = "grpTransport"
         Me.grpTransport.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpTransport.Size = New System.Drawing.Size(189, 68)
+        Me.grpTransport.Size = New System.Drawing.Size(189, 70)
         Me.grpTransport.TabIndex = 6
         Me.grpTransport.TabStop = False
         Me.grpTransport.Text = "Transport"

@@ -18,7 +18,7 @@
         Dim brand As String
         Dim notes As String
 
-        Dim critNotes As String
+        Dim critNotes As String = txtNotes.Text
 
         ' Clear the ListView control.
         lstBrands.Items.Clear()
@@ -35,8 +35,6 @@
                 code = thisRow("Code").ToString.ToUpper
                 brand = thisRow("Brand").ToString
                 notes = thisRow("Notes").ToString
-
-                critNotes = txtNotes.Text
 
                 ' Only rows that fit the filter criteria!
                 If critNotes = Nothing Or notes.ToLower.Contains(critNotes.ToLower) Then

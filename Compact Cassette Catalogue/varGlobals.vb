@@ -286,9 +286,18 @@ Module varGlobals
     End Function
 
     Function getCondition(value As Integer) As Integer
-        'Convert selected index to condition score.
+        ' Convert selected index to condition score.
 
         Dim dictionary = New Dictionary(Of Integer, Integer) From {{0, 8}, {1, 7}, {2, 6}, {3, 5}, {4, 4}, {5, 3}, {6, 2}, {7, 1}, {8, 0}}
+
+        Return dictionary.Item(value)
+
+    End Function
+
+    Function getConditionWorded(value As Integer) As String
+        ' Convert condition score to Good-Mint ranking.
+
+        Dim dictionary = New Dictionary(Of Integer, String) From {{0, "Broken"}, {1, "Poor"}, {2, "Fair"}, {3, "Good"}, {4, "Good Plus"}, {5, "Very Good"}, {6, "Very Good Plus"}, {7, "Near Mint"}, {8, "Mint"}}
 
         Return dictionary.Item(value)
 

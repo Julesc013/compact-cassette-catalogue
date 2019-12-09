@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmDecks
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,25 +20,11 @@ Partial Class frmDecks
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDecks))
-        Me.numYearMin = New System.Windows.Forms.NumericUpDown()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.grpTapes = New System.Windows.Forms.GroupBox()
-        Me.grpActions = New System.Windows.Forms.GroupBox()
-        Me.btnEdit = New System.Windows.Forms.Button()
-        Me.btnRefresh = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.txtResults = New System.Windows.Forms.TextBox()
-        Me.numYearMax = New System.Windows.Forms.NumericUpDown()
-        Me.grpBasic = New System.Windows.Forms.GroupBox()
-        Me.txtManufacturer = New System.Windows.Forms.TextBox()
-        Me.lblYearTo = New System.Windows.Forms.Label()
-        Me.lblYear = New System.Windows.Forms.Label()
-        Me.lblManufacturer = New System.Windows.Forms.Label()
-        Me.grpFilters = New System.Windows.Forms.GroupBox()
         Me.lstDecks = New System.Windows.Forms.ListView()
         Me.colManufacturer = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colDeck = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -60,25 +46,33 @@ Partial Class frmDecks
         Me.colSignalRatio = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colWowFlutter = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colDistortion = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        CType(Me.numYearMin, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnEdit = New System.Windows.Forms.Button()
+        Me.btnRefresh = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.txtResults = New System.Windows.Forms.TextBox()
+        Me.grpBasic = New System.Windows.Forms.GroupBox()
+        Me.cmbTypes = New System.Windows.Forms.ComboBox()
+        Me.lblType = New System.Windows.Forms.Label()
+        Me.lblNR = New System.Windows.Forms.Label()
+        Me.cmbNR = New System.Windows.Forms.ComboBox()
+        Me.txtManufacturer = New System.Windows.Forms.TextBox()
+        Me.lblFrequencyTo = New System.Windows.Forms.Label()
+        Me.lblFrequency = New System.Windows.Forms.Label()
+        Me.lblManufacturer = New System.Windows.Forms.Label()
+        Me.grpFilters = New System.Windows.Forms.GroupBox()
+        Me.chkHX = New System.Windows.Forms.CheckBox()
+        Me.chkMPX = New System.Windows.Forms.CheckBox()
+        Me.chkCalibration = New System.Windows.Forms.CheckBox()
+        Me.numFrequencyMax = New System.Windows.Forms.NumericUpDown()
         Me.grpTapes.SuspendLayout()
         Me.grpActions.SuspendLayout()
-        CType(Me.numYearMax, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpBasic.SuspendLayout()
         Me.grpFilters.SuspendLayout()
+        CType(Me.numFrequencyMax, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'numYearMin
-        '
-        Me.numYearMin.Location = New System.Drawing.Point(57, 41)
-        Me.numYearMin.Margin = New System.Windows.Forms.Padding(2)
-        Me.numYearMin.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
-        Me.numYearMin.Minimum = New Decimal(New Integer() {1962, 0, 0, 0})
-        Me.numYearMin.Name = "numYearMin"
-        Me.numYearMin.Size = New System.Drawing.Size(54, 20)
-        Me.numYearMin.TabIndex = 2
-        Me.numYearMin.Value = New Decimal(New Integer() {1962, 0, 0, 0})
         '
         'lblResults
         '
@@ -102,155 +96,9 @@ Partial Class frmDecks
         Me.grpTapes.TabStop = False
         Me.grpTapes.Text = "Tapes"
         '
-        'grpActions
-        '
-        Me.grpActions.Controls.Add(Me.btnEdit)
-        Me.grpActions.Controls.Add(Me.btnRefresh)
-        Me.grpActions.Controls.Add(Me.Label1)
-        Me.grpActions.Controls.Add(Me.btnDelete)
-        Me.grpActions.Location = New System.Drawing.Point(11, 237)
-        Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
-        Me.grpActions.Name = "grpActions"
-        Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpActions.Size = New System.Drawing.Size(204, 84)
-        Me.grpActions.TabIndex = 3
-        Me.grpActions.TabStop = False
-        Me.grpActions.Text = "Actions"
-        '
-        'btnEdit
-        '
-        Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(5, 42)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(95, 21)
-        Me.btnEdit.TabIndex = 14
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.UseVisualStyleBackColor = True
-        '
-        'btnRefresh
-        '
-        Me.btnRefresh.Location = New System.Drawing.Point(5, 17)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(194, 21)
-        Me.btnRefresh.TabIndex = 1
-        Me.btnRefresh.Text = "Refresh List"
-        Me.btnRefresh.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(4, 65)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(144, 13)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Save changes via main form."
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(104, 42)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(95, 21)
-        Me.btnDelete.TabIndex = 2
-        Me.btnDelete.Text = "Delete"
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'txtResults
-        '
-        Me.txtResults.Location = New System.Drawing.Point(115, 213)
-        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtResults.Name = "txtResults"
-        Me.txtResults.ReadOnly = True
-        Me.txtResults.Size = New System.Drawing.Size(100, 20)
-        Me.txtResults.TabIndex = 4
-        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'numYearMax
-        '
-        Me.numYearMax.Location = New System.Drawing.Point(135, 41)
-        Me.numYearMax.Margin = New System.Windows.Forms.Padding(2)
-        Me.numYearMax.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
-        Me.numYearMax.Minimum = New Decimal(New Integer() {1962, 0, 0, 0})
-        Me.numYearMax.Name = "numYearMax"
-        Me.numYearMax.Size = New System.Drawing.Size(54, 20)
-        Me.numYearMax.TabIndex = 3
-        Me.numYearMax.Value = New Decimal(New Integer() {1962, 0, 0, 0})
-        '
-        'grpBasic
-        '
-        Me.grpBasic.Controls.Add(Me.txtManufacturer)
-        Me.grpBasic.Controls.Add(Me.numYearMin)
-        Me.grpBasic.Controls.Add(Me.numYearMax)
-        Me.grpBasic.Controls.Add(Me.lblYearTo)
-        Me.grpBasic.Controls.Add(Me.lblYear)
-        Me.grpBasic.Controls.Add(Me.lblManufacturer)
-        Me.grpBasic.Location = New System.Drawing.Point(5, 16)
-        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
-        Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpBasic.Size = New System.Drawing.Size(194, 67)
-        Me.grpBasic.TabIndex = 1
-        Me.grpBasic.TabStop = False
-        Me.grpBasic.Text = "Basic"
-        '
-        'txtManufacturer
-        '
-        Me.txtManufacturer.Location = New System.Drawing.Point(81, 17)
-        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtManufacturer.MaxLength = 100
-        Me.txtManufacturer.Name = "txtManufacturer"
-        Me.txtManufacturer.Size = New System.Drawing.Size(108, 20)
-        Me.txtManufacturer.TabIndex = 1
-        '
-        'lblYearTo
-        '
-        Me.lblYearTo.AutoSize = True
-        Me.lblYearTo.Location = New System.Drawing.Point(115, 43)
-        Me.lblYearTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblYearTo.Name = "lblYearTo"
-        Me.lblYearTo.Size = New System.Drawing.Size(16, 13)
-        Me.lblYearTo.TabIndex = 11
-        Me.lblYearTo.Text = "to"
-        '
-        'lblYear
-        '
-        Me.lblYear.AutoSize = True
-        Me.lblYear.Location = New System.Drawing.Point(4, 43)
-        Me.lblYear.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblYear.Name = "lblYear"
-        Me.lblYear.Size = New System.Drawing.Size(32, 13)
-        Me.lblYear.TabIndex = 2
-        Me.lblYear.Text = "Year:"
-        '
-        'lblManufacturer
-        '
-        Me.lblManufacturer.AutoSize = True
-        Me.lblManufacturer.Location = New System.Drawing.Point(4, 20)
-        Me.lblManufacturer.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblManufacturer.Name = "lblManufacturer"
-        Me.lblManufacturer.Size = New System.Drawing.Size(73, 13)
-        Me.lblManufacturer.TabIndex = 1
-        Me.lblManufacturer.Text = "Manufacturer:"
-        '
-        'grpFilters
-        '
-        Me.grpFilters.Controls.Add(Me.grpBasic)
-        Me.grpFilters.Location = New System.Drawing.Point(11, 11)
-        Me.grpFilters.Margin = New System.Windows.Forms.Padding(2)
-        Me.grpFilters.Name = "grpFilters"
-        Me.grpFilters.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpFilters.Size = New System.Drawing.Size(204, 88)
-        Me.grpFilters.TabIndex = 1
-        Me.grpFilters.TabStop = False
-        Me.grpFilters.Text = "Filters"
-        '
         'lstDecks
         '
-        Me.lstDecks.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colManufacturer, Me.colDeck, Me.ColumnHeader7, Me.colTypes, Me.colHeads, Me.colSpeeds, Me.colNRs, Me.colHX, Me.colMPX, Me.colStereo, Me.colWells, Me.colDubbing, Me.colAutoReverse, Me.colProgramSearch, Me.colCalibration, Me.colAzimuth, Me.colFrequency, Me.colSignalRatio, Me.colWowFlutter, Me.colDistortion, Me.ColumnHeader8})
+        Me.lstDecks.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colManufacturer, Me.colDeck, Me.ColumnHeader7, Me.colTypes, Me.colHeads, Me.colSpeeds, Me.colNRs, Me.colHX, Me.colMPX, Me.colStereo, Me.colWells, Me.colDubbing, Me.colAutoReverse, Me.colProgramSearch, Me.colCalibration, Me.colAzimuth, Me.colFrequency, Me.colSignalRatio, Me.colWowFlutter, Me.colDistortion, Me.colCondition})
         Me.lstDecks.HideSelection = False
         Me.lstDecks.Location = New System.Drawing.Point(5, 17)
         Me.lstDecks.Margin = New System.Windows.Forms.Padding(2)
@@ -358,10 +206,239 @@ Partial Class frmDecks
         Me.colDistortion.Text = "Harmonic Distortion"
         Me.colDistortion.Width = 57
         '
-        'ColumnHeader8
+        'colCondition
         '
-        Me.ColumnHeader8.Text = "Condition"
-        Me.ColumnHeader8.Width = 54
+        Me.colCondition.Text = "Condition"
+        Me.colCondition.Width = 54
+        '
+        'grpActions
+        '
+        Me.grpActions.Controls.Add(Me.btnEdit)
+        Me.grpActions.Controls.Add(Me.btnRefresh)
+        Me.grpActions.Controls.Add(Me.Label1)
+        Me.grpActions.Controls.Add(Me.btnDelete)
+        Me.grpActions.Location = New System.Drawing.Point(11, 237)
+        Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpActions.Name = "grpActions"
+        Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpActions.Size = New System.Drawing.Size(204, 84)
+        Me.grpActions.TabIndex = 3
+        Me.grpActions.TabStop = False
+        Me.grpActions.Text = "Actions"
+        '
+        'btnEdit
+        '
+        Me.btnEdit.Enabled = False
+        Me.btnEdit.Location = New System.Drawing.Point(5, 42)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(95, 21)
+        Me.btnEdit.TabIndex = 14
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
+        'btnRefresh
+        '
+        Me.btnRefresh.Location = New System.Drawing.Point(5, 17)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnRefresh.Name = "btnRefresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(194, 21)
+        Me.btnRefresh.TabIndex = 1
+        Me.btnRefresh.Text = "Refresh List"
+        Me.btnRefresh.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(4, 65)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(144, 13)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "Save changes via main form."
+        '
+        'btnDelete
+        '
+        Me.btnDelete.Enabled = False
+        Me.btnDelete.Location = New System.Drawing.Point(104, 42)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(95, 21)
+        Me.btnDelete.TabIndex = 2
+        Me.btnDelete.Text = "Delete"
+        Me.btnDelete.UseVisualStyleBackColor = True
+        '
+        'txtResults
+        '
+        Me.txtResults.Location = New System.Drawing.Point(115, 213)
+        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtResults.Name = "txtResults"
+        Me.txtResults.ReadOnly = True
+        Me.txtResults.Size = New System.Drawing.Size(100, 20)
+        Me.txtResults.TabIndex = 4
+        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'grpBasic
+        '
+        Me.grpBasic.Controls.Add(Me.numFrequencyMax)
+        Me.grpBasic.Controls.Add(Me.chkCalibration)
+        Me.grpBasic.Controls.Add(Me.chkMPX)
+        Me.grpBasic.Controls.Add(Me.chkHX)
+        Me.grpBasic.Controls.Add(Me.cmbTypes)
+        Me.grpBasic.Controls.Add(Me.lblType)
+        Me.grpBasic.Controls.Add(Me.lblNR)
+        Me.grpBasic.Controls.Add(Me.cmbNR)
+        Me.grpBasic.Controls.Add(Me.txtManufacturer)
+        Me.grpBasic.Controls.Add(Me.lblFrequencyTo)
+        Me.grpBasic.Controls.Add(Me.lblFrequency)
+        Me.grpBasic.Controls.Add(Me.lblManufacturer)
+        Me.grpBasic.Location = New System.Drawing.Point(5, 16)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpBasic.Name = "grpBasic"
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpBasic.Size = New System.Drawing.Size(194, 161)
+        Me.grpBasic.TabIndex = 1
+        Me.grpBasic.TabStop = False
+        Me.grpBasic.Text = "Basic"
+        '
+        'cmbTypes
+        '
+        Me.cmbTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTypes.FormattingEnabled = True
+        Me.cmbTypes.Items.AddRange(New Object() {"All Types", "Type I (Ferric)", "Type II (Chrome)", "Type III (Ferrichrome)", "Type IV (Metal)"})
+        Me.cmbTypes.Location = New System.Drawing.Point(70, 111)
+        Me.cmbTypes.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbTypes.Name = "cmbTypes"
+        Me.cmbTypes.Size = New System.Drawing.Size(119, 21)
+        Me.cmbTypes.TabIndex = 14
+        '
+        'lblType
+        '
+        Me.lblType.AutoSize = True
+        Me.lblType.Location = New System.Drawing.Point(4, 114)
+        Me.lblType.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblType.Name = "lblType"
+        Me.lblType.Size = New System.Drawing.Size(34, 13)
+        Me.lblType.TabIndex = 15
+        Me.lblType.Text = "Type:"
+        '
+        'lblNR
+        '
+        Me.lblNR.AutoSize = True
+        Me.lblNR.Location = New System.Drawing.Point(4, 68)
+        Me.lblNR.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblNR.Name = "lblNR"
+        Me.lblNR.Size = New System.Drawing.Size(63, 13)
+        Me.lblNR.TabIndex = 13
+        Me.lblNR.Text = "Noise Red.:"
+        '
+        'cmbNR
+        '
+        Me.cmbNR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbNR.FormattingEnabled = True
+        Me.cmbNR.Items.AddRange(New Object() {"All NRs", "None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
+        Me.cmbNR.Location = New System.Drawing.Point(70, 65)
+        Me.cmbNR.Margin = New System.Windows.Forms.Padding(2)
+        Me.cmbNR.Name = "cmbNR"
+        Me.cmbNR.Size = New System.Drawing.Size(119, 21)
+        Me.cmbNR.TabIndex = 12
+        '
+        'txtManufacturer
+        '
+        Me.txtManufacturer.Location = New System.Drawing.Point(70, 17)
+        Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtManufacturer.MaxLength = 100
+        Me.txtManufacturer.Name = "txtManufacturer"
+        Me.txtManufacturer.Size = New System.Drawing.Size(119, 20)
+        Me.txtManufacturer.TabIndex = 1
+        '
+        'lblFrequencyTo
+        '
+        Me.lblFrequencyTo.AutoSize = True
+        Me.lblFrequencyTo.Location = New System.Drawing.Point(129, 43)
+        Me.lblFrequencyTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblFrequencyTo.Name = "lblFrequencyTo"
+        Me.lblFrequencyTo.Size = New System.Drawing.Size(29, 13)
+        Me.lblFrequencyTo.TabIndex = 11
+        Me.lblFrequencyTo.Text = "kHz."
+        '
+        'lblFrequency
+        '
+        Me.lblFrequency.AutoSize = True
+        Me.lblFrequency.Location = New System.Drawing.Point(4, 43)
+        Me.lblFrequency.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblFrequency.Name = "lblFrequency"
+        Me.lblFrequency.Size = New System.Drawing.Size(60, 13)
+        Me.lblFrequency.TabIndex = 2
+        Me.lblFrequency.Text = "Frequency:"
+        '
+        'lblManufacturer
+        '
+        Me.lblManufacturer.AutoSize = True
+        Me.lblManufacturer.Location = New System.Drawing.Point(4, 20)
+        Me.lblManufacturer.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblManufacturer.Name = "lblManufacturer"
+        Me.lblManufacturer.Size = New System.Drawing.Size(58, 13)
+        Me.lblManufacturer.TabIndex = 1
+        Me.lblManufacturer.Text = "Manufact.:"
+        '
+        'grpFilters
+        '
+        Me.grpFilters.Controls.Add(Me.grpBasic)
+        Me.grpFilters.Location = New System.Drawing.Point(11, 11)
+        Me.grpFilters.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpFilters.Name = "grpFilters"
+        Me.grpFilters.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpFilters.Size = New System.Drawing.Size(204, 182)
+        Me.grpFilters.TabIndex = 1
+        Me.grpFilters.TabStop = False
+        Me.grpFilters.Text = "Filters"
+        '
+        'chkHX
+        '
+        Me.chkHX.AutoSize = True
+        Me.chkHX.Location = New System.Drawing.Point(70, 91)
+        Me.chkHX.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkHX.Name = "chkHX"
+        Me.chkHX.Size = New System.Drawing.Size(60, 17)
+        Me.chkHX.TabIndex = 16
+        Me.chkHX.Text = "HX Pro"
+        Me.chkHX.UseVisualStyleBackColor = True
+        '
+        'chkMPX
+        '
+        Me.chkMPX.AutoSize = True
+        Me.chkMPX.Location = New System.Drawing.Point(140, 91)
+        Me.chkMPX.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkMPX.Name = "chkMPX"
+        Me.chkMPX.Size = New System.Drawing.Size(49, 17)
+        Me.chkMPX.TabIndex = 17
+        Me.chkMPX.Text = "MPX"
+        Me.chkMPX.UseVisualStyleBackColor = True
+        '
+        'chkCalibration
+        '
+        Me.chkCalibration.AutoSize = True
+        Me.chkCalibration.Location = New System.Drawing.Point(70, 138)
+        Me.chkCalibration.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkCalibration.Name = "chkCalibration"
+        Me.chkCalibration.Size = New System.Drawing.Size(103, 17)
+        Me.chkCalibration.TabIndex = 18
+        Me.chkCalibration.Text = "Tape Calibration"
+        Me.chkCalibration.UseVisualStyleBackColor = True
+        '
+        'numFrequencyMax
+        '
+        Me.numFrequencyMax.DecimalPlaces = 1
+        Me.numFrequencyMax.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.numFrequencyMax.Location = New System.Drawing.Point(70, 41)
+        Me.numFrequencyMax.Margin = New System.Windows.Forms.Padding(2)
+        Me.numFrequencyMax.Maximum = New Decimal(New Integer() {30, 0, 0, 0})
+        Me.numFrequencyMax.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.numFrequencyMax.Name = "numFrequencyMax"
+        Me.numFrequencyMax.Size = New System.Drawing.Size(55, 20)
+        Me.numFrequencyMax.TabIndex = 20
+        Me.numFrequencyMax.Value = New Decimal(New Integer() {10, 0, 0, 0})
         '
         'frmDecks
         '
@@ -380,19 +457,17 @@ Partial Class frmDecks
         Me.MaximizeBox = False
         Me.Name = "frmDecks"
         Me.Text = "View Decks"
-        CType(Me.numYearMin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpTapes.ResumeLayout(False)
         Me.grpActions.ResumeLayout(False)
         Me.grpActions.PerformLayout()
-        CType(Me.numYearMax, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpBasic.ResumeLayout(False)
         Me.grpBasic.PerformLayout()
         Me.grpFilters.ResumeLayout(False)
+        CType(Me.numFrequencyMax, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents numYearMin As NumericUpDown
     Friend WithEvents lblResults As Label
     Friend WithEvents grpTapes As GroupBox
     Friend WithEvents grpActions As GroupBox
@@ -400,10 +475,9 @@ Partial Class frmDecks
     Friend WithEvents Label1 As Label
     Friend WithEvents btnDelete As Button
     Friend WithEvents txtResults As TextBox
-    Friend WithEvents numYearMax As NumericUpDown
     Friend WithEvents grpBasic As GroupBox
-    Private WithEvents lblYearTo As Label
-    Private WithEvents lblYear As Label
+    Private WithEvents lblFrequencyTo As Label
+    Private WithEvents lblFrequency As Label
     Private WithEvents lblManufacturer As Label
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents txtManufacturer As TextBox
@@ -429,5 +503,13 @@ Partial Class frmDecks
     Friend WithEvents colSignalRatio As ColumnHeader
     Friend WithEvents colWowFlutter As ColumnHeader
     Friend WithEvents colDistortion As ColumnHeader
-    Friend WithEvents ColumnHeader8 As ColumnHeader
+    Friend WithEvents colCondition As ColumnHeader
+    Friend WithEvents cmbNR As ComboBox
+    Private WithEvents lblNR As Label
+    Friend WithEvents cmbTypes As ComboBox
+    Private WithEvents lblType As Label
+    Friend WithEvents chkHX As CheckBox
+    Friend WithEvents chkMPX As CheckBox
+    Friend WithEvents chkCalibration As CheckBox
+    Friend WithEvents numFrequencyMax As NumericUpDown
 End Class
