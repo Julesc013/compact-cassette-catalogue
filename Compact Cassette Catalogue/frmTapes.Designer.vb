@@ -70,7 +70,7 @@ Partial Class frmTapes
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.lblResults = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtResults = New System.Windows.Forms.TextBox()
         Me.lstTapes = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -629,16 +629,15 @@ Partial Class frmTapes
         Me.lblResults.TabIndex = 28
         Me.lblResults.Text = "Results (Filtered):"
         '
-        'TextBox2
+        'txtResults
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(114, 558)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(84, 20)
-        Me.TextBox2.TabIndex = 4
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtResults.Location = New System.Drawing.Point(114, 558)
+        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtResults.Name = "txtResults"
+        Me.txtResults.ReadOnly = True
+        Me.txtResults.Size = New System.Drawing.Size(84, 20)
+        Me.txtResults.TabIndex = 4
+        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lstTapes
         '
@@ -730,7 +729,7 @@ Partial Class frmTapes
         Me.ClientSize = New System.Drawing.Size(1118, 677)
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.grpActions)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtResults)
         Me.Controls.Add(Me.grpTapes)
         Me.Controls.Add(Me.grpFilters)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -805,7 +804,7 @@ Partial Class frmTapes
     Friend WithEvents cmbDeck As ComboBox
     Friend WithEvents lblDeck As Label
     Friend WithEvents lblResults As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtResults As TextBox
     Friend WithEvents lstTapes As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader

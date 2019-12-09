@@ -76,6 +76,7 @@
 
 - fix regex validation
 - fix console scrolling bug
+- case sensitive searching
 
 
 

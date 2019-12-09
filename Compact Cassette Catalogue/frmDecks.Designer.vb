@@ -31,7 +31,7 @@ Partial Class frmDecks
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtResults = New System.Windows.Forms.TextBox()
         Me.numYearMax = New System.Windows.Forms.NumericUpDown()
         Me.grpBasic = New System.Windows.Forms.GroupBox()
         Me.txtManufacturer = New System.Windows.Forms.TextBox()
@@ -159,16 +159,15 @@ Partial Class frmDecks
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
-        'TextBox2
+        'txtResults
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(115, 213)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 4
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtResults.Location = New System.Drawing.Point(115, 213)
+        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtResults.Name = "txtResults"
+        Me.txtResults.ReadOnly = True
+        Me.txtResults.Size = New System.Drawing.Size(100, 20)
+        Me.txtResults.TabIndex = 4
+        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'numYearMax
         '
@@ -373,7 +372,7 @@ Partial Class frmDecks
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.grpTapes)
         Me.Controls.Add(Me.grpActions)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtResults)
         Me.Controls.Add(Me.grpFilters)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -400,7 +399,7 @@ Partial Class frmDecks
     Friend WithEvents btnRefresh As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents btnDelete As Button
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtResults As TextBox
     Friend WithEvents numYearMax As NumericUpDown
     Friend WithEvents grpBasic As GroupBox
     Private WithEvents lblYearTo As Label

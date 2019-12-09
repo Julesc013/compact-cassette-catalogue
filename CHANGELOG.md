@@ -9,7 +9,6 @@
 ### Version 1.0 – 7 December 2019
 
 - 
-- *List views* replaced with *data grid views*.
 - Disabled access to incomplete functions.
 
 

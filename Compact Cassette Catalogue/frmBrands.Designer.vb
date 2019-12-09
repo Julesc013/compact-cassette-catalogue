@@ -23,7 +23,7 @@ Partial Class frmViewBrands
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmViewBrands))
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -33,7 +33,7 @@ Partial Class frmViewBrands
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.grpModels = New System.Windows.Forms.GroupBox()
         Me.lblResults = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtResults = New System.Windows.Forms.TextBox()
         Me.lstBrands = New System.Windows.Forms.ListView()
         Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -43,13 +43,13 @@ Partial Class frmViewBrands
         Me.grpModels.SuspendLayout()
         Me.SuspendLayout()
         '
-        'TextBox1
+        'txtNotes
         '
-        Me.TextBox1.Location = New System.Drawing.Point(46, 17)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(145, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.txtNotes.Location = New System.Drawing.Point(46, 17)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNotes.Name = "txtNotes"
+        Me.txtNotes.Size = New System.Drawing.Size(145, 20)
+        Me.txtNotes.TabIndex = 1
         '
         'lblNotes
         '
@@ -83,7 +83,7 @@ Partial Class frmViewBrands
         '
         'grpFilters
         '
-        Me.grpFilters.Controls.Add(Me.TextBox1)
+        Me.grpFilters.Controls.Add(Me.txtNotes)
         Me.grpFilters.Controls.Add(Me.lblNotes)
         Me.grpFilters.Location = New System.Drawing.Point(9, 10)
         Me.grpFilters.Margin = New System.Windows.Forms.Padding(2)
@@ -153,16 +153,15 @@ Partial Class frmViewBrands
         Me.lblResults.TabIndex = 35
         Me.lblResults.Text = "Results (Filtered):"
         '
-        'TextBox2
+        'txtResults
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(98, 226)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox2.TabIndex = 4
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtResults.Location = New System.Drawing.Point(98, 226)
+        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtResults.Name = "txtResults"
+        Me.txtResults.ReadOnly = True
+        Me.txtResults.Size = New System.Drawing.Size(107, 20)
+        Me.txtResults.TabIndex = 4
+        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lstBrands
         '
@@ -184,12 +183,12 @@ Partial Class frmViewBrands
         'ColumnHeader10
         '
         Me.ColumnHeader10.Text = "Brand"
-        Me.ColumnHeader10.Width = 169
+        Me.ColumnHeader10.Width = 135
         '
         'ColumnHeader11
         '
         Me.ColumnHeader11.Text = "Notes"
-        Me.ColumnHeader11.Width = 210
+        Me.ColumnHeader11.Width = 219
         '
         'frmViewBrands
         '
@@ -198,7 +197,7 @@ Partial Class frmViewBrands
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(647, 343)
         Me.Controls.Add(Me.lblResults)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtResults)
         Me.Controls.Add(Me.grpFilters)
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.grpModels)
@@ -217,7 +216,7 @@ Partial Class frmViewBrands
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtNotes As TextBox
     Private WithEvents lblNotes As Label
     Friend WithEvents btnRefresh As Button
     Friend WithEvents Label1 As Label
@@ -226,7 +225,7 @@ Partial Class frmViewBrands
     Friend WithEvents grpActions As GroupBox
     Friend WithEvents grpModels As GroupBox
     Friend WithEvents lblResults As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtResults As TextBox
     Friend WithEvents btnEdit As Button
     Friend WithEvents lstBrands As ListView
     Friend WithEvents ColumnHeader9 As ColumnHeader

@@ -41,7 +41,7 @@ Partial Class frmModels
         Me.lblType = New System.Windows.Forms.Label()
         Me.cmbModel = New System.Windows.Forms.ComboBox()
         Me.lblResults = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtResults = New System.Windows.Forms.TextBox()
         Me.lstModels = New System.Windows.Forms.ListView()
         Me.colIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -269,16 +269,15 @@ Partial Class frmModels
         Me.lblResults.TabIndex = 30
         Me.lblResults.Text = "Results (Filtered):"
         '
-        'TextBox2
+        'txtResults
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(102, 307)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(87, 20)
-        Me.TextBox2.TabIndex = 4
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtResults.Location = New System.Drawing.Point(102, 307)
+        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtResults.Name = "txtResults"
+        Me.txtResults.ReadOnly = True
+        Me.txtResults.Size = New System.Drawing.Size(87, 20)
+        Me.txtResults.TabIndex = 4
+        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lstModels
         '
@@ -334,7 +333,7 @@ Partial Class frmModels
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(744, 426)
         Me.Controls.Add(Me.lblResults)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtResults)
         Me.Controls.Add(Me.grpModels)
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.grpFilters)
@@ -371,7 +370,7 @@ Partial Class frmModels
     Friend WithEvents txtName As TextBox
     Private WithEvents lblName As Label
     Friend WithEvents lblResults As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtResults As TextBox
     Friend WithEvents btnEdit As Button
     Friend WithEvents lstModels As ListView
     Friend WithEvents colIdentifier As ColumnHeader
