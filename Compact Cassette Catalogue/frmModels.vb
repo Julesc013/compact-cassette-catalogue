@@ -1,7 +1,7 @@
 ﻿Public Class frmModels
     Private Sub frmModels_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        loadList()
+        'loadList()
 
     End Sub
 
@@ -221,6 +221,6 @@
     'End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
-        loadList()
+        'loadList()
     End Sub
 End Class

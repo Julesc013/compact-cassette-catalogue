@@ -57,8 +57,8 @@
             Dim frequencyHigh As Integer
             Dim signalRatio As Integer
             Dim signalRatioNR As String
-            Dim wowFlutter As Integer
-            Dim distortion As Integer
+            Dim wowFlutter As Decimal
+            Dim distortion As Decimal
             Dim condition As Integer
 
 
@@ -141,8 +141,8 @@
                 frequencyHigh = CInt(thisRow("FrequencyHigh"))
                 signalRatio = CInt(thisRow("SignalRatio"))
                 signalRatioNR = CStr(thisRow("SignalRatioNR"))
-                wowFlutter = CInt(thisRow("WowFlutter"))
-                distortion = CInt(thisRow("Distortion"))
+                wowFlutter = CDec(thisRow("WowFlutter"))
+                distortion = CDec(thisRow("Distortion"))
 
                 condition = CInt(thisRow("Condition"))
 
