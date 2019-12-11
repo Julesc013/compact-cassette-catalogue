@@ -1,14 +1,216 @@
-﻿Public Class frmTapes
-    Private Sub frmViewTapes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿'Public Class frmTapes
+'    Private Sub frmViewTapes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'Initialise boundary values.
-        datRecordedMax.Value = Date.Today
-        datRecordedMax.MaxDate = Date.Today
-        datRecordedMin.MaxDate = Date.Today
-        numYearMax.Value = Date.Today.Year
-        numYearMax.Maximum = Date.Today.Year
-        numYearMin.Maximum = Date.Today.Year
+'        'Initialise boundary values.
+'        datRecordedMax.Value = Date.Today
+'        datRecordedMax.MaxDate = Date.Today
+'        datRecordedMin.MaxDate = Date.Today
+'        numYearMax.Value = Date.Today.Year
+'        numYearMax.Maximum = Date.Today.Year
+'        numYearMin.Maximum = Date.Today.Year
 
-    End Sub
+'    End Sub
+'    Private Sub frmModels_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-End Class
+'        ' Populate objects.
+
+'        Dim brandCount As Integer = CInt(counters.Rows(1)("Number"))
+
+'        ' Load brands into combination box.
+'        For i As Integer = 0 To brandCount - 1
+'            Dim thisBrand As String = CStr(brands.Rows(i)("Brand"))
+'            cmbBrand.Items.Add(thisBrand)
+'        Next
+
+
+'        ' Initialise objects.
+'        cmbBrand.SelectedIndex = 0
+'        cmbTypes.SelectedIndex = 0
+'        cmbModel.SelectedIndex = 0
+
+'        loadList()
+
+'    End Sub
+
+'    Private Sub loadList()
+'        ' Load Data from the DataSet into the ListView.
+
+'        Dim validRow As Boolean
+'        ' Count the number of results.
+'        Dim resultsCount As Integer = 0
+
+
+'        ' Get filter values
+'        Dim critBrand As String = cmbBrand.Text
+'        Dim critType As Integer = cmbTypes.SelectedIndex
+'        Dim critTypeBetter As Boolean = chkTypeBetter.Checked
+'        Dim critModel As String = cmbModel.Text
+'        Dim critName As String = txtName.Text
+'        Dim critNotes As String = txtNotes.Text
+
+'        ' Clear the ListView control.
+'        lstModels.Items.Clear()
+
+'        ' Display items in the ListView control.
+'        For i As Integer = 0 To models.Rows.Count - 1
+
+'            Dim thisRow As DataRow = models.Rows(i)
+
+'            ' Initialise this row as a valid result given criteria.
+'            validRow = True
+
+'            ' Only rows that have Not been deleted.
+'            If thisRow.RowState <> DataRowState.Deleted Then
+
+'                ' Get data from row.
+'                Dim identifier As String = thisRow("Identifier").ToString
+'                Dim brand As String = thisRow("Brand").ToString
+'                Dim type As Integer = CInt(thisRow("Type"))
+'                Dim model As String = thisRow("Model").ToString
+'                Dim code As String = thisRow("Code").ToString
+'                Dim fullName As String = thisRow("Name").ToString
+'                Dim number As Integer = CInt(thisRow("Number"))
+'                Dim notes As String = thisRow("Notes").ToString
+
+
+'                ' Filter using criteria.
+
+'                If cmbBrand.SelectedIndex <> 0 And Not brand.ToLower = critBrand.ToLower Then
+'                    validRow = False
+'                End If
+
+'                ' Filter for types.
+'                If critType <> 0 Then
+'                    If critTypeBetter = False Then
+
+'                        If Not type = critType Then
+'                            validRow = False
+'                        End If
+
+'                    Else
+
+'                        If Not type >= critType Then
+'                            validRow = False
+'                        End If
+
+'                    End If
+'                End If
+
+'                If cmbModel.SelectedIndex <> 0 And Not model.ToLower = critModel.ToLower Then
+'                    validRow = False
+'                End If
+
+'                If critName <> Nothing And Not fullName.ToLower.Contains(critName.ToLower) Then
+'                    validRow = False
+'                End If
+
+'                If critNotes <> Nothing And Not notes.ToLower.Contains(critNotes.ToLower) Then
+'                    validRow = False
+'                End If
+
+
+'                ' Only display rows that fit the filter criteria!
+'                If validRow = True Then
+
+'                    ' Define the list items.
+'                    Dim lstViewItem As ListViewItem = New ListViewItem(identifier)
+'                    lstViewItem.SubItems.Add(brand)
+'                    lstViewItem.SubItems.Add(getTypeNumeral(type, True))
+'                    lstViewItem.SubItems.Add(model)
+'                    lstViewItem.SubItems.Add(code)
+'                    lstViewItem.SubItems.Add(fullName)
+'                    lstViewItem.SubItems.Add(number.ToString)
+'                    lstViewItem.SubItems.Add(notes)
+
+'                    ' Add the list items to the ListView.
+'                    lstModels.Items.Add(lstViewItem)
+
+'                    resultsCount += 1
+
+'                End If
+
+'            End If
+
+'        Next
+
+'        ' Display number of results.
+'        txtResults.Text = CStr(resultsCount)
+
+'    End Sub
+
+'    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+'        loadList()
+'    End Sub
+
+'    Private Sub cmbTypes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTypes.SelectedIndexChanged
+
+'        ' If the selected type is not "all types" then enable the ability to check the box below.
+
+'        Dim selectedIndex As Integer = cmbTypes.SelectedIndex
+
+'        If selectedIndex <> 0 Then ' If it is a specific type.
+
+'            ' Convert the Arabic to a Roman numeral.
+'            Dim typeNumeral As String = getTypeNumeral(selectedIndex, False)
+'            chkTypeBetter.Text = "Type " & typeNumeral & " or better."
+'            chkTypeBetter.Enabled = True
+
+'        Else
+
+'            ' When selected "all types" disable and decheck the box.
+'            chkTypeBetter.Enabled = False
+'            chkTypeBetter.Text = "Type I or better."
+'            chkTypeBetter.Checked = False
+
+'        End If
+
+'    End Sub
+
+'    Private Sub cmbBrand_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBrand.SelectedIndexChanged
+
+'        ' When brand changes, populate models box with all models from that brand.
+
+'        ' Reset items.
+'        cmbModel.Items.Clear()
+'        cmbModel.Items.Add("All Models")
+
+'        cmbModel.SelectedIndex = 0
+
+
+'        If cmbBrand.SelectedIndex <> 0 Then
+
+'            Dim modelCount As Integer = CInt(counters.Rows(2)("Number"))
+
+'            ' Load models into combination box.
+
+'            Dim selectedBrand As String = cmbBrand.Text
+
+'            Dim row As DataRow
+'            Dim thisBrand As String
+'            Dim thisModel As String
+
+'            For i As Integer = 0 To modelCount - 1
+
+'                row = models.Rows(i)
+'                thisBrand = CStr(row("Brand"))
+'                thisModel = CStr(row("Model"))
+
+'                If thisBrand = selectedBrand Then
+
+'                    cmbModel.Items.Add(thisModel)
+
+'                End If
+
+'            Next
+
+'            cmbModel.Enabled = True
+
+'        Else
+
+'            cmbModel.Enabled = False
+
+'        End If
+
+'    End Sub
+
+'End Class

@@ -44,11 +44,9 @@ Partial Class frmModels
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.cmbBrand = New System.Windows.Forms.ComboBox()
-        Me.lblModel = New System.Windows.Forms.Label()
         Me.lblBrand = New System.Windows.Forms.Label()
         Me.cmbTypes = New System.Windows.Forms.ComboBox()
         Me.lblType = New System.Windows.Forms.Label()
-        Me.cmbModel = New System.Windows.Forms.ComboBox()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.txtResults = New System.Windows.Forms.TextBox()
         Me.colNumber = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -193,33 +191,31 @@ Partial Class frmModels
         Me.grpFilters.Controls.Add(Me.txtNotes)
         Me.grpFilters.Controls.Add(Me.lblNotes)
         Me.grpFilters.Controls.Add(Me.cmbBrand)
-        Me.grpFilters.Controls.Add(Me.lblModel)
         Me.grpFilters.Controls.Add(Me.lblBrand)
         Me.grpFilters.Controls.Add(Me.cmbTypes)
         Me.grpFilters.Controls.Add(Me.lblType)
-        Me.grpFilters.Controls.Add(Me.cmbModel)
         Me.grpFilters.Location = New System.Drawing.Point(11, 11)
         Me.grpFilters.Margin = New System.Windows.Forms.Padding(2)
         Me.grpFilters.Name = "grpFilters"
         Me.grpFilters.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpFilters.Size = New System.Drawing.Size(178, 165)
+        Me.grpFilters.Size = New System.Drawing.Size(178, 140)
         Me.grpFilters.TabIndex = 1
         Me.grpFilters.TabStop = False
         Me.grpFilters.Text = "Filters"
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(47, 115)
+        Me.txtName.Location = New System.Drawing.Point(46, 90)
         Me.txtName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtName.MaxLength = 100
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(126, 20)
+        Me.txtName.Size = New System.Drawing.Size(127, 20)
         Me.txtName.TabIndex = 5
         '
         'lblName
         '
         Me.lblName.AutoSize = True
-        Me.lblName.Location = New System.Drawing.Point(4, 118)
+        Me.lblName.Location = New System.Drawing.Point(3, 93)
         Me.lblName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblName.Name = "lblName"
         Me.lblName.Size = New System.Drawing.Size(38, 13)
@@ -228,16 +224,16 @@ Partial Class frmModels
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(47, 139)
+        Me.txtNotes.Location = New System.Drawing.Point(46, 114)
         Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(126, 20)
+        Me.txtNotes.Size = New System.Drawing.Size(127, 20)
         Me.txtNotes.TabIndex = 6
         '
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(4, 142)
+        Me.lblNotes.Location = New System.Drawing.Point(3, 117)
         Me.lblNotes.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNotes.Name = "lblNotes"
         Me.lblNotes.Size = New System.Drawing.Size(38, 13)
@@ -254,16 +250,6 @@ Partial Class frmModels
         Me.cmbBrand.Name = "cmbBrand"
         Me.cmbBrand.Size = New System.Drawing.Size(127, 21)
         Me.cmbBrand.TabIndex = 1
-        '
-        'lblModel
-        '
-        Me.lblModel.AutoSize = True
-        Me.lblModel.Location = New System.Drawing.Point(4, 93)
-        Me.lblModel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblModel.Name = "lblModel"
-        Me.lblModel.Size = New System.Drawing.Size(39, 13)
-        Me.lblModel.TabIndex = 0
-        Me.lblModel.Text = "Model:"
         '
         'lblBrand
         '
@@ -295,18 +281,6 @@ Partial Class frmModels
         Me.lblType.Size = New System.Drawing.Size(34, 13)
         Me.lblType.TabIndex = 8
         Me.lblType.Text = "Type:"
-        '
-        'cmbModel
-        '
-        Me.cmbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbModel.Enabled = False
-        Me.cmbModel.FormattingEnabled = True
-        Me.cmbModel.Items.AddRange(New Object() {"All Models"})
-        Me.cmbModel.Location = New System.Drawing.Point(46, 90)
-        Me.cmbModel.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbModel.Name = "cmbModel"
-        Me.cmbModel.Size = New System.Drawing.Size(127, 21)
-        Me.cmbModel.TabIndex = 4
         '
         'lblResults
         '
@@ -370,10 +344,8 @@ Partial Class frmModels
     Private WithEvents lblNotes As Label
     Friend WithEvents cmbTypes As ComboBox
     Private WithEvents lblType As Label
-    Friend WithEvents cmbModel As ComboBox
     Friend WithEvents cmbBrand As ComboBox
     Private WithEvents lblBrand As Label
-    Private WithEvents lblModel As Label
     Friend WithEvents txtName As TextBox
     Private WithEvents lblName As Label
     Friend WithEvents lblResults As Label

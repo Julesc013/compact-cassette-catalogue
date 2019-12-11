@@ -15,7 +15,6 @@
         ' Initialise objects.
         cmbBrand.SelectedIndex = 0
         cmbTypes.SelectedIndex = 0
-        cmbModel.SelectedIndex = 0
 
         loadList()
 
@@ -33,7 +32,6 @@
         Dim critBrand As String = cmbBrand.Text
         Dim critType As Integer = cmbTypes.SelectedIndex
         Dim critTypeBetter As Boolean = chkTypeBetter.Checked
-        Dim critModel As String = cmbModel.Text
         Dim critName As String = txtName.Text
         Dim critNotes As String = txtNotes.Text
 
@@ -83,10 +81,6 @@
                         End If
 
                     End If
-                End If
-
-                If cmbModel.SelectedIndex <> 0 And Not model.ToLower = critModel.ToLower Then
-                    validRow = False
                 End If
 
                 If critName <> Nothing And Not fullName.ToLower.Contains(critName.ToLower) Then
@@ -150,53 +144,6 @@
             chkTypeBetter.Enabled = False
             chkTypeBetter.Text = "Type I or better."
             chkTypeBetter.Checked = False
-
-        End If
-
-    End Sub
-
-    Private Sub cmbBrand_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBrand.SelectedIndexChanged
-
-        ' When brand changes, populate models box with all models from that brand.
-
-        ' Reset items.
-        cmbModel.Items.Clear()
-        cmbModel.Items.Add("All Models")
-
-        cmbModel.SelectedIndex = 0
-
-
-        If cmbBrand.SelectedIndex <> 0 Then
-
-            Dim modelCount As Integer = CInt(counters.Rows(2)("Number"))
-
-            ' Load models into combination box.
-
-            Dim selectedBrand As String = cmbBrand.Text
-
-            Dim row As DataRow
-            Dim thisBrand As String
-            Dim thisModel As String
-
-            For i As Integer = 0 To modelCount - 1
-
-                row = models.Rows(i)
-                thisBrand = CStr(row("Brand"))
-                thisModel = CStr(row("Model"))
-
-                If thisBrand = selectedBrand Then
-
-                    cmbModel.Items.Add(thisModel)
-
-                End If
-
-            Next
-
-            cmbModel.Enabled = True
-
-        Else
-
-            cmbModel.Enabled = False
 
         End If
 
