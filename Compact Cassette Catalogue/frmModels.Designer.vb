@@ -22,8 +22,17 @@ Partial Class frmModels
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmModels))
         Me.chkTypeBetter = New System.Windows.Forms.CheckBox()
         Me.grpModels = New System.Windows.Forms.GroupBox()
+        Me.lstModels = New System.Windows.Forms.ListView()
+        Me.colIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colType = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colModel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colCode = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
@@ -32,7 +41,7 @@ Partial Class frmModels
         Me.grpFilters = New System.Windows.Forms.GroupBox()
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.lblName = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.cmbBrand = New System.Windows.Forms.ComboBox()
         Me.lblModel = New System.Windows.Forms.Label()
@@ -42,14 +51,7 @@ Partial Class frmModels
         Me.cmbModel = New System.Windows.Forms.ComboBox()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.txtResults = New System.Windows.Forms.TextBox()
-        Me.lstModels = New System.Windows.Forms.ListView()
-        Me.colIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colType = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colModel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colCode = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNumber = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpModels.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpFilters.SuspendLayout()
@@ -78,6 +80,53 @@ Partial Class frmModels
         Me.grpModels.TabIndex = 2
         Me.grpModels.TabStop = False
         Me.grpModels.Text = "Models"
+        '
+        'lstModels
+        '
+        Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colBrand, Me.colType, Me.colModel, Me.colCode, Me.colName, Me.colNumber, Me.colNotes})
+        Me.lstModels.HideSelection = False
+        Me.lstModels.Location = New System.Drawing.Point(5, 17)
+        Me.lstModels.Margin = New System.Windows.Forms.Padding(2)
+        Me.lstModels.Name = "lstModels"
+        Me.lstModels.Size = New System.Drawing.Size(529, 382)
+        Me.lstModels.TabIndex = 43
+        Me.lstModels.UseCompatibleStateImageBehavior = False
+        Me.lstModels.View = System.Windows.Forms.View.Details
+        '
+        'colIdentifier
+        '
+        Me.colIdentifier.Text = "Identifier"
+        Me.colIdentifier.Width = 68
+        '
+        'colBrand
+        '
+        Me.colBrand.Text = "Brand"
+        Me.colBrand.Width = 80
+        '
+        'colType
+        '
+        Me.colType.Text = "Type"
+        Me.colType.Width = 74
+        '
+        'colModel
+        '
+        Me.colModel.Text = "Model"
+        Me.colModel.Width = 98
+        '
+        'colCode
+        '
+        Me.colCode.Text = "Code"
+        Me.colCode.Width = 40
+        '
+        'colName
+        '
+        Me.colName.Text = "Full Name"
+        Me.colName.Width = 102
+        '
+        'colNotes
+        '
+        Me.colNotes.Text = "Notes"
+        Me.colNotes.Width = 140
         '
         'grpActions
         '
@@ -141,7 +190,7 @@ Partial Class frmModels
         Me.grpFilters.Controls.Add(Me.txtName)
         Me.grpFilters.Controls.Add(Me.lblName)
         Me.grpFilters.Controls.Add(Me.chkTypeBetter)
-        Me.grpFilters.Controls.Add(Me.TextBox1)
+        Me.grpFilters.Controls.Add(Me.txtNotes)
         Me.grpFilters.Controls.Add(Me.lblNotes)
         Me.grpFilters.Controls.Add(Me.cmbBrand)
         Me.grpFilters.Controls.Add(Me.lblModel)
@@ -177,13 +226,13 @@ Partial Class frmModels
         Me.lblName.TabIndex = 27
         Me.lblName.Text = "Name:"
         '
-        'TextBox1
+        'txtNotes
         '
-        Me.TextBox1.Location = New System.Drawing.Point(47, 139)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(126, 20)
-        Me.TextBox1.TabIndex = 6
+        Me.txtNotes.Location = New System.Drawing.Point(47, 139)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNotes.Name = "txtNotes"
+        Me.txtNotes.Size = New System.Drawing.Size(126, 20)
+        Me.txtNotes.TabIndex = 6
         '
         'lblNotes
         '
@@ -279,52 +328,9 @@ Partial Class frmModels
         Me.txtResults.TabIndex = 4
         Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'lstModels
+        'colNumber
         '
-        Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colBrand, Me.colType, Me.colModel, Me.colCode, Me.colName, Me.colNotes})
-        Me.lstModels.HideSelection = False
-        Me.lstModels.Location = New System.Drawing.Point(5, 17)
-        Me.lstModels.Margin = New System.Windows.Forms.Padding(2)
-        Me.lstModels.Name = "lstModels"
-        Me.lstModels.Size = New System.Drawing.Size(529, 382)
-        Me.lstModels.TabIndex = 43
-        Me.lstModels.UseCompatibleStateImageBehavior = False
-        Me.lstModels.View = System.Windows.Forms.View.Details
-        '
-        'colIdentifier
-        '
-        Me.colIdentifier.Text = "Identifier"
-        Me.colIdentifier.Width = 68
-        '
-        'colBrand
-        '
-        Me.colBrand.Text = "Brand"
-        Me.colBrand.Width = 93
-        '
-        'colType
-        '
-        Me.colType.Text = "Type"
-        Me.colType.Width = 74
-        '
-        'colModel
-        '
-        Me.colModel.Text = "Model"
-        Me.colModel.Width = 132
-        '
-        'colCode
-        '
-        Me.colCode.Text = "Code"
-        Me.colCode.Width = 40
-        '
-        'colName
-        '
-        Me.colName.Text = "Full Name"
-        Me.colName.Width = 133
-        '
-        'colNotes
-        '
-        Me.colNotes.Text = "Notes"
-        Me.colNotes.Width = 140
+        Me.colNumber.Text = "Number"
         '
         'frmModels
         '
@@ -338,6 +344,7 @@ Partial Class frmModels
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.grpFilters)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmModels"
@@ -359,7 +366,7 @@ Partial Class frmModels
     Friend WithEvents Label1 As Label
     Friend WithEvents btnDelete As Button
     Friend WithEvents grpFilters As GroupBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtNotes As TextBox
     Private WithEvents lblNotes As Label
     Friend WithEvents cmbTypes As ComboBox
     Private WithEvents lblType As Label
@@ -380,4 +387,5 @@ Partial Class frmModels
     Friend WithEvents colCode As ColumnHeader
     Friend WithEvents colName As ColumnHeader
     Friend WithEvents colNotes As ColumnHeader
+    Friend WithEvents colNumber As ColumnHeader
 End Class

@@ -10,6 +10,7 @@
 
 - 
 - Disabled access to incomplete functions.
+- Successful console output now shows confirmation message.
 
 
 

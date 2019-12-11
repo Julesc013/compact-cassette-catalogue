@@ -192,7 +192,7 @@ Module varGlobals
         ''table.Columns.Add(New DataColumn("Index", GetType(Integer)))
         table.Columns.Add(New DataColumn("Brand", GetType(String)))
         table.Columns.Add(New DataColumn("Type", GetType(Integer))) 'Type code (1 to 4)
-        table.Columns.Add(New DataColumn("Model", GetType(String)))
+        table.Columns.Add(New DataColumn("Model", GetType(String))) 'Not-full name
         table.Columns.Add(New DataColumn("Code", GetType(String)))
         table.Columns.Add(New DataColumn("Identifier", GetType(String))) 'Brand & Type & Code superstring
         table.Columns.Add(New DataColumn("Name", GetType(String)))
@@ -303,22 +303,21 @@ Module varGlobals
 
     End Function
 
-    'Function getBrandCode(brand As String) As String
+    Function getTypeNumeral(value As Integer, worded As Boolean) As String
+        ' Convert Arabic numeral to Roman numeral.
 
-    '    Dim brandRow As DataRow = brands.Select("Brand='" & brand & "'")(0)
-    '    Return CStr(brandRow("Code"))
+        Dim numerals = New Dictionary(Of Integer, String) From {{1, "I"}, {2, "II"}, {3, "III"}, {4, "IV"}}
+        Dim names = New Dictionary(Of Integer, String) From {{1, "Ferric"}, {2, "Chrome"}, {3, "Ferrichrome"}, {4, "Metal"}}
 
-    'End Function
+        If worded = True Then
+            Return numerals.Item(value) & " - " & names.Item(value)
 
-    'Function getCounter(counter As String) As Integer
+        Else
+            Return numerals.Item(value)
 
-    '    Dim row As DataRow = counters.Select("Counter = '" & counter & "'").FirstOrDefault()
+        End If
 
-    '    If Not row Is Nothing Then
-    '        Return CInt(row.Item("Value"))
-    '    End If
-
-    'End Function
+    End Function
 
     Sub consoleAdd(message As String)
 

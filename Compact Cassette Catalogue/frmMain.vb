@@ -101,7 +101,7 @@ Public Class frmMain
             'Enable groups and elements
             btnDelete.Enabled = True
             DeleteTapeToolStripMenuItem.Enabled = True
-            btnUpdate.Enabled = True
+            'btnUpdate.Enabled = True
             UpdateTapeToolStripMenuItem.Enabled = True
             grpIdentification.Enabled = True
             grpData.Enabled = True
@@ -117,7 +117,7 @@ Public Class frmMain
             'Disnable groups and elements
             btnDelete.Enabled = False
             DeleteTapeToolStripMenuItem.Enabled = False
-            btnUpdate.Enabled = False
+            'btnUpdate.Enabled = False
             UpdateTapeToolStripMenuItem.Enabled = False
             grpIdentification.Enabled = False
             grpData.Enabled = False
@@ -314,8 +314,13 @@ Public Class frmMain
 
                 updates = False
                 changes = True
+
                 'Update title bar
                 Me.Text = fileName & "* - C3"
+                'Update buttons
+                btnUpdate.Enabled = False
+                UpdateTapeToolStripMenuItem.Enabled = False
+
 
                 'Show confirmation message
                 Dim message As String = "Updated tape " & identifierShort & " successfully."
@@ -372,6 +377,10 @@ Public Class frmMain
             'Reset change detection variables
             updates = False
             changes = True
+            'Reset buttons
+            btnUpdate.Enabled = False
+            UpdateTapeToolStripMenuItem.Enabled = False
+
             'Update title bar
             Me.Text = fileName & "* - C3"
 
@@ -471,14 +480,23 @@ Public Class frmMain
 
         catalogue.WriteXml(filePath)
 
+
         'Discard updates made to current tape and reload from saved data.
+
         'Reset changes variable
         updates = False
         changes = False
+
+        'Reset buttons
+        btnUpdate.Enabled = False
+        UpdateTapeToolStripMenuItem.Enabled = False
+
         'Update title bar
         Me.Text = fileName & " - C3"
+
         'Reload from saved data
         loadData()
+
 
         'Show confirmation message
         'If My.Settings.showMessages = True Then
@@ -611,11 +629,18 @@ Public Class frmMain
                 'Read the XML file
                 catalogue.ReadXml(selectedPath)
 
+
                 'Reset changes variable
                 updates = False
                 changes = False
+
+                'Reset buttons
+                btnUpdate.Enabled = False
+                UpdateTapeToolStripMenuItem.Enabled = False
+
                 'Update title bar
                 Me.Text = fileName & " - C3"
+
 
                 'Update file information
                 information.Rows(1)("Value") = VERSION
@@ -657,13 +682,18 @@ Public Class frmMain
     End Sub
 
     Private Sub updateMade()
-        'Made an update to a field in the main form
+        ' Made an update to a field in the main form.
 
         If updates = False And updatesMask = False Then
 
             updates = True
-            'Update title bar
+
+            ' Update title bar.
             Me.Text = fileName & "* - C3"
+
+            ' Enable buttons.
+            btnUpdate.Enabled = True
+            UpdateTapeToolStripMenuItem.Enabled = True
 
         End If
 
@@ -1185,8 +1215,11 @@ Public Class frmMain
 
         End If
 
-        'Reset updates variable
+        'Reset updates variable and buttons
         updates = False
+
+        btnUpdate.Enabled = False
+        UpdateTapeToolStripMenuItem.Enabled = False
 
     End Sub
 
@@ -1224,6 +1257,9 @@ Public Class frmMain
 
         'Reset updates variable
         updates = False
+
+        btnUpdate.Enabled = False
+        UpdateTapeToolStripMenuItem.Enabled = False
 
     End Sub
 
@@ -1479,8 +1515,8 @@ Public Class frmMain
 
         Dim outputTime As DateTime = DateTime.Now
         Dim outputName As String = "console-output_" & outputTime.ToString("yyMMdd-HHmmss") & ".txt"
-
-        Using outputFile As New StreamWriter(fileDirectory & outputName)
+        Dim outputPath As String = fileDirectory & outputName
+        Using outputFile As New StreamWriter(outputPath)
 
             'Write header.
             outputFile.WriteLine("Compact Cassette Catalogue (v" & CStr(VERSION) & ") Console Output at " & outputTime.ToString)
@@ -1492,6 +1528,14 @@ Public Class frmMain
             Next
 
         End Using
+
+        'Show confirmation message
+        Dim message As String = "Successfully output console to log file."
+        Dim messageDetails As String = vbNewLine & vbNewLine & "File name: " & outputName & vbNewLine & "Full directory: " & outputPath
+        If My.Settings.showMessages = True Then
+            MsgBox(message & messageDetails, MsgBoxStyle.Information, "Successfully Output Console Log")
+        End If
+        consoleAdd(message)
 
     End Sub
 
