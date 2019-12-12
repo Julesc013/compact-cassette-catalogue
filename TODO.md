@@ -2,6 +2,8 @@
 
 - view existing items lists
 - make changes to existing models/decks/brands
+- fix filtering in tapes!
+- prevent users from creating reocrdings on 1 Jan 1970.
 
 - sort list view items (incremental update)
 - save column reorderings for next load
