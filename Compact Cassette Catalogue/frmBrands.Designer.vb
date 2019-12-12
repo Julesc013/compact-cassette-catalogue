@@ -32,12 +32,12 @@ Partial Class frmViewBrands
         Me.grpActions = New System.Windows.Forms.GroupBox()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.grpModels = New System.Windows.Forms.GroupBox()
-        Me.lblResults = New System.Windows.Forms.Label()
-        Me.txtResults = New System.Windows.Forms.TextBox()
         Me.lstBrands = New System.Windows.Forms.ListView()
         Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.lblResults = New System.Windows.Forms.Label()
+        Me.txtResults = New System.Windows.Forms.TextBox()
         Me.grpFilters.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpModels.SuspendLayout()
@@ -143,28 +143,9 @@ Partial Class frmViewBrands
         Me.grpModels.TabStop = False
         Me.grpModels.Text = "Models"
         '
-        'lblResults
-        '
-        Me.lblResults.AutoSize = True
-        Me.lblResults.Location = New System.Drawing.Point(6, 229)
-        Me.lblResults.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblResults.Name = "lblResults"
-        Me.lblResults.Size = New System.Drawing.Size(88, 13)
-        Me.lblResults.TabIndex = 35
-        Me.lblResults.Text = "Results (Filtered):"
-        '
-        'txtResults
-        '
-        Me.txtResults.Location = New System.Drawing.Point(98, 226)
-        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtResults.Name = "txtResults"
-        Me.txtResults.ReadOnly = True
-        Me.txtResults.Size = New System.Drawing.Size(107, 20)
-        Me.txtResults.TabIndex = 4
-        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'lstBrands
         '
+        Me.lstBrands.AllowColumnReorder = True
         Me.lstBrands.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader9, Me.ColumnHeader10, Me.ColumnHeader11})
         Me.lstBrands.HideSelection = False
         Me.lstBrands.Location = New System.Drawing.Point(4, 17)
@@ -189,6 +170,26 @@ Partial Class frmViewBrands
         '
         Me.ColumnHeader11.Text = "Notes"
         Me.ColumnHeader11.Width = 219
+        '
+        'lblResults
+        '
+        Me.lblResults.AutoSize = True
+        Me.lblResults.Location = New System.Drawing.Point(6, 229)
+        Me.lblResults.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblResults.Name = "lblResults"
+        Me.lblResults.Size = New System.Drawing.Size(88, 13)
+        Me.lblResults.TabIndex = 35
+        Me.lblResults.Text = "Results (Filtered):"
+        '
+        'txtResults
+        '
+        Me.txtResults.Location = New System.Drawing.Point(98, 226)
+        Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtResults.Name = "txtResults"
+        Me.txtResults.ReadOnly = True
+        Me.txtResults.Size = New System.Drawing.Size(107, 20)
+        Me.txtResults.TabIndex = 4
+        Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'frmViewBrands
         '

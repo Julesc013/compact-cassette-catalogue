@@ -591,6 +591,7 @@ Partial Class frmTapes
         '
         'lstTapes
         '
+        Me.lstTapes.AllowColumnReorder = True
         Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colFullIdentifier, Me.colBrand, Me.colModel, Me.colType, Me.colYear, Me.colLength, Me.colRegion, Me.colCondition, Me.colPackaged, Me.colRecorded, Me.colNR, Me.colContents, Me.colDeck, Me.colArtist, Me.colTitle, Me.colNotes})
         Me.lstTapes.HideSelection = False
         Me.lstTapes.Location = New System.Drawing.Point(5, 17)
@@ -653,22 +654,27 @@ Partial Class frmTapes
         'colRecorded
         '
         Me.colRecorded.Text = "Dates Recorded"
-        Me.colRecorded.Width = 132
+        Me.colRecorded.Width = 144
         '
         'colNR
         '
         Me.colNR.Text = "NRs"
-        Me.colNR.Width = 41
+        Me.colNR.Width = 77
         '
         'colContents
         '
         Me.colContents.Text = "Contents"
-        Me.colContents.Width = 74
+        Me.colContents.Width = 82
+        '
+        'colDeck
+        '
+        Me.colDeck.Text = "Decks"
+        Me.colDeck.Width = 107
         '
         'colArtist
         '
         Me.colArtist.Text = "Artists"
-        Me.colArtist.Width = 81
+        Me.colArtist.Width = 118
         '
         'colTitle
         '
@@ -680,7 +686,7 @@ Partial Class frmTapes
         '
         Me.colNotes.DisplayIndex = 15
         Me.colNotes.Text = "Notes"
-        Me.colNotes.Width = 90
+        Me.colNotes.Width = 142
         '
         'grpActions
         '

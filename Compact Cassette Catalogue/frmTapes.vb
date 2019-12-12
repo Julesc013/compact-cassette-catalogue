@@ -128,14 +128,41 @@
                 Dim artists As String() = {Nothing, Nothing}
                 Dim titles As String() = {Nothing, Nothing}
 
+                recordedsBin(0) = CDate(thisRow("RecordedA")).ToBinary
+                recordedsBin(1) = CDate(thisRow("RecordedB")).ToBinary
+
+                ' If a side is not recorded, do not try to load the values for that side.
+                If Not recordedsBin(0) = Nothing Then 'Side A is not 0.
+                    NRs(0) = CStr(thisRow("NRA"))
+                    contentss(0) = CStr(thisRow("ContentsA"))
+                    deckss(0) = CStr(thisRow("DeckA"))
+                    artists(0) = CStr(thisRow("ArtistA"))
+                    titles(0) = CStr(thisRow("TitleA"))
+                End If
+                If Not recordedsBin(1) = Nothing Then 'Side B is not 0.
+                    NRs(1) = CStr(thisRow("NRB"))
+                    contentss(1) = CStr(thisRow("ContentsB"))
+                    deckss(1) = CStr(thisRow("DeckB"))
+                    artists(1) = CStr(thisRow("ArtistB"))
+                    titles(1) = CStr(thisRow("TitleB"))
+                End If
+
                 'Try
-                '    recordeds(0) = CDate(thisRow("RecordedA"))
+                '    recordedsBin(0) = CDate(thisRow("RecordedA")).ToBinary
                 'Catch ex As InvalidCastException
                 'End Try
                 'Try
-                '    recordeds(1) = CDate(thisRow("RecordedB"))
+                '    recordedsBin(1) = CDate(thisRow("RecordedB")).ToBinary
                 'Catch ex As InvalidCastException
                 'End Try
+                ''Try
+                ''    recordeds(0) = CDate(thisRow("RecordedA"))
+                ''Catch ex As InvalidCastException
+                ''End Try
+                ''Try
+                ''    recordeds(1) = CDate(thisRow("RecordedB"))
+                ''Catch ex As InvalidCastException
+                ''End Try
 
                 'Try
                 '    NRs(0) = CStr(thisRow("NRA"))
@@ -220,7 +247,7 @@
                     validRow = False
                 End If
 
-                If critName <> Nothing And Not name.ToLower.Contains(critName.ToLower) Then
+                If critName <> Nothing And Not Name.ToLower.Contains(critName.ToLower) Then
                     validRow = False
                 End If
 
@@ -314,7 +341,68 @@
                 ' Only display rows that fit the filter criteria!
                 If validRow = True Then
 
-                    ' Define the list items.
+
+                    ' Convert data to displayable format.
+                    ' Insert an en dash "–" where data is missing.
+
+                    ' Recording dates.
+                    'lstViewItem.SubItems.Add(recordeds(0) & ", " & recordeds(1))
+                    Dim dateStrA As String
+                    If recordedsBin(0) = Nothing Then
+                        dateStrA = "–"
+                    Else
+                        dateStrA = Date.FromBinary(recordedsBin(0)).ToShortDateString
+                    End If
+
+                    Dim dateStrB As String
+                    If recordedsBin(1) = Nothing Then
+                        dateStrB = "–"
+                    Else
+                        dateStrB = Date.FromBinary(recordedsBin(1)).ToShortDateString
+                    End If
+
+                    ' Noise reductions.
+                    If NRs(0) = Nothing Then
+                        NRs(0) = "–"
+                    End If
+                    If NRs(1) = Nothing Then
+                        NRs(1) = "–"
+                    End If
+
+                    ' Contents.
+                    If contentss(0) = Nothing Then
+                        contentss(0) = "–"
+                    End If
+                    If contentss(1) = Nothing Then
+                        contentss(1) = "–"
+                    End If
+
+                    ' Decks.
+                    If deckss(0) = Nothing Then
+                        deckss(0) = "–"
+                    End If
+                    If deckss(1) = Nothing Then
+                        deckss(1) = "–"
+                    End If
+
+                    ' Artists.
+                    If artists(0) = Nothing Then
+                        artists(0) = "–"
+                    End If
+                    If artists(1) = Nothing Then
+                        artists(1) = "–"
+                    End If
+
+                    ' Titles.
+                    If titles(0) = Nothing Then
+                        titles(0) = "–"
+                    End If
+                    If titles(1) = Nothing Then
+                        titles(1) = "–"
+                    End If
+
+
+                    ' Define the displayable list items.
                     Dim lstViewItem As ListViewItem = New ListViewItem(identifierShort)
                     lstViewItem.SubItems.Add(identifier)
                     lstViewItem.SubItems.Add(brand)
@@ -326,11 +414,7 @@
                     lstViewItem.SubItems.Add(getConditionWorded(condition))
                     lstViewItem.SubItems.Add(CStr(packaged))
 
-                    'lstViewItem.SubItems.Add(recordeds(0) & ", " & recordeds(1))
-                    Dim dateTempA As String = Date.FromBinary(recordedsBin(0)).ToShortDateString
-                    Dim dateTempB As String = Date.FromBinary(recordedsBin(1)).ToShortDateString
-                    lstViewItem.SubItems.Add(dateTempA & ", " & dateTempB)
-
+                    lstViewItem.SubItems.Add(dateStrA & ", " & dateStrB)
                     lstViewItem.SubItems.Add(NRs(0) & ", " & NRs(1))
                     lstViewItem.SubItems.Add(contentss(0) & ", " & contentss(1))
                     lstViewItem.SubItems.Add(deckss(0) & ", " & deckss(1))

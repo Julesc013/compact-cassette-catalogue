@@ -4,6 +4,7 @@
 - make changes to existing models/decks/brands
 
 - sort list view items (incremental update)
+- save column reorderings for next load
 
 
 

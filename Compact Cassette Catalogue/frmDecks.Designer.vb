@@ -54,6 +54,10 @@ Partial Class frmDecks
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.txtResults = New System.Windows.Forms.TextBox()
         Me.grpBasic = New System.Windows.Forms.GroupBox()
+        Me.numFrequencyMax = New System.Windows.Forms.NumericUpDown()
+        Me.chkCalibration = New System.Windows.Forms.CheckBox()
+        Me.chkMPX = New System.Windows.Forms.CheckBox()
+        Me.chkHX = New System.Windows.Forms.CheckBox()
         Me.cmbTypes = New System.Windows.Forms.ComboBox()
         Me.lblType = New System.Windows.Forms.Label()
         Me.lblNR = New System.Windows.Forms.Label()
@@ -63,15 +67,11 @@ Partial Class frmDecks
         Me.lblFrequency = New System.Windows.Forms.Label()
         Me.lblManufacturer = New System.Windows.Forms.Label()
         Me.grpFilters = New System.Windows.Forms.GroupBox()
-        Me.chkHX = New System.Windows.Forms.CheckBox()
-        Me.chkMPX = New System.Windows.Forms.CheckBox()
-        Me.chkCalibration = New System.Windows.Forms.CheckBox()
-        Me.numFrequencyMax = New System.Windows.Forms.NumericUpDown()
         Me.grpTapes.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpBasic.SuspendLayout()
-        Me.grpFilters.SuspendLayout()
         CType(Me.numFrequencyMax, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpFilters.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblResults
@@ -98,6 +98,7 @@ Partial Class frmDecks
         '
         'lstDecks
         '
+        Me.lstDecks.AllowColumnReorder = True
         Me.lstDecks.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colManufacturer, Me.colDeck, Me.ColumnHeader7, Me.colTypes, Me.colHeads, Me.colSpeeds, Me.colNRs, Me.colHX, Me.colMPX, Me.colStereo, Me.colWells, Me.colDubbing, Me.colAutoReverse, Me.colProgramSearch, Me.colCalibration, Me.colAzimuth, Me.colFrequency, Me.colSignalRatio, Me.colWowFlutter, Me.colDistortion, Me.colCondition})
         Me.lstDecks.HideSelection = False
         Me.lstDecks.Location = New System.Drawing.Point(5, 17)
@@ -301,6 +302,52 @@ Partial Class frmDecks
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
         '
+        'numFrequencyMax
+        '
+        Me.numFrequencyMax.DecimalPlaces = 1
+        Me.numFrequencyMax.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.numFrequencyMax.Location = New System.Drawing.Point(70, 41)
+        Me.numFrequencyMax.Margin = New System.Windows.Forms.Padding(2)
+        Me.numFrequencyMax.Maximum = New Decimal(New Integer() {30, 0, 0, 0})
+        Me.numFrequencyMax.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.numFrequencyMax.Name = "numFrequencyMax"
+        Me.numFrequencyMax.Size = New System.Drawing.Size(55, 20)
+        Me.numFrequencyMax.TabIndex = 20
+        Me.numFrequencyMax.Value = New Decimal(New Integer() {10, 0, 0, 0})
+        '
+        'chkCalibration
+        '
+        Me.chkCalibration.AutoSize = True
+        Me.chkCalibration.Location = New System.Drawing.Point(70, 138)
+        Me.chkCalibration.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkCalibration.Name = "chkCalibration"
+        Me.chkCalibration.Size = New System.Drawing.Size(103, 17)
+        Me.chkCalibration.TabIndex = 18
+        Me.chkCalibration.Text = "Tape Calibration"
+        Me.chkCalibration.UseVisualStyleBackColor = True
+        '
+        'chkMPX
+        '
+        Me.chkMPX.AutoSize = True
+        Me.chkMPX.Location = New System.Drawing.Point(140, 91)
+        Me.chkMPX.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkMPX.Name = "chkMPX"
+        Me.chkMPX.Size = New System.Drawing.Size(49, 17)
+        Me.chkMPX.TabIndex = 17
+        Me.chkMPX.Text = "MPX"
+        Me.chkMPX.UseVisualStyleBackColor = True
+        '
+        'chkHX
+        '
+        Me.chkHX.AutoSize = True
+        Me.chkHX.Location = New System.Drawing.Point(70, 91)
+        Me.chkHX.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkHX.Name = "chkHX"
+        Me.chkHX.Size = New System.Drawing.Size(60, 17)
+        Me.chkHX.TabIndex = 16
+        Me.chkHX.Text = "HX Pro"
+        Me.chkHX.UseVisualStyleBackColor = True
+        '
         'cmbTypes
         '
         Me.cmbTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -394,52 +441,6 @@ Partial Class frmDecks
         Me.grpFilters.TabStop = False
         Me.grpFilters.Text = "Filters"
         '
-        'chkHX
-        '
-        Me.chkHX.AutoSize = True
-        Me.chkHX.Location = New System.Drawing.Point(70, 91)
-        Me.chkHX.Margin = New System.Windows.Forms.Padding(2)
-        Me.chkHX.Name = "chkHX"
-        Me.chkHX.Size = New System.Drawing.Size(60, 17)
-        Me.chkHX.TabIndex = 16
-        Me.chkHX.Text = "HX Pro"
-        Me.chkHX.UseVisualStyleBackColor = True
-        '
-        'chkMPX
-        '
-        Me.chkMPX.AutoSize = True
-        Me.chkMPX.Location = New System.Drawing.Point(140, 91)
-        Me.chkMPX.Margin = New System.Windows.Forms.Padding(2)
-        Me.chkMPX.Name = "chkMPX"
-        Me.chkMPX.Size = New System.Drawing.Size(49, 17)
-        Me.chkMPX.TabIndex = 17
-        Me.chkMPX.Text = "MPX"
-        Me.chkMPX.UseVisualStyleBackColor = True
-        '
-        'chkCalibration
-        '
-        Me.chkCalibration.AutoSize = True
-        Me.chkCalibration.Location = New System.Drawing.Point(70, 138)
-        Me.chkCalibration.Margin = New System.Windows.Forms.Padding(2)
-        Me.chkCalibration.Name = "chkCalibration"
-        Me.chkCalibration.Size = New System.Drawing.Size(103, 17)
-        Me.chkCalibration.TabIndex = 18
-        Me.chkCalibration.Text = "Tape Calibration"
-        Me.chkCalibration.UseVisualStyleBackColor = True
-        '
-        'numFrequencyMax
-        '
-        Me.numFrequencyMax.DecimalPlaces = 1
-        Me.numFrequencyMax.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
-        Me.numFrequencyMax.Location = New System.Drawing.Point(70, 41)
-        Me.numFrequencyMax.Margin = New System.Windows.Forms.Padding(2)
-        Me.numFrequencyMax.Maximum = New Decimal(New Integer() {30, 0, 0, 0})
-        Me.numFrequencyMax.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.numFrequencyMax.Name = "numFrequencyMax"
-        Me.numFrequencyMax.Size = New System.Drawing.Size(55, 20)
-        Me.numFrequencyMax.TabIndex = 20
-        Me.numFrequencyMax.Value = New Decimal(New Integer() {10, 0, 0, 0})
-        '
         'frmDecks
         '
         Me.AcceptButton = Me.btnRefresh
@@ -462,8 +463,8 @@ Partial Class frmDecks
         Me.grpActions.PerformLayout()
         Me.grpBasic.ResumeLayout(False)
         Me.grpBasic.PerformLayout()
-        Me.grpFilters.ResumeLayout(False)
         CType(Me.numFrequencyMax, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpFilters.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

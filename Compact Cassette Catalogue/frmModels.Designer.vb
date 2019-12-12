@@ -32,6 +32,7 @@ Partial Class frmModels
         Me.colModel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colCode = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNumber = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
         Me.btnEdit = New System.Windows.Forms.Button()
@@ -49,7 +50,6 @@ Partial Class frmModels
         Me.lblType = New System.Windows.Forms.Label()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.txtResults = New System.Windows.Forms.TextBox()
-        Me.colNumber = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpModels.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpFilters.SuspendLayout()
@@ -81,6 +81,7 @@ Partial Class frmModels
         '
         'lstModels
         '
+        Me.lstModels.AllowColumnReorder = True
         Me.lstModels.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colBrand, Me.colType, Me.colModel, Me.colCode, Me.colName, Me.colNumber, Me.colNotes})
         Me.lstModels.HideSelection = False
         Me.lstModels.Location = New System.Drawing.Point(5, 17)
@@ -120,6 +121,10 @@ Partial Class frmModels
         '
         Me.colName.Text = "Full Name"
         Me.colName.Width = 102
+        '
+        'colNumber
+        '
+        Me.colNumber.Text = "Number"
         '
         'colNotes
         '
@@ -301,10 +306,6 @@ Partial Class frmModels
         Me.txtResults.Size = New System.Drawing.Size(87, 20)
         Me.txtResults.TabIndex = 4
         Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'colNumber
-        '
-        Me.colNumber.Text = "Number"
         '
         'frmModels
         '
