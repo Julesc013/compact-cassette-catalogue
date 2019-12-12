@@ -11,7 +11,6 @@
 
 
 - Clean up code (commented out lines)
-- Grey out unfinished options (statistics and search)
 
 
 
