@@ -63,6 +63,7 @@
 
 - write tutorial (hyperlink to About and to Documentation)
 - Write documentation (with 'get started quick' guide)
+- Better about window!
 
 
 
