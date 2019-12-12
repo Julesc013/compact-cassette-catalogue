@@ -112,7 +112,7 @@ Module varGlobals
         ''table.Columns.Add(New DataColumn("Index", GetType(Integer)))
         table.Columns.Add(New DataColumn("Manufacturer", GetType(String)))
         table.Columns.Add(New DataColumn("Model", GetType(String)))
-        table.Columns.Add(New DataColumn("Name", GetType(String))) 'Manufacurer & Model superstring (Full name)
+        table.Columns.Add(New DataColumn("Name", GetType(String))) 'Manufacurer & Model superstring (Joined name)
         table.Columns.Add(New DataColumn("Year", GetType(Integer)))
         table.Columns.Add(New DataColumn("Condition", GetType(Integer)))
         table.Columns.Add(New DataColumn("Type1", GetType(Boolean)))

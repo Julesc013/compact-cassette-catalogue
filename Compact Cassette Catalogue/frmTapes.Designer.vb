@@ -32,13 +32,15 @@ Partial Class frmTapes
         Me.lblContents = New System.Windows.Forms.Label()
         Me.cmbContents = New System.Windows.Forms.ComboBox()
         Me.grpTape = New System.Windows.Forms.GroupBox()
+        Me.chkRecorded = New System.Windows.Forms.CheckBox()
+        Me.chkPackaged = New System.Windows.Forms.CheckBox()
         Me.cmbDeck = New System.Windows.Forms.ComboBox()
         Me.lblDeck = New System.Windows.Forms.Label()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.chkConditionBetter = New System.Windows.Forms.CheckBox()
         Me.lblRecordedTo = New System.Windows.Forms.Label()
         Me.datRecordedMin = New System.Windows.Forms.DateTimePicker()
         Me.cmbCondition = New System.Windows.Forms.ComboBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.datRecordedMax = New System.Windows.Forms.DateTimePicker()
         Me.lblRecorded = New System.Windows.Forms.Label()
@@ -64,6 +66,24 @@ Partial Class frmTapes
         Me.lblBrand = New System.Windows.Forms.Label()
         Me.lblModel = New System.Windows.Forms.Label()
         Me.grpTapes = New System.Windows.Forms.GroupBox()
+        Me.lstTapes = New System.Windows.Forms.ListView()
+        Me.colIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colFullIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colBrand = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colModel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colType = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colYear = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colLength = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colRegion = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colPackaged = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colRecorded = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNR = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colContents = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colDeck = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colArtist = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colTitle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -71,21 +91,6 @@ Partial Class frmTapes
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.txtResults = New System.Windows.Forms.TextBox()
-        Me.lstTapes = New System.Windows.Forms.ListView()
-        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colYear = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colLength = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colRecorded = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colContents = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colNoise = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colAlbum = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colTitle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpFilters.SuspendLayout()
         Me.grpContents.SuspendLayout()
         Me.grpTape.SuspendLayout()
@@ -107,7 +112,7 @@ Partial Class frmTapes
         Me.grpFilters.Margin = New System.Windows.Forms.Padding(2)
         Me.grpFilters.Name = "grpFilters"
         Me.grpFilters.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpFilters.Size = New System.Drawing.Size(187, 500)
+        Me.grpFilters.Size = New System.Drawing.Size(187, 546)
         Me.grpFilters.TabIndex = 1
         Me.grpFilters.TabStop = False
         Me.grpFilters.Text = "Filters"
@@ -120,7 +125,7 @@ Partial Class frmTapes
         Me.grpContents.Controls.Add(Me.txtArtist)
         Me.grpContents.Controls.Add(Me.lblContents)
         Me.grpContents.Controls.Add(Me.cmbContents)
-        Me.grpContents.Location = New System.Drawing.Point(5, 403)
+        Me.grpContents.Location = New System.Drawing.Point(5, 449)
         Me.grpContents.Margin = New System.Windows.Forms.Padding(2)
         Me.grpContents.Name = "grpContents"
         Me.grpContents.Padding = New System.Windows.Forms.Padding(2)
@@ -151,7 +156,6 @@ Partial Class frmTapes
         '
         'txtTitle
         '
-        Me.txtTitle.Enabled = False
         Me.txtTitle.Location = New System.Drawing.Point(51, 66)
         Me.txtTitle.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTitle.Name = "txtTitle"
@@ -160,7 +164,6 @@ Partial Class frmTapes
         '
         'txtArtist
         '
-        Me.txtArtist.Enabled = False
         Me.txtArtist.Location = New System.Drawing.Point(51, 42)
         Me.txtArtist.Margin = New System.Windows.Forms.Padding(2)
         Me.txtArtist.Name = "txtArtist"
@@ -190,13 +193,15 @@ Partial Class frmTapes
         '
         'grpTape
         '
+        Me.grpTape.Controls.Add(Me.chkRecorded)
+        Me.grpTape.Controls.Add(Me.chkPackaged)
         Me.grpTape.Controls.Add(Me.cmbDeck)
         Me.grpTape.Controls.Add(Me.lblDeck)
-        Me.grpTape.Controls.Add(Me.CheckBox1)
+        Me.grpTape.Controls.Add(Me.chkConditionBetter)
         Me.grpTape.Controls.Add(Me.lblRecordedTo)
         Me.grpTape.Controls.Add(Me.datRecordedMin)
         Me.grpTape.Controls.Add(Me.cmbCondition)
-        Me.grpTape.Controls.Add(Me.TextBox1)
+        Me.grpTape.Controls.Add(Me.txtNotes)
         Me.grpTape.Controls.Add(Me.lblNotes)
         Me.grpTape.Controls.Add(Me.datRecordedMax)
         Me.grpTape.Controls.Add(Me.lblRecorded)
@@ -209,10 +214,32 @@ Partial Class frmTapes
         Me.grpTape.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTape.Name = "grpTape"
         Me.grpTape.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpTape.Size = New System.Drawing.Size(177, 213)
+        Me.grpTape.Size = New System.Drawing.Size(177, 259)
         Me.grpTape.TabIndex = 2
         Me.grpTape.TabStop = False
         Me.grpTape.Text = "Tape"
+        '
+        'chkRecorded
+        '
+        Me.chkRecorded.AutoSize = True
+        Me.chkRecorded.Location = New System.Drawing.Point(49, 116)
+        Me.chkRecorded.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkRecorded.Name = "chkRecorded"
+        Me.chkRecorded.Size = New System.Drawing.Size(98, 17)
+        Me.chkRecorded.TabIndex = 30
+        Me.chkRecorded.Text = "Recorded only."
+        Me.chkRecorded.UseVisualStyleBackColor = True
+        '
+        'chkPackaged
+        '
+        Me.chkPackaged.AutoSize = True
+        Me.chkPackaged.Location = New System.Drawing.Point(49, 212)
+        Me.chkPackaged.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkPackaged.Name = "chkPackaged"
+        Me.chkPackaged.Size = New System.Drawing.Size(84, 17)
+        Me.chkPackaged.TabIndex = 29
+        Me.chkPackaged.Text = "Sealed only."
+        Me.chkPackaged.UseVisualStyleBackColor = True
         '
         'cmbDeck
         '
@@ -235,22 +262,22 @@ Partial Class frmTapes
         Me.lblDeck.TabIndex = 28
         Me.lblDeck.Text = "Deck:"
         '
-        'CheckBox1
+        'chkConditionBetter
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Enabled = False
-        Me.CheckBox1.Location = New System.Drawing.Point(49, 68)
-        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(93, 17)
-        Me.CheckBox1.TabIndex = 3
-        Me.CheckBox1.Text = "Poor or better."
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chkConditionBetter.AutoSize = True
+        Me.chkConditionBetter.Enabled = False
+        Me.chkConditionBetter.Location = New System.Drawing.Point(49, 68)
+        Me.chkConditionBetter.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkConditionBetter.Name = "chkConditionBetter"
+        Me.chkConditionBetter.Size = New System.Drawing.Size(93, 17)
+        Me.chkConditionBetter.TabIndex = 3
+        Me.chkConditionBetter.Text = "Poor or better."
+        Me.chkConditionBetter.UseVisualStyleBackColor = True
         '
         'lblRecordedTo
         '
         Me.lblRecordedTo.AutoSize = True
-        Me.lblRecordedTo.Location = New System.Drawing.Point(9, 144)
+        Me.lblRecordedTo.Location = New System.Drawing.Point(9, 167)
         Me.lblRecordedTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblRecordedTo.Name = "lblRecordedTo"
         Me.lblRecordedTo.Size = New System.Drawing.Size(28, 13)
@@ -260,13 +287,13 @@ Partial Class frmTapes
         'datRecordedMin
         '
         Me.datRecordedMin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datRecordedMin.Location = New System.Drawing.Point(49, 114)
+        Me.datRecordedMin.Location = New System.Drawing.Point(49, 137)
         Me.datRecordedMin.Margin = New System.Windows.Forms.Padding(2)
-        Me.datRecordedMin.MinDate = New Date(1962, 1, 1, 0, 0, 0, 0)
+        Me.datRecordedMin.MinDate = New Date(1963, 9, 1, 0, 0, 0, 0)
         Me.datRecordedMin.Name = "datRecordedMin"
         Me.datRecordedMin.Size = New System.Drawing.Size(123, 20)
         Me.datRecordedMin.TabIndex = 5
-        Me.datRecordedMin.Value = New Date(2019, 1, 1, 0, 0, 0, 0)
+        Me.datRecordedMin.Value = New Date(1963, 9, 1, 0, 0, 0, 0)
         '
         'cmbCondition
         '
@@ -279,18 +306,18 @@ Partial Class frmTapes
         Me.cmbCondition.Size = New System.Drawing.Size(123, 21)
         Me.cmbCondition.TabIndex = 2
         '
-        'TextBox1
+        'txtNotes
         '
-        Me.TextBox1.Location = New System.Drawing.Point(49, 187)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(123, 20)
-        Me.TextBox1.TabIndex = 9
+        Me.txtNotes.Location = New System.Drawing.Point(49, 233)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNotes.Name = "txtNotes"
+        Me.txtNotes.Size = New System.Drawing.Size(123, 20)
+        Me.txtNotes.TabIndex = 9
         '
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(4, 190)
+        Me.lblNotes.Location = New System.Drawing.Point(4, 236)
         Me.lblNotes.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNotes.Name = "lblNotes"
         Me.lblNotes.Size = New System.Drawing.Size(38, 13)
@@ -300,9 +327,9 @@ Partial Class frmTapes
         'datRecordedMax
         '
         Me.datRecordedMax.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datRecordedMax.Location = New System.Drawing.Point(49, 138)
+        Me.datRecordedMax.Location = New System.Drawing.Point(49, 161)
         Me.datRecordedMax.Margin = New System.Windows.Forms.Padding(2)
-        Me.datRecordedMax.MinDate = New Date(1962, 1, 1, 0, 0, 0, 0)
+        Me.datRecordedMax.MinDate = New Date(1963, 9, 1, 0, 0, 0, 0)
         Me.datRecordedMax.Name = "datRecordedMax"
         Me.datRecordedMax.Size = New System.Drawing.Size(123, 20)
         Me.datRecordedMax.TabIndex = 6
@@ -311,7 +338,7 @@ Partial Class frmTapes
         'lblRecorded
         '
         Me.lblRecorded.AutoSize = True
-        Me.lblRecorded.Location = New System.Drawing.Point(4, 120)
+        Me.lblRecorded.Location = New System.Drawing.Point(4, 143)
         Me.lblRecorded.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblRecorded.Name = "lblRecorded"
         Me.lblRecorded.Size = New System.Drawing.Size(33, 13)
@@ -323,7 +350,7 @@ Partial Class frmTapes
         Me.cmbNR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbNR.FormattingEnabled = True
         Me.cmbNR.Items.AddRange(New Object() {"All NRs", "None", "Dolby B", "Dolby C", "Dolby S", "DBX I", "DBX II"})
-        Me.cmbNR.Location = New System.Drawing.Point(49, 162)
+        Me.cmbNR.Location = New System.Drawing.Point(49, 185)
         Me.cmbNR.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbNR.Name = "cmbNR"
         Me.cmbNR.Size = New System.Drawing.Size(123, 21)
@@ -332,7 +359,7 @@ Partial Class frmTapes
         'lblNR
         '
         Me.lblNR.AutoSize = True
-        Me.lblNR.Location = New System.Drawing.Point(4, 165)
+        Me.lblNR.Location = New System.Drawing.Point(4, 188)
         Me.lblNR.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNR.Name = "lblNR"
         Me.lblNR.Size = New System.Drawing.Size(26, 13)
@@ -557,10 +584,103 @@ Partial Class frmTapes
         Me.grpTapes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpTapes.Name = "grpTapes"
         Me.grpTapes.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpTapes.Size = New System.Drawing.Size(904, 656)
+        Me.grpTapes.Size = New System.Drawing.Size(1322, 659)
         Me.grpTapes.TabIndex = 2
         Me.grpTapes.TabStop = False
         Me.grpTapes.Text = "Tapes"
+        '
+        'lstTapes
+        '
+        Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colFullIdentifier, Me.colBrand, Me.colModel, Me.colType, Me.colYear, Me.colLength, Me.colRegion, Me.colCondition, Me.colPackaged, Me.colRecorded, Me.colNR, Me.colContents, Me.colDeck, Me.colArtist, Me.colTitle, Me.colNotes})
+        Me.lstTapes.HideSelection = False
+        Me.lstTapes.Location = New System.Drawing.Point(5, 17)
+        Me.lstTapes.Margin = New System.Windows.Forms.Padding(2)
+        Me.lstTapes.Name = "lstTapes"
+        Me.lstTapes.Size = New System.Drawing.Size(1312, 636)
+        Me.lstTapes.TabIndex = 43
+        Me.lstTapes.UseCompatibleStateImageBehavior = False
+        Me.lstTapes.View = System.Windows.Forms.View.Details
+        '
+        'colIdentifier
+        '
+        Me.colIdentifier.Text = "Identifier"
+        Me.colIdentifier.Width = 69
+        '
+        'colFullIdentifier
+        '
+        Me.colFullIdentifier.DisplayIndex = 16
+        Me.colFullIdentifier.Text = "Full Identifier"
+        Me.colFullIdentifier.Width = 93
+        '
+        'colBrand
+        '
+        Me.colBrand.Text = "Brand"
+        '
+        'colModel
+        '
+        Me.colModel.Text = "Model"
+        Me.colModel.Width = 86
+        '
+        'colType
+        '
+        Me.colType.Text = "Type"
+        Me.colType.Width = 72
+        '
+        'colYear
+        '
+        Me.colYear.Text = "Year"
+        Me.colYear.Width = 44
+        '
+        'colLength
+        '
+        Me.colLength.Text = "Length"
+        Me.colLength.Width = 48
+        '
+        'colRegion
+        '
+        Me.colRegion.Text = "Region"
+        '
+        'colCondition
+        '
+        Me.colCondition.Text = "Condition"
+        Me.colCondition.Width = 87
+        '
+        'colPackaged
+        '
+        Me.colPackaged.Text = "Sealed"
+        Me.colPackaged.Width = 47
+        '
+        'colRecorded
+        '
+        Me.colRecorded.Text = "Dates Recorded"
+        Me.colRecorded.Width = 132
+        '
+        'colNR
+        '
+        Me.colNR.Text = "NRs"
+        Me.colNR.Width = 41
+        '
+        'colContents
+        '
+        Me.colContents.Text = "Contents"
+        Me.colContents.Width = 74
+        '
+        'colArtist
+        '
+        Me.colArtist.Text = "Artists"
+        Me.colArtist.Width = 81
+        '
+        'colTitle
+        '
+        Me.colTitle.DisplayIndex = 1
+        Me.colTitle.Text = "Titles"
+        Me.colTitle.Width = 155
+        '
+        'colNotes
+        '
+        Me.colNotes.DisplayIndex = 15
+        Me.colNotes.Text = "Notes"
+        Me.colNotes.Width = 90
         '
         'grpActions
         '
@@ -568,7 +688,7 @@ Partial Class frmTapes
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
         Me.grpActions.Controls.Add(Me.btnEdit)
-        Me.grpActions.Location = New System.Drawing.Point(11, 582)
+        Me.grpActions.Location = New System.Drawing.Point(11, 585)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
@@ -622,7 +742,7 @@ Partial Class frmTapes
         'lblResults
         '
         Me.lblResults.AutoSize = True
-        Me.lblResults.Location = New System.Drawing.Point(11, 561)
+        Me.lblResults.Location = New System.Drawing.Point(11, 564)
         Me.lblResults.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblResults.Name = "lblResults"
         Me.lblResults.Size = New System.Drawing.Size(88, 13)
@@ -631,7 +751,7 @@ Partial Class frmTapes
         '
         'txtResults
         '
-        Me.txtResults.Location = New System.Drawing.Point(114, 558)
+        Me.txtResults.Location = New System.Drawing.Point(114, 561)
         Me.txtResults.Margin = New System.Windows.Forms.Padding(2)
         Me.txtResults.Name = "txtResults"
         Me.txtResults.ReadOnly = True
@@ -639,94 +759,12 @@ Partial Class frmTapes
         Me.txtResults.TabIndex = 4
         Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'lstTapes
-        '
-        Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.colYear, Me.colLength, Me.colCondition, Me.colRecorded, Me.colContents, Me.colNoise, Me.colAlbum, Me.colTitle, Me.ColumnHeader6})
-        Me.lstTapes.HideSelection = False
-        Me.lstTapes.Location = New System.Drawing.Point(5, 17)
-        Me.lstTapes.Margin = New System.Windows.Forms.Padding(2)
-        Me.lstTapes.Name = "lstTapes"
-        Me.lstTapes.Size = New System.Drawing.Size(894, 633)
-        Me.lstTapes.TabIndex = 43
-        Me.lstTapes.UseCompatibleStateImageBehavior = False
-        Me.lstTapes.View = System.Windows.Forms.View.Details
-        '
-        'ColumnHeader1
-        '
-        Me.ColumnHeader1.Text = "Identifier"
-        Me.ColumnHeader1.Width = 82
-        '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "Name"
-        Me.ColumnHeader2.Width = 165
-        '
-        'ColumnHeader3
-        '
-        Me.ColumnHeader3.Text = "Brand"
-        Me.ColumnHeader3.Width = 91
-        '
-        'ColumnHeader4
-        '
-        Me.ColumnHeader4.Text = "Model"
-        Me.ColumnHeader4.Width = 78
-        '
-        'ColumnHeader5
-        '
-        Me.ColumnHeader5.Text = "Type"
-        Me.ColumnHeader5.Width = 51
-        '
-        'colYear
-        '
-        Me.colYear.Text = "Year"
-        Me.colYear.Width = 44
-        '
-        'colLength
-        '
-        Me.colLength.Text = "Length"
-        Me.colLength.Width = 48
-        '
-        'colCondition
-        '
-        Me.colCondition.Text = "Condition"
-        Me.colCondition.Width = 59
-        '
-        'colRecorded
-        '
-        Me.colRecorded.Text = "Dates Recorded"
-        Me.colRecorded.Width = 114
-        '
-        'colContents
-        '
-        Me.colContents.Text = "Contents"
-        Me.colContents.Width = 74
-        '
-        'colNoise
-        '
-        Me.colNoise.Text = "NRs"
-        Me.colNoise.Width = 41
-        '
-        'colAlbum
-        '
-        Me.colAlbum.Text = "Artists"
-        Me.colAlbum.Width = 81
-        '
-        'colTitle
-        '
-        Me.colTitle.Text = "Titles"
-        Me.colTitle.Width = 86
-        '
-        'ColumnHeader6
-        '
-        Me.ColumnHeader6.Text = "Notes"
-        Me.ColumnHeader6.Width = 90
-        '
         'frmTapes
         '
         Me.AcceptButton = Me.btnRefresh
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1118, 677)
+        Me.ClientSize = New System.Drawing.Size(1536, 679)
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.txtResults)
@@ -781,7 +819,7 @@ Partial Class frmTapes
     Friend WithEvents cmbContents As ComboBox
     Friend WithEvents lblName As Label
     Friend WithEvents txtName As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtNotes As TextBox
     Private WithEvents lblNotes As Label
     Friend WithEvents cmbTypes As ComboBox
     Private WithEvents lblType As Label
@@ -794,7 +832,7 @@ Partial Class frmTapes
     Friend WithEvents numLengthMax As NumericUpDown
     Friend WithEvents numYearMax As NumericUpDown
     Friend WithEvents datRecordedMin As DateTimePicker
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents chkConditionBetter As CheckBox
     Private WithEvents lblRecordedTo As Label
     Friend WithEvents grpActions As GroupBox
     Friend WithEvents Label1 As Label
@@ -806,18 +844,23 @@ Partial Class frmTapes
     Friend WithEvents lblResults As Label
     Friend WithEvents txtResults As TextBox
     Friend WithEvents lstTapes As ListView
-    Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents ColumnHeader2 As ColumnHeader
-    Friend WithEvents ColumnHeader3 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
-    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents colFullIdentifier As ColumnHeader
+    Friend WithEvents colBrand As ColumnHeader
+    Friend WithEvents colModel As ColumnHeader
+    Friend WithEvents colType As ColumnHeader
     Friend WithEvents colYear As ColumnHeader
     Friend WithEvents colLength As ColumnHeader
     Friend WithEvents colCondition As ColumnHeader
     Friend WithEvents colRecorded As ColumnHeader
     Friend WithEvents colContents As ColumnHeader
-    Friend WithEvents colNoise As ColumnHeader
-    Friend WithEvents colAlbum As ColumnHeader
+    Friend WithEvents colNR As ColumnHeader
+    Friend WithEvents colArtist As ColumnHeader
     Friend WithEvents colTitle As ColumnHeader
-    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents colNotes As ColumnHeader
+    Friend WithEvents colIdentifier As ColumnHeader
+    Friend WithEvents colRegion As ColumnHeader
+    Friend WithEvents chkPackaged As CheckBox
+    Friend WithEvents colPackaged As ColumnHeader
+    Friend WithEvents colDeck As ColumnHeader
+    Friend WithEvents chkRecorded As CheckBox
 End Class
