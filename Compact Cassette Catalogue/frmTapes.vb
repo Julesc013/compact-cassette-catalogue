@@ -2,9 +2,14 @@
 
     'Dim nullString As String = Convert.ToChar(&H0) ' An object containing this tring is considered to be "empty" or to be containing "nothing". 'This is temporary.
 
+    Dim identifiers As New List(Of String)
+    Dim identifierCount As Integer = 0
+
     Private Sub frmViewTapes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Initialise objects.
+
+        identifiers.Clear()
 
         ' Initialise boundary values.
         datRecordedMin.MaxDate = Date.Today
@@ -567,6 +572,73 @@
 
             datRecordedMin.Enabled = False
             datRecordedMax.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        ' Delete every tape in the list.
+
+        ' Confirm with the user that they would like to delete their selection of tapes.
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") tapes?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            For Each identifier In identifiers
+
+                ' Get index of this tape's row in the data table.
+                Dim tapeRow As DataRow = tapes.Rows.Find(identifier)
+                Dim selectedTapeIndex As Integer = tapes.Rows.IndexOf(tapeRow)
+
+                frmMain.deleteTape(selectedTapeIndex, True) ' Delete the tape.
+
+            Next
+
+            loadList() ' Refresh the list data.
+
+            lstTapes.SelectedItems.Clear() ' Clear selection of tapes.
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub lstTapes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstTapes.SelectedIndexChanged
+
+        identifiers.Clear() ' Clear selected identifiers.
+        identifierCount = lstTapes.SelectedItems.Count ' Number of indetifiers selected.
+
+        If identifierCount >= 1 Then
+
+            'identifierSelected = lstTapes.SelectedItems(0).SubItems(0).Text ' Get the string of the first column (subitem) in the primary selected row (i.e. the identifier).
+            For i As Integer = 0 To identifierCount - 1
+
+                ' Add all of the selected identifiers to a list.
+                identifiers.Add(lstTapes.SelectedItems(i).SubItems(0).Text)
+
+            Next
+
+            ' Enable buttons.
+
+            btnDelete.Enabled = True
+            ' Only allow editing if only one tape is selected.
+            If identifierCount = 1 Then
+                btnEdit.Enabled = True
+            Else
+                btnEdit.Enabled = False
+            End If
+
+        Else
+
+            ' Do not add any identifiers to the list, leave it empty.
+
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
 
         End If
 
