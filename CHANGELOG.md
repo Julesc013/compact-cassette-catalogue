@@ -10,7 +10,6 @@
 
 - Can view all tapes, models, brands and decks in list views.
 - Can filter results in list views.
-- Can sort results in list views.
 - Can select a result in list to make changes to or to delete.
 - Disabled access to incomplete functions.
 - Successful console output now shows confirmation message.

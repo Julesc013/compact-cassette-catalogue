@@ -12,7 +12,7 @@
 
 #### v1.1
 
-- sort list view items (incremental update)
+- sort list view items
 - save column reorderings for next load
 
 - search stuff
