@@ -239,11 +239,11 @@
                     validRow = False
                 End If
 
-                If Not critLengthMin < length Or Not critLengthMax > length Then
+                If Not critLengthMin <= length Or Not critLengthMax >= length Then
                     validRow = False
                 End If
 
-                If Not critYearMin < year Or Not critYearMax > year Then
+                If Not critYearMin <= year Or Not critYearMax >= year Then
                     validRow = False
                 End If
 

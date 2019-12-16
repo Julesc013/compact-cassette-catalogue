@@ -446,7 +446,6 @@
 
     End Sub
 
-
     'Private Sub when_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNotes.KeyDown, MyBase.KeyDown
     '    'Escape keypress (don't trigger accept-button)
 
