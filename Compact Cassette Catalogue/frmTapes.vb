@@ -1,4 +1,7 @@
 ﻿Public Class frmTapes
+
+    'Dim nullString As String = Convert.ToChar(&H0) ' An object containing this tring is considered to be "empty" or to be containing "nothing". 'This is temporary.
+
     Private Sub frmViewTapes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Initialise objects.
@@ -130,8 +133,8 @@
                 Dim NRs As String() = {Nothing, Nothing}
                 Dim contentss As String() = {Nothing, Nothing}
                 Dim deckss As String() = {Nothing, Nothing}
-                Dim artists As String() = {Nothing, Nothing}
-                Dim titles As String() = {Nothing, Nothing}
+                Dim artists As String() = {vbNullChar, vbNullChar}
+                Dim titles As String() = {vbNullChar, vbNullChar}
 
                 recordedsBin(0) = CDate(thisRow("RecordedA")).ToBinary
                 recordedsBin(1) = CDate(thisRow("RecordedB")).ToBinary
@@ -258,7 +261,7 @@
                 End If
 
                 If critName <> Nothing Then ' Only discard if both sides don't match.
-                    If Not names(0).Contains(critName) And Not names(1).Contains(critName) Then
+                    If Not names(0).ToLower.Contains(critName.ToLower) And Not names(1).ToLower.Contains(critName.ToLower) Then
                         validRow = False
                     End If
                 End If
@@ -339,13 +342,13 @@
                 End If
 
                 If critArtist <> Nothing Then ' Only discard if both sides don't match.
-                    If Not artists(0).Contains(critArtist) And Not artists(1).Contains(critArtist) Then
+                    If Not artists(0).ToLower.Contains(critArtist.ToLower) And Not artists(1).ToLower.Contains(critArtist.ToLower) Then
                         validRow = False
                     End If
                 End If
 
                 If critTitle <> Nothing Then ' Only discard if both sides don't match.
-                    If Not titles(0).Contains(critTitle) And Not titles(1).Contains(critTitle) Then
+                    If Not titles(0).ToLower.Contains(critTitle.ToLower) And Not titles(1).ToLower.Contains(critTitle.ToLower) Then
                         validRow = False
                     End If
                 End If
