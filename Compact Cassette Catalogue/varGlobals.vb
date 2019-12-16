@@ -9,9 +9,9 @@ Module varGlobals
 
     'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     'About program information
-    Public Const VERSION As String = "1.0.0b2"
+    Public Const VERSION As String = "1.0.0b3"
     Public Const VERSIONSTAGE As String = "Release"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 12, 18, 45, 0, DateTimeKind.Local) 'Y M D, h m s
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 16, 22, 0, 0, DateTimeKind.Local) 'Y M D, h m s
     'About catalogue information
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
@@ -288,9 +288,18 @@ Module varGlobals
     Function getCondition(value As Integer) As Integer
         ' Convert selected index to condition score.
 
-        Dim dictionary = New Dictionary(Of Integer, Integer) From {{0, 8}, {1, 7}, {2, 6}, {3, 5}, {4, 4}, {5, 3}, {6, 2}, {7, 1}, {8, 0}}
+        Try
 
-        Return dictionary.Item(value)
+            Dim dictionary = New Dictionary(Of Integer, Integer) From {{0, 8}, {1, 7}, {2, 6}, {3, 5}, {4, 4}, {5, 3}, {6, 2}, {7, 1}, {8, 0}}
+
+            Return dictionary.Item(value)
+
+        Catch
+
+            ' If not a valid index, return -1.
+            Return -1
+
+        End Try
 
     End Function
 

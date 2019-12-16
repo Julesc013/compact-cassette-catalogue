@@ -91,6 +91,7 @@ Partial Class frmTapes
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.txtResults = New System.Windows.Forms.TextBox()
+        Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpFilters.SuspendLayout()
         Me.grpContents.SuspendLayout()
         Me.grpTape.SuspendLayout()
@@ -286,6 +287,7 @@ Partial Class frmTapes
         '
         'datRecordedMin
         '
+        Me.datRecordedMin.Enabled = False
         Me.datRecordedMin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.datRecordedMin.Location = New System.Drawing.Point(49, 137)
         Me.datRecordedMin.Margin = New System.Windows.Forms.Padding(2)
@@ -326,6 +328,7 @@ Partial Class frmTapes
         '
         'datRecordedMax
         '
+        Me.datRecordedMax.Enabled = False
         Me.datRecordedMax.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.datRecordedMax.Location = New System.Drawing.Point(49, 161)
         Me.datRecordedMax.Margin = New System.Windows.Forms.Padding(2)
@@ -372,9 +375,9 @@ Partial Class frmTapes
         Me.lblName.Location = New System.Drawing.Point(4, 20)
         Me.lblName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(38, 13)
+        Me.lblName.Size = New System.Drawing.Size(36, 13)
         Me.lblName.TabIndex = 20
-        Me.lblName.Text = "Name:"
+        Me.lblName.Text = "Label:"
         '
         'txtName
         '
@@ -592,7 +595,7 @@ Partial Class frmTapes
         'lstTapes
         '
         Me.lstTapes.AllowColumnReorder = True
-        Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colFullIdentifier, Me.colBrand, Me.colModel, Me.colType, Me.colYear, Me.colLength, Me.colRegion, Me.colCondition, Me.colPackaged, Me.colRecorded, Me.colNR, Me.colContents, Me.colDeck, Me.colArtist, Me.colTitle, Me.colNotes})
+        Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colFullIdentifier, Me.colName, Me.colBrand, Me.colModel, Me.colType, Me.colYear, Me.colLength, Me.colRegion, Me.colCondition, Me.colPackaged, Me.colRecorded, Me.colNR, Me.colContents, Me.colDeck, Me.colArtist, Me.colTitle, Me.colNotes})
         Me.lstTapes.HideSelection = False
         Me.lstTapes.Location = New System.Drawing.Point(5, 17)
         Me.lstTapes.Margin = New System.Windows.Forms.Padding(2)
@@ -609,82 +612,95 @@ Partial Class frmTapes
         '
         'colFullIdentifier
         '
-        Me.colFullIdentifier.DisplayIndex = 16
+        Me.colFullIdentifier.DisplayIndex = 17
         Me.colFullIdentifier.Text = "Full Identifier"
         Me.colFullIdentifier.Width = 93
         '
         'colBrand
         '
+        Me.colBrand.DisplayIndex = 2
         Me.colBrand.Text = "Brand"
         '
         'colModel
         '
+        Me.colModel.DisplayIndex = 3
         Me.colModel.Text = "Model"
         Me.colModel.Width = 86
         '
         'colType
         '
+        Me.colType.DisplayIndex = 4
         Me.colType.Text = "Type"
         Me.colType.Width = 72
         '
         'colYear
         '
+        Me.colYear.DisplayIndex = 5
         Me.colYear.Text = "Year"
         Me.colYear.Width = 44
         '
         'colLength
         '
+        Me.colLength.DisplayIndex = 6
         Me.colLength.Text = "Length"
         Me.colLength.Width = 48
         '
         'colRegion
         '
+        Me.colRegion.DisplayIndex = 7
         Me.colRegion.Text = "Region"
         '
         'colCondition
         '
+        Me.colCondition.DisplayIndex = 8
         Me.colCondition.Text = "Condition"
         Me.colCondition.Width = 87
         '
         'colPackaged
         '
+        Me.colPackaged.DisplayIndex = 9
         Me.colPackaged.Text = "Sealed"
         Me.colPackaged.Width = 47
         '
         'colRecorded
         '
+        Me.colRecorded.DisplayIndex = 10
         Me.colRecorded.Text = "Dates Recorded"
         Me.colRecorded.Width = 144
         '
         'colNR
         '
+        Me.colNR.DisplayIndex = 11
         Me.colNR.Text = "NRs"
         Me.colNR.Width = 77
         '
         'colContents
         '
+        Me.colContents.DisplayIndex = 12
         Me.colContents.Text = "Contents"
         Me.colContents.Width = 82
         '
         'colDeck
         '
+        Me.colDeck.DisplayIndex = 13
         Me.colDeck.Text = "Decks"
         Me.colDeck.Width = 107
         '
         'colArtist
         '
+        Me.colArtist.DisplayIndex = 14
         Me.colArtist.Text = "Artists"
-        Me.colArtist.Width = 118
+        Me.colArtist.Width = 102
         '
         'colTitle
         '
-        Me.colTitle.DisplayIndex = 1
+        Me.colTitle.DisplayIndex = 15
         Me.colTitle.Text = "Titles"
-        Me.colTitle.Width = 155
+        Me.colTitle.Width = 116
         '
         'colNotes
         '
-        Me.colNotes.DisplayIndex = 15
+        Me.colNotes.DisplayIndex = 16
         Me.colNotes.Text = "Notes"
         Me.colNotes.Width = 142
         '
@@ -764,6 +780,12 @@ Partial Class frmTapes
         Me.txtResults.Size = New System.Drawing.Size(84, 20)
         Me.txtResults.TabIndex = 4
         Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'colName
+        '
+        Me.colName.DisplayIndex = 1
+        Me.colName.Text = "Label (Name)"
+        Me.colName.Width = 120
         '
         'frmTapes
         '
@@ -869,4 +891,5 @@ Partial Class frmTapes
     Friend WithEvents colPackaged As ColumnHeader
     Friend WithEvents colDeck As ColumnHeader
     Friend WithEvents chkRecorded As CheckBox
+    Friend WithEvents colName As ColumnHeader
 End Class

@@ -1,89 +1,105 @@
-### Betas
-
-- view existing items lists
-- make changes to existing models/decks/brands
-
-- sort list view items (incremental update)
-- save column reorderings for next load
-
-
-
-- Clean up code (commented out lines)
-- Grey out unfinished options (statistics and search)
-
-
-
 ### Short Term
 
-- View statistics
+
+#### v1.0
+
+- make changes to existing models/decks/brands
+- fix filtering in tapes!
+
+- Updated all dates to datetimes (new format version)
+
+
+
+#### v1.1
+
+- sort list view items
+- save column reorderings for next load
 
 - search stuff
 
+- View statistics
 
 
-- only nr/bias/speed selectable if deck supports it?
-
-- add more filters for decks!
-- add more filters for tapes (eg speed and such)
-
-
+#### v1.2
 
 - Feedback (link to website form or to Bug/Feature reporting form)
 - update available notification (link to GitHub)
+- write tutorial (hyperlink to About and to Documentation)
+- Better about window!
 
 
 
-### Medium Term
+#### v1.3
 
 - add user settings.
-- tool to upgrade/convert catalogue versions
-
-
 
 - BATCH ADDING of tapes (do all input data then specify amount to add).
 
 
 
-- add resizablility
-- add and remove fields from view forms (CHANGE TO DATA*GRID*VIEW)
-- comboboxes populated programatically
-
-
+#### v1.4
 
 - Grapher to visualise
   - recordings made during all time
   - total num tapes over time
   - new tapes added each month
   - total length over time
+  - etc
+ 
+ 
+ 
+#### v1.x
+
+- add more filters for decks!
+- add more filters for tapes (eg speed and such)
+
+- only nr/bias/speed selectable if deck supports it?
+
+
+
+#### v1.y
+
+- add resizablility
+- add and remove fields from view forms
+- comboboxes populated programatically (what does this mean??)
 
 
 
 ### Long Term
 
-- write tutorial (hyperlink to About and to Documentation)
 - Write documentation (with 'get started quick' guide)
+
+
+
+- ability to add an image of each tape
 
 
 
 - fullscreen spaces all the elements out
 - fullscreen shows list of all tapes on side pane
 - fullscreen shows console in corner
-- can press enter while in notes textbox (while btnAdd is accept_button)
 
 
+
+- Clean up code (commented out lines)
 
 - make all updates and changes checkings into one funciton with a case statement at the end
-- ability to add an image of each tape
 
 
 
 - fix regex validation
 - fix console scrolling bug
 - case sensitive searching
+- can press enter while in notes textbox (while btnAdd is accept_button)
 
 
 
 - support for 1, 2 and 4+ point version numbers (eg 1.3 and 1.4.2.1)
-- ability to save as and edit as older file versions
+
+
+
 - file associations
 - More verbose process logging (to an output file, not console)
+
+- tool to upgrade/convert catalogue versions
+- ability to save as and edit as older file versions

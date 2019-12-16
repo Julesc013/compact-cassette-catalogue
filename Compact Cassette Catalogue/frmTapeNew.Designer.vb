@@ -536,9 +536,9 @@ Partial Class frmTapeNew
         Me.lblNameB.Location = New System.Drawing.Point(4, 20)
         Me.lblNameB.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNameB.Name = "lblNameB"
-        Me.lblNameB.Size = New System.Drawing.Size(38, 13)
+        Me.lblNameB.Size = New System.Drawing.Size(36, 13)
         Me.lblNameB.TabIndex = 13
-        Me.lblNameB.Text = "Name:"
+        Me.lblNameB.Text = "Label:"
         '
         'txtNameB
         '
@@ -1068,9 +1068,9 @@ Partial Class frmTapeNew
         Me.lblNameA.Location = New System.Drawing.Point(4, 20)
         Me.lblNameA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNameA.Name = "lblNameA"
-        Me.lblNameA.Size = New System.Drawing.Size(38, 13)
+        Me.lblNameA.Size = New System.Drawing.Size(36, 13)
         Me.lblNameA.TabIndex = 13
-        Me.lblNameA.Text = "Name:"
+        Me.lblNameA.Text = "Label:"
         '
         'txtNameA
         '
