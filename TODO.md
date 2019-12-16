@@ -6,6 +6,8 @@
 - make changes to existing models/decks/brands
 - fix filtering in tapes!
 
+- Updated all dates to datetimes (new format version)
+
 
 
 #### v1.1

@@ -68,13 +68,16 @@
         Dim critYearMax As Integer = CInt(numYearMax.Value)
 
         Dim critName As String = txtName.Text
-        Dim critCondition As Integer = cmbCondition.SelectedIndex - 1
+        Dim critCondition As Integer = getCondition(cmbCondition.SelectedIndex - 1)
         Dim critConditionBetter As Boolean = chkConditionBetter.Checked
         Dim critDeck As String = cmbDeck.Text
         Dim critRecorded As Boolean = chkRecorded.Checked
 
         Dim critRecordingMinBin As Long = datRecordedMin.Value.ToBinary
         Dim critRecordingMaxBin As Long = datRecordedMax.Value.ToBinary
+        ' Convert the signed long to an unsigned long.
+        Dim critRecordingMinBinUns As ULong = BitConverter.ToUInt64(BitConverter.GetBytes(critRecordingMinBin), 0)
+        Dim critRecordingMaxBinUns As ULong = BitConverter.ToUInt64(BitConverter.GetBytes(critRecordingMaxBin), 0)
         'Dim critRecordingMin As Date = Date.Parse(critRecordingMinTemp)
         'Dim critRecordingMax As Date = Date.Parse(critRecordingMaxTemp)
 
@@ -121,7 +124,9 @@
 
                 ' If the tape is not recorded onto, replace the value with a 'null' value.
                 Dim recordedsBin As Long() = {Nothing, Nothing}
+                Dim recordedsBinUns As ULong() = {Nothing, Nothing}
                 'Dim recordeds As Date() = {Nothing, Nothing}
+                Dim names As String() = {Nothing, Nothing}
                 Dim NRs As String() = {Nothing, Nothing}
                 Dim contentss As String() = {Nothing, Nothing}
                 Dim deckss As String() = {Nothing, Nothing}
@@ -130,16 +135,21 @@
 
                 recordedsBin(0) = CDate(thisRow("RecordedA")).ToBinary
                 recordedsBin(1) = CDate(thisRow("RecordedB")).ToBinary
+                ' Convert the signed long to an unsigned long.
+                recordedsBinUns(0) = BitConverter.ToUInt64(BitConverter.GetBytes(recordedsBin(0)), 0)
+                recordedsBinUns(1) = BitConverter.ToUInt64(BitConverter.GetBytes(recordedsBin(1)), 0)
 
                 ' If a side is not recorded, do not try to load the values for that side.
-                If Not recordedsBin(0) = Nothing Then 'Side A is not 0.
+                If Not recordedsBinUns(0) = Nothing Then 'Side A is not 0.
+                    names(0) = CStr(thisRow("NameA"))
                     NRs(0) = CStr(thisRow("NRA"))
                     contentss(0) = CStr(thisRow("ContentsA"))
                     deckss(0) = CStr(thisRow("DeckA"))
                     artists(0) = CStr(thisRow("ArtistA"))
                     titles(0) = CStr(thisRow("TitleA"))
                 End If
-                If Not recordedsBin(1) = Nothing Then 'Side B is not 0.
+                If Not recordedsBinUns(1) = Nothing Then 'Side B is not 0.
+                    names(1) = CStr(thisRow("NameB"))
                     NRs(1) = CStr(thisRow("NRB"))
                     contentss(1) = CStr(thisRow("ContentsB"))
                     deckss(1) = CStr(thisRow("DeckB"))
@@ -247,12 +257,14 @@
                     validRow = False
                 End If
 
-                If critName <> Nothing And Not Name.ToLower.Contains(critName.ToLower) Then
-                    validRow = False
+                If critName <> Nothing Then ' Only discard if both sides don't match.
+                    If Not names(0).Contains(critName) And Not names(1).Contains(critName) Then
+                        validRow = False
+                    End If
                 End If
 
                 ' Filter for conditions.
-                If critCondition <> -1 Then ' Condition index subtracted by 1 to give conditino rating.
+                If critCondition <> -1 Then ' Condition index subtracted by 1 to give condition rating.
                     If critConditionBetter = False Then
 
                         If Not condition = critCondition Then
@@ -280,20 +292,22 @@
                 '        validRow = False
                 '    End If
                 'End If
+
                 If critRecorded = True Then ' Only discard if both sides aren't recorded.
 
-                    If recordedsBin(0) = Nothing And recordedsBin(1) = Nothing Then
+                    If recordedsBinUns(0) = Nothing And recordedsBinUns(1) = Nothing Then
                         validRow = False
 
                     Else
 
-                        ' If both dates are not within bounds. It is acceptable to have only one date within bounds.
-                        If Not critRecordingMinBin < recordedsBin(0) And Not critRecordingMinBin < recordedsBin(1) Then
+                        ' If both dates are not within bounds. It IS acceptable to have only one date within bounds.
+                        If Not critRecordingMinBinUns < recordedsBinUns(0) And Not critRecordingMinBinUns < recordedsBinUns(1) Then
                             validRow = False
                         End If
-                        If Not critRecordingMaxBin > recordedsBin(0) And Not critRecordingMaxBin > recordedsBin(1) Then
+                        If Not critRecordingMaxBinUns > recordedsBinUns(0) And Not critRecordingMaxBinUns > recordedsBinUns(1) Then
                             validRow = False
                         End If
+
                         'If Not critRecordingMin < recordeds(0) And Not critRecordingMin < recordeds(1) Then
                         '    validRow = False
                         'End If
@@ -324,14 +338,14 @@
                     End If
                 End If
 
-                If txtArtist.Text <> Nothing Then ' Only discard if both sides don't match.
+                If critArtist <> Nothing Then ' Only discard if both sides don't match.
                     If Not artists(0).Contains(critArtist) And Not artists(1).Contains(critArtist) Then
                         validRow = False
                     End If
                 End If
 
-                If txtTitle.Text <> Nothing Then ' Only discard if both sides don't match.
-                    If Not titles(0).Contains(critArtist) And Not titles(1).Contains(critArtist) Then
+                If critTitle <> Nothing Then ' Only discard if both sides don't match.
+                    If Not titles(0).Contains(critTitle) And Not titles(1).Contains(critTitle) Then
                         validRow = False
                     End If
                 End If
@@ -405,6 +419,7 @@
                     ' Define the displayable list items.
                     Dim lstViewItem As ListViewItem = New ListViewItem(identifierShort)
                     lstViewItem.SubItems.Add(identifier)
+                    lstViewItem.SubItems.Add(names(0) & ", " & names(1))
                     lstViewItem.SubItems.Add(brand)
                     lstViewItem.SubItems.Add(model)
                     lstViewItem.SubItems.Add(getTypeNumeral(type, True))
@@ -533,6 +548,22 @@
         Else
 
             cmbModel.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub chkRecorded_CheckedChanged(sender As Object, e As EventArgs) Handles chkRecorded.CheckedChanged
+
+        If chkRecorded.Checked = True Then
+
+            datRecordedMin.Enabled = True
+            datRecordedMax.Enabled = True
+
+        Else
+
+            datRecordedMin.Enabled = False
+            datRecordedMax.Enabled = False
 
         End If
 
