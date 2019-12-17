@@ -1,4 +1,8 @@
 ﻿Public Class frmDecks
+
+    Dim identifiers As New List(Of String)
+    Dim identifierCount As Integer = 0
+
     Private Sub FrmViewDecks_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Intialise objects.
@@ -23,7 +27,7 @@
 
         ' Get filter values
         Dim critManufacturer As String = txtManufacturer.Text
-        Dim critFrequencyMax As Integer = Cint(numFrequencyMax.Value * 1000)
+        Dim critFrequencyMax As Integer = CInt(numFrequencyMax.Value * 1000)
         Dim critNR As String = CStr(cmbNR.Text)
         Dim critHX As Boolean = chkHX.Checked
         Dim critMPX As Boolean = chkMPX.Checked
@@ -225,6 +229,88 @@
 
         ' Display number of results.
         txtResults.Text = CStr(resultsCount)
+
+    End Sub
+
+    Private Sub lstDecks_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstDecks.SelectedIndexChanged
+
+        identifiers.Clear() ' Clear selected identifiers.
+        identifierCount = lstDecks.SelectedItems.Count ' Number of indetifiers selected.
+
+        If identifierCount >= 1 Then
+
+            For i As Integer = 0 To identifierCount - 1
+
+                ' Add all of the selected identifiers to a list.
+                identifiers.Add(lstDecks.SelectedItems(i).SubItems(0).Text & " " & lstDecks.SelectedItems(i).SubItems(1).Text) ' Manufacturer & model = identifier.
+
+            Next
+
+            ' Enable buttons.
+
+            btnDelete.Enabled = True
+            ' Only allow editing if only one tape is selected.
+            If identifierCount = 1 Then
+                btnEdit.Enabled = True
+            Else
+                btnEdit.Enabled = False
+            End If
+
+        Else
+
+            ' Do not add any identifiers to the list, leave it empty.
+
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        ' Delete every deck in the list.
+
+        ' Confirm with the user that they would like to delete their selection of decks.
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") decks?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            For Each identifier In identifiers
+
+                ' Get this deck's row in the data table.
+                Dim deckRow As DataRow = decks.Rows.Find(identifier)
+
+                ' Remove the this deck's record from the table.
+                decks.Rows.Remove(deckRow)
+
+                ' Update deck counter.
+                deckCount -= 1
+                counters.Rows(0)("Number") = tapeCount
+
+                ' Update change detection variable.
+                changes = True
+                'Update title bar
+                Me.Text = fileName & "* - C3"
+
+                'Show confirmation message
+                Dim message As String = "Deleted deck " & identifier & " successfully."
+                'If My.Settings.showMessages = True Then
+                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Deck(s)")
+                'End If
+                consoleAdd(message)
+
+            Next
+
+            loadList() ' Refresh the list data.
+
+            lstDecks.SelectedItems.Clear() ' Clear selection of decks.
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
 
     End Sub
 

@@ -1,4 +1,8 @@
 ﻿Public Class frmViewBrands
+
+    Dim identifiers As New List(Of String)
+    Dim identifierCount As Integer = 0
+
     Private Sub frmViewBrands_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadList()
     End Sub
@@ -57,6 +61,89 @@
 
         ' Display number of results.
         txtResults.Text = CStr(resultsCount)
+
+    End Sub
+
+    Private Sub lstBrands_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstBrands.SelectedIndexChanged
+
+        identifiers.Clear() ' Clear selected identifiers.
+        identifierCount = lstBrands.SelectedItems.Count ' Number of indetifiers selected.
+
+        If identifierCount >= 1 Then
+
+            'identifierSelected = lstTapes.SelectedItems(0).SubItems(0).Text ' Get the string of the first column (subitem) in the primary selected row (i.e. the identifier).
+            For i As Integer = 0 To identifierCount - 1
+
+                ' Add all of the selected identifiers to a list.
+                identifiers.Add(lstBrands.SelectedItems(i).SubItems(0).Text)
+
+            Next
+
+            ' Enable buttons.
+
+            btnDelete.Enabled = True
+            ' Only allow editing if only one tape is selected.
+            If identifierCount = 1 Then
+                btnEdit.Enabled = True
+            Else
+                btnEdit.Enabled = False
+            End If
+
+        Else
+
+            ' Do not add any identifiers to the list, leave it empty.
+
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        ' Delete every brand in the list.
+
+        ' Confirm with the user that they would like to delete their selection.
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") brands?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            For Each identifier In identifiers
+
+                ' Get this brand's row in the data table.
+                Dim brandRow As DataRow = brands.Rows.Find(identifier)
+
+                ' Remove the this brand's record from the table.
+                brands.Rows.Remove(brandRow)
+
+                ' Update brand counter.
+                brandCount -= 1
+                counters.Rows(1)("Number") = brandCount
+
+                ' Update change detection variable.
+                changes = True
+                'Update title bar
+                Me.Text = fileName & "* - C3"
+
+                'Show confirmation message
+                Dim message As String = "Deleted brand " & identifier & " successfully."
+                'If My.Settings.showMessages = True Then
+                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Brand(s)")
+                'End If
+                consoleAdd(message)
+
+            Next
+
+            loadList() ' Refresh the list data.
+
+            lstBrands.SelectedItems.Clear() ' Clear selection of brands.
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
 
     End Sub
 

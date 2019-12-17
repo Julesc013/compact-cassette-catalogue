@@ -1,4 +1,8 @@
 ﻿Public Class frmModels
+
+    Dim identifiers As New List(Of String)
+    Dim identifierCount As Integer = 0
+
     Private Sub frmModels_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Populate objects.
@@ -144,6 +148,89 @@
             chkTypeBetter.Enabled = False
             chkTypeBetter.Text = "Type I or better."
             chkTypeBetter.Checked = False
+
+        End If
+
+    End Sub
+
+    Private Sub lstModels_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstModels.SelectedIndexChanged
+
+        identifiers.Clear() ' Clear selected identifiers.
+        identifierCount = lstModels.SelectedItems.Count ' Number of indetifiers selected.
+
+        If identifierCount >= 1 Then
+
+            'identifierSelected = lstTapes.SelectedItems(0).SubItems(0).Text ' Get the string of the first column (subitem) in the primary selected row (i.e. the identifier).
+            For i As Integer = 0 To identifierCount - 1
+
+                ' Add all of the selected identifiers to a list.
+                identifiers.Add(lstModels.SelectedItems(i).SubItems(0).Text)
+
+            Next
+
+            ' Enable buttons.
+
+            btnDelete.Enabled = True
+            ' Only allow editing if only one tape is selected.
+            If identifierCount = 1 Then
+                btnEdit.Enabled = True
+            Else
+                btnEdit.Enabled = False
+            End If
+
+        Else
+
+            ' Do not add any identifiers to the list, leave it empty.
+
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        ' Delete every model in the list.
+
+        ' Confirm with the user that they would like to delete their selection.
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") brands?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            For Each identifier In identifiers
+
+                ' Get this model's row in the data table.
+                Dim modelRow As DataRow = models.Rows.Find(identifier)
+
+                ' Remove the this model's record from the table.
+                models.Rows.Remove(modelRow)
+
+                ' Update model counter.
+                modelCount -= 1
+                counters.Rows(2)("Number") = modelCount
+
+                ' Update change detection variable.
+                changes = True
+                'Update title bar
+                Me.Text = fileName & "* - C3"
+
+                'Show confirmation message
+                Dim message As String = "Deleted model " & identifier & " successfully."
+                'If My.Settings.showMessages = True Then
+                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Model(s)")
+                'End If
+                consoleAdd(message)
+
+            Next
+
+            loadList() ' Refresh the list data.
+
+            lstModels.SelectedItems.Clear() ' Clear selection of models.
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
 
         End If
 

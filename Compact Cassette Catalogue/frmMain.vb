@@ -42,7 +42,7 @@ Public Class frmMain
         catalogue.Tables.Add(tapes)
 
         'Initialise objects
-        cmbField.SelectedIndex = 0 'move to search-load subroutine when it gets implemented
+        cmbField.SelectedIndex = 0 'TEMP move to search-load subroutine when it gets implemented
         'Update date boundaries
         datRecordedA.MinDate = CDate("30/8/1963")
         datRecordedB.MinDate = CDate("30/8/1963")
@@ -349,14 +349,26 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub deleteTape()
+    Public Sub deleteTape(subTapeIndex As Integer, ignoreWarning As Boolean)
 
-        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete the current tape?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+        Dim result As MsgBoxResult
+
+        If ignoreWarning = False Then
+
+            ' Present this warning to the user and use it to determine whether or not the tape should be deleted.
+            result = MsgBox("Are you sure you want to delete the current tape?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        Else
+
+            ' If warnings have been presented outside the function then checking again is not necessary, proceed directly to deletion.
+            result = vbYes
+
+        End If
 
         If result = vbYes Then
 
             'Get tape identification
-            Dim tape As DataRow = tapes.Rows(thisTapeIndex)
+            Dim tape As DataRow = tapes.Rows(subTapeIndex)
             Dim identifierShort As String = CStr(tape("IdentifierShort"))
 
 
@@ -459,6 +471,11 @@ Public Class frmMain
                 Message = "Saved catalogue successfully (as new file)."
 
             ElseIf dlgResult <> DialogResult.Cancel Then
+                'If user DID deliberately cancel save procedure.
+
+                Exit Sub 'Exit and don't try to save.
+
+            Else
                 'If user did NOT deliberately cancel save procedure.
 
                 'Show error message
@@ -731,6 +748,8 @@ Public Class frmMain
         'Display identifiers
         txtLong.Text = CStr(tape("Identifier"))
         txtShort.Text = CStr(tape("IdentifierShort"))
+        'numIndex.Maximum = tapeCount ' Update the maximum index that can be scrolled to.
+        'numIndex.Value = thisTapeIndex + 1
         txtIndex.Text = CStr(thisTapeIndex + 1)
         txtTotal.Text = CStr(tapeCount)
 
@@ -1167,7 +1186,7 @@ Public Class frmMain
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        deleteTape()
+        deleteTape(thisTapeIndex, False)
 
     End Sub
 
@@ -1183,7 +1202,23 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles btnPrevious.Click
+    Private Sub scrollActual(change As Integer, jump As Boolean)
+
+        If jump = True Then
+
+            thisTapeIndex = change ' New index is the given integer.
+            displayTape()
+
+        Else
+
+            thisTapeIndex += change ' New index is incremented/decremented by the given integer.
+            displayTape()
+
+        End If
+
+    End Sub
+
+    Public Sub scrollTo(change As Integer, jump As Boolean)
 
         If updates = True Then
 
@@ -1193,29 +1228,21 @@ Public Class frmMain
 
                 updateTape()
 
-                'SCROLL PREVIOUS
-
-                thisTapeIndex -= 1
-                displayTape()
+                scrollActual(change, jump) ' Scroll!
 
             ElseIf result = vbNo Then
-                'SCROLL PREVIOUS
 
-                thisTapeIndex -= 1
-                displayTape()
+                scrollActual(change, jump) ' Scroll!
 
             End If
 
         Else
 
-            'SCROLL PREVIOUS
-
-            thisTapeIndex -= 1
-            displayTape()
+            scrollActual(change, jump) ' Scroll!
 
         End If
 
-        'Reset updates variable and buttons
+        ' Reset updates variable and buttons.
         updates = False
 
         btnUpdate.Enabled = False
@@ -1223,43 +1250,15 @@ Public Class frmMain
 
     End Sub
 
+    Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles btnPrevious.Click
+
+        scrollTo(-1, False)
+
+    End Sub
+
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
 
-        If updates = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before scrolling?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
-
-            If result = vbYes Then
-
-                updateTape()
-
-                    'SCROLL NEXT
-
-                    thisTapeIndex += 1
-                    displayTape()
-
-            ElseIf result = vbNo Then
-                'SCROLL NEXT
-
-                thisTapeIndex += 1
-                displayTape()
-
-            End If
-
-        Else
-
-            'SCROLL NEXT
-
-            thisTapeIndex += 1
-            displayTape()
-
-        End If
-
-        'Reset updates variable
-        updates = False
-
-        btnUpdate.Enabled = False
-        UpdateTapeToolStripMenuItem.Enabled = False
+        scrollTo(1, False)
 
     End Sub
 
@@ -1504,7 +1503,7 @@ Public Class frmMain
 
     Private Sub DeleteTapeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteTapeToolStripMenuItem.Click
 
-        deleteTape()
+        deleteTape(thisTapeIndex, False)
 
     End Sub
 
@@ -1646,5 +1645,13 @@ Public Class frmMain
         updateMade()
 
     End Sub
+
+    'Private Sub numIndex_ValueChanged(sender As Object, e As EventArgs)
+
+    '    ' When the index is changed, jump to it!
+    '    Dim newIndex As Integer = CInt(numIndex.Value)
+    '    scrollIndex(newIndex, True)
+
+    'End Sub
 
 End Class

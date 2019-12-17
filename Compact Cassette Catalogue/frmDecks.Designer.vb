@@ -27,8 +27,8 @@ Partial Class frmDecks
         Me.grpTapes = New System.Windows.Forms.GroupBox()
         Me.lstDecks = New System.Windows.Forms.ListView()
         Me.colManufacturer = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colDeck = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colModel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colYear = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colTypes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colHeads = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colSpeeds = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -99,7 +99,7 @@ Partial Class frmDecks
         'lstDecks
         '
         Me.lstDecks.AllowColumnReorder = True
-        Me.lstDecks.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colManufacturer, Me.colDeck, Me.ColumnHeader7, Me.colTypes, Me.colHeads, Me.colSpeeds, Me.colNRs, Me.colHX, Me.colMPX, Me.colStereo, Me.colWells, Me.colDubbing, Me.colAutoReverse, Me.colProgramSearch, Me.colCalibration, Me.colAzimuth, Me.colFrequency, Me.colSignalRatio, Me.colWowFlutter, Me.colDistortion, Me.colCondition})
+        Me.lstDecks.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colManufacturer, Me.colModel, Me.colYear, Me.colTypes, Me.colHeads, Me.colSpeeds, Me.colNRs, Me.colHX, Me.colMPX, Me.colStereo, Me.colWells, Me.colDubbing, Me.colAutoReverse, Me.colProgramSearch, Me.colCalibration, Me.colAzimuth, Me.colFrequency, Me.colSignalRatio, Me.colWowFlutter, Me.colDistortion, Me.colCondition})
         Me.lstDecks.HideSelection = False
         Me.lstDecks.Location = New System.Drawing.Point(5, 17)
         Me.lstDecks.Margin = New System.Windows.Forms.Padding(2)
@@ -114,15 +114,15 @@ Partial Class frmDecks
         Me.colManufacturer.Text = "Manufacturer"
         Me.colManufacturer.Width = 95
         '
-        'colDeck
+        'colModel
         '
-        Me.colDeck.Text = "Model"
-        Me.colDeck.Width = 71
+        Me.colModel.Text = "Model"
+        Me.colModel.Width = 71
         '
-        'ColumnHeader7
+        'colYear
         '
-        Me.ColumnHeader7.Text = "Year"
-        Me.ColumnHeader7.Width = 47
+        Me.colYear.Text = "Year"
+        Me.colYear.Width = 47
         '
         'colTypes
         '
@@ -485,8 +485,8 @@ Partial Class frmDecks
     Friend WithEvents btnEdit As Button
     Friend WithEvents lstDecks As ListView
     Friend WithEvents colManufacturer As ColumnHeader
-    Friend WithEvents colDeck As ColumnHeader
-    Friend WithEvents ColumnHeader7 As ColumnHeader
+    Friend WithEvents colModel As ColumnHeader
+    Friend WithEvents colYear As ColumnHeader
     Friend WithEvents colTypes As ColumnHeader
     Friend WithEvents colHeads As ColumnHeader
     Friend WithEvents colSpeeds As ColumnHeader
