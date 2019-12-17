@@ -239,11 +239,10 @@
 
         If identifierCount >= 1 Then
 
-            'identifierSelected = lstTapes.SelectedItems(0).SubItems(0).Text ' Get the string of the first column (subitem) in the primary selected row (i.e. the identifier).
             For i As Integer = 0 To identifierCount - 1
 
                 ' Add all of the selected identifiers to a list.
-                identifiers.Add(lstDecks.SelectedItems(i).SubItems(0).Text)
+                identifiers.Add(lstDecks.SelectedItems(i).SubItems(0).Text & " " & lstDecks.SelectedItems(i).SubItems(1).Text) ' Manufacturer & model = identifier.
 
             Next
 
@@ -261,6 +260,53 @@
 
             ' Do not add any identifiers to the list, leave it empty.
 
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        ' Delete every deck in the list.
+
+        ' Confirm with the user that they would like to delete their selection of decks.
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") decks?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            For Each identifier In identifiers
+
+                ' Get index of this deck's row in the data table.
+                Dim deckRow As DataRow = decks.Rows.Find(identifier)
+                Dim selectedDeckIndex As Integer = decks.Rows.IndexOf(deckRow)
+
+                ' Remove the this deck's record from the table.
+                decks.Rows.Remove(deckRow)
+
+                ' Update deck counter.
+                deckCount -= 1
+                counters.Rows(0)("Number") = tapeCount
+
+                ' Update change detection variable.
+                changes = True
+                'Update title bar
+                Me.Text = fileName & "* - C3"
+
+                'Show confirmation message
+                Dim message As String = "Deleted deck " & identifier & " successfully."
+                'If My.Settings.showMessages = True Then
+                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Tape")
+                'End If
+                consoleAdd(message)
+
+            Next
+
+            loadList() ' Refresh the list data.
+
+            lstDecks.SelectedItems.Clear() ' Clear selection of decks.
             ' Disable buttons.
             btnEdit.Enabled = False
             btnDelete.Enabled = False
