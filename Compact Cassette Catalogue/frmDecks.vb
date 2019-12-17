@@ -1,4 +1,8 @@
 ﻿Public Class frmDecks
+
+    Dim identifiers As New List(Of String)
+    Dim identifierCount As Integer = 0
+
     Private Sub FrmViewDecks_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Intialise objects.
@@ -23,7 +27,7 @@
 
         ' Get filter values
         Dim critManufacturer As String = txtManufacturer.Text
-        Dim critFrequencyMax As Integer = Cint(numFrequencyMax.Value * 1000)
+        Dim critFrequencyMax As Integer = CInt(numFrequencyMax.Value * 1000)
         Dim critNR As String = CStr(cmbNR.Text)
         Dim critHX As Boolean = chkHX.Checked
         Dim critMPX As Boolean = chkMPX.Checked
@@ -225,6 +229,43 @@
 
         ' Display number of results.
         txtResults.Text = CStr(resultsCount)
+
+    End Sub
+
+    Private Sub lstDecks_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstDecks.SelectedIndexChanged
+
+        identifiers.Clear() ' Clear selected identifiers.
+        identifierCount = lstDecks.SelectedItems.Count ' Number of indetifiers selected.
+
+        If identifierCount >= 1 Then
+
+            'identifierSelected = lstTapes.SelectedItems(0).SubItems(0).Text ' Get the string of the first column (subitem) in the primary selected row (i.e. the identifier).
+            For i As Integer = 0 To identifierCount - 1
+
+                ' Add all of the selected identifiers to a list.
+                identifiers.Add(lstDecks.SelectedItems(i).SubItems(0).Text)
+
+            Next
+
+            ' Enable buttons.
+
+            btnDelete.Enabled = True
+            ' Only allow editing if only one tape is selected.
+            If identifierCount = 1 Then
+                btnEdit.Enabled = True
+            Else
+                btnEdit.Enabled = False
+            End If
+
+        Else
+
+            ' Do not add any identifiers to the list, leave it empty.
+
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
 
     End Sub
 

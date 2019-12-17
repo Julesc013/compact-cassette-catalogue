@@ -471,6 +471,11 @@ Public Class frmMain
                 Message = "Saved catalogue successfully (as new file)."
 
             ElseIf dlgResult <> DialogResult.Cancel Then
+                'If user DID deliberately cancel save procedure.
+
+                Exit Sub 'Exit and don't try to save.
+
+            Else
                 'If user did NOT deliberately cancel save procedure.
 
                 'Show error message
