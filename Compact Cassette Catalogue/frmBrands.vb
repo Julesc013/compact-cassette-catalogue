@@ -101,4 +101,50 @@
 
     End Sub
 
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        ' Delete every brand in the list.
+
+        ' Confirm with the user that they would like to delete their selection.
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") brands?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            For Each identifier In identifiers
+
+                ' Get this brand's row in the data table.
+                Dim brandRow As DataRow = brands.Rows.Find(identifier)
+
+                ' Remove the this brand's record from the table.
+                brands.Rows.Remove(brandRow)
+
+                ' Update brand counter.
+                brandCount -= 1
+                counters.Rows(1)("Number") = brandCount
+
+                ' Update change detection variable.
+                changes = True
+                'Update title bar
+                Me.Text = fileName & "* - C3"
+
+                'Show confirmation message
+                Dim message As String = "Deleted brand " & identifier & " successfully."
+                'If My.Settings.showMessages = True Then
+                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Brand(s)")
+                'End If
+                consoleAdd(message)
+
+            Next
+
+            loadList() ' Refresh the list data.
+
+            lstBrands.SelectedItems.Clear() ' Clear selection of brands.
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
+
+    End Sub
+
 End Class

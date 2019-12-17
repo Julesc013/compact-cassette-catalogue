@@ -279,9 +279,8 @@
 
             For Each identifier In identifiers
 
-                ' Get index of this deck's row in the data table.
+                ' Get this deck's row in the data table.
                 Dim deckRow As DataRow = decks.Rows.Find(identifier)
-                Dim selectedDeckIndex As Integer = decks.Rows.IndexOf(deckRow)
 
                 ' Remove the this deck's record from the table.
                 decks.Rows.Remove(deckRow)
@@ -298,7 +297,7 @@
                 'Show confirmation message
                 Dim message As String = "Deleted deck " & identifier & " successfully."
                 'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Tape")
+                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Deck(s)")
                 'End If
                 consoleAdd(message)
 

@@ -190,4 +190,50 @@
 
     End Sub
 
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        ' Delete every model in the list.
+
+        ' Confirm with the user that they would like to delete their selection.
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") brands?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+
+        If result = vbYes Then
+
+            For Each identifier In identifiers
+
+                ' Get this model's row in the data table.
+                Dim modelRow As DataRow = models.Rows.Find(identifier)
+
+                ' Remove the this model's record from the table.
+                models.Rows.Remove(modelRow)
+
+                ' Update model counter.
+                modelCount -= 1
+                counters.Rows(2)("Number") = modelCount
+
+                ' Update change detection variable.
+                changes = True
+                'Update title bar
+                Me.Text = fileName & "* - C3"
+
+                'Show confirmation message
+                Dim message As String = "Deleted model " & identifier & " successfully."
+                'If My.Settings.showMessages = True Then
+                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Model(s)")
+                'End If
+                consoleAdd(message)
+
+            Next
+
+            loadList() ' Refresh the list data.
+
+            lstModels.SelectedItems.Clear() ' Clear selection of models.
+            ' Disable buttons.
+            btnEdit.Enabled = False
+            btnDelete.Enabled = False
+
+        End If
+
+    End Sub
+
 End Class
