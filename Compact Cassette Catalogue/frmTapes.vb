@@ -644,4 +644,19 @@
 
     End Sub
 
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+
+        ' Scroll to the selected tape's index number and focus on the main form.
+
+        ' Get index of this tape's row in the data table.
+        Dim identifier As String = identifiers(0) ' Use the first tape selected.
+        Dim tapeRow As DataRow = tapes.Rows.Find(identifier)
+        Dim selectedTapeIndex As Integer = tapes.Rows.IndexOf(tapeRow)
+
+        frmMain.scrollTo(selectedTapeIndex, True) ' Scroll to the tape.
+
+        frmMain.BringToFront() ' Focus on the main form.
+
+    End Sub
+
 End Class

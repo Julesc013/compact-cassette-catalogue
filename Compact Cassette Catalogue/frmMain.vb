@@ -1213,7 +1213,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub scrollIndex(change As Integer, jump As Boolean)
+    Public Sub scrollTo(change As Integer, jump As Boolean)
 
         If updates = True Then
 
@@ -1247,13 +1247,13 @@ Public Class frmMain
 
     Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles btnPrevious.Click
 
-        scrollIndex(-1, False)
+        scrollTo(-1, False)
 
     End Sub
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
 
-        scrollIndex(1, False)
+        scrollTo(1, False)
 
     End Sub
 
