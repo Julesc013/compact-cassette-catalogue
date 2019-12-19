@@ -249,19 +249,19 @@
             ' Enable buttons.
 
             btnDelete.Enabled = True
-            ' Only allow editing if only one tape is selected.
-            If identifierCount = 1 Then
-                btnEdit.Enabled = True
-            Else
-                btnEdit.Enabled = False
-            End If
+            '' Only allow editing if only one tape is selected.
+            'If identifierCount = 1 Then
+            '    btnEdit.Enabled = True
+            'Else
+            '    btnEdit.Enabled = False
+            'End If
 
         Else
 
             ' Do not add any identifiers to the list, leave it empty.
 
             ' Disable buttons.
-            btnEdit.Enabled = False
+            'btnEdit.Enabled = False
             btnDelete.Enabled = False
 
         End If
@@ -307,7 +307,7 @@
 
             lstDecks.SelectedItems.Clear() ' Clear selection of decks.
             ' Disable buttons.
-            btnEdit.Enabled = False
+            'btnEdit.Enabled = False
             btnDelete.Enabled = False
 
         End If

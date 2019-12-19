@@ -11,6 +11,7 @@
 - Can view all tapes, models, brands and decks in list views.
 - Can filter results in list views.
 - Can select a result in list to make changes to.
+  - Cannot edit *decks* yet (must open XML in editor).
 - Can select result(s) in list to delete.
 - Can now just to a specific tape number instead of scrolling.
 - Disabled access to incomplete functions.

@@ -11,7 +11,7 @@
         loadList()
     End Sub
 
-    Private Sub loadList()
+    Public Sub loadList()
         ' Load Data from the DataSet into the ListView.
 
         ' Count the number of results.
@@ -144,6 +144,17 @@
             btnDelete.Enabled = False
 
         End If
+
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+
+        ' Get index of this brand's row in the data table.
+        Dim identifier As String = identifiers(0) ' Use the first brand selected.
+        frmBrandEdit.brandRow = brands.Rows.Find(identifier) ' Send this row to the next form for processing.
+
+        ' Open the editting form.
+        frmBrandEdit.Show()
 
     End Sub
 

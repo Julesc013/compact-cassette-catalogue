@@ -48,7 +48,6 @@ Partial Class frmDecks
         Me.colDistortion = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
-        Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -214,7 +213,6 @@ Partial Class frmDecks
         '
         'grpActions
         '
-        Me.grpActions.Controls.Add(Me.btnEdit)
         Me.grpActions.Controls.Add(Me.btnRefresh)
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
@@ -226,17 +224,6 @@ Partial Class frmDecks
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
-        '
-        'btnEdit
-        '
-        Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(5, 42)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(95, 21)
-        Me.btnEdit.TabIndex = 14
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.UseVisualStyleBackColor = True
         '
         'btnRefresh
         '
@@ -261,10 +248,10 @@ Partial Class frmDecks
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(104, 42)
+        Me.btnDelete.Location = New System.Drawing.Point(5, 42)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(95, 21)
+        Me.btnDelete.Size = New System.Drawing.Size(194, 21)
         Me.btnDelete.TabIndex = 2
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
@@ -482,7 +469,6 @@ Partial Class frmDecks
     Private WithEvents lblManufacturer As Label
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents txtManufacturer As TextBox
-    Friend WithEvents btnEdit As Button
     Friend WithEvents lstDecks As ListView
     Friend WithEvents colManufacturer As ColumnHeader
     Friend WithEvents colModel As ColumnHeader

@@ -7,6 +7,11 @@
 
 
 
+- temp settings to disable messageboxes
+- change info to question msgboxes to get rid of sound
+
+
+
 #### v1.1
 
 - sort list view items
@@ -51,6 +56,10 @@
 - add more filters for tapes (eg speed and such)
 
 - only nr/bias/speed selectable if deck supports it?
+
+
+
+- Ability to edit brand, model, and deck NAMES (and manufacterers). [currently cannot as they are used in primary keys or in second-hand stored values in tape records.]
 
 
 
