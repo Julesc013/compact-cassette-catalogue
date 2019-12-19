@@ -6,7 +6,7 @@
 
 
 
-### Version 1.0 – 7 December 2019
+### Version 1.0 – 20 December 2019
 
 - Can view all tapes, models, brands and decks in list views.
 - Can filter results in list views.
