@@ -48,7 +48,6 @@ Partial Class frmDecks
         Me.colDistortion = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
-        Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -67,6 +66,7 @@ Partial Class frmDecks
         Me.lblFrequency = New System.Windows.Forms.Label()
         Me.lblManufacturer = New System.Windows.Forms.Label()
         Me.grpFilters = New System.Windows.Forms.GroupBox()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.grpTapes.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpBasic.SuspendLayout()
@@ -226,17 +226,6 @@ Partial Class frmDecks
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
-        '
-        'btnEdit
-        '
-        Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(5, 42)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(95, 21)
-        Me.btnEdit.TabIndex = 14
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.UseVisualStyleBackColor = True
         '
         'btnRefresh
         '
@@ -441,6 +430,17 @@ Partial Class frmDecks
         Me.grpFilters.TabStop = False
         Me.grpFilters.Text = "Filters"
         '
+        'btnEdit
+        '
+        Me.btnEdit.Enabled = False
+        Me.btnEdit.Location = New System.Drawing.Point(5, 42)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(95, 21)
+        Me.btnEdit.TabIndex = 14
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
         'frmDecks
         '
         Me.AcceptButton = Me.btnRefresh
@@ -482,7 +482,6 @@ Partial Class frmDecks
     Private WithEvents lblManufacturer As Label
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents txtManufacturer As TextBox
-    Friend WithEvents btnEdit As Button
     Friend WithEvents lstDecks As ListView
     Friend WithEvents colManufacturer As ColumnHeader
     Friend WithEvents colModel As ColumnHeader
@@ -513,4 +512,5 @@ Partial Class frmDecks
     Friend WithEvents chkMPX As CheckBox
     Friend WithEvents chkCalibration As CheckBox
     Friend WithEvents numFrequencyMax As NumericUpDown
+    Friend WithEvents btnEdit As Button
 End Class

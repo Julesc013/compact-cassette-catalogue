@@ -7,6 +7,11 @@
 
 
 
+- temp settings to disable messageboxes
+- change info to question msgboxes to get rid of sound
+
+
+
 #### v1.1
 
 - sort list view items
@@ -28,7 +33,8 @@
 
 #### v1.3
 
-- add user settings.
+- Complete user settings.
+- Save directory and defaults to file (new format version).
 
 - BATCH ADDING of tapes (do all input data then specify amount to add).
 
@@ -51,6 +57,11 @@
 - add more filters for tapes (eg speed and such)
 
 - only nr/bias/speed selectable if deck supports it?
+
+
+
+- Ability to edit brand, model, and deck NAMES (and manufacterers). [currently cannot as they are used in primary keys or in second-hand stored values in tape records.] MAKE BRANDS AND MODELS STORED ONLY AS CODES.
+- Give decks a hidden primary key/code so that they can be renamed. (E.G: Marantz-SD340-020619)
 
 
 

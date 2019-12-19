@@ -17,7 +17,7 @@
         loadList()
     End Sub
 
-    Private Sub loadList()
+    Public Sub loadList()
         ' Load Data from the DataSet into the ListView.
 
         Dim validRow As Boolean
@@ -297,7 +297,7 @@
                 'Show confirmation message
                 Dim message As String = "Deleted deck " & identifier & " successfully."
                 'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Deck(s)")
+                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Deleted Deck(s)")
                 'End If
                 consoleAdd(message)
 
@@ -307,10 +307,21 @@
 
             lstDecks.SelectedItems.Clear() ' Clear selection of decks.
             ' Disable buttons.
-            btnEdit.Enabled = False
+            'btnEdit.Enabled = False
             btnDelete.Enabled = False
 
         End If
+
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+
+        ' Get fullname/identifier of this decks's row in the data table.
+        Dim nameid As String = identifiers(0) ' Use the first deck selected.
+        frmDeckEdit.deckRow = decks.Rows.Find(nameid) ' Send this row to the next form for processing.
+
+        ' Open the editting form.
+        frmDeckEdit.Show()
 
     End Sub
 

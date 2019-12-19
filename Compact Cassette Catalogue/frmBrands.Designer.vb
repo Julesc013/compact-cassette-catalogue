@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmViewBrands
+Partial Class frmBrands
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class frmViewBrands
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmViewBrands))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBrands))
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.btnRefresh = New System.Windows.Forms.Button()
@@ -191,7 +191,7 @@ Partial Class frmViewBrands
         Me.txtResults.TabIndex = 4
         Me.txtResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'frmViewBrands
+        'frmBrands
         '
         Me.AcceptButton = Me.btnRefresh
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -206,7 +206,7 @@ Partial Class frmViewBrands
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
-        Me.Name = "frmViewBrands"
+        Me.Name = "frmBrands"
         Me.Text = "View Brands"
         Me.grpFilters.ResumeLayout(False)
         Me.grpFilters.PerformLayout()

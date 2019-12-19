@@ -85,7 +85,7 @@
         'Show confirmation message
         Dim message As String = "Added model " & brand & " " & model & " successfully."
         If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Information, "Successfully Added Model")
+            MsgBox(message, MsgBoxStyle.Question, "Successfully Added Model")
         End If
         consoleAdd(message)
 

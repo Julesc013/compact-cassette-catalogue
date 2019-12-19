@@ -24,7 +24,7 @@
 
     End Sub
 
-    Private Sub loadList()
+    Public Sub loadList()
         ' Load Data from the DataSet into the ListView.
 
         Dim validRow As Boolean
@@ -219,7 +219,7 @@
                 'Show confirmation message
                 Dim message As String = "Deleted model " & identifier & " successfully."
                 'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Model(s)")
+                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Deleted Model(s)")
                 'End If
                 consoleAdd(message)
 
@@ -233,6 +233,17 @@
             btnDelete.Enabled = False
 
         End If
+
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+
+        ' Get index of this model's row in the data table.
+        Dim identifier As String = identifiers(0) ' Use the first model selected.
+        frmModelEdit.modelRow = models.Rows.Find(identifier) ' Send this row to the next form for processing.
+
+        ' Open the editting form.
+        frmModelEdit.Show()
 
     End Sub
 
