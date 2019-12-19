@@ -36,7 +36,7 @@
 
 - Can now write console output to a log file.
 - Improved console *help* command.
-- Added close and *kill* commands.
+- Added *close* and *kill* commands.
 - Bug fixes.
 
 
