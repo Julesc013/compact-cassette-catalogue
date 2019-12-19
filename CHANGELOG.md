@@ -17,6 +17,7 @@
 - Disabled access to incomplete functions.
 - Successful console output now shows confirmation message.
 - Only warning messages have sounds now.
+- Fixed bugs.
 
 
 

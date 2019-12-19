@@ -33,7 +33,8 @@
 
 #### v1.3
 
-- add user settings.
+- Complete user settings.
+- Save directory and defaults to file (new format version).
 
 - BATCH ADDING of tapes (do all input data then specify amount to add).
 

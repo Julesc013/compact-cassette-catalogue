@@ -25,6 +25,7 @@ Partial Class frmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.grpIdentification = New System.Windows.Forms.GroupBox()
         Me.lblMax = New System.Windows.Forms.Label()
+        Me.txtIndex = New System.Windows.Forms.TextBox()
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.lblIndex = New System.Windows.Forms.Label()
         Me.txtLong = New System.Windows.Forms.TextBox()
@@ -177,7 +178,6 @@ Partial Class frmMain
         Me.btnPrevious = New System.Windows.Forms.Button()
         Me.dlgOpen = New System.Windows.Forms.OpenFileDialog()
         Me.dlgSaveAs = New System.Windows.Forms.SaveFileDialog()
-        Me.txtIndex = New System.Windows.Forms.TextBox()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
         Me.grpData.SuspendLayout()
@@ -235,6 +235,16 @@ Partial Class frmMain
         Me.lblMax.Size = New System.Drawing.Size(12, 13)
         Me.lblMax.TabIndex = 6
         Me.lblMax.Text = "/"
+        '
+        'txtIndex
+        '
+        Me.txtIndex.Location = New System.Drawing.Point(328, 17)
+        Me.txtIndex.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtIndex.Name = "txtIndex"
+        Me.txtIndex.ReadOnly = True
+        Me.txtIndex.Size = New System.Drawing.Size(45, 20)
+        Me.txtIndex.TabIndex = 5
+        Me.txtIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtTotal
         '
@@ -1772,16 +1782,6 @@ Partial Class frmMain
         Me.dlgSaveAs.Filter = "C3 Catalogues (*.xml)|*.xml|All files (*.*)|*.*"
         Me.dlgSaveAs.FilterIndex = 0
         Me.dlgSaveAs.Title = "Save Catalogue As"
-        '
-        'txtIndex
-        '
-        Me.txtIndex.Location = New System.Drawing.Point(328, 17)
-        Me.txtIndex.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtIndex.Name = "txtIndex"
-        Me.txtIndex.ReadOnly = True
-        Me.txtIndex.Size = New System.Drawing.Size(45, 20)
-        Me.txtIndex.TabIndex = 5
-        Me.txtIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'frmMain
         '

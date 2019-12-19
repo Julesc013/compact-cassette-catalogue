@@ -94,15 +94,15 @@ Public Class frmMain
         'Load latest tape if any exist
         If tapeCount > 0 Then
 
-            'Enable scrolling and searching only if there is more than one record
+            ' Enable scrolling and searching only if there is more than one record
             grpFind.Enabled = True
             grpScroll.Enabled = True
 
-            'Enable groups and elements
+            ' Enable groups and elements
             btnDelete.Enabled = True
             DeleteTapeToolStripMenuItem.Enabled = True
             'btnUpdate.Enabled = True
-            UpdateTapeToolStripMenuItem.Enabled = True
+            'UpdateTapeToolStripMenuItem.Enabled = True
             grpIdentification.Enabled = True
             grpData.Enabled = True
 
@@ -110,15 +110,15 @@ Public Class frmMain
 
         Else
 
-            'Disnable scrolling and searching
+            ' Disnable scrolling and searching
             grpFind.Enabled = False
             grpScroll.Enabled = False
 
-            'Disnable groups and elements
+            ' Disnable groups and elements
             btnDelete.Enabled = False
             DeleteTapeToolStripMenuItem.Enabled = False
             'btnUpdate.Enabled = False
-            UpdateTapeToolStripMenuItem.Enabled = False
+            'UpdateTapeToolStripMenuItem.Enabled = False
             grpIdentification.Enabled = False
             grpData.Enabled = False
 
@@ -1643,6 +1643,12 @@ Public Class frmMain
     Private Sub txtTitleB_TextChanged(sender As Object, e As EventArgs) Handles txtTitleB.TextChanged
 
         updateMade()
+
+    End Sub
+
+    Private Sub PreferencesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreferencesToolStripMenuItem.Click
+
+        frmSettings.Show()
 
     End Sub
 
