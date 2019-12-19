@@ -60,6 +60,7 @@
 
 
 - Ability to edit brand, model, and deck NAMES (and manufacterers). [currently cannot as they are used in primary keys or in second-hand stored values in tape records.] MAKE BRANDS AND MODELS STORED ONLY AS CODES.
+- Give decks a hidden primary key/code so that they can be renamed. (E.G: Marantz-SD340-020619)
 
 
 

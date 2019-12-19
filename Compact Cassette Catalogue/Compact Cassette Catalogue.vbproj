@@ -112,6 +112,12 @@
     <Compile Include="frmBrandNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmDeckEdit.Designer.vb">
+      <DependentUpon>frmDeckEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeckEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDeckNew.Designer.vb">
       <DependentUpon>frmDeckNew.vb</DependentUpon>
     </Compile>
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBrandNew.resx">
       <DependentUpon>frmBrandNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeckEdit.resx">
+      <DependentUpon>frmDeckEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDeckNew.resx">
       <DependentUpon>frmDeckNew.vb</DependentUpon>

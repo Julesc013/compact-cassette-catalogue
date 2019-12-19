@@ -216,7 +216,7 @@ Partial Class frmDeckNew
         Me.numYear.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         Me.numYear.Minimum = New Decimal(New Integer() {1963, 0, 0, 0})
         Me.numYear.Name = "numYear"
-        Me.numYear.Size = New System.Drawing.Size(46, 20)
+        Me.numYear.Size = New System.Drawing.Size(62, 20)
         Me.numYear.TabIndex = 3
         Me.numYear.Value = New Decimal(New Integer() {1980, 0, 0, 0})
         '

@@ -17,7 +17,7 @@
         loadList()
     End Sub
 
-    Private Sub loadList()
+    Public Sub loadList()
         ' Load Data from the DataSet into the ListView.
 
         Dim validRow As Boolean
@@ -249,19 +249,19 @@
             ' Enable buttons.
 
             btnDelete.Enabled = True
-            '' Only allow editing if only one tape is selected.
-            'If identifierCount = 1 Then
-            '    btnEdit.Enabled = True
-            'Else
-            '    btnEdit.Enabled = False
-            'End If
+            ' Only allow editing if only one tape is selected.
+            If identifierCount = 1 Then
+                btnEdit.Enabled = True
+            Else
+                btnEdit.Enabled = False
+            End If
 
         Else
 
             ' Do not add any identifiers to the list, leave it empty.
 
             ' Disable buttons.
-            'btnEdit.Enabled = False
+            btnEdit.Enabled = False
             btnDelete.Enabled = False
 
         End If
@@ -311,6 +311,17 @@
             btnDelete.Enabled = False
 
         End If
+
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+
+        ' Get fullname/identifier of this decks's row in the data table.
+        Dim nameid As String = identifiers(0) ' Use the first deck selected.
+        frmDeckEdit.deckRow = decks.Rows.Find(nameid) ' Send this row to the next form for processing.
+
+        ' Open the editting form.
+        frmDeckEdit.Show()
 
     End Sub
 
