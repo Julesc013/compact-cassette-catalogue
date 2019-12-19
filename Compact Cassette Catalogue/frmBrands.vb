@@ -130,7 +130,7 @@
                 'Show confirmation message
                 Dim message As String = "Deleted brand " & identifier & " successfully."
                 'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Brand(s)")
+                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Deleted Brand(s)")
                 'End If
                 consoleAdd(message)
 

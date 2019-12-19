@@ -104,7 +104,7 @@
         'Show confirmation message
         Dim message As String = "Added deck " & name & " successfully."
         If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Information, "Successfully Added Deck")
+            MsgBox(message, MsgBoxStyle.Question, "Successfully Added Deck")
         End If
         consoleAdd(message)
 

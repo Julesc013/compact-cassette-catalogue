@@ -219,7 +219,7 @@
                 'Show confirmation message
                 Dim message As String = "Deleted model " & identifier & " successfully."
                 'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Model(s)")
+                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Deleted Model(s)")
                 'End If
                 consoleAdd(message)
 

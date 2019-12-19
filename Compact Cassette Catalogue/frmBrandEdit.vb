@@ -67,7 +67,7 @@
         ' Show confirmation message.
         Dim message As String = "Updated brand " & brandName & " successfully."
         If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Information, "Successfully Updated Brand")
+            MsgBox(message, MsgBoxStyle.Question, "Successfully Updated Brand")
         End If
         consoleAdd(message)
 

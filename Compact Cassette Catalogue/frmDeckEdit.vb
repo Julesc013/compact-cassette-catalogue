@@ -249,7 +249,7 @@
         'Show confirmation message
         Dim message As String = "Updated deck " & fullName & " successfully."
         If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Information, "Successfully Updated Deck")
+            MsgBox(message, MsgBoxStyle.Question, "Successfully Updated Deck")
         End If
         consoleAdd(message)
 

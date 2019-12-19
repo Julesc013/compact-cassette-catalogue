@@ -81,7 +81,7 @@
         'Show confirmation message
         Dim message As String = "Updated model " & modelBrand & " " & modelModelNew & " successfully."
         If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Information, "Successfully Updated Model")
+            MsgBox(message, MsgBoxStyle.Question, "Successfully Updated Model")
         End If
         consoleAdd(message)
 

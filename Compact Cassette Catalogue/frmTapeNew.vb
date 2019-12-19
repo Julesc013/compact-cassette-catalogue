@@ -306,7 +306,7 @@
             'Show confirmation message
             Dim message As String = "Added tape " & identifierShort & " successfully."
             If My.Settings.showMessages = True Then
-                MsgBox(message, MsgBoxStyle.Information, "Successfully Added Tape")
+                MsgBox(message, MsgBoxStyle.Question, "Successfully Added Tape")
             End If
             consoleAdd(message)
 

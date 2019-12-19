@@ -325,7 +325,7 @@ Public Class frmMain
                 'Show confirmation message
                 Dim message As String = "Updated tape " & identifierShort & " successfully."
                 If My.Settings.showMessages = True Then
-                    MsgBox(message, MsgBoxStyle.Information, "Successfully Updated Tape")
+                    MsgBox(message, MsgBoxStyle.Question, "Successfully Updated Tape")
                 End If
                 consoleAdd(message)
 
@@ -341,7 +341,7 @@ Public Class frmMain
             'No changes to update tape with
             Dim message As String = "No changes to update tape with."
             If My.Settings.showMessages = True Then
-                MsgBox(message, MsgBoxStyle.Information, "No Updates to Tape")
+                MsgBox(message, MsgBoxStyle.Question, "No Updates to Tape")
             End If
             'consoleAdd(message)
 
@@ -402,7 +402,7 @@ Public Class frmMain
             'Show confirmation message
             Dim message As String = "Deleted tape " & identifierShort & " successfully."
             'If My.Settings.showMessages = True Then
-            '    MsgBox(message, MsgBoxStyle.Information, "Successfully Deleted Tape")
+            '    MsgBox(message, MsgBoxStyle.Question, "Successfully Deleted Tape")
             'End If
             consoleAdd(message)
 
@@ -420,8 +420,8 @@ Public Class frmMain
 
                 updateTape()
 
-                    'SAVE CHANGES
-                    saveChangesActual(saveAs, False)
+                'SAVE CHANGES
+                saveChangesActual(saveAs, False)
 
             ElseIf result = vbNo Then
 
@@ -468,7 +468,7 @@ Public Class frmMain
                 Next
 
                 'Make confirmation message
-                Message = "Saved catalogue successfully (as new file)."
+                message = "Saved catalogue successfully (as new file)."
 
             ElseIf dlgResult <> DialogResult.Cancel Then
                 'If user DID deliberately cancel save procedure.
@@ -488,7 +488,7 @@ Public Class frmMain
             'SAVE OVERWRITE FILE
 
             'Make confirmation message
-            Message = "Saved catalogue successfully (overwrote file)."
+            message = "Saved catalogue successfully (overwrote file)."
 
         End If
 
@@ -517,7 +517,7 @@ Public Class frmMain
 
         'Show confirmation message
         'If My.Settings.showMessages = True Then
-        '    MsgBox(message, MsgBoxStyle.Information, "Successfully Saved Catalogue")
+        '    MsgBox(message, MsgBoxStyle.Question, "Successfully Saved Catalogue")
         'End If
         consoleAdd(message)
 
@@ -544,8 +544,8 @@ Public Class frmMain
 
                 updateTape()
 
-                    'CHECK CHANGES
-                    openCatalogueCheckChanges()
+                'CHECK CHANGES
+                openCatalogueCheckChanges()
 
             ElseIf result = vbNo Then
 
@@ -667,7 +667,7 @@ Public Class frmMain
                 'Show confirmation message
                 Dim message As String = "Opened catalogue successfully."
                 'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Information, "Successfully Saved Catalogue")
+                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Saved Catalogue")
                 'End If
                 consoleAdd(message)
 
@@ -913,7 +913,7 @@ Public Class frmMain
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        MsgBox("Compact Cassette Catalogue (C3)" & vbNewLine & "© Jules Carboni, 2019" & vbNewLine & vbNewLine & "Program Version: " & VERSIONSTAGE & " " & VERSION & vbNewLine & "Catalogue Version: " & VERSIONFILE & vbNewLine & VERSIONDATE.ToLongDateString & ", " & VERSIONDATE.ToLongTimeString, MsgBoxStyle.Information, "About C3")
+        MsgBox("Compact Cassette Catalogue (C3)" & vbNewLine & "© Jules Carboni, 2019" & vbNewLine & vbNewLine & "Program Version: " & VERSIONSTAGE & " " & VERSION & vbNewLine & "Catalogue Version: " & VERSIONFILE & vbNewLine & VERSIONDATE.ToLongDateString & ", " & VERSIONDATE.ToLongTimeString, MsgBoxStyle.Question, "About C3")
     End Sub
 
     Private Sub SearchTapesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchTapesToolStripMenuItem.Click
@@ -1107,8 +1107,8 @@ Public Class frmMain
 
                 updateTape()
 
-                    'ADD A NEW TAPE
-                    addNewTapeActual()
+                'ADD A NEW TAPE
+                addNewTapeActual()
 
             ElseIf result = vbNo Then
 
@@ -1295,8 +1295,8 @@ Public Class frmMain
 
                 updateTape()
 
-                    'NEW CAT
-                    newCatalogueCheckChanges()
+                'NEW CAT
+                newCatalogueCheckChanges()
 
             ElseIf result = vbNo Then
 
@@ -1532,7 +1532,7 @@ Public Class frmMain
         Dim message As String = "Successfully output console to log file."
         Dim messageDetails As String = vbNewLine & vbNewLine & "File name: " & outputName & vbNewLine & "Full directory: " & outputPath
         If My.Settings.showMessages = True Then
-            MsgBox(message & messageDetails, MsgBoxStyle.Information, "Successfully Output Console Log")
+            MsgBox(message & messageDetails, MsgBoxStyle.Question, "Successfully Output Console Log")
         End If
         consoleAdd(message)
 
