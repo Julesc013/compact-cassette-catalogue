@@ -59,7 +59,7 @@
 
 
 
-- Ability to edit brand, model, and deck NAMES (and manufacterers). [currently cannot as they are used in primary keys or in second-hand stored values in tape records.]
+- Ability to edit brand, model, and deck NAMES (and manufacterers). [currently cannot as they are used in primary keys or in second-hand stored values in tape records.] MAKE BRANDS AND MODELS STORED ONLY AS CODES.
 
 
 

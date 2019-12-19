@@ -1,4 +1,4 @@
-﻿Public Class frmViewBrands
+﻿Public Class frmBrands
 
     Dim identifiers As New List(Of String)
     Dim identifierCount As Integer = 0

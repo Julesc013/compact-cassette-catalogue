@@ -925,7 +925,7 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchManufacturersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchManufacturersToolStripMenuItem.Click
-        frmViewBrands.Show() 'temp
+        frmBrands.Show() 'temp
     End Sub
 
     Private Sub ViewDecksToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDecksToolStripMenuItem.Click

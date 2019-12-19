@@ -5,6 +5,7 @@
     Dim brandName As String
     Dim brandCode As String
     Dim brandDateTime As DateTime
+    Dim brandNotes As String
 
     Private Sub frmBrandEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -14,14 +15,13 @@
         brandCode = CStr(brands.Rows(brandIndex)("Code"))
         brandDateTime = Convert.ToDateTime(brands.Rows(brandIndex)("Date"))
         brandName = CStr(brands.Rows(brandIndex)("Brand"))
+        brandNotes = CStr(brands.Rows(brandIndex)("Notes"))
 
 
         ' Populate objects.
 
         txtBrand.Text = brandName
         txtCode.Text = brandCode
-
-        Dim brandNotes As String = CStr(brands.Rows(brandIndex)("Notes"))
         txtNotes.Text = brandNotes
 
 
@@ -30,7 +30,7 @@
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
         ' Get data to validate.
-        'Dim brandNameNew As String = txtBrand.Text
+        Dim brandNameNew As String = txtBrand.Text
         Dim brandNotesNew As String = txtNotes.Text
 
         '' Check entered data is correct.
@@ -73,7 +73,7 @@
 
         ' Reload data.
         frmMain.loadData() ' Reload main form.
-        frmViewBrands.loadList() ' Reload brands list. (Brands form will always be open while this form is.)
+        frmBrands.loadList() ' Reload brands list. (Brands form will always be open while this form is.)
 
         Me.Close() ' Close this form.
 
