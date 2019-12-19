@@ -164,10 +164,6 @@
 
 ## Alphas
 
-Note: Creation/design iterations displayed as alpha versions.
-
-Eg: "Iteration 10" reported as "Alpha 10.0"
-
 
 
 ### Alpha 10 – 5 September 2019
