@@ -12,7 +12,6 @@
 - Can filter results in list views.
 - Can select a result in list to make changes to.
 - Can select result(s) in list to delete.
-- Can now just to a specific tape number instead of scrolling.
 - Added a basic settings form with minimal functionality.
 - Disabled access to incomplete functions.
 - Successful console output now shows confirmation message.
