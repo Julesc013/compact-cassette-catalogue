@@ -25,6 +25,8 @@ Module varGlobals
     Public updateLinkCheck As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
     Public updateLinkDownload As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"  ' Github download page.
 
+    Public feedbackLink As String = "https://github.com/Julesc013/compact-cassette-catalogue/issues/new/choose" ' Github issues page.
+
     ' Has a change been made since last save?
     Public changes As Boolean = False
     Public updates As Boolean = False
@@ -347,5 +349,24 @@ Module varGlobals
         Return dateTime.ToString("dd/MM/yy HH:mm:ss")
 
     End Function
+
+    Sub openWebLink(link As String)
+
+        Process.Start(link)
+
+        'Try
+
+        '    ' Indicate to the user via the mouse cursor that a process is running.
+        '    Mouse.OverrideCursor = Cursors.AppStarting
+        '    Process.Start(link)
+
+        'Finally
+
+        '    ' Reset mouse cursor.
+        '    Mouse.OverrideCursor = Nothing
+
+        'End Try
+
+    End Sub
 
 End Module

@@ -152,32 +152,11 @@ Public Class frmMain
 
             If boxResult = vbYes Then
 
-                openDownloadsPage() ' Open the downloads page.
+                openWebLink(updateLinkDownload) ' Open the downloads page.
 
             End If
 
         End If
-
-    End Sub
-
-    Sub openDownloadsPage()
-
-        ' Open the download page for C3 (on Github).
-
-        Process.Start(updateLinkDownload)
-
-        'Try
-
-        '    ' Indicate to the user via the mouse cursor that a process is running.
-        '    Mouse.OverrideCursor = Cursors.AppStarting
-        '    Process.Start(updateLinkDownload)
-
-        'Finally
-
-        '    ' Reset mouse cursor.
-        '    Mouse.OverrideCursor = Nothing
-
-        'End Try
 
     End Sub
 
@@ -1472,8 +1451,7 @@ Public Class frmMain
 
     Private Sub FeedbackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FeedbackToolStripMenuItem.Click
 
-        ''temp
-        'open feedback webpage (email?)
+        openWebLink(feedbackLink)
 
     End Sub
 
@@ -1780,7 +1758,7 @@ Public Class frmMain
 
     Private Sub OpenDownloadsPageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDownloadsPageToolStripMenuItem.Click
 
-        openDownloadsPage() ' Open the downloads page.
+        openWebLink(updateLinkDownload) ' Open the downloads page.
 
     End Sub
 

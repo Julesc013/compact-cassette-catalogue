@@ -526,38 +526,37 @@ Partial Class frmMain
         Me.HelpGuideToolStripMenuItem.Enabled = False
         Me.HelpGuideToolStripMenuItem.Name = "HelpGuideToolStripMenuItem"
         Me.HelpGuideToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.HelpGuideToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.HelpGuideToolStripMenuItem.Size = New System.Drawing.Size(263, 22)
         Me.HelpGuideToolStripMenuItem.Text = "View Help"
         '
         'TutorialToolStripMenuItem
         '
         Me.TutorialToolStripMenuItem.Enabled = False
         Me.TutorialToolStripMenuItem.Name = "TutorialToolStripMenuItem"
-        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
-        Me.TutorialToolStripMenuItem.Text = "Tutorial"
+        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(263, 22)
+        Me.TutorialToolStripMenuItem.Text = "View Tutorial"
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(191, 6)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(260, 6)
         '
         'FeedbackToolStripMenuItem
         '
-        Me.FeedbackToolStripMenuItem.Enabled = False
         Me.FeedbackToolStripMenuItem.Name = "FeedbackToolStripMenuItem"
-        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
-        Me.FeedbackToolStripMenuItem.Text = "Feedback"
+        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(263, 22)
+        Me.FeedbackToolStripMenuItem.Text = "Send Feedback"
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(191, 6)
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(260, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
-        Me.AboutToolStripMenuItem.Text = "About"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(263, 22)
+        Me.AboutToolStripMenuItem.Text = "About Compact Cassette Catalogue"
         '
         'grpData
         '
@@ -1789,18 +1788,18 @@ Partial Class frmMain
         'CheckForUpdatesToolStripMenuItem
         '
         Me.CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
-        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(263, 22)
         Me.CheckForUpdatesToolStripMenuItem.Text = "Check for Updates"
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(191, 6)
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(260, 6)
         '
         'OpenDownloadsPageToolStripMenuItem
         '
         Me.OpenDownloadsPageToolStripMenuItem.Name = "OpenDownloadsPageToolStripMenuItem"
-        Me.OpenDownloadsPageToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.OpenDownloadsPageToolStripMenuItem.Size = New System.Drawing.Size(263, 22)
         Me.OpenDownloadsPageToolStripMenuItem.Text = "Open Downloads Page"
         '
         'frmMain
