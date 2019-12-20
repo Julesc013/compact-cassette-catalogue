@@ -6,6 +6,12 @@
 
 
 
+### Version 1.1 – 20 December 2019
+
+- Automatically and manually check for updates.
+
+
+
 ### Version 1.0 – 20 December 2019
 
 - Can view all tapes, models, brands and decks in list views.

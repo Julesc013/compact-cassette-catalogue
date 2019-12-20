@@ -1,18 +1,16 @@
 ### Short Term
 
 
-#### v1.0
-
-- make changes to existing models/decks/brands
-
-
-
-- temp settings to disable messageboxes
-- change info to question msgboxes to get rid of sound
-
-
-
 #### v1.1
+
+- Feedback (link to website form or to Bug/Feature reporting form)
+- allow autoupdates to be dissabled!
+- write tutorial (hyperlink to About and to Documentation)
+- Better about window!
+
+
+
+#### v1.2
 
 - sort list view items
 - save column reorderings for next load
@@ -20,14 +18,6 @@
 - search stuff
 
 - View statistics
-
-
-#### v1.2
-
-- Feedback (link to website form or to Bug/Feature reporting form)
-- update available notification (link to GitHub)
-- write tutorial (hyperlink to About and to Documentation)
-- Better about window!
 
 
 

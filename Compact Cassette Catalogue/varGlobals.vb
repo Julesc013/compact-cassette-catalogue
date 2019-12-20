@@ -7,46 +7,50 @@ Imports System.Text.RegularExpressions
 
 Module varGlobals
 
-    'REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
-    'About program information
-    Public Const VERSION As String = "1.0.0"
+    ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
+    ' About program information.
+    Public Const VERSION As String = "1.1.0b1"
     Public Const VERSIONSTAGE As String = "Release"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 20, 3, 10, 0, DateTimeKind.Local) 'Y M D, h m s
-    'About catalogue information
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 20, 15, 30, 0, DateTimeKind.Local) ' Y M D, h m s.
+    ' About catalogue information.
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
 
-    'Current file (and directory). If path is nothing, cannot save (must save-as).
-    Public filePath As String = Nothing 'Includes file name.
-    Public fileDirectory As String = Nothing 'Directory only.
-    Public fileName As String = "New Catalogue" 'Name only.
+    ' Current file (and directory). If path is nothing, cannot save (must save-as).
+    Public filePath As String = Nothing ' Includes file name.
+    Public fileDirectory As String = Nothing ' Directory only.
+    Public fileName As String = "New Catalogue" ' Name only.
 
-    'Has a change been made since last save?
+    ' The URL of the raw file in which the latest version information is stored.
+    Public updateLinkCheck As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
+    Public updateLinkDownload As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"  ' Github download page.
+
+    ' Has a change been made since last save?
     Public changes As Boolean = False
     Public updates As Boolean = False
 
-    'Time the program was loaded sucessfully
+    ' Time the program was loaded sucessfully.
     Public timeLoaded As String
 
-    'Define regular expressions
-    'Public regexAlphanumeric As Regex = New Regex("/^[a-z\d\-\s]+$/i") 'Alternatively: "/^[a-z0-9]+([-\s]{1}[a-z0-9]+)*$/i"
+    ' Define regular expressions.
+    'Public regexAlphanumeric As Regex = New Regex("/^[a-z\d\-\s]+$/i")  'Alternatively: "/^[a-z0-9]+([-\s]{1}[a-z0-9]+)*$/i".
     'Public regexAlphabetic As Regex = New Regex("/^[a-z]*$/i")
     'Public regexAlphanumericBasic As Regex = New Regex("[^a-z0-9]") 'TEMP (doesnt work for hyphens).
 
-    'Create data set for catalogue
+    ' Create data set for catalogue.
     Public catalogue As DataSet = New DataSet("Catalogue")
 
-    'Create tables for data
-    Public information As DataTable = makeInformation() 'File and program versions and dates
-    Public counters As DataTable = makeCounters() 'Counters for amount of decks, brands, models, and tapes
+    ' Create tables for data.
+    Public information As DataTable = makeInformation() ' File and program versions and dates.
+    Public counters As DataTable = makeCounters() ' Counters for amount of decks, brands, models, and tapes.
     Public decks As DataTable = makeDecks()
     Public brands As DataTable = makeBrands()
     Public models As DataTable = makeModels()
     Public tapes As DataTable = makeTapes()
 
-    'When adding tables, update 'add tables to dataset' section of frmMain.vb
+    ' When adding tables, update 'add tables to dataset' section of frmMain.vb.
 
-    'Add references to counters
+    ' Add references to counters.
     Public deckCount As Integer
     Public brandCount As Integer
     Public modelCount As Integer

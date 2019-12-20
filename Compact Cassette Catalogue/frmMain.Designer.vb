@@ -178,6 +178,9 @@ Partial Class frmMain
         Me.btnPrevious = New System.Windows.Forms.Button()
         Me.dlgOpen = New System.Windows.Forms.OpenFileDialog()
         Me.dlgSaveAs = New System.Windows.Forms.SaveFileDialog()
+        Me.CheckForUpdatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OpenDownloadsPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
         Me.grpData.SuspendLayout()
@@ -513,7 +516,7 @@ Partial Class frmMain
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpGuideToolStripMenuItem, Me.TutorialToolStripMenuItem, Me.ToolStripSeparator7, Me.FeedbackToolStripMenuItem, Me.ToolStripSeparator8, Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpGuideToolStripMenuItem, Me.TutorialToolStripMenuItem, Me.ToolStripSeparator7, Me.FeedbackToolStripMenuItem, Me.ToolStripSeparator8, Me.CheckForUpdatesToolStripMenuItem, Me.OpenDownloadsPageToolStripMenuItem, Me.ToolStripSeparator9, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
@@ -523,37 +526,37 @@ Partial Class frmMain
         Me.HelpGuideToolStripMenuItem.Enabled = False
         Me.HelpGuideToolStripMenuItem.Name = "HelpGuideToolStripMenuItem"
         Me.HelpGuideToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.HelpGuideToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.HelpGuideToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.HelpGuideToolStripMenuItem.Text = "View Help"
         '
         'TutorialToolStripMenuItem
         '
         Me.TutorialToolStripMenuItem.Enabled = False
         Me.TutorialToolStripMenuItem.Name = "TutorialToolStripMenuItem"
-        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.TutorialToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.TutorialToolStripMenuItem.Text = "Tutorial"
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(143, 6)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(191, 6)
         '
         'FeedbackToolStripMenuItem
         '
         Me.FeedbackToolStripMenuItem.Enabled = False
         Me.FeedbackToolStripMenuItem.Name = "FeedbackToolStripMenuItem"
-        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.FeedbackToolStripMenuItem.Text = "Feedback"
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(143, 6)
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(191, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'grpData
@@ -1783,6 +1786,23 @@ Partial Class frmMain
         Me.dlgSaveAs.FilterIndex = 0
         Me.dlgSaveAs.Title = "Save Catalogue As"
         '
+        'CheckForUpdatesToolStripMenuItem
+        '
+        Me.CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
+        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.CheckForUpdatesToolStripMenuItem.Text = "Check for Updates"
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(191, 6)
+        '
+        'OpenDownloadsPageToolStripMenuItem
+        '
+        Me.OpenDownloadsPageToolStripMenuItem.Name = "OpenDownloadsPageToolStripMenuItem"
+        Me.OpenDownloadsPageToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.OpenDownloadsPageToolStripMenuItem.Text = "Open Downloads Page"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2000,4 +2020,7 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
     Friend WithEvents txtIndex As TextBox
+    Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
+    Friend WithEvents OpenDownloadsPageToolStripMenuItem As ToolStripMenuItem
 End Class

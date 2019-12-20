@@ -5,7 +5,9 @@
 
 Imports System.Xml
 Imports System.IO
+Imports System.Net
 Imports System.Text.RegularExpressions
+Imports System.Windows.Input
 
 Public Class frmMain
 
@@ -21,19 +23,19 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ''Update varaibles
+        ' Update varaibles.
         'deckCount = CInt(counters.Rows(0)("Number"))
         'brandCount = CInt(counters.Rows(1)("Number"))
         'modelCount = CInt(counters.Rows(2)("Number"))
         'tapeCount = CInt(counters.Rows(3)("Number"))
-        ''Re-assert variables that for some reasion change
+        ' Re-assert variables that for some reasion change.
         'changes = False
         'updates = False
 
-        'Display about information
+        ' Display about information.
         lblAbout.Text = "© Jules Carboni, " & VERSIONSTAGE & " " & VERSION & " (" & VERSIONDATE.ToString("d/M/yy") & ")"
 
-        'Add tables to data set (a global process)
+        'A dd tables to data set (a global process).
         catalogue.Tables.Add(information)
         catalogue.Tables.Add(counters)
         catalogue.Tables.Add(decks)
@@ -41,23 +43,141 @@ Public Class frmMain
         catalogue.Tables.Add(models)
         catalogue.Tables.Add(tapes)
 
-        'Initialise objects
-        cmbField.SelectedIndex = 0 'TEMP move to search-load subroutine when it gets implemented
-        'Update date boundaries
+        ' Initialise objects.
+        cmbField.SelectedIndex = 0
+        ' Update date boundaries.
         datRecordedA.MinDate = CDate("30/8/1963")
         datRecordedB.MinDate = CDate("30/8/1963")
         datRecordedA.MaxDate = Date.Today
         datRecordedB.MaxDate = Date.Today
         numYear.Maximum = Date.Today.Year
 
-        'Load console
+        ' Load console.
         frmConsole.Show()
         frmConsole.Hide()
 
-        'Load data (decks, brands and models)
+        ' Load data (decks, brands and models).
         loadData()
 
-        consoleAdd("Successfully loaded program.") 'Add success note to console
+        consoleAdd("Successfully loaded program.") ' Add success note to console.
+
+        ' Check for updates.
+        checkUpdates()
+
+    End Sub
+
+    Sub checkUpdates()
+
+        ' Check for updates to the program.
+
+        ' Declare variables.
+        Dim latestVersion As String
+        Dim latestVersionStage As String
+        Dim latestVersionDate As Date
+
+        Dim updateAvailable As Boolean
+
+        Dim message As String
+        Dim messageDetails As String
+
+
+        ' Get variables from URL.
+        Try
+
+
+            Dim updateClient As WebClient = New WebClient()
+            Using updateReader As New StreamReader(updateClient.OpenRead(updateLinkCheck))
+
+                ' Assume there are only 3 lines (and in data is in this order).
+                latestVersion = updateReader.ReadLine()
+                latestVersionStage = updateReader.ReadLine()
+                latestVersionDate = CDate(updateReader.ReadLine())
+
+                ' Set success message for log.
+                message = "Successfully checked for updates."
+
+            End Using
+
+
+        Catch ex As WebException
+
+
+            ' Add confirmation message to console.
+            message = "Failed to check for updates."
+            consoleAdd(message)
+
+            ' Display error message.
+            Dim boxTitle As String = "Update Check Failed"
+            Dim boxMessage As String = "Compact Cassette Catalogue failed to check for updates." & vbNewLine & vbNewLine & "Error: " & ex.Message ' Pass the error message through to the message box. Maybe change this if its too verbose.
+            Dim boxStyle As MsgBoxStyle = MsgBoxStyle.Exclamation
+            MsgBox(boxMessage, boxStyle, boxTitle)
+
+            ' Exit this sub. Do not attempt to check versions further.
+            Exit Sub
+
+
+        End Try
+
+
+        ' Check if a new version exists. (Ignore stage and date.)
+        If latestVersion <> VERSION Then
+
+            updateAvailable = True
+            messageDetails = "Found v" & latestVersion & "."
+
+        Else
+
+            updateAvailable = False
+            messageDetails = "None found."
+
+        End If
+
+
+        ' Add confirmation message to console.
+        consoleAdd(message & " " & messageDetails)
+
+
+        ' If an update exists, show a message with a link.
+        If updateAvailable = True Then
+
+            ' Set up message box.
+            Dim boxVersionCurrent As String = "Current version: " & VERSION '& " (" & VERSIONDATE.ToShortDateString & ")"
+            Dim boxVersionLatest As String = "Latest version: " & latestVersion '& " (" & latestVersionDate.ToShortDateString & ")"
+
+            Dim boxTitle As String = "Update Available"
+            Dim boxMessage As String = "A Compact Cassette Catalogue update is available for download." & vbNewLine & vbNewLine & boxVersionCurrent & vbNewLine & boxVersionLatest & vbNewLine & vbNewLine & "Would you like to be taken to the download page?"
+
+            Dim boxResult As DialogResult
+            boxResult = MessageBox.Show(boxMessage, boxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+            If boxResult = vbYes Then
+
+                openDownloadsPage() ' Open the downloads page.
+
+            End If
+
+        End If
+
+    End Sub
+
+    Sub openDownloadsPage()
+
+        ' Open the download page for C3 (on Github).
+
+        Process.Start(updateLinkDownload)
+
+        'Try
+
+        '    ' Indicate to the user via the mouse cursor that a process is running.
+        '    Mouse.OverrideCursor = Cursors.AppStarting
+        '    Process.Start(updateLinkDownload)
+
+        'Finally
+
+        '    ' Reset mouse cursor.
+        '    Mouse.OverrideCursor = Nothing
+
+        'End Try
 
     End Sub
 
@@ -1649,6 +1769,18 @@ Public Class frmMain
     Private Sub PreferencesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreferencesToolStripMenuItem.Click
 
         frmSettings.Show()
+
+    End Sub
+
+    Private Sub CheckForUpdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
+
+        checkUpdates()
+
+    End Sub
+
+    Private Sub OpenDownloadsPageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDownloadsPageToolStripMenuItem.Click
+
+        openDownloadsPage() ' Open the downloads page.
 
     End Sub
 
