@@ -24,8 +24,8 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **System (please complete the following information):**
- - OS: [e.g. Windows 8.1]
- - Version [e.g. v0.4.2]
+ - OS: [e.g. Windows 10]
+ - Version [e.g. v1.3.7]
 
 **Additional context**
 Add any other context about the problem here.
