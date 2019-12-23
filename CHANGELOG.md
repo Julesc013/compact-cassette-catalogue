@@ -9,6 +9,7 @@
 ### Version 1.1 – 20 December 2019
 
 - Automatically and manually check for updates.
+- Submit feedback (bug reports or feature requests).
 
 
 
