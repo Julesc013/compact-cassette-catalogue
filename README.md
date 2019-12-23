@@ -2,7 +2,7 @@
 
 **Cataloging application for blank compact cassette tapes.**
 
-See [changes](CHANGELOG.md) and [planned features](TODO.md).
+See [changes](CHANGELOG.md "C3 Changelog") and [planned features](TODO.md "C3 To-Do List").
 
 ## What is it?
 
@@ -56,9 +56,9 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 
 *Note: Binaries are in 32-bit format and **do not** require installing or administrator privileges.*
 
-Upon running the application for the first time you will be presented with a **tutorial**;
-this will show you the ropes and should only take 2 minutes.
-If you need to review the tutorial, you can open it from the *Help* menu or by pressing *F1*.
+The **documentation** and **quick-start tutorial** can be read [here](DOCUMENTATION.md "C3 Documentation");
+this will help you get started and explains every function of the software.
+If you need to review the documentaion, you can open it from the *Help* menu or by pressing *F1*.
 
 ## System requirements.
 

@@ -5,7 +5,7 @@
 
 - Feedback (link to website form or to Bug/Feature reporting form)
 - allow autoupdates to be dissabled!
-- write tutorial (hyperlink to About and to Documentation)
+- write Documentation (with a quick-start guide/tutorial)
 - Better about window!
 
 
