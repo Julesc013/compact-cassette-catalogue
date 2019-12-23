@@ -56,7 +56,7 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 
 *Note: Binaries are in 32-bit format and **do not** require installing or administrator privileges.*
 
-The **documentation** and **quick-start tutorial** can be read [here](DOCUMENTATION.md "C3 Documentation");
+The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Documentation");
 this will help you get started and explains every function of the software.
 If you need to review the documentaion, you can open it from the *Help* menu or by pressing *F1*.
 
