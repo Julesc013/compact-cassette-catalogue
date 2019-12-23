@@ -2,7 +2,7 @@
 
 **Cataloging application for blank compact cassette tapes.**
 
-See [changes](CHANGELOG.md "C3 Changelog") and [planned features](TODO.md "C3 To-Do List").
+See [changes](CHANGELOG.md "C3 Changelog"), [planned features](TODO.md "C3 To-Do List"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
 ## What is it?
 
@@ -56,7 +56,7 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 
 *Note: Binaries are in 32-bit format and **do not** require installing or administrator privileges.*
 
-The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Documentation");
+The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
 this will help you get started and explains every function of the software.
 If you need to review the documentaion, you can open it from the *Help* menu or by pressing *F1*.
 
