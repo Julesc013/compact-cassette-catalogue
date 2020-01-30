@@ -6,7 +6,7 @@
 
 
 
-### Version 1.1 – 20 December 2019
+### Version 1.1 (Snapshot) – 30 January 2020
 
 - Automatically and manually check for updates.
 - Submit feedback (bug reports or feature requests).
