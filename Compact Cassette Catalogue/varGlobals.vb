@@ -11,7 +11,7 @@ Module varGlobals
     ' About program information.
     Public Const VERSION As String = "1.1.0b1"
     Public Const VERSIONSTAGE As String = "Release"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2019, 12, 20, 15, 30, 0, DateTimeKind.Local) ' Y M D, h m s.
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2020, 1, 30, 20, 20, 0, DateTimeKind.Local) ' Y M D, h m s.
     ' About catalogue information.
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
