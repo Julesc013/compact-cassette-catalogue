@@ -131,6 +131,8 @@
         modelCount = CInt(counters.Rows(2)("Number"))
         tapeCount = CInt(counters.Rows(3)("Number"))
 
+        Dim bulkAddAmount As Integer = CInt(numBulkAdd.Value)
+
         Try 'Try to save tape
 
             Dim packaged As Boolean = chkPackaged.Checked
@@ -157,6 +159,9 @@
             End If
 
 
+            'Get values to be recorded
+
+
             'Get and update new Identifier
 
             Dim year As Integer = CInt(numYear.Value)
@@ -175,12 +180,8 @@
                 lengthCode = "0" & lengthCode
             End If
 
-            'Add leading zeroes to number-code (then remove extra zeroes)
-            Dim numberCode As String = "00" & CStr(number)
-            numberCode = numberCode.Substring(numberCode.Length - 3, 3)
+            'GET TAPE MODEL INDEX NUMBER AND ASSEMBLE IDENTIFIERS IN FOR LOOP BELOW
 
-            Dim identifier As String = CStr(modelCode) & yearCode & lengthCode & numberCode 'Format: MMTmmYYLL###
-            Dim identifierShort As String = CStr(modelCode) & numberCode 'Format: MMTmm###
 
             Dim condition As Integer = getCondition(cmbCondition.SelectedIndex)
 
@@ -288,27 +289,46 @@
             End If
 
 
-            'Write data to record
+            'Write as many tapes as you have to
 
-            Dim thisTape As Object() = {modelCode, year, length, cmbRegion.Text, number, identifier, identifierShort, condition, packaged, tapedA, tapedB, nameA, recordedA, deckA, inputA, peakA, NRA, HXA, MPXA, dubbedA, speedA, biasCodeA, biasCalA, EQA, levelA, levelCalA, contentsA, artistA, titleA, nameB, recordedB, deckB, inputB, peakB, NRB, HXB, MPXB, dubbedB, speedB, biasCodeB, biasCalB, EQB, levelB, levelCalB, contentsB, artistB, titleB, DateTime.Now, txtNotes.Text} 'The data to be written for this tape entry
+            For bulkAddIndex As Integer = 0 To bulkAddAmount - 1
 
-            tapes.Rows.Add(thisTape)
+
+                'Finish off making the identifiers
+
+                'Add leading zeroes to number-code (then remove extra zeroes)
+                Dim numberCode As String = "00" & CStr(number + bulkAddIndex)
+                numberCode = numberCode.Substring(numberCode.Length - 3, 3)
+
+                Dim identifier As String = CStr(modelCode) & yearCode & lengthCode & numberCode 'Format: MMTmmYYLL###
+                Dim identifierShort As String = CStr(modelCode) & numberCode 'Format: MMTmm###
+
+
+                'Write data to record
+
+                Dim thisTape As Object() = {modelCode, year, length, cmbRegion.Text, number, identifier, identifierShort, condition, packaged, tapedA, tapedB, nameA, recordedA, deckA, inputA, peakA, NRA, HXA, MPXA, dubbedA, speedA, biasCodeA, biasCalA, EQA, levelA, levelCalA, contentsA, artistA, titleA, nameB, recordedB, deckB, inputB, peakB, NRB, HXB, MPXB, dubbedB, speedB, biasCodeB, biasCalB, EQB, levelB, levelCalB, contentsB, artistB, titleB, DateTime.Now, txtNotes.Text} 'The data to be written for this tape entry
+
+                tapes.Rows.Add(thisTape)
+
+
+                'Show confirmation message (only show message box if one coy was added)
+                Dim message As String = "Added tape " & identifierShort & " successfully."
+                If My.Settings.showMessages = True And bulkAddAmount = 1 Then
+                    MsgBox(message, MsgBoxStyle.Question, "Successfully Added Tape")
+                End If
+                consoleAdd(message)
+
+            Next
 
             'Update tape and model counters
-            tapeCount += 1
+            tapeCount += bulkAddAmount
             counters.Rows(3)("Number") = tapeCount
-            models.Rows(modelIndex)("Number") = number + 1
+            models.Rows(modelIndex)("Number") = number + bulkAddAmount
 
             changes = True
             'Update title bar
             frmMain.Text = fileName & "* - C3"
 
-            'Show confirmation message
-            Dim message As String = "Added tape " & identifierShort & " successfully."
-            If My.Settings.showMessages = True Then
-                MsgBox(message, MsgBoxStyle.Question, "Successfully Added Tape")
-            End If
-            consoleAdd(message)
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Cannot Save Incomplete Tape")

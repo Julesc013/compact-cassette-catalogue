@@ -3,7 +3,6 @@
 
 #### v1.1
 
-- Feedback (link to website form or to Bug/Feature reporting form)
 - allow autoupdates to be dissabled!
 - write Documentation (with a quick-start guide/tutorial)
 - Better about window!
