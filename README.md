@@ -47,7 +47,7 @@ And much more information can be stored about the **recordings** on each side, i
 
 You can even **catalogue your tape decks** (including their specifications).
 
-*Catalogues are stored as XML files for ease of use and can be easily transfered between devices.*
+*Catalogues are stored locally as XML files for ease of use. Treat the catalogues like you would a Word document, for example.*
 
 ## How to get started.
 
