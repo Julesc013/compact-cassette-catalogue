@@ -16,16 +16,21 @@ Module varGlobals
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
 
-    ' Current file (and directory). If path is nothing, cannot save (must save-as).
-    Public filePath As String = Nothing ' Includes file name.
-    Public fileDirectory As String = Nothing ' Directory only.
-    Public fileName As String = "New Catalogue" ' Name only.
+    ' Website
+    Public Const WEBSITE = "https://julescarboni.wordpress.com/jules-carboni/software/compact-cassette-catalogue/"
+    ' Contact email
+    Public Const CONTACTEMAIL = "carbonisoftware@gmail.com"
 
     ' The URL of the raw file in which the latest version information is stored.
     Public updateLinkCheck As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
     Public updateLinkDownload As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"  ' Github download page.
 
     Public feedbackLink As String = "https://github.com/Julesc013/compact-cassette-catalogue/issues/new/choose" ' Github issues page.
+
+    ' Current file (and directory). If path is nothing, cannot save (must save-as).
+    Public filePath As String = Nothing ' Includes file name.
+    Public fileDirectory As String = Nothing ' Directory only.
+    Public fileName As String = "New Catalogue" ' Name only.
 
     ' Has a change been made since last save?
     Public changes As Boolean = False

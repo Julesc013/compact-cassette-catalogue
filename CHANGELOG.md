@@ -12,6 +12,7 @@
 - Automatically and manually check for updates.
 - Submit feedback (bug reports or feature requests).
 - Automatic updates disableable via settings.
+- New about program form.
 
 
 

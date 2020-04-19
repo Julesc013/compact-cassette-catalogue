@@ -70,7 +70,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>iconCassette.ico</ApplicationIcon>
+    <ApplicationIcon>icon-cassette.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -99,6 +99,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAbout.Designer.vb">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="frmBrandEdit.Designer.vb">
       <DependentUpon>frmBrandEdit.vb</DependentUpon>
@@ -215,6 +221,9 @@
     <Compile Include="varGlobals.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBrandEdit.resx">
       <DependentUpon>frmBrandEdit.vb</DependentUpon>
     </EmbeddedResource>
@@ -297,7 +306,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon-cassette.ico" />
     <Content Include="iconCassette.ico" />
+    <None Include="Resources\cassette-icon.png" />
+    <None Include="Resources\banner-wide.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

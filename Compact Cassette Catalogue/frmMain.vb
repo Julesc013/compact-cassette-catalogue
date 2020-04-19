@@ -1014,7 +1014,11 @@ Public Class frmMain
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        MsgBox("Compact Cassette Catalogue (C3)" & vbNewLine & "© Jules Carboni, " & VERSIONDATE.Year.ToString & vbNewLine & vbNewLine & "Program Version: " & VERSIONSTAGE & " " & VERSION & vbNewLine & "Catalogue Version: " & VERSIONFILE & vbNewLine & VERSIONDATE.ToLongDateString & ", " & VERSIONDATE.ToLongTimeString, MsgBoxStyle.Question, "About C3")
+
+        'MsgBox("Compact Cassette Catalogue (C3)" & vbNewLine & "© Jules Carboni, " & VERSIONDATE.Year.ToString & vbNewLine & vbNewLine & "Program Version: " & VERSIONSTAGE & " " & VERSION & vbNewLine & "Catalogue Version: " & VERSIONFILE & vbNewLine & VERSIONDATE.ToLongDateString & ", " & VERSIONDATE.ToLongTimeString, MsgBoxStyle.Question, "About C3")
+
+        frmAbout.Show()
+
     End Sub
 
     Private Sub SearchTapesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchTapesToolStripMenuItem.Click
