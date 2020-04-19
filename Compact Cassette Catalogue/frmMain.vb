@@ -158,6 +158,10 @@ Public Class frmMain
 
             End If
 
+        Else
+
+            MessageBox.Show("Compact Cassette Catalogue is up to date." & vbNewLine & latestVersion & " is the latest version.", "No Updates Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
         End If
 
     End Sub
