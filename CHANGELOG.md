@@ -6,13 +6,13 @@
 
 
 
-### Version 1.1 – 20 December 2019
+### Version 1.1 – 19 April 2020
 
 - Bulk add multiple copies of a new tape to a catalogue.
 - Automatically and manually check for updates.
 - Submit feedback (bug reports or feature requests).
 - Automatic updates disableable via settings.
-- New about program form.
+- Redisigned about program information form.
 
 
 

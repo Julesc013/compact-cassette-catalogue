@@ -1768,6 +1768,13 @@ Public Class frmMain
 
     End Sub
 
+    Private Sub HelpGuideToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpGuideToolStripMenuItem.Click
+
+        ' Open help/wiki website.
+        Process.Start(WEBSITEHELP)
+
+    End Sub
+
     'Private Sub numIndex_ValueChanged(sender As Object, e As EventArgs)
 
     '    ' When the index is changed, jump to it!

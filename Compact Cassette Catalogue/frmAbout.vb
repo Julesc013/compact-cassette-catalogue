@@ -28,7 +28,7 @@
 
     Private Sub LblWebsiteLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkWebsite.LinkClicked
 
-        Process.Start(WEBSITE)
+        Process.Start(WEBSITEMAIN)
 
     End Sub
 

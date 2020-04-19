@@ -4,7 +4,6 @@
 #### v1.1
 
 - write Documentation (with a quick-start guide/tutorial)
-- Better about window!
 
 
 

@@ -9,23 +9,22 @@ Module varGlobals
 
     ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     ' About program information.
-    Public Const VERSION As String = "1.1.0b2"
+    Public Const VERSION As String = "1.1.0"
     Public Const VERSIONSTAGE As String = "Release"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2020, 5, 19, 21, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2020, 5, 23, 15, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
     ' About catalogue information.
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
 
-    ' Website
-    Public Const WEBSITE = "https://julescarboni.wordpress.com/jules-carboni/software/compact-cassette-catalogue/"
-    ' Contact email
-    Public Const CONTACTEMAIL = "carbonisoftware@gmail.com"
-
+    ' Hyperlinks
+    Public Const CONTACTEMAIL As String = "carbonisoftware@gmail.com" ' Contact email
+    Public Const WEBSITEMAIN As String = "https://julescarboni.wordpress.com/jules-carboni/software/compact-cassette-catalogue" ' Main Website
+    Public Const WEBSITEHELP As String = "https://github.com/Julesc013/compact-cassette-catalogue/wiki" ' Help/wiki Website
+    Public Const UPDATELINKDOWNLOAD As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"  ' Github download page.
     ' The URL of the raw file in which the latest version information is stored.
-    Public updateLinkCheck As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
-    Public updateLinkDownload As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"  ' Github download page.
+    Public Const UPDATELINKCHECK As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
+    Public Const FEEDBACKLINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/issues/new/choose" ' Github issues page.
 
-    Public feedbackLink As String = "https://github.com/Julesc013/compact-cassette-catalogue/issues/new/choose" ' Github issues page.
 
     ' Current file (and directory). If path is nothing, cannot save (must save-as).
     Public filePath As String = Nothing ' Includes file name.
