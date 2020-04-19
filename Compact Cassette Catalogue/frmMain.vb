@@ -61,8 +61,10 @@ Public Class frmMain
 
         consoleAdd("Successfully loaded program.") ' Add success note to console.
 
-        ' Check for updates.
-        checkUpdates()
+        ' Check for updates if auto-updates enabled.
+        If My.Settings.checkUpdates = True Then
+            checkUpdates()
+        End If
 
     End Sub
 
@@ -145,7 +147,7 @@ Public Class frmMain
             Dim boxVersionLatest As String = "Latest version: " & latestVersion '& " (" & latestVersionDate.ToShortDateString & ")"
 
             Dim boxTitle As String = "Update Available"
-            Dim boxMessage As String = "A Compact Cassette Catalogue update is available for download." & vbNewLine & vbNewLine & boxVersionCurrent & vbNewLine & boxVersionLatest & vbNewLine & vbNewLine & "Would you like to be taken to the download page?"
+            Dim boxMessage As String = "A Compact Cassette Catalogue update is available for download." & vbNewLine & vbNewLine & boxVersionCurrent & vbNewLine & boxVersionLatest & vbNewLine & "(Released " & latestVersionDate.ToString("dd MMMM yyyy") & ")" & vbNewLine & vbNewLine & "Would you like to be taken to the download page?"
 
             Dim boxResult As DialogResult
             boxResult = MessageBox.Show(boxMessage, boxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information)

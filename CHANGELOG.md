@@ -8,9 +8,10 @@
 
 ### Version 1.1 – 20 December 2019
 
+- Bulk add multiple copies of a new tape to a catalogue.
 - Automatically and manually check for updates.
 - Submit feedback (bug reports or feature requests).
-- Bulk add multiple copies of a new tape to a catalogue.
+- Automatic updates disableable via settings.
 
 
 

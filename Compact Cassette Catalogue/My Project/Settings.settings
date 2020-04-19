@@ -8,5 +8,8 @@
     <Setting Name="defaultDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)">My.Computer.FileSystem.SpecialDirectories.MyDocuments</Value>
     </Setting>
+    <Setting Name="checkUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

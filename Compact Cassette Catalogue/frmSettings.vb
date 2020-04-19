@@ -1,26 +1,40 @@
 ﻿Public Class frmSettings
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ' initialise objects.
+        ' initialise each object.
 
         Select Case My.Settings.showMessages
             Case True
-                cmbMessages.SelectedIndex = 0
+                cmbShowMessages.SelectedIndex = 0
             Case False
-                cmbMessages.SelectedIndex = 1
+                cmbShowMessages.SelectedIndex = 1
+        End Select
+
+        Select Case My.Settings.checkUpdates
+            Case True
+                cmbCheckUpdates.SelectedIndex = 0
+            Case False
+                cmbCheckUpdates.SelectedIndex = 1
         End Select
 
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-        ' Save changes to the settings.
+        ' Save changes to each settings.
 
-        Select Case cmbMessages.SelectedIndex
+        Select Case cmbShowMessages.SelectedIndex
             Case 0
                 My.Settings.showMessages = True
             Case 1
                 My.Settings.showMessages = False
+        End Select
+
+        Select Case cmbCheckUpdates.SelectedIndex
+            Case 0
+                My.Settings.checkUpdates = True
+            Case 1
+                My.Settings.checkUpdates = False
         End Select
 
 
