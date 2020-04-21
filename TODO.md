@@ -4,6 +4,7 @@
 #### v1.1
 
 - write Documentation (with a quick-start guide/tutorial)
+- UPDATE MESSAGE SHOULDNT APPEAR WHEN FIRST RUN!!
 
 
 
