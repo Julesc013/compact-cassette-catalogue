@@ -37,13 +37,14 @@ Partial Class frmMain
         Me.txtDirectory = New System.Windows.Forms.TextBox()
         Me.btnChangeDirectory = New System.Windows.Forms.Button()
         Me.chkDesktop = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.chkStartMenu = New System.Windows.Forms.CheckBox()
         Me.pnlReady = New System.Windows.Forms.Panel()
         Me.pnlHeaderReady = New System.Windows.Forms.Panel()
         Me.lblReady = New System.Windows.Forms.Label()
         Me.lblReadyInstructions = New System.Windows.Forms.Label()
         Me.btnInstall = New System.Windows.Forms.Button()
         Me.picSideBanner = New System.Windows.Forms.PictureBox()
+        Me.dialogDirectory = New System.Windows.Forms.FolderBrowserDialog()
         Me.pnlButtons.SuspendLayout()
         Me.pnlIntroduction.SuspendLayout()
         Me.pnlOptions.SuspendLayout()
@@ -72,6 +73,7 @@ Partial Class frmMain
         '
         Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(581, 20)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(20)
         Me.btnCancel.Name = "btnCancel"
@@ -127,7 +129,6 @@ Partial Class frmMain
         '
         'pnlIntroduction
         '
-        Me.pnlIntroduction.Controls.Add(Me.pnlOptions)
         Me.pnlIntroduction.Controls.Add(Me.picSideBanner)
         Me.pnlIntroduction.Controls.Add(Me.lblIntroduction)
         Me.pnlIntroduction.Controls.Add(Me.lblHeadingIntroduction)
@@ -139,18 +140,19 @@ Partial Class frmMain
         '
         'pnlOptions
         '
-        Me.pnlOptions.Controls.Add(Me.pnlReady)
-        Me.pnlOptions.Controls.Add(Me.CheckBox1)
+        Me.pnlOptions.Controls.Add(Me.chkStartMenu)
         Me.pnlOptions.Controls.Add(Me.chkDesktop)
         Me.pnlOptions.Controls.Add(Me.btnChangeDirectory)
         Me.pnlOptions.Controls.Add(Me.txtDirectory)
         Me.pnlOptions.Controls.Add(Me.pnlHeaderOptions)
         Me.pnlOptions.Controls.Add(Me.lblDirectory)
+        Me.pnlOptions.Enabled = False
         Me.pnlOptions.Location = New System.Drawing.Point(0, 0)
         Me.pnlOptions.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlOptions.Name = "pnlOptions"
         Me.pnlOptions.Size = New System.Drawing.Size(701, 388)
         Me.pnlOptions.TabIndex = 5
+        Me.pnlOptions.Visible = False
         '
         'lblDirectory
         '
@@ -213,26 +215,28 @@ Partial Class frmMain
         Me.chkDesktop.Text = "Create Desktop Shortcut"
         Me.chkDesktop.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'chkStartMenu
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(35, 210)
-        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(30, 3, 30, 30)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(202, 21)
-        Me.CheckBox1.TabIndex = 7
-        Me.CheckBox1.Text = "Create Start Menu Shortcut"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chkStartMenu.AutoSize = True
+        Me.chkStartMenu.Location = New System.Drawing.Point(35, 210)
+        Me.chkStartMenu.Margin = New System.Windows.Forms.Padding(30, 3, 30, 30)
+        Me.chkStartMenu.Name = "chkStartMenu"
+        Me.chkStartMenu.Size = New System.Drawing.Size(202, 21)
+        Me.chkStartMenu.TabIndex = 7
+        Me.chkStartMenu.Text = "Create Start Menu Shortcut"
+        Me.chkStartMenu.UseVisualStyleBackColor = True
         '
         'pnlReady
         '
         Me.pnlReady.Controls.Add(Me.pnlHeaderReady)
         Me.pnlReady.Controls.Add(Me.lblReadyInstructions)
+        Me.pnlReady.Enabled = False
         Me.pnlReady.Location = New System.Drawing.Point(0, 0)
         Me.pnlReady.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlReady.Name = "pnlReady"
         Me.pnlReady.Size = New System.Drawing.Size(701, 388)
         Me.pnlReady.TabIndex = 8
+        Me.pnlReady.Visible = False
         '
         'pnlHeaderReady
         '
@@ -291,6 +295,12 @@ Partial Class frmMain
         Me.picSideBanner.TabIndex = 1
         Me.picSideBanner.TabStop = False
         '
+        'dialogDirectory
+        '
+        Me.dialogDirectory.Description = "The folder to install to."
+        Me.dialogDirectory.RootFolder = System.Environment.SpecialFolder.CommonProgramFilesX86
+        Me.dialogDirectory.SelectedPath = "C:\Program Files (x86)\Compact Cassette Catalogue\"
+        '
         'frmMain
         '
         Me.AcceptButton = Me.btnNext
@@ -299,6 +309,8 @@ Partial Class frmMain
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(701, 458)
+        Me.Controls.Add(Me.pnlReady)
+        Me.Controls.Add(Me.pnlOptions)
         Me.Controls.Add(Me.pnlIntroduction)
         Me.Controls.Add(Me.pnlButtons)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -332,11 +344,12 @@ Partial Class frmMain
     Friend WithEvents pnlHeaderOptions As Panel
     Friend WithEvents txtDirectory As TextBox
     Friend WithEvents btnChangeDirectory As Button
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents chkStartMenu As CheckBox
     Friend WithEvents chkDesktop As CheckBox
     Friend WithEvents pnlReady As Panel
     Friend WithEvents pnlHeaderReady As Panel
     Friend WithEvents lblReady As Label
     Friend WithEvents lblReadyInstructions As Label
     Friend WithEvents btnInstall As Button
+    Friend WithEvents dialogDirectory As FolderBrowserDialog
 End Class
