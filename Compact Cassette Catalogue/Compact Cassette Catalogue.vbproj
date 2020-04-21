@@ -307,7 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon-cassette.ico" />
-    <Content Include="iconCassette.ico" />
     <None Include="Resources\cassette-icon.png" />
     <None Include="Resources\banner-wide.png" />
   </ItemGroup>
