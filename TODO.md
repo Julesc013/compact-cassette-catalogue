@@ -1,17 +1,28 @@
 ### Short Term
 
-
-#### v1.1
-
 - write Documentation (with a quick-start guide/tutorial)
-- UPDATE MESSAGE SHOULDNT APPEAR WHEN FIRST RUN!!
-- MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
 
-- UPDATER AUTO DOWNLOADS AND INSTALLS NEW UPDATE.
+
+
+#### v1.1.1
+
+- UPDATE MESSAGE SHOULDNT APPEAR WHEN FIRST RUN!!
+- Add message "THIS CODE CANNOT BE CHANGED" when making a brand/model code
 
 
 
 #### v1.2
+
+- MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
+
+- UPDATER AUTO DOWNLOADS AND INSTALLS NEW UPDATE.
+
+- tool to upgrade/convert catalogue versions
+- file associations
+
+
+
+#### v1.3
 
 - sort list view items
 - save column reorderings for next load
@@ -22,16 +33,14 @@
 
 
 
-#### v1.3
-
-- Complete user settings.
-- Save directory and defaults to file (new format version).
-
-- BATCH ADDING of tapes (do all input data then specify amount to add).
-
-
-
 #### v1.4
+
+- Complete user settings. [already done?]
+- Save directory and defaults to file (new format version). [just the build in my.settings?]
+
+
+
+#### v1.5
 
 - Grapher to visualise
   - recordings made during all time
@@ -58,31 +67,26 @@
 
 #### v1.y
 
+- fullscreen spaces all the elements out
+- fullscreen shows list of all tapes on side pane
+- fullscreen shows console in corner
+
 - add resizablility
 - add and remove fields from view forms
-- comboboxes populated programatically (what does this mean??)
+- comboboxes populated programatically
 
 
 
 ### Long Term
 
-- Write documentation (with 'get started quick' guide)
-
-
-
 - ability to add an image of each tape
+- abiity to add many instances of one model of deck
 
 
 
-- fullscreen spaces all the elements out
-- fullscreen shows list of all tapes on side pane
-- fullscreen shows console in corner
+- More verbose process logging (to an output file, not console)
 
-
-
-- Clean up code (commented out lines)
-
-- make all updates and changes checkings into one funciton with a case statement at the end
+- ability to save as and edit as older file versions
 
 
 
@@ -93,12 +97,10 @@
 
 
 
+- Clean up code (commented out lines)
+
+- make all updates and changes checkings into one funciton with a case statement at the end
+
+
+
 - support for 1, 2 and 4+ point version numbers (eg 1.3 and 1.4.2.1)
-
-
-
-- file associations
-- More verbose process logging (to an output file, not console)
-
-- tool to upgrade/convert catalogue versions
-- ability to save as and edit as older file versions
