@@ -27,9 +27,30 @@ Partial Class frmMain
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.btnNext = New System.Windows.Forms.Button()
-        Me.picSide = New System.Windows.Forms.PictureBox()
+        Me.lblHeadingIntroduction = New System.Windows.Forms.Label()
+        Me.lblIntroduction = New System.Windows.Forms.Label()
+        Me.pnlIntroduction = New System.Windows.Forms.Panel()
+        Me.pnlOptions = New System.Windows.Forms.Panel()
+        Me.lblDirectory = New System.Windows.Forms.Label()
+        Me.lblOptionsHeading = New System.Windows.Forms.Label()
+        Me.pnlHeaderOptions = New System.Windows.Forms.Panel()
+        Me.txtDirectory = New System.Windows.Forms.TextBox()
+        Me.btnChangeDirectory = New System.Windows.Forms.Button()
+        Me.chkDesktop = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.pnlReady = New System.Windows.Forms.Panel()
+        Me.pnlHeaderReady = New System.Windows.Forms.Panel()
+        Me.lblReady = New System.Windows.Forms.Label()
+        Me.lblReadyInstructions = New System.Windows.Forms.Label()
+        Me.btnInstall = New System.Windows.Forms.Button()
+        Me.picSideBanner = New System.Windows.Forms.PictureBox()
         Me.pnlButtons.SuspendLayout()
-        CType(Me.picSide, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlIntroduction.SuspendLayout()
+        Me.pnlOptions.SuspendLayout()
+        Me.pnlHeaderOptions.SuspendLayout()
+        Me.pnlReady.SuspendLayout()
+        Me.pnlHeaderReady.SuspendLayout()
+        CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlButtons
@@ -37,20 +58,21 @@ Partial Class frmMain
         Me.pnlButtons.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlButtons.BackColor = System.Drawing.SystemColors.Control
+        Me.pnlButtons.Controls.Add(Me.btnInstall)
         Me.pnlButtons.Controls.Add(Me.btnCancel)
         Me.pnlButtons.Controls.Add(Me.btnBack)
         Me.pnlButtons.Controls.Add(Me.btnNext)
-        Me.pnlButtons.Location = New System.Drawing.Point(0, 433)
+        Me.pnlButtons.Location = New System.Drawing.Point(0, 388)
         Me.pnlButtons.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlButtons.Name = "pnlButtons"
-        Me.pnlButtons.Size = New System.Drawing.Size(732, 70)
+        Me.pnlButtons.Size = New System.Drawing.Size(701, 70)
         Me.pnlButtons.TabIndex = 0
         '
         'btnCancel
         '
         Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.Location = New System.Drawing.Point(612, 20)
+        Me.btnCancel.Location = New System.Drawing.Point(581, 20)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(20)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(100, 30)
@@ -63,7 +85,7 @@ Partial Class frmMain
         Me.btnBack.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnBack.Enabled = False
-        Me.btnBack.Location = New System.Drawing.Point(392, 20)
+        Me.btnBack.Location = New System.Drawing.Point(361, 20)
         Me.btnBack.Margin = New System.Windows.Forms.Padding(0, 20, 0, 20)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(100, 30)
@@ -75,7 +97,7 @@ Partial Class frmMain
         '
         Me.btnNext.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnNext.Location = New System.Drawing.Point(492, 20)
+        Me.btnNext.Location = New System.Drawing.Point(461, 20)
         Me.btnNext.Margin = New System.Windows.Forms.Padding(0, 20, 0, 20)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(100, 30)
@@ -83,32 +105,215 @@ Partial Class frmMain
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
         '
-        'picSide
+        'lblHeadingIntroduction
         '
-        Me.picSide.Image = CType(resources.GetObject("picSide.Image"), System.Drawing.Image)
-        Me.picSide.Location = New System.Drawing.Point(0, 0)
-        Me.picSide.Margin = New System.Windows.Forms.Padding(0)
-        Me.picSide.Name = "picSide"
-        Me.picSide.Size = New System.Drawing.Size(210, 433)
-        Me.picSide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picSide.TabIndex = 1
-        Me.picSide.TabStop = False
+        Me.lblHeadingIntroduction.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeadingIntroduction.Location = New System.Drawing.Point(243, 39)
+        Me.lblHeadingIntroduction.Margin = New System.Windows.Forms.Padding(20, 30, 20, 20)
+        Me.lblHeadingIntroduction.Name = "lblHeadingIntroduction"
+        Me.lblHeadingIntroduction.Size = New System.Drawing.Size(429, 57)
+        Me.lblHeadingIntroduction.TabIndex = 2
+        Me.lblHeadingIntroduction.Text = "Welcome to the Compact Cassette Catalogue Setup Wizard"
+        '
+        'lblIntroduction
+        '
+        Me.lblIntroduction.Location = New System.Drawing.Point(245, 126)
+        Me.lblIntroduction.Margin = New System.Windows.Forms.Padding(20, 10, 20, 10)
+        Me.lblIntroduction.Name = "lblIntroduction"
+        Me.lblIntroduction.Size = New System.Drawing.Size(427, 57)
+        Me.lblIntroduction.TabIndex = 3
+        Me.lblIntroduction.Text = "The setup wizard will install Compact Cassette Catalogue on your computer. Click " &
+    "Next to continue or Cancel to exit the Setup Wizard."
+        '
+        'pnlIntroduction
+        '
+        Me.pnlIntroduction.Controls.Add(Me.pnlOptions)
+        Me.pnlIntroduction.Controls.Add(Me.picSideBanner)
+        Me.pnlIntroduction.Controls.Add(Me.lblIntroduction)
+        Me.pnlIntroduction.Controls.Add(Me.lblHeadingIntroduction)
+        Me.pnlIntroduction.Location = New System.Drawing.Point(0, 0)
+        Me.pnlIntroduction.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlIntroduction.Name = "pnlIntroduction"
+        Me.pnlIntroduction.Size = New System.Drawing.Size(701, 388)
+        Me.pnlIntroduction.TabIndex = 4
+        '
+        'pnlOptions
+        '
+        Me.pnlOptions.Controls.Add(Me.pnlReady)
+        Me.pnlOptions.Controls.Add(Me.CheckBox1)
+        Me.pnlOptions.Controls.Add(Me.chkDesktop)
+        Me.pnlOptions.Controls.Add(Me.btnChangeDirectory)
+        Me.pnlOptions.Controls.Add(Me.txtDirectory)
+        Me.pnlOptions.Controls.Add(Me.pnlHeaderOptions)
+        Me.pnlOptions.Controls.Add(Me.lblDirectory)
+        Me.pnlOptions.Location = New System.Drawing.Point(0, 0)
+        Me.pnlOptions.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlOptions.Name = "pnlOptions"
+        Me.pnlOptions.Size = New System.Drawing.Size(701, 388)
+        Me.pnlOptions.TabIndex = 5
+        '
+        'lblDirectory
+        '
+        Me.lblDirectory.Location = New System.Drawing.Point(32, 100)
+        Me.lblDirectory.Margin = New System.Windows.Forms.Padding(30, 30, 30, 10)
+        Me.lblDirectory.Name = "lblDirectory"
+        Me.lblDirectory.Size = New System.Drawing.Size(630, 21)
+        Me.lblDirectory.TabIndex = 3
+        Me.lblDirectory.Text = "Install Compact Cassette Catalogue to:"
+        '
+        'lblOptionsHeading
+        '
+        Me.lblOptionsHeading.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOptionsHeading.Location = New System.Drawing.Point(30, 20)
+        Me.lblOptionsHeading.Margin = New System.Windows.Forms.Padding(30, 20, 30, 20)
+        Me.lblOptionsHeading.Name = "lblOptionsHeading"
+        Me.lblOptionsHeading.Size = New System.Drawing.Size(641, 30)
+        Me.lblOptionsHeading.TabIndex = 2
+        Me.lblOptionsHeading.Text = "Installation Options"
+        '
+        'pnlHeaderOptions
+        '
+        Me.pnlHeaderOptions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlHeaderOptions.BackColor = System.Drawing.SystemColors.Control
+        Me.pnlHeaderOptions.Controls.Add(Me.lblOptionsHeading)
+        Me.pnlHeaderOptions.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeaderOptions.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlHeaderOptions.Name = "pnlHeaderOptions"
+        Me.pnlHeaderOptions.Size = New System.Drawing.Size(701, 70)
+        Me.pnlHeaderOptions.TabIndex = 3
+        '
+        'txtDirectory
+        '
+        Me.txtDirectory.Location = New System.Drawing.Point(35, 131)
+        Me.txtDirectory.Margin = New System.Windows.Forms.Padding(0)
+        Me.txtDirectory.Name = "txtDirectory"
+        Me.txtDirectory.Size = New System.Drawing.Size(507, 22)
+        Me.txtDirectory.TabIndex = 4
+        Me.txtDirectory.Text = "C:\Program Files (x86)\Compact Cassette Catalogue\"
+        '
+        'btnChangeDirectory
+        '
+        Me.btnChangeDirectory.Location = New System.Drawing.Point(562, 127)
+        Me.btnChangeDirectory.Margin = New System.Windows.Forms.Padding(20, 10, 30, 10)
+        Me.btnChangeDirectory.Name = "btnChangeDirectory"
+        Me.btnChangeDirectory.Size = New System.Drawing.Size(100, 30)
+        Me.btnChangeDirectory.TabIndex = 5
+        Me.btnChangeDirectory.Text = "Change..."
+        Me.btnChangeDirectory.UseVisualStyleBackColor = True
+        '
+        'chkDesktop
+        '
+        Me.chkDesktop.AutoSize = True
+        Me.chkDesktop.Location = New System.Drawing.Point(35, 183)
+        Me.chkDesktop.Margin = New System.Windows.Forms.Padding(30, 30, 30, 3)
+        Me.chkDesktop.Name = "chkDesktop"
+        Me.chkDesktop.Size = New System.Drawing.Size(185, 21)
+        Me.chkDesktop.TabIndex = 6
+        Me.chkDesktop.Text = "Create Desktop Shortcut"
+        Me.chkDesktop.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(35, 210)
+        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(30, 3, 30, 30)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(202, 21)
+        Me.CheckBox1.TabIndex = 7
+        Me.CheckBox1.Text = "Create Start Menu Shortcut"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'pnlReady
+        '
+        Me.pnlReady.Controls.Add(Me.pnlHeaderReady)
+        Me.pnlReady.Controls.Add(Me.lblReadyInstructions)
+        Me.pnlReady.Location = New System.Drawing.Point(0, 0)
+        Me.pnlReady.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlReady.Name = "pnlReady"
+        Me.pnlReady.Size = New System.Drawing.Size(701, 388)
+        Me.pnlReady.TabIndex = 8
+        '
+        'pnlHeaderReady
+        '
+        Me.pnlHeaderReady.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlHeaderReady.BackColor = System.Drawing.SystemColors.Control
+        Me.pnlHeaderReady.Controls.Add(Me.lblReady)
+        Me.pnlHeaderReady.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeaderReady.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlHeaderReady.Name = "pnlHeaderReady"
+        Me.pnlHeaderReady.Size = New System.Drawing.Size(701, 70)
+        Me.pnlHeaderReady.TabIndex = 3
+        '
+        'lblReady
+        '
+        Me.lblReady.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblReady.Location = New System.Drawing.Point(30, 20)
+        Me.lblReady.Margin = New System.Windows.Forms.Padding(30, 20, 30, 20)
+        Me.lblReady.Name = "lblReady"
+        Me.lblReady.Size = New System.Drawing.Size(641, 30)
+        Me.lblReady.TabIndex = 2
+        Me.lblReady.Text = "Ready to Install"
+        '
+        'lblReadyInstructions
+        '
+        Me.lblReadyInstructions.Location = New System.Drawing.Point(32, 100)
+        Me.lblReadyInstructions.Margin = New System.Windows.Forms.Padding(30, 30, 30, 10)
+        Me.lblReadyInstructions.Name = "lblReadyInstructions"
+        Me.lblReadyInstructions.Size = New System.Drawing.Size(630, 43)
+        Me.lblReadyInstructions.TabIndex = 3
+        Me.lblReadyInstructions.Text = "Click Install to begin the installation. Click Back to review or change any of yo" &
+    "ur installation settings. Click Cancel to abort and exit the wizard."
+        '
+        'btnInstall
+        '
+        Me.btnInstall.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnInstall.Enabled = False
+        Me.btnInstall.Location = New System.Drawing.Point(461, 20)
+        Me.btnInstall.Margin = New System.Windows.Forms.Padding(0, 20, 0, 20)
+        Me.btnInstall.Name = "btnInstall"
+        Me.btnInstall.Size = New System.Drawing.Size(100, 30)
+        Me.btnInstall.TabIndex = 3
+        Me.btnInstall.Text = "Install"
+        Me.btnInstall.UseVisualStyleBackColor = True
+        Me.btnInstall.Visible = False
+        '
+        'picSideBanner
+        '
+        Me.picSideBanner.Image = CType(resources.GetObject("picSideBanner.Image"), System.Drawing.Image)
+        Me.picSideBanner.Location = New System.Drawing.Point(0, 0)
+        Me.picSideBanner.Margin = New System.Windows.Forms.Padding(0)
+        Me.picSideBanner.Name = "picSideBanner"
+        Me.picSideBanner.Size = New System.Drawing.Size(223, 388)
+        Me.picSideBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picSideBanner.TabIndex = 1
+        Me.picSideBanner.TabStop = False
         '
         'frmMain
         '
+        Me.AcceptButton = Me.btnNext
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.ClientSize = New System.Drawing.Size(732, 503)
-        Me.Controls.Add(Me.picSide)
+        Me.CancelButton = Me.btnCancel
+        Me.ClientSize = New System.Drawing.Size(701, 458)
+        Me.Controls.Add(Me.pnlIntroduction)
         Me.Controls.Add(Me.pnlButtons)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmMain"
-        Me.Text = "Compact Cassette Catalogue Installer"
+        Me.Text = "Compact Cassette Catalogue Setup"
         Me.pnlButtons.ResumeLayout(False)
-        CType(Me.picSide, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlIntroduction.ResumeLayout(False)
+        Me.pnlOptions.ResumeLayout(False)
+        Me.pnlOptions.PerformLayout()
+        Me.pnlHeaderOptions.ResumeLayout(False)
+        Me.pnlReady.ResumeLayout(False)
+        Me.pnlHeaderReady.ResumeLayout(False)
+        CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -117,5 +322,21 @@ Partial Class frmMain
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnBack As Button
     Friend WithEvents btnNext As Button
-    Friend WithEvents picSide As PictureBox
+    Friend WithEvents picSideBanner As PictureBox
+    Friend WithEvents lblHeadingIntroduction As Label
+    Friend WithEvents lblIntroduction As Label
+    Friend WithEvents pnlIntroduction As Panel
+    Friend WithEvents pnlOptions As Panel
+    Friend WithEvents lblDirectory As Label
+    Friend WithEvents lblOptionsHeading As Label
+    Friend WithEvents pnlHeaderOptions As Panel
+    Friend WithEvents txtDirectory As TextBox
+    Friend WithEvents btnChangeDirectory As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents chkDesktop As CheckBox
+    Friend WithEvents pnlReady As Panel
+    Friend WithEvents pnlHeaderReady As Panel
+    Friend WithEvents lblReady As Label
+    Friend WithEvents lblReadyInstructions As Label
+    Friend WithEvents btnInstall As Button
 End Class

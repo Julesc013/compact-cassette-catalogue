@@ -73,6 +73,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmFailure.Designer.vb">
+      <DependentUpon>frmFailure.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFailure.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuccess.Designer.vb">
+      <DependentUpon>frmSuccess.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSuccess.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -97,8 +109,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmSuccess.resx">
+      <DependentUpon>frmSuccess.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFailure.resx">
+      <DependentUpon>frmFailure.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
