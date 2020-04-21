@@ -7,6 +7,8 @@
 - UPDATE MESSAGE SHOULDNT APPEAR WHEN FIRST RUN!!
 - MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
 
+- UPDATER AUTO DOWNLOADS AND INSTALLS NEW UPDATE.
+
 
 
 #### v1.2
