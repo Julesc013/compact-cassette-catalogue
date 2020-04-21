@@ -11,7 +11,7 @@
 
 
 
-#### v1.2
+#### v2.0
 
 - MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
 
@@ -20,9 +20,12 @@
 - tool to upgrade/convert catalogue versions
 - file associations
 
+- SAVE FILES TO A USER FOLDER AND SELECT CATALOGUES FROM A LIST LIKE FALLOUT 4.
+- save as just creates a new named catalogue in the hardcoded folder.
 
 
-#### v1.3
+
+#### v2.1
 
 - sort list view items
 - save column reorderings for next load
@@ -33,14 +36,14 @@
 
 
 
-#### v1.4
+#### v2.2
 
 - Complete user settings. [already done?]
 - Save directory and defaults to file (new format version). [just the build in my.settings?]
 
 
 
-#### v1.5
+#### v2.3
 
 - Grapher to visualise
   - recordings made during all time
@@ -51,13 +54,14 @@
  
  
  
-#### v1.x
+#### v2.x
 
 - add more filters for decks!
 - add more filters for tapes (eg speed and such)
 
 - only nr/bias/speed selectable if deck supports it?
 
+- abiity to add many instances of one model of deck
 
 
 - Ability to edit brand, model, and deck NAMES (and manufacterers). [currently cannot as they are used in primary keys or in second-hand stored values in tape records.] MAKE BRANDS AND MODELS STORED ONLY AS CODES.
@@ -65,22 +69,22 @@
 
 
 
-#### v1.y
+#### v3.0
 
 - fullscreen spaces all the elements out
 - fullscreen shows list of all tapes on side pane
 - fullscreen shows console in corner
 
+- REBUILD UI FOR RESIZING
 - add resizablility
 - add and remove fields from view forms
 - comboboxes populated programatically
 
+- ability to add an image of each tape
+
 
 
 ### Long Term
-
-- ability to add an image of each tape
-- abiity to add many instances of one model of deck
 
 
 
