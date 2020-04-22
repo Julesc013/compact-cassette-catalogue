@@ -95,7 +95,7 @@ Public Class frmMain
 
 
             Dim updateClient As WebClient = New WebClient()
-            Using updateReader As New StreamReader(updateClient.OpenRead(updateLinkCheck))
+            Using updateReader As New StreamReader(updateClient.OpenRead(UPDATELINKCHECK))
 
                 ' Assume there are only 3 lines (and in data is in this order).
                 latestVersion = updateReader.ReadLine()

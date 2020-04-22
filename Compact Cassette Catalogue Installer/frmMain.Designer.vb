@@ -182,6 +182,8 @@ Partial Class frmMain
         'chkStartMenu
         '
         Me.chkStartMenu.AutoSize = True
+        Me.chkStartMenu.Checked = True
+        Me.chkStartMenu.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkStartMenu.Location = New System.Drawing.Point(35, 210)
         Me.chkStartMenu.Margin = New System.Windows.Forms.Padding(30, 3, 30, 30)
         Me.chkStartMenu.Name = "chkStartMenu"
@@ -193,6 +195,8 @@ Partial Class frmMain
         'chkDesktop
         '
         Me.chkDesktop.AutoSize = True
+        Me.chkDesktop.Checked = True
+        Me.chkDesktop.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkDesktop.Location = New System.Drawing.Point(35, 183)
         Me.chkDesktop.Margin = New System.Windows.Forms.Padding(30, 30, 30, 3)
         Me.chkDesktop.Name = "chkDesktop"
@@ -235,7 +239,7 @@ Partial Class frmMain
         'lblOptionsHeading
         '
         Me.lblOptionsHeading.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOptionsHeading.Location = New System.Drawing.Point(30, 20)
+        Me.lblOptionsHeading.Location = New System.Drawing.Point(30, 22)
         Me.lblOptionsHeading.Margin = New System.Windows.Forms.Padding(30, 20, 30, 20)
         Me.lblOptionsHeading.Name = "lblOptionsHeading"
         Me.lblOptionsHeading.Size = New System.Drawing.Size(641, 30)
@@ -278,7 +282,7 @@ Partial Class frmMain
         'lblReady
         '
         Me.lblReady.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblReady.Location = New System.Drawing.Point(30, 20)
+        Me.lblReady.Location = New System.Drawing.Point(30, 22)
         Me.lblReady.Margin = New System.Windows.Forms.Padding(30, 20, 30, 20)
         Me.lblReady.Name = "lblReady"
         Me.lblReady.Size = New System.Drawing.Size(641, 30)

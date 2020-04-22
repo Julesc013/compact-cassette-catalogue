@@ -148,6 +148,7 @@ Partial Class frmSuccess
         Me.AcceptButton = Me.btnFinish
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(701, 458)
         Me.Controls.Add(Me.pnlSuccess)

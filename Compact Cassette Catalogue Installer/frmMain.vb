@@ -8,7 +8,18 @@
     Dim pageNumber As Integer = 0
     Const PAGECOUNT As Integer = 3
 
+    Dim directoryChanged As Boolean = False
+
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        ' Load defaults into objects.
+
+        txtDirectory.Text = installDirectory
+
+        chkDesktop.Checked = shortcutDesktop
+        chkStartMenu.Checked = shortcutStartMenu
+
+        dialogDirectory.SelectedPath = installDirectory
 
     End Sub
 
@@ -30,7 +41,33 @@
 
     Private Sub btnInstall_Click(sender As Object, e As EventArgs) Handles btnInstall.Click
 
-        ' Selected options are already saved, so just run the install form.
+        ' Save selected options then run the install form.
+        ' The install form will get the program version and download the files.
+
+
+        ' Save directory if it was changed.
+        If directoryChanged = True Then
+
+            ' CHECK IF PROVIDED IS A VALID DIRECTORY (ELSE BREAK) [MAYBE IMPLEMENT THIS]
+
+            installDirectory = txtDirectory.Text
+
+        Else
+
+            installDirectory = INSTALLDIRECTORYDEFAULT ' Load the default directory.
+
+        End If
+
+
+        ' Define derived directories.
+        uninstallPath = installDirectory & "\UNINSTALL.exe"
+        iconPath = installDirectory & "\application-icon.ico"
+
+
+        ' Save shortcut options.
+        shortcutDesktop = chkDesktop.Checked
+        shortcutStartMenu = chkStartMenu.Checked
+
 
         frmInstall.Show()
         Me.Close()
@@ -39,25 +76,28 @@
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
 
-        ' Go to and display the next page.
+        ' Navigate to the next page.
 
-        If pageNumber <> PAGECOUNT Then ' Only if they have a page ahead.
-            pageNumber -= 1
+        If pageNumber <> PAGECOUNT Then ' Only if there are pages to proceed to.
+
+            pageNumber += 1
+
         End If
 
-        displayPage() ' Display the correct panels.
+        displayPage()
 
     End Sub
-
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
 
-        ' Go to and display the previous page.
+        ' Navigate to the previous page.
 
-        If pageNumber <> 0 Then ' Only if they have a page behind.
+        If pageNumber <> 0 Then ' Only if there are pages to return to.
+
             pageNumber -= 1
+
         End If
 
-        displayPage() ' Display the correct panels.
+        displayPage()
 
     End Sub
 
@@ -132,6 +172,14 @@
         End Select
 
         updateNavigation() ' Enable the correct navigation buttons.
+
+    End Sub
+
+    Private Sub btnChangeDirectory_Click(sender As Object, e As EventArgs) Handles btnChangeDirectory.Click
+
+        ' Open up directory select dialog.
+
+        'IF SUCCESSFULLY SELECTED OTHER DIR, directoryChanged = TRUE !!!
 
     End Sub
 

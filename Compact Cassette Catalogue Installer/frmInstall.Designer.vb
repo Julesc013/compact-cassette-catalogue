@@ -121,7 +121,6 @@ Partial Class frmInstall
         Me.lblStatusProcess.Name = "lblStatusProcess"
         Me.lblStatusProcess.Size = New System.Drawing.Size(560, 23)
         Me.lblStatusProcess.TabIndex = 5
-        Me.lblStatusProcess.Text = "Temporary Process"
         '
         'lblStatusHeader
         '
@@ -147,7 +146,7 @@ Partial Class frmInstall
         'lblInstall
         '
         Me.lblInstall.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblInstall.Location = New System.Drawing.Point(30, 20)
+        Me.lblInstall.Location = New System.Drawing.Point(30, 22)
         Me.lblInstall.Margin = New System.Windows.Forms.Padding(30, 20, 30, 20)
         Me.lblInstall.Name = "lblInstall"
         Me.lblInstall.Size = New System.Drawing.Size(641, 30)
@@ -168,6 +167,7 @@ Partial Class frmInstall
         Me.AcceptButton = Me.btnNext
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(701, 458)
         Me.Controls.Add(Me.pnlInstall)
@@ -176,7 +176,6 @@ Partial Class frmInstall
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmInstall"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Compact Cassette Catalogue Setup"
         Me.pnlButtons.ResumeLayout(False)
         Me.pnlInstall.ResumeLayout(False)
