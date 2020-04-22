@@ -28,10 +28,10 @@ Partial Class frmSuccess
         Me.btnBack = New System.Windows.Forms.Button()
         Me.btnFinish = New System.Windows.Forms.Button()
         Me.pnlSuccess = New System.Windows.Forms.Panel()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.picSideBanner = New System.Windows.Forms.PictureBox()
         Me.lblSuccess = New System.Windows.Forms.Label()
         Me.lblHeadingSuccess = New System.Windows.Forms.Label()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.pnlButtons.SuspendLayout()
         Me.pnlSuccess.SuspendLayout()
         CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +55,7 @@ Partial Class frmSuccess
         '
         Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Enabled = False
         Me.btnCancel.Location = New System.Drawing.Point(581, 20)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(20)
@@ -101,6 +102,17 @@ Partial Class frmSuccess
         Me.pnlSuccess.Size = New System.Drawing.Size(701, 388)
         Me.pnlSuccess.TabIndex = 6
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(248, 337)
+        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(20, 30, 20, 30)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(408, 21)
+        Me.CheckBox1.TabIndex = 4
+        Me.CheckBox1.Text = "Start Compact Cassette Catalogue after closing the installer."
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'picSideBanner
         '
         Me.picSideBanner.Image = CType(resources.GetObject("picSideBanner.Image"), System.Drawing.Image)
@@ -130,17 +142,6 @@ Partial Class frmSuccess
         Me.lblHeadingSuccess.Size = New System.Drawing.Size(429, 57)
         Me.lblHeadingSuccess.TabIndex = 2
         Me.lblHeadingSuccess.Text = "Completed the Compact Cassette Catalogue Setup Wizard" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(248, 337)
-        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(20, 30, 20, 30)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(408, 21)
-        Me.CheckBox1.TabIndex = 4
-        Me.CheckBox1.Text = "Start Compact Cassette Catalogue after closing the installer."
-        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'frmSuccess
         '
