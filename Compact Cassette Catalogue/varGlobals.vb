@@ -9,9 +9,9 @@ Module varGlobals
 
     ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     ' About program information.
-    Public Const VERSION As String = "1.1.0"
+    Public Const VERSION As String = "1.1.1"
     Public Const VERSIONSTAGE As String = "Release"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2020, 5, 23, 15, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2020, 4, 22, 17, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
     ' About catalogue information.
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
@@ -39,6 +39,7 @@ Module varGlobals
 
     ' Time the program was loaded sucessfully.
     Public timeLoaded As String
+    Public duringSetup As Boolean = False
 
     ' Define regular expressions.
     'Public regexAlphanumeric As Regex = New Regex("/^[a-z\d\-\s]+$/i")  'Alternatively: "/^[a-z0-9]+([-\s]{1}[a-z0-9]+)*$/i".

@@ -4,13 +4,6 @@
 
 
 
-#### v1.1.1
-
-- UPDATE MESSAGE SHOULDNT APPEAR WHEN FIRST RUN!!
-- Add message "THIS CODE CANNOT BE CHANGED" when making a brand/model code
-
-
-
 #### v2.0
 
 - MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
@@ -85,6 +78,8 @@
 - comboboxes populated programatically
 
 - ability to add an image of each tape
+
+- Add message "THIS CODE CANNOT BE CHANGED" when making a brand/model code
 
 
 

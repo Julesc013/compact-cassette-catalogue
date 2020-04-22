@@ -6,6 +6,12 @@
 
 
 
+### Version 1.1.1 – 22 April 2020
+
+- Up-to-date notification doesn't show anymore upon start-up.
+
+
+
 ### Version 1.1 – 19 April 2020
 
 - Bulk add multiple copies of a new tape to a catalogue.

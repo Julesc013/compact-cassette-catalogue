@@ -23,6 +23,9 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        ' Indicate to subroutines that the program is in the 'initial setup' phase.
+        duringSetup = True
+
         ' Update varaibles.
         'deckCount = CInt(counters.Rows(0)("Number"))
         'brandCount = CInt(counters.Rows(1)("Number"))
@@ -65,6 +68,10 @@ Public Class frmMain
         If My.Settings.checkUpdates = True Then
             checkUpdates()
         End If
+
+
+        ' Indicate to subroutines that the program has finished the 'initial setup' phase.
+        duringSetup = False
 
     End Sub
 
@@ -160,7 +167,12 @@ Public Class frmMain
 
         Else
 
-            MessageBox.Show("Compact Cassette Catalogue is up to date." & vbNewLine & latestVersion & " is the latest version.", "No Updates Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' Don't how this message if the program is just starting up.
+            If duringSetup = False Then
+
+                MessageBox.Show("Compact Cassette Catalogue is up to date." & vbNewLine & latestVersion & " is the latest version.", "No Updates Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            End If
 
         End If
 
