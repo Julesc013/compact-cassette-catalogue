@@ -16,13 +16,16 @@
 - MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
 - make an uninstaller!
 
-- UPDATER AUTO DOWNLOADS AND INSTALLS NEW UPDATE.
+- LAUNCHES UPDATER THAT AUTO DOWNLOADS AND INSTALLS NEW UPDATE.
+- Can 'sckip this update' and limit checking to once per week.
 
 - tool to upgrade/convert catalogue versions
 - file associations
 
 - SAVE FILES TO A USER FOLDER AND SELECT CATALOGUES FROM A LIST LIKE FALLOUT 4.
 - save as just creates a new named catalogue in the hardcoded folder.
+
+- Backup function just zips all the xml files and lets the user same the zip wherever.
 
 
 

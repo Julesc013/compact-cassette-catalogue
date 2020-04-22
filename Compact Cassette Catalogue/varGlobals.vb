@@ -15,6 +15,8 @@ Module varGlobals
     ' About catalogue information.
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
+    Public Const COPYRIGHTAUTHOR = "Jules Carboni"
+    Public Const COPYRIGHTYEAR = "2019-2020"
 
     ' Hyperlinks
     Public Const CONTACTEMAIL As String = "carbonisoftware@gmail.com" ' Contact email

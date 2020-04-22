@@ -5,7 +5,7 @@
         ' Load data into text labels.
 
         lblProgramName.Text = "Compact Cassette Catalogue (C3)"
-        lblCopyright.Text = "© Jules Carboni, " & VERSIONDATE.Year.ToString
+        lblCopyright.Text = "© " & COPYRIGHTAUTHOR & ", " & COPYRIGHTYEAR
 
         lblProgramVersion.Text = "Program Version: " & VERSIONSTAGE & " " & VERSION
         lblCatalogueVersion.Text = "Catalogue Version: " & VERSIONFILE

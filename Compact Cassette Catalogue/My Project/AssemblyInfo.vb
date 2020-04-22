@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Catalogue your compact cassettes.")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("Compact Cassette Catalogue")>
-<Assembly: AssemblyCopyright("Copyright © Jules Carboni 2019")>
+<Assembly: AssemblyCopyright("Copyright © Jules Carboni 2019-2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
