@@ -36,27 +36,27 @@ Partial Class frmSettings
         Me.lblShowMessages.Location = New System.Drawing.Point(13, 16)
         Me.lblShowMessages.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblShowMessages.Name = "lblShowMessages"
-        Me.lblShowMessages.Size = New System.Drawing.Size(114, 17)
+        Me.lblShowMessages.Size = New System.Drawing.Size(163, 17)
         Me.lblShowMessages.TabIndex = 0
-        Me.lblShowMessages.Text = "Show messages:"
+        Me.lblShowMessages.Text = "Show pop-up messages:"
         '
         'cmbShowMessages
         '
         Me.cmbShowMessages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbShowMessages.FormattingEnabled = True
         Me.cmbShowMessages.Items.AddRange(New Object() {"All messages", "Warnings only"})
-        Me.cmbShowMessages.Location = New System.Drawing.Point(144, 13)
-        Me.cmbShowMessages.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbShowMessages.Location = New System.Drawing.Point(267, 13)
+        Me.cmbShowMessages.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbShowMessages.Name = "cmbShowMessages"
-        Me.cmbShowMessages.Size = New System.Drawing.Size(167, 24)
+        Me.cmbShowMessages.Size = New System.Drawing.Size(161, 24)
         Me.cmbShowMessages.TabIndex = 1
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(13, 83)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSave.Location = New System.Drawing.Point(267, 100)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(298, 26)
+        Me.btnSave.Size = New System.Drawing.Size(161, 26)
         Me.btnSave.TabIndex = 3
         Me.btnSave.Text = "Save Settings"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -67,26 +67,26 @@ Partial Class frmSettings
         Me.lblCheckUpdates.Location = New System.Drawing.Point(13, 48)
         Me.lblCheckUpdates.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCheckUpdates.Name = "lblCheckUpdates"
-        Me.lblCheckUpdates.Size = New System.Drawing.Size(127, 17)
+        Me.lblCheckUpdates.Size = New System.Drawing.Size(212, 17)
         Me.lblCheckUpdates.TabIndex = 4
-        Me.lblCheckUpdates.Text = "Check for updates:"
+        Me.lblCheckUpdates.Text = "Automatically check for updates:"
         '
         'cmbCheckUpdates
         '
         Me.cmbCheckUpdates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCheckUpdates.FormattingEnabled = True
-        Me.cmbCheckUpdates.Items.AddRange(New Object() {"Automatically (on startup)", "Manually only"})
-        Me.cmbCheckUpdates.Location = New System.Drawing.Point(144, 45)
+        Me.cmbCheckUpdates.Items.AddRange(New Object() {"On startup", "Weekly", "Monthly", "Never (manually)"})
+        Me.cmbCheckUpdates.Location = New System.Drawing.Point(267, 45)
         Me.cmbCheckUpdates.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbCheckUpdates.Name = "cmbCheckUpdates"
-        Me.cmbCheckUpdates.Size = New System.Drawing.Size(167, 24)
+        Me.cmbCheckUpdates.Size = New System.Drawing.Size(161, 24)
         Me.cmbCheckUpdates.TabIndex = 5
         '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(324, 122)
+        Me.ClientSize = New System.Drawing.Size(441, 139)
         Me.Controls.Add(Me.cmbCheckUpdates)
         Me.Controls.Add(Me.lblCheckUpdates)
         Me.Controls.Add(Me.btnSave)
@@ -94,7 +94,7 @@ Partial Class frmSettings
         Me.Controls.Add(Me.lblShowMessages)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "frmSettings"
         Me.Text = "Settings"

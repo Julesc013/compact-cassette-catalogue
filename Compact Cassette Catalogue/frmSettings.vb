@@ -11,10 +11,14 @@
         End Select
 
         Select Case My.Settings.checkUpdates
-            Case True
+            Case "startup"
                 cmbCheckUpdates.SelectedIndex = 0
-            Case False
+            Case "weekly"
                 cmbCheckUpdates.SelectedIndex = 1
+            Case "monthly"
+                cmbCheckUpdates.SelectedIndex = 2
+            Case "manually"
+                cmbCheckUpdates.SelectedIndex = 3
         End Select
 
     End Sub
@@ -32,9 +36,13 @@
 
         Select Case cmbCheckUpdates.SelectedIndex
             Case 0
-                My.Settings.checkUpdates = True
+                My.Settings.checkUpdates = "startup"
             Case 1
-                My.Settings.checkUpdates = False
+                My.Settings.checkUpdates = "weekly"
+            Case 2
+                My.Settings.checkUpdates = "monthly"
+            Case 3
+                My.Settings.checkUpdates = "manually"
         End Select
 
 

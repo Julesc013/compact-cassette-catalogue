@@ -10,15 +10,16 @@
 - make an uninstaller!
 
 - LAUNCHES UPDATER THAT AUTO DOWNLOADS AND INSTALLS NEW UPDATE.
-- Can 'sckip this update' and limit checking to once per week.
+- Can 'skip this update' and limit checking to once per week.
 
 - tool to upgrade/convert catalogue versions
 - file associations
 
 - SAVE FILES TO A USER FOLDER AND SELECT CATALOGUES FROM A LIST LIKE FALLOUT 4.
 - save as just creates a new named catalogue in the hardcoded folder.
+- Setting to anable "advanced file management" for manual saving of xml files as if they were word documents.
 
-- Backup function just zips all the xml files and lets the user same the zip wherever.
+- Backup function just zips all the xml files and lets the user save the ".c3b" (C3 backup) zip wherever.
 
 
 

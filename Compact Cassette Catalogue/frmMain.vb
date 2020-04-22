@@ -65,10 +65,10 @@ Public Class frmMain
         consoleAdd("Successfully loaded program.") ' Add success note to console.
 
         ' Check for updates if auto-updates enabled.
-        If My.Settings.checkUpdates = True Then
+        Dim daysSinceUpdate = (My.Settings.lastUpdateCheck - DateTime.Now).TotalDays
+        If My.Settings.checkUpdates = "startup" Or (My.Settings.checkUpdates = "weekly" And (daysSinceUpdate < 7)) Or (My.Settings.checkUpdates = "monthly" And (daysSinceUpdate < 28)) Then
             checkUpdates()
         End If
-
 
         ' Indicate to subroutines that the program has finished the 'initial setup' phase.
         duringSetup = False
@@ -175,6 +175,11 @@ Public Class frmMain
             End If
 
         End If
+
+
+        ' Set this date and time as the most recent update check.
+        My.Settings.lastUpdateCheck = DateTime.Now
+
 
     End Sub
 

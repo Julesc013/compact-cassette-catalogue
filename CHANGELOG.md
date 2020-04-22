@@ -6,6 +6,12 @@
 
 
 
+### Version 1.1.2 – 22 April 2020
+
+- Can choose to check for updates on startup, weekly, monthly, or never (manually).
+
+
+
 ### Version 1.1.1 – 22 April 2020
 
 - Up-to-date notification doesn't show anymore upon start-up.
