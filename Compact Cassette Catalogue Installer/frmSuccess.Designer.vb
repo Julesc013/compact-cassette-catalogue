@@ -156,6 +156,7 @@ Partial Class frmSuccess
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmSuccess"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Compact Cassette Catalogue Setup"
         Me.pnlButtons.ResumeLayout(False)
         Me.pnlSuccess.ResumeLayout(False)

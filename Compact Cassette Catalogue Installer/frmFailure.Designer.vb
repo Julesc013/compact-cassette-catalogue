@@ -54,6 +54,7 @@ Partial Class frmFailure
         '
         Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Enabled = False
         Me.btnCancel.Location = New System.Drawing.Point(581, 20)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(20)
@@ -142,6 +143,7 @@ Partial Class frmFailure
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmFailure"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Compact Cassette Catalogue Setup"
         Me.pnlButtons.ResumeLayout(False)
         Me.pnlFailure.ResumeLayout(False)

@@ -28,12 +28,12 @@ Partial Class frmInstall
         Me.btnBack = New System.Windows.Forms.Button()
         Me.btnNext = New System.Windows.Forms.Button()
         Me.pnlInstall = New System.Windows.Forms.Panel()
+        Me.barInstallProgress = New System.Windows.Forms.ProgressBar()
+        Me.lblStatusProcess = New System.Windows.Forms.Label()
+        Me.lblStatusHeader = New System.Windows.Forms.Label()
         Me.pnlHeaderInstall = New System.Windows.Forms.Panel()
         Me.lblInstall = New System.Windows.Forms.Label()
         Me.lblInstallInstructions = New System.Windows.Forms.Label()
-        Me.lblStatusHeader = New System.Windows.Forms.Label()
-        Me.lblStatusProcess = New System.Windows.Forms.Label()
-        Me.barInstallProgress = New System.Windows.Forms.ProgressBar()
         Me.pnlButtons.SuspendLayout()
         Me.pnlInstall.SuspendLayout()
         Me.pnlHeaderInstall.SuspendLayout()
@@ -105,6 +105,33 @@ Partial Class frmInstall
         Me.pnlInstall.Size = New System.Drawing.Size(701, 388)
         Me.pnlInstall.TabIndex = 9
         '
+        'barInstallProgress
+        '
+        Me.barInstallProgress.Location = New System.Drawing.Point(35, 186)
+        Me.barInstallProgress.Margin = New System.Windows.Forms.Padding(30, 0, 30, 10)
+        Me.barInstallProgress.Name = "barInstallProgress"
+        Me.barInstallProgress.Size = New System.Drawing.Size(627, 23)
+        Me.barInstallProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee
+        Me.barInstallProgress.TabIndex = 6
+        '
+        'lblStatusProcess
+        '
+        Me.lblStatusProcess.Location = New System.Drawing.Point(102, 153)
+        Me.lblStatusProcess.Margin = New System.Windows.Forms.Padding(0, 10, 30, 10)
+        Me.lblStatusProcess.Name = "lblStatusProcess"
+        Me.lblStatusProcess.Size = New System.Drawing.Size(560, 23)
+        Me.lblStatusProcess.TabIndex = 5
+        Me.lblStatusProcess.Text = "Temporary Process"
+        '
+        'lblStatusHeader
+        '
+        Me.lblStatusHeader.Location = New System.Drawing.Point(32, 153)
+        Me.lblStatusHeader.Margin = New System.Windows.Forms.Padding(30, 10, 30, 10)
+        Me.lblStatusHeader.Name = "lblStatusHeader"
+        Me.lblStatusHeader.Size = New System.Drawing.Size(52, 23)
+        Me.lblStatusHeader.TabIndex = 4
+        Me.lblStatusHeader.Text = "Status:"
+        '
         'pnlHeaderInstall
         '
         Me.pnlHeaderInstall.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
@@ -136,33 +163,6 @@ Partial Class frmInstall
         Me.lblInstallInstructions.TabIndex = 3
         Me.lblInstallInstructions.Text = "Please wait while the Setup Wizard installs Compact Cassette Catalogue."
         '
-        'lblStatusHeader
-        '
-        Me.lblStatusHeader.Location = New System.Drawing.Point(32, 153)
-        Me.lblStatusHeader.Margin = New System.Windows.Forms.Padding(30, 10, 30, 10)
-        Me.lblStatusHeader.Name = "lblStatusHeader"
-        Me.lblStatusHeader.Size = New System.Drawing.Size(52, 23)
-        Me.lblStatusHeader.TabIndex = 4
-        Me.lblStatusHeader.Text = "Status:"
-        '
-        'lblStatusProcess
-        '
-        Me.lblStatusProcess.Location = New System.Drawing.Point(102, 153)
-        Me.lblStatusProcess.Margin = New System.Windows.Forms.Padding(0, 10, 30, 10)
-        Me.lblStatusProcess.Name = "lblStatusProcess"
-        Me.lblStatusProcess.Size = New System.Drawing.Size(560, 23)
-        Me.lblStatusProcess.TabIndex = 5
-        Me.lblStatusProcess.Text = "Temporary Process"
-        '
-        'barInstallProgress
-        '
-        Me.barInstallProgress.Location = New System.Drawing.Point(35, 186)
-        Me.barInstallProgress.Margin = New System.Windows.Forms.Padding(30, 0, 30, 10)
-        Me.barInstallProgress.Name = "barInstallProgress"
-        Me.barInstallProgress.Size = New System.Drawing.Size(627, 23)
-        Me.barInstallProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee
-        Me.barInstallProgress.TabIndex = 6
-        '
         'frmInstall
         '
         Me.AcceptButton = Me.btnNext
@@ -176,6 +176,7 @@ Partial Class frmInstall
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmInstall"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Compact Cassette Catalogue Setup"
         Me.pnlButtons.ResumeLayout(False)
         Me.pnlInstall.ResumeLayout(False)
