@@ -29,6 +29,10 @@
     Public Const DOWNLOADLINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/" 'v1.0.0/C3-v1.0.0.exe
     Public Const VERSIONLINK As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
 
+    Public Const HOMEPAGELINK As String = "https://julescarboni.wordpress.com/jules-carboni/software/compact-cassette-catalogue/" ' The homepage site for the program.
+    Public Const READMELINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/blob/master/README.md" ' Readme file location (hosted remotely).
+    Public Const UPDATELINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases" ' Site where updated can be downloaded.
+
     Public shortcutDesktop As Boolean = True
     Public shortcutStartMenu As Boolean = True
 

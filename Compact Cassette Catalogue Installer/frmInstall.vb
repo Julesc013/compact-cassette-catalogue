@@ -12,11 +12,11 @@ Public Class frmInstall
 
         ' Perform the installation.
 
-        Try
+        ';Try
 
-            ' Make a new instance of a web client to be used throughout this installation process.
+        ' Make a new instance of a web client to be used throughout this installation process.
 
-            lblStatusProcess.Text = "Initialising installer" ' Update progress bar label.
+        lblStatusProcess.Text = "Initialising installer" ' Update progress bar label.
 
             Dim installClient As WebClient = New WebClient()
 
@@ -66,7 +66,10 @@ Public Class frmInstall
 
                 installClient.DownloadFile(fileSource, fileDestination) ' Download the file to its corresponding destination.
 
-            Next
+            ' Get the next file.
+            fileNumber += 1
+
+        Next
 
 
             'Catch ex As IOException
@@ -89,8 +92,19 @@ Public Class frmInstall
 
             lblStatusProcess.Text = "Modifying registry" ' Update progress bar label.
 
-            'Openeing the Uninstall RegistryKey (don't forget to set the writable flag to true)
-            With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall", True)
+        ' Get the size of all the installed files in bytes.
+
+        Dim folderSize As Long
+        Dim folder As New DirectoryInfo(installDirectory)
+
+        For Each file In folder.GetFiles(installDirectory, SearchOption.AllDirectories)
+            folderSize += file.Length
+        Next
+
+        Dim installSize As Integer = CInt(folderSize / 1024) ' Convert from bytes to kibibytes.
+
+        'Openeing the Uninstall RegistryKey (don't forget to set the writable flag to true)
+        With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall", True)
 
                 'Creating my AppRegistryKey
                 Dim appKey As Microsoft.Win32.RegistryKey = .CreateSubKey(PROGRAMNAME)
@@ -103,8 +117,13 @@ Public Class frmInstall
                 appKey.SetValue("UninstallString", uninstallPath, Microsoft.Win32.RegistryValueKind.String)
                 appKey.SetValue("UninstallPath", uninstallPath, Microsoft.Win32.RegistryValueKind.String)
                 appKey.SetValue("InstallLocation", installDirectory, Microsoft.Win32.RegistryValueKind.String)
+            appKey.SetValue("EstimatedSize", installDirectory, Microsoft.Win32.RegistryValueKind.DWord)
+            appKey.SetValue("NoModify", 1, Microsoft.Win32.RegistryValueKind.DWord)
+            appKey.SetValue("Readme", READMELINK, Microsoft.Win32.RegistryValueKind.String)
+            appKey.SetValue("URLInfoAbout", HOMEPAGELINK, Microsoft.Win32.RegistryValueKind.String)
+            appKey.SetValue("URLUpdateInfo", UPDATELINK, Microsoft.Win32.RegistryValueKind.String)
 
-            End With
+        End With
 
 
 
@@ -124,8 +143,8 @@ Public Class frmInstall
                 Directory.CreateDirectory(appStartMenuPath)
             End If
 
-            Dim shortcutLocation As String = Path.Combine(appStartMenuPath, "Shortcut to Test App" + ".lnk")
-            Dim shellStartMenu As WshShell = New WshShell
+        Dim shortcutLocation As String = Path.Combine(appStartMenuPath, PROGRAMNAME + ".lnk")
+        Dim shellStartMenu As WshShell = New WshShell
             Dim shortcutStartMenu As IWshShortcut = DirectCast(shellStartMenu.CreateShortcut(shortcutLocation), IWshShortcut)
 
             shortcutStartMenu.Description = PROGRAMDESCRIPTION
@@ -158,16 +177,16 @@ Public Class frmInstall
             Me.Close()
 
 
-            'Catch ex As WebException ' HANDLE WEB EXCEPTIONS SPECIFICALLY (MAYBE)
+        'Catch ex As WebException ' HANDLE WEB EXCEPTIONS SPECIFICALLY (MAYBE)
 
-        Catch ex As Exception
+        ';Catch ex As Exception
 
-            ' If expection occurred, jump out to the failure form.
+        ';' If expection occurred, jump out to the failure form.
 
-            frmFailure.Show()
-            Me.Close()
+        ';frmFailure.Show()
+        ';Me.Close()
 
-        End Try
+        ';End Try
 
     End Sub
 
