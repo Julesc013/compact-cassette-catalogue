@@ -33,15 +33,41 @@ Public Class frmInstall
 
             End Using
 
+            Dim programVersionFormatted As String = "v" & programVersion
+
+            ' Save link to the specific release.
+            Dim releaseLink As String = DOWNLOADLINK & "v" & programVersionFormatted & "/"
+
+            ' Save name of main file.
+            Dim mainFile As String = "v" & programVersionFormatted & ".exe"
+            sourceFiles(0) = PREFIXSOURCES & mainFile
+
 
             ' Download latest program files.
 
             lblStatusProcess.Text = "Downloading program files" ' Update progress bar label.
 
-            'Try
+            'Try (TEMP)
 
-            installClient.DownloadFile("http://www.cohowinery.com/downloads/WineList.txt",
-    "C:\Documents and Settings\All Users\Documents\WineList.txt") 'FOR TIMEOUT: , False, 100000)
+
+            ' Get uninstaller first.
+            installClient.DownloadFile(releaseLink & UNINSTALLSOURCE, uninstallPath) 'FOR TIMEOUT: , False, 100000)
+
+            ' Get application icon next.
+            installClient.DownloadFile(releaseLink & ICONSOURCE, iconPath)
+
+
+            ' Now get the rest of the files (including the main application executable(s)).
+            For fileNumber As Integer = 0 To sourceFiles.Length - 1
+
+                ' Define the remote source and local destination of this file.
+                Dim fileSource As String = releaseLink & sourceFiles(fileNumber)
+                Dim fileDestination As String = installDirectory & destinationFiles(fileNumber)
+
+                installClient.DownloadFile(fileSource, fileDestination) ' Download the file to its corresponding destination.
+
+            Next
+
 
             'Catch ex As IOException
 
@@ -49,13 +75,13 @@ Public Class frmInstall
 
             'Catch ex As Exception
 
-            'End Try
+            'End Try (TEMP)
 
 
 
-            ' Move files to their paths in the install directory.
+            '' Move files to their paths in the install directory.
 
-            lblStatusProcess.Text = "Moving program files" ' Update progress bar label.
+            'lblStatusProcess.Text = "Moving program files" ' Update progress bar label.
 
 
 
