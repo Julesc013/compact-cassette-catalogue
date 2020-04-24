@@ -45,24 +45,20 @@
         ' The install form will get the program version and download the files.
 
 
-        ' Save directory if it was changed.
-        '  NOTE: If the directory doesn't exist, it will be created.
-        If directoryChanged = True Then
+        '' Save directory if it was changed.
+        'If directoryChanged = True Then
+        '' CHECK IF PROVIDED IS A VALID DIRECTORY (ELSE BREAK) [MAYBE IMPLEMENT THIS]
+        'installDirectory = txtDirectory.Text
+        'Else
+        'installDirectory = INSTALLDIRECTORYDEFAULT ' Load the default directory.
+        'End If
 
-            ' CHECK IF PROVIDED IS A VALID DIRECTORY (ELSE BREAK) [MAYBE IMPLEMENT THIS]
-
-            installDirectory = txtDirectory.Text
-
-        Else
-
-            installDirectory = INSTALLDIRECTORYDEFAULT ' Load the default directory.
-
-        End If
+        installDirectory = txtDirectory.Text '  NOTE: If the directory doesn't exist, it will be created.
 
 
         ' Define derived directories.
-        uninstallPath = installDirectory & "\UNINSTALL.exe"
-        iconPath = installDirectory & "\application-icon.ico"
+        uninstallPath = installDirectory & "\" & UNINSTALLDESTINATION
+        iconPath = installDirectory & "\" & ICONDESTINATION
 
 
         ' Save shortcut options.

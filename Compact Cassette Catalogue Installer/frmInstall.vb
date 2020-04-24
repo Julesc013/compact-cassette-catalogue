@@ -36,10 +36,10 @@ Public Class frmInstall
             Dim programVersionFormatted As String = "v" & programVersion
 
             ' Save link to the specific release.
-            Dim releaseLink As String = DOWNLOADLINK & "v" & programVersionFormatted & "/"
+            Dim releaseLink As String = DOWNLOADLINK & programVersionFormatted & "/"
 
             ' Save name of main file.
-            Dim mainFile As String = "v" & programVersionFormatted & ".exe"
+            Dim mainFile As String = programVersionFormatted & ".exe"
             sourceFiles(0) = PREFIXSOURCES & mainFile
 
 
@@ -49,15 +49,14 @@ Public Class frmInstall
 
             'Try (TEMP)
 
-
-            ' Get uninstaller first.
+            ' Get UNINSTALLER first.
             installClient.DownloadFile(releaseLink & UNINSTALLSOURCE, uninstallPath) 'FOR TIMEOUT: , False, 100000)
 
-            ' Get application icon next.
+            ' Get application ICON next.
             installClient.DownloadFile(releaseLink & ICONSOURCE, iconPath)
 
 
-            ' Now get the rest of the files (including the main application executable(s)).
+            ' Now get the REST OF THE FILES (including the main application executable(s)).
             For fileNumber As Integer = 0 To sourceFiles.Length - 1
 
                 ' Define the remote source and local destination of this file.
@@ -89,6 +88,22 @@ Public Class frmInstall
 
             lblStatusProcess.Text = "Modifying registry" ' Update progress bar label.
 
+            'Openeing the Uninstall RegistryKey (don't forget to set the writable flag to true)
+            With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall", True)
+
+                'Creating my AppRegistryKey
+                Dim appKey As Microsoft.Win32.RegistryKey = .CreateSubKey(PROGRAMNAME)
+
+                'Adding my values to my AppRegistryKey
+                appKey.SetValue("DisplayName", PROGRAMNAME, Microsoft.Win32.RegistryValueKind.String)
+                appKey.SetValue("DisplayVersion", programVersion, Microsoft.Win32.RegistryValueKind.String)
+                appKey.SetValue("DisplayIcon", iconPath, Microsoft.Win32.RegistryValueKind.String)
+                appKey.SetValue("Publisher", PROGRAMAUTHOR, Microsoft.Win32.RegistryValueKind.String)
+                appKey.SetValue("UninstallString", uninstallPath, Microsoft.Win32.RegistryValueKind.String)
+                appKey.SetValue("UninstallPath", uninstallPath, Microsoft.Win32.RegistryValueKind.String)
+                appKey.SetValue("InstallLocation", installDirectory, Microsoft.Win32.RegistryValueKind.String)
+
+            End With
 
 
             ' Create desktop and start menu shortcuts.
