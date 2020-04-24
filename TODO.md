@@ -6,6 +6,13 @@
 
 #### v2.0
 
+
+LET INSTALL FORM LOAD FIRST.
+DESKTOP SHORTCUT CANNOT BE MADE.
+FOR LOOP DOESNT GET LAST FILE.
+
+
+
 - MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
 - make an uninstaller!
 

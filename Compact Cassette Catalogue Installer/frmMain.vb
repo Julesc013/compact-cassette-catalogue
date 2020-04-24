@@ -139,36 +139,24 @@
                 pnlIntroduction.Enabled = True
                 pnlOptions.Visible = False
                 pnlOptions.Enabled = False
-                pnlHeaderOptions.Visible = False
-                pnlHeaderOptions.Enabled = False
                 pnlReady.Visible = False
                 pnlReady.Enabled = False
-                pnlHeaderReady.Visible = False
-                pnlHeaderReady.Enabled = False
 
             Case 1
                 pnlIntroduction.Visible = False
                 pnlIntroduction.Enabled = False
                 pnlOptions.Visible = True
                 pnlOptions.Enabled = True
-                pnlHeaderOptions.Visible = True
-                pnlHeaderOptions.Enabled = True
                 pnlReady.Visible = False
                 pnlReady.Enabled = False
-                pnlHeaderReady.Visible = False
-                pnlHeaderReady.Enabled = False
 
             Case 2
                 pnlIntroduction.Visible = False
                 pnlIntroduction.Enabled = False
                 pnlOptions.Visible = False
                 pnlOptions.Enabled = False
-                pnlHeaderOptions.Visible = False
-                pnlHeaderOptions.Enabled = False
                 pnlReady.Visible = True
                 pnlReady.Enabled = True
-                pnlHeaderReady.Visible = True
-                pnlHeaderReady.Enabled = True
 
         End Select
 

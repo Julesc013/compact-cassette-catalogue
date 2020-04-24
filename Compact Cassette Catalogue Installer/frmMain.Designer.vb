@@ -184,7 +184,7 @@ Partial Class frmMain
         Me.chkStartMenu.AutoSize = True
         Me.chkStartMenu.Checked = True
         Me.chkStartMenu.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkStartMenu.Location = New System.Drawing.Point(35, 210)
+        Me.chkStartMenu.Location = New System.Drawing.Point(35, 183)
         Me.chkStartMenu.Margin = New System.Windows.Forms.Padding(30, 3, 30, 30)
         Me.chkStartMenu.Name = "chkStartMenu"
         Me.chkStartMenu.Size = New System.Drawing.Size(202, 21)
@@ -197,7 +197,7 @@ Partial Class frmMain
         Me.chkDesktop.AutoSize = True
         Me.chkDesktop.Checked = True
         Me.chkDesktop.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkDesktop.Location = New System.Drawing.Point(35, 183)
+        Me.chkDesktop.Location = New System.Drawing.Point(35, 210)
         Me.chkDesktop.Margin = New System.Windows.Forms.Padding(30, 30, 30, 3)
         Me.chkDesktop.Name = "chkDesktop"
         Me.chkDesktop.Size = New System.Drawing.Size(185, 21)
