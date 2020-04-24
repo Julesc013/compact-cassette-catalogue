@@ -13,9 +13,15 @@
     Public uninstallPath As String '= installDirectory & "\UNINSTALL.exe" ' Set this after options.
     Public iconPath As String '= installDirectory & "\application-icon.ico" ' Set this after options.
 
+    Public Const filePrefix As String = "C3-"
+
+    Public sourceFiles As String() = {filePrefix, filePrefix & "Uninstaller.exe", filePrefix & "Updater.exe", filePrefix & "Icon.ico"}
+    Public destinationFiles As String() = {PROGRAMNAME & ".exe", "UNINSTALL.exe", "UPDATE.exe", "application-icon.ico"}
+
+    Public Const RELEASELINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/" 'v1.1.2/C3-v1.1.2.exe
+    Public Const VERSIONLINK As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
+
     Public shortcutDesktop As Boolean = True
     Public shortcutStartMenu As Boolean = True
-
-    Public Const VERSIONLINK As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.
 
 End Module

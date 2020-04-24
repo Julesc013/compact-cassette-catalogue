@@ -46,6 +46,7 @@
 
 
         ' Save directory if it was changed.
+        '  NOTE: If the directory doesn't exist, it will be created.
         If directoryChanged = True Then
 
             ' CHECK IF PROVIDED IS A VALID DIRECTORY (ELSE BREAK) [MAYBE IMPLEMENT THIS]

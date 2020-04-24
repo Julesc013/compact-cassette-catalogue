@@ -13,17 +13,23 @@ Public Class frmInstall
 
         Try
 
+            ' Make a new instance of a web client to be used throughout this installation process.
+
+            lblStatusProcess.Text = "Initialising installer" ' Update progress bar label.
+
+            Dim installClient As WebClient = New WebClient()
+
+
             ' Get latest program version.
             ' Get from a file located in this program's GitHub repository at the VERSIONLINK web address.
 
             lblStatusProcess.Text = "Finding latest version" ' Update progress bar label.
 
-            Dim updateClient As WebClient = New WebClient()
-            Using updateReader As New StreamReader(updateClient.OpenRead(VERSIONLINK))
+            Using versionReader As New StreamReader(installClient.OpenRead(VERSIONLINK))
 
                 ' Assume there are only 3 lines (and in data is in this order).
                 ' Assume the first line is the program version (in the form X.X.X)
-                programVersion = updateReader.ReadLine()
+                programVersion = versionReader.ReadLine()
 
             End Using
 
@@ -31,6 +37,19 @@ Public Class frmInstall
             ' Download latest program files.
 
             lblStatusProcess.Text = "Downloading program files" ' Update progress bar label.
+
+            'Try
+
+            installClient.DownloadFile("http://www.cohowinery.com/downloads/WineList.txt",
+    "C:\Documents and Settings\All Users\Documents\WineList.txt") 'FOR TIMEOUT: , False, 100000)
+
+            'Catch ex As IOException
+
+            'Catch ex As WebException
+
+            'Catch ex As Exception
+
+            'End Try
 
 
 
