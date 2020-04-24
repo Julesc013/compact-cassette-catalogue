@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
+Imports IWshRuntimeLibrary
 
 Public Class frmInstall
     Private Sub frmInstall_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -106,9 +107,47 @@ Public Class frmInstall
             End With
 
 
+
             ' Create desktop and start menu shortcuts.
 
             lblStatusProcess.Text = "Creating shortcuts" ' Update progress bar label.
+
+            Dim startPath As String = installDirectory & startFile
+
+            ' Add Start Menu shortcut.
+
+            Dim commonStartMenuPath As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu) ' Get path to common Start Menu items.
+            Dim appStartMenuPath As String = Path.Combine(commonStartMenuPath, "Programs", PROGRAMNAME) ' The path to this specific application's folder.
+
+            ' If this program doesn't have a Start Menu folder yet, create it.
+            If Not Directory.Exists(appStartMenuPath) Then
+                Directory.CreateDirectory(appStartMenuPath)
+            End If
+
+            Dim shortcutLocation As String = Path.Combine(appStartMenuPath, "Shortcut to Test App" + ".lnk")
+            Dim shellStartMenu As WshShell = New WshShell
+            Dim shortcutStartMenu As IWshShortcut = DirectCast(shellStartMenu.CreateShortcut(shortcutLocation), IWshShortcut)
+
+            shortcutStartMenu.Description = PROGRAMDESCRIPTION
+            shortcutStartMenu.IconLocation = iconPath
+            shortcutStartMenu.TargetPath = startPath
+            shortcutStartMenu.Save()
+
+            ' Create Desktop shortcut.
+            Dim shellDesktop As New WshShell
+            ' short cut files have a .lnk extension
+            Dim shortcutDesktop As IWshShortcut = DirectCast(shellDesktop.CreateShortcut(PROGRAMNAME), IWshShortcut)
+
+            ' set the shortcut properties
+            With shortcutDesktop
+                .TargetPath = startPath
+                .WindowStyle = 1I
+                .Description = PROGRAMNAME
+                .WorkingDirectory = installDirectory
+                .IconLocation = iconPath
+                .Arguments = String.Empty
+                .Save() ' save the shortcut file
+            End With
 
 
 

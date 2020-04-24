@@ -55,10 +55,14 @@
 
         installDirectory = txtDirectory.Text '  NOTE: If the directory doesn't exist, it will be created.
 
+        ' Ensure that the directory has a "\" at the end.
+        If installDirectory(installDirectory.Length - 1) <> "\"c Then
+            installDirectory &= "\"
+        End If
 
         ' Define derived directories.
-        uninstallPath = installDirectory & "\" & UNINSTALLDESTINATION
-        iconPath = installDirectory & "\" & ICONDESTINATION
+        uninstallPath = installDirectory & UNINSTALLDESTINATION
+        iconPath = installDirectory & ICONDESTINATION
 
 
         ' Save shortcut options.
