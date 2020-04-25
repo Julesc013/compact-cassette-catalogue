@@ -25,6 +25,7 @@
     Public destinationFiles As String() = {PROGRAMNAME & ".exe", "UPDATE.exe"}
 
     Public startFile As String = destinationFiles(0) ' The executable that should be launched first when starting the program.
+    Public startPath As String
 
     Public Const DOWNLOADLINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/" 'v1.0.0/C3-v1.0.0.exe
     Public Const VERSIONLINK As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION" ' Raw Github file.

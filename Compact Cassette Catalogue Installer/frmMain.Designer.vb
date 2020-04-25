@@ -333,7 +333,6 @@ Partial Class frmMain
         '
         Me.barInstallProgress.Location = New System.Drawing.Point(35, 186)
         Me.barInstallProgress.Margin = New System.Windows.Forms.Padding(30, 0, 30, 10)
-        Me.barInstallProgress.Maximum = 50
         Me.barInstallProgress.Name = "barInstallProgress"
         Me.barInstallProgress.Size = New System.Drawing.Size(627, 23)
         Me.barInstallProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous

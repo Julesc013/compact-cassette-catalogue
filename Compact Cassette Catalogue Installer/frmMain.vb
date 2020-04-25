@@ -64,12 +64,19 @@ Public Class frmMain
         displayPage()
 
 
+        ' Initialise progress bar.
+        barInstallProgress.Value = 0
+        barInstallProgress.Step = 10
+        barInstallProgress.Maximum = 10 * (7 + sourceFiles.Length)
+
+
         ' Perform the installation.
 
         Try
 
 
             lblStatusProcess.Text = "Gathering information" ' Update progress bar label.
+            lblStatusProcess.Update() ' Update label so that it shows the new text.
 
 
             '' Save directory if it was changed.
@@ -112,6 +119,7 @@ Public Class frmMain
 
             barInstallProgress.PerformStep() ' Advance progress bar.
             lblStatusProcess.Text = "Finding latest version" ' Update progress bar label.
+            lblStatusProcess.Update() ' Update label so that it shows the new text.
 
             Dim installClient As WebClient = New WebClient()
 
@@ -141,14 +149,22 @@ Public Class frmMain
 
             barInstallProgress.PerformStep() ' Advance progress bar.
             lblStatusProcess.Text = "Downloading program files" ' Update progress bar label.
+            lblStatusProcess.Update() ' Update label so that it shows the new text.
+
 
             'Try (TEMP)
+
 
             ' Get UNINSTALLER first.
             installClient.DownloadFile(releaseLink & UNINSTALLSOURCE, uninstallPath) 'FOR TIMEOUT: , False, 100000)
 
+            barInstallProgress.PerformStep() ' Advance progress bar.
+
+
             ' Get application ICON next.
             installClient.DownloadFile(releaseLink & ICONSOURCE, iconPath)
+
+            barInstallProgress.PerformStep() ' Advance progress bar.
 
 
             ' Now get the REST OF THE FILES (including the main application executable(s)).
@@ -160,8 +176,7 @@ Public Class frmMain
 
                 installClient.DownloadFile(fileSource, fileDestination) ' Download the file to its corresponding destination.
 
-                ' Get the next file.
-                fileNumber += 1
+                barInstallProgress.PerformStep() ' Advance progress bar.
 
             Next
 
@@ -186,6 +201,7 @@ Public Class frmMain
 
             barInstallProgress.PerformStep() ' Advance progress bar.
             lblStatusProcess.Text = "Modifying registry" ' Update progress bar label.
+            lblStatusProcess.Update() ' Update label so that it shows the new text.
 
             'Try (TEMP)
 
@@ -231,8 +247,9 @@ Public Class frmMain
 
             barInstallProgress.PerformStep() ' Advance progress bar.
             lblStatusProcess.Text = "Creating shortcuts" ' Update progress bar label.
+            lblStatusProcess.Update() ' Update label so that it shows the new text.
 
-            Dim startPath As String = installDirectory & startFile
+            startPath = installDirectory & startFile
 
             ' Add Start Menu shortcut.
 
@@ -445,11 +462,24 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub frmMain_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
-        If MessageBox.Show("Are you sur to close this application?", "Close", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-        Else
-            e.Cancel = True
-        End If
-    End Sub
+    'Private Sub frmMain_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
+
+    '' Confirm exit request, then fall onto failure form.
+
+    'Dim cancelConfirm As MsgBoxResult = confirmCancel()
+
+    '' If responded yes to the prompt, close the installer.
+    'If cancelConfirm = MsgBoxResult.Yes Then
+
+    'frmFailure.Show()
+    'Me.Close()
+
+    'Else
+
+    'e.Cancel = True ' Cancel form close process.
+
+    'End If
+
+    'End Sub
 
 End Class

@@ -7,9 +7,13 @@
 
         ' If the checkbox is selected, run C3 (else dont run C3) then immediately exit this installer application.
 
-        'TEMP CHECK AND RUN C3
+        If chkStartProgram.Checked = True Then
 
-        Application.Exit()
+            Process.Start(startPath) ' Start C3.
+
+        End If
+
+        Application.Exit() ' Exit the entire installer application.
 
     End Sub
 End Class

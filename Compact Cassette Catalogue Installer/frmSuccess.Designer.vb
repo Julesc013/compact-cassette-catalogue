@@ -28,7 +28,7 @@ Partial Class frmSuccess
         Me.btnBack = New System.Windows.Forms.Button()
         Me.btnFinish = New System.Windows.Forms.Button()
         Me.pnlSuccess = New System.Windows.Forms.Panel()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.chkStartProgram = New System.Windows.Forms.CheckBox()
         Me.picSideBanner = New System.Windows.Forms.PictureBox()
         Me.lblSuccess = New System.Windows.Forms.Label()
         Me.lblHeadingSuccess = New System.Windows.Forms.Label()
@@ -92,7 +92,7 @@ Partial Class frmSuccess
         '
         'pnlSuccess
         '
-        Me.pnlSuccess.Controls.Add(Me.CheckBox1)
+        Me.pnlSuccess.Controls.Add(Me.chkStartProgram)
         Me.pnlSuccess.Controls.Add(Me.picSideBanner)
         Me.pnlSuccess.Controls.Add(Me.lblSuccess)
         Me.pnlSuccess.Controls.Add(Me.lblHeadingSuccess)
@@ -102,16 +102,16 @@ Partial Class frmSuccess
         Me.pnlSuccess.Size = New System.Drawing.Size(701, 388)
         Me.pnlSuccess.TabIndex = 6
         '
-        'CheckBox1
+        'chkStartProgram
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(248, 337)
-        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(20, 30, 20, 30)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(408, 21)
-        Me.CheckBox1.TabIndex = 4
-        Me.CheckBox1.Text = "Start Compact Cassette Catalogue after closing the installer."
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chkStartProgram.AutoSize = True
+        Me.chkStartProgram.Location = New System.Drawing.Point(248, 337)
+        Me.chkStartProgram.Margin = New System.Windows.Forms.Padding(20, 30, 20, 30)
+        Me.chkStartProgram.Name = "chkStartProgram"
+        Me.chkStartProgram.Size = New System.Drawing.Size(408, 21)
+        Me.chkStartProgram.TabIndex = 4
+        Me.chkStartProgram.Text = "Start Compact Cassette Catalogue after closing the installer."
+        Me.chkStartProgram.UseVisualStyleBackColor = True
         '
         'picSideBanner
         '
@@ -175,5 +175,5 @@ Partial Class frmSuccess
     Friend WithEvents picSideBanner As PictureBox
     Friend WithEvents lblSuccess As Label
     Friend WithEvents lblHeadingSuccess As Label
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents chkStartProgram As CheckBox
 End Class
