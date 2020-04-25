@@ -21,8 +21,8 @@
     Public Const ICONSOURCE As String = PREFIXSOURCES & "Icon.ico"
     Public Const ICONDESTINATION As String = PROGRAMNAME & ".ico"
 
-    Public sourceFiles As String() = {Nothing, PREFIXSOURCES & "Updater.exe"} ' Set the name of the source file later (when we have the version number).
-    Public destinationFiles As String() = {PROGRAMNAME & ".exe", "UPDATE.exe"}
+    Public sourceFiles As String() = {Nothing} ', PREFIXSOURCES & "Updater.exe"} ' Set the name of the source file later (when we have the version number).
+    Public destinationFiles As String() = {PROGRAMNAME & ".exe"} ', "UPDATE.exe"}
 
     Public startFile As String = destinationFiles(0) ' The executable that should be launched first when starting the program.
     Public startPath As String

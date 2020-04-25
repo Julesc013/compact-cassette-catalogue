@@ -7,16 +7,11 @@
 #### v2.0
 
 
-LET INSTALL FORM LOAD FIRST.
-FOR LOOP DOESNT GET LAST FILE.
-
-
-
-- MAKE AN INSTALLER for start menu recognition (https://superuser.com/questions/532460/where-to-install-small-programs-without-installers-on-windows, https://superuser.com/questions/1189406/ctrlshiftenter-to-run-as-admin-works-on-desktop-app-programs-but-not-run/1244367#1244367)
 - make an uninstaller!
 
-- LAUNCHES UPDATER THAT AUTO DOWNLOADS AND INSTALLS NEW UPDATE.
-- Can 'skip this update' and limit checking to once per week.
+- UPDATER IS BUILD INTO MAIN PROGRAM
+    - checks if C3.bak exists in current running directory (if so deletes it)
+    - Renames self to C3.bak, downloads new version to self directory at C3.exe
 
 - tool to upgrade/convert catalogue versions
 - file associations
