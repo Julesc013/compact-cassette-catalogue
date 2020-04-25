@@ -8,7 +8,7 @@
     Dim pageNumber As Integer = 0
     Const PAGECOUNT As Integer = 3
 
-    Dim directoryChanged As Boolean = False
+    'Dim directoryChanged As Boolean = False
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -20,6 +20,10 @@
         chkStartMenu.Checked = shortcutStartMenu
 
         dialogDirectory.SelectedPath = installDirectory
+
+        ' Set focus on Next button.
+        btnNext.Select()
+
 
     End Sub
 
@@ -142,6 +146,8 @@
                 pnlReady.Visible = False
                 pnlReady.Enabled = False
 
+                btnNext.Select()
+
             Case 1
                 pnlIntroduction.Visible = False
                 pnlIntroduction.Enabled = False
@@ -150,6 +156,8 @@
                 pnlReady.Visible = False
                 pnlReady.Enabled = False
 
+                btnNext.Select()
+
             Case 2
                 pnlIntroduction.Visible = False
                 pnlIntroduction.Enabled = False
@@ -157,6 +165,8 @@
                 pnlOptions.Enabled = False
                 pnlReady.Visible = True
                 pnlReady.Enabled = True
+
+                btnCancel.Select()
 
         End Select
 

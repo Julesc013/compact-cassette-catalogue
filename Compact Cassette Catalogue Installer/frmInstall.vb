@@ -144,11 +144,12 @@ Public Class frmInstall
                 Directory.CreateDirectory(appStartMenuPath)
             End If
 
-            Dim shortcutLocation As String = Path.Combine(appStartMenuPath, PROGRAMNAME + ".lnk")
-            Dim shellStartMenu As New WshShell
-            Dim shortcutStartMenu As IWshShortcut = DirectCast(shellStartMenu.CreateShortcut(shortcutLocation), IWshShortcut)
+            Dim shortcutStartMenuLocation As String = Path.Combine(appStartMenuPath, PROGRAMNAME + ".lnk")
 
-            ' set the shortcut properties
+            Dim shellStartMenu As New WshShell
+            Dim shortcutStartMenu As IWshShortcut = DirectCast(shellStartMenu.CreateShortcut(shortcutStartMenuLocation), IWshShortcut)
+
+            ' Set the shortcut properties.
             With shortcutStartMenu
                 .TargetPath = startPath
                 .WindowStyle = 1I
@@ -156,7 +157,7 @@ Public Class frmInstall
                 .WorkingDirectory = installDirectory
                 .IconLocation = iconPath
                 .Arguments = String.Empty
-                .Save() ' save the shortcut file
+                .Save() ' Save the shortcut file.
             End With
 
         End If
@@ -167,11 +168,12 @@ Public Class frmInstall
         If shortcutDesktop = True Then
 
             Dim commonDesktop As String = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
+            Dim shortcutDesktopLocation As String = Path.Combine(commonDesktop, PROGRAMNAME + ".lnk")
 
             Dim shellDesktop As New WshShell
-            Dim shortcutDesktop As IWshShortcut = DirectCast(shellDesktop.CreateShortcut(commonDesktop), IWshShortcut)
+            Dim shortcutDesktop As IWshShortcut = DirectCast(shellDesktop.CreateShortcut(shortcutDesktopLocation), IWshShortcut)
 
-            ' set the shortcut properties
+            ' Set the shortcut properties.
             With shortcutDesktop
                 .TargetPath = startPath
                 .WindowStyle = 1I
@@ -179,7 +181,7 @@ Public Class frmInstall
                 .WorkingDirectory = installDirectory
                 .IconLocation = iconPath
                 .Arguments = String.Empty
-                .Save() ' save the shortcut file
+                .Save() ' Save the shortcut file.
             End With
 
         End If
