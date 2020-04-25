@@ -104,12 +104,6 @@
     <Compile Include="frmFailure.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInstall.Designer.vb">
-      <DependentUpon>frmInstall.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmInstall.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmSuccess.Designer.vb">
       <DependentUpon>frmSuccess.vb</DependentUpon>
     </Compile>
@@ -142,9 +136,6 @@
     <Compile Include="varGlobals.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmInstall.resx">
-      <DependentUpon>frmInstall.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmSuccess.resx">
       <DependentUpon>frmSuccess.vb</DependentUpon>
     </EmbeddedResource>

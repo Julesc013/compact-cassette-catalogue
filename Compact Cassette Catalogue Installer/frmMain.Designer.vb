@@ -45,6 +45,13 @@ Partial Class frmMain
         Me.lblReady = New System.Windows.Forms.Label()
         Me.lblReadyInstructions = New System.Windows.Forms.Label()
         Me.dialogDirectory = New System.Windows.Forms.FolderBrowserDialog()
+        Me.pnlInstall = New System.Windows.Forms.Panel()
+        Me.barInstallProgress = New System.Windows.Forms.ProgressBar()
+        Me.lblStatusProcess = New System.Windows.Forms.Label()
+        Me.lblStatusHeader = New System.Windows.Forms.Label()
+        Me.pnlHeaderInstall = New System.Windows.Forms.Panel()
+        Me.lblInstall = New System.Windows.Forms.Label()
+        Me.lblInstallInstructions = New System.Windows.Forms.Label()
         Me.pnlButtons.SuspendLayout()
         Me.pnlIntroduction.SuspendLayout()
         CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +59,8 @@ Partial Class frmMain
         Me.pnlHeaderOptions.SuspendLayout()
         Me.pnlReady.SuspendLayout()
         Me.pnlHeaderReady.SuspendLayout()
+        Me.pnlInstall.SuspendLayout()
+        Me.pnlHeaderInstall.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlButtons
@@ -305,6 +314,79 @@ Partial Class frmMain
         Me.dialogDirectory.RootFolder = System.Environment.SpecialFolder.CommonProgramFilesX86
         Me.dialogDirectory.SelectedPath = "C:\Program Files (x86)\Compact Cassette Catalogue\"
         '
+        'pnlInstall
+        '
+        Me.pnlInstall.Controls.Add(Me.barInstallProgress)
+        Me.pnlInstall.Controls.Add(Me.lblStatusProcess)
+        Me.pnlInstall.Controls.Add(Me.lblStatusHeader)
+        Me.pnlInstall.Controls.Add(Me.pnlHeaderInstall)
+        Me.pnlInstall.Controls.Add(Me.lblInstallInstructions)
+        Me.pnlInstall.Enabled = False
+        Me.pnlInstall.Location = New System.Drawing.Point(0, 0)
+        Me.pnlInstall.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlInstall.Name = "pnlInstall"
+        Me.pnlInstall.Size = New System.Drawing.Size(701, 388)
+        Me.pnlInstall.TabIndex = 10
+        Me.pnlInstall.Visible = False
+        '
+        'barInstallProgress
+        '
+        Me.barInstallProgress.Location = New System.Drawing.Point(35, 186)
+        Me.barInstallProgress.Margin = New System.Windows.Forms.Padding(30, 0, 30, 10)
+        Me.barInstallProgress.Maximum = 50
+        Me.barInstallProgress.Name = "barInstallProgress"
+        Me.barInstallProgress.Size = New System.Drawing.Size(627, 23)
+        Me.barInstallProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.barInstallProgress.TabIndex = 6
+        '
+        'lblStatusProcess
+        '
+        Me.lblStatusProcess.Location = New System.Drawing.Point(102, 153)
+        Me.lblStatusProcess.Margin = New System.Windows.Forms.Padding(0, 10, 30, 10)
+        Me.lblStatusProcess.Name = "lblStatusProcess"
+        Me.lblStatusProcess.Size = New System.Drawing.Size(560, 23)
+        Me.lblStatusProcess.TabIndex = 5
+        '
+        'lblStatusHeader
+        '
+        Me.lblStatusHeader.Location = New System.Drawing.Point(32, 153)
+        Me.lblStatusHeader.Margin = New System.Windows.Forms.Padding(30, 10, 30, 10)
+        Me.lblStatusHeader.Name = "lblStatusHeader"
+        Me.lblStatusHeader.Size = New System.Drawing.Size(52, 23)
+        Me.lblStatusHeader.TabIndex = 4
+        Me.lblStatusHeader.Text = "Status:"
+        '
+        'pnlHeaderInstall
+        '
+        Me.pnlHeaderInstall.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlHeaderInstall.BackColor = System.Drawing.SystemColors.Control
+        Me.pnlHeaderInstall.Controls.Add(Me.lblInstall)
+        Me.pnlHeaderInstall.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeaderInstall.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlHeaderInstall.Name = "pnlHeaderInstall"
+        Me.pnlHeaderInstall.Size = New System.Drawing.Size(701, 70)
+        Me.pnlHeaderInstall.TabIndex = 3
+        '
+        'lblInstall
+        '
+        Me.lblInstall.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblInstall.Location = New System.Drawing.Point(30, 22)
+        Me.lblInstall.Margin = New System.Windows.Forms.Padding(30, 20, 30, 20)
+        Me.lblInstall.Name = "lblInstall"
+        Me.lblInstall.Size = New System.Drawing.Size(641, 30)
+        Me.lblInstall.TabIndex = 2
+        Me.lblInstall.Text = "Installing Compact Cassette Catalogue"
+        '
+        'lblInstallInstructions
+        '
+        Me.lblInstallInstructions.Location = New System.Drawing.Point(32, 100)
+        Me.lblInstallInstructions.Margin = New System.Windows.Forms.Padding(30, 30, 30, 20)
+        Me.lblInstallInstructions.Name = "lblInstallInstructions"
+        Me.lblInstallInstructions.Size = New System.Drawing.Size(630, 23)
+        Me.lblInstallInstructions.TabIndex = 3
+        Me.lblInstallInstructions.Text = "Please wait while the Setup Wizard installs Compact Cassette Catalogue."
+        '
         'frmMain
         '
         Me.AcceptButton = Me.btnNext
@@ -313,6 +395,7 @@ Partial Class frmMain
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(701, 458)
+        Me.Controls.Add(Me.pnlInstall)
         Me.Controls.Add(Me.pnlReady)
         Me.Controls.Add(Me.pnlOptions)
         Me.Controls.Add(Me.pnlIntroduction)
@@ -331,6 +414,8 @@ Partial Class frmMain
         Me.pnlHeaderOptions.ResumeLayout(False)
         Me.pnlReady.ResumeLayout(False)
         Me.pnlHeaderReady.ResumeLayout(False)
+        Me.pnlInstall.ResumeLayout(False)
+        Me.pnlHeaderInstall.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -357,4 +442,11 @@ Partial Class frmMain
     Friend WithEvents lblReadyInstructions As Label
     Friend WithEvents btnInstall As Button
     Friend WithEvents dialogDirectory As FolderBrowserDialog
+    Friend WithEvents pnlInstall As Panel
+    Friend WithEvents barInstallProgress As ProgressBar
+    Friend WithEvents lblStatusProcess As Label
+    Friend WithEvents lblStatusHeader As Label
+    Friend WithEvents pnlHeaderInstall As Panel
+    Friend WithEvents lblInstall As Label
+    Friend WithEvents lblInstallInstructions As Label
 End Class
