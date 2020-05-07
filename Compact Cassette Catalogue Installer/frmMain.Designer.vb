@@ -31,7 +31,6 @@ Partial Class frmMain
         Me.lblHeadingIntroduction = New System.Windows.Forms.Label()
         Me.lblIntroduction = New System.Windows.Forms.Label()
         Me.pnlIntroduction = New System.Windows.Forms.Panel()
-        Me.picSideBanner = New System.Windows.Forms.PictureBox()
         Me.pnlOptions = New System.Windows.Forms.Panel()
         Me.chkStartMenu = New System.Windows.Forms.CheckBox()
         Me.chkDesktop = New System.Windows.Forms.CheckBox()
@@ -52,15 +51,16 @@ Partial Class frmMain
         Me.pnlHeaderInstall = New System.Windows.Forms.Panel()
         Me.lblInstall = New System.Windows.Forms.Label()
         Me.lblInstallInstructions = New System.Windows.Forms.Label()
+        Me.picSideBanner = New System.Windows.Forms.PictureBox()
         Me.pnlButtons.SuspendLayout()
         Me.pnlIntroduction.SuspendLayout()
-        CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlOptions.SuspendLayout()
         Me.pnlHeaderOptions.SuspendLayout()
         Me.pnlReady.SuspendLayout()
         Me.pnlHeaderReady.SuspendLayout()
         Me.pnlInstall.SuspendLayout()
         Me.pnlHeaderInstall.SuspendLayout()
+        CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlButtons
@@ -160,17 +160,6 @@ Partial Class frmMain
         Me.pnlIntroduction.Name = "pnlIntroduction"
         Me.pnlIntroduction.Size = New System.Drawing.Size(701, 388)
         Me.pnlIntroduction.TabIndex = 4
-        '
-        'picSideBanner
-        '
-        Me.picSideBanner.Image = CType(resources.GetObject("picSideBanner.Image"), System.Drawing.Image)
-        Me.picSideBanner.Location = New System.Drawing.Point(0, 0)
-        Me.picSideBanner.Margin = New System.Windows.Forms.Padding(0)
-        Me.picSideBanner.Name = "picSideBanner"
-        Me.picSideBanner.Size = New System.Drawing.Size(223, 388)
-        Me.picSideBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picSideBanner.TabIndex = 1
-        Me.picSideBanner.TabStop = False
         '
         'pnlOptions
         '
@@ -386,6 +375,17 @@ Partial Class frmMain
         Me.lblInstallInstructions.TabIndex = 3
         Me.lblInstallInstructions.Text = "Please wait while the Setup Wizard installs Compact Cassette Catalogue."
         '
+        'picSideBanner
+        '
+        Me.picSideBanner.Image = CType(resources.GetObject("picSideBanner.Image"), System.Drawing.Image)
+        Me.picSideBanner.Location = New System.Drawing.Point(0, 0)
+        Me.picSideBanner.Margin = New System.Windows.Forms.Padding(0)
+        Me.picSideBanner.Name = "picSideBanner"
+        Me.picSideBanner.Size = New System.Drawing.Size(223, 388)
+        Me.picSideBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picSideBanner.TabIndex = 1
+        Me.picSideBanner.TabStop = False
+        '
         'frmMain
         '
         Me.AcceptButton = Me.btnNext
@@ -407,7 +407,6 @@ Partial Class frmMain
         Me.Text = "Compact Cassette Catalogue Setup"
         Me.pnlButtons.ResumeLayout(False)
         Me.pnlIntroduction.ResumeLayout(False)
-        CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlOptions.ResumeLayout(False)
         Me.pnlOptions.PerformLayout()
         Me.pnlHeaderOptions.ResumeLayout(False)
@@ -415,6 +414,7 @@ Partial Class frmMain
         Me.pnlHeaderReady.ResumeLayout(False)
         Me.pnlInstall.ResumeLayout(False)
         Me.pnlHeaderInstall.ResumeLayout(False)
+        CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -423,7 +423,6 @@ Partial Class frmMain
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnBack As Button
     Friend WithEvents btnNext As Button
-    Friend WithEvents picSideBanner As PictureBox
     Friend WithEvents lblHeadingIntroduction As Label
     Friend WithEvents lblIntroduction As Label
     Friend WithEvents pnlIntroduction As Panel
@@ -448,4 +447,5 @@ Partial Class frmMain
     Friend WithEvents pnlHeaderInstall As Panel
     Friend WithEvents lblInstall As Label
     Friend WithEvents lblInstallInstructions As Label
+    Friend WithEvents picSideBanner As PictureBox
 End Class

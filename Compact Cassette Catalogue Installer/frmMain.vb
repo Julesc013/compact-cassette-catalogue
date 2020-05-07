@@ -67,7 +67,7 @@ Public Class frmMain
         ' Initialise progress bar.
         barInstallProgress.Value = 0
         barInstallProgress.Step = 10
-        barInstallProgress.Maximum = 10 * (7 + sourceFiles.Length)
+        barInstallProgress.Maximum = 10 * (8) '(7 + sourceFiles.Length)
 
 
         ' Perform the installation.
@@ -140,9 +140,12 @@ Public Class frmMain
             ' Save link to the specific release.
             Dim releaseLink As String = DOWNLOADLINK & programVersionFormatted & "/"
 
-            ' Save name of main file.
-            Dim mainFile As String = programVersionFormatted & ".exe"
-            sourceFiles(0) = PREFIXSOURCES & mainFile
+            '' Save name of main file.
+            'Dim mainFile As String = programVersionFormatted & ".exe"
+            'sourceFiles(0) = PREFIXSOURCES & mainFile
+
+            ' Save name of the zip file containing the release.
+            Dim zippedFile As String = programVersionFormatted & ".zip"
 
 
             ' Download latest program files.
@@ -155,30 +158,36 @@ Public Class frmMain
             'Try (TEMP)
 
 
-            ' Get UNINSTALLER first.
-            installClient.DownloadFile(releaseLink & UNINSTALLSOURCE, uninstallPath) 'FOR TIMEOUT: , False, 100000)
+            Dim zippedFilePath As String = installDirectory & zippedFile
 
-            barInstallProgress.PerformStep() ' Advance progress bar.
+            ' Download zip file containing the release.
+            installClient.DownloadFile(releaseLink & zippedFile, zippedFilePath) 'FOR TIMEOUT: , False, 100000)
+
+
+            '' Get UNINSTALLER first.
+            'installClient.DownloadFile(releaseLink & UNINSTALLSOURCE, uninstallPath) 'FOR TIMEOUT: , False, 100000)
+
+            'barInstallProgress.PerformStep() ' Advance progress bar.
 
 
             ' Get application ICON next.
-            installClient.DownloadFile(releaseLink & ICONSOURCE, iconPath)
+            'installClient.DownloadFile(releaseLink & ICONSOURCE, iconPath)
 
-            barInstallProgress.PerformStep() ' Advance progress bar.
+            'barInstallProgress.PerformStep() ' Advance progress bar.
 
 
             ' Now get the REST OF THE FILES (including the main application executable(s)).
-            For fileNumber As Integer = 0 To sourceFiles.Length - 1
+            'For fileNumber As Integer = 0 To sourceFiles.Length - 1
 
-                ' Define the remote source and local destination of this file.
-                Dim fileSource As String = releaseLink & sourceFiles(fileNumber)
-                Dim fileDestination As String = installDirectory & destinationFiles(fileNumber)
+            ' Define the remote source and local destination of this file.
+            'Dim fileSource As String = releaseLink & sourceFiles(fileNumber)
+            'Dim fileDestination As String = installDirectory & destinationFiles(fileNumber)
 
-                installClient.DownloadFile(fileSource, fileDestination) ' Download the file to its corresponding destination.
+            'installClient.DownloadFile(fileSource, fileDestination) ' Download the file to its corresponding destination.
 
-                barInstallProgress.PerformStep() ' Advance progress bar.
+            'barInstallProgress.PerformStep() ' Advance progress bar.
 
-            Next
+            'Next
 
 
             'Catch ex As IOException
@@ -191,13 +200,36 @@ Public Class frmMain
 
 
 
-            '' Move files to their paths in the install directory.
+            ' Extract and move files to the program directory.
 
-            'lblStatusProcess.Text = "Moving program files" ' Update progress bar label.
+            barInstallProgress.PerformStep() ' Advance progress bar.
+            lblStatusProcess.Text = "Extracting files" ' Update progress bar label.
+            lblStatusProcess.Update() ' Update label so that it shows the new text.
+
+
+            'Try
+
+            Compression.ZipFile.ExtractToDirectory(zippedFilePath, installDirectory)
+
+            'Catch ex As Exception
+            ' Handle this specifically
+
+            'End Try
 
 
 
-            ' Move files to their paths in the install directory.
+            ' Delete download zip and clear temporary files.
+
+            barInstallProgress.PerformStep() ' Advance progress bar.
+            lblStatusProcess.Text = "Deleting temporary files" ' Update progress bar label.
+            lblStatusProcess.Update() ' Update label so that it shows the new text.
+
+
+            My.Computer.FileSystem.DeleteFile(zippedFilePath) ' Delete the downloaded zip.
+
+
+
+            ' Add/modify an entry into the Windows Registry for this program.
 
             barInstallProgress.PerformStep() ' Advance progress bar.
             lblStatusProcess.Text = "Modifying registry" ' Update progress bar label.
@@ -214,7 +246,7 @@ Public Class frmMain
             Next
             Dim installSize As Integer = CInt(folderSize / 1024) ' Convert from bytes to kibibytes.
 
-            'Openeing the Uninstall RegistryKey (don't forget to set the writable flag to true)
+            'Opening the Uninstall RegistryKey (don't forget to set the writable flag to true)
             With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall", True)
 
                 'Creating my AppRegistryKey
@@ -238,6 +270,7 @@ Public Class frmMain
 
 
             'Catch ex As Exception
+            ' Handle this specifically
 
             'End Try (TEMP)
 

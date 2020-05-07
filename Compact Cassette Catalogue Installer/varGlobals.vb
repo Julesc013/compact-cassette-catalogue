@@ -16,15 +16,15 @@
 
     Public Const PREFIXSOURCES As String = "C3-"
 
-    Public Const UNINSTALLSOURCE As String = PREFIXSOURCES & "Uninstaller.exe"
+    'Public Const UNINSTALLSOURCE As String = PREFIXSOURCES & "Uninstaller.exe"
     Public Const UNINSTALLDESTINATION As String = "UNINSTALL.exe"
-    Public Const ICONSOURCE As String = PREFIXSOURCES & "Icon.ico"
+    'Public Const ICONSOURCE As String = PREFIXSOURCES & "Icon.ico"
     Public Const ICONDESTINATION As String = PROGRAMNAME & ".ico"
 
-    Public sourceFiles As String() = {Nothing} ', PREFIXSOURCES & "Updater.exe"} ' Set the name of the source file later (when we have the version number).
-    Public destinationFiles As String() = {PROGRAMNAME & ".exe"} ', "UPDATE.exe"}
+    'Public sourceFiles As String() = {Nothing} ', PREFIXSOURCES & "Updater.exe"} ' Set the name of the source file later (when we have the version number).
+    'Public destinationFiles As String() = {PROGRAMNAME & ".exe"} ', "UPDATE.exe"}
 
-    Public startFile As String = destinationFiles(0) ' The executable that should be launched first when starting the program.
+    Public startFile As String = PROGRAMNAME & ".exe" 'destinationFiles(0) ' The executable that should be launched first when starting the program.
     Public startPath As String
 
     Public Const DOWNLOADLINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/" 'v1.0.0/C3-v1.0.0.exe
