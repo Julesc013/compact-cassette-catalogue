@@ -105,6 +105,8 @@ Partial Class frmSuccess
         'chkStartProgram
         '
         Me.chkStartProgram.AutoSize = True
+        Me.chkStartProgram.Checked = True
+        Me.chkStartProgram.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkStartProgram.Location = New System.Drawing.Point(248, 337)
         Me.chkStartProgram.Margin = New System.Windows.Forms.Padding(20, 30, 20, 30)
         Me.chkStartProgram.Name = "chkStartProgram"

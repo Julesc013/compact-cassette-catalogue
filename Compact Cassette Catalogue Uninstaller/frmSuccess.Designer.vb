@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSuccess
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmSuccess
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSuccess))
         Me.pnlButtons = New System.Windows.Forms.Panel()
@@ -28,10 +28,10 @@ Partial Class frmSuccess
         Me.btnBack = New System.Windows.Forms.Button()
         Me.btnFinish = New System.Windows.Forms.Button()
         Me.pnlSuccess = New System.Windows.Forms.Panel()
-        Me.chkStartProgram = New System.Windows.Forms.CheckBox()
         Me.picSideBanner = New System.Windows.Forms.PictureBox()
         Me.lblSuccess = New System.Windows.Forms.Label()
         Me.lblHeadingSuccess = New System.Windows.Forms.Label()
+        Me.chkOpenFeedback = New System.Windows.Forms.CheckBox()
         Me.pnlButtons.SuspendLayout()
         Me.pnlSuccess.SuspendLayout()
         CType(Me.picSideBanner, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,7 +92,7 @@ Partial Class frmSuccess
         '
         'pnlSuccess
         '
-        Me.pnlSuccess.Controls.Add(Me.chkStartProgram)
+        Me.pnlSuccess.Controls.Add(Me.chkOpenFeedback)
         Me.pnlSuccess.Controls.Add(Me.picSideBanner)
         Me.pnlSuccess.Controls.Add(Me.lblSuccess)
         Me.pnlSuccess.Controls.Add(Me.lblHeadingSuccess)
@@ -101,17 +101,6 @@ Partial Class frmSuccess
         Me.pnlSuccess.Name = "pnlSuccess"
         Me.pnlSuccess.Size = New System.Drawing.Size(701, 388)
         Me.pnlSuccess.TabIndex = 6
-        '
-        'chkStartProgram
-        '
-        Me.chkStartProgram.AutoSize = True
-        Me.chkStartProgram.Location = New System.Drawing.Point(248, 337)
-        Me.chkStartProgram.Margin = New System.Windows.Forms.Padding(20, 30, 20, 30)
-        Me.chkStartProgram.Name = "chkStartProgram"
-        Me.chkStartProgram.Size = New System.Drawing.Size(408, 21)
-        Me.chkStartProgram.TabIndex = 4
-        Me.chkStartProgram.Text = "Start Compact Cassette Catalogue after closing the installer."
-        Me.chkStartProgram.UseVisualStyleBackColor = True
         '
         'picSideBanner
         '
@@ -142,6 +131,17 @@ Partial Class frmSuccess
         Me.lblHeadingSuccess.Size = New System.Drawing.Size(429, 57)
         Me.lblHeadingSuccess.TabIndex = 2
         Me.lblHeadingSuccess.Text = "Finished Uninstalling Compact Cassette Catalogue." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'chkOpenFeedback
+        '
+        Me.chkOpenFeedback.AutoSize = True
+        Me.chkOpenFeedback.Location = New System.Drawing.Point(248, 337)
+        Me.chkOpenFeedback.Margin = New System.Windows.Forms.Padding(20, 30, 20, 30)
+        Me.chkOpenFeedback.Name = "chkOpenFeedback"
+        Me.chkOpenFeedback.Size = New System.Drawing.Size(370, 21)
+        Me.chkOpenFeedback.TabIndex = 4
+        Me.chkOpenFeedback.Text = "Open web page to provide feedback to the developer."
+        Me.chkOpenFeedback.UseVisualStyleBackColor = True
         '
         'frmSuccess
         '
@@ -175,5 +175,5 @@ Partial Class frmSuccess
     Friend WithEvents picSideBanner As PictureBox
     Friend WithEvents lblSuccess As Label
     Friend WithEvents lblHeadingSuccess As Label
-    Friend WithEvents chkStartProgram As CheckBox
+    Friend WithEvents chkOpenFeedback As CheckBox
 End Class

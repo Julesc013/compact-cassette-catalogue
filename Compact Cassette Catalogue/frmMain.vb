@@ -1478,7 +1478,7 @@ Public Class frmMain
 
     Private Sub FeedbackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FeedbackToolStripMenuItem.Click
 
-        openWebLink(feedbackLink)
+        openWebLink(FEEDBACKLINK)
 
     End Sub
 

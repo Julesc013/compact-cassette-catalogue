@@ -7,9 +7,9 @@
 
         ' If the checkbox is selected, run C3 (else dont run C3) then immediately exit this installer application.
 
-        If chkStartProgram.Checked = True Then
+        If chkOpenFeedback.Checked = True Then
 
-            Process.Start(startPath) ' Start C3.
+            Process.Start(FEEDBACKLINK) ' Start C3.
 
         End If
 

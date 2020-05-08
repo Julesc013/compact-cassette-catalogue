@@ -118,7 +118,9 @@ Partial Class frmFailure
         Me.lblFailure.Name = "lblFailure"
         Me.lblFailure.Size = New System.Drawing.Size(427, 78)
         Me.lblFailure.TabIndex = 3
-        Me.lblFailure.Text = resources.GetString("lblFailure.Text")
+        Me.lblFailure.Text = "Compact Cassette Catalogue uninstallation was interrupted. The program may not ha" &
+    "ve been fully uninstalled. Please run the uninstallation again. Click the finish" &
+    " button to exit the uninstaller."
         '
         'lblHeadingFailure
         '
@@ -128,7 +130,7 @@ Partial Class frmFailure
         Me.lblHeadingFailure.Name = "lblHeadingFailure"
         Me.lblHeadingFailure.Size = New System.Drawing.Size(429, 57)
         Me.lblHeadingFailure.TabIndex = 2
-        Me.lblHeadingFailure.Text = "Compact Cassette Catalogue Setup Wizard was interrupted" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblHeadingFailure.Text = "Compact Cassette Catalogue Uninstaller was interrupted" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'frmFailure
         '
