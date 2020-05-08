@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Compact Cassette Catalogue", "Compact Cassette Catalogue\Compact Cassette Catalogue.vbproj", "{DD0ADBE8-82D1-4620-8073-FF8EC6392135}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Compact Cassette Catalogue Installer", "Compact Cassette Catalogue Installer\Compact Cassette Catalogue Installer.vbproj", "{D48984D9-8E3B-413D-A8DA-7DF5B4B3C09B}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Compact Cassette Catalogue Uninstaller", "Compact Cassette Catalogue Uninstaller\Compact Cassette Catalogue Uninstaller.vbproj", "{12C86E82-C311-466C-97B1-C1E1ACC75A9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D48984D9-8E3B-413D-A8DA-7DF5B4B3C09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D48984D9-8E3B-413D-A8DA-7DF5B4B3C09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D48984D9-8E3B-413D-A8DA-7DF5B4B3C09B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12C86E82-C311-466C-97B1-C1E1ACC75A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12C86E82-C311-466C-97B1-C1E1ACC75A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12C86E82-C311-466C-97B1-C1E1ACC75A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12C86E82-C311-466C-97B1-C1E1ACC75A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
