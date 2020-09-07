@@ -23,7 +23,7 @@ Public Class frmMain
 
         'Dim cancelConfirm As MsgBoxResult = confirmCancel()
 
-        '' If responded yes to the prompt, close the installer.
+        '' If responded yes to the prompt, close the uninstaller.
         'If cancelConfirm = MsgBoxResult.Yes Then
 
         frmFailure.Show()
