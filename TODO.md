@@ -2,6 +2,8 @@
 
 - write Documentation (with a quick-start guide/tutorial)
 
+- INCLUDE POPULAR BRANDS AND MODELS BY DEFAULT
+
 
 
 #### v2.0
