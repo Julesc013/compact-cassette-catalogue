@@ -73,4 +73,4 @@ If you need to review the documentaion, you can open it from the *Help* menu or 
 - 128MB of RAM.
 - 80MB of hard drive space.
 
-**Copyright © 2019-2020 Jules Carboni**
+**Copyright © 2019-2024 Jules Carboni**
