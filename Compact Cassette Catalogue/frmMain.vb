@@ -7,7 +7,6 @@ Imports System.Xml
 Imports System.IO
 Imports System.Net
 Imports System.Text.RegularExpressions
-Imports System.Windows.Input
 
 Public Class frmMain
 

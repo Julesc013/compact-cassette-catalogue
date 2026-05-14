@@ -56,7 +56,9 @@ You can even **catalogue your tape decks** (including their specifications).
 Head over to the [releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases "C3 Releases") and download the executable binary for the latest version.
 (Look for *C3-vX.X.X.exe*.)
 
-*Note: Binaries are in 32-bit format and **do not** require installing or administrator privileges.*
+*Note: The compatibility build is x86/32-bit and **does not** require installing or administrator privileges.*
+
+*Note: Online update checking may fail on some Windows XP installs because GitHub HTTPS connections can require newer TLS support than the operating system provides.*
 
 The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
 this will help you get started and explains every function of the software.
@@ -65,8 +67,8 @@ If you need to review the documentaion, you can open it from the *Help* menu or 
 ## System requirements.
 
 #### Minimum
-- Windows Vista SP2 or higher (32-bit or 64-bit).
-- .NET Framework 4.6
+- Windows XP SP3 or newer (32-bit or 64-bit).
+- .NET Framework 4.0
 - 32MB of RAM.
 - 2MB of hard drive space.
 #### Recommended

@@ -9,7 +9,7 @@
       <Value Profile="(Default)">My.Computer.FileSystem.SpecialDirectories.MyDocuments</Value>
     </Setting>
     <Setting Name="checkUpdates" Type="System.String" Scope="User">
-      <Value Profile="(Default)">startup</Value>
+      <Value Profile="(Default)">never</Value>
     </Setting>
     <Setting Name="lastUpdateCheck" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />

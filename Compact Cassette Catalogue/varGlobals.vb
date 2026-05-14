@@ -9,18 +9,18 @@ Module varGlobals
 
     ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     ' About program information.
-    Public Const VERSION As String = "1.1.2"
+    Public Const VERSION As String = "1.1.3"
     Public Const VERSIONSTAGE As String = "Release"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2020, 4, 22, 18, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
+    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2026, 5, 14, 0, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
     ' About catalogue information.
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
     Public Const COPYRIGHTAUTHOR = "Jules Carboni"
-    Public Const COPYRIGHTYEAR = "2019-2020"
+    Public Const COPYRIGHTYEAR = "2019-2026"
 
     ' Hyperlinks
-    Public Const CONTACTEMAIL As String = "carbonisoftware@gmail.com" ' Contact email
-    Public Const WEBSITEMAIN As String = "https://julescarboni.wordpress.com/jules-carboni/software/compact-cassette-catalogue" ' Main Website
+    Public Const CONTACTEMAIL As String = "github.com/Julesc013" ' Contact email
+    Public Const WEBSITEMAIN As String = "https://github.com/Julesc013/compact-cassette-catalogue" ' Main Website
     Public Const WEBSITEHELP As String = "https://github.com/Julesc013/compact-cassette-catalogue/wiki" ' Help/wiki Website
     Public Const UPDATELINKDOWNLOAD As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"  ' Github download page.
     ' The URL of the raw file in which the latest version information is stored.
