@@ -55,5 +55,6 @@ The portable x86 build is the official 1.2.0 Windows XP compatibility distributi
   - x64: PE32+, AMD64, 32-bit not required.
 - Limited launch smoke: passed for x86 and x64 on modern Windows.
 - Release assets and SHA256 sums: generated locally under `Releases\1.2.0`.
-- Full interactive workflow test: not run.
+- Full interactive workflow test: passed by manual regression test.
+- Manual update-check failure path: passed by manual regression test.
 - Windows XP SP3 runtime test: not run.
