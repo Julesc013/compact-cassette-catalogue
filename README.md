@@ -1,6 +1,6 @@
 # Compact Cassette Catalogue
 
-**Cataloging application for blank compact cassette tapes.**
+**Cataloguing application for blank compact cassette tapes.**
 
 See [changes](CHANGELOG.md "C3 Changelog"), [planned features](TODO.md "C3 To-Do List"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
@@ -13,7 +13,7 @@ It is a **user friendly** and **feature rich** alternative to a database.
 
 ## Who is it for?
 
-*C3* is intened for tapeheads who may be finding it **difficult to manage their large collection** of cassettes and need a system for **indexing, sorting and searching**.
+*C3* is intended for tapeheads who may be finding it **difficult to manage their large collection** of cassettes and need a system for **indexing, sorting and searching**.
 
 I created *C3* for myself because:
 1. I prefer *aesthetically minimal j-cards* which are often devoid of useful information...
@@ -27,7 +27,7 @@ Note: *C3* is not geared towards *pre-recorded* tapes ([Discogs](https://www.dis
 This program provides many helpful features such as:
 - *Search functionality* to assist in navigating large catalogues.
 - *List views* to browse catalogued items.
-- *Data visualisations* to track changes to the catalgoue.
+- *Data visualisations* to track changes to the catalogue.
 
 Many pieces of information can be stored about each **tape**, such as:
 - Manufacturer/Brand
@@ -66,7 +66,7 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 
 The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
 this will help you get started and explains every function of the software.
-If you need to review the documentaion, you can open it from the *Help* menu or by pressing *F1*.
+If you need to review the documentation, you can open it from the *Help* menu or by pressing *F1*.
 
 ## System requirements.
 
