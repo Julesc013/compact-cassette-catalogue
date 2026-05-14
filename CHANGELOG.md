@@ -6,7 +6,7 @@
 
 
 
-### Version 1.2.0 - 14 May 2026
+### Version 1.2 Beta 1 - 14 May 2026
 
 - Retargeted the main application from .NET Framework 4.6 to .NET Framework 4.0.
 - Added an explicit x86 compatibility build for Windows XP SP3 and newer.
