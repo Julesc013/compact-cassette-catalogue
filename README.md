@@ -53,12 +53,14 @@ You can even **catalogue your tape decks** (including their specifications).
 
 ## How to get started.
 
-Head over to the [releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases "C3 Releases") and download the executable binary for the latest version.
-(Look for *C3-vX.X.X.exe*.)
+Head over to the [releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases "C3 Releases") and download the portable x86 build for the latest version.
+(Look for *C3-vX.X.X-win-x86.exe* or *C3-vX.X.X-win-x86-portable.zip*.)
 
-*Note: The compatibility build is x86/32-bit and **does not** require installing or administrator privileges.*
+*Note: The x86/32-bit portable build is the compatibility build and **does not** require installing or administrator privileges.*
 
-*Note: Online update checking may fail on some old Windows versions because GitHub HTTPS connections can require newer TLS support than the operating system provides.*
+*Note: C3 is offline-first. Catalogues are local XML files, update checking is optional, and automatic update checking is disabled by default.*
+
+*Note: Online update checking may fail on some old Windows versions because GitHub HTTPS connections can require newer TLS support than the operating system provides. If that happens, open the releases page in a browser and download updates manually.*
 
 The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
 this will help you get started and explains every function of the software.
@@ -75,4 +77,4 @@ If you need to review the documentaion, you can open it from the *Help* menu or 
 - 128MB of RAM.
 - 100MB of hard drive space.
 
-**Copyright © 2019-2026 Jules Carboni**
+**Copyright (c) 2019-2026 Jules Carboni**

@@ -1,113 +1,54 @@
-### Short Term
+# To Do
 
-- write Documentation (with a quick-start guide/tutorial)
+## 1.2.x Maintenance
 
-- INCLUDE POPULAR BRANDS AND MODELS BY DEFAULT
+- Complete and record a clean Windows XP SP3 32-bit runtime test with .NET Framework 4.0 installed.
+- Manually smoke-test the 1.2.0 portable x86 build on modern Windows after each release candidate.
+- Verify list windows before release: tapes, models, brands, decks, filtering, selecting results, editing, and deletion.
+- Confirm settings persistence across close/reopen, especially update-check policy and message display preference.
+- Decide whether the old network installer remains archived only or gets a separate repair/test pass.
+- Review update version comparison for pre-release, beta, and four-part version strings.
+- Review all browser-opening paths after release packaging so failures remain non-crashing.
+- Keep the wiki and quick-start documentation synchronized with the portable x86 release path.
 
+## 1.3 Usability
 
+- Add popular brands and models by default if first-use data behavior is intentionally changed.
+- Improve search and filtering behavior.
+- Add sorting for list-view items.
+- Save column reorderings for list views.
+- Add more tape filters, including speed and recording-related fields.
+- Add more deck filters.
+- Improve console logging and optional log-file output.
+- Fix console scrolling behavior.
+- Fix notes textbox Enter-key behavior where accept buttons interfere with multiline input.
+- Improve validation, including regex validation and case-sensitive searching options.
 
-#### v2.0
+## 2.0 Catalogue Management
 
+- Add a catalogue version upgrade/conversion tool.
+- Allow saving and editing as older catalogue file versions where practical.
+- Add file associations if OS integration is safe on supported systems.
+- Add optional managed catalogue folders for users who do not want manual XML file handling.
+- Add an advanced file-management setting for users who prefer manual XML save/open behavior.
+- Add a backup function that exports catalogue XML files into a C3 backup archive.
+- Store brands and models by stable codes so names can be edited safely.
+- Give decks stable hidden identifiers so deck names and manufacturers can be edited safely.
+- Support adding multiple instances of the same deck model.
 
-- make an uninstaller!
+## 3.0 UI Rebuild
 
-- UPDATER IS BUILD INTO MAIN PROGRAM
-    - checks if C3.bak exists in current running directory (if so deletes it)
-    - Renames self to C3.bak, downloads new version to self directory at C3.exe
+- Rebuild the UI for resizing.
+- Add resizable and fullscreen layouts.
+- Show tape lists in a side pane in fullscreen layouts.
+- Show console output in a non-obtrusive area.
+- Populate combo boxes programmatically.
+- Allow users to add and remove fields from view forms.
+- Add optional tape images.
+- Clearly mark brand/model codes that cannot be changed after creation.
 
-- tool to upgrade/convert catalogue versions
-- file associations
+## Deferred Native Updating
 
-- SAVE FILES TO A USER FOLDER AND SELECT CATALOGUES FROM A LIST LIKE FALLOUT 4.
-- save as just creates a new named catalogue in the hardcoded folder.
-- Setting to anable "advanced file management" for manual saving of xml files as if they were word documents.
-
-- Backup function just zips all the xml files and lets the user save the ".c3b" (C3 backup) zip wherever.
-
-
-
-#### v2.1
-
-- sort list view items
-- save column reorderings for next load
-
-- search stuff
-
-- View statistics
-
-
-
-#### v2.2
-
-- Complete user settings. [already done?]
-- Save directory and defaults to file (new format version). [just the build in my.settings?]
-
-
-
-#### v2.3
-
-- Grapher to visualise
-  - recordings made during all time
-  - total num tapes over time
-  - new tapes added each month
-  - total length over time
-  - etc
- 
- 
- 
-#### v2.x
-
-- add more filters for decks!
-- add more filters for tapes (eg speed and such)
-
-- only nr/bias/speed selectable if deck supports it?
-
-- abiity to add many instances of one model of deck
-
-
-- Ability to edit brand, model, and deck NAMES (and manufacterers). [currently cannot as they are used in primary keys or in second-hand stored values in tape records.] MAKE BRANDS AND MODELS STORED ONLY AS CODES.
-- Give decks a hidden primary key/code so that they can be renamed. (E.G: Marantz-SD340-020619)
-
-
-
-#### v3.0
-
-- fullscreen spaces all the elements out
-- fullscreen shows list of all tapes on side pane
-- fullscreen shows console in corner
-
-- REBUILD UI FOR RESIZING
-- add resizablility
-- add and remove fields from view forms
-- comboboxes populated programatically
-
-- ability to add an image of each tape
-
-- Add message "THIS CODE CANNOT BE CHANGED" when making a brand/model code
-
-
-
-### Long Term
-
-
-
-- More verbose process logging (to an output file, not console)
-
-- ability to save as and edit as older file versions
-
-
-
-- fix regex validation
-- fix console scrolling bug
-- case sensitive searching
-- can press enter while in notes textbox (while btnAdd is accept_button)
-
-
-
-- Clean up code (commented out lines)
-
-- make all updates and changes checkings into one funciton with a case statement at the end
-
-
-
-- support for 1, 2 and 4+ point version numbers (eg 1.3 and 1.4.2.1)
+- Do not make startup depend on network access.
+- Do not add HTTP downgrade fallback.
+- Revisit native update behavior only if it can be made offline-safe and old-Windows-safe.

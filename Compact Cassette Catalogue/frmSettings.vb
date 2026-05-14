@@ -17,7 +17,9 @@
                 cmbCheckUpdates.SelectedIndex = 1
             Case "monthly"
                 cmbCheckUpdates.SelectedIndex = 2
-            Case "manually"
+            Case "never", "manually"
+                cmbCheckUpdates.SelectedIndex = 3
+            Case Else
                 cmbCheckUpdates.SelectedIndex = 3
         End Select
 
@@ -42,7 +44,7 @@
             Case 2
                 My.Settings.checkUpdates = "monthly"
             Case 3
-                My.Settings.checkUpdates = "manually"
+                My.Settings.checkUpdates = "never"
         End Select
 
 

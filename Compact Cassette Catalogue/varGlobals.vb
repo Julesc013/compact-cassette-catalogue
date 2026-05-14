@@ -9,7 +9,7 @@ Module varGlobals
 
     ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     ' About program information.
-    Public Const VERSION As String = "1.1.3"
+    Public Const VERSION As String = "1.2.0"
     Public Const VERSIONSTAGE As String = "Release"
     Public ReadOnly VERSIONDATE As DateTime = New DateTime(2026, 5, 14, 0, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
     ' About catalogue information.
@@ -19,7 +19,8 @@ Module varGlobals
     Public Const COPYRIGHTYEAR = "2019-2026"
 
     ' Hyperlinks
-    Public Const CONTACTEMAIL As String = "github.com/Julesc013" ' Contact email
+    Public Const CONTACTEMAIL As String = "github.com/Julesc013" ' Contact label.
+    Public Const CONTACTLINK As String = "https://github.com/Julesc013" ' Contact link.
     Public Const WEBSITEMAIN As String = "https://github.com/Julesc013/compact-cassette-catalogue" ' Main Website
     Public Const WEBSITEHELP As String = "https://github.com/Julesc013/compact-cassette-catalogue/wiki" ' Help/wiki Website
     Public Const UPDATELINKDOWNLOAD As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"  ' Github download page.
@@ -359,20 +360,17 @@ Module varGlobals
 
     Sub openWebLink(link As String)
 
-        Process.Start(link)
+        Try
 
-        'Try
+            Process.Start(link)
 
-        '    ' Indicate to the user via the mouse cursor that a process is running.
-        '    Mouse.OverrideCursor = Cursors.AppStarting
-        '    Process.Start(link)
+        Catch ex As Exception
 
-        'Finally
+            Dim message As String = "Failed to open link."
+            consoleAdd(message & " " & link & " Error: " & ex.Message)
+            MsgBox(message & vbNewLine & vbNewLine & link & vbNewLine & vbNewLine & "Error: " & ex.Message, MsgBoxStyle.Exclamation, "Could Not Open Link")
 
-        '    ' Reset mouse cursor.
-        '    Mouse.OverrideCursor = Nothing
-
-        'End Try
+        End Try
 
     End Sub
 

@@ -28,13 +28,13 @@
 
     Private Sub LblWebsiteLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkWebsite.LinkClicked
 
-        Process.Start(WEBSITEMAIN)
+        openWebLink(WEBSITEMAIN)
 
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkContactEmail.LinkClicked
 
-        Process.Start("mailto:" & CONTACTEMAIL)
+        openWebLink(CONTACTLINK)
 
     End Sub
 End Class

@@ -75,7 +75,7 @@ Partial Class frmSettings
         '
         Me.cmbCheckUpdates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCheckUpdates.FormattingEnabled = True
-        Me.cmbCheckUpdates.Items.AddRange(New Object() {"On startup", "Weekly", "Monthly", "Never (manually)"})
+        Me.cmbCheckUpdates.Items.AddRange(New Object() {"On startup", "Weekly", "Monthly", "Never / manual only"})
         Me.cmbCheckUpdates.Location = New System.Drawing.Point(267, 45)
         Me.cmbCheckUpdates.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbCheckUpdates.Name = "cmbCheckUpdates"

@@ -63,10 +63,14 @@ Public Class frmMain
 
         consoleAdd("Successfully loaded program.") ' Add success note to console.
 
-        ' Check for updates if auto-updates enabled.
-        Dim daysSinceUpdate = (My.Settings.lastUpdateCheck - DateTime.Now).TotalDays
-        If My.Settings.checkUpdates = "startup" Or (My.Settings.checkUpdates = "weekly" And (daysSinceUpdate < 7)) Or (My.Settings.checkUpdates = "monthly" And (daysSinceUpdate < 28)) Then
-            checkUpdates()
+        ' Check for updates if automatic update checks are enabled.
+        Dim updatePolicy As String = normaliseUpdateCheckPolicy(My.Settings.checkUpdates)
+        If My.Settings.checkUpdates <> updatePolicy Then
+            My.Settings.checkUpdates = updatePolicy
+        End If
+
+        If shouldRunAutomaticUpdateCheck(updatePolicy) Then
+            checkUpdates(False)
         End If
 
         ' Indicate to subroutines that the program has finished the 'initial setup' phase.
@@ -74,14 +78,85 @@ Public Class frmMain
 
     End Sub
 
-    Sub checkUpdates()
+    Private Function normaliseUpdateCheckPolicy(policy As String) As String
+
+        Select Case policy
+            Case "startup", "weekly", "monthly", "never"
+                Return policy
+            Case "manually"
+                Return "never"
+            Case Else
+                Return "never"
+        End Select
+
+    End Function
+
+    Private Function shouldRunAutomaticUpdateCheck(policy As String) As Boolean
+
+        Select Case policy
+            Case "startup"
+                Return True
+            Case "weekly", "monthly"
+                Try
+
+                    Dim daysSinceUpdate As Double = (DateTime.Now - My.Settings.lastUpdateCheck).TotalDays
+
+                    If policy = "weekly" Then
+                        Return daysSinceUpdate >= 7
+                    Else
+                        Return daysSinceUpdate >= 28
+                    End If
+
+                Catch ex As Exception
+
+                    consoleAdd("Failed to read last update check date. Automatic update check will run.")
+                    Return True
+
+                End Try
+            Case Else
+                Return False
+        End Select
+
+    End Function
+
+    Private Sub enableBestEffortTls()
+
+        Try
+
+            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol Or CType(768, SecurityProtocolType) Or CType(3072, SecurityProtocolType)
+
+        Catch ex As Exception
+
+            consoleAdd("Failed to enable best-effort TLS 1.1/1.2 support. Error: " & ex.Message)
+
+        End Try
+
+    End Sub
+
+    Private Function isNewerVersion(latestVersion As String) As Boolean
+
+        Try
+
+            Dim latest As New Version(latestVersion)
+            Dim current As New Version(VERSION)
+            Return latest.CompareTo(current) > 0
+
+        Catch ex As Exception
+
+            Return latestVersion <> VERSION
+
+        End Try
+
+    End Function
+
+    Sub checkUpdates(Optional manualCheck As Boolean = False)
 
         ' Check for updates to the program.
 
         ' Declare variables.
         Dim latestVersion As String
         Dim latestVersionStage As String
-        Dim latestVersionDate As Date
+        Dim latestVersionDate As Date = DateTime.MinValue
 
         Dim updateAvailable As Boolean
 
@@ -92,6 +167,7 @@ Public Class frmMain
         ' Get variables from URL.
         Try
 
+            enableBestEffortTls()
 
             Dim updateClient As WebClient = New WebClient()
             Using updateReader As New StreamReader(updateClient.OpenRead(UPDATELINKCHECK))
@@ -99,7 +175,7 @@ Public Class frmMain
                 ' Assume there are only 3 lines (and in data is in this order).
                 latestVersion = updateReader.ReadLine()
                 latestVersionStage = updateReader.ReadLine()
-                latestVersionDate = CDate(updateReader.ReadLine())
+                DateTime.TryParse(updateReader.ReadLine(), latestVersionDate)
 
                 ' Set success message for log.
                 message = "Successfully checked for updates."
@@ -107,18 +183,24 @@ Public Class frmMain
             End Using
 
 
-        Catch ex As WebException
+        Catch ex As Exception
 
 
             ' Add confirmation message to console.
             message = "Failed to check for updates."
-            consoleAdd(message)
+            consoleAdd(message & " Error: " & ex.Message)
 
-            ' Display error message.
-            Dim boxTitle As String = "Update Check Failed"
-            Dim boxMessage As String = "Compact Cassette Catalogue failed to check for updates." & vbNewLine & vbNewLine & "Error: " & ex.Message ' Pass the error message through to the message box. Maybe change this if its too verbose.
-            Dim boxStyle As MsgBoxStyle = MsgBoxStyle.Exclamation
-            MsgBox(boxMessage, boxStyle, boxTitle)
+            If manualCheck = True Then
+
+                Dim boxTitle As String = "Update Check Failed"
+                Dim boxMessage As String = "Compact Cassette Catalogue could not check for updates." & vbNewLine & vbNewLine & "This can happen on old Windows systems when GitHub HTTPS/TLS support is unavailable." & vbNewLine & vbNewLine & "Error: " & ex.Message & vbNewLine & vbNewLine & "Would you like to open the releases page in your browser?"
+                Dim boxResult As DialogResult = MessageBox.Show(boxMessage, boxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+
+                If boxResult = DialogResult.Yes Then
+                    openWebLink(UPDATELINKDOWNLOAD)
+                End If
+
+            End If
 
             ' Exit this sub. Do not attempt to check versions further.
             Exit Sub
@@ -128,7 +210,7 @@ Public Class frmMain
 
 
         ' Check if a new version exists. (Ignore stage and date.)
-        If latestVersion <> VERSION Then
+        If isNewerVersion(latestVersion) Then
 
             updateAvailable = True
             messageDetails = "Found v" & latestVersion & "."
@@ -153,23 +235,27 @@ Public Class frmMain
             Dim boxVersionLatest As String = "Latest version: " & latestVersion '& " (" & latestVersionDate.ToShortDateString & ")"
 
             Dim boxTitle As String = "Update Available"
-            Dim boxMessage As String = "A Compact Cassette Catalogue update is available for download." & vbNewLine & vbNewLine & boxVersionCurrent & vbNewLine & boxVersionLatest & vbNewLine & "(Released " & latestVersionDate.ToString("dd MMMM yyyy") & ")" & vbNewLine & vbNewLine & "Would you like to be taken to the download page?"
+            Dim boxReleaseDate As String = Nothing
+            If latestVersionDate <> DateTime.MinValue Then
+                boxReleaseDate = vbNewLine & "(Released " & latestVersionDate.ToString("dd MMMM yyyy") & ")"
+            End If
+            Dim boxMessage As String = "A Compact Cassette Catalogue update is available for download." & vbNewLine & vbNewLine & boxVersionCurrent & vbNewLine & boxVersionLatest & boxReleaseDate & vbNewLine & vbNewLine & "Would you like to be taken to the download page?"
 
             Dim boxResult As DialogResult
             boxResult = MessageBox.Show(boxMessage, boxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 
             If boxResult = vbYes Then
 
-                openWebLink(updateLinkDownload) ' Open the downloads page.
+                openWebLink(UPDATELINKDOWNLOAD) ' Open the downloads page.
 
             End If
 
         Else
 
-            ' Don't how this message if the program is just starting up.
-            If duringSetup = False Then
+            ' Don't show this message if the program is just starting up.
+            If manualCheck = True Then
 
-                MessageBox.Show("Compact Cassette Catalogue is up to date." & vbNewLine & latestVersion & " is the latest version.", "No Updates Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Compact Cassette Catalogue is up to date." & vbNewLine & VERSION & " is the latest version.", "No Updates Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             End If
 
@@ -1778,20 +1864,20 @@ Public Class frmMain
 
     Private Sub CheckForUpdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
 
-        checkUpdates()
+        checkUpdates(True)
 
     End Sub
 
     Private Sub OpenDownloadsPageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDownloadsPageToolStripMenuItem.Click
 
-        openWebLink(updateLinkDownload) ' Open the downloads page.
+        openWebLink(UPDATELINKDOWNLOAD) ' Open the downloads page.
 
     End Sub
 
     Private Sub HelpGuideToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpGuideToolStripMenuItem.Click
 
         ' Open help/wiki website.
-        Process.Start(WEBSITEHELP)
+        openWebLink(WEBSITEHELP)
 
     End Sub
 

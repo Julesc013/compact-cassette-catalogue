@@ -6,6 +6,28 @@
 
 
 
+### Version 1.2.0 - 14 May 2026
+
+- Retargeted the main application from .NET Framework 4.6 to .NET Framework 4.0.
+- Added an explicit x86 compatibility build for Windows XP SP3 and newer.
+- Re-aligned the main project for Visual Studio 2015 / MSBuild 14 validation.
+- Removed unused framework references and imports that blocked the .NET 4.0 compatibility path.
+- Changed the application to be offline-first by default.
+- Disabled automatic update checking by default to avoid startup network failures on old Windows systems.
+- Fixed update-check scheduling logic for weekly and monthly checks.
+- Fixed update-check settings so stored values and the settings UI use startup, weekly, monthly, and never consistently.
+- Migrated the old manually update setting to never while keeping manual update checks available from the menu.
+- Improved update-check failure handling so network and TLS failures do not show modal errors during startup.
+- Added a manual update-check failure path that offers to open the releases page in the browser.
+- Added best-effort TLS 1.1 / TLS 1.2 enablement for update checks without claiming guaranteed old-Windows TLS support.
+- Guarded browser-opening links so link launch failures do not crash the app.
+- Updated system requirements to Windows XP SP3 or newer with .NET Framework 4.0.
+- Updated release metadata, README, VERSION, and source version constants for 1.2.0.
+- Kept the catalogue file format version at 1.1.0.
+- The portable x86 build is the official 1.2.0 distribution path; the old network installer is not the recommended XP path unless separately tested.
+
+
+
 ### Version 1.1.2 – 22 April 2020
 
 - Can choose to check for updates on startup, weekly, monthly, or never (manually).
