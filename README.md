@@ -58,7 +58,7 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 
 *Note: The compatibility build is x86/32-bit and **does not** require installing or administrator privileges.*
 
-*Note: Online update checking may fail on some Windows XP installs because GitHub HTTPS connections can require newer TLS support than the operating system provides.*
+*Note: Online update checking may fail on some old Windows versions because GitHub HTTPS connections can require newer TLS support than the operating system provides.*
 
 The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
 this will help you get started and explains every function of the software.
@@ -73,6 +73,6 @@ If you need to review the documentaion, you can open it from the *Help* menu or 
 - 2MB of hard drive space.
 #### Recommended
 - 128MB of RAM.
-- 80MB of hard drive space.
+- 100MB of hard drive space.
 
-**Copyright © 2019-2024 Jules Carboni**
+**Copyright © 2019-2026 Jules Carboni**
