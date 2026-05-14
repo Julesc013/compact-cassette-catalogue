@@ -10,6 +10,7 @@
 
 - Retargeted the main application from .NET Framework 4.6 to .NET Framework 4.0.
 - Added an explicit x86 compatibility build for Windows XP SP3 and newer.
+- Added explicit x64 build configurations for 64-bit Windows release assets.
 - Re-aligned the main project for Visual Studio 2015 / MSBuild 14 validation.
 - Removed unused framework references and imports that blocked the .NET 4.0 compatibility path.
 - Changed the application to be offline-first by default.
@@ -24,7 +25,8 @@
 - Updated system requirements to Windows XP SP3 or newer with .NET Framework 4.0.
 - Updated release metadata, README, VERSION, and source version constants for 1.2.0.
 - Kept the catalogue file format version at 1.1.0.
-- The portable x86 build is the official 1.2.0 distribution path; the old network installer is not the recommended XP path unless separately tested.
+- The portable x86 build is the official Windows XP SP3 compatibility path; x64 builds are for 64-bit Windows only and XP x64 support is unverified unless separately tested.
+- The old network installer is not the recommended XP path unless separately tested.
 
 
 

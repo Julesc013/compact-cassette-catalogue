@@ -800,6 +800,35 @@ Public Class frmMain
 
     End Sub
 
+    Private Function normaliseCatalogueFileVersion(rawVersion As String) As String
+
+        If rawVersion Is Nothing Then
+            Return Nothing
+        End If
+
+        Dim versionMatch As Match = Regex.Match(rawVersion.Trim(), "^(\d+)\.(\d+)\.(\d+)")
+        If versionMatch.Success Then
+            Return versionMatch.Groups(1).Value & "." & versionMatch.Groups(2).Value & "." & versionMatch.Groups(3).Value
+        End If
+
+        Return rawVersion.Trim()
+
+    End Function
+
+    Private Function getCatalogueFileVersion(cataloguePath As String) As String
+
+        Dim catalogueDocument As New XmlDocument()
+        catalogueDocument.Load(cataloguePath)
+
+        Dim fileVersionNode As XmlNode = catalogueDocument.SelectSingleNode("//Information[normalize-space(Information)='File Version']/Value")
+        If fileVersionNode IsNot Nothing Then
+            Return normaliseCatalogueFileVersion(fileVersionNode.InnerText)
+        End If
+
+        Return Nothing
+
+    End Function
+
     Public Sub openCatalogueActual()
 
         'Get directories
@@ -812,22 +841,17 @@ Public Class frmMain
             Dim fileVersion As String = Nothing
 
             'Check file format version
-            Dim xmlFileText As StreamReader
-            xmlFileText = File.OpenText(selectedPath)
-            While xmlFileText.Peek <> -1 And fileVersion = Nothing
+            Try
 
-                If xmlFileText.ReadLine().Contains("File Version") Then
-                    'Disect line into version numbers (and strip out tag headers)
-                    'Only works for 3 digit with snapshot numbers (x.x.xbx) version numbers
+                fileVersion = getCatalogueFileVersion(selectedPath)
 
-                    Dim numbers As String() = xmlFileText.ReadLine().Split("."c) 'Split <1.2.3b4> into {<1,2,3b4>}
-                    numbers(0) = numbers(0).Split(">"c)(1) 'Split <1 into 1
-                    numbers(2) = numbers(2).Split("<"c)(0) 'Split 3b4> into 3b4
-                    numbers(2) = Regex.Split(numbers(2), "[a-zA-z]")(0) 'Split 3b4 into 3
-                    fileVersion = numbers(0) & "." & numbers(1) & "." & numbers(2)
-                End If
+            Catch ex As Exception
 
-            End While
+                consoleAdd("Failed to read catalogue file version. Error: " & ex.Message)
+                MsgBox("Could not read the catalogue file version." & vbNewLine & vbNewLine & "Error: " & ex.Message, MsgBoxStyle.Critical, "Catalogue Load Error")
+                Exit Sub
+
+            End Try
 
             'Only load if the file version is supported.
             If VERSIONFILESUPPORTED.Contains(fileVersion) Then

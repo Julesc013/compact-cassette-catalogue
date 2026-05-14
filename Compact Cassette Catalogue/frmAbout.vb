@@ -12,9 +12,9 @@
         lblProgramDate.Text = VERSIONDATE.ToLongDateString
 
         'lblWebsite.Text = "Website: " & WEBSITE
-        'lblContactEmail.Text = "Contact: " & CONTACTEMAIL
+        'lblContactEmail.Text = "Contact: " & CONTACTLABEL
         lnkWebsite.Text = "Compact Cassette Catalogue"
-        lnkContactEmail.Text = CONTACTEMAIL
+        lnkContactEmail.Text = CONTACTLABEL
 
     End Sub
 

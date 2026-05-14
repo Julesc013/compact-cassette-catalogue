@@ -9,7 +9,15 @@
 
         If chkOpenFeedback.Checked = True Then
 
-            Process.Start(FEEDBACKLINK) ' Start C3.
+            Try
+
+                Process.Start(FEEDBACKLINK) ' Open feedback page.
+
+            Catch ex As Exception
+
+                MsgBox("Could not open the feedback page." & vbNewLine & vbNewLine & FEEDBACKLINK & vbNewLine & vbNewLine & "Error: " & ex.Message, MsgBoxStyle.Exclamation, "Could Not Open Feedback")
+
+            End Try
 
         End If
 

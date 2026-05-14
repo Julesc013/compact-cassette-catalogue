@@ -19,7 +19,7 @@ Module varGlobals
     Public Const COPYRIGHTYEAR = "2019-2026"
 
     ' Hyperlinks
-    Public Const CONTACTEMAIL As String = "github.com/Julesc013" ' Contact label.
+    Public Const CONTACTLABEL As String = "github.com/Julesc013" ' Contact label.
     Public Const CONTACTLINK As String = "https://github.com/Julesc013" ' Contact link.
     Public Const WEBSITEMAIN As String = "https://github.com/Julesc013/compact-cassette-catalogue" ' Main Website
     Public Const WEBSITEHELP As String = "https://github.com/Julesc013/compact-cassette-catalogue/wiki" ' Help/wiki Website
