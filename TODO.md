@@ -10,6 +10,7 @@
 - Review update version comparison for pre-release, beta, and four-part version strings, and rewrite it because it sucks.
 - Review all browser-opening paths after release packaging so failures remain non-crashing.
 - Keep the wiki and quick-start documentation synchronized with the portable x86 release path.
+- Add back all fhe features that we lost by downgrading to .net 4.0 (like high dpi and tls support and all the other improvements from .net 4.8)
 
 ## 1.3 Public Release
 
