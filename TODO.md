@@ -44,7 +44,8 @@
 - Show tape lists in a side pane in fullscreen layouts.
 - Show console output in a non-obtrusive area.
 - Allow users to add and remove fields from view forms.
-- Add optional tape images.
+- Add the ability to add pictures of the tape and jcards to the Catalog.
+- make it much easier to identify the make and model and year and market and formulation of any given tape the user my find (either by image recognition or by procedural elimination and identification of the features of the tapes manufacture and design).
 - Clearly mark brand/model codes that cannot be changed after creation.
 - Support cli or tui use on gui incapable machines, and even add a dos 16bit cli to the binary stubs.
 - Support modularity and extensibility oriented design for modders and forks and etc, so users can easily extend or integrate this into their systems.
