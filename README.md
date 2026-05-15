@@ -1,6 +1,6 @@
 # Compact Cassette Catalogue
 
-**Cataloguing application for blank compact cassette tapes.**
+**Cataloguing application for home recorded compact cassette tapes.**
 
 See [changes](CHANGELOG.md "C3 Changelog"), [planned features](TODO.md "C3 To-Do List"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
