@@ -50,3 +50,4 @@
 - Clearly mark brand/model codes that cannot be changed after creation.
 - Support cli or tui use on gui incapable machines, and even add a dos 16bit cli to the binary stubs.
 - Support modularity and extensibility oriented design for modders and forks and etc, so users can easily extend or integrate this into their systems.
+- Maybe transition to .net 4.8.0 to get high dpi support and better features and etc if we can't make it work on .net 4.0.3
