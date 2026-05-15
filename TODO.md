@@ -14,7 +14,8 @@
 ## 1.3 Public Release
 
 - add option enabled by default for when an unhandled exception or other irrecoverable crash occurs, the error message, dumps, and console log should be saved to a file.
-- Built in option for users that automatically adds popular brands and tapes and decks and etc to a new or existing database.
+- Built in option for users that automatically adds popular or select brands and tapes and decks and etc to a new or existing database.
+- allow exporting and importing and sharing a range of selection of entries to other databases or backup archives.
 - Improve search and filtering behavior, and add much more intuitive and real use oriented searching abilities and quality of life.
 - Add sorting for list-view items.
 - Save column reorderings for list views.
