@@ -58,8 +58,6 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 
 *Note: The x86/32-bit portable build is the compatibility build and **does not** require installing or administrator privileges.*
 
-*Note: The x64 build is for 64-bit Windows only. Windows XP x64 support is unverified unless tested separately.*
-
 *Note: C3 is offline-first. Catalogues are local XML files, update checking is optional, and automatic update checking is disabled by default.*
 
 *Note: Online update checking may fail on some old Windows versions because GitHub HTTPS connections can require newer TLS support than the operating system provides. If that happens, open the releases page in a browser and download updates manually. See [this site](https://mohalogiciels.runasp.net/Tutorials/NetFrameworkTls.xht) for a potential quick fix.*
