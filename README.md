@@ -5,9 +5,9 @@ recordings, cassette models, brands, and tape decks. Catalogues remain ordinary,
 inspectable local files that users can copy, back up, and move between supported
 builds.
 
-> **Development status:** C3 2.0.0 Alpha 1 is being developed on the permanent
-> `dev` branch. It is not a published stable release and does not yet implement a
-> native-v2 catalogue format. The maintained 1.2 Beta line remains on `master`.
+> **Development status:** C3 2.0.0 Alpha 1 is active on `dev`. Its source is
+> visible, but its binaries, GitHub release, and update feed are intentionally
+> unpublished. C3 1.2 Beta maintenance is preserved on `maintenance/1.x`.
 
 ![C3 main window](assets/screenshots/demonstration-screenshot.png)
 
@@ -29,9 +29,10 @@ Read the [product vision](docs/product/vision.md),
 
 ## Downloads and build lanes
 
-Published releases are available only from the
+Download published C3 builds only from the
 [GitHub releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases).
-Do not infer release availability from a development branch or version file.
+A branch, tag, package filename, or development feed does not by itself mean that
+a build has been published.
 
 C3 remains one product with two portable build lanes:
 
@@ -44,11 +45,12 @@ The x86 package is the conservative compatibility choice, including on newer
 64-bit Windows. Minimum-OS and DPI claims are published only after the exact
 candidate passes its recorded runtime matrix.
 
-Portable means no installer and no administrator requirement. Both lanes share
-the C3-owned profile at
+Portable means no installer and no administrator requirement. Both 2.0 lanes
+share the C3-owned profile at
 `%LOCALAPPDATA%\Jules Carboni\C3\2\preferences.xml`; diagnostics also use Windows
 application-data locations. A future portable-profile mode will be named
-explicitly rather than implied.
+explicitly rather than implied. C3 1.x retains its historical per-user settings
+behavior on the maintenance line.
 
 ## Catalogue compatibility
 
@@ -71,8 +73,17 @@ the [1.x to 2.x charter](docs/compatibility/1x-to-2x-charter.md).
 4. Create or open a catalogue and keep an independent backup before preview work.
 
 C3 does not require a network connection for catalogue work. Update checks are
-optional. Never weaken HTTPS/TLS validation to make an old operating system reach
-GitHub.
+optional; use the releases page manually if an older Windows installation cannot
+negotiate GitHub's current HTTPS requirements. Never weaken TLS validation.
+The [project wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki)
+contains the current user guide.
+
+## What C3 records
+
+- cassette brand, model, type, year, length, region, and condition;
+- per-side recording date, deck, input, levels, noise reduction, speed, bias,
+  equalization, contents, artist, and title; and
+- tape-deck capabilities and technical specifications.
 
 ## Repository map
 
@@ -98,30 +109,48 @@ miscellaneous planning trees.
 
 ## Build and verify
 
-On the maintained machine, Visual Studio 2017 Enterprise 15.9 MSBuild is the
-canonical compiler for both lanes. Visual Studio 2010, 2022, and 2026 have
-documented supporting roles; newer IDEs cannot prove the net40 build.
+Visual Studio 2017 Enterprise 15.9 MSBuild is the canonical current compiler for
+both 2.0 lanes. It targets .NET Framework 4.0 and 4.8 from one reproducible build
+contract. Visual Studio 2010 is a historical designer/reference environment;
+Visual Studio 2022 and 2026 support editing, analysis, and forward experiments
+but cannot prove the net40 lane.
+
+Historical maintenance facts remain explicit: C3 1.1.2 used the Visual Studio
+2019/.NET Framework 4.6 line, while C3 1.2.0 Beta 1 used its Visual Studio 2015
+project/toolchain line with the required targeting packs. Those facts do not
+change the canonical 2.0 compiler.
+
+From Windows PowerShell:
 
 ```powershell
 .\build\verify.ps1 -Rebuild
 .\build\package.ps1 -SkipBuild
-# Required for a release candidate; builds two clean, path-distinct snapshots.
+# Required for a checkpoint candidate; builds two clean, path-distinct snapshots.
 .\build\verify-reproducible-packages.ps1
 ```
 
 See the [toolchain policy](docs/development/toolchain.md),
-[building instructions](docs/development/building.md), and
+[building instructions](docs/development/building.md),
+[continuous-integration policy](docs/development/continuous-integration.md), and
 [contribution guide](CONTRIBUTING.md).
 
-## Branches and support
+## Branches, checkpoints, and publication
 
-- `master`: maintained C3 1.2 Beta/release line until stable 2.0 promotion.
-- `dev`: permanent integration line for C3 2.0 and later unreleased work.
-- feature/fix branches: short-lived review branches targeting the correct line.
+- `maintenance/1.x`: bounded C3 1.x maintenance and compatibility-feed fixes.
+- `master`: append-only ledger of the latest qualified product checkpoint.
+- `dev`: active, unqualified work toward the next checkpoint.
+- `feature/*`, `fix/*`, and temporary `candidate/*`: short-lived branches targeting
+  the appropriate permanent line.
 
-1.x fixes flow forward into `dev`; 2.x changes never flow backward into `master`.
-Branch presence is not release publication. See
+Every promoted alpha, beta, release candidate, and stable tag is reachable from
+`master`. Alpha checkpoints are tagged but intentionally unpublished. Beta tags
+require owner manual qualification before a public GitHub prerelease. Stable
+promotes unchanged qualified release-candidate payloads. Branch or tag presence
+never substitutes for publication status; see
 [versioning and channels](docs/governance/versioning-and-channels.md).
+
+Applicable 1.x fixes flow forward into `dev`; 2.x-only changes never flow into
+`maintenance/1.x`.
 
 - [Current candidate notes](RELEASE_NOTES.md)
 - [Changelog](CHANGELOG.md)
