@@ -129,7 +129,7 @@ function Invoke-PackagePass {
         -NoProfile `
         -NonInteractive `
         -ExecutionPolicy Bypass `
-        -File $packageScript
+        -File $packageScript | Out-Host
     if ($LASTEXITCODE -ne 0) {
         throw "$Label failed with exit code $LASTEXITCODE."
     }
