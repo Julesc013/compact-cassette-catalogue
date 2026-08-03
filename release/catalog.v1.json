@@ -1,0 +1,37 @@
+{
+  "$schema": "../spec/release-catalog/v1/catalog.schema.json",
+  "schemaVersion": 1,
+  "productId": "c3",
+  "milestones": [
+    {
+      "releaseLabel": "2.0.0-alpha.1",
+      "productVersion": "2.0.0",
+      "stage": "Alpha 1",
+      "channel": "alpha",
+      "predecessor": null,
+      "qualification": {
+        "state": "blocked",
+        "sourceCommit": null
+      },
+      "supersededBy": null,
+      "promotion": {
+        "state": "unpromoted",
+        "targetBranch": "master",
+        "tag": "v2.0.0-alpha.1",
+        "tagObject": null
+      },
+      "publication": {
+        "policy": "intentionally-unpublished",
+        "state": "unpublished",
+        "releaseUrl": null,
+        "feedPromoted": false
+      },
+      "postVerification": {
+        "state": "not-applicable"
+      },
+      "validationRecord": "release/validation/2.0.0-alpha.1.md",
+      "packages": [],
+      "checksumManifest": null
+    }
+  ]
+}

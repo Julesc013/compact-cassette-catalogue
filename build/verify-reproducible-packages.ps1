@@ -122,16 +122,28 @@ function Invoke-PackagePass {
         [string]$Label
     )
 
-    Write-Host "${Label}: full Release rebuild and package in $CandidateRoot"
+    Write-Host "${Label}: full verification, Release rebuild, and package in $CandidateRoot"
+    $verifyScript = Join-Path $CandidateRoot 'build\verify.ps1'
     $packageScript = Join-Path $CandidateRoot 'build\package.ps1'
     & $windowsPowerShell `
         -NoLogo `
         -NoProfile `
         -NonInteractive `
         -ExecutionPolicy Bypass `
-        -File $packageScript | Out-Host
+        -File $verifyScript `
+        -Rebuild | Out-Host
     if ($LASTEXITCODE -ne 0) {
-        throw "$Label failed with exit code $LASTEXITCODE."
+        throw "$Label verification failed with exit code $LASTEXITCODE."
+    }
+    & $windowsPowerShell `
+        -NoLogo `
+        -NoProfile `
+        -NonInteractive `
+        -ExecutionPolicy Bypass `
+        -File $packageScript `
+        -SkipBuild | Out-Host
+    if ($LASTEXITCODE -ne 0) {
+        throw "$Label packaging failed with exit code $LASTEXITCODE."
     }
     return @(Get-PackageSnapshot -CandidateRoot $CandidateRoot)
 }
@@ -146,6 +158,11 @@ if ($LASTEXITCODE -ne 0) {
 }
 if ($gitStatus.Count -gt 0) {
     throw "Release reproduction requires a clean committed worktree:`n$($gitStatus -join "`n")"
+}
+
+& git -C $repositoryRoot show --check --format= HEAD
+if ($LASTEXITCODE -ne 0) {
+    throw 'Committed source fails Git whitespace validation.'
 }
 
 $headCommit = ([string](& git -C $repositoryRoot rev-parse --verify HEAD)).Trim()

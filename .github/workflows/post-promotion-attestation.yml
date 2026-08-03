@@ -1,0 +1,114 @@
+name: Post-promotion attestation gate
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_commit:
+        description: Full 40-character P on its one-use SHA-bound attestation branch
+        required: true
+        type: string
+      attestation_ref:
+        description: One-use branch attest/v<release-label>-post-<full P SHA>
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: c3-release-transaction
+  cancel-in-progress: false
+
+jobs:
+  post-promotion:
+    name: Post-promotion attestation (P)
+    runs-on:
+      group: c3-private-release
+      labels: [self-hosted, Windows, X64, c3-legacy-msbuild]
+    environment: c3-release-qualification
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out trusted master workflow control
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          ref: ${{ github.sha }}
+          path: trusted-control
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Check out exact post-promotion target
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          ref: ${{ inputs.expected_commit }}
+          path: target-repository
+          fetch-depth: 0
+          fetch-tags: true
+          persist-credentials: false
+
+      - name: Require trusted dispatch control and exact remote P transport
+        shell: powershell
+        env:
+          EXPECTED_COMMIT: ${{ inputs.expected_commit }}
+          ATTESTATION_REF: ${{ inputs.attestation_ref }}
+        run: |
+          if ($env:GITHUB_REF -cne 'refs/heads/master') {
+            throw 'Post-promotion attestation must be dispatched from trusted master workflow control.'
+          }
+          if ($env:EXPECTED_COMMIT -cnotmatch '^[0-9a-f]{40}$') {
+            throw 'Post-promotion attestation requires a full lowercase 40-character P SHA.'
+          }
+          $postPattern = '^attest/v(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-(?:alpha|beta|rc)\.[1-9][0-9]*)?-post-' + [regex]::Escape($env:EXPECTED_COMMIT) + '$'
+          if ($env:ATTESTATION_REF -cnotmatch $postPattern) {
+            throw 'Post-promotion attestation requires its exact one-use, SHA-bound post attestation ref.'
+          }
+          $trustedHead = (git -C trusted-control rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $trustedHead -cne $env:GITHUB_SHA) {
+            throw "Trusted-control checkout is not exact master $($env:GITHUB_SHA)."
+          }
+          $targetHead = (git -C target-repository rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $targetHead -cne $env:EXPECTED_COMMIT) {
+            throw "Target checkout is not exact P $($env:EXPECTED_COMMIT)."
+          }
+          ./trusted-control/build/validate-trusted-release-target.ps1 `
+            -Mode PostPromotion `
+            -TrustedRepository ./trusted-control `
+            -TargetRepository ./target-repository `
+            -ExpectedCommit $env:EXPECTED_COMMIT `
+            -ExpectedTrustedMasterCommit $env:GITHUB_SHA `
+            -AttestationRef $env:ATTESTATION_REF
+
+      - name: Verify repository release contract
+        shell: powershell
+        working-directory: target-repository
+        run: ./build/validate-release-contract.ps1 -Mode Repository -RequireRemoteBaseline
+
+      - name: Reproduce and verify portable archives
+        shell: powershell
+        working-directory: target-repository
+        run: ./build/verify-reproducible-packages.ps1
+
+      - name: Verify exact post-promotion attestation and artifacts
+        shell: powershell
+        working-directory: target-repository
+        env:
+          EXPECTED_COMMIT: ${{ inputs.expected_commit }}
+        run: ./build/validate-release-contract.ps1 -Mode PostPromotion -ExpectedCommit $env:EXPECTED_COMMIT -RequireArtifacts
+
+      - name: Read release channel
+        id: release_identity
+        shell: powershell
+        working-directory: target-repository
+        run: |
+          $identity = ./build/get-release-identity.ps1
+          $line = "channel=$($identity.ReleaseChannel)`n"
+          [IO.File]::AppendAllText($env:GITHUB_OUTPUT, $line, (New-Object Text.UTF8Encoding($false)))
+
+      - name: Retain verified public-stage packages
+        if: steps.release_identity.outputs.channel != 'alpha'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: c3-post-promotion-portable-packages
+          path: target-repository/artifacts/packages/
+          if-no-files-found: error
+          retention-days: 14

@@ -13,17 +13,59 @@ concurrency:
 
 jobs:
   contracts:
-    name: Metadata, boundaries, and project parity
+    name: Metadata, lifecycle, boundaries, and project parity
     runs-on: windows-2022
     timeout-minutes: 10
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          persist-credentials: false
 
       - name: Verify canonical release metadata
         shell: powershell
         run: ./build/verify-metadata.ps1
+
+      - name: Test strict JSON validation
+        shell: powershell
+        run: ./build/test-json-validator.ps1
+
+      - name: Verify repository release contract
+        shell: powershell
+        run: ./build/validate-release-contract.ps1 -Mode Repository -RequireRemoteBaseline
+
+      - name: Test release contract failure paths
+        shell: powershell
+        run: ./build/test-release-contract.ps1
+
+      - name: Test leased release-reference transactions
+        shell: powershell
+        run: ./build/test-release-ref-transaction.ps1
+
+      - name: Test trusted release-target bootstrap guard
+        shell: powershell
+        run: ./build/test-trusted-release-target.ps1
+
+      - name: Test update-feed contract projections
+        shell: powershell
+        run: ./build/test-update-feed-contract.ps1
+
+      - name: Verify master checkpoint ledger head
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        shell: powershell
+        run: ./build/validate-release-contract.ps1 -Mode Master
+
+      - name: Verify qualified v2 release tag
+        if: startsWith(github.ref, 'refs/tags/v2.')
+        shell: powershell
+        run: ./build/validate-release-contract.ps1 -Mode Tag
+
+      - name: Verify deterministic compiler contract
+        shell: powershell
+        run: ./build/validate-build-contract.ps1
 
       - name: Verify dependency direction
         shell: powershell

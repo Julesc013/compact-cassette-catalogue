@@ -1,0 +1,59 @@
+name: Tagged checkpoint verification gate
+
+on:
+  push:
+    tags:
+      - 'v2.*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: c3-release-transaction
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    name: Tagged checkpoint verification
+    runs-on:
+      group: c3-private-release
+      labels: [self-hosted, Windows, X64, c3-legacy-msbuild]
+    environment: c3-release-qualification
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          persist-credentials: false
+
+      - name: Verify repository release contract
+        shell: powershell
+        run: ./build/validate-release-contract.ps1 -Mode Repository -RequireRemoteBaseline
+
+      - name: Reproduce and verify portable archives
+        shell: powershell
+        run: ./build/verify-reproducible-packages.ps1
+
+      - name: Verify qualified v2 release tag and artifacts
+        shell: powershell
+        run: ./build/validate-release-contract.ps1 -Mode Tag -RequireArtifacts
+
+      - name: Read release channel
+        id: release_identity
+        shell: powershell
+        run: |
+          $identity = ./build/get-release-identity.ps1
+          $line = "channel=$($identity.ReleaseChannel)`n"
+          [IO.File]::AppendAllText($env:GITHUB_OUTPUT, $line, (New-Object Text.UTF8Encoding($false)))
+
+      - name: Retain verified public-stage packages
+        if: steps.release_identity.outputs.channel != 'alpha'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: c3-tagged-portable-packages
+          path: artifacts/packages/
+          if-no-files-found: error
+          retention-days: 14

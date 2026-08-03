@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Julesc013/compact-cassette-catalogue/spec/release-catalog/v1/catalog.schema.json",
+  "title": "C3 release catalogue v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "productId", "milestones"],
+  "properties": {
+    "$schema": { "const": "../spec/release-catalog/v1/catalog.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "productId": { "const": "c3" },
+    "milestones": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/milestone" }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "commit": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "tagObject": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lane", "file", "length", "sha256"],
+      "properties": {
+        "lane": { "type": "string", "minLength": 1 },
+        "file": { "type": "string", "pattern": "^[^/\\\\]+\\.zip$" },
+        "length": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "manifest": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["file", "length", "sha256"],
+      "properties": {
+        "file": { "const": "SHA256SUMS.txt" },
+        "length": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "milestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "releaseLabel",
+        "productVersion",
+        "stage",
+        "channel",
+        "predecessor",
+        "qualification",
+        "supersededBy",
+        "promotion",
+        "publication",
+        "postVerification",
+        "validationRecord",
+        "packages",
+        "checksumManifest"
+      ],
+      "properties": {
+        "releaseLabel": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-[0-9a-z.]+)?$" },
+        "productVersion": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)$" },
+        "stage": {
+          "type": "string",
+          "pattern": "^(?:Alpha [1-9][0-9]*|Beta [1-9][0-9]*|Release Candidate [1-9][0-9]*|Release)$"
+        },
+        "channel": { "enum": ["alpha", "beta", "stable"] },
+        "predecessor": {
+          "type": ["string", "null"],
+          "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-[0-9a-z.]+)?$"
+        },
+        "qualification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state", "sourceCommit"],
+          "properties": {
+            "state": { "enum": ["planned", "active", "blocked", "pass", "fail"] },
+            "sourceCommit": { "$ref": "#/$defs/commit" }
+          }
+        },
+        "supersededBy": {
+          "type": ["string", "null"],
+          "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-[0-9a-z.]+)?$"
+        },
+        "promotion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state", "targetBranch", "tag", "tagObject"],
+          "properties": {
+            "state": { "enum": ["unpromoted", "tagged"] },
+            "targetBranch": { "const": "master" },
+            "tag": { "type": "string", "pattern": "^v(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-[0-9a-z.]+)?$" },
+            "tagObject": { "$ref": "#/$defs/tagObject" }
+          }
+        },
+        "publication": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policy", "state", "releaseUrl", "feedPromoted"],
+          "properties": {
+            "policy": { "enum": ["intentionally-unpublished", "public-prerelease", "public-stable"] },
+            "state": { "enum": ["unpublished", "published"] },
+            "releaseUrl": { "type": ["string", "null"], "format": "uri" },
+            "feedPromoted": { "type": "boolean" }
+          }
+        },
+        "postVerification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state"],
+          "properties": {
+            "state": { "enum": ["not-applicable", "pending", "passed", "failed"] }
+          }
+        },
+        "validationRecord": { "type": "string", "pattern": "^release/validation/.+\\.md$" },
+        "packages": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/package" }
+        },
+        "checksumManifest": { "$ref": "#/$defs/manifest" }
+      }
+    }
+  }
+}

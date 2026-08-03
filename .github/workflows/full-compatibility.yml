@@ -1,4 +1,4 @@
-name: Full compatibility gate
+name: Development compatibility gate
 
 on:
   workflow_dispatch:
@@ -7,31 +7,37 @@ permissions:
   contents: read
 
 concurrency:
-  group: full-compatibility-${{ github.ref }}
+  group: development-compatibility-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  verify-and-package:
-    name: Build, test, inspect, and package both lanes
-    runs-on: [self-hosted, Windows, X64, c3-legacy-msbuild]
-    timeout-minutes: 30
+  development:
+    name: Development compatibility
+    runs-on:
+      group: c3-private-release
+      labels: [self-hosted, Windows, X64, c3-legacy-msbuild]
+    environment: c3-development-compatibility
+    timeout-minutes: 60
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Verify both compatibility lanes
-        shell: powershell
-        run: ./build/verify.ps1 -Rebuild
-
-      - name: Create and verify portable archives
-        shell: powershell
-        run: ./build/package.ps1 -SkipBuild
-
-      - name: Upload verified packages
-        uses: actions/upload-artifact@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
         with:
-          name: c3-portable-packages
-          path: artifacts/packages/
-          if-no-files-found: error
-          retention-days: 14
+          fetch-depth: 0
+          fetch-tags: true
+          persist-credentials: false
+
+      - name: Require the permanent development branch
+        shell: powershell
+        run: |
+          if ($env:GITHUB_REF -cne 'refs/heads/dev') {
+            throw 'Development compatibility must be dispatched only from refs/heads/dev.'
+          }
+
+      - name: Verify repository release contract
+        shell: powershell
+        run: ./build/validate-release-contract.ps1 -Mode Repository -RequireRemoteBaseline
+
+      - name: Reproduce and verify portable archives
+        shell: powershell
+        run: ./build/verify-reproducible-packages.ps1
