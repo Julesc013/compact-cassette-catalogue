@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Catalogue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Information" type="InformationRow" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="Counters" type="CounterRow" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="Decks" type="DeckRow" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="Brands" type="BrandRow" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="Models" type="ModelRow" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="Tapes" type="TapeRow" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="InformationRow">
+    <xs:sequence>
+      <xs:element name="Information" type="xs:string" minOccurs="0" />
+      <xs:element name="Value" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CounterRow">
+    <xs:sequence>
+      <xs:element name="Counter" type="xs:string" minOccurs="0" />
+      <xs:element name="Number" type="xs:int" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="BrandRow">
+    <xs:sequence>
+      <xs:element name="Brand" type="xs:string" minOccurs="0" />
+      <xs:element name="Code" type="xs:string" minOccurs="0" />
+      <xs:element name="Date" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="Notes" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ModelRow">
+    <xs:sequence>
+      <xs:element name="Brand" type="xs:string" minOccurs="0" />
+      <xs:element name="Type" type="xs:int" minOccurs="0" />
+      <xs:element name="Model" type="xs:string" minOccurs="0" />
+      <xs:element name="Code" type="xs:string" minOccurs="0" />
+      <xs:element name="Identifier" type="xs:string" minOccurs="0" />
+      <xs:element name="Name" type="xs:string" minOccurs="0" />
+      <xs:element name="Number" type="xs:int" minOccurs="0" />
+      <xs:element name="Date" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="Notes" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeckRow">
+    <xs:sequence>
+      <xs:element name="Manufacturer" type="xs:string" minOccurs="0" />
+      <xs:element name="Model" type="xs:string" minOccurs="0" />
+      <xs:element name="Name" type="xs:string" minOccurs="0" />
+      <xs:element name="Year" type="xs:int" minOccurs="0" />
+      <xs:element name="Condition" type="xs:int" minOccurs="0" />
+      <xs:element name="Type1" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Type2" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Type3" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Type4" type="xs:boolean" minOccurs="0" />
+      <xs:element name="HX" type="xs:boolean" minOccurs="0" />
+      <xs:element name="MPX" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DolbyB" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DolbyC" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DolbyS" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DBX1" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DBX2" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Stereo" type="xs:boolean" minOccurs="0" />
+      <xs:element name="ProgramSearch" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Reverse" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Calibration" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Azimuth" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DubbingSlow" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DubbingFast" type="xs:boolean" minOccurs="0" />
+      <xs:element name="FrequencyLow" type="xs:int" minOccurs="0" />
+      <xs:element name="FrequencyHigh" type="xs:int" minOccurs="0" />
+      <xs:element name="SignalRatio" type="xs:int" minOccurs="0" />
+      <xs:element name="SignalRatioNR" type="xs:string" minOccurs="0" />
+      <xs:element name="WowFlutter" type="xs:decimal" minOccurs="0" />
+      <xs:element name="Distortion" type="xs:decimal" minOccurs="0" />
+      <xs:element name="Heads" type="xs:int" minOccurs="0" />
+      <xs:element name="Wells" type="xs:int" minOccurs="0" />
+      <xs:element name="SpeedSlow" type="xs:boolean" minOccurs="0" />
+      <xs:element name="SpeedNorm" type="xs:boolean" minOccurs="0" />
+      <xs:element name="SpeedFast" type="xs:boolean" minOccurs="0" />
+      <xs:element name="Date" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="Notes" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TapeRow">
+    <xs:sequence>
+      <xs:element name="Model" type="xs:string" minOccurs="0" />
+      <xs:element name="Year" type="xs:int" minOccurs="0" />
+      <xs:element name="Length" type="xs:decimal" minOccurs="0" />
+      <xs:element name="Region" type="xs:string" minOccurs="0" />
+      <xs:element name="Number" type="xs:int" minOccurs="0" />
+      <xs:element name="Identifier" type="xs:string" minOccurs="0" />
+      <xs:element name="IdentifierShort" type="xs:string" minOccurs="0" />
+      <xs:element name="Condition" type="xs:int" minOccurs="0" />
+      <xs:element name="Packaged" type="xs:boolean" minOccurs="0" />
+      <xs:element name="TapedA" type="xs:boolean" minOccurs="0" />
+      <xs:element name="TapedB" type="xs:boolean" minOccurs="0" />
+      <xs:element name="NameA" type="xs:string" minOccurs="0" />
+      <xs:element name="RecordedA" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="DeckA" type="xs:string" minOccurs="0" />
+      <xs:element name="InputA" type="xs:string" minOccurs="0" />
+      <xs:element name="PeakA" type="xs:int" minOccurs="0" />
+      <xs:element name="NRA" type="xs:string" minOccurs="0" />
+      <xs:element name="HXA" type="xs:boolean" minOccurs="0" />
+      <xs:element name="MPXA" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DubbedA" type="xs:boolean" minOccurs="0" />
+      <xs:element name="SpeedA" type="xs:string" minOccurs="0" />
+      <xs:element name="BiasA" type="xs:int" minOccurs="0" />
+      <xs:element name="BiasCalA" type="xs:int" minOccurs="0" />
+      <xs:element name="EQA" type="xs:string" minOccurs="0" />
+      <xs:element name="LevelA" type="xs:decimal" minOccurs="0" />
+      <xs:element name="LevelCalA" type="xs:decimal" minOccurs="0" />
+      <xs:element name="ContentsA" type="xs:string" minOccurs="0" />
+      <xs:element name="ArtistA" type="xs:string" minOccurs="0" />
+      <xs:element name="TitleA" type="xs:string" minOccurs="0" />
+      <xs:element name="NameB" type="xs:string" minOccurs="0" />
+      <xs:element name="RecordedB" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="DeckB" type="xs:string" minOccurs="0" />
+      <xs:element name="InputB" type="xs:string" minOccurs="0" />
+      <xs:element name="PeakB" type="xs:int" minOccurs="0" />
+      <xs:element name="NRB" type="xs:string" minOccurs="0" />
+      <xs:element name="HXB" type="xs:boolean" minOccurs="0" />
+      <xs:element name="MPXB" type="xs:boolean" minOccurs="0" />
+      <xs:element name="DubbedB" type="xs:boolean" minOccurs="0" />
+      <xs:element name="SpeedB" type="xs:string" minOccurs="0" />
+      <xs:element name="BiasB" type="xs:int" minOccurs="0" />
+      <xs:element name="BiasCalB" type="xs:int" minOccurs="0" />
+      <xs:element name="EQB" type="xs:string" minOccurs="0" />
+      <xs:element name="LevelB" type="xs:decimal" minOccurs="0" />
+      <xs:element name="LevelCalB" type="xs:decimal" minOccurs="0" />
+      <xs:element name="ContentsB" type="xs:string" minOccurs="0" />
+      <xs:element name="ArtistB" type="xs:string" minOccurs="0" />
+      <xs:element name="TitleB" type="xs:string" minOccurs="0" />
+      <xs:element name="Date" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="Notes" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

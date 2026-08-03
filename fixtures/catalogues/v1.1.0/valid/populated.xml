@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="yes"?>
+<Catalogue>
+  <Information><Information>File Version</Information><Value>1.1.0</Value></Information>
+  <Information><Information>Program Version</Information><Value>1.2.0</Value></Information>
+  <Information><Information>Program Stage</Information><Value>Beta 1</Value></Information>
+  <Information><Information>Program Date</Information><Value>05/14/2026 00:00:00</Value></Information>
+  <Information><Information>File Created</Information><Value>08/04/2026 00:00:00</Value></Information>
+  <Information><Information>File Modified</Information><Value>08/04/2026 00:00:00</Value></Information>
+  <Information><Information>File Updated</Information><Value>08/04/2026 00:00:00</Value></Information>
+  <Counters><Counter>Decks</Counter><Number>1</Number></Counters>
+  <Counters><Counter>Brands</Counter><Number>1</Number></Counters>
+  <Counters><Counter>Models</Counter><Number>1</Number></Counters>
+  <Counters><Counter>Tapes</Counter><Number>1</Number></Counters>
+  <Decks>
+    <Manufacturer>Nakamichi</Manufacturer><Model>BX-300</Model><Name>Nakamichi BX-300</Name>
+    <Year>1984</Year><Condition>7</Condition><Type1>true</Type1><Type2>true</Type2><Type3>false</Type3><Type4>true</Type4>
+    <HX>true</HX><MPX>true</MPX><DolbyB>true</DolbyB><DolbyC>true</DolbyC><DolbyS>false</DolbyS><DBX1>false</DBX1><DBX2>false</DBX2>
+    <Stereo>true</Stereo><ProgramSearch>false</ProgramSearch><Reverse>false</Reverse><Calibration>true</Calibration><Azimuth>false</Azimuth>
+    <DubbingSlow>false</DubbingSlow><DubbingFast>false</DubbingFast><FrequencyLow>20</FrequencyLow><FrequencyHigh>20000</FrequencyHigh>
+    <SignalRatio>72</SignalRatio><SignalRatioNR>Dolby C</SignalRatioNR><WowFlutter>0.04</WowFlutter><Distortion>0.8</Distortion>
+    <Heads>3</Heads><Wells>1</Wells><SpeedSlow>false</SpeedSlow><SpeedNorm>true</SpeedNorm><SpeedFast>false</SpeedFast>
+    <Date>2026-08-04T00:00:00+10:00</Date><Notes>Reference deck</Notes>
+  </Decks>
+  <Brands><Brand>Maxell</Brand><Code>MAX</Code><Date>2026-08-04T00:00:00+10:00</Date><Notes>Fixture brand</Notes></Brands>
+  <Models>
+    <Brand>MAX</Brand><Type>2</Type><Model>XLII</Model><Code>XLII</Code><Identifier>MAX-2-XLII</Identifier>
+    <Name>Maxell XLII</Name><Number>1</Number><Date>2026-08-04T00:00:00+10:00</Date><Notes>Fixture model</Notes>
+  </Models>
+  <Tapes>
+    <Model>MAX-2-XLII</Model><Year>1990</Year><Length>90</Length><Region>Japan</Region><Number>1</Number>
+    <Identifier>MAX-2-XLII-1990-90-1</Identifier><IdentifierShort>MAX-2-XLII-1</IdentifierShort><Condition>8</Condition>
+    <Packaged>false</Packaged><TapedA>true</TapedA><TapedB>true</TapedB>
+    <NameA>Side A</NameA><RecordedA>2026-08-01T19:30:00+10:00</RecordedA><DeckA>Nakamichi BX-300</DeckA>
+    <InputA>Line</InputA><PeakA>0</PeakA><NRA>Dolby C</NRA><HXA>true</HXA><MPXA>true</MPXA><DubbedA>false</DubbedA>
+    <SpeedA>Normal</SpeedA><BiasA>2</BiasA><BiasCalA>0</BiasCalA><EQA>70</EQA><LevelA>0.5</LevelA><LevelCalA>0</LevelCalA>
+    <ContentsA>Album one</ContentsA><ArtistA>Various</ArtistA><TitleA>Fixture A</TitleA>
+    <NameB>Side B</NameB><RecordedB>2026-08-02T19:30:00+10:00</RecordedB><DeckB>Nakamichi BX-300</DeckB>
+    <InputB>Line</InputB><PeakB>0</PeakB><NRB>Dolby C</NRB><HXB>true</HXB><MPXB>true</MPXB><DubbedB>false</DubbedB>
+    <SpeedB>Normal</SpeedB><BiasB>2</BiasB><BiasCalB>0</BiasCalB><EQB>70</EQB><LevelB>0.5</LevelB><LevelCalB>0</LevelCalB>
+    <ContentsB>Album two</ContentsB><ArtistB>Various</ArtistB><TitleB>Fixture B</TitleB>
+    <Date>2026-08-04T00:00:00+10:00</Date><Notes>Fixture tape</Notes>
+  </Tapes>
+</Catalogue>
+
