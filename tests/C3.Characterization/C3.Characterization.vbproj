@@ -50,6 +50,7 @@
     <Import Include="System.Xml" />
     <Import Include="System.Xml.Schema" />
     <Import Include="C3.Catalogue.Catalogues" />
+    <Import Include="C3.Catalogue.Brands" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
   </ItemGroup>
   <ItemGroup>

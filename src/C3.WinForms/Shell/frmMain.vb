@@ -1128,7 +1128,8 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchManufacturersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchManufacturersToolStripMenuItem.Click
-        frmBrands.Show() 'temp
+        Dim window As New frmBrands()
+        window.Show(Me)
     End Sub
 
     Private Sub ViewDecksToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDecksToolStripMenuItem.Click
@@ -1271,7 +1272,9 @@ Public Class frmMain
     End Sub
 
     Private Sub NewManufactererToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewManufactererToolStripMenuItem.Click
-        frmBrandNew.Show() 'temp
+        Using editor As New frmBrandNew()
+            editor.ShowDialog(Me)
+        End Using
     End Sub
 
     Private Sub NewModelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewModelToolStripMenuItem.Click

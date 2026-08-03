@@ -19,6 +19,10 @@
   external-edit detection.
 - Fixed Save As cancellation continuing into the save path and removed the
   duplicate open-dialog path after save-before-open.
+- Moved Brand validation, uniqueness, reference protection, and mutations into a
+  typed catalogue service with a legacy DataSet repository adapter.
+- Removed public Brand `DataRow` hand-off between forms and prevented deletion of
+  brands still referenced by cassette models.
 
 
 

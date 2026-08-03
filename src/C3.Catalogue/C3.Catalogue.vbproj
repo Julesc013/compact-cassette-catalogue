@@ -43,8 +43,15 @@
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brands\Brand.vb" />
+    <Compile Include="Brands\BrandDraft.vb" />
+    <Compile Include="Brands\BrandOperationResult.vb" />
+    <Compile Include="Brands\BrandService.vb" />
+    <Compile Include="Brands\IBrandRepository.vb" />
     <Compile Include="Catalogues\CatalogueRevision.vb" />
     <Compile Include="Catalogues\CatalogueSession.vb" />
   </ItemGroup>

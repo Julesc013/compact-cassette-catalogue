@@ -19,6 +19,7 @@ Module Program
         RunTest("catalogue session owns dirty and revision state", AddressOf CatalogueSessionOwnsDocumentState)
         RunTest("store classifies unsafe and incompatible input", AddressOf StoreClassifiesRejectedInput)
         RunTest("store saves transactionally and detects external edits", AddressOf StoreSavesTransactionally)
+        RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -201,6 +202,42 @@ Module Program
             .CreatedAt = New DateTime(2026, 8, 4)
         })
     End Function
+
+    Private Sub BrandServiceProtectsCatalogueRules()
+        Dim document As DataSet = CreateFixtureSchema()
+        Dim service As New BrandService(New LegacyBrandRepository(Function() document))
+
+        Dim created As BrandOperationResult = service.Create(
+            New BrandDraft("Maxell", "mx", "Created by test"),
+            New DateTime(2026, 8, 4))
+        AssertEqual(True, created.IsSuccess, "brand create")
+        AssertEqual("MX", created.Brand.Code, "normalized brand code")
+        AssertEqual(1, document.Tables("Brands").Rows.Count, "stored brand count")
+        AssertEqual(1, CInt(document.Tables("Counters").Rows.Find("Brands")("Number")), "brand counter")
+
+        Dim duplicate As BrandOperationResult = service.Create(
+            New BrandDraft("Duplicate", "MX", String.Empty),
+            DateTime.Now)
+        AssertEqual(BrandFailure.DuplicateCode, duplicate.Failure, "duplicate brand code")
+
+        Dim updated As BrandOperationResult = service.Update(
+            "MX",
+            New BrandDraft("Maxell Audio", "ignored", "Updated"))
+        AssertEqual(True, updated.IsSuccess, "brand update")
+        AssertEqual("MX", updated.Brand.Code, "immutable brand code")
+        AssertEqual("Maxell Audio", service.Find("MX").Name, "updated brand name")
+
+        Dim model As DataRow = document.Tables("Models").NewRow()
+        model("Brand") = "MX"
+        model("Identifier") = "MX-2-XLII"
+        document.Tables("Models").Rows.Add(model)
+        Dim referencedDelete As BrandOperationResult = service.Delete("MX")
+        AssertEqual(BrandFailure.ReferencedByModel, referencedDelete.Failure, "referenced brand delete")
+
+        document.Tables("Models").Rows.Remove(model)
+        AssertEqual(True, service.Delete("MX").IsSuccess, "unreferenced brand delete")
+        AssertEqual(0, document.Tables("Brands").Rows.Count, "deleted brand count")
+    End Sub
 
     Private Sub ValidateAgainstSchema(xmlPath As String)
         Dim validationMessages As New List(Of String)()

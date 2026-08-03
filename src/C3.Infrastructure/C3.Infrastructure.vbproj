@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueFileResults.vb" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyBrandRepository.vb" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueSchema.vb" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyXmlCatalogueStore.vb" />
     <Compile Include="Diagnostics\BufferedLogger.vb" />

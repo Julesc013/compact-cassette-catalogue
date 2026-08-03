@@ -106,6 +106,7 @@
     <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
     <Import Include="C3.Catalogue.Catalogues" />
+    <Import Include="C3.Catalogue.Brands" />
     <Import Include="C3.Infrastructure.Diagnostics" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
   </ItemGroup>
