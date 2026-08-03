@@ -1,80 +1,94 @@
-# Compact Cassette Catalogue
+# Compact Cassette Catalogue (C3)
 
-**Cataloguing application for home recorded compact cassette tapes.**
+C3 is an offline-first Windows desktop catalogue for blank cassettes, their
+recordings, cassette models, brands, and tape decks. Catalogues remain ordinary
+local XML files that users can copy, back up, and move between supported builds.
 
-See [changes](CHANGELOG.md "C3 Changelog"), [planned features](TODO.md "C3 To-Do List"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
+> C3 1.2.1 Beta 1 is under active stabilization. Keep backups of important
+> catalogues and review the release validation status before relying on a beta.
 
-![Screenshot of C3 in use.](assets/screenshots/demonstration-screenshot.png)
+![C3 main window](assets/screenshots/demonstration-screenshot.png)
 
-## What is it?
+## Download
 
-*Compact Cassette Catalogue* (hereafter *C3*) allows you to build up a catalogue of your blank cassettes.
-It is a **user friendly** and **feature rich** alternative to a database.
+Download C3 only from the
+[GitHub releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases).
+Each 1.2.1 release contains two portable ZIPs and `SHA256SUMS.txt`:
 
-## Who is it for?
+| Package | Runtime lane | Intended operating systems |
+| --- | --- | --- |
+| `C3-v1.2.1-beta.1-win-x86-net40-portable.zip` | 32-bit, .NET Framework 4.0 | Windows XP SP3 and later compatibility lane |
+| `C3-v1.2.1-beta.1-win-x64-net48-portable.zip` | 64-bit, .NET Framework 4.8 | Windows 7 SP1 and later modern lane |
 
-*C3* is intended for tapeheads who may be finding it **difficult to manage their large collection** of cassettes and need a system for **indexing, sorting and searching**.
+The x86 package is the compatibility choice, including on 64-bit Windows. The
+x64 package is not an XP x64 claim. Minimum-OS support is published only when the
+exact release candidate has recorded runtime evidence.
 
-I created *C3* for myself because:
-1. I prefer *aesthetically minimal j-cards* which are often devoid of useful information...
-Which Dolby did I use when I recorded this?
-2. I find it handy to be able to open up a list view of all my blank tapes, filter for the brand, type and length I want, and easily *select the perfect tape* for my new mix.
+Portable means that C3 requires no installer or administrator access. In 1.x,
+per-user settings and diagnostics may still use Windows application-data
+locations; “portable” does not yet mean a completely self-contained profile.
 
-Note: *C3* is not geared towards *pre-recorded* tapes ([Discogs](https://www.discogs.com/ "Discogs - Music Database and Marketplace") does that job exceptionally) though it is fully capable.
+## First use
 
-## Why is it better?
+1. Extract the complete ZIP to a writable folder.
+2. Run `Compact Cassette Catalogue.exe`.
+3. Create a catalogue, then add a brand, cassette model, and tape.
+4. Save the catalogue as XML and keep a separate backup copy.
 
-This program provides many helpful features such as:
-- *Search functionality* to assist in navigating large catalogues.
-- *List views* to browse catalogued items.
-- *Data visualisations* to track changes to the catalogue.
+The [project wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki)
+contains the user guide. C3 does not require a network connection for catalogue
+work. Update checks are optional; use the releases page manually if an older
+Windows installation cannot negotiate GitHub's current HTTPS requirements.
 
-Many pieces of information can be stored about each **tape**, such as:
-- Manufacturer/Brand
-- Model/Name
-- Series year
-- Length
-- Type
-- Region
-- Condition
+## What C3 records
 
-And much more information can be stored about the **recordings** on each side, including:
-- Deck model
-- Input type
-- Peak level
-- Noise reduction
-- Speed
-- Bias and EQ
-- Contents
+- cassette brand, model, type, year, length, region, and condition;
+- per-side recording date, deck, input, levels, noise reduction, speed, bias,
+  equalization, contents, artist, and title; and
+- tape-deck capabilities and technical specifications.
 
-You can even **catalogue your tape decks** (including their specifications).
+## Repository map
 
-*Catalogues are stored locally as XML files for ease of use. Treat the catalogues like you would a Word document, for example.*
+```text
+src/C3.Catalogue       catalogue concepts and rules
+src/C3.Infrastructure  XML, file-system, and diagnostic adapters
+src/C3.WinForms        shared Windows UI and two build projects
+tests                  executable compatibility characterization
+fixtures               valid, invalid, culture, and security XML examples
+spec                    language-neutral catalogue-format contract
+build                   build, verification, and packaging automation
+docs                    architecture, development, and user documentation
+release/validation      versioned release evidence
+assets                  canonical branding, design, and screenshot sources
+```
 
-## How to get started.
+Start with the [architecture guide](docs/architecture/README.md),
+[building instructions](docs/development/building.md), and
+[contribution guide](CONTRIBUTING.md). The complete repository tree and ownership
+map are documented in
+[docs/architecture/repository-layout.md](docs/architecture/repository-layout.md).
 
-Head over to the [releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases "C3 Releases") and download the portable x86 build for the latest version.
-(Look for *C3-vX.X.X-win-x86.exe* or *C3-vX.X.X-win-x86-portable.zip*.)
+## Build and verify
 
-*Note: The x86/32-bit portable build is the compatibility build and **does not** require installing or administrator privileges.*
+The authoritative toolchain is Visual Studio 2019 with .NET Framework 4.0 and
+4.8 targeting packs. From Windows PowerShell:
 
-*Note: C3 is offline-first. Catalogues are local XML files, update checking is optional, and automatic update checking is disabled by default.*
+```powershell
+.\build\verify.ps1 -Rebuild
+.\build\package.ps1 -SkipBuild
+```
 
-*Note: Online update checking may fail on some old Windows versions because GitHub HTTPS connections can require newer TLS support than the operating system provides. If that happens, open the releases page in a browser and download updates manually. See [this site](https://mohalogiciels.runasp.net/Tutorials/NetFrameworkTls.xht) for a potential quick fix.*
+The first command runs metadata, dependency, source-parity, regression, build,
+and executable-architecture checks. See
+[continuous integration](docs/development/continuous-integration.md) for why the
+full dual-lane build requires a Visual Studio 2019 self-hosted runner.
 
-The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
-this will help you get started and explains every function of the software.
-If you need to review the documentation, you can open it from the *Help* menu or by pressing *F1*.
+## Help, security, and project status
 
-## System requirements.
+- [Support](SUPPORT.md)
+- [Security policy](SECURITY.md)
+- [Changelog](CHANGELOG.md)
+- [Current release notes](RELEASE_NOTES.md)
+- [Roadmap](ROADMAP.md)
 
-#### Minimum
-- Windows XP SP3 or newer (32-bit or 64-bit).
-- .NET Framework 4.0
-- 32MB of RAM.
-- 2MB of hard drive space.
-#### Recommended
-- 128MB of RAM.
-- 100MB of hard drive space.
-
-**Copyright (c) 2019-2026 Jules Carboni**
+Copyright © 2019–2026 Jules Carboni.

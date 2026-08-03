@@ -1,20 +1,26 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
+about: Propose a user outcome for C3
+title: "[Feature] "
+labels: enhancement
 assignees: ''
-
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## User problem
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+Who needs this, and what task is difficult or impossible today?
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## Proposed outcome
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+Describe the observable behavior. Screens or implementation classes are optional.
+
+## Compatibility
+
+- Should this work in both build lanes?
+- Does it change catalogue format 1.1.0 or only presentation/workflow?
+- What should older C3 versions do with the resulting catalogue?
+- Are there privacy, security, accessibility, or performance constraints?
+
+## Alternatives
+
+Describe workarounds or smaller versions of the outcome you considered.

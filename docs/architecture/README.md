@@ -57,8 +57,9 @@ global counters, construct IDs, or invoke Visual Basic default form instances.
 
 - `CatalogueSession` owns the active catalogue, path, persisted revision,
   dirty state, and document lifecycle events.
-- `WorkspaceState` owns view-only state such as selected IDs, filters, columns,
-  and open-window preferences.
+- Each list/editor instance owns its temporary selection and filter state. State
+  becomes a shared `WorkspaceState` only when more than one view must coordinate
+  it or when the user explicitly chooses to persist it.
 - An editor owns its incomplete draft until validation succeeds.
 - Counts are derived from catalogue contents; they are not independently mutable.
 
@@ -91,7 +92,8 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 ## Naming rules
 
 - Use product language: `CatalogueSession`, `TapeDraft`, `BrandRules`.
-- Name adapters after their mechanism: `XmlCatalogueStore`, `MySettingsStore`.
+- Name adapters after their mechanism: `LegacyXmlCatalogueStore`,
+  `LegacyTapeRepository`, or a future `MySettingsStore`.
 - Name forms by feature and purpose: `TapeListForm`, `BrandEditorForm`.
 - Do not introduce `Utils`, `Helpers`, `Common`, `Managers`, or `Platform`
   catch-all folders or types.

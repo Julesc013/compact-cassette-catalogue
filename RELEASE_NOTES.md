@@ -1,48 +1,58 @@
 # Compact Cassette Catalogue 1.2.1 Beta 1
 
-C3 1.2.1 Beta 1 is in development. It is the staged architecture and
-reliability overhaul for the existing C3 product and catalogue format.
+C3 1.2.1 Beta 1 is the compatibility, persistence, and maintainability overhaul
+of the existing C3 product. It keeps catalogue format 1.1.0 and ships the same
+feature behavior through two Windows build lanes.
 
-## Planned highlights
+## Highlights
 
-- Keep one C3 product, one shared source tree, and one catalogue format.
-- Preserve the x86/.NET Framework 4.0 Windows XP compatibility lane.
-- Introduce an x64/.NET Framework 4.8 modern Windows lane.
-- Separate catalogue rules, infrastructure adapters, and WinForms interaction.
-- Add transactional save/load behavior, diagnostics, fixtures, and regression
-  tests.
-- Replace duplicated global and form state with explicit ownership.
+- Added a real x64/.NET Framework 4.8 lane while retaining the x86/.NET
+  Framework 4.0 compatibility lane.
+- Made catalogue loading temporary and secure: malformed, unsupported, or unsafe
+  XML cannot partially replace the active catalogue.
+- Made saving transactional with temporary-file verification, atomic replacement,
+  backup recovery, and external-edit conflict detection.
+- Added bounded diagnostic context and unhandled-exception report generation.
+- Centralized brand, cassette-model, deck, and tape rules in typed services; the
+  legacy `DataSet` and XML columns now live behind infrastructure adapters.
+- Prevented deletion of referenced brands, models, and decks.
+- Fixed incorrect deck counters, the model editor reading notes from the wrong
+  table, Save As cancellation, duplicate Open dialogs, and recursive shutdown.
+- Made bulk tape creation atomic, gave every created tape its correct sequence
+  number, and stopped deleted sequence identifiers from being reused.
+- Added format specifications, security/culture fixtures, 15 executable
+  characterization tests, dependency checks, shared-project parity checks, PE
+  architecture verification, and deterministic packaging.
+- Reorganized sources by feature ownership and removed hidden default-form
+  coordination from feature workflows.
 
-## Planned downloads
-
-Portable ZIPs remain the authoritative distribution:
+## Downloads
 
 - `C3-v1.2.1-beta.1-win-x86-net40-portable.zip`
 - `C3-v1.2.1-beta.1-win-x64-net48-portable.zip`
 - `SHA256SUMS.txt`
 
+Portable means no installer and no administrator requirement. Per-user settings
+and diagnostics may still use Windows application-data locations.
+
 ## Requirements
 
-- Windows XP SP3 or newer and .NET Framework 4.0 for the x86 compatibility
-  build.
-- Windows 7 SP1 or newer and .NET Framework 4.8 for the x64 modern build.
+| Build | Framework | Compatibility target |
+| --- | --- | --- |
+| x86 | .NET Framework 4.0 | Windows XP SP3 and later |
+| x64 | .NET Framework 4.8 | Windows 7 SP1 and later |
 
-The x86 build is the compatibility choice. Windows XP x64 is not a supported
-claim. Enhanced high-DPI behavior in the modern lane still depends on operating
-system capabilities and is not promised uniformly on every Windows 7 system.
+The x86 package is the compatibility choice. The x64 package does not claim
+Windows XP x64 support. Modern high-DPI behavior varies with operating-system
+capabilities and is not guaranteed uniformly on Windows 7.
 
-## Distribution status
+## Beta limitations and verification status
 
-Portable ZIPs are authoritative. The retired in-repository installer and
-uninstaller are not part of C3 1.2.1. A future setup integration must consume the
-same staged and hash-verified payload as the portable build.
+This candidate is not ready for publication until the manual workflow matrix and
+minimum-OS checks in
+[`release/validation/1.2.1-beta.1.md`](release/validation/1.2.1-beta.1.md)
+are complete. Keep backups of important catalogues. The old installer and
+uninstaller are retired; portable ZIPs are authoritative.
 
-## Verification required before publication
-
-- Both build lanes compile from a clean checkout.
-- Shared tests, catalogue round trips, and project parity pass.
-- The x86 executable is PE32/I386 and the x64 executable is PE32+/AMD64.
-- Manual New/Open/Save/Save As/Edit/Delete/Close workflows pass in both lanes.
-- Windows XP SP3 x86 and Windows 7 SP1 x64 runtime checks are recorded honestly.
-- Packaged assets are downloaded again and verified against published SHA-256
-  hashes.
+Catalogue format remains 1.1.0. Both builds must read and write the same files;
+report any cross-build difference as a release-blocking defect.

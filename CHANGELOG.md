@@ -8,23 +8,36 @@
 
 ### Version 1.2.1 Beta 1 - In development
 
-- Began the behavior-preserving C3 architecture overhaul.
-- Retired obsolete installer and uninstaller backup projects from the active tree.
-- Repaired the solution so every referenced project exists and builds.
-- Defined module ownership, compatibility build lanes, and contribution rules.
-- Established one canonical product and catalogue-format version source.
-- Added secure temporary-state catalogue loading so failed input cannot clear the
-  active catalogue.
-- Added verified temporary-file saving, atomic replacement with backup, and
-  external-edit detection.
-- Fixed Save As cancellation continuing into the save path and removed the
-  duplicate open-dialog path after save-before-open.
-- Moved Brand validation, uniqueness, reference protection, and mutations into a
-  typed catalogue service with a legacy DataSet repository adapter.
-- Removed public Brand `DataRow` hand-off between forms and prevented deletion of
-  brands still referenced by cassette models.
-- Fixed the main window close handler recursively calling `Application.Exit`
-  while unconditionally cancelling every close request.
+- Reorganized C3 as a four-project modular monolith: catalogue rules,
+  infrastructure adapters, characterization tests, and shared WinForms sources.
+- Added distinct x86/.NET Framework 4.0 and x64/.NET Framework 4.8 project lanes
+  with common feature files, manifests, resources, and catalogue behavior.
+- Retired obsolete installer/uninstaller backup projects and repaired the
+  solution so every referenced project exists and builds.
+- Established canonical version/build-lane manifests, synchronized projections,
+  deterministic portable packages, SHA-256 manifests, and PE checks.
+- Added a language-neutral catalogue 1.1.0 specification plus valid, invalid,
+  culture, and XML-security fixtures.
+- Added secure temporary-state loading, verified temporary-file saving, atomic
+  replacement with backup, and external-edit conflict detection.
+- Added typed catalogue session ownership for path, display name, revision,
+  dirty state, and document lifecycle.
+- Added bounded diagnostics, action breadcrumbs, and unhandled-exception report
+  generation.
+- Moved brand, cassette-model, deck, and tape validation and mutation behavior
+  into typed catalogue services with sole legacy `DataSet` repository adapters.
+- Prevented deletion of brands, models, and decks still referenced by dependent
+  records.
+- Made bulk tape insertion atomic, fixed per-tape sequence storage, synchronized
+  counters from actual rows, and prevented deleted identifiers being reused.
+- Removed public `DataRow` hand-offs between feature forms and replaced default
+  form instances with explicit form ownership and a single UI mutation seam.
+- Fixed Save As cancellation continuing into save, a duplicate Open dialog,
+  deck deletion writing the tape count, model notes loading from the wrong table,
+  duplicate deck combo entries, and recursive application shutdown.
+- Added 15 executable characterization tests, dependency-direction enforcement,
+  shared-project parity validation, hosted repository checks, and an authoritative
+  Visual Studio 2019 self-hosted compatibility workflow.
 
 
 

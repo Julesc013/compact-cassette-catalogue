@@ -33,6 +33,10 @@ jobs:
         shell: powershell
         run: ./build/validate-project-parity.ps1
 
+      - name: Verify local documentation links
+        shell: powershell
+        run: ./build/validate-docs.ps1
+
       - name: Check whitespace
         shell: powershell
         run: |

@@ -1,31 +1,34 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+about: Report a reproducible C3 defect
+title: "[Bug] "
+labels: bug
 assignees: ''
-
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## What happened?
 
-**To Reproduce**
-Steps to reproduce the behaviour:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Describe the result, the expected result, and whether catalogue data was lost or
+changed unexpectedly.
 
-**Expected behaviour**
-A clear and concise description of what you expected to happen.
+## Reproduction
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+1.
+2.
+3.
 
-**System (please complete the following information):**
- - OS: [e.g. Windows 10]
- - Version [e.g. v1.3.7]
+Does the problem occur with a new blank catalogue? **Yes / No / Not tested**
 
-**Additional context**
-Add any other context about the problem here.
+## Environment
+
+- C3 version and stage:
+- Build lane: `win-x86-net40` / `win-x64-net48`
+- Windows version and architecture:
+- .NET Framework version, if known:
+- Catalogue format version:
+
+## Evidence
+
+Paste the exact error text and attach a screenshot or sanitized diagnostic report
+if useful. Do not upload a personal catalogue, private path, or security exploit.
+Use the private process in `SECURITY.md` for vulnerabilities.
