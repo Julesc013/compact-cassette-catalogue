@@ -317,7 +317,6 @@
     <None Include="My Project\DataSources\frmStatistics.datasource" />
     <None Include="My Project\DataSources\frmTapeNew.datasource" />
     <None Include="My Project\DataSources\frmTapes.datasource" />
-    <None Include="My Project\DataSources\frmViewBrands.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

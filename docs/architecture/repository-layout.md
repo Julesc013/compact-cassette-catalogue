@@ -53,6 +53,7 @@ are not committed.
 |   |-- development/
 |   `-- user/
 |-- assets/
+|   |-- README.md
 |   |-- branding/
 |   |-- design/
 |   |-- reference/
@@ -91,10 +92,10 @@ a genuine product rule.
 | Document path/revision/dirty state | `CatalogueSession` | forms observe session state |
 | Brand/model/deck/tape rules | matching `C3.Catalogue` feature | typed results shown by forms |
 | UI mutation refresh | `CatalogueUiCoordinator` | owning main window |
-| Runtime capability | `Runtime/RuntimeCapabilities.vb` | About and diagnostics |
+| Runtime capability | `Runtime/RuntimeInfo.vb` | About and diagnostics |
 | Release narrative | `RELEASE_NOTES.md` and `CHANGELOG.md` | GitHub release text |
 | Release proof | `release/validation/<version>.md` | commands, CI, OS runs, hashes |
-| Branding originals | `assets/branding` | linked resources and packages |
+| Asset purpose and provenance | `assets/README.md` | branding, design sources, screenshots, references |
 
 If two files appear to own the same fact, one must become a generated projection,
 a validator, or be removed.
