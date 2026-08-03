@@ -28,7 +28,7 @@
                 .OperatingSystem = Environment.OSVersion.ToString(),
                 .ClrVersion = Environment.Version.ToString(),
                 .ProcessBitness = (IntPtr.Size * 8).ToString() & "-bit",
-                .CataloguePath = filePath,
+                .CataloguePath = catalogueSession.FilePath,
                 .LastAction = BufferedLogger.LastAction
             }
             Dim reportPath As String = CrashReportWriter.TryWrite(e.Exception, context)

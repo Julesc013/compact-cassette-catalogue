@@ -81,8 +81,6 @@ Public Class frmTapeNew
             MsgBox(message, MsgBoxStyle.Information, "Tape Added")
         End If
 
-        tapeCount = tapeService.GetAll().Count
-        modelCount = cassetteModelService.GetAll().Count
         CompleteCatalogueMutation(Me)
         DialogResult = DialogResult.OK
         Close()

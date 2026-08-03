@@ -19,50 +19,12 @@ Friend Module LegacyGlobalState
     Public ReadOnly preferences As New MySettingsStore()
     Public ReadOnly catalogueMetadata As New LegacyCatalogueMetadataWriter(Function() catalogue)
 
-    Public Property filePath As String
-        Get
-            Return catalogueSession.FilePath
-        End Get
-        Set(value As String)
-            catalogueSession.SetDocumentLocation(value, catalogueSession.DisplayName)
-        End Set
-    End Property
-
-    Public fileDirectory As String
-
-    Public Property fileName As String
-        Get
-            Return catalogueSession.DisplayName
-        End Get
-        Set(value As String)
-            catalogueSession.SetDocumentLocation(catalogueSession.FilePath, value)
-        End Set
-    End Property
-
-    Public Property changes As Boolean
-        Get
-            Return catalogueSession.IsDirty
-        End Get
-        Set(value As Boolean)
-            catalogueSession.SetDirtyForMigration(value)
-        End Set
-    End Property
-
-    Public updates As Boolean
-    Public timeLoaded As String
-    Public duringSetup As Boolean
-
     Public catalogue As DataSet = CreateInitialCatalogue()
     Public ReadOnly brandService As New BrandService(New LegacyBrandRepository(Function() catalogue))
     Public ReadOnly cassetteModelService As New CassetteModelService(
         New LegacyCassetteModelRepository(Function() catalogue))
     Public ReadOnly deckService As New DeckService(New LegacyDeckRepository(Function() catalogue))
     Public ReadOnly tapeService As New TapeService(New LegacyTapeRepository(Function() catalogue))
-
-    Public deckCount As Integer
-    Public brandCount As Integer
-    Public modelCount As Integer
-    Public tapeCount As Integer
 
     Private Function CreateInitialCatalogue() As DataSet
         Dim now As DateTime = DateTime.Now
@@ -88,10 +50,6 @@ Friend Module LegacyGlobalState
         Next
 
         catalogue = replacement
-        deckCount = deckService.GetAll().Count
-        brandCount = brandService.GetAll(Nothing).Count
-        modelCount = cassetteModelService.GetAll().Count
-        tapeCount = tapeService.GetAll().Count
     End Sub
 
     Function getCondition(value As Integer) As Integer

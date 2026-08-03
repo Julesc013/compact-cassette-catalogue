@@ -137,7 +137,6 @@ Public Class frmModels
         Next
 
         If changed Then
-            modelCount = cassetteModelService.GetAll().Count
             CompleteCatalogueMutation(Me)
         End If
         If failures.Count > 0 Then

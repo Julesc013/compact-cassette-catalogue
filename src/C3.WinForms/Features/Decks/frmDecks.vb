@@ -169,7 +169,6 @@ Public Class frmDecks
         Next
 
         If changed Then
-            deckCount = deckService.GetAll().Count
             CompleteCatalogueMutation(Me)
         End If
         If failures.Count > 0 Then

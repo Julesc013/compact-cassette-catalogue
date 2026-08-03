@@ -3,6 +3,7 @@
 Public Class frmConsole
 
     Private _allowClose As Boolean
+    Private ReadOnly _loadedAt As DateTime = DateTime.Now
 
     Public Sub AppendEntry(message As String)
         lstConsole.Items.Add(message)
@@ -112,7 +113,7 @@ Public Class frmConsole
 
                     If arguments.Length = 1 Then
 
-                        lstConsole.Items.Add(timeLoaded)
+                        lstConsole.Items.Add(_loadedAt.ToString())
 
                     Else
 

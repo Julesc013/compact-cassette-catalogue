@@ -8,7 +8,6 @@ Public Class frmBrandNew
             Return
         End If
 
-        brandCount = brandService.GetAll(Nothing).Count
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added brand " & result.Brand.Name & " successfully."

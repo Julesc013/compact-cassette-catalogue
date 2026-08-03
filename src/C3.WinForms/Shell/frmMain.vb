@@ -11,19 +11,17 @@ Public Class frmMain
     'Declare variables
     Private _allowClose As Boolean
     Private _consoleWindow As frmConsole
-    Dim updatesMask As Boolean = True
-    'Initialise tape index to last tape
-    Dim thisTapeIndex As Integer = tapeCount - 1
-    Dim thisModelType As Integer
-    Dim thisTapedA As Boolean
-    Dim thisTapedB As Boolean
+    Private _hasPendingTapeEdits As Boolean
+    Private _suppressTapeEditTracking As Boolean = True
+    Private _currentTapeIndex As Integer = -1
+    Private _currentModelType As Integer
+    Private _wasSideARecorded As Boolean
+    Private _wasSideBRecorded As Boolean
+    Private _tapeCount As Integer
 
     'Dim newTape As Object() = {"", 0, 0, "", 0, "Unsaved", 0, False, False, False, "", CDate("1/1/1970"), "", "", 0, "", False, False, False, 0, 0, "", 0, 0, "", "", "", "", CDate("1/1/1970"), "", "", 0, "", False, False, False, 0, 0, "", 0, 0, "", ""} 'Default record for a new blank tape
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        ' Indicate to subroutines that the program is in the 'initial setup' phase.
-        duringSetup = True
 
         ' Display about information.
         lblAbout.Text = "© " & COPYRIGHTAUTHOR & ", " & VERSIONSTAGE & " " & VERSION & " (" & COPYRIGHTYEAR & ")"
@@ -48,20 +46,12 @@ Public Class frmMain
 
         preferences.Normalize()
         preferences.Save()
-        fileDirectory = preferences.DefaultDirectory
-        If Not String.IsNullOrEmpty(fileDirectory) AndAlso
-                Not fileDirectory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal) Then
-            fileDirectory &= Path.DirectorySeparatorChar
-        End If
         If UpdateCheckSchedule.ShouldCheck(
                 preferences.UpdatePolicy,
                 preferences.LastUpdateCheck,
                 DateTime.Now) Then
             checkUpdates(False)
         End If
-
-        ' Indicate to subroutines that the program has finished the 'initial setup' phase.
-        duringSetup = False
 
     End Sub
 
@@ -221,13 +211,12 @@ Public Class frmMain
 
 
         'Mask update routines
-        updatesMask = True
+        _suppressTapeEditTracking = True
 
         'Load data (decks, brands and models)
 
-        deckCount = deckService.GetAll().Count
-        tapeCount = tapeService.GetAll().Count
-        thisTapeIndex = tapeCount - 1 'Select latest tape
+        _tapeCount = tapeService.GetAll().Count
+        _currentTapeIndex = _tapeCount - 1 'Select latest tape
 
         cmbDeckA.Items.Clear()
         cmbDeckB.Items.Clear()
@@ -237,7 +226,7 @@ Public Class frmMain
         Next
 
         'Load latest tape if any exist
-        If tapeCount > 0 Then
+        If _tapeCount > 0 Then
 
             ' Enable scrolling and searching only if there is more than one record
             grpFind.Enabled = True
@@ -270,21 +259,30 @@ Public Class frmMain
         End If
 
         'Unmask update routines
-        updatesMask = False
+        _suppressTapeEditTracking = False
 
     End Sub
 
     Private Function CurrentTape() As Tape
         Dim values As IList(Of Tape) = tapeService.GetAll()
-        If thisTapeIndex < 0 OrElse thisTapeIndex >= values.Count Then
+        If _currentTapeIndex < 0 OrElse _currentTapeIndex >= values.Count Then
             Return Nothing
         End If
-        Return values(thisTapeIndex)
+        Return values(_currentTapeIndex)
     End Function
+
+    Private Sub DiscardPendingTapeEdits()
+        _hasPendingTapeEdits = False
+        btnUpdate.Enabled = False
+        UpdateTapeToolStripMenuItem.Enabled = False
+        If _tapeCount > 0 Then
+            displayTape()
+        End If
+    End Sub
 
     Private Sub updateTape()
 
-        If updates = True Then
+        If _hasPendingTapeEdits Then
 
             Try
 
@@ -295,12 +293,6 @@ Public Class frmMain
                 Dim identifierShort As String = tape.ShortIdentifier
                 Dim number As Integer = tape.Number
                 Dim modelCode As String = tape.ModelIdentifier
-
-                ''model Name from identification/code
-                'Dim modelName As String = CStr(modelRow("Brand")) & " " & CStr(modelRow("Model"))
-                ''Find model type
-                'thisModelType = CInt(modelCode.Substring(2, 1))
-
 
                 'Validate all new data entered
 
@@ -509,11 +501,11 @@ Public Class frmMain
                 identifier = updateResult.Tapes(0).Identifier
                 txtLong.Text = identifier
 
-                updates = False
-                changes = True
+                _hasPendingTapeEdits = False
+                catalogueSession.MarkChanged()
 
                 'Update title bar
-                Me.Text = fileName & "* - C3"
+                Me.Text = catalogueSession.DisplayName & "* - C3"
                 'Update buttons
                 btnUpdate.Enabled = False
                 UpdateTapeToolStripMenuItem.Enabled = False
@@ -577,17 +569,17 @@ Public Class frmMain
                 MsgBox(deletion.Message, MsgBoxStyle.Exclamation, "Tape Not Deleted")
                 Return
             End If
-            tapeCount = tapeService.GetAll().Count
+            _tapeCount = tapeService.GetAll().Count
 
             'Reset change detection variables
-            updates = False
-            changes = True
+            _hasPendingTapeEdits = False
+            catalogueSession.MarkChanged()
             'Reset buttons
             btnUpdate.Enabled = False
             UpdateTapeToolStripMenuItem.Enabled = False
 
             'Update title bar
-            Me.Text = fileName & "* - C3"
+            Me.Text = catalogueSession.DisplayName & "* - C3"
 
             'Reload data and display latest tape
             loadData()
@@ -602,19 +594,23 @@ Public Class frmMain
 
     Private Sub saveChanges(saveAs As Boolean)
 
-        If updates = True Then
+        If _hasPendingTapeEdits Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before saving changes?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
 
             If result = vbYes Then
 
                 updateTape()
+                If _hasPendingTapeEdits Then
+                    Return
+                End If
 
                 'SAVE CHANGES
                 saveChangesActual(saveAs, False)
 
             ElseIf result = vbNo Then
 
+                DiscardPendingTapeEdits()
                 'SAVE CHANGES
                 saveChangesActual(saveAs, False)
 
@@ -634,8 +630,8 @@ Public Class frmMain
         BufferedLogger.RecordAction(If(saveAs, "Save catalogue as", "Save catalogue"))
 
         'If there is no filepath, it is not saved
-        Dim saved As Boolean = filePath IsNot Nothing
-        Dim destinationPath As String = filePath
+        Dim saved As Boolean = catalogueSession.FilePath IsNot Nothing
+        Dim destinationPath As String = catalogueSession.FilePath
 
         Dim message As String = Nothing
 
@@ -705,16 +701,10 @@ Public Class frmMain
 
         Dim savedFileName As String = Path.GetFileName(destinationPath)
         catalogueSession.MarkSaved(destinationPath, savedFileName, saveResult.Revision)
-        fileDirectory = Path.GetDirectoryName(destinationPath)
-        If Not String.IsNullOrEmpty(fileDirectory) Then
-            fileDirectory &= Path.DirectorySeparatorChar
-        End If
-
-
         'Discard updates made to current tape and reload from saved data.
 
         'Reset changes variable
-        updates = False
+        _hasPendingTapeEdits = False
 
         'Reset buttons
         btnUpdate.Enabled = False
@@ -745,19 +735,23 @@ Public Class frmMain
     Private Sub OpenCatalogueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenCatalogueToolStripMenuItem.Click
         'Load/open catalogue from XML file
 
-        If updates = True Then
+        If _hasPendingTapeEdits Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before opening catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
 
             If result = vbYes Then
 
                 updateTape()
+                If _hasPendingTapeEdits Then
+                    Return
+                End If
 
                 'CHECK CHANGES
                 openCatalogueCheckChanges()
 
             ElseIf result = vbNo Then
 
+                DiscardPendingTapeEdits()
                 'CHECK CHANGES
                 openCatalogueCheckChanges()
 
@@ -775,7 +769,7 @@ Public Class frmMain
     Sub openCatalogueCheckChanges()
         'Check for unsaved changes to the whole catalogue
 
-        If changes = True Then
+        If catalogueSession.IsDirty Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before opening new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
 
@@ -833,17 +827,12 @@ Public Class frmMain
             If VERSIONFILESUPPORTED.Contains(fileVersion) Then
 
                 Dim selectedFileName As String = Path.GetFileName(selectedPath)
-                fileDirectory = Path.GetDirectoryName(selectedPath)
-                If Not String.IsNullOrEmpty(fileDirectory) Then
-                    fileDirectory &= Path.DirectorySeparatorChar
-                End If
-
                 replaceCatalogue(loadResult.Document)
                 catalogueSession.MarkLoaded(selectedPath, selectedFileName, loadResult.Revision)
 
 
                 'Reset changes variable
-                updates = False
+                _hasPendingTapeEdits = False
 
                 'Reset buttons
                 btnUpdate.Enabled = False
@@ -889,12 +878,12 @@ Public Class frmMain
     Private Sub updateMade()
         ' Made an update to a field in the main form.
 
-        If updates = False And updatesMask = False Then
+        If Not _hasPendingTapeEdits AndAlso Not _suppressTapeEditTracking Then
 
-            updates = True
+            _hasPendingTapeEdits = True
 
             ' Update title bar.
-            Me.Text = fileName & "* - C3"
+            Me.Text = catalogueSession.DisplayName & "* - C3"
 
             ' Enable buttons.
             btnUpdate.Enabled = True
@@ -908,13 +897,13 @@ Public Class frmMain
 
         'Ensure users can't scroll out-of-bounds
 
-        If thisTapeIndex = 0 Then
+        If _currentTapeIndex = 0 Then
             btnPrevious.Enabled = False
         Else
             btnPrevious.Enabled = True
         End If
 
-        If thisTapeIndex = tapeCount - 1 Then
+        If _currentTapeIndex = _tapeCount - 1 Then
             btnNext.Enabled = False
         Else
             btnNext.Enabled = True
@@ -925,7 +914,7 @@ Public Class frmMain
     Private Sub displayTape()
 
         'Mask update routines
-        updatesMask = True
+        _suppressTapeEditTracking = True
 
         'Ensure users can't scroll out-of-bounds
         updateScrollers()
@@ -933,17 +922,15 @@ Public Class frmMain
 
         Dim tape As Tape = CurrentTape()
         If tape Is Nothing Then
-            updatesMask = False
+            _suppressTapeEditTracking = False
             Return
         End If
 
         'Display identifiers
         txtLong.Text = tape.Identifier
         txtShort.Text = tape.ShortIdentifier
-        'numIndex.Maximum = tapeCount ' Update the maximum index that can be scrolled to.
-        'numIndex.Value = thisTapeIndex + 1
-        txtIndex.Text = CStr(thisTapeIndex + 1)
-        txtTotal.Text = CStr(tapeCount)
+        txtIndex.Text = CStr(_currentTapeIndex + 1)
+        txtTotal.Text = CStr(_tapeCount)
 
         'Find model name from identification/code
         Dim model As CassetteModel = cassetteModelService.Find(tape.ModelIdentifier)
@@ -951,9 +938,9 @@ Public Class frmMain
         If model IsNot Nothing Then
             Dim brand As Brand = brandService.Find(model.BrandCode)
             modelName = If(brand Is Nothing, model.BrandCode, brand.Name) & " " & model.ModelName
-            thisModelType = model.TypeNumber
+            _currentModelType = model.TypeNumber
         Else
-            thisModelType = 1
+            _currentModelType = 1
         End If
 
         'Populate groups and elements
@@ -969,8 +956,8 @@ Public Class frmMain
 
         'Enable "taped sides" groups and load data
 
-        thisTapedA = tape.SideA.IsRecorded
-        If thisTapedA = True Then
+        _wasSideARecorded = tape.SideA.IsRecorded
+        If _wasSideARecorded Then
             'If side A recorded, load data
 
             chkTapedA.Checked = True
@@ -1035,8 +1022,8 @@ Public Class frmMain
 
         End If
 
-        thisTapedB = tape.SideB.IsRecorded
-        If thisTapedB = True Then
+        _wasSideBRecorded = tape.SideB.IsRecorded
+        If _wasSideBRecorded Then
 
             chkTapedB.Checked = True
 
@@ -1104,7 +1091,7 @@ Public Class frmMain
         txtNotes.Text = tape.Notes
 
         'Unmask update routines
-        updatesMask = False
+        _suppressTapeEditTracking = False
 
     End Sub
 
@@ -1150,12 +1137,12 @@ Public Class frmMain
 
         If chkTapedA.Checked = True Then
 
-            deckCount = deckService.GetAll().Count
+            Dim deckCount As Integer = deckService.GetAll().Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
 
-                If thisTapedA = False Then
+                If Not _wasSideARecorded Then
 
                     'Set defaults
                     datRecordedA.Value = Date.Today
@@ -1168,12 +1155,12 @@ Public Class frmMain
                     cmbContentsA.SelectedIndex = 0
                     numLevelA.Value = CDec(5)
 
-                    If thisModelType = 1 Then 'If normal bias
+                    If _currentModelType = 1 Then 'If normal bias
                         cmbEQA.SelectedIndex = 0 '120us
                     Else
                         cmbEQA.SelectedIndex = 1 '70us
                     End If
-                    cmbBiasA.SelectedIndex = thisModelType - 1
+                    cmbBiasA.SelectedIndex = _currentModelType - 1
 
                     'The rest of the defaults
                     txtNameA.Text = Nothing
@@ -1211,12 +1198,12 @@ Public Class frmMain
 
         If chkTapedB.Checked = True Then
 
-            deckCount = deckService.GetAll().Count
+            Dim deckCount As Integer = deckService.GetAll().Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
 
-                If thisTapedB = False Then
+                If Not _wasSideBRecorded Then
 
                     'Set defaults
                     datRecordedB.Value = Date.Today
@@ -1229,12 +1216,12 @@ Public Class frmMain
                     cmbContentsB.SelectedIndex = 0
                     numLevelB.Value = CDec(5)
 
-                    If thisModelType = 1 Then 'If normal bias
+                    If _currentModelType = 1 Then 'If normal bias
                         cmbEQB.SelectedIndex = 0 '120us
                     Else
                         cmbEQB.SelectedIndex = 1 '70us
                     End If
-                    cmbBiasB.SelectedIndex = thisModelType - 1
+                    cmbBiasB.SelectedIndex = _currentModelType - 1
 
                     'The rest of the defaults
                     txtNameB.Text = Nothing
@@ -1313,19 +1300,23 @@ Public Class frmMain
 
     Private Sub addNewTape()
 
-        If updates = True Then
+        If _hasPendingTapeEdits Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before adding new tape?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
 
             If result = vbYes Then
 
                 updateTape()
+                If _hasPendingTapeEdits Then
+                    Return
+                End If
 
                 'ADD A NEW TAPE
                 addNewTapeActual()
 
             ElseIf result = vbNo Then
 
+                DiscardPendingTapeEdits()
                 'ADD A NEW TAPE
                 addNewTapeActual()
 
@@ -1342,7 +1333,7 @@ Public Class frmMain
 
     Private Sub addNewTapeActual()
 
-        modelCount = cassetteModelService.GetAll().Count
+        Dim modelCount As Integer = cassetteModelService.GetAll().Count
 
         'Check that there is at least 1 model (and 1 deck for recording)
 
@@ -1371,7 +1362,26 @@ Public Class frmMain
     End Sub
 
     Private Function CanCloseApplication() As Boolean
-        If Not changes Then
+        If _hasPendingTapeEdits Then
+            Dim pendingResult As MsgBoxResult = MsgBox(
+                "Changes have been made to the current tape." & vbNewLine &
+                    "Update current tape before closing?",
+                MsgBoxStyle.YesNoCancel Or MsgBoxStyle.Question,
+                "Changes Made To Tape")
+            If pendingResult = vbCancel Then
+                Return False
+            End If
+            If pendingResult = vbYes Then
+                updateTape()
+                If _hasPendingTapeEdits Then
+                    Return False
+                End If
+            ElseIf pendingResult = vbNo Then
+                DiscardPendingTapeEdits()
+            End If
+        End If
+
+        If Not catalogueSession.IsDirty Then
             Return True
         End If
 
@@ -1387,7 +1397,7 @@ Public Class frmMain
         End If
 
         saveChanges(False)
-        Return Not changes
+        Return Not catalogueSession.IsDirty
     End Function
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -1404,7 +1414,7 @@ Public Class frmMain
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        deleteTape(thisTapeIndex, False)
+        deleteTape(_currentTapeIndex, False)
 
     End Sub
 
@@ -1424,12 +1434,12 @@ Public Class frmMain
 
         If jump = True Then
 
-            thisTapeIndex = change ' New index is the given integer.
+            _currentTapeIndex = change ' New index is the given integer.
             displayTape()
 
         Else
 
-            thisTapeIndex += change ' New index is incremented/decremented by the given integer.
+            _currentTapeIndex += change ' New index is incremented/decremented by the given integer.
             displayTape()
 
         End If
@@ -1452,18 +1462,22 @@ Public Class frmMain
 
     Public Sub scrollTo(change As Integer, jump As Boolean)
 
-        If updates = True Then
+        If _hasPendingTapeEdits Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before scrolling?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
 
             If result = vbYes Then
 
                 updateTape()
+                If _hasPendingTapeEdits Then
+                    Return
+                End If
 
                 scrollActual(change, jump) ' Scroll!
 
             ElseIf result = vbNo Then
 
+                DiscardPendingTapeEdits()
                 scrollActual(change, jump) ' Scroll!
 
             End If
@@ -1475,7 +1489,7 @@ Public Class frmMain
         End If
 
         ' Reset updates variable and buttons.
-        updates = False
+        _hasPendingTapeEdits = False
 
         btnUpdate.Enabled = False
         UpdateTapeToolStripMenuItem.Enabled = False
@@ -1530,19 +1544,23 @@ Public Class frmMain
         'Make a new catalogue (check before saving first)
 
         'Check if tape updated
-        If updates = True Then
+        If _hasPendingTapeEdits Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before creating new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
 
             If result = vbYes Then
 
                 updateTape()
+                If _hasPendingTapeEdits Then
+                    Return
+                End If
 
                 'NEW CAT
                 newCatalogueCheckChanges()
 
             ElseIf result = vbNo Then
 
+                DiscardPendingTapeEdits()
                 'NEW CAT
                 newCatalogueCheckChanges()
 
@@ -1560,7 +1578,7 @@ Public Class frmMain
     Private Sub newCatalogueCheckChanges()
         'Check for unsaved changes to the whole catalogue
 
-        If changes = True Then
+        If catalogueSession.IsDirty Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before creating new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
 
@@ -1745,9 +1763,24 @@ Public Class frmMain
 
     Private Sub DeleteTapeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteTapeToolStripMenuItem.Click
 
-        deleteTape(thisTapeIndex, False)
+        deleteTape(_currentTapeIndex, False)
 
     End Sub
+
+    Private Function ResolveOutputDirectory() As String
+        If Not String.IsNullOrWhiteSpace(catalogueSession.FilePath) Then
+            Dim catalogueDirectory As String = Path.GetDirectoryName(catalogueSession.FilePath)
+            If Directory.Exists(catalogueDirectory) Then
+                Return catalogueDirectory
+            End If
+        End If
+
+        If Directory.Exists(preferences.DefaultDirectory) Then
+            Return preferences.DefaultDirectory
+        End If
+
+        Return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+    End Function
 
     Private Sub OutputConsoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OutputConsoleToolStripMenuItem.Click
 
@@ -1756,19 +1789,28 @@ Public Class frmMain
 
         Dim outputTime As DateTime = DateTime.Now
         Dim outputName As String = "console-output_" & outputTime.ToString("yyMMdd-HHmmss") & ".txt"
-        Dim outputPath As String = fileDirectory & outputName
-        Using outputFile As New StreamWriter(outputPath)
+        Dim outputPath As String = Path.Combine(ResolveOutputDirectory(), outputName)
+        Try
+            Using outputFile As New StreamWriter(outputPath)
 
-            'Write header.
-            outputFile.WriteLine("Compact Cassette Catalogue (v" & CStr(VERSION) & ") Console Output at " & outputTime.ToString)
-            outputFile.WriteLine("--------------------------------")
+                'Write header.
+                outputFile.WriteLine("Compact Cassette Catalogue (v" & CStr(VERSION) & ") Console Output at " & outputTime.ToString)
+                outputFile.WriteLine("--------------------------------")
 
-            'Write the bounded diagnostic log, independently of console visibility.
-            For Each line As String In BufferedLogger.Tail()
-                outputFile.WriteLine(line)
-            Next
+                'Write the bounded diagnostic log, independently of console visibility.
+                For Each line As String In BufferedLogger.Tail()
+                    outputFile.WriteLine(line)
+                Next
 
-        End Using
+            End Using
+        Catch ex As Exception
+            consoleAdd("Failed to output console log. Error: " & ex.Message)
+            MsgBox(
+                "C3 could not write the console log." & vbNewLine & vbNewLine & ex.Message,
+                MsgBoxStyle.Exclamation,
+                "Console Log Not Saved")
+            Return
+        End Try
 
         'Show confirmation message
         Dim message As String = "Successfully output console to log file."
