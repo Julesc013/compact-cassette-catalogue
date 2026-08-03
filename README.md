@@ -1,28 +1,14 @@
 # Compact Cassette Catalogue (C3)
 
-C3 is an offline-first Windows desktop catalogue for blank cassettes, their
-recordings, cassette models, brands, and tape decks. Catalogues remain ordinary
-local XML files that users can copy, back up, and move between supported builds.
+C3 is an offline-first Windows desktop catalogue for blank cassettes, their recordings, cassette models, brands, and tape decks. Catalogues remain ordinary local XML files that users can copy, back up, and move between supported builds.
 
-> C3 1.2.1 Beta 1 is under active stabilization. Keep backups of important
-> catalogues and review the release validation status before relying on a beta.
+> C3 1.2.0 Beta 1 is under active stabilization. Keep backups of important catalogues and review the release validation status before relying on a beta.
 
 ![C3 main window](assets/screenshots/demonstration-screenshot.png)
 
 ## Download
 
-Download C3 only from the
-[GitHub releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases).
-Each 1.2.1 release contains two portable ZIPs and `SHA256SUMS.txt`:
-
-| Package | Runtime lane | Intended operating systems |
-| --- | --- | --- |
-| `C3-v1.2.1-beta.1-win-x86-net40-portable.zip` | 32-bit, .NET Framework 4.0 | Windows XP SP3 and later compatibility lane |
-| `C3-v1.2.1-beta.1-win-x64-net48-portable.zip` | 64-bit, .NET Framework 4.8 | Windows 7 SP1 and later modern lane |
-
-The x86 package is the compatibility choice, including on 64-bit Windows. The
-x64 package is not an XP x64 claim. Minimum-OS support is published only when the
-exact release candidate has recorded runtime evidence.
+Download C3 only from the [GitHub releases page](https://github.com/Julesc013/compact-cassette-catalogue/releases).
 
 Portable means that C3 requires no installer or administrator access. In 1.x,
 per-user settings and diagnostics may still use Windows application-data
@@ -70,7 +56,7 @@ map are documented in
 
 ## Build and verify
 
-The authoritative toolchain is Visual Studio 2019 with .NET Framework 4.0 and
+The authoritative toolchain is Visual Studio 2017 and 2022 with .NET Framework 4.0 and
 4.8 targeting packs. From Windows PowerShell:
 
 ```powershell
