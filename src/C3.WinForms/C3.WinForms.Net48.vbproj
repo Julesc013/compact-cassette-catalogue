@@ -97,6 +97,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.vb">
+      <Link>My Project\VersionAssemblyInfo.g.vb</Link>
+    </Compile>
     <Compile Include="**\*.vb" Exclude="bin\**\*;obj\**\*" />
   </ItemGroup>
   <ItemGroup>

@@ -68,6 +68,7 @@ $physicalSources = @(Get-ChildItem -LiteralPath $sourceRoot -Recurse -File -Filt
     ForEach-Object { Normalize-RelativePath $_.FullName.Substring($sourceRoot.Length + 1) } |
     Sort-Object -Unique)
 $net40Sources = @(Get-Includes $net40 'Compile' |
+    Where-Object { -not $_.StartsWith('..', [StringComparison]::Ordinal) } |
     ForEach-Object { Normalize-RelativePath $_ } |
     Sort-Object -Unique)
 $sourceDifference = @(Compare-Object $physicalSources $net40Sources)
@@ -78,6 +79,17 @@ if ($sourceDifference.Count -gt 0) {
 $net48Compile = @(Get-Includes $net48 'Compile')
 if ($net48Compile -notcontains '**\*.vb') {
     $failures.Add('Net48 project must compile the shared **\*.vb source tree.')
+}
+
+$net40LinkedSources = @(Get-Includes $net40 'Compile' |
+    Where-Object { $_.StartsWith('..', [StringComparison]::Ordinal) } |
+    Sort-Object -Unique)
+$net48LinkedSources = @(Get-Includes $net48 'Compile' |
+    Where-Object { $_.StartsWith('..', [StringComparison]::Ordinal) } |
+    Sort-Object -Unique)
+$linkedSourceDifference = @(Compare-Object $net40LinkedSources $net48LinkedSources)
+if ($linkedSourceDifference.Count -gt 0) {
+    $failures.Add("Linked WinForms sources differ between lanes:`n" + ($linkedSourceDifference | Out-String))
 }
 
 $physicalResources = @(Get-ChildItem -LiteralPath $sourceRoot -Recurse -File -Filter '*.resx' |

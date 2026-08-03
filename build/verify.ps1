@@ -13,6 +13,7 @@ $ErrorActionPreference = 'Stop'
 & (Join-Path $PSScriptRoot 'validate-docs.ps1')
 & (Join-Path $PSScriptRoot 'test.ps1') -Configuration Release
 & (Join-Path $PSScriptRoot 'build.ps1') -Configuration Release -Rebuild:$Rebuild
+& (Join-Path $PSScriptRoot 'verify-binary-metadata.ps1') -Configuration Release
 & (Join-Path $PSScriptRoot 'verify-pe.ps1') -Configuration Release
 
 Push-Location (Split-Path -Parent $PSScriptRoot)

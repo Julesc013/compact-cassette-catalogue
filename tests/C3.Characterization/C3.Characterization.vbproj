@@ -58,6 +58,9 @@
     <Import Include="C3.Infrastructure.Updates" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\src\Shared\Generated\VersionAssemblyInfo.g.vb">
+      <Link>Properties\VersionAssemblyInfo.g.vb</Link>
+    </Compile>
     <Compile Include="Program.vb" />
   </ItemGroup>
   <ItemGroup>

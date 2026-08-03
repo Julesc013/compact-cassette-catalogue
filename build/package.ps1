@@ -24,6 +24,8 @@ if (-not $SkipBuild) {
     & (Join-Path $PSScriptRoot 'build.ps1') -Configuration Release -Rebuild
 }
 
+& (Join-Path $PSScriptRoot 'verify-binary-metadata.ps1') -Configuration Release
+
 [xml]$versionProps = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'Version.props') -Raw
 $versionValues = $versionProps.Project.PropertyGroup
 $productVersion = [string]$versionValues.C3ProductVersion
@@ -139,4 +141,3 @@ $hashPath = Join-Path $packagesRoot 'SHA256SUMS.txt'
     (New-Object Text.UTF8Encoding($false)))
 
 & (Join-Path $PSScriptRoot 'verify-packages.ps1')
-

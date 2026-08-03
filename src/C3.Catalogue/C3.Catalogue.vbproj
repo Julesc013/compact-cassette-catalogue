@@ -47,6 +47,9 @@
     <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.vb">
+      <Link>Properties\VersionAssemblyInfo.g.vb</Link>
+    </Compile>
     <Compile Include="Brands\Brand.vb" />
     <Compile Include="Brands\BrandDraft.vb" />
     <Compile Include="Brands\BrandOperationResult.vb" />

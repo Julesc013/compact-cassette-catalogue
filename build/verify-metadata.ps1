@@ -103,6 +103,19 @@ foreach ($fragment in $expectedFragments) {
     }
 }
 
+$versionAssemblyInfoPath = Join-Path $repositoryRoot 'src\Shared\Generated\VersionAssemblyInfo.g.vb'
+$versionAssemblyInfo = Get-Content -LiteralPath $versionAssemblyInfoPath -Raw
+$expectedAssemblyFragments = @(
+    "<Assembly: AssemblyVersion(`"$assemblyVersion`")>"
+    "<Assembly: AssemblyFileVersion(`"$fileVersion`")>"
+    "<Assembly: AssemblyInformationalVersion(`"$informationalVersion`")>"
+)
+foreach ($fragment in $expectedAssemblyFragments) {
+    if (-not $versionAssemblyInfo.Contains($fragment)) {
+        $failures.Add("Generated VersionAssemblyInfo is missing: $fragment")
+    }
+}
+
 $changelogPath = Join-Path $repositoryRoot 'CHANGELOG.md'
 $changelog = Get-Content -LiteralPath $changelogPath -Raw
 if (-not $changelog.Contains("Version $productVersion $releaseStage")) {
