@@ -24,16 +24,24 @@ may display both when the distinction matters.
 
 Channels are promotion targets, not branch names:
 
-- **stable** receives only a stable release after assets and downloaded hashes
-  pass the complete gate;
-- **beta** receives public feature-complete previews after beta gates pass;
+- **stable** receives only a stable release after exact assets and downloaded
+  hashes pass the complete gate;
+- **beta** receives public betas and release candidates after their public
+  prerelease gates pass;
 - **alpha** records generated development identity but is not promoted while
-  alphas remain intentionally unpublished;
+  alphas remain intentionally unpublished; and
 - **legacy-1x** remains the maintenance feed for existing 1.x clients.
 
-Stable users never receive preview metadata automatically. A channel document is
-promoted only after its exact packages and checksum manifest exist. Removing a
-release does not retarget its users silently to another channel.
+A release candidate therefore uses channel `beta` and publication policy
+`public-prerelease`. Stable users never receive preview metadata automatically.
+A publishable beta or stable `release.json` is promoted only in successful
+post-operation commit `P`, after its exact packages and checksum manifest exist
+and downloaded verification has passed. Removing a release does not silently
+retarget its users.
+
+The final RC/stable byte-identity strategy remains unresolved. C3 must accept a
+strategy before the first release candidate; until then it does not promise that
+stable reuses RC bytes or that a metadata-only rebuild is sufficient.
 
 ## Permanent branch contract
 
@@ -45,29 +53,41 @@ one next checkpoint.
 Normal feature branches target `dev`. A 1.x correction targets
 `maintenance/1.x` first, is verified under the 1.x contract, and is then
 forward-merged or deliberately ported to `dev` with the same regression evidence.
-A 2.x-only change never flows backward into the maintenance line.
+A 2.x-only change never flows backward into the maintenance line. Reserved,
+SHA-bound `attest/v*-candidate-<E>` and `attest/v*-post-<P>` refs temporarily
+make exact attestation commits reachable to private gates while permanent refs
+remain at their expected old objects. They are create-only transport, not version
+lines, and are consumed by the leased atomic promotion transactions.
 
-No permanent branch is force-pushed. After a milestone is frozen and qualified,
-its evidence attestation is fast-forwarded to `master` and tagged immutably.
-`dev` begins the next identity only after that tag exists. Git branches and tags
-do not replace release channels: alpha checkpoints are visible but unpublished;
-beta/stable availability begins only after the matching immutable assets and
-channel promotion pass their stage-specific gates.
+No permanent branch is force-pushed. A checkpoint follows `C -> E(tag) -> P`:
+
+- `C` freezes every payload input;
+- `E`, the direct, single-parent child of `C`, changes exactly the release
+  catalogue and matching validation record, records qualification `pass` and
+  promotion `unpromoted`, and receives the immutable annotated tag; and
+- `P`, the direct, single-parent child of tagged `E`, records the now-observable
+  annotated tag-object identity, publication, feed, and post-verification facts.
+
+`master` advances only to the verified full `E` SHA and then the verified full
+`P` SHA, never to moving `dev`. `dev` begins the next identity only after `P` is
+also on `master`. Git branches and tags do not replace release channels: alpha
+checkpoints are visible but unpublished; beta/stable availability begins only
+after matching immutable assets and successful channel promotion.
 
 ## Legacy root `VERSION`
 
 Published 1.x binaries fetch the repository root `VERSION` and understand only a
 three-line numeric format. Therefore it is a compatibility feed, not a generated
-projection of the current source tree. It remains synchronized with the
-`legacy-1x` feed while those clients exist and is promoted deliberately only
-after matching 1.x assets are public.
+projection of the current source tree. It remains synchronized with
+`release/feeds/legacy-1x/VERSION` while those clients exist and is promoted
+deliberately only after matching 1.x assets are public.
 
 Build synchronization must never overwrite the root legacy feed. Verification
-checks build identity and published-feed identity independently. The 2.x updater
-contract must read explicit publication state and compare the complete release
-identity; a moving three-line `/dev/` VERSION endpoint cannot satisfy that rule.
-Remediating the current Alpha 1 client behavior is a qualification gate, not a
-future documentation aspiration.
+checks build identity and published-feed identity independently. C3 2.x uses
+channel `release.json` documents with explicit publication state and complete
+release identity. There are no 2.x `VERSION` files, and a moving three-line
+`/dev/` endpoint cannot satisfy the 2.x updater contract. Remediating current
+Alpha 1 client behavior is a qualification gate, not a future aspiration.
 
 ## Release naming
 
@@ -80,22 +100,37 @@ C3-v2.0.0-alpha.1-win-x64-net48-portable.zip
 SHA256SUMS.txt
 ```
 
-Display text may use `2.0.0 Alpha 1`. Three-line compatibility feeds keep a
-numeric first line because legacy code parses `System.Version`.
+Display text may use `2.0.0 Alpha 1`. Only the root and legacy 1.x compatibility
+feeds retain the three-line numeric format because old code parses
+`System.Version`.
 
 ## Promotion and immutability
 
 1. Freeze source/payload commit `C`; generate every packaged projection before it.
-2. Build, test, and reproduce both lanes from `C` under the milestone gate.
+2. Build, test, and reproduce both lanes from exact `C` under the milestone gate.
 3. Complete the manual, OS, compatibility, and migration evidence required for
    that stage; deferred alpha evidence remains explicit.
-4. Create evidence-only commit `E`, naming `C` and the exact package hashes.
-5. Rebuild `E` and prove that its evidence-only diff leaves payload bytes intact.
-6. Fast-forward `E` to `master` and create the immutable annotated tag there.
-7. For unpublished alphas, stop. For beta/RC/stable, publish exact tested assets,
-   download and verify them, then promote the matching channel document last.
-8. Return to `dev` and commit the next milestone identity before implementation.
+4. Create direct, single-parent child `E` with the exact two-file evidence diff,
+   naming full `C` and its artifact identities; record `pass / unpromoted`.
+5. Rebuild exact `E`, prove identical payload bytes, and validate its full SHA.
+6. Qualify exact `E` through its SHA-bound transport while `dev` remains at `C`,
+   then atomically and with exact-old-object leases fast-forward `master` and
+   `dev` to `E`, create the absent annotated tag, and consume the transport ref.
+7. Create direct, single-parent child `P` after external operations:
+   - Alpha changes exactly the two evidence files and records
+     `tagged / unpublished / not-applicable / feed false`.
+   - Successful beta/RC changes those two files plus
+     `release/feeds/beta/release.json` and records
+     `published / passed / feed true`.
+   - Successful stable changes those two files plus
+     `release/feeds/stable/release.json` under the accepted stable strategy.
+   - Public post-verification failure changes only the two evidence files,
+     records `published / failed / feed false`, leaves the feed unchanged, and
+     may be superseded by an immediate successor.
+8. Validate full `P` through its SHA-bound transport, then atomically and with
+   exact-old-object leases fast-forward `P` to both `master` and `dev`, consume
+   the transport ref, and only then commit the next milestone identity.
 
-Historical tags, validation records, package names, and hashes are never
-relabelled. An unpublished candidate may be marked superseded, but its identity
-and evidence remain intact.
+Historical tags, validation records, package names, hashes, failed publication
+facts, and channel history are never relabelled. Supersession adds history; it
+does not rewrite it.

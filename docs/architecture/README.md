@@ -114,3 +114,5 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0006: Separate update channels](decisions/0006-separate-update-channels.md)
 - [ADR 0007: C3-owned shared preferences](decisions/0007-c3-owned-shared-preferences.md)
 - [ADR 0008: Qualified checkpoint ledger](decisions/0008-qualified-checkpoint-ledger.md)
+- [Release catalogue v1 contract](../../spec/release-catalog/v1/README.md)
+- [Update release manifest v1 contract](../../spec/update-feed/v1/README.md)

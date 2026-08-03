@@ -11,49 +11,89 @@ engineering checkpoints, while treating every moving `dev` head as releasable
 would make tags and evidence meaningless. The public repository also means a
 pushed alpha branch or tag is visible even when no binary is published.
 
-A validation record must name the exact frozen source commit. That commit cannot
-contain its own SHA, so release evidence cannot be both self-referential and part
-of the same commit without an external attestation.
+A validation record cannot name the SHA of the commit that contains it. Tag,
+GitHub release, downloaded-asset, and feed-promotion facts likewise cannot be
+truthfully recorded before those operations exist. The ledger therefore needs a
+small explicit transaction rather than self-referential metadata.
 
 ## Decision
 
 Use three permanent lines:
 
 - `maintenance/1.x` owns bounded supported 1.x maintenance;
-- `master` is the append-only ledger of qualified product checkpoints; and
+- `master` is the append-only ledger of verified product checkpoints; and
 - `dev` owns the next unqualified milestone.
 
 Every alpha, beta, release-candidate, and stable tag is reachable from `master`.
 No permanent branch or qualified tag is force-pushed or replaced. Applicable 1.x
 changes flow forward; 2.x-only changes never flow backward.
 
-Qualification uses two commits when evidence names a literal source SHA:
+Each checkpoint is the linear transaction:
 
 ```text
-C  frozen payload/source commit
-   -> build, package, automated and required manual evidence
-E  attestation commit naming C and its hashes
-   -> may change only release/catalog.v1.json and C's validation record
+C  frozen source and payload inputs
+|
+E  direct, single-parent child of C; exact catalogue + validation diff
+|  qualification pass, promotion unpromoted; annotated tag points here
+|
+P  direct, single-parent child of tagged E; exact post-operation evidence diff
 ```
 
-`E` is fast-forwarded to `master` and receives the annotated milestone tag. The
-promotion validator proves that `C` is an ancestor of `E`, that the `C..E` diff
-is evidence-only, and that rebuilding `E` yields the recorded payload bytes.
-Thus `master` and the tag identify a self-contained qualified checkpoint without
-pretending the evidence commit changed the product payload.
+The promotion validator rebuilds exact `E`, proves that it preserves the payload
+bytes qualified from `C`, and accepts only its full SHA through a create-only,
+SHA-bound candidate transport while `dev` remains at `C`. Exact-old-object leases
+then atomically fast-forward `master` and `dev` to `E`, create the absent
+annotated tag, and consume the transport. The tagged snapshot remains factually
+`unpromoted` because it cannot predict its own tag.
 
-Qualification, promotion, publication, and post-verification are recorded as
-separate lifecycle dimensions. Alpha checkpoints are tagged but have no GitHub
-release and no promoted update feed. Beta tags require owner manual qualification before a public prerelease.
-Stable promotes unchanged qualified release-candidate payloads; any byte change
-requires another release candidate.
+After the tag and any stage-specific external operations, direct,
+single-parent child `P` records the exact annotated tag-object identity and
+observed stage facts:
+
+- intentionally unpublished alpha `P` changes exactly the catalogue and matching
+  validation record; it records `tagged`, `unpublished`, post-verification
+  `not-applicable`, and feed promotion `false`;
+- successful public beta or release-candidate `P` additionally changes exactly
+  `release/feeds/beta/release.json` and records `published`, post-verification
+  `passed`, and feed promotion `true`;
+- successful public stable `P` additionally changes exactly
+  `release/feeds/stable/release.json` under the separately accepted stable
+  identity strategy; and
+- public post-verification-failure `P` changes only the two evidence files,
+  records `published / failed / feed false`, preserves the failed tag and assets,
+  and may be superseded by an immediate successor.
+
+`P` is validated by full SHA through a create-only, SHA-bound
+`attest/v*-post-<P>` transport ref while both permanent branches remain at `E`.
+Exact-old-object leases then atomically fast-forward both to `P` and consume the
+transport. It is not a fourth product line, and its moving name is never the
+promotion input.
+`dev` cannot begin the next identity until both permanent 2.x refs name verified
+`P`.
+
+Qualification, promotion, publication policy/state, post-verification, and
+supersession remain separate facts. Release candidates use the beta channel and
+public-prerelease policy. C3 2.x publication uses channel `release.json`; no 2.x
+`VERSION` files are introduced.
+
+The RC/stable byte-identity strategy is intentionally outside this decision and
+remains unresolved. It must be accepted before the first release candidate. No
+claim that stable reuses RC bytes or that a metadata-only rebuild is adequate is
+valid until then.
 
 ## Consequences
 
 - Milestone names follow evidence, not elapsed time or planned scope.
-- Alpha source and tags are public; only distribution remains internal/unpublished.
-- `dev` cannot advance to the next identity until the current checkpoint is
-  qualified, promoted, and tagged.
-- Release evidence becomes a mechanically validated architectural input.
-- A missing licence, artifact, manual decision, compatibility oracle, or required
-  runtime environment stops promotion without blocking unrelated evidence work.
+- Alpha source and tags are public; only distribution remains intentionally
+  unpublished.
+- `master` advances through two mechanically verified exact SHAs, `E` then `P`.
+- Exact `P` receives durable pre-push workflow evidence without advancing a
+  permanent branch prematurely; its temporary attestation ref is disposable.
+- Release evidence and allowed diffs become mechanically validated architectural
+  inputs.
+- Replacing an annotated tag object is detected even when it still peels to the
+  same commit; repository immutable-tag rules remain the race-prevention boundary.
+- Published beta/stable feed metadata has one owner: successful public `P`.
+- A missing licence, artifact, manual decision, compatibility oracle, required
+  runtime environment, or stable identity decision stops promotion without
+  blocking unrelated evidence work.
