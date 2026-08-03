@@ -274,12 +274,7 @@ Public Class frmTapes
         Next
         If changed Then
             tapeCount = tapes.Rows.Count
-            changes = True
-            Dim mainWindow As frmMain = TryCast(Owner, frmMain)
-            If mainWindow IsNot Nothing Then
-                mainWindow.Text = fileName & "* - C3"
-                mainWindow.loadData()
-            End If
+            CompleteCatalogueMutation(Me)
         End If
         If failures.Count > 0 Then
             MsgBox(String.Join(vbNewLine, failures.ToArray()), MsgBoxStyle.Exclamation, "Some Tapes Were Not Deleted")

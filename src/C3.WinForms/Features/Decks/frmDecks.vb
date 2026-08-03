@@ -170,9 +170,7 @@ Public Class frmDecks
 
         If changed Then
             deckCount = decks.Rows.Count
-            changes = True
-            frmMain.Text = fileName & "* - C3"
-            frmMain.loadData()
+            CompleteCatalogueMutation(Me)
         End If
         If failures.Count > 0 Then
             MsgBox(String.Join(vbNewLine, failures.ToArray()), MsgBoxStyle.Exclamation, "Some Decks Were Not Deleted")

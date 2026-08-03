@@ -2,6 +2,17 @@
 
 Public Class frmConsole
 
+    Private _allowClose As Boolean
+
+    Public Sub AppendEntry(message As String)
+        lstConsole.Items.Add(message)
+    End Sub
+
+    Public Sub ClosePermanently()
+        _allowClose = True
+        Close()
+    End Sub
+
     ''Set up command history
     'Dim history As String()
     'Dim counter As Integer = -1
@@ -113,7 +124,10 @@ Public Class frmConsole
 
                     If arguments.Length = 1 Then
 
-                        frmMain.closeApplication() 'Close safely.
+                        Dim mainWindow As frmMain = FindMainWindow(Me)
+                        If mainWindow IsNot Nothing Then
+                            mainWindow.closeApplication()
+                        End If
 
                     Else
 
@@ -213,7 +227,9 @@ Public Class frmConsole
     End Sub
 
     Private Sub frmConsole_Close(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
-        'Hide the console instead of closing down the form
+        If _allowClose Then
+            Return
+        End If
 
         Me.Hide()
         e.Cancel = True

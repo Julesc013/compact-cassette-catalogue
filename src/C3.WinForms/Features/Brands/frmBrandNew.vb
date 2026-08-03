@@ -9,15 +9,13 @@ Public Class frmBrandNew
         End If
 
         brandCount = brands.Rows.Count
-        changes = True
-        frmMain.Text = fileName & "* - C3"
+        CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added brand " & result.Brand.Name & " successfully."
         If My.Settings.showMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Brand Added")
         End If
         consoleAdd(message)
-        frmMain.loadData()
         DialogResult = DialogResult.OK
         Close()
     End Sub

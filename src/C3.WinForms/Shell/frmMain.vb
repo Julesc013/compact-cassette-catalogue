@@ -10,6 +10,7 @@ Public Class frmMain
 
     'Declare variables
     Private _allowClose As Boolean
+    Private _consoleWindow As frmConsole
     Dim updatesMask As Boolean = True
     'Initialise tape index to last tape
     Dim thisTapeIndex As Integer = tapeCount - 1
@@ -45,9 +46,9 @@ Public Class frmMain
         datRecordedB.MaxDate = Date.Today
         numYear.Maximum = Date.Today.Year
 
-        ' Load console.
-        frmConsole.Show()
-        frmConsole.Hide()
+        _consoleWindow = New frmConsole()
+        _consoleWindow.Show(Me)
+        _consoleWindow.Hide()
 
         ' Load data (decks, brands and models).
         loadData()
@@ -1143,7 +1144,9 @@ Public Class frmMain
 
         'MsgBox("Compact Cassette Catalogue (C3)" & vbNewLine & "© " & COPYRIGHTAUTHOR & ", " & COPYRIGHTYEAR & vbNewLine & vbNewLine & "Program Version: " & VERSIONSTAGE & " " & VERSION & vbNewLine & "Catalogue Version: " & VERSIONFILE & vbNewLine & VERSIONDATE.ToLongDateString & ", " & VERSIONDATE.ToLongTimeString, MsgBoxStyle.Question, "About C3")
 
-        frmAbout.Show()
+        Using window As New frmAbout()
+            window.ShowDialog(Me)
+        End Using
 
     End Sub
 
@@ -1168,7 +1171,8 @@ Public Class frmMain
     End Sub
 
     Private Sub ViewStatisticsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewStatisticsToolStripMenuItem.Click
-        frmStatistics.Show() 'temp
+        Dim window As New frmStatistics()
+        window.Show(Me)
     End Sub
 
 
@@ -1295,7 +1299,8 @@ Public Class frmMain
     End Sub
 
     Private Sub BtnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
-        frmFindResults.Show() ''temp
+        Dim window As New frmFindResults()
+        window.Show(Me)
     End Sub
 
     Private Sub NewDeckToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDeckToolStripMenuItem.Click
@@ -1390,6 +1395,11 @@ Public Class frmMain
             _allowClose = True
             Close()
         End If
+    End Sub
+
+    Public Sub RefreshAfterCatalogueMutation()
+        Me.Text = catalogueSession.DisplayName & "* - C3"
+        loadData()
     End Sub
 
     Private Function CanCloseApplication() As Boolean
@@ -1529,9 +1539,18 @@ Public Class frmMain
     End Sub
 
     Private Sub ShowConsoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowConsoleToolStripMenuItem.Click
+        If _consoleWindow Is Nothing OrElse _consoleWindow.IsDisposed Then
+            _consoleWindow = New frmConsole()
+        End If
+        _consoleWindow.Show(Me)
+        _consoleWindow.BringToFront()
 
-        frmConsole.Show()
+    End Sub
 
+    Private Sub frmMain_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        If _consoleWindow IsNot Nothing AndAlso Not _consoleWindow.IsDisposed Then
+            _consoleWindow.ClosePermanently()
+        End If
     End Sub
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
@@ -1771,8 +1790,8 @@ Public Class frmMain
             outputFile.WriteLine("Compact Cassette Catalogue (v" & CStr(VERSION) & ") Console Output at " & outputTime.ToString)
             outputFile.WriteLine("--------------------------------")
 
-            'Write each line in the current console window.
-            For Each line As String In frmConsole.lstConsole.Items
+            'Write the bounded diagnostic log, independently of console visibility.
+            For Each line As String In BufferedLogger.Tail()
                 outputFile.WriteLine(line)
             Next
 
@@ -1898,7 +1917,9 @@ Public Class frmMain
 
     Private Sub PreferencesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreferencesToolStripMenuItem.Click
 
-        frmSettings.Show()
+        Using window As New frmSettings()
+            window.ShowDialog(Me)
+        End Using
 
     End Sub
 

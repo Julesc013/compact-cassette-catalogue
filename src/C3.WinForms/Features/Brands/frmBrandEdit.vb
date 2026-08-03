@@ -26,15 +26,13 @@ Public Class frmBrandEdit
             Return
         End If
 
-        changes = True
-        frmMain.Text = fileName & "* - C3"
+        CompleteCatalogueMutation(Me)
 
         Dim message As String = "Updated brand " & result.Brand.Name & " successfully."
         If My.Settings.showMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Brand Updated")
         End If
         consoleAdd(message)
-        frmMain.loadData()
         DialogResult = DialogResult.OK
         Close()
     End Sub

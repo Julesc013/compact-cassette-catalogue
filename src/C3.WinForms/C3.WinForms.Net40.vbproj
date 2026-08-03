@@ -236,6 +236,7 @@
     </Compile>
     <Compile Include="Runtime\RuntimeInfo.vb" />
     <Compile Include="State\LegacyGlobalState.vb" />
+    <Compile Include="State\CatalogueUiCoordinator.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Features\About\frmAbout.resx">

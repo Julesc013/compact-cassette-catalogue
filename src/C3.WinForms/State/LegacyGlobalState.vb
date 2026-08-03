@@ -140,7 +140,13 @@ Module varGlobals
     Sub consoleAdd(message As String)
         BufferedLogger.Information(message)
         Dim stamp As String = "[" & consoleStamp(DateTime.Now) & "]"
-        frmConsole.lstConsole.Items.Add(stamp & " " & message)
+        For Each window As Form In Application.OpenForms
+            Dim consoleWindow As frmConsole = TryCast(window, frmConsole)
+            If consoleWindow IsNot Nothing Then
+                consoleWindow.AppendEntry(stamp & " " & message)
+                Exit For
+            End If
+        Next
     End Sub
 
     Function consoleStamp(dateTime As DateTime) As String

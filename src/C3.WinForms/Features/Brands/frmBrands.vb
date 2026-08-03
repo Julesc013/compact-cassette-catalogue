@@ -49,10 +49,11 @@ Public Class frmBrands
         End If
 
         Dim failures As New List(Of String)()
+        Dim changed As Boolean = False
         For Each code As String In _selectedCodes
             Dim result As BrandOperationResult = brandService.Delete(code)
             If result.IsSuccess Then
-                changes = True
+                changed = True
                 consoleAdd("Deleted brand " & code & " successfully.")
             Else
                 failures.Add(code & ": " & result.Message)
@@ -60,9 +61,8 @@ Public Class frmBrands
         Next
 
         brandCount = brands.Rows.Count
-        If changes Then
-            frmMain.Text = fileName & "* - C3"
-            frmMain.loadData()
+        If changed Then
+            CompleteCatalogueMutation(Me)
         End If
         If failures.Count > 0 Then
             MsgBox(String.Join(vbNewLine, failures.ToArray()), MsgBoxStyle.Exclamation, "Some Brands Were Not Deleted")

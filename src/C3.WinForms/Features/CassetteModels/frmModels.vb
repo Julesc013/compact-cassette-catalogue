@@ -138,9 +138,7 @@ Public Class frmModels
 
         If changed Then
             modelCount = models.Rows.Count
-            changes = True
-            frmMain.Text = fileName & "* - C3"
-            frmMain.loadData()
+            CompleteCatalogueMutation(Me)
         End If
         If failures.Count > 0 Then
             MsgBox(

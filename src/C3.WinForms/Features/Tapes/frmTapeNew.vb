@@ -83,9 +83,7 @@ Public Class frmTapeNew
 
         tapeCount = tapes.Rows.Count
         modelCount = models.Rows.Count
-        changes = True
-        frmMain.Text = fileName & "* - C3"
-        frmMain.loadData()
+        CompleteCatalogueMutation(Me)
         DialogResult = DialogResult.OK
         Close()
     End Sub
