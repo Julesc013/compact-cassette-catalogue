@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "product": "C3",
+  "lanes": [
+    {
+      "id": "win-x86-net40",
+      "project": "Compact Cassette Catalogue/Compact Cassette Catalogue.vbproj",
+      "configuration": "Release",
+      "platform": "x86",
+      "targetFramework": "v4.0",
+      "runtimeClaim": "Windows XP SP3 or newer",
+      "distribution": "portable"
+    },
+    {
+      "id": "win-x64-net40-transition",
+      "project": "Compact Cassette Catalogue/Compact Cassette Catalogue.vbproj",
+      "configuration": "Release",
+      "platform": "x64",
+      "targetFramework": "v4.0",
+      "runtimeClaim": "64-bit Windows; transitional lane pending net48 split",
+      "distribution": "development-only"
+    }
+  ]
+}
+
