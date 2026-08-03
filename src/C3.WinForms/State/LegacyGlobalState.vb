@@ -61,6 +61,7 @@ Module varGlobals
     Public ReadOnly cassetteModelService As New CassetteModelService(
         New LegacyCassetteModelRepository(Function() catalogue))
     Public ReadOnly deckService As New DeckService(New LegacyDeckRepository(Function() catalogue))
+    Public ReadOnly tapeService As New TapeService(New LegacyTapeRepository(Function() catalogue))
 
     Public deckCount As Integer
     Public brandCount As Integer

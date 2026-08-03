@@ -570,19 +570,12 @@ Public Class frmMain
             Dim identifierShort As String = CStr(tape("IdentifierShort"))
 
 
-            'Get index for updating model-specific counter when tape deleted
-            Dim modelCode As String = CStr(tape("Model"))
-            Dim modelRowReal As DataRow = models.Rows.Find(modelCode)
-            Dim modelIndex As Integer = models.Rows.IndexOf(modelRowReal)
-
-            'Remove the record for this tape
-            tapes.Rows.Remove(tape)
-
-            'Update tape and model counters
-            tapeCount -= 1
-            counters.Rows(3)("Number") = tapeCount
-            Dim number As Integer = CInt(models.Rows(modelIndex)("Number"))
-            models.Rows(modelIndex)("Number") = number - 1
+            Dim deletion As TapeOperationResult = tapeService.Delete(identifierShort)
+            If Not deletion.IsSuccess Then
+                MsgBox(deletion.Message, MsgBoxStyle.Exclamation, "Tape Not Deleted")
+                Return
+            End If
+            tapeCount = tapes.Rows.Count
 
             'Reset change detection variables
             updates = False
@@ -1121,7 +1114,8 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchTapesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchTapesToolStripMenuItem.Click
-        frmTapes.Show() 'temp
+        Dim window As New frmTapes()
+        window.Show(Me)
     End Sub
 
     Private Sub SearchModelsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchModelsToolStripMenuItem.Click
@@ -1346,7 +1340,9 @@ Public Class frmMain
         'Check that there is at least 1 model (and 1 deck for recording)
 
         If modelCount >= 1 Then
-            frmTapeNew.Show() 'temp
+            Using editor As New frmTapeNew()
+                editor.ShowDialog(Me)
+            End Using
 
         Else
             MsgBox("Add at least one model first.", MsgBoxStyle.Exclamation, "No Models")
@@ -1426,6 +1422,15 @@ Public Class frmMain
 
         End If
 
+    End Sub
+
+    Public Sub ScrollToTape(shortIdentifier As String)
+        Dim tape As DataRow = tapes.Rows.Find(shortIdentifier)
+        If tape Is Nothing Then
+            MsgBox("The selected tape no longer exists.", MsgBoxStyle.Exclamation, "Tape Not Found")
+            Return
+        End If
+        scrollTo(tapes.Rows.IndexOf(tape), True)
     End Sub
 
     Public Sub scrollTo(change As Integer, jump As Boolean)

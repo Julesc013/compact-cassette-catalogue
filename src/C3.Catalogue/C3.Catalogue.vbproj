@@ -64,6 +64,12 @@
     <Compile Include="Decks\DeckOperationResult.vb" />
     <Compile Include="Decks\DeckService.vb" />
     <Compile Include="Decks\IDeckRepository.vb" />
+    <Compile Include="Tapes\ITapeRepository.vb" />
+    <Compile Include="Tapes\Tape.vb" />
+    <Compile Include="Tapes\TapeDraft.vb" />
+    <Compile Include="Tapes\TapeOperationResult.vb" />
+    <Compile Include="Tapes\TapeService.vb" />
+    <Compile Include="Tapes\TapeSide.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

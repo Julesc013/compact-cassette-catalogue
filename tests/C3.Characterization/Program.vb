@@ -22,6 +22,7 @@ Module Program
         RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
         RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)
+        RunTest("tape service creates batches without identifier reuse", AddressOf TapeServiceOwnsRules)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -362,6 +363,70 @@ Module Program
             False,
             notes)
     End Function
+
+    Private Sub TapeServiceOwnsRules()
+        Dim document As DataSet = CreateFixtureSchema()
+        Dim brandService As New BrandService(New LegacyBrandRepository(Function() document))
+        AssertEqual(
+            True,
+            brandService.Create(New BrandDraft("Maxell", "MX", String.Empty), DateTime.Now).IsSuccess,
+            "tape test brand")
+        Dim modelService As New CassetteModelService(
+            New LegacyCassetteModelRepository(Function() document))
+        AssertEqual(
+            True,
+            modelService.Create(
+                New CassetteModelDraft("MX", 2, "XL II", "XL", String.Empty, String.Empty),
+                DateTime.Now).IsSuccess,
+            "tape test model")
+
+        Dim service As New TapeService(New LegacyTapeRepository(Function() document))
+        Dim sideA As New TapeSide(
+            True,
+            "Compilation",
+            New DateTime(2026, 8, 1),
+            String.Empty,
+            "Line",
+            0,
+            "Dolby B",
+            False,
+            False,
+            False,
+            "1 7/8",
+            2,
+            0,
+            "70us",
+            5D,
+            0D,
+            "Music",
+            "Various",
+            "Test")
+        Dim draft As New TapeDraft(
+            "MX2XL",
+            1990,
+            90D,
+            "Europe",
+            7,
+            False,
+            sideA,
+            TapeSide.Empty(),
+            "Batch")
+        Dim created As TapeOperationResult = service.CreateMany(draft, 2, New DateTime(2026, 8, 4))
+        AssertEqual(True, created.IsSuccess, "tape batch create")
+        AssertEqual("MX2XL9090000", created.Tapes(0).Identifier, "full tape identifier")
+        AssertEqual("MX2XL000", created.Tapes(0).ShortIdentifier, "first short identifier")
+        AssertEqual("MX2XL001", created.Tapes(1).ShortIdentifier, "second short identifier")
+        AssertEqual(1, created.Tapes(1).Number, "per-tape sequence number")
+        AssertEqual(2, CInt(document.Tables("Counters").Rows.Find("Tapes")("Number")), "tape counter")
+        AssertEqual(2, modelService.Find("MX2XL").TapeCount, "model tape count")
+
+        AssertEqual(True, service.Delete("MX2XL000").IsSuccess, "tape delete")
+        Dim afterDelete As TapeOperationResult = service.CreateMany(draft, 1, DateTime.Now)
+        AssertEqual(True, afterDelete.IsSuccess, "tape create after gap")
+        AssertEqual("MX2XL002", afterDelete.Tapes(0).ShortIdentifier, "identifier is not reused")
+        AssertEqual(2, CInt(document.Tables("Counters").Rows.Find("Tapes")("Number")), "stable tape count")
+        AssertEqual(2, modelService.Find("MX2XL").TapeCount, "stable model tape count")
+    End Sub
 
     Private Sub ValidateAgainstSchema(xmlPath As String)
         Dim validationMessages As New List(Of String)()
