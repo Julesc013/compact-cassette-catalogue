@@ -4,7 +4,7 @@
 
 See [changes](CHANGELOG.md "C3 Changelog"), [planned features](TODO.md "C3 To-Do List"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
-![Screenshot of C3 in use.](https://github.com/Julesc013/compact-cassette-catalogue/blob/master/Resources/demonstration-screenshot.png)
+![Screenshot of C3 in use.](assets/screenshots/demonstration-screenshot.png)
 
 ## What is it?
 

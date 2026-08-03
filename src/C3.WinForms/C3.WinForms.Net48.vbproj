@@ -16,7 +16,7 @@
     <TargetFrameworkProfile />
     <AppConfig>Configuration\Net48\App.config</AppConfig>
     <ApplicationManifest>Configuration\Net48\app.manifest</ApplicationManifest>
-    <ApplicationIcon>icon-cassette.ico</ApplicationIcon>
+    <ApplicationIcon>..\..\assets\branding\cassette-icon.ico</ApplicationIcon>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <OptionExplicit>On</OptionExplicit>
@@ -111,9 +111,15 @@
     <None Include="My Project\Application.myapp" />
     <None Include="My Project\Settings.settings" />
     <None Include="My Project\DataSources\**\*" />
-    <None Include="Resources\cassette-icon.png" />
-    <None Include="Resources\banner-wide.png" />
-    <Content Include="icon-cassette.ico" />
+    <None Include="..\..\assets\branding\cassette-icon.png">
+      <Link>Resources\cassette-icon.png</Link>
+    </None>
+    <None Include="..\..\assets\branding\banner-wide.png">
+      <Link>Resources\banner-wide.png</Link>
+    </None>
+    <Content Include="..\..\assets\branding\cassette-icon.ico">
+      <Link>icon-cassette.ico</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

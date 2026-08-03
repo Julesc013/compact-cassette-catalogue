@@ -79,7 +79,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon-cassette.ico</ApplicationIcon>
+    <ApplicationIcon>..\..\assets\branding\cassette-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -321,9 +321,15 @@
     <None Include="Configuration\Net40\app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon-cassette.ico" />
-    <None Include="Resources\cassette-icon.png" />
-    <None Include="Resources\banner-wide.png" />
+    <Content Include="..\..\assets\branding\cassette-icon.ico">
+      <Link>icon-cassette.ico</Link>
+    </Content>
+    <None Include="..\..\assets\branding\cassette-icon.png">
+      <Link>Resources\cassette-icon.png</Link>
+    </None>
+    <None Include="..\..\assets\branding\banner-wide.png">
+      <Link>Resources\banner-wide.png</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.vbproj">
