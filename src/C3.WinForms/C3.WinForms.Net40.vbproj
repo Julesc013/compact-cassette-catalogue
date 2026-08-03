@@ -111,7 +111,6 @@
     <Import Include="C3.Catalogue.Decks" />
     <Import Include="C3.Catalogue.Tapes" />
     <Import Include="C3.Infrastructure.Diagnostics" />
-    <Import Include="C3.Infrastructure.Configuration" />
     <Import Include="C3.Infrastructure.Preferences" />
     <Import Include="C3.Infrastructure.Updates" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
@@ -235,16 +234,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="My Project\Settings.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <Compile Include="Runtime\RuntimeInfo.vb" />
     <Compile Include="State\LegacyGlobalState.vb" />
     <Compile Include="State\CatalogueUiCoordinator.vb" />
     <Compile Include="Configuration\UserPreferencesFactory.vb" />
-    <Compile Include="Configuration\MySettingsStore.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Features\About\frmAbout.resx">
@@ -311,7 +304,6 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\DataSources\Compact_Cassette_Catalogue.My.MyApplication.datasource" />
-    <None Include="My Project\DataSources\Compact_Cassette_Catalogue.My.MySettings.datasource" />
     <None Include="My Project\DataSources\frmBrandNew.datasource" />
     <None Include="My Project\DataSources\frmConsole.datasource" />
     <None Include="My Project\DataSources\frmDeckNew.datasource" />
@@ -323,11 +315,6 @@
     <None Include="My Project\DataSources\frmStatistics.datasource" />
     <None Include="My Project\DataSources\frmTapeNew.datasource" />
     <None Include="My Project\DataSources\frmTapes.datasource" />
-    <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <CustomToolNamespace>My</CustomToolNamespace>
-      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
     <None Include="Configuration\Net40\App.config" />
     <None Include="Configuration\Net40\app.manifest" />
   </ItemGroup>

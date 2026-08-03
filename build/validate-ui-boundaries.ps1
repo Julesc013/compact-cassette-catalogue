@@ -8,11 +8,18 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $winFormsRoot = Join-Path $repositoryRoot 'src\C3.WinForms'
 $legacyState = [IO.Path]::GetFullPath(
     (Join-Path $winFormsRoot 'State\LegacyGlobalState.vb'))
-$settingsAdapter = [IO.Path]::GetFullPath(
-    (Join-Path $winFormsRoot 'Configuration\MySettingsStore.vb'))
-$generatedSettings = [IO.Path]::GetFullPath(
-    (Join-Path $winFormsRoot 'My Project\Settings.Designer.vb'))
 $failures = New-Object Collections.Generic.List[String]
+
+$retiredSettingsPaths = @(
+    (Join-Path $winFormsRoot 'Configuration\MySettingsStore.vb'),
+    (Join-Path $winFormsRoot 'My Project\Settings.Designer.vb'),
+    (Join-Path $winFormsRoot 'My Project\Settings.settings')
+)
+foreach ($retiredPath in $retiredSettingsPaths) {
+    if (Test-Path -LiteralPath $retiredPath) {
+        $failures.Add("Retired My.Settings artifact '$retiredPath' has been reintroduced.")
+    }
+}
 
 function Test-SamePath {
     param([string]$Left, [string]$Right)
@@ -36,11 +43,19 @@ foreach ($source in Get-ChildItem -LiteralPath $winFormsRoot -Recurse -File -Fil
             "WinForms source '$($source.FullName)' directly accesses the legacy row/table model.")
     }
 
-    if ($content -match '\bMy\.Settings\b' -and
-            -not (Test-SamePath $source.FullName $settingsAdapter) -and
-            -not (Test-SamePath $source.FullName $generatedSettings)) {
+    if ($content -match '\bMy\.Settings\b') {
         $failures.Add(
-            "WinForms source '$($source.FullName)' bypasses the settings adapter.")
+            "WinForms source '$($source.FullName)' uses the retired My.Settings provider.")
+    }
+}
+
+foreach ($configurationPath in @(
+        (Join-Path $winFormsRoot 'Configuration\Net40\App.config'),
+        (Join-Path $winFormsRoot 'Configuration\Net48\App.config'))) {
+    $configuration = Get-Content -LiteralPath $configurationPath -Raw
+    if ($configuration -match '<userSettings\b|My\.MySettings') {
+        $failures.Add(
+            "Application configuration '$configurationPath' reintroduces My.Settings ownership.")
     }
 }
 
@@ -48,4 +63,4 @@ if ($failures.Count -gt 0) {
     throw ("WinForms boundary validation failed:`n - " + ($failures -join "`n - "))
 }
 
-Write-Host 'WinForms boundaries verified: typed services, one DataSet composition seam, one settings adapter.'
+Write-Host 'WinForms boundaries verified: typed services, one DataSet composition seam, C3-owned preferences.'
