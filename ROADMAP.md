@@ -10,14 +10,14 @@ remain verifiable. Concrete defects belong in GitHub Issues.
   both build lanes.
 - Record Windows XP SP3 x86 and Windows 7 SP1 x64 runtime evidence on the exact
   release candidate, or clearly mark any unverified claim.
-- Finish replacing the main editor's remaining read-only `DataRow` projection
-  with typed tape views.
 - Manually verify settings persistence across restart in both build lanes.
 - Exercise invalid, externally modified, and interrupted catalogue saves through
   the UI as well as the store-level tests.
 - Review accessibility, keyboard navigation, scaling, clipping, and contrast on
   representative 100%, 125%, 150%, and 200% display settings.
 - Complete user documentation and downloadable-hash verification.
+- Select an explicit repository license before advertising third-party reuse;
+  licensing is an owner decision and is not inferred by the build overhaul.
 
 ## 1.3 usability and interoperability
 

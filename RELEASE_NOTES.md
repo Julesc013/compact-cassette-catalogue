@@ -14,19 +14,25 @@ feature behavior through two Windows build lanes.
   backup recovery, and external-edit conflict detection.
 - Added bounded diagnostic context and unhandled-exception report generation.
 - Centralized brand, cassette-model, deck, and tape rules in typed services; the
-  legacy `DataSet` and XML columns now live behind infrastructure adapters.
+  legacy `DataSet` and XML columns now live behind infrastructure adapters and
+  a single application composition seam.
 - Prevented deletion of referenced brands, models, and decks.
+- Preserved historical model-to-brand references stored as display names and
+  migrated them safely to stable brand codes when edited.
 - Fixed incorrect deck counters, the model editor reading notes from the wrong
-  table, Save As cancellation, duplicate Open dialogs, and recursive shutdown.
+  table, Save As cancellation, duplicate Open dialogs, recursive shutdown, and
+  closing with unapplied tape-editor changes.
 - Made bulk tape creation atomic, gave every created tape its correct sequence
   number, and stopped deleted sequence identifiers from being reused.
-- Added format specifications, security/culture fixtures, 15 executable
-  characterization tests, dependency checks, shared-project parity checks, PE
-  architecture verification, and deterministic packaging.
+- Added format specifications, security/culture fixtures, 16 executable
+  characterization scenarios, dependency and UI-boundary checks, shared-project
+  parity checks, PE architecture verification, and deterministic packaging.
 - Reorganized sources by feature ownership and removed hidden default-form
   coordination from feature workflows.
 - Centralized message, directory, and update-check preferences; legacy or unknown
   update policy values now normalize safely to `never`.
+- Made console export select a valid catalogue/default/Documents directory and
+  report write failures without terminating the application.
 
 ## Downloads
 

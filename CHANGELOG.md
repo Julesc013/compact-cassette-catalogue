@@ -32,14 +32,21 @@
   counters from actual rows, and prevented deleted identifiers being reused.
 - Removed public `DataRow` hand-offs between feature forms and replaced default
   form instances with explicit form ownership and a single UI mutation seam.
+- Removed all remaining form-level row/table access; typed services now own tape
+  rendering, selection, counts, and mutations, while metadata writes stay in the
+  versioned XML adapter.
+- Preserved legacy cassette-model brand references stored as display names,
+  including deletion protection and migration to stable codes during rename.
 - Centralized application preferences behind one `My.Settings` adapter and moved
   update-check parsing, serialization, and scheduling into a tested policy.
 - Fixed Save As cancellation continuing into save, a duplicate Open dialog,
   deck deletion writing the tape count, model notes loading from the wrong table,
-  duplicate deck combo entries, and recursive application shutdown.
-- Added 15 executable characterization tests, dependency-direction enforcement,
-  shared-project parity validation, hosted repository checks, and an authoritative
-  Visual Studio 2019 self-hosted compatibility workflow.
+  duplicate deck combo entries, recursive application shutdown, unapplied tape
+  edits being lost on close, and console-export path failures terminating C3.
+- Added 16 executable characterization scenarios, dependency-direction and
+  WinForms-boundary enforcement, shared-project parity validation, hosted
+  repository checks, and an authoritative Visual Studio 2019 self-hosted
+  compatibility workflow.
 
 
 
