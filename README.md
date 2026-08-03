@@ -94,9 +94,10 @@ src/C3.WinForms        shared native UI and two compatibility-lane projects
 src/Shared             generated identity source linked into managed assemblies
 tests                  executable compatibility characterization
 fixtures               privacy-safe valid, invalid, culture, and security examples
-spec                    catalogue and preference contracts plus design drafts
+spec                    catalogue, preference, and release-catalogue contracts
 build                   build, verification, and deterministic packaging automation
-release/feeds           independently promoted legacy/preview update metadata
+release/catalog.v1.json canonical checkpoint lifecycle and artifact index
+release/feeds           legacy compatibility and published-channel metadata
 release/validation      immutable evidence for exact release candidates
 docs                    product, architecture, design, development, and user contracts
 assets                  canonical branding, design, screenshot, and reference sources
@@ -139,14 +140,28 @@ See the [toolchain policy](docs/development/toolchain.md),
 - `maintenance/1.x`: bounded C3 1.x maintenance and compatibility-feed fixes.
 - `master`: append-only ledger of the latest qualified product checkpoint.
 - `dev`: active, unqualified work toward the next checkpoint.
-- `feature/*`, `fix/*`, and temporary `candidate/*`: short-lived branches targeting
-  the appropriate permanent line.
+- `feature/*` and `fix/*`: short-lived contribution branches targeting the
+  appropriate permanent line.
+- `attest/v*-candidate-<E>` and `attest/v*-post-<P>`: create-only, SHA-bound
+  transport refs consumed by the leased atomic `E`/`P` transactions after their
+  self-hosted gates pass.
 
 Every promoted alpha, beta, release candidate, and stable tag is reachable from
 `master`. Alpha checkpoints are tagged but intentionally unpublished. Beta tags
-require owner manual qualification before a public GitHub prerelease. Stable
-promotes unchanged qualified release-candidate payloads. Branch or tag presence
-never substitutes for publication status; see
+require owner manual qualification before a public GitHub prerelease. Release
+candidates use the beta channel and public-prerelease policy. The final stable
+byte-identity strategy remains an explicit decision gate that must be accepted
+before the first release candidate; no unchanged-byte claim is made yet.
+
+Each checkpoint freezes payload commit `C`, qualifies it in a direct,
+single-parent evidence child `E`, promotes and tags that exact `E`, then records
+observed results in a direct, single-parent child `P`. `master` advances only to
+the verified exact `E` and then the verified exact `P`; `dev` rejoins it only at
+verified `P`. A moving branch head is never a promotion input. Alpha `P` remains
+unpublished
+and changes only the catalogue and validation record. A successful public `P`
+also promotes exactly one matching beta or stable `release.json`. Branch or tag
+presence never substitutes for publication status; see
 [versioning and channels](docs/governance/versioning-and-channels.md).
 
 Applicable 1.x fixes flow forward into `dev`; 2.x-only changes never flow into

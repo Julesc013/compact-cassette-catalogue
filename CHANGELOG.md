@@ -21,6 +21,25 @@
   Boolean/string schemas. It preserves source bytes, records imported/not-found/
   invalid outcomes atomically, falls back only from invalid content, and keeps
   discovery/access/checkpoint failures retryable.
+- Replaced numeric-only 2.x update discovery with a bounded, closed-schema JSON
+  manifest. Unpublished manifests cannot advertise assets; published manifests
+  must identify the exact tagged release, checksum file, portable packages,
+  byte lengths, lowercase SHA-256 hashes, and canonical GitHub asset URLs.
+- Added complete SemVer precedence for alpha, beta, release-candidate, stable,
+  and build-metadata identities while keeping the three-line `VERSION` API
+  isolated to existing 1.x clients.
+- Added a machine-readable release catalogue and exact `C -> E(tag) -> P`
+  transaction gates for qualification, atomic promotion, immutable tags,
+  publication, post-download verification, feed promotion, and honest failure.
+- Split development, candidate, post-promotion, and tag verification into
+  distinct release-gate contexts so a lighter development run cannot satisfy a
+  checkpoint gate.
+- Pinned every third-party workflow action to a reviewed commit, disabled
+  checkout credential persistence, and required restricted GitHub environments
+  plus a private legacy-toolchain runner before self-hosted evidence is trusted.
+- Added trusted-master topology guards, create-only SHA-bound attestation refs,
+  exact-old-object leased atomic promotion, and raw annotated-tag identity checks
+  so target scripts, ref races, or same-commit tag replacement cannot self-attest.
 
 - Reorganized C3 as a four-project modular monolith: catalogue rules,
   infrastructure adapters, characterization tests, and shared WinForms sources.
@@ -34,6 +53,11 @@
   culture, and XML-security fixtures.
 - Added secure temporary-state loading, verified temporary-file saving, atomic
   replacement with backup, and external-edit conflict detection.
+- Rejected namespaced legacy catalogue rows/fields and nested scalar markup
+  instead of allowing `DataSet.ReadXml` to silently normalize nested content.
+- Added byte-exact persistence evidence for overwrite backups, external revision
+  conflicts, missing destinations, owned temporary-file cleanup, duplicate
+  keys/version rows, invalid structure, and culture-independent round trips.
 - Added typed catalogue session ownership for path, display name, revision,
   dirty state, and document lifecycle.
 - Added bounded diagnostics, action breadcrumbs, and unhandled-exception report

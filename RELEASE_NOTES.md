@@ -6,8 +6,12 @@ release, package, hash, or validation record has been relabelled.
 
 This alpha is currently a development candidate, not an advertised download.
 Its [validation record](release/validation/2.0.0-alpha.1.md) remains blocked until
-the refreshed automated, manual, settings-profile, and minimum-OS evidence is
-complete.
+the refreshed automated and critical local evidence, unpublished-update
+behavior, real settings-profile exercise, and repository-licence owner decision
+are complete, and until the restricted GitHub environments/private runner policy
+are owner-configured. Minimum-OS checks may remain explicitly pending for this
+intentionally unpublished alpha; they cannot support a public OS claim until
+they pass.
 
 ## Implemented foundation
 
@@ -16,8 +20,15 @@ complete.
 - Retains the legacy catalogue 1.1.0 writer; C3 product version 2.0 does not imply
   a native-v2 catalogue file.
 - Separates the root 1.x compatibility feed from 2.x development metadata so
-  existing users cannot be offered an unavailable preview. Unpublished
-  prerelease discovery remains an explicit Alpha 1 gate.
+  existing users cannot be offered an unavailable preview. The bounded 2.x JSON
+  reader rejects unpublished availability, unknown fields, invalid channel or
+  stage combinations, and release/package/checksum identity disagreements.
+- Compares complete SemVer release identity across alpha, beta, release
+  candidate, and stable stages and opens only the exact validated release URL.
+- Records checkpoint lifecycle and artifact identity in one machine-readable
+  catalogue, with exact-SHA `C -> E(tag) -> P` validation and distinct CI gates
+  for development, qualification, post-operation evidence, and tags. Finalized
+  checkpoints bind both the annotated tag object and its peeled commit.
 - Gives every shipped EXE and DLL consistent assembly, file, and informational
   identity and verifies it before packaging.
 - Uses one C3-owned preference profile shared by both builds and executable
@@ -26,7 +37,8 @@ complete.
   invalid native files, retries transient failures, and never overwrites a future
   preference schema.
 - Securely loads catalogue XML into temporary state and rejects DTD/external
-  entity input, malformed structure, unsupported versions, and oversized files.
+  entity input, malformed/namespaced/nested-scalar structure, unsupported
+  versions, and oversized files.
 - Saves through verified temporary output, external-edit detection, atomic
   replacement, and recoverable backup behavior.
 - Centralizes typed brand, model, deck, and tape rules outside forms while keeping
@@ -79,5 +91,5 @@ system capabilities and must not be generalized from a modern development host.
 Keep independent backups, preserve original 1.x catalogues, and use an explicit
 copy for preview testing. Alpha 1 continues to write legacy format 1.1.0, but the
 complete old-reader matrix and real historical settings-profile migration remain
-release gates. Report any cross-lane difference, data loss, silent normalization,
-or incorrect update-channel behavior as release blocking.
+programme qualification gates. Report any cross-lane difference, data loss,
+silent normalization, or incorrect update-channel behavior as release blocking.

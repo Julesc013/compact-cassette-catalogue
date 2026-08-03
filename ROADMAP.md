@@ -12,6 +12,8 @@ or issue tracker.
 - Publish the product vision, compatibility charter, language strategy, native-v2
   design gate, OEM+ contract, and integration boundaries.
 - Apply consistent binary identity and migrate supported 1.x preferences once.
+- Replace numeric-only update checks with a bounded publication-aware manifest.
+- Establish machine-checked C/E/P qualification, tagging, and promotion evidence.
 - Re-verify and repackage both portable lanes under the new identity.
 
 ## 2.0.0 Alpha 2 — compatibility laboratory
@@ -57,9 +59,12 @@ or issue tracker.
 ## 2.0.0 release candidate and stable
 
 - Freeze one candidate and make only release-blocking corrections.
+- Resolve and document the RC/stable identity strategy before the final RC; do
+  not claim byte-identical promotion while stage identity remains in payloads.
 - Reproduce packages and verify binary identities, hashes, side-by-side behavior,
   settings migration, and downloaded artifacts.
-- Promote unchanged, evidence-backed artifacts and their channel metadata.
+- Promote only the exact evidence-backed artifacts allowed by the accepted
+  identity strategy and qualify any rebuilt bytes again.
 - Publish an exact compatibility matrix and known limitations.
 
 ## 2.1 and later
