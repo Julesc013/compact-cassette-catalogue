@@ -108,6 +108,7 @@
     <Import Include="C3.Catalogue.Catalogues" />
     <Import Include="C3.Catalogue.Brands" />
     <Import Include="C3.Catalogue.CassetteModels" />
+    <Import Include="C3.Catalogue.Decks" />
     <Import Include="C3.Infrastructure.Diagnostics" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
   </ItemGroup>

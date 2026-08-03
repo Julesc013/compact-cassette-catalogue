@@ -59,6 +59,11 @@
     <Compile Include="CassetteModels\ICassetteModelRepository.vb" />
     <Compile Include="Catalogues\CatalogueRevision.vb" />
     <Compile Include="Catalogues\CatalogueSession.vb" />
+    <Compile Include="Decks\Deck.vb" />
+    <Compile Include="Decks\DeckDetails.vb" />
+    <Compile Include="Decks\DeckOperationResult.vb" />
+    <Compile Include="Decks\DeckService.vb" />
+    <Compile Include="Decks\IDeckRepository.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

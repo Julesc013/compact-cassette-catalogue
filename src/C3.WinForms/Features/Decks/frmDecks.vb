@@ -1,328 +1,198 @@
-﻿Public Class frmDecks
+Public Class frmDecks
 
-    Dim identifiers As New List(Of String)
-    Dim identifierCount As Integer = 0
+    Private ReadOnly _selectedNames As New List(Of String)()
 
     Private Sub FrmViewDecks_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        ' Intialise objects.
         cmbNR.SelectedIndex = 0
         cmbTypes.SelectedIndex = 0
-
-        ' Load list.
         loadList()
-
     End Sub
+
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         loadList()
     End Sub
 
     Public Sub loadList()
-        ' Load Data from the DataSet into the ListView.
+        Dim results As New List(Of Deck)()
+        Dim manufacturerFilter As String = txtManufacturer.Text
+        Dim minimumFrequency As Integer = CInt(numFrequencyMax.Value * 1000D)
+        Dim noiseReductionFilter As String = cmbNR.Text
+        Dim typeFilter As Integer = cmbTypes.SelectedIndex
 
-        Dim validRow As Boolean
-        ' Count the number of results.
-        Dim resultsCount As Integer = 0
-
-
-        ' Get filter values
-        Dim critManufacturer As String = txtManufacturer.Text
-        Dim critFrequencyMax As Integer = CInt(numFrequencyMax.Value * 1000)
-        Dim critNR As String = CStr(cmbNR.Text)
-        Dim critHX As Boolean = chkHX.Checked
-        Dim critMPX As Boolean = chkMPX.Checked
-        Dim critType As Integer = cmbTypes.SelectedIndex
-        Dim critCalibration As Boolean = chkCalibration.Checked
-
-        ' Clear the ListView control.
-        lstDecks.Items.Clear()
-
-        ' Display items in the ListView control.
-        For i As Integer = 0 To decks.Rows.Count - 1
-
-            ' Declare holder variables.
-            Dim manufacturer As String
-            Dim model As String
-            Dim year As Integer
-            Dim types As New List(Of Integer)
-            Dim heads As Integer
-            Dim speeds As New List(Of String)
-            Dim NRs As New List(Of String)
-            Dim HX As Boolean
-            Dim MPX As Boolean
-            Dim stereo As Boolean
-            Dim wells As Integer
-            Dim dubbing As New List(Of String)
-            Dim reverse As Boolean
-            Dim search As Boolean
-            Dim calibration As Boolean
-            Dim azimuth As Boolean
-            Dim frequencyLow As Integer
-            Dim frequencyHigh As Integer
-            Dim signalRatio As Integer
-            Dim signalRatioNR As String
-            Dim wowFlutter As Decimal
-            Dim distortion As Decimal
-            Dim condition As Integer
-
-
-            Dim thisRow As DataRow = decks.Rows(i)
-
-            ' Initialise this row as a valid result given criteria.
-            validRow = True
-
-            ' Only rows that have Not been deleted.
-            If thisRow.RowState <> DataRowState.Deleted Then
-
-                ' Get data from row.
-                manufacturer = thisRow("Manufacturer").ToString
-                model = thisRow("Model").ToString
-                year = CInt(thisRow("Year"))
-
-                ' Types:
-                If CBool(thisRow("Type1")) = True Then
-                    types.Add(1)
-                End If
-                If CBool(thisRow("Type2")) = True Then
-                    types.Add(2)
-                End If
-                If CBool(thisRow("Type3")) = True Then
-                    types.Add(3)
-                End If
-                If CBool(thisRow("Type4")) = True Then
-                    types.Add(4)
-                End If
-
-                heads = CInt(thisRow("Heads"))
-
-                ' Speeds:
-                If CBool(thisRow("SpeedSlow")) = True Then
-                    speeds.Add("15/16")
-                End If
-                If CBool(thisRow("SpeedNorm")) = True Then
-                    speeds.Add("1 7/8")
-                End If
-                If CBool(thisRow("SpeedFast")) = True Then
-                    speeds.Add("3 3/4")
-                End If
-
-                ' NRs:
-                If CBool(thisRow("DolbyB")) = True Then
-                    NRs.Add("Dolby B")
-                End If
-                If CBool(thisRow("DolbyC")) = True Then
-                    NRs.Add("Dolby C")
-                End If
-                If CBool(thisRow("DolbyS")) = True Then
-                    NRs.Add("Dolby S")
-                End If
-                If CBool(thisRow("DBX1")) = True Then
-                    NRs.Add("DBX I")
-                End If
-                If CBool(thisRow("DBX2")) = True Then
-                    NRs.Add("DBX II")
-                End If
-
-                HX = CBool(thisRow("HX"))
-                MPX = CBool(thisRow("MPX"))
-                stereo = CBool(thisRow("Stereo"))
-                wells = CInt(thisRow("Wells"))
-
-                ' Dubbing:
-                If CBool(thisRow("DubbingSlow")) = True Then
-                    dubbing.Add("Slow")
-                End If
-                If CBool(thisRow("DubbingFast")) = True Then
-                    dubbing.Add("Fast")
-                End If
-
-                reverse = CBool(thisRow("Reverse"))
-                search = CBool(thisRow("ProgramSearch"))
-                calibration = CBool(thisRow("Calibration"))
-                azimuth = CBool(thisRow("Azimuth"))
-
-                frequencyLow = CInt(thisRow("FrequencyLow"))
-                frequencyHigh = CInt(thisRow("FrequencyHigh"))
-                signalRatio = CInt(thisRow("SignalRatio"))
-                signalRatioNR = CStr(thisRow("SignalRatioNR"))
-                wowFlutter = CDec(thisRow("WowFlutter"))
-                distortion = CDec(thisRow("Distortion"))
-
-                condition = CInt(thisRow("Condition"))
-
-
-                ' Filter using criteria.
-
-                If critManufacturer <> Nothing And Not manufacturer.ToLower.Contains(critManufacturer.ToLower) Then
-                    validRow = False
-                End If
-
-                If Not critFrequencyMax <= frequencyHigh Then
-                    validRow = False
-                End If
-
-                If cmbNR.SelectedIndex <> 0 And Not NRs.Contains(critNR) Then
-                    validRow = False
-                End If
-                If critHX = True And Not HX = critHX Then
-                    validRow = False
-                End If
-                If critMPX = True And Not MPX = critMPX Then
-                    validRow = False
-                End If
-
-                If cmbTypes.SelectedIndex <> 0 And Not types.Contains(critType) Then
-                    validRow = False
-                End If
-
-                If critCalibration = True And Not calibration = critCalibration Then
-                    validRow = False
-                End If
-
-                ' Only rows that fit the filter criteria!
-                If validRow = True Then
-
-                    ' Format list items for displaying.
-                    Dim dubbingList As String = String.Join(", ", dubbing.ToArray())
-                    If dubbingList = Nothing Then
-                        dubbingList = "None"
-                    End If
-
-                    Dim NRsList As String = String.Join(", ", NRs.ToArray())
-                    If NRsList = Nothing Then
-                        NRsList = "None"
-                    End If
-
-                    ' Define the list items.
-                    Dim lstViewItem As ListViewItem = New ListViewItem(manufacturer)
-                    lstViewItem.SubItems.Add(model)
-                    lstViewItem.SubItems.Add(year.ToString)
-                    lstViewItem.SubItems.Add(String.Join(", ", types.ToArray()))
-                    lstViewItem.SubItems.Add(heads.ToString)
-                    lstViewItem.SubItems.Add(String.Join(", ", speeds.ToArray()))
-                    lstViewItem.SubItems.Add(NRsList)
-                    lstViewItem.SubItems.Add(HX.ToString)
-                    lstViewItem.SubItems.Add(MPX.ToString)
-                    lstViewItem.SubItems.Add(stereo.ToString)
-                    lstViewItem.SubItems.Add(wells.ToString)
-                    lstViewItem.SubItems.Add(dubbingList)
-                    lstViewItem.SubItems.Add(reverse.ToString)
-                    lstViewItem.SubItems.Add(search.ToString)
-                    lstViewItem.SubItems.Add(calibration.ToString)
-                    lstViewItem.SubItems.Add(azimuth.ToString)
-                    lstViewItem.SubItems.Add(frequencyLow.ToString & "Hz to " & (frequencyHigh / 1000).ToString & "kHz")
-                    lstViewItem.SubItems.Add(signalRatio.ToString & "dB with " & signalRatioNR)
-                    lstViewItem.SubItems.Add(wowFlutter.ToString & "%")
-                    lstViewItem.SubItems.Add(distortion.ToString & "%")
-                    lstViewItem.SubItems.Add(getConditionWorded(condition))
-
-                    ' Add the list items to the ListView.
-                    lstDecks.Items.Add(lstViewItem)
-
-                    resultsCount += 1
-
-                End If
-
+        For Each value As Deck In deckService.GetAll()
+            Dim details As DeckDetails = value.Details
+            If Not ContainsText(details.Manufacturer, manufacturerFilter) Then
+                Continue For
             End If
-
+            If details.FrequencyHigh < minimumFrequency Then
+                Continue For
+            End If
+            If cmbNR.SelectedIndex > 0 AndAlso Not GetNoiseReductions(details).Contains(noiseReductionFilter) Then
+                Continue For
+            End If
+            If chkHX.Checked AndAlso Not details.Hx Then
+                Continue For
+            End If
+            If chkMPX.Checked AndAlso Not details.Mpx Then
+                Continue For
+            End If
+            If typeFilter > 0 AndAlso Not SupportedTypes(details).Contains(typeFilter) Then
+                Continue For
+            End If
+            If chkCalibration.Checked AndAlso Not details.Calibration Then
+                Continue For
+            End If
+            results.Add(value)
         Next
 
-        ' Display number of results.
-        txtResults.Text = CStr(resultsCount)
+        lstDecks.BeginUpdate()
+        Try
+            lstDecks.Items.Clear()
+            For Each value As Deck In results
+                Dim details As DeckDetails = value.Details
+                Dim types As List(Of Integer) = SupportedTypes(details)
+                Dim speeds As List(Of String) = SupportedSpeeds(details)
+                Dim noiseReductions As List(Of String) = GetNoiseReductions(details)
+                Dim dubbing As List(Of String) = DubbingSpeeds(details)
 
+                Dim item As New ListViewItem(details.Manufacturer)
+                item.Tag = value.Name
+                item.SubItems.Add(details.Model)
+                item.SubItems.Add(details.Year.ToString())
+                item.SubItems.Add(String.Join(", ", types.ToArray()))
+                item.SubItems.Add(details.Heads.ToString())
+                item.SubItems.Add(String.Join(", ", speeds.ToArray()))
+                item.SubItems.Add(FormatList(noiseReductions))
+                item.SubItems.Add(details.Hx.ToString())
+                item.SubItems.Add(details.Mpx.ToString())
+                item.SubItems.Add(details.Stereo.ToString())
+                item.SubItems.Add(details.Wells.ToString())
+                item.SubItems.Add(FormatList(dubbing))
+                item.SubItems.Add(details.Reverse.ToString())
+                item.SubItems.Add(details.ProgramSearch.ToString())
+                item.SubItems.Add(details.Calibration.ToString())
+                item.SubItems.Add(details.Azimuth.ToString())
+                item.SubItems.Add(
+                    details.FrequencyLow.ToString() & "Hz to " &
+                    (details.FrequencyHigh / 1000).ToString() & "kHz")
+                item.SubItems.Add(
+                    details.SignalRatio.ToString() & "dB with " &
+                    details.SignalRatioNoiseReduction)
+                item.SubItems.Add(details.WowFlutter.ToString() & "%")
+                item.SubItems.Add(details.Distortion.ToString() & "%")
+                item.SubItems.Add(getConditionWorded(details.Condition))
+                lstDecks.Items.Add(item)
+            Next
+        Finally
+            lstDecks.EndUpdate()
+        End Try
+
+        txtResults.Text = results.Count.ToString()
     End Sub
 
-    Private Sub lstDecks_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstDecks.SelectedIndexChanged
+    Private Shared Function ContainsText(value As String, filter As String) As Boolean
+        Return String.IsNullOrWhiteSpace(filter) OrElse
+            If(value, String.Empty).IndexOf(filter.Trim(), StringComparison.CurrentCultureIgnoreCase) >= 0
+    End Function
 
-        identifiers.Clear() ' Clear selected identifiers.
-        identifierCount = lstDecks.SelectedItems.Count ' Number of indetifiers selected.
+    Private Shared Function SupportedTypes(value As DeckDetails) As List(Of Integer)
+        Dim result As New List(Of Integer)()
+        If value.Type1 Then result.Add(1)
+        If value.Type2 Then result.Add(2)
+        If value.Type3 Then result.Add(3)
+        If value.Type4 Then result.Add(4)
+        Return result
+    End Function
 
-        If identifierCount >= 1 Then
+    Private Shared Function SupportedSpeeds(value As DeckDetails) As List(Of String)
+        Dim result As New List(Of String)()
+        If value.SpeedSlow Then result.Add("15/16")
+        If value.SpeedNormal Then result.Add("1 7/8")
+        If value.SpeedFast Then result.Add("3 3/4")
+        Return result
+    End Function
 
-            For i As Integer = 0 To identifierCount - 1
+    Private Shared Function GetNoiseReductions(value As DeckDetails) As List(Of String)
+        Dim result As New List(Of String)()
+        If value.DolbyB Then result.Add("Dolby B")
+        If value.DolbyC Then result.Add("Dolby C")
+        If value.DolbyS Then result.Add("Dolby S")
+        If value.Dbx1 Then result.Add("DBX I")
+        If value.Dbx2 Then result.Add("DBX II")
+        Return result
+    End Function
 
-                ' Add all of the selected identifiers to a list.
-                identifiers.Add(lstDecks.SelectedItems(i).SubItems(0).Text & " " & lstDecks.SelectedItems(i).SubItems(1).Text) ' Manufacturer & model = identifier.
+    Private Shared Function DubbingSpeeds(value As DeckDetails) As List(Of String)
+        Dim result As New List(Of String)()
+        If value.DubbingSlow Then result.Add("Slow")
+        If value.DubbingFast Then result.Add("Fast")
+        Return result
+    End Function
 
-            Next
-
-            ' Enable buttons.
-
-            btnDelete.Enabled = True
-            ' Only allow editing if only one tape is selected.
-            If identifierCount = 1 Then
-                btnEdit.Enabled = True
-            Else
-                btnEdit.Enabled = False
-            End If
-
-        Else
-
-            ' Do not add any identifiers to the list, leave it empty.
-
-            ' Disable buttons.
-            btnEdit.Enabled = False
-            btnDelete.Enabled = False
-
+    Private Shared Function FormatList(values As List(Of String)) As String
+        If values.Count = 0 Then
+            Return "None"
         End If
+        Return String.Join(", ", values.ToArray())
+    End Function
 
+    Private Sub lstDecks_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstDecks.SelectedIndexChanged
+        _selectedNames.Clear()
+        For Each item As ListViewItem In lstDecks.SelectedItems
+            _selectedNames.Add(CStr(item.Tag))
+        Next
+        btnDelete.Enabled = _selectedNames.Count > 0
+        btnEdit.Enabled = _selectedNames.Count = 1
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-
-        ' Delete every deck in the list.
-
-        ' Confirm with the user that they would like to delete their selection of decks.
-        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") decks?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
-
-        If result = vbYes Then
-
-            For Each identifier In identifiers
-
-                ' Get this deck's row in the data table.
-                Dim deckRow As DataRow = decks.Rows.Find(identifier)
-
-                ' Remove the this deck's record from the table.
-                decks.Rows.Remove(deckRow)
-
-                ' Update deck counter.
-                deckCount -= 1
-                counters.Rows(0)("Number") = tapeCount
-
-                ' Update change detection variable.
-                changes = True
-                'Update title bar
-                Me.Text = fileName & "* - C3"
-
-                'Show confirmation message
-                Dim message As String = "Deleted deck " & identifier & " successfully."
-                'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Deleted Deck(s)")
-                'End If
-                consoleAdd(message)
-
-            Next
-
-            loadList() ' Refresh the list data.
-
-            lstDecks.SelectedItems.Clear() ' Clear selection of decks.
-            ' Disable buttons.
-            'btnEdit.Enabled = False
-            btnDelete.Enabled = False
-
+        If _selectedNames.Count = 0 Then
+            Return
         End If
 
+        Dim prompt As String = "Delete the selected " & _selectedNames.Count.ToString() &
+            " deck(s)?" & vbNewLine & "This action cannot be undone."
+        If MsgBox(prompt, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Confirm Deck Deletion") <> vbYes Then
+            Return
+        End If
+
+        Dim failures As New List(Of String)()
+        Dim changed As Boolean = False
+        For Each name As String In _selectedNames
+            Dim result As DeckOperationResult = deckService.Delete(name)
+            If result.IsSuccess Then
+                changed = True
+                consoleAdd("Deleted deck " & name & " successfully.")
+            Else
+                failures.Add(name & ": " & result.Message)
+            End If
+        Next
+
+        If changed Then
+            deckCount = decks.Rows.Count
+            changes = True
+            frmMain.Text = fileName & "* - C3"
+            frmMain.loadData()
+        End If
+        If failures.Count > 0 Then
+            MsgBox(String.Join(vbNewLine, failures.ToArray()), MsgBoxStyle.Exclamation, "Some Decks Were Not Deleted")
+        End If
+
+        loadList()
+        btnEdit.Enabled = False
+        btnDelete.Enabled = False
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        If _selectedNames.Count <> 1 Then
+            Return
+        End If
 
-        ' Get fullname/identifier of this decks's row in the data table.
-        Dim nameid As String = identifiers(0) ' Use the first deck selected.
-        frmDeckEdit.deckRow = decks.Rows.Find(nameid) ' Send this row to the next form for processing.
-
-        ' Open the editting form.
-        frmDeckEdit.Show()
-
+        Using editor As New frmDeckEdit()
+            editor.DeckName = _selectedNames(0)
+            editor.ShowDialog(Me)
+        End Using
+        loadList()
     End Sub
 
 End Class

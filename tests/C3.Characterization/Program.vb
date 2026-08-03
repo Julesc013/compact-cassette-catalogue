@@ -21,6 +21,7 @@ Module Program
         RunTest("store saves transactionally and detects external edits", AddressOf StoreSavesTransactionally)
         RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
         RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
+        RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -285,6 +286,82 @@ Module Program
         AssertEqual(True, service.Delete("MX2XL").IsSuccess, "unreferenced model delete")
         AssertEqual(0, document.Tables("Models").Rows.Count, "deleted model count")
     End Sub
+
+    Private Sub DeckServiceOwnsRules()
+        Dim document As DataSet = CreateFixtureSchema()
+        Dim service As New DeckService(New LegacyDeckRepository(Function() document))
+        Dim created As DeckOperationResult = service.Create(
+            CreateValidDeckDetails("Nakamichi", "BX-300", "Original notes"),
+            New DateTime(2026, 8, 4))
+        AssertEqual(True, created.IsSuccess, "deck create")
+        AssertEqual("Nakamichi BX-300", created.Deck.Name, "derived deck name")
+        AssertEqual(1, CInt(document.Tables("Counters").Rows.Find("Decks")("Number")), "deck counter")
+
+        Dim duplicate As DeckOperationResult = service.Create(
+            CreateValidDeckDetails("Nakamichi", "BX-300", String.Empty),
+            DateTime.Now)
+        AssertEqual(DeckFailure.DuplicateName, duplicate.Failure, "duplicate deck name")
+
+        Dim updated As DeckOperationResult = service.Update(
+            "Nakamichi BX-300",
+            CreateValidDeckDetails("Nakamichi", "BX-300 Special", "Updated notes"))
+        AssertEqual(True, updated.IsSuccess, "deck update")
+        AssertEqual("Nakamichi BX-300", updated.Deck.Name, "immutable deck key")
+        AssertEqual("Updated notes", service.Find("Nakamichi BX-300").Details.Notes, "updated deck notes")
+
+        Dim tape As DataRow = document.Tables("Tapes").NewRow()
+        tape("DeckA") = "Nakamichi BX-300"
+        tape("IdentifierShort") = "TEST-1"
+        document.Tables("Tapes").Rows.Add(tape)
+        Dim referencedDelete As DeckOperationResult = service.Delete("Nakamichi BX-300")
+        AssertEqual(DeckFailure.ReferencedByTape, referencedDelete.Failure, "referenced deck delete")
+
+        document.Tables("Tapes").Rows.Remove(tape)
+        AssertEqual(True, service.Delete("Nakamichi BX-300").IsSuccess, "unreferenced deck delete")
+        AssertEqual(0, CInt(document.Tables("Counters").Rows.Find("Decks")("Number")), "deleted deck counter")
+    End Sub
+
+    Private Function CreateValidDeckDetails(
+            manufacturer As String,
+            model As String,
+            notes As String) As DeckDetails
+
+        Return New DeckDetails(
+            manufacturer,
+            model,
+            1985,
+            7,
+            True,
+            True,
+            False,
+            True,
+            True,
+            True,
+            True,
+            True,
+            False,
+            False,
+            False,
+            True,
+            True,
+            False,
+            False,
+            True,
+            False,
+            False,
+            20,
+            20000,
+            70,
+            "Dolby C",
+            0.04D,
+            0.8D,
+            3,
+            1,
+            False,
+            True,
+            False,
+            notes)
+    End Function
 
     Private Sub ValidateAgainstSchema(xmlPath As String)
         Dim validationMessages As New List(Of String)()

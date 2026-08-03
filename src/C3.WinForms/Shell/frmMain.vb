@@ -1135,7 +1135,8 @@ Public Class frmMain
     End Sub
 
     Private Sub ViewDecksToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDecksToolStripMenuItem.Click
-        frmDecks.Show() 'temp
+        Dim window As New frmDecks()
+        window.Show(Me)
     End Sub
 
     Private Sub ViewStatisticsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewStatisticsToolStripMenuItem.Click
@@ -1270,7 +1271,9 @@ Public Class frmMain
     End Sub
 
     Private Sub NewDeckToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDeckToolStripMenuItem.Click
-        frmDeckNew.Show() 'temp
+        Using editor As New frmDeckNew()
+            editor.ShowDialog(Me)
+        End Using
     End Sub
 
     Private Sub NewManufactererToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewManufactererToolStripMenuItem.Click
