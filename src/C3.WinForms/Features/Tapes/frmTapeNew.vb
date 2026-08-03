@@ -70,7 +70,7 @@
         ''modelIndex = cmbModel.SelectedIndex 'Order of items in combobox will be same as in records ''NOT ANYMORE, SORTED BOXES
         ''Dim modelRow As DataRow = models.Rows(modelIndex)
         Dim modelFull As String = cmbModel.Text
-        Dim modelRows As DataTable = makeModels()
+        Dim modelRows As DataTable = models.Clone()
 
         'Serach for each combination of brand and model name (find those that match the model name).
         Dim modelWords As String() = modelFull.Split(" "c)

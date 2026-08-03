@@ -193,19 +193,13 @@ Module Program
     End Sub
 
     Private Function CreateFixtureSchema() As DataSet
-        Dim source As New DataSet("Catalogue")
-        source.ReadXml(FixturePath("valid", "populated.xml"), XmlReadMode.InferSchema)
-
-        Dim schema As New DataSet("Catalogue")
-        Dim information As New DataTable("Information")
-        information.Columns.Add("Information", GetType(String))
-        information.Columns.Add("Value", GetType(String))
-        schema.Tables.Add(information)
-
-        For Each tableName As String In {"Counters", "Decks", "Brands", "Models", "Tapes"}
-            schema.Tables.Add(source.Tables(tableName).Clone())
-        Next
-        Return schema
+        Return LegacyCatalogueSchema.Create(New LegacyCatalogueMetadata() With {
+            .FileVersion = "1.1.0",
+            .ProductVersion = "1.2.1",
+            .ProductStage = "Test",
+            .ProductDate = New DateTime(2026, 8, 4),
+            .CreatedAt = New DateTime(2026, 8, 4)
+        })
     End Function
 
     Private Sub ValidateAgainstSchema(xmlPath As String)

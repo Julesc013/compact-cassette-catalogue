@@ -35,14 +35,6 @@ Public Class frmMain
         ' Display about information.
         lblAbout.Text = "© " & COPYRIGHTAUTHOR & ", " & VERSIONSTAGE & " " & VERSION & " (" & COPYRIGHTYEAR & ")"
 
-        'A dd tables to data set (a global process).
-        catalogue.Tables.Add(information)
-        catalogue.Tables.Add(counters)
-        catalogue.Tables.Add(decks)
-        catalogue.Tables.Add(brands)
-        catalogue.Tables.Add(models)
-        catalogue.Tables.Add(tapes)
-
         ' Initialise objects.
         cmbField.SelectedIndex = 0
         ' Update date boundaries.
