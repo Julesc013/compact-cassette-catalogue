@@ -648,6 +648,8 @@ Public Class frmMain
 
     Public Sub saveChangesActual(saveAs As Boolean, thenOpen As Boolean)
 
+        BufferedLogger.RecordAction(If(saveAs, "Save catalogue as", "Save catalogue"))
+
         'If there is no filepath, it is not saved
         Dim saved As Boolean = filePath IsNot Nothing
 
@@ -830,6 +832,8 @@ Public Class frmMain
     End Function
 
     Public Sub openCatalogueActual()
+
+        BufferedLogger.RecordAction("Open catalogue")
 
         'Get directories
         Dim dlgResult As DialogResult = dlgOpen.ShowDialog()

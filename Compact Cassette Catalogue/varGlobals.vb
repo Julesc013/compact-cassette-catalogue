@@ -336,6 +336,8 @@ Module varGlobals
 
     Sub consoleAdd(message As String)
 
+        BufferedLogger.Information(message)
+
         'Add line to console.
         Dim now As DateTime = DateTime.Now
         Dim stamp As String = "[" & consoleStamp(now) & "]"
