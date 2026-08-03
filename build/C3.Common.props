@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- One compiler contract for every managed project. The path map removes
+         workspace-specific source roots from deterministic compiler output. -->
+    <Deterministic>true</Deterministic>
+    <C3RepositoryRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</C3RepositoryRoot>
+    <PathMap>$(C3RepositoryRoot)=/_/</PathMap>
+  </PropertyGroup>
+</Project>

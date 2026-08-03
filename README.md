@@ -105,6 +105,8 @@ documented supporting roles; newer IDEs cannot prove the net40 build.
 ```powershell
 .\build\verify.ps1 -Rebuild
 .\build\package.ps1 -SkipBuild
+# Required for a release candidate; performs two independent full rebuilds.
+.\build\verify-reproducible-packages.ps1
 ```
 
 See the [toolchain policy](docs/development/toolchain.md),

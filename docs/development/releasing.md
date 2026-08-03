@@ -27,17 +27,18 @@ Any failed or unverified required check leaves publication blocked. Narrow a
 claim explicitly when allowed; never convert missing evidence into a support
 claim through wording.
 
-## Build and package once
+## Verify, rebuild, and reproduce packages
 
 ```powershell
 .\build\verify.ps1 -Rebuild
-.\build\package.ps1 -SkipBuild
+.\build\verify-reproducible-packages.ps1
 ```
 
-Record resolved toolchain, exact binary identities, package filenames, sizes,
-SHA-256 values, and a second deterministic package comparison. Do not modify or
-restage a file after hashing. A setup build, if present, consumes these exact
-payload bytes and has separate transaction evidence.
+The reproducibility gate performs two independent full Release rebuild/package
+passes and fails if any final filename, length, or SHA-256 changes. Record the
+resolved toolchain, exact binary identities, package filenames, sizes, and final
+hashes. Do not modify or restage a file after hashing. A setup build, if present,
+consumes these exact payload bytes and has separate transaction evidence.
 
 ## Publish and promote
 

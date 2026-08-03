@@ -13,6 +13,18 @@ for every shipped binary, stages each payload under
 `artifacts/packages`, writes `SHA256SUMS.txt`, and reopens every ZIP to verify its
 hash and exact entry set.
 
+For a release candidate, prove that a rebuild does not change those bytes:
+
+```powershell
+.\build\verify-reproducible-packages.ps1
+```
+
+That gate runs the complete Release rebuild and packaging transaction twice,
+then compares the name, length, and SHA-256 of both ZIPs and
+`SHA256SUMS.txt`. The second pass remains in `artifacts/packages` for candidate
+inspection. Running `package.ps1 -SkipBuild` twice is not equivalent evidence,
+because it cannot detect nondeterministic compiler output.
+
 Each package contains only:
 
 - `Compact Cassette Catalogue.exe`

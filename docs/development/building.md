@@ -24,6 +24,9 @@ Run from Windows PowerShell at the repository root:
 
 # Create verified deterministic portable candidates after a successful build.
 .\build\package.ps1 -SkipBuild
+
+# Prove release reproducibility with two independent full rebuild/package passes.
+.\build\verify-reproducible-packages.ps1
 ```
 
 `build/lanes.json` is the canonical list of lanes that exist now. Scripts,
@@ -41,7 +44,9 @@ do not belong in the manifest before implementation.
 
 Generated product identity under `src/Shared/Generated` is linked into each
 managed project. Do not hand-edit it; change `build/Version.props` and run the
-synchronizer.
+synchronizer. `build/C3.Common.props` is the required compiler contract for every
+managed project; it enables deterministic output and maps machine-specific source
+roots out of compiler artifacts.
 
 ## Compatibility evidence
 
