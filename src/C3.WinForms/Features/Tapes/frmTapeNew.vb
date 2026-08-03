@@ -73,7 +73,7 @@ Public Class frmTapeNew
         For Each value As Tape In result.Tapes
             consoleAdd("Added tape " & value.ShortIdentifier & " successfully.")
         Next
-        If My.Settings.showMessages Then
+        If preferences.ShowMessages Then
             Dim message As String = If(
                 result.Tapes.Count = 1,
                 "Added tape " & result.Tapes(0).ShortIdentifier & " successfully.",

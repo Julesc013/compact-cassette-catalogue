@@ -29,7 +29,7 @@ Public Class frmBrandEdit
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Updated brand " & result.Brand.Name & " successfully."
-        If My.Settings.showMessages Then
+        If preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Brand Updated")
         End If
         consoleAdd(message)

@@ -35,7 +35,7 @@ Public Class frmDeckNew
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added deck " & result.Deck.Name & " successfully."
-        If My.Settings.showMessages Then
+        If preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Deck Added")
         End If
         consoleAdd(message)

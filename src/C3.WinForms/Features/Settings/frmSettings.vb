@@ -1,63 +1,40 @@
-﻿Public Class frmSettings
+Public Class frmSettings
+
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        ' initialise each object.
-
-        Select Case My.Settings.showMessages
-            Case True
-                cmbShowMessages.SelectedIndex = 0
-            Case False
-                cmbShowMessages.SelectedIndex = 1
-        End Select
-
-        Select Case My.Settings.checkUpdates
-            Case "startup"
+        cmbShowMessages.SelectedIndex = If(preferences.ShowMessages, 0, 1)
+        Select Case preferences.UpdatePolicy
+            Case UpdateCheckPolicy.Startup
                 cmbCheckUpdates.SelectedIndex = 0
-            Case "weekly"
+            Case UpdateCheckPolicy.Weekly
                 cmbCheckUpdates.SelectedIndex = 1
-            Case "monthly"
+            Case UpdateCheckPolicy.Monthly
                 cmbCheckUpdates.SelectedIndex = 2
-            Case "never", "manually"
-                cmbCheckUpdates.SelectedIndex = 3
             Case Else
                 cmbCheckUpdates.SelectedIndex = 3
         End Select
-
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-
-        ' Save changes to each settings.
-
-        Select Case cmbShowMessages.SelectedIndex
-            Case 0
-                My.Settings.showMessages = True
-            Case 1
-                My.Settings.showMessages = False
-        End Select
-
+        preferences.ShowMessages = cmbShowMessages.SelectedIndex = 0
         Select Case cmbCheckUpdates.SelectedIndex
             Case 0
-                My.Settings.checkUpdates = "startup"
+                preferences.UpdatePolicy = UpdateCheckPolicy.Startup
             Case 1
-                My.Settings.checkUpdates = "weekly"
+                preferences.UpdatePolicy = UpdateCheckPolicy.Weekly
             Case 2
-                My.Settings.checkUpdates = "monthly"
-            Case 3
-                My.Settings.checkUpdates = "never"
+                preferences.UpdatePolicy = UpdateCheckPolicy.Monthly
+            Case Else
+                preferences.UpdatePolicy = UpdateCheckPolicy.Never
         End Select
+        preferences.Save()
 
-
-        ' Show confirmation message.
         Dim message As String = "Successfully saved changes to settings."
-        If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Question, "Successfully Saved Settings")
+        If preferences.ShowMessages Then
+            MsgBox(message, MsgBoxStyle.Information, "Settings Saved")
         End If
         consoleAdd(message)
-
-        ' Close this form.
-        Me.Close()
-
+        DialogResult = DialogResult.OK
+        Close()
     End Sub
 
 End Class

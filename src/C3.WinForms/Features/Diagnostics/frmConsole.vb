@@ -154,7 +154,7 @@ Public Class frmConsole
                     If arguments.Length = 1 Then
                         'Display current value
 
-                        message = "showMessages currently is " & CStr(My.Settings.showMessages)
+                        message = "showMessages currently is " & CStr(preferences.ShowMessages)
 
                     ElseIf arguments.Length = 2 Then
                         'Update value
@@ -163,7 +163,8 @@ Public Class frmConsole
                             'If valid boolean supplied, update value
 
                             Dim toggle As Boolean = CBool(arguments(1))
-                            My.Settings.showMessages = toggle
+                            preferences.ShowMessages = toggle
+                            preferences.Save()
 
                             'Build message.
                             Dim now As DateTime = DateTime.Now
@@ -181,22 +182,23 @@ Public Class frmConsole
                     If arguments.Length = 1 Then
                         'Display current value
 
-                        message = "defaultDirectory currently is " & CStr(My.Settings.defaultDirectory)
+                        message = "defaultDirectory currently is " & preferences.DefaultDirectory
 
-                    ElseIf arguments.Length = 2 Then
+                    ElseIf arguments.Length >= 2 Then
                         'Update value
 
-                        Dim folderpath As String = arguments(1)
+                        Dim folderpath As String = String.Join(" ", arguments.Skip(1).ToArray())
 
                         If Directory.Exists(folderpath) Then
                             'If valid directory supplied, update value
 
-                            My.Settings.defaultDirectory = folderpath
+                            preferences.DefaultDirectory = folderpath
+                            preferences.Save()
 
                             'Build message.
                             Dim now As DateTime = DateTime.Now
                             Dim stamp As String = "[" & consoleStamp(now) & "]"
-                            message = stamp & " Set defaultDirectory to " & CStr(filePath)
+                            message = stamp & " Set defaultDirectory to " & folderpath
 
                         End If
 
@@ -218,7 +220,7 @@ Public Class frmConsole
 
         Else
             'Show error is invalid command
-            If My.Settings.showMessages = True Then
+            If preferences.ShowMessages Then
                 MsgBox("Command cannot be empty or whitespace (spaces)", MsgBoxStyle.Exclamation, "Invalid Command")
             End If
 

@@ -25,6 +25,8 @@ feature behavior through two Windows build lanes.
   architecture verification, and deterministic packaging.
 - Reorganized sources by feature ownership and removed hidden default-form
   coordination from feature workflows.
+- Centralized message, directory, and update-check preferences; legacy or unknown
+  update policy values now normalize safely to `never`.
 
 ## Downloads
 

@@ -59,6 +59,8 @@
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyXmlCatalogueStore.vb" />
     <Compile Include="Diagnostics\BufferedLogger.vb" />
     <Compile Include="Diagnostics\CrashReportWriter.vb" />
+    <Compile Include="Updates\UpdateCheckPolicy.vb" />
+    <Compile Include="Updates\UpdateCheckSchedule.vb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.vbproj">

@@ -55,13 +55,17 @@ Public Class frmMain
 
         consoleAdd("Successfully loaded program.") ' Add success note to console.
 
-        ' Check for updates if automatic update checks are enabled.
-        Dim updatePolicy As String = normaliseUpdateCheckPolicy(My.Settings.checkUpdates)
-        If My.Settings.checkUpdates <> updatePolicy Then
-            My.Settings.checkUpdates = updatePolicy
+        preferences.Normalize()
+        preferences.Save()
+        fileDirectory = preferences.DefaultDirectory
+        If Not String.IsNullOrEmpty(fileDirectory) AndAlso
+                Not fileDirectory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal) Then
+            fileDirectory &= Path.DirectorySeparatorChar
         End If
-
-        If shouldRunAutomaticUpdateCheck(updatePolicy) Then
+        If UpdateCheckSchedule.ShouldCheck(
+                preferences.UpdatePolicy,
+                preferences.LastUpdateCheck,
+                DateTime.Now) Then
             checkUpdates(False)
         End If
 
@@ -69,47 +73,6 @@ Public Class frmMain
         duringSetup = False
 
     End Sub
-
-    Private Function normaliseUpdateCheckPolicy(policy As String) As String
-
-        Select Case policy
-            Case "startup", "weekly", "monthly", "never"
-                Return policy
-            Case "manually"
-                Return "never"
-            Case Else
-                Return "never"
-        End Select
-
-    End Function
-
-    Private Function shouldRunAutomaticUpdateCheck(policy As String) As Boolean
-
-        Select Case policy
-            Case "startup"
-                Return True
-            Case "weekly", "monthly"
-                Try
-
-                    Dim daysSinceUpdate As Double = (DateTime.Now - My.Settings.lastUpdateCheck).TotalDays
-
-                    If policy = "weekly" Then
-                        Return daysSinceUpdate >= 7
-                    Else
-                        Return daysSinceUpdate >= 28
-                    End If
-
-                Catch ex As Exception
-
-                    consoleAdd("Failed to read last update check date. Automatic update check will run.")
-                    Return True
-
-                End Try
-            Case Else
-                Return False
-        End Select
-
-    End Function
 
     Private Sub enableBestEffortTls()
 
@@ -255,7 +218,8 @@ Public Class frmMain
 
 
         ' Set this date and time as the most recent update check.
-        My.Settings.lastUpdateCheck = DateTime.Now
+        preferences.LastUpdateCheck = DateTime.Now
+        preferences.Save()
 
 
     End Sub
@@ -557,7 +521,7 @@ Public Class frmMain
 
                 'Show confirmation message
                 Dim message As String = "Updated tape " & identifierShort & " successfully."
-                If My.Settings.showMessages = True Then
+                If preferences.ShowMessages Then
                     MsgBox(message, MsgBoxStyle.Question, "Successfully Updated Tape")
                 End If
                 consoleAdd(message)
@@ -573,7 +537,7 @@ Public Class frmMain
 
             'No changes to update tape with
             Dim message As String = "No changes to update tape with."
-            If My.Settings.showMessages = True Then
+            If preferences.ShowMessages Then
                 MsgBox(message, MsgBoxStyle.Question, "No Updates to Tape")
             End If
             'consoleAdd(message)
@@ -678,6 +642,9 @@ Public Class frmMain
         If saved = False Or saveAs = True Then
             'SAVE AS NEW FILE
 
+            If Directory.Exists(preferences.DefaultDirectory) Then
+                dlgSaveAs.InitialDirectory = preferences.DefaultDirectory
+            End If
             Dim dlgResult As DialogResult = dlgSaveAs.ShowDialog()
             Dim selectedPath As String = dlgSaveAs.FileName
 
@@ -841,6 +808,9 @@ Public Class frmMain
         BufferedLogger.RecordAction("Open catalogue")
 
         'Get directories
+        If Directory.Exists(preferences.DefaultDirectory) Then
+            dlgOpen.InitialDirectory = preferences.DefaultDirectory
+        End If
         Dim dlgResult As DialogResult = dlgOpen.ShowDialog()
         Dim selectedPath As String = dlgOpen.FileName
 
@@ -1800,7 +1770,7 @@ Public Class frmMain
         'Show confirmation message
         Dim message As String = "Successfully output console to log file."
         Dim messageDetails As String = vbNewLine & vbNewLine & "File name: " & outputName & vbNewLine & "Full directory: " & outputPath
-        If My.Settings.showMessages = True Then
+        If preferences.ShowMessages Then
             MsgBox(message & messageDetails, MsgBoxStyle.Question, "Successfully Output Console Log")
         End If
         consoleAdd(message)

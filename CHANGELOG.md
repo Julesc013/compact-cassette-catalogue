@@ -32,6 +32,8 @@
   counters from actual rows, and prevented deleted identifiers being reused.
 - Removed public `DataRow` hand-offs between feature forms and replaced default
   form instances with explicit form ownership and a single UI mutation seam.
+- Centralized application preferences behind one `My.Settings` adapter and moved
+  update-check parsing, serialization, and scheduling into a tested policy.
 - Fixed Save As cancellation continuing into save, a duplicate Open dialog,
   deck deletion writing the tape count, model notes loading from the wrong table,
   duplicate deck combo entries, and recursive application shutdown.

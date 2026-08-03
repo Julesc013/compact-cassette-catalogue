@@ -83,6 +83,7 @@
     <Import Include="C3.Catalogue.Decks" />
     <Import Include="C3.Catalogue.Tapes" />
     <Import Include="C3.Infrastructure.Diagnostics" />
+    <Import Include="C3.Infrastructure.Updates" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
   </ItemGroup>
   <ItemGroup>

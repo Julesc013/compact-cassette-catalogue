@@ -16,6 +16,7 @@ Module varGlobals
 
     Public ReadOnly catalogueSession As New CatalogueSession("New Catalogue")
     Public ReadOnly catalogueStore As New LegacyXmlCatalogueStore()
+    Public ReadOnly preferences As New MySettingsStore()
 
     Public Property filePath As String
         Get

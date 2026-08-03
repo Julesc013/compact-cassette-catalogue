@@ -12,7 +12,7 @@ Public Class frmBrandNew
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added brand " & result.Brand.Name & " successfully."
-        If My.Settings.showMessages Then
+        If preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Brand Added")
         End If
         consoleAdd(message)

@@ -23,6 +23,7 @@ Module Program
         RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)
         RunTest("tape service creates batches without identifier reuse", AddressOf TapeServiceOwnsRules)
+        RunTest("update schedule normalizes and evaluates policies", AddressOf UpdateScheduleOwnsPolicy)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -442,6 +443,35 @@ Module Program
         AssertEqual("MX2XL002", afterDelete.Tapes(0).ShortIdentifier, "identifier is not reused")
         AssertEqual(2, CInt(document.Tables("Counters").Rows.Find("Tapes")("Number")), "stable tape count")
         AssertEqual(2, modelService.Find("MX2XL").TapeCount, "stable model tape count")
+    End Sub
+
+    Private Sub UpdateScheduleOwnsPolicy()
+        AssertEqual(UpdateCheckPolicy.Startup, UpdateCheckSchedule.Parse("STARTUP"), "startup policy")
+        AssertEqual(UpdateCheckPolicy.Never, UpdateCheckSchedule.Parse("manually"), "legacy manual policy")
+        AssertEqual(UpdateCheckPolicy.Never, UpdateCheckSchedule.Parse("unexpected"), "unknown policy")
+        AssertEqual("monthly", UpdateCheckSchedule.Serialize(UpdateCheckPolicy.Monthly), "policy serialization")
+
+        Dim now As New DateTime(2026, 8, 4, 12, 0, 0)
+        AssertEqual(
+            True,
+            UpdateCheckSchedule.ShouldCheck(UpdateCheckPolicy.Startup, now, now),
+            "startup check")
+        AssertEqual(
+            False,
+            UpdateCheckSchedule.ShouldCheck(UpdateCheckPolicy.Weekly, now.AddDays(-6), now),
+            "weekly check before interval")
+        AssertEqual(
+            True,
+            UpdateCheckSchedule.ShouldCheck(UpdateCheckPolicy.Weekly, now.AddDays(-7), now),
+            "weekly check at interval")
+        AssertEqual(
+            True,
+            UpdateCheckSchedule.ShouldCheck(UpdateCheckPolicy.Monthly, DateTime.MinValue, now),
+            "first monthly check")
+        AssertEqual(
+            False,
+            UpdateCheckSchedule.ShouldCheck(UpdateCheckPolicy.Never, DateTime.MinValue, now),
+            "never policy")
     End Sub
 
     Private Sub ValidateAgainstSchema(xmlPath As String)

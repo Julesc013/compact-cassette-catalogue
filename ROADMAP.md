@@ -12,7 +12,7 @@ remain verifiable. Concrete defects belong in GitHub Issues.
   release candidate, or clearly mark any unverified claim.
 - Finish replacing the main editor's remaining read-only `DataRow` projection
   with typed tape views.
-- Put settings behind a typed adapter and test persistence across restart.
+- Manually verify settings persistence across restart in both build lanes.
 - Exercise invalid, externally modified, and interrupted catalogue saves through
   the UI as well as the store-level tests.
 - Review accessibility, keyboard navigation, scaling, clipping, and contrast on

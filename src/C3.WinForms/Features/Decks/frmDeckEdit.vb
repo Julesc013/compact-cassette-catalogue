@@ -41,7 +41,7 @@ Public Class frmDeckEdit
 
         CompleteCatalogueMutation(Me)
         Dim message As String = "Updated deck " & validation.Deck.Name & " successfully."
-        If My.Settings.showMessages Then
+        If preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Deck Updated")
         End If
         consoleAdd(message)

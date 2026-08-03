@@ -51,7 +51,7 @@ Public Class frmModelEdit
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Updated cassette model " & result.Model.Identifier & " successfully."
-        If My.Settings.showMessages Then
+        If preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Cassette Model Updated")
         End If
         consoleAdd(message)
