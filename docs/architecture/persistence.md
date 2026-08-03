@@ -1,4 +1,4 @@
-# Catalogue persistence
+# Implemented legacy catalogue persistence
 
 `C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore` is the only
 component permitted to read or write the legacy v1.1 XML format. WinForms owns
@@ -56,3 +56,9 @@ strangler migration, not a format rewrite. `LegacyGlobalState` is the single
 WinForms composition seam that owns the active document and wires its typed
 repositories. Forms never access tables or rows. `DataSet` must not cross into
 `C3.Catalogue`, and new WinForms source must consume typed services instead.
+
+This document describes only implemented catalogue 1.1.0 persistence. The
+[native-v2 ADR](decisions/0005-native-v2-format-and-migration.md) and
+[migration design](../migration/catalogue-1.1-to-2.0.md) are proposed contracts,
+not current reader/writer claims. Legacy mode continues to use this adapter even
+after a native profile exists.

@@ -17,8 +17,11 @@ Describe the observable behavior. Screens or implementation classes are optional
 ## Compatibility
 
 - Should this work in both build lanes?
-- Does it change catalogue format 1.1.0 or only presentation/workflow?
-- What should older C3 versions do with the resulting catalogue?
+- Does it affect presentation, domain rules, legacy mode, native format,
+  migration/export, settings, updates, setup, or recovery?
+- Which 1.x producer/profile and old-reader/new-reader matrix rows are affected?
+- What should older C3 versions do with resulting or exported data?
+- Can this be a declarative profile/data pack instead of executable code?
 - Are there privacy, security, accessibility, or performance constraints?
 
 ## Alternatives

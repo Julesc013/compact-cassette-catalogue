@@ -10,14 +10,14 @@ The architecture optimizes for four things, in this order:
 1. Never corrupt or silently discard a user's catalogue.
 2. Preserve the supported catalogue format and the Windows XP compatibility lane.
 3. Keep each behavior in one physical source file wherever possible.
-4. Make future capabilities additive instead of forcing another rewrite.
+4. Make future capabilities additive and replace implementations by proven slices.
 
 ## Production modules
 
 | Module | Owns | Must not own |
 | --- | --- | --- |
 | `C3.Catalogue` | Catalogue concepts, commands, rules, results, session semantics, and store interfaces | Files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
-| `C3.Infrastructure` | XML format adapters, atomic file I/O, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
+| `C3.Infrastructure` | XML format adapters, atomic file I/O, settings migration policy, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
 | `C3.WinForms` | Forms, controls, user interaction, workspace state, settings adapters, composition, and runtime-lane policy | XML parsing or duplicated domain rules |
 
 `C3.WinForms` has two project files over the same physical UI sources:
@@ -77,14 +77,15 @@ save never clears dirty state and never destroys the last known-good file.
 
 The v1.1 catalogue reader is tolerant of compatible historical input. The writer
 is deterministic. The versioned specification, invariants, and golden fixtures
-are the public compatibility contract; implementation details are not.
+are the current implemented compatibility contract; the complete public 1.x
+corpus remains a C3 2.0 programme gate.
 
 ## Extensibility policy
 
 Prefer declarative extensions: data packs, import/export profiles, column
-presets, validation profiles, and localization. C3 1.x does not load arbitrary
-in-process plugin assemblies. A future executable extension system must use a
-versioned contract and should prefer process isolation.
+presets, validation profiles, and localization. C3 does not load arbitrary
+in-process plugin assemblies. A future executable extension system requires a
+versioned capability protocol and process isolation.
 
 Future native applications reuse language-neutral specifications, fixtures, and
 behavior contracts. They do not consume the .NET 4.0 implementation as their API.
@@ -106,3 +107,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [Catalogue persistence](persistence.md)
 - [ADR 0001: Modular monolith](decisions/0001-modular-monolith.md)
 - [ADR 0002: Compatibility build lanes](decisions/0002-compatibility-build-lanes.md)
+- [ADR 0003: C3 2.0 product boundary](decisions/0003-c3-2-product-boundary.md)
+- [ADR 0004: Managed language strategy](decisions/0004-managed-language-strategy.md)
+- [ADR 0005: Proposed native-v2 format and migration](decisions/0005-native-v2-format-and-migration.md)
+- [ADR 0006: Separate update channels](decisions/0006-separate-update-channels.md)

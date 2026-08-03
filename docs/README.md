@@ -35,10 +35,12 @@ Documentation is organized by its audience and ownership.
 
 ## User and support material
 
+- [Versioned user documentation](user/README.md)
+- [Migrating from C3 1.x](user/migrating-from-1.x.md)
 - [Diagnostic reports](user/diagnostics.md)
 - [Support policy](../SUPPORT.md)
 - [Security policy](../SECURITY.md)
 
-The GitHub wiki remains the end-user guide. Repository documentation owns
-engineering contracts and must not defer essential build, format, or release
-instructions to the wiki.
+The GitHub wiki may mirror or improve navigation for end users. Repository
+documentation owns version-specific safety, migration, backup, recovery, format,
+build, and release contracts and must not defer them exclusively to the wiki.

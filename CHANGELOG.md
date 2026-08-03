@@ -54,7 +54,7 @@
   edits being lost on close, and console-export path failures terminating C3.
 - Added 16 executable characterization scenarios, dependency-direction and
   WinForms-boundary enforcement, shared-project parity validation, hosted
-  repository checks, and an authoritative Visual Studio 2019 self-hosted
+  repository checks, and an authoritative legacy-capable self-hosted
   compatibility workflow.
 
 

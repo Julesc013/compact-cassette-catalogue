@@ -1,42 +1,62 @@
 # Releasing C3
 
-A release is an evidence-backed promotion of one commit, not a rebuild performed
-while drafting GitHub release text.
+A release is an evidence-backed promotion of one immutable commit and payload,
+not a rebuild performed while drafting release text.
+
+## Branch and identity
+
+- C3 1.2 maintenance releases originate on `master` and flow forward to `dev`.
+- C3 2.0 previews originate from a frozen `dev` candidate.
+- Stable 2.0 is promoted by merging the proven candidate into `master` and
+  tagging that exact commit; permanent branches are not force-pushed.
+
+Set current build identity in `build/Version.props`, run
+`build/sync-version.ps1`, and commit generated projections. The synchronizer does
+not edit root `VERSION` or the published `legacy-1x` feed.
 
 ## Prepare
 
-1. Choose the version and stage in `build/Version.props`.
-2. Run `build/sync-version.ps1` and commit every generated projection.
-3. Update `CHANGELOG.md`, `RELEASE_NOTES.md`, and the versioned validation file.
-4. Ensure the working tree is clean and tag the exact candidate under test.
+1. Confirm accepted scope and target channel.
+2. Update `CHANGELOG.md`, `RELEASE_NOTES.md`, and a new validation record without
+   rewriting historical evidence.
+3. Run the complete compatibility, settings, migration/export, UI, accessibility,
+   security, performance, and OS gates applicable to the milestone.
+4. Freeze the candidate source commit and record its full SHA/toolchain.
 
-## Verify
+Any failed or unverified required check leaves publication blocked. Narrow a
+claim explicitly when allowed; never convert missing evidence into a support
+claim through wording.
 
-Run the full compatibility gate on the Visual Studio 2019 runner, then complete
-the manual workflows and minimum-OS checks in
-[testing.md](testing.md). Record evidence against the full commit SHA.
-
-Any failed or unverified required check leaves the release blocked. Do not turn
-an unverified minimum-OS target into a support claim through wording alone.
-
-## Package
+## Build and package once
 
 ```powershell
+.\build\verify.ps1 -Rebuild
 .\build\package.ps1 -SkipBuild
 ```
 
-Do not modify staged files after packaging. The script creates deterministic
-lane ZIPs and `SHA256SUMS.txt`, then verifies exact contents and hashes.
+Record resolved toolchain, exact binary identities, package filenames, sizes,
+SHA-256 values, and a second deterministic package comparison. Do not modify or
+restage a file after hashing. A setup build, if present, consumes these exact
+payload bytes and has separate transaction evidence.
 
-## Publish and verify again
+## Publish and promote
 
-1. Create one GitHub release for both build lanes.
+1. Create one GitHub release for both lanes from the frozen tag/commit.
 2. Upload both ZIPs and `SHA256SUMS.txt` without renaming them.
-3. Mark prerelease stages as GitHub prereleases.
-4. Download every published asset into a clean directory.
-5. verify downloaded SHA-256 values and launch the downloaded builds; and
-6. add release URL, final hashes, and download verification to the validation
-   record.
+3. Mark alpha/beta/RC releases as prereleases.
+4. Download every asset into a clean location; verify hashes and launch both
+   downloaded builds where applicable.
+5. Record release URL and post-download evidence.
+6. Promote matching update-channel metadata **last**.
 
-An installer may later consume the verified portable payload. It may not rebuild
-the product or maintain a second authoritative file list.
+Stable users never receive preview metadata. The root/legacy 1.x feed is changed
+only for a matching published 1.x maintenance release. An absent beta/stable 2.x
+feed is preferable to invented availability.
+
+## Rollback and immutability
+
+Retain the prior verified portable payload and its feed metadata. Do not delete or
+relabel historical tags, assets, hashes, or validation. A release rollback changes
+channel promotion to a previously verified product payload; it never automatically
+reverses a user's catalogue migration. Catalogue rollback uses the preserved
+original/export and its own documented workflow.

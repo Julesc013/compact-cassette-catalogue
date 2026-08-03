@@ -23,26 +23,27 @@ hosted runner on 30 June 2025.
 ## Authoritative compatibility gate
 
 `.github/workflows/full-compatibility.yml` is a manually dispatched workflow on
-a self-hosted runner with these labels:
+a self-hosted runner with these capability labels:
 
 ```text
 self-hosted
 Windows
 X64
-c3-vs2019
+c3-legacy-msbuild
 ```
 
-The runner must have:
+The runner must satisfy the [toolchain policy](toolchain.md). The maintained
+machine currently resolves Visual Studio 2017 Enterprise 15.9. It must have:
 
-- Visual Studio 2019 or Build Tools 2019 with MSBuild and Visual Basic support;
+- Visual Studio 2017 15.9 or Visual Studio 2019 with MSBuild and VB/C# desktop support;
 - the .NET Framework 4.0 targeting pack;
 - the .NET Framework 4.8 targeting pack; and
 - Windows PowerShell 5.1 or later.
 
 The workflow runs the complete repository gate, compiles both release lanes,
-runs the characterization suite, verifies PE architecture, builds deterministic
-portable archives, verifies their contents and hashes, and uploads the result as
-a short-lived workflow artifact.
+runs characterization, verifies binary identities and PE architecture, builds
+deterministic portable archives, verifies contents/hashes, and uploads the result
+as a short-lived workflow artifact.
 
 ## Branch protection
 

@@ -13,7 +13,7 @@ concurrency:
 jobs:
   verify-and-package:
     name: Build, test, inspect, and package both lanes
-    runs-on: [self-hosted, Windows, X64, c3-vs2019]
+    runs-on: [self-hosted, Windows, X64, c3-legacy-msbuild]
     timeout-minutes: 30
 
     steps:

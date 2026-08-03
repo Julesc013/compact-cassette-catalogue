@@ -22,10 +22,17 @@ Does the problem occur with a new blank catalogue? **Yes / No / Not tested**
 ## Environment
 
 - C3 version and stage:
+- Update channel: legacy-1x / alpha / beta / stable / none
 - Build lane: `win-x86-net40` / `win-x64-net48`
 - Windows version and architecture:
 - .NET Framework version, if known:
-- Catalogue format version:
+- Catalogue source producer and format, if known:
+- Operating mode: legacy / native / convert-copy / export / read-only / not applicable
+- First 2.0 settings launch, repeated launch, or new profile:
+
+For migration/export/recovery defects, state the last completed step, whether the
+original and backup remained unchanged, and whether the relevant output opens in
+the baseline C3 1.x reader. Remove private paths and catalogue content.
 
 ## Evidence
 

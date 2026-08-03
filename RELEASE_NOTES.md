@@ -1,66 +1,78 @@
-# Compact Cassette Catalogue 1.2.1 Beta 1
+# Compact Cassette Catalogue 2.0.0 Alpha 1
 
-C3 1.2.1 Beta 1 is the compatibility, persistence, and maintainability overhaul
-of the existing C3 product. It keeps catalogue format 1.1.0 and ships the same
-feature behavior through two Windows build lanes.
+C3 2.0.0 Alpha 1 establishes the safe product and engineering boundary for the
+long-term overhaul. It reclassifies the unpublished 1.2.1 candidate; no historical
+release, package, hash, or validation record has been relabelled.
 
-## Highlights
+This alpha is currently a development candidate, not an advertised download.
+Its [validation record](release/validation/2.0.0-alpha.1.md) remains blocked until
+the refreshed automated, manual, settings-profile, and minimum-OS evidence is
+complete.
 
-- Added a real x64/.NET Framework 4.8 lane while retaining the x86/.NET
-  Framework 4.0 compatibility lane.
-- Made catalogue loading temporary and secure: malformed, unsupported, or unsafe
-  XML cannot partially replace the active catalogue.
-- Made saving transactional with temporary-file verification, atomic replacement,
-  backup recovery, and external-edit conflict detection.
-- Added bounded diagnostic context and unhandled-exception report generation.
-- Centralized brand, cassette-model, deck, and tape rules in typed services; the
-  legacy `DataSet` and XML columns now live behind infrastructure adapters and
-  a single application composition seam.
-- Prevented deletion of referenced brands, models, and decks.
-- Preserved historical model-to-brand references stored as display names and
-  migrated them safely to stable brand codes when edited.
-- Fixed incorrect deck counters, the model editor reading notes from the wrong
-  table, Save As cancellation, duplicate Open dialogs, recursive shutdown, and
-  closing with unapplied tape-editor changes.
-- Made bulk tape creation atomic, gave every created tape its correct sequence
-  number, and stopped deleted sequence identifiers from being reused.
-- Added format specifications, security/culture fixtures, 16 executable
-  characterization scenarios, dependency and UI-boundary checks, shared-project
-  parity checks, PE architecture verification, and deterministic packaging.
-- Reorganized sources by feature ownership and removed hidden default-form
-  coordination from feature workflows.
-- Centralized message, directory, and update-check preferences; legacy or unknown
-  update policy values now normalize safely to `never`.
-- Made console export select a valid catalogue/default/Documents directory and
-  report write failures without terminating the application.
+## Implemented foundation
 
-## Downloads
+- Preserves one product and one shared source tree across x86/.NET Framework 4.0
+  and x64/.NET Framework 4.8 lanes.
+- Retains the legacy catalogue 1.1.0 writer; C3 product version 2.0 does not imply
+  a native-v2 catalogue file.
+- Separates the root 1.x update feed from the opt-in 2.x alpha feed so existing
+  users cannot be offered an unavailable preview.
+- Gives every shipped EXE and DLL consistent assembly, file, and informational
+  identity and verifies it before packaging.
+- Imports supported previous-version user preferences once, normalizes them,
+  persists a retry-safe completion marker, and characterizes repeat/failure paths.
+- Securely loads catalogue XML into temporary state and rejects DTD/external
+  entity input, malformed structure, unsupported versions, and oversized files.
+- Saves through verified temporary output, external-edit detection, atomic
+  replacement, and recoverable backup behavior.
+- Centralizes typed brand, model, deck, and tape rules outside forms while keeping
+  the historical `DataSet` behind one versioned infrastructure seam.
+- Provides bounded diagnostics, crash reports, deterministic portable packaging,
+  SHA-256 manifests, PE checks, dependency/UI boundaries, and shared-lane parity.
+- Publishes the 2.0 product vision, compatibility charter, staged C# strategy,
+  OEM+ UI contract, migration design, and AIDE/Universal Setup boundaries.
 
-- `C3-v1.2.1-beta.1-win-x86-net40-portable.zip`
-- `C3-v1.2.1-beta.1-win-x64-net48-portable.zip`
+## Deliberately not implemented yet
+
+- The complete public C3 1.x compatibility corpus and baseline-reader matrix.
+- Stable opaque native identities and the native-v2 reader/writer.
+- Convert-copy migration, legacy-mode UX, and loss-aware v1.1 export.
+- The headless validator/migrator CLI.
+- Command history, undo/redo, multi-document-ready workspace state, or the OEM+
+  replacement shell.
+- A Universal Setup binding or operational AIDE integration.
+- Full conversion of managed production source from VB to C# 7.3.
+
+These are ordered programme milestones, not hidden Alpha 1 claims. See the
+[execution plan](docs/planning/2.0-execution-plan.md).
+
+## Candidate packages
+
+When the candidate is frozen, the packaging gate produces:
+
+- `C3-v2.0.0-alpha.1-win-x86-net40-portable.zip`
+- `C3-v2.0.0-alpha.1-win-x64-net48-portable.zip`
 - `SHA256SUMS.txt`
 
-Portable means no installer and no administrator requirement. Per-user settings
-and diagnostics may still use Windows application-data locations.
+Do not publish or mirror locally generated files until their source commit,
+sizes, hashes, reproducibility comparison, and post-download verification are in
+the validation record.
 
-## Requirements
+## Runtime contract
 
-| Build | Framework | Compatibility target |
+| Build | Framework | Intended compatibility lane |
 | --- | --- | --- |
 | x86 | .NET Framework 4.0 | Windows XP SP3 and later |
-| x64 | .NET Framework 4.8 | Windows 7 SP1 and later |
+| x64 | .NET Framework 4.8 | Windows 7 SP1 and later, 64-bit |
 
-The x86 package is the compatibility choice. The x64 package does not claim
-Windows XP x64 support. Modern high-DPI behavior varies with operating-system
-capabilities and is not guaranteed uniformly on Windows 7.
+These are target boundaries, not current Microsoft support claims. The x64 build
+does not claim Windows XP x64 support. Enhanced DPI behavior depends on operating
+system capabilities and must not be generalized from a modern development host.
 
-## Beta limitations and verification status
+## Alpha precautions
 
-This candidate is not ready for publication until the manual workflow matrix and
-minimum-OS checks in
-[`release/validation/1.2.1-beta.1.md`](release/validation/1.2.1-beta.1.md)
-are complete. Keep backups of important catalogues. The old installer and
-uninstaller are retired; portable ZIPs are authoritative.
-
-Catalogue format remains 1.1.0. Both builds must read and write the same files;
-report any cross-build difference as a release-blocking defect.
+Keep independent backups, preserve original 1.x catalogues, and use an explicit
+copy for preview testing. Alpha 1 continues to write legacy format 1.1.0, but the
+complete old-reader matrix and real historical settings-profile migration remain
+release gates. Report any cross-lane difference, data loss, silent normalization,
+or incorrect update-channel behavior as release blocking.
