@@ -45,6 +45,53 @@ Friend NotInheritable Class XmlUserPreferencesStoreTests
             End Sub)
     End Sub
 
+    Public Shared Sub SavesNearClassicPathBoundary()
+        WithTemporaryDirectory(
+            "legacy-path-boundary",
+            Sub(workDirectory As String)
+                Dim preferencesPath As String =
+                    LegacyPathTestSupport.CreateNearBoundaryDestination(
+                        workDirectory,
+                        "preferences.xml")
+                Dim historicalTemporaryPath As String =
+                    LegacyPathTestSupport.HistoricalTemporaryPath(preferencesPath)
+                AssertEqual(
+                    True,
+                    historicalTemporaryPath.Length >
+                        LegacyPathTestSupport.ClassicMaximumPathCharacters,
+                    "destination-prefixed preferences temporary exceeds classic limit")
+
+                Dim store As New XmlUserPreferencesStore(
+                    preferencesPath,
+                    Function() New DateTime(2026, 8, 4, 12, 0, 0, DateTimeKind.Utc))
+                Dim preferences As UserPreferencesSnapshot = CreateImportedPreferences(
+                    False,
+                    "D:\Near Boundary",
+                    UpdateCheckPolicy.Monthly,
+                    New DateTime(2026, 8, 4, 1, 2, 3, DateTimeKind.Utc))
+                Dim saved As UserPreferencesSaveResult =
+                    store.Save(preferences, UserPreferenceFields.All)
+                If Not saved.IsSuccess Then
+                    Throw New InvalidOperationException(
+                        "Near-boundary preferences save failed with " &
+                            saved.Failure.ToString() &
+                            ": " &
+                            saved.Message)
+                End If
+
+                Dim reopened As UserPreferencesLoadResult = store.Load()
+                AssertEqual(True, reopened.IsSuccess, "near-boundary preferences reload")
+                AssertSnapshot(preferences, reopened.Preferences, "near-boundary preferences")
+                AssertEqual(
+                    0,
+                    Directory.GetFiles(
+                        Path.GetDirectoryName(preferencesPath),
+                        "~c3*.tmp",
+                        SearchOption.TopDirectoryOnly).Length,
+                    "near-boundary preferences temporary cleanup")
+            End Sub)
+    End Sub
+
     Public Shared Sub MergesDirtyFieldsAndCreatesBackup()
         WithTemporaryDirectory(
             "merge",

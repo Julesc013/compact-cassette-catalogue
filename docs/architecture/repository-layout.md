@@ -30,6 +30,7 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |-- C3.Infrastructure/
 |   |   |-- CatalogueFiles/Xml/V1_1/
 |   |   |-- Diagnostics/
+|   |   |-- FileOperations/
 |   |   |-- Preferences/
 |   |   `-- Updates/
 |   |-- C3.WinForms/
@@ -96,7 +97,9 @@ settings, networking, or OS APIs.
 `C3.Infrastructure` implements external mechanisms. Its versioned legacy XML
 directory is the only production code allowed to know v1.1 table/column names.
 Preference persistence/import, update policy, and diagnostics live beside their
-mechanism rather than in a catch-all platform module.
+mechanism rather than in a catch-all platform module. `FileOperations` contains
+only reusable, same-volume transaction primitives required by more than one
+persistence adapter; it does not own catalogue or preference policy.
 
 `C3.WinForms` composes services and owns interaction and presentation. Its two
 project files compile the same physical feature sources. The Net40 project is the

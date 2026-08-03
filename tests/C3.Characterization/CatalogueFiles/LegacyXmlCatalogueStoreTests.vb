@@ -85,6 +85,58 @@ Friend NotInheritable Class LegacyXmlCatalogueStoreTests
             End Sub)
     End Sub
 
+    Public Shared Sub SavesNearClassicPathBoundary()
+        Dim store As New LegacyXmlCatalogueStore()
+        Dim schema As DataSet = Program.CreateFixtureSchema()
+        Dim loaded As LegacyCatalogueLoadResult = store.Load(
+            FixturePath("valid", "populated.xml"),
+            schema,
+            SupportedVersions)
+        AssertEqual(True, loaded.IsSuccess, "path-boundary fixture load")
+
+        WithTemporaryDirectory(
+            "legacy-path-boundary",
+            Sub(workDirectory As String)
+                Dim destination As String = LegacyPathTestSupport.CreateNearBoundaryDestination(
+                    workDirectory,
+                    "catalogue.xml")
+                Dim historicalTemporaryPath As String =
+                    LegacyPathTestSupport.HistoricalTemporaryPath(destination)
+                AssertEqual(
+                    True,
+                    historicalTemporaryPath.Length >
+                        LegacyPathTestSupport.ClassicMaximumPathCharacters,
+                    "destination-prefixed temporary path exceeds classic limit")
+
+                Dim saved As LegacyCatalogueSaveResult = store.Save(
+                    destination,
+                    loaded.Document,
+                    Nothing,
+                    SupportedVersions)
+                If Not saved.IsSuccess Then
+                    Throw New InvalidOperationException(
+                        "Near-boundary catalogue save failed with " &
+                            saved.Failure.ToString() &
+                            ": " &
+                            saved.Message)
+                End If
+
+                Dim reopened As LegacyCatalogueLoadResult = store.Load(
+                    destination,
+                    schema,
+                    SupportedVersions)
+                AssertEqual(True, reopened.IsSuccess, "near-boundary catalogue reload")
+                AssertEqual(1, reopened.Document.Tables("Tapes").Rows.Count, "near-boundary tape count")
+                AssertEqual(
+                    0,
+                    Directory.GetFiles(
+                        Path.GetDirectoryName(destination),
+                        "~c3*.tmp",
+                        SearchOption.TopDirectoryOnly).Length,
+                    "near-boundary temporary cleanup")
+            End Sub)
+    End Sub
+
     Public Shared Sub RejectsWrongRootsNamespacesAndUnknownStructure()
         Dim store As New LegacyXmlCatalogueStore()
         Dim schema As DataSet = Program.CreateFixtureSchema()
@@ -325,6 +377,13 @@ Friend NotInheritable Class LegacyXmlCatalogueStoreTests
                     unrelatedTemporaryPath,
                     remainingTemporaryFiles(0),
                     "remaining temporary identity")
+                AssertEqual(
+                    0,
+                    Directory.GetFiles(
+                        workDirectory,
+                        "~c3*.tmp",
+                        SearchOption.TopDirectoryOnly).Length,
+                    "owned compact temporary cleanup")
             End Sub)
     End Sub
 

@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.Security
 Imports System.Threading
 Imports System.Xml
+Imports C3.Infrastructure.FileOperations
 Imports C3.Infrastructure.Updates
 
 Namespace Preferences
@@ -12,6 +13,7 @@ Public NotInheritable Class XmlUserPreferencesStore
     Private Const MaximumFileBytes As Long = 256L * 1024L
     Private Const LockAttemptCount As Integer = 40
     Private Const LockRetryMilliseconds As Integer = 50
+    Private Const RecoveryPathAttemptCount As Integer = 32
     Private ReadOnly _clock As Func(Of DateTime)
 
     Public Sub New(preferencesPath As String, clock As Func(Of DateTime))
@@ -139,15 +141,26 @@ Public NotInheritable Class XmlUserPreferencesStore
         End If
 
         Dim directoryPath As String = Path.GetDirectoryName(PreferencesPath)
-        Dim baseName As String = Path.GetFileNameWithoutExtension(PreferencesPath)
-        Dim stamp As String = _clock().ToUniversalTime().ToString(
-            "yyyyMMddTHHmmss",
-            CultureInfo.InvariantCulture)
-        Dim quarantinePath As String = Path.Combine(
-            directoryPath,
-            baseName & ".corrupt-" & stamp & "-" & Guid.NewGuid().ToString("N") & ".xml")
-        File.Move(PreferencesPath, quarantinePath)
-        Return quarantinePath
+        Dim stamp As DateTime = _clock().ToUniversalTime()
+        For attempt As Integer = 1 To RecoveryPathAttemptCount
+            Dim quarantinePath As String = Path.Combine(
+                directoryPath,
+                CompactSiblingFileName.CreateRecovery(stamp))
+            Try
+                File.Move(PreferencesPath, quarantinePath)
+                Return quarantinePath
+            Catch ex As IOException
+                ' A pre-existing recovery path is only a generated-name
+                ' collision. Preserve it and retry without masking other I/O.
+                If Not File.Exists(PreferencesPath) OrElse
+                        (Not File.Exists(quarantinePath) AndAlso
+                            Not Directory.Exists(quarantinePath)) Then
+                    Throw
+                End If
+            End Try
+        Next
+
+        Throw New IOException("C3 could not reserve a unique preferences recovery path.")
     End Function
 
     Friend Function SaveExactUnlocked(
@@ -166,9 +179,6 @@ Public NotInheritable Class XmlUserPreferencesStore
 
         Dim directoryPath As String = Path.GetDirectoryName(PreferencesPath)
         Directory.CreateDirectory(directoryPath)
-        Dim temporaryPath As String = Path.Combine(
-            directoryPath,
-            "." & Path.GetFileName(PreferencesPath) & "." & Guid.NewGuid().ToString("N") & ".tmp")
         Dim backupFilePath As String = Me.BackupPath
 
         Try
@@ -180,50 +190,42 @@ Public NotInheritable Class XmlUserPreferencesStore
                 .CloseOutput = False
             }
 
-            Using stream As New FileStream(
-                    temporaryPath,
-                    FileMode.CreateNew,
-                    FileAccess.Write,
-                    FileShare.None)
-                Using writer As XmlWriter = XmlWriter.Create(stream, writerSettings)
-                    WriteSnapshot(writer, normalized)
+            Using temporaryFile As OwnedSiblingTemporaryFile =
+                    OwnedSiblingTemporaryFile.Create(PreferencesPath)
+                Using stream As FileStream = temporaryFile.Stream
+                    Using writer As XmlWriter = XmlWriter.Create(stream, writerSettings)
+                        WriteSnapshot(writer, normalized)
+                    End Using
+                    stream.Flush(True)
                 End Using
-                stream.Flush(True)
+
+                Dim verification As UserPreferencesLoadResult = LoadPathUnlocked(temporaryFile.Path)
+                If Not verification.IsSuccess OrElse
+                        Not AreEquivalent(normalized, verification.Preferences) Then
+                    Dim details As String = If(
+                        verification.IsSuccess,
+                        "The preferences snapshot changed during round-trip verification.",
+                        verification.Message)
+                    Return UserPreferencesSaveResult.Failed(
+                        UserPreferencesFailure.VerificationFailure,
+                        details)
+                End If
+
+                If File.Exists(PreferencesPath) Then
+                    File.Replace(temporaryFile.Path, PreferencesPath, backupFilePath, True)
+                Else
+                    File.Move(temporaryFile.Path, PreferencesPath)
+                    backupFilePath = Nothing
+                End If
+
+                Return UserPreferencesSaveResult.Saved(normalized.Clone(), backupFilePath)
             End Using
-
-            Dim verification As UserPreferencesLoadResult = LoadPathUnlocked(temporaryPath)
-            If Not verification.IsSuccess OrElse
-                    Not AreEquivalent(normalized, verification.Preferences) Then
-                Dim details As String = If(
-                    verification.IsSuccess,
-                    "The preferences snapshot changed during round-trip verification.",
-                    verification.Message)
-                Return UserPreferencesSaveResult.Failed(
-                    UserPreferencesFailure.VerificationFailure,
-                    details)
-            End If
-
-            If File.Exists(PreferencesPath) Then
-                File.Replace(temporaryPath, PreferencesPath, backupFilePath, True)
-            Else
-                File.Move(temporaryPath, PreferencesPath)
-                backupFilePath = Nothing
-            End If
-
-            Return UserPreferencesSaveResult.Saved(normalized.Clone(), backupFilePath)
         Catch ex As UnauthorizedAccessException
             Return UserPreferencesSaveResult.Failed(UserPreferencesFailure.AccessDenied, ex.Message)
         Catch ex As SecurityException
             Return UserPreferencesSaveResult.Failed(UserPreferencesFailure.AccessDenied, ex.Message)
         Catch ex As IOException
             Return UserPreferencesSaveResult.Failed(UserPreferencesFailure.IoFailure, ex.Message)
-        Finally
-            Try
-                If File.Exists(temporaryPath) Then
-                    File.Delete(temporaryPath)
-                End If
-            Catch
-            End Try
         End Try
     End Function
 

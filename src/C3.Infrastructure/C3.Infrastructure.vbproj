@@ -65,6 +65,8 @@
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyXmlCatalogueStore.vb" />
     <Compile Include="Diagnostics\BufferedLogger.vb" />
     <Compile Include="Diagnostics\CrashReportWriter.vb" />
+    <Compile Include="FileOperations\CompactSiblingFileName.vb" />
+    <Compile Include="FileOperations\OwnedSiblingTemporaryFile.vb" />
     <Compile Include="Preferences\LegacySettingsProfileCandidate.vb" />
     <Compile Include="Preferences\LegacySettingsProfileLocator.vb" />
     <Compile Include="Preferences\LegacySettingsProfileReader.vb" />

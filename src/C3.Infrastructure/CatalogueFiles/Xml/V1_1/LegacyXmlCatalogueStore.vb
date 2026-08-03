@@ -1,4 +1,5 @@
 Imports C3.Catalogue.Catalogues
+Imports C3.Infrastructure.FileOperations
 Imports System.Data
 Imports System.Globalization
 Imports System.Linq
@@ -106,9 +107,6 @@ Namespace CatalogueFiles.Xml.V1_1
                     "The destination directory does not exist.")
             End If
 
-            Dim temporaryPath As String = System.IO.Path.Combine(
-                directoryPath,
-                "." & System.IO.Path.GetFileName(fullPath) & "." & Guid.NewGuid().ToString("N") & ".tmp")
             Dim backupPath As String = fullPath & ".bak"
 
             Try
@@ -123,50 +121,44 @@ Namespace CatalogueFiles.Xml.V1_1
                 Dim snapshot As DataSet = document.Copy()
                 NormalizeCounters(snapshot)
 
-                Using stream As New FileStream(
-                        temporaryPath,
-                        FileMode.CreateNew,
-                        FileAccess.Write,
-                        FileShare.None)
-                    snapshot.WriteXml(stream, XmlWriteMode.IgnoreSchema)
-                    stream.Flush()
+                Using temporaryFile As OwnedSiblingTemporaryFile =
+                        OwnedSiblingTemporaryFile.Create(fullPath)
+                    Using stream As FileStream = temporaryFile.Stream
+                        snapshot.WriteXml(stream, XmlWriteMode.IgnoreSchema)
+                        ' Persist the complete sibling snapshot before it is
+                        ' verified and atomically promoted to the destination.
+                        stream.Flush(True)
+                    End Using
+
+                    Dim verification As LegacyCatalogueLoadResult = Load(
+                        temporaryFile.Path,
+                        snapshot.Clone(),
+                        supportedVersions)
+                    If Not verification.IsSuccess OrElse Not AreEquivalent(snapshot, verification.Document) Then
+                        Dim details As String = If(
+                            verification.IsSuccess,
+                            "The saved snapshot did not round-trip without changes.",
+                            verification.Message)
+                        Return LegacyCatalogueSaveResult.Failed(
+                            LegacyCatalogueFileFailure.VerificationFailure,
+                            "C3 verified the temporary output before replacement and rejected it. " & details)
+                    End If
+
+                    If File.Exists(fullPath) Then
+                        File.Replace(temporaryFile.Path, fullPath, backupPath, True)
+                    Else
+                        File.Move(temporaryFile.Path, fullPath)
+                        backupPath = Nothing
+                    End If
+
+                    Return LegacyCatalogueSaveResult.Success(CalculateRevision(fullPath), backupPath)
                 End Using
-
-                Dim verification As LegacyCatalogueLoadResult = Load(
-                    temporaryPath,
-                    snapshot.Clone(),
-                    supportedVersions)
-                If Not verification.IsSuccess OrElse Not AreEquivalent(snapshot, verification.Document) Then
-                    Dim details As String = If(
-                        verification.IsSuccess,
-                        "The saved snapshot did not round-trip without changes.",
-                        verification.Message)
-                    Return LegacyCatalogueSaveResult.Failed(
-                        LegacyCatalogueFileFailure.VerificationFailure,
-                        "C3 verified the temporary output before replacement and rejected it. " & details)
-                End If
-
-                If File.Exists(fullPath) Then
-                    File.Replace(temporaryPath, fullPath, backupPath, True)
-                Else
-                    File.Move(temporaryPath, fullPath)
-                    backupPath = Nothing
-                End If
-
-                Return LegacyCatalogueSaveResult.Success(CalculateRevision(fullPath), backupPath)
             Catch ex As UnauthorizedAccessException
                 Return LegacyCatalogueSaveResult.Failed(LegacyCatalogueFileFailure.AccessDenied, ex.Message)
             Catch ex As IOException
                 Return LegacyCatalogueSaveResult.Failed(LegacyCatalogueFileFailure.IoFailure, ex.Message)
             Catch ex As Exception
                 Return LegacyCatalogueSaveResult.Failed(LegacyCatalogueFileFailure.VerificationFailure, ex.Message)
-            Finally
-                Try
-                    If File.Exists(temporaryPath) Then
-                        File.Delete(temporaryPath)
-                    End If
-                Catch
-                End Try
             End Try
         End Function
 

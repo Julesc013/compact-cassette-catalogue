@@ -100,8 +100,20 @@ Friend NotInheritable Class UserPreferencesServiceTests
             Sub(workDirectory As String)
                 Dim localRoot As String = Path.Combine(workDirectory, "LocalAppData")
                 Directory.CreateDirectory(localRoot)
-                Dim nativePath As String = Path.Combine(workDirectory, "native", "preferences.xml")
-                Dim store As New XmlUserPreferencesStore(nativePath, Function() New DateTime(2026, 8, 4))
+                Dim recoveryStamp As New DateTime(2026, 8, 4, 0, 0, 0, DateTimeKind.Utc)
+                Dim nativePath As String = LegacyPathTestSupport.CreateNearBoundaryDestination(
+                    workDirectory,
+                    "preferences.xml")
+                Dim historicalRecoveryPath As String =
+                    LegacyPathTestSupport.HistoricalPreferencesRecoveryPath(
+                        nativePath,
+                        recoveryStamp)
+                AssertEqual(
+                    True,
+                    historicalRecoveryPath.Length >
+                        LegacyPathTestSupport.ClassicMaximumPathCharacters,
+                    "destination-prefixed recovery path exceeds classic limit")
+                Dim store As New XmlUserPreferencesStore(nativePath, Function() recoveryStamp)
                 Dim backupSnapshot As UserPreferencesSnapshot =
                     CreateNativeSnapshot(False, "D:\Backup", UpdateCheckPolicy.Weekly)
                 Dim replacedSnapshot As UserPreferencesSnapshot =
@@ -117,6 +129,17 @@ Friend NotInheritable Class UserPreferencesServiceTests
                 AssertEqual("D:\Backup", service.DefaultDirectory, "backup recovered directory")
                 AssertEqual(UpdateCheckPolicy.Weekly, service.UpdatePolicy, "backup recovered policy")
                 AssertEqual(True, File.Exists(result.RecoveryPath), "quarantined primary exists")
+                AssertEqual(
+                    True,
+                    Path.GetFileName(result.RecoveryPath).StartsWith(
+                        ".bad-260804000000",
+                        StringComparison.Ordinal),
+                    "compact quarantine identity")
+                AssertEqual(24, Path.GetFileName(result.RecoveryPath).Length, "compact quarantine length")
+                AssertEqual(
+                    LegacyPathTestSupport.ClassicMaximumPathCharacters,
+                    result.RecoveryPath.Length,
+                    "compact quarantine reaches but does not exceed classic limit")
                 AssertEqual(True, store.Load().IsSuccess, "recovered primary is readable")
             End Sub)
     End Sub
@@ -146,7 +169,7 @@ Friend NotInheritable Class UserPreferencesServiceTests
                 AssertBytesEqual(originalBytes, File.ReadAllBytes(nativePath), "future native source")
                 AssertEqual(
                     0,
-                    Directory.GetFiles(Path.GetDirectoryName(nativePath), "*.corrupt-*.xml").Length,
+                    Directory.GetFiles(Path.GetDirectoryName(nativePath), ".bad-*.xml").Length,
                     "future schema quarantine count")
 
                 File.WriteAllText(
@@ -168,7 +191,7 @@ Friend NotInheritable Class UserPreferencesServiceTests
                 AssertBytesEqual(namespacedBytes, File.ReadAllBytes(nativePath), "future namespace source")
                 AssertEqual(
                     0,
-                    Directory.GetFiles(Path.GetDirectoryName(nativePath), "*.corrupt-*.xml").Length,
+                    Directory.GetFiles(Path.GetDirectoryName(nativePath), ".bad-*.xml").Length,
                     "future namespace quarantine count")
             End Sub)
     End Sub
@@ -334,7 +357,9 @@ Friend NotInheritable Class UserPreferencesServiceTests
             documentsPath As String) As UserPreferencesService
 
         Return New UserPreferencesService(
-            New XmlUserPreferencesStore(nativePath, Function() New DateTime(2026, 8, 4)),
+            New XmlUserPreferencesStore(
+                nativePath,
+                Function() New DateTime(2026, 8, 4, 0, 0, 0, DateTimeKind.Utc)),
             New LegacyUserSettingsImporter(),
             localRoot,
             documentsPath)

@@ -17,6 +17,9 @@
   shared by both build lanes, using cross-process locking, dirty-field merging,
   verified atomic writes, durable flush, backups, quarantine, recovery, and
   downgrade-safe future-schema refusal.
+- Centralized create-only sibling temporary files and compact recovery names so
+  catalogue and preference transactions remain usable near the classic Windows
+  path limit without weakening same-directory atomic replacement or cleanup.
 - Added a bounded read-only importer for known C3 1.x profile locations and
   Boolean/string schemas. It preserves source bytes, records imported/not-found/
   invalid outcomes atomically, falls back only from invalid content, and keeps

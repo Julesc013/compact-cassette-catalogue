@@ -27,13 +27,20 @@ The legacy importer is a one-way boundary and is never a second live store.
   preferences.xml                  current profile
   preferences.xml.bak              last replaceable profile
   preferences.lock                 persistent cross-process lock file
-  preferences.corrupt-*.xml        quarantined invalid primary, if recovery ran
+  .bad-yyMMddHHmmssXXX.xml          quarantined invalid primary, if recovery ran
 ```
 
 A save takes the cross-process lock, reloads the current profile, merges only
 the caller's dirty fields, writes a same-directory temporary file, flushes it to
 disk, reopens and verifies it, then uses `File.Replace` when a primary exists.
 The in-memory dirty fields clear only after success.
+
+Temporary and recovery sibling names are deliberately compact so a valid
+destination near the classic Windows 259-character path boundary does not become
+unsavable merely because a transactional filename is longer. Recovery names
+retain a UTC timestamp to the second; the final three URL-safe characters and
+create-only retry distinguish concurrent recoveries without embedding or
+duplicating the preference filename.
 
 Initialization holds the same lock across this complete transaction:
 

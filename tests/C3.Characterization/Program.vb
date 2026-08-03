@@ -24,6 +24,9 @@ Module Program
             "store saves transactionally and detects external edits",
             AddressOf LegacyXmlCatalogueStoreTests.StoreSavesTransactionally)
         RunTest(
+            "store saves below the classic Windows path boundary",
+            AddressOf LegacyXmlCatalogueStoreTests.SavesNearClassicPathBoundary)
+        RunTest(
             "store rejects wrong roots namespaces and unknown structure",
             AddressOf LegacyXmlCatalogueStoreTests.RejectsWrongRootsNamespacesAndUnknownStructure)
         RunTest(
@@ -115,6 +118,9 @@ Module Program
         RunTest(
             "XML user preferences store reports missing files and round-trips values",
             AddressOf XmlUserPreferencesStoreTests.ReportsMissingFilesAndRoundTripsValues)
+        RunTest(
+            "XML user preferences store saves below the classic Windows path boundary",
+            AddressOf XmlUserPreferencesStoreTests.SavesNearClassicPathBoundary)
         RunTest(
             "XML user preferences store merges dirty fields and creates a backup",
             AddressOf XmlUserPreferencesStoreTests.MergesDirtyFieldsAndCreatesBackup)
