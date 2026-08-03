@@ -23,6 +23,8 @@
   typed catalogue service with a legacy DataSet repository adapter.
 - Removed public Brand `DataRow` hand-off between forms and prevented deletion of
   brands still referenced by cassette models.
+- Fixed the main window close handler recursively calling `Application.Exit`
+  while unconditionally cancelling every close request.
 
 
 

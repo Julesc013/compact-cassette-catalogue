@@ -9,6 +9,7 @@ Imports System.Net
 Public Class frmMain
 
     'Declare variables
+    Private _allowClose As Boolean
     Dim updatesMask As Boolean = True
     'Initialise tape index to last tape
     Dim thisTapeIndex As Integer = tapeCount - 1
@@ -1349,34 +1350,31 @@ Public Class frmMain
     End Sub
 
     Public Sub closeApplication()
-        'Check for unsaved changes to the whole catalogue, offer to save, then close
+        If CanCloseApplication() Then
+            _allowClose = True
+            Close()
+        End If
+    End Sub
 
-        If changes = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before closing?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
-
-            If result = vbYes Then
-
-                saveChanges(False)
-
-                'CLOSE
-                Application.Exit()
-
-            ElseIf result = vbNo Then
-
-                'CLOSE
-                Application.Exit()
-
-            End If
-
-        Else
-
-            'CLOSE
-            Application.Exit()
-
+    Private Function CanCloseApplication() As Boolean
+        If Not changes Then
+            Return True
         End If
 
-    End Sub
+        Dim result As MsgBoxResult = MsgBox(
+            "Changes have been made to the catalogue." & vbNewLine & "Save changes before closing?",
+            MsgBoxStyle.YesNoCancel Or MsgBoxStyle.Question,
+            "Changes Made To Catalogue")
+        If result = vbCancel Then
+            Return False
+        End If
+        If result = vbNo Then
+            Return True
+        End If
+
+        saveChanges(False)
+        Return Not changes
+    End Function
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
@@ -1475,12 +1473,14 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Close(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
-        'Handle the X button
+        If _allowClose Then
+            Return
+        End If
 
-        closeApplication()
-
-        e.Cancel = True
-
+        e.Cancel = Not CanCloseApplication()
+        If Not e.Cancel Then
+            _allowClose = True
+        End If
     End Sub
 
     Private Sub ShowConsoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowConsoleToolStripMenuItem.Click
