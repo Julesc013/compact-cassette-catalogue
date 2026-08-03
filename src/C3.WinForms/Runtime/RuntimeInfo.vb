@@ -5,12 +5,12 @@ Public NotInheritable Class RuntimeInfo
 
     Public Shared ReadOnly Property BuildLabel As String
         Get
-            If IntPtr.Size = 8 Then
-                Return "x64 / .NET Framework 4.0 (transition)"
-            End If
+#If C3_NET48 Then
+            Return "x64 / .NET Framework 4.8"
+#Else
             Return "x86 / .NET Framework 4.0"
+#End If
         End Get
     End Property
 
 End Class
-

@@ -37,10 +37,9 @@ validation consume the same lane identifiers.
 
 ## Current transition
 
-The repository temporarily describes `win-x64-net40-transition` because the
-legacy project still targets .NET Framework 4.0 for x64. It will be replaced by
-`win-x64-net48` only when the separate Net48 project, configuration, shared-source
-parity check, and verification path are committed together.
+The x86/net40 project is the authoritative WinForms designer project. The
+x64/net48 project compiles the same physical source tree and owns only its target,
+manifest, application configuration, conditional constants, and output paths.
 
 ## Compatibility checks
 
@@ -48,4 +47,3 @@ A successful compile does not prove an operating-system claim. Publication also
 requires runtime smoke testing on the minimum supported OS for each lane,
 catalogue round-trip tests, PE architecture checks, and the manual workflows in
 the release validation record.
-

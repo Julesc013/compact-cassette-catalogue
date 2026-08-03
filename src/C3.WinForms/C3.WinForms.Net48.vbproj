@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\build\Version.props" Condition="Exists('..\..\build\Version.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{A2EC9CBF-6C88-454E-BD02-082AC25FCA78}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Compact_Cassette_Catalogue.My.MyApplication</StartupObject>
+    <RootNamespace>Compact_Cassette_Catalogue</RootNamespace>
+    <AssemblyName>Compact Cassette Catalogue</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <AppConfig>Configuration\Net48\App.config</AppConfig>
+    <ApplicationManifest>Configuration\Net48\app.manifest</ApplicationManifest>
+    <ApplicationIcon>icon-cassette.ico</ApplicationIcon>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DefineConstants>C3_NET48=-1,C3_X64_BUILD=-1</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\artifacts\bin\win-x64-net48\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\win-x64-net48\Debug\</IntermediateOutputPath>
+    <DocumentationFile>..\..\artifacts\bin\win-x64-net48\Debug\Compact Cassette Catalogue.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DefineConstants>C3_NET48=-1,C3_X64_BUILD=-1</DefineConstants>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\artifacts\bin\win-x64-net48\Release\</OutputPath>
+    <IntermediateOutputPath>obj\win-x64-net48\Release\</IntermediateOutputPath>
+    <DocumentationFile>..\..\artifacts\bin\win-x64-net48\Release\Compact Cassette Catalogue.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Threading.Tasks" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="**\*.vb" Exclude="bin\**\*;obj\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="**\*.resx" Exclude="bin\**\*;obj\**\*;My Project\Resources.resx">
+      <DependentUpon>%(Filename).vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\Net48\App.config" />
+    <None Include="Configuration\Net48\app.manifest" />
+    <None Include="My Project\Application.myapp" />
+    <None Include="My Project\Settings.settings" />
+    <None Include="My Project\DataSources\**\*" />
+    <None Include="Resources\cassette-icon.png" />
+    <None Include="Resources\banner-wide.png" />
+    <Content Include="icon-cassette.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

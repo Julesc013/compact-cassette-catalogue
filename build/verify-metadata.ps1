@@ -44,7 +44,7 @@ else {
         $releaseDate.ToString('dd/MM/yyyy', [Globalization.CultureInfo]::InvariantCulture)) $legacyVersion[2]
 }
 
-$buildInfoPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\Generated\BuildInfo.g.vb'
+$buildInfoPath = Join-Path $repositoryRoot 'src\C3.WinForms\Generated\BuildInfo.g.vb'
 $buildInfo = Get-Content -LiteralPath $buildInfoPath -Raw
 $expectedFragments = @(
     "Public Const VERSION As String = `"$productVersion`""
@@ -71,4 +71,3 @@ if ($failures.Count -gt 0) {
 }
 
 Write-Host "Metadata verified: C3 $productVersion ($releaseStage), catalogue $catalogueFormatVersion."
-

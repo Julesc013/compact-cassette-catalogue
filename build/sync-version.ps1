@@ -43,11 +43,10 @@ End Module
 "@
 
 $legacyVersionPath = Join-Path $repositoryRoot 'VERSION'
-$buildInfoPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\Generated\BuildInfo.g.vb'
+$buildInfoPath = Join-Path $repositoryRoot 'src\C3.WinForms\Generated\BuildInfo.g.vb'
 
 $utf8WithoutBom = New-Object Text.UTF8Encoding($false)
 [IO.File]::WriteAllText($legacyVersionPath, $legacyVersion + [Environment]::NewLine, $utf8WithoutBom)
 [IO.File]::WriteAllText($buildInfoPath, $buildInfo, $utf8WithoutBom)
 
 Write-Host "Synchronized C3 $productVersion ($releaseStage) metadata."
-
