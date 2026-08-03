@@ -65,11 +65,14 @@
       <Link>Properties\VersionAssemblyInfo.g.vb</Link>
     </Compile>
     <Compile Include="Program.vb" />
+    <Compile Include="CatalogueFiles\LegacyXmlCatalogueStoreTests.vb" />
     <Compile Include="PreferenceFormatContractTests.vb" />
     <Compile Include="LegacySettingsProfileLocatorTests.vb" />
     <Compile Include="LegacySettingsProfileReaderTests.vb" />
     <Compile Include="LegacyUserSettingsImporterTests.vb" />
     <Compile Include="UpdateCheckScheduleTryParseStoredTests.vb" />
+    <Compile Include="UpdateReleaseManifestTests.vb" />
+    <Compile Include="UpdateEndpointTransportTests.vb" />
     <Compile Include="UserPreferencesServiceTests.vb" />
     <Compile Include="UserPreferencesSnapshotTests.vb" />
     <Compile Include="XmlUserPreferencesStoreTests.vb" />

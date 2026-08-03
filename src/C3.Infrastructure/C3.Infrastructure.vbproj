@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +79,13 @@
     <Compile Include="Preferences\XmlUserPreferencesStore.vb" />
     <Compile Include="Updates\UpdateCheckPolicy.vb" />
     <Compile Include="Updates\UpdateCheckSchedule.vb" />
+    <Compile Include="Updates\SemanticVersion.vb" />
+    <Compile Include="Updates\UpdateReleaseManifest.vb" />
+    <Compile Include="Updates\UpdateReleaseManifestReader.vb" />
+    <Compile Include="Updates\IUpdateManifestSource.vb" />
+    <Compile Include="Updates\UpdateEndpointPolicy.vb" />
+    <Compile Include="Updates\HttpUpdateManifestSource.vb" />
+    <Compile Include="Updates\UpdateCheckService.vb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.vbproj">

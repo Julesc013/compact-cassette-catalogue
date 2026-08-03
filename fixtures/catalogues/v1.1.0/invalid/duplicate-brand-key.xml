@@ -1,0 +1,6 @@
+<?xml version="1.0" standalone="yes"?>
+<Catalogue>
+  <Information><Information>File Version</Information><Value>1.1.0</Value></Information>
+  <Brands><Brand>First</Brand><Code>DUP</Code></Brands>
+  <Brands><Brand>Second</Brand><Code>DUP</Code></Brands>
+</Catalogue>

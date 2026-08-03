@@ -23,27 +23,31 @@ if (-not [Uri]::TryCreate($updateFeedUrl, [UriKind]::Absolute, [ref]$updateFeedU
     $failures.Add("update feed URL is not absolute: '$updateFeedUrl'")
 }
 else {
+    if (@('alpha', 'beta', 'stable') -cnotcontains $releaseChannel) {
+        $failures.Add("update feed channel is not supported: '$releaseChannel'.")
+    }
+    $expectedFeedBranch = if ($releaseChannel -ceq 'alpha') { 'dev' } else { 'master' }
+    $expectedFeedUrl =
+        "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/" +
+        "$expectedFeedBranch/release/feeds/$releaseChannel/release.json"
+
     if ($updateFeedUri.Scheme -cne 'https') {
         $failures.Add('update feed URL must use HTTPS.')
     }
     if ($updateFeedUri.Host -cne 'raw.githubusercontent.com') {
         $failures.Add('update feed URL must use the approved raw.githubusercontent.com host.')
     }
-    $expectedFeedSuffix = "/release/feeds/$releaseChannel/VERSION"
-    if (-not $updateFeedUri.AbsolutePath.EndsWith(
-            $expectedFeedSuffix,
-            [StringComparison]::Ordinal)) {
-        $failures.Add("update feed URL must end with '$expectedFeedSuffix'.")
+    if ($updateFeedUri.Port -ne 443 -or -not $updateFeedUri.IsDefaultPort) {
+        $failures.Add('update feed URL must use the default HTTPS port.')
     }
-    if ($releaseChannel -ceq 'alpha' -and
-        $updateFeedUri.AbsolutePath.IndexOf(
-            '/Julesc013/compact-cassette-catalogue/dev/',
-            [StringComparison]::Ordinal) -lt 0) {
-        $failures.Add('the alpha update feed must remain isolated on the dev branch.')
-    }
-    if (-not [string]::IsNullOrEmpty($updateFeedUri.Query) -or
+    if (-not [string]::IsNullOrEmpty($updateFeedUri.UserInfo) -or
+        -not [string]::IsNullOrEmpty($updateFeedUri.Query) -or
         -not [string]::IsNullOrEmpty($updateFeedUri.Fragment)) {
-        $failures.Add('update feed URL must not contain a query or fragment.')
+        $failures.Add(
+            'update feed URL must not contain credentials, a query, or a fragment.')
+    }
+    if ($updateFeedUri.OriginalString -cne $expectedFeedUrl) {
+        $failures.Add("update feed URL must be exactly '$expectedFeedUrl'.")
     }
 }
 
@@ -59,22 +63,45 @@ function Assert-Equal {
     }
 }
 
-$channelDirectory = Join-Path $repositoryRoot ("release\feeds\" + $releaseChannel)
-$channelVersionPath = Join-Path $channelDirectory 'VERSION'
-$channelVersion = @(Get-Content -LiteralPath $channelVersionPath)
-if ($channelVersion.Count -ne 3) {
-    $failures.Add("$releaseChannel/VERSION: expected exactly 3 lines, found $($channelVersion.Count)")
-}
-else {
-    Assert-Equal "$releaseChannel/VERSION product version" $productVersion $channelVersion[0]
-    Assert-Equal "$releaseChannel/VERSION release stage" $releaseStage $channelVersion[1]
-    Assert-Equal "$releaseChannel/VERSION release date" (
-        $releaseDate.ToString('dd/MM/yyyy', [Globalization.CultureInfo]::InvariantCulture)) $channelVersion[2]
-}
-
-$channelManifestPath = Join-Path $channelDirectory 'release.json'
+$channelManifestPath = & (Join-Path $PSScriptRoot 'get-update-manifest-path.ps1') `
+    -Identity $identity `
+    -RepositoryRoot $repositoryRoot
+$updateFeedSchemaPath = Join-Path $repositoryRoot 'spec\update-feed\v1\release.schema.json'
+& (Join-Path $PSScriptRoot 'validate-json-document.ps1') `
+    -SchemaPath $updateFeedSchemaPath `
+    -DocumentPath $channelManifestPath `
+    -MaximumBytes (32 * 1024) | Out-Null
 $channelManifest = Get-Content -LiteralPath $channelManifestPath -Raw | ConvertFrom-Json
+$expectedManifestProperties = @(
+    'schemaVersion',
+    'product',
+    'productId',
+    'channel',
+    'version',
+    'stage',
+    'informationalVersion',
+    'releaseDate',
+    'catalogueWriteFormat',
+    'published',
+    'releaseUrl',
+    'checksumManifest',
+    'packages'
+)
+$actualManifestProperties = @(
+    $channelManifest.PSObject.Properties | ForEach-Object { $_.Name }
+)
+foreach ($propertyName in $expectedManifestProperties) {
+    if ($actualManifestProperties -cnotcontains $propertyName) {
+        $failures.Add("release manifest is missing property '$propertyName'.")
+    }
+}
+foreach ($propertyName in $actualManifestProperties) {
+    if ($expectedManifestProperties -cnotcontains $propertyName) {
+        $failures.Add("release manifest contains unsupported property '$propertyName'.")
+    }
+}
 Assert-Equal 'release manifest schema' '1' ([string]$channelManifest.schemaVersion)
+Assert-Equal 'release manifest product' 'Compact Cassette Catalogue' ([string]$channelManifest.product)
 Assert-Equal 'release manifest product ID' 'c3' ([string]$channelManifest.productId)
 Assert-Equal 'release manifest channel' $releaseChannel ([string]$channelManifest.channel)
 Assert-Equal 'release manifest version' $productVersion ([string]$channelManifest.version)
@@ -86,9 +113,29 @@ Assert-Equal 'release manifest release date' (
 Assert-Equal 'release manifest catalogue writer' $catalogueFormatVersion (
     [string]$channelManifest.catalogueWriteFormat)
 Assert-Equal 'development feed must not claim publication' 'False' ([string]$channelManifest.published)
+if ($null -ne $channelManifest.releaseUrl) {
+    $failures.Add('an unpublished development feed must have a null releaseUrl.')
+}
+if ($null -ne $channelManifest.checksumManifest) {
+    $failures.Add('an unpublished development feed must have a null checksumManifest.')
+}
+if ($channelManifest.packages -isnot [Array] -or @($channelManifest.packages).Count -ne 0) {
+    $failures.Add('an unpublished development feed must have an empty packages array.')
+}
 
 $legacyRootPath = Join-Path $repositoryRoot 'VERSION'
 $legacyChannelPath = Join-Path $repositoryRoot 'release\feeds\legacy-1x\VERSION'
+$feedRoot = Join-Path $repositoryRoot 'release\feeds'
+$legacyChannelFullPath = [IO.Path]::GetFullPath($legacyChannelPath)
+foreach ($feedVersion in Get-ChildItem -LiteralPath $feedRoot -Recurse -File -Filter 'VERSION') {
+    if (-not [string]::Equals(
+            $feedVersion.FullName,
+            $legacyChannelFullPath,
+            [StringComparison]::OrdinalIgnoreCase)) {
+        $failures.Add(
+            "2.x channel feeds must use release.json; remove '$($feedVersion.FullName)'.")
+    }
+}
 $legacyRoot = @(Get-Content -LiteralPath $legacyRootPath)
 $legacyChannel = @(Get-Content -LiteralPath $legacyChannelPath)
 if ($legacyRoot.Count -ne 3) {

@@ -11,7 +11,7 @@ Public Module C3BuildInfo
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
 
     Public Const ReleaseChannel As String = "alpha"
-    Public Const UpdateFeedUrl As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/VERSION"
+    Public Const UpdateFeedUrl As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json"
     Public Const AssemblyVersion As String = "2.0.0.0"
     Public Const FileVersion As String = "2.0.0.1"
     Public Const InformationalVersion As String = "2.0.0-alpha.1"

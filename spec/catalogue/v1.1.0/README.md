@@ -55,6 +55,8 @@ Stable opaque IDs require a future versioned catalogue format and migration.
 Readers:
 
 - securely parse with DTD processing prohibited and external resolution disabled;
+- require the root, row, and field elements to remain unqualified and scalar
+  fields to contain no nested elements;
 - reject malformed XML, a missing file version, and unsupported format versions;
 - load into temporary state and validate before replacing the active catalogue;
 - accept omitted optional values and empty tables produced by historical C3;
@@ -77,4 +79,3 @@ The application may impose documented size, depth, and text-length limits to
 protect memory on legacy systems. Such limits must fail explicitly and must not
 modify the active session. Unknown elements are compatibility errors unless a
 future specification explicitly defines an extension mechanism.
-

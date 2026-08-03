@@ -4,7 +4,7 @@
 ' Date Created: 22 Aug 2019
 
 Imports System.IO
-Imports System.Net
+Imports System.Threading
 
 Public Class frmMain
 
@@ -18,6 +18,7 @@ Public Class frmMain
     Private _wasSideARecorded As Boolean
     Private _wasSideBRecorded As Boolean
     Private _tapeCount As Integer
+    Private _updateCheckInProgress As Integer
 
     'Dim newTape As Object() = {"", 0, 0, "", 0, "Unsaved", 0, False, False, False, "", CDate("1/1/1970"), "", "", 0, "", False, False, False, 0, 0, "", 0, 0, "", "", "", "", CDate("1/1/1970"), "", "", 0, "", False, False, False, 0, 0, "", 0, 0, "", ""} 'Default record for a new blank tape
 
@@ -53,126 +54,185 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub enableBestEffortTls()
+    Sub checkUpdates(Optional manualCheck As Boolean = False)
+
+        ' Network retrieval must not block the WinForms message pump. One check at
+        ' a time also avoids racing preference timestamps and duplicate dialogs.
+        If Interlocked.CompareExchange(_updateCheckInProgress, 1, 0) <> 0 Then
+            If manualCheck Then
+                MessageBox.Show(
+                    "Compact Cassette Catalogue is already checking for updates.",
+                    "Update Check in Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information)
+            End If
+            Return
+        End If
+
+        CheckForUpdatesToolStripMenuItem.Enabled = False
+        consoleAdd("Checking for updates on the " & ReleaseChannel & " channel.")
 
         Try
-
-            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol Or CType(768, SecurityProtocolType) Or CType(3072, SecurityProtocolType)
-
+            If Not ThreadPool.QueueUserWorkItem(
+                    AddressOf runUpdateCheck,
+                    manualCheck) Then
+                Throw New InvalidOperationException(
+                    "The update check could not be queued.")
+            End If
         Catch ex As Exception
-
-            consoleAdd("Failed to enable best-effort TLS 1.1/1.2 support. Error: " & ex.Message)
-
+            Interlocked.Exchange(_updateCheckInProgress, 0)
+            CheckForUpdatesToolStripMenuItem.Enabled = True
+            showUpdateCheckFailure(
+                "The update check could not be started.",
+                ex,
+                manualCheck)
         End Try
 
     End Sub
 
-    Private Function isNewerVersion(latestVersion As String) As Boolean
+    Private Sub runUpdateCheck(state As Object)
+        Dim manualCheck As Boolean = CBool(state)
+        Dim workResult As UpdateCheckWorkResult
 
         Try
-
-            Dim latest As New Version(latestVersion)
-            Dim current As New Version(VERSION)
-            Return latest.CompareTo(current) > 0
-
+            Dim service As UpdateCheckService = createUpdateCheckService()
+            workResult = New UpdateCheckWorkResult(
+                service.Check(
+                    UpdateFeedUrl,
+                    InformationalVersion,
+                    ReleaseChannel),
+                Nothing,
+                manualCheck)
         Catch ex As Exception
-
-            Return latestVersion <> VERSION
-
+            workResult = New UpdateCheckWorkResult(Nothing, ex, manualCheck)
         End Try
 
+        Try
+            Me.BeginInvoke(
+                New Action(Of UpdateCheckWorkResult)(AddressOf completeUpdateCheck),
+                New Object() {workResult})
+        Catch ex As ObjectDisposedException
+            Interlocked.Exchange(_updateCheckInProgress, 0)
+        Catch ex As InvalidOperationException
+            Interlocked.Exchange(_updateCheckInProgress, 0)
+        End Try
+    End Sub
+
+    Private Function createUpdateCheckService() As UpdateCheckService
+#If C3_NET40 Then
+        ' .NET 4.0 does not select TLS 1.2 by default on all supported systems.
+        Return New UpdateCheckService(New HttpUpdateManifestSource(True))
+#Else
+        ' The .NET 4.8 lane relies on the operating system's modern TLS policy and
+        ' must never mutate the process-wide ServicePointManager setting.
+        Return New UpdateCheckService(New HttpUpdateManifestSource(False))
+#End If
     End Function
 
-    Sub checkUpdates(Optional manualCheck As Boolean = False)
-
-        ' Check for updates to the program.
-
-        ' Declare variables.
-        Dim latestVersion As String
-        Dim latestVersionStage As String
-        Dim latestVersionDate As Date = DateTime.MinValue
-
-        Dim updateAvailable As Boolean
-
-        Dim message As String
-        Dim messageDetails As String
-
-
-        ' Get variables from URL.
+    Private Sub completeUpdateCheck(workResult As UpdateCheckWorkResult)
         Try
-
-            enableBestEffortTls()
-
-            Dim updateClient As WebClient = New WebClient()
-            Using updateReader As New StreamReader(updateClient.OpenRead(UpdateFeedUrl))
-
-                ' Assume there are only 3 lines (and in data is in this order).
-                latestVersion = updateReader.ReadLine()
-                latestVersionStage = updateReader.ReadLine()
-                DateTime.TryParse(updateReader.ReadLine(), latestVersionDate)
-
-                ' Set success message for log.
-                message = "Successfully checked for updates."
-
-            End Using
-
-
-        Catch ex As Exception
-
-
-            ' Add confirmation message to console.
-            message = "Failed to check for updates."
-            consoleAdd(message & " Error: " & ex.Message)
-
-            If manualCheck = True Then
-
-                Dim boxTitle As String = "Update Check Failed"
-                Dim boxMessage As String = "Compact Cassette Catalogue could not check for updates." & vbNewLine & vbNewLine & "This can happen on old Windows systems when GitHub HTTPS/TLS support is unavailable." & vbNewLine & vbNewLine & "Error: " & ex.Message & vbNewLine & vbNewLine & "Would you like to open the releases page in your browser?"
-                Dim boxResult As DialogResult = MessageBox.Show(boxMessage, boxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
-
-                If boxResult = DialogResult.Yes Then
-                    openWebLink(UPDATELINKDOWNLOAD)
-                End If
-
+            If workResult.UnexpectedException IsNot Nothing Then
+                showUpdateCheckFailure(
+                    "The update check stopped unexpectedly.",
+                    workResult.UnexpectedException,
+                    workResult.ManualCheck)
+                Return
+            End If
+            If workResult.Result Is Nothing Then
+                showUpdateCheckFailure(
+                    "The update check returned no result.",
+                    Nothing,
+                    workResult.ManualCheck)
+                Return
+            End If
+            If Not workResult.Result.IsSuccess Then
+                showUpdateCheckFailure(
+                    workResult.Result.Message,
+                    workResult.Result.FailureException,
+                    workResult.ManualCheck)
+                Return
             End If
 
-            ' Exit this sub. Do not attempt to check versions further.
-            Exit Sub
-
-
+            recordSuccessfulUpdateCheck()
+            showSuccessfulUpdateCheck(
+                workResult.Result,
+                workResult.ManualCheck)
+        Finally
+            Interlocked.Exchange(_updateCheckInProgress, 0)
+            If Not Me.IsDisposed Then
+                CheckForUpdatesToolStripMenuItem.Enabled = True
+            End If
         End Try
+    End Sub
 
+    Private Sub showUpdateCheckFailure(
+            message As String,
+            failureException As Exception,
+            manualCheck As Boolean)
 
-        ' Check if a new version exists. (Ignore stage and date.)
-        If isNewerVersion(latestVersion) Then
+        Dim failureDetails As String = If(message, String.Empty)
+        If failureException IsNot Nothing Then
+            failureDetails &= " Error: " & failureException.Message
+        End If
+        consoleAdd("Failed to check for updates. " & failureDetails)
 
-            updateAvailable = True
-            messageDetails = "Found v" & latestVersion & "."
+        If manualCheck Then
+            Dim boxTitle As String = "Update Check Failed"
+            Dim boxMessage As String =
+                "Compact Cassette Catalogue could not check for updates." &
+                vbNewLine & vbNewLine &
+                "This can happen on old Windows systems when GitHub HTTPS/TLS support is unavailable, or when the update channel is temporarily invalid." &
+                vbNewLine & vbNewLine & failureDetails &
+                vbNewLine & vbNewLine &
+                "Would you like to open the releases page in your browser?"
+            Dim boxResult As DialogResult = MessageBox.Show(
+                boxMessage,
+                boxTitle,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Exclamation)
 
+            If boxResult = DialogResult.Yes Then
+                openWebLink(UPDATELINKDOWNLOAD)
+            End If
+        End If
+    End Sub
+
+    Private Sub recordSuccessfulUpdateCheck()
+        Try
+            preferences.LastUpdateCheck = DateTime.Now
+            preferences.Save()
+        Catch ex As Exception
+            consoleAdd(
+                "The successful update-check time could not be saved. Error: " &
+                ex.Message)
+        End Try
+    End Sub
+
+    Private Sub showSuccessfulUpdateCheck(
+            updateResult As UpdateCheckResult,
+            manualCheck As Boolean)
+
+        If updateResult.Outcome = UpdateCheckOutcome.NoPublishedRelease Then
+            consoleAdd(
+                "Successfully checked for updates. The " & ReleaseChannel &
+                " channel manifest is intentionally unpublished.")
+        ElseIf updateResult.IsUpdateAvailable Then
+            consoleAdd(
+                "Successfully checked for updates. Found v" &
+                updateResult.Manifest.InformationalVersion & ".")
         Else
-
-            updateAvailable = False
-            messageDetails = "None found."
-
+            consoleAdd("Successfully checked for updates. None found.")
         End If
 
-
-        ' Add confirmation message to console.
-        consoleAdd(message & " " & messageDetails)
-
-
         ' If an update exists, show a message with a link.
-        If updateAvailable = True Then
+        If updateResult.IsUpdateAvailable Then
 
             ' Set up message box.
-            Dim boxVersionCurrent As String = "Current version: " & VERSION '& " (" & VERSIONDATE.ToShortDateString & ")"
-            Dim boxVersionLatest As String = "Latest version: " & latestVersion '& " (" & latestVersionDate.ToShortDateString & ")"
+            Dim boxVersionCurrent As String = "Current version: " & InformationalVersion
+            Dim boxVersionLatest As String = "Latest version: " & updateResult.Manifest.InformationalVersion
 
             Dim boxTitle As String = "Update Available"
-            Dim boxReleaseDate As String = Nothing
-            If latestVersionDate <> DateTime.MinValue Then
-                boxReleaseDate = vbNewLine & "(Released " & latestVersionDate.ToString("dd MMMM yyyy") & ")"
-            End If
+            Dim boxReleaseDate As String = vbNewLine & "(Released " & updateResult.Manifest.ReleaseDate.ToString("dd MMMM yyyy") & ")"
             Dim boxMessage As String = "A Compact Cassette Catalogue update is available for download." & vbNewLine & vbNewLine & boxVersionCurrent & vbNewLine & boxVersionLatest & boxReleaseDate & vbNewLine & vbNewLine & "Would you like to be taken to the download page?"
 
             Dim boxResult As DialogResult
@@ -180,28 +240,46 @@ Public Class frmMain
 
             If boxResult = vbYes Then
 
-                openWebLink(UPDATELINKDOWNLOAD) ' Open the downloads page.
+                openWebLink(updateResult.Manifest.ReleaseUrl) ' Open the exact published release.
 
             End If
 
         Else
 
             ' Don't show this message if the program is just starting up.
-            If manualCheck = True Then
-
-                MessageBox.Show("Compact Cassette Catalogue is up to date." & vbNewLine & VERSION & " is the latest version.", "No Updates Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If manualCheck Then
+                Dim noUpdateMessage As String
+                If updateResult.Outcome = UpdateCheckOutcome.NoPublishedRelease Then
+                    noUpdateMessage = "No published Compact Cassette Catalogue updates are currently available on the " & ReleaseChannel & " channel." & vbNewLine & "Current version: " & InformationalVersion
+                Else
+                    noUpdateMessage = "Compact Cassette Catalogue is up to date." & vbNewLine & InformationalVersion & " is the latest published version on the " & ReleaseChannel & " channel."
+                End If
+                MessageBox.Show(noUpdateMessage, "No Updates Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             End If
 
         End If
-
-
-        ' Set this date and time as the most recent update check.
-        preferences.LastUpdateCheck = DateTime.Now
-        preferences.Save()
-
-
     End Sub
+
+    Private NotInheritable Class UpdateCheckWorkResult
+
+        Public Sub New(
+                result As UpdateCheckResult,
+                unexpectedException As Exception,
+                manualCheck As Boolean)
+
+            Me.Result = result
+            Me.UnexpectedException = unexpectedException
+            Me.ManualCheck = manualCheck
+        End Sub
+
+        Public ReadOnly Property Result As UpdateCheckResult
+
+        Public ReadOnly Property UnexpectedException As Exception
+
+        Public ReadOnly Property ManualCheck As Boolean
+
+    End Class
 
     Public Sub loadData()
 

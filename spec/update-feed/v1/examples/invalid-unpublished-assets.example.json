@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "product": "Compact Cassette Catalogue",
+  "productId": "c3",
+  "channel": "alpha",
+  "version": "2.0.0",
+  "stage": "Alpha 1",
+  "informationalVersion": "2.0.0-alpha.1",
+  "releaseDate": "2026-08-04",
+  "catalogueWriteFormat": "1.1.0",
+  "published": false,
+  "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v2.0.0-alpha.1",
+  "checksumManifest": {
+    "file": "SHA256SUMS.txt",
+    "length": 128,
+    "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v2.0.0-alpha.1/SHA256SUMS.txt"
+  },
+  "packages": [
+    {
+      "lane": "win-x86-net40",
+      "distribution": "portable",
+      "file": "C3-v2.0.0-alpha.1-win-x86-net40-portable.zip",
+      "length": 123456,
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v2.0.0-alpha.1/C3-v2.0.0-alpha.1-win-x86-net40-portable.zip"
+    }
+  ]
+}

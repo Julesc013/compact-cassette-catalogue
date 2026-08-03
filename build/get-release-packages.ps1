@@ -1,11 +1,15 @@
 [CmdletBinding()]
 param(
     [object]$Identity,
-    [string]$LanesPath = (Join-Path $PSScriptRoot 'lanes.json')
+    [string]$LanesPath
 )
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
+
+if ([string]::IsNullOrWhiteSpace($LanesPath)) {
+    $LanesPath = Join-Path $PSScriptRoot 'lanes.json'
+}
 
 if ($null -eq $Identity) {
     $Identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')

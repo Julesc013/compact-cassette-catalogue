@@ -197,15 +197,29 @@ Namespace CatalogueFiles.Xml.V1_1
                     Continue For
                 End If
 
+                If Not String.IsNullOrEmpty(rowNode.NamespaceURI) Then
+                    Return "Catalogue row '" & rowNode.Name & "' must be unqualified."
+                End If
+
                 Dim table As DataTable = schema.Tables(rowNode.Name)
                 If table Is Nothing Then
                     Return "Unknown catalogue table '" & rowNode.Name & "'."
                 End If
 
                 For Each fieldNode As XmlNode In rowNode.ChildNodes
-                    If fieldNode.NodeType = XmlNodeType.Element AndAlso table.Columns(fieldNode.Name) Is Nothing Then
+                    If fieldNode.NodeType <> XmlNodeType.Element Then
+                        Continue For
+                    End If
+                    If Not String.IsNullOrEmpty(fieldNode.NamespaceURI) OrElse
+                            table.Columns(fieldNode.Name) Is Nothing Then
                         Return "Unknown field '" & fieldNode.Name & "' in table '" & rowNode.Name & "'."
                     End If
+                    For Each contentNode As XmlNode In fieldNode.ChildNodes
+                        If contentNode.NodeType = XmlNodeType.Element Then
+                            Return "Field '" & fieldNode.Name & "' in table '" &
+                                rowNode.Name & "' must contain a scalar value."
+                        End If
+                    Next
                 Next
             Next
 

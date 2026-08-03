@@ -17,8 +17,33 @@ Module Program
         RunTest("external entities are rejected", AddressOf ExternalEntityIsRejected)
         RunTest("XML decimals remain culture independent", AddressOf XmlDecimalsAreCultureIndependent)
         RunTest("catalogue session owns dirty and revision state", AddressOf CatalogueSessionOwnsDocumentState)
-        RunTest("store classifies unsafe and incompatible input", AddressOf StoreClassifiesRejectedInput)
-        RunTest("store saves transactionally and detects external edits", AddressOf StoreSavesTransactionally)
+        RunTest(
+            "store classifies unsafe and incompatible input",
+            AddressOf LegacyXmlCatalogueStoreTests.StoreClassifiesRejectedInput)
+        RunTest(
+            "store saves transactionally and detects external edits",
+            AddressOf LegacyXmlCatalogueStoreTests.StoreSavesTransactionally)
+        RunTest(
+            "store rejects wrong roots namespaces and unknown structure",
+            AddressOf LegacyXmlCatalogueStoreTests.RejectsWrongRootsNamespacesAndUnknownStructure)
+        RunTest(
+            "store rejects duplicate keys invalid scalars and nested markup",
+            AddressOf LegacyXmlCatalogueStoreTests.RejectsDuplicateKeysInvalidScalarsAndNestedMarkup)
+        RunTest(
+            "store overwrite creates a byte-exact backup",
+            AddressOf LegacyXmlCatalogueStoreTests.OverwriteCreatesByteExactBackup)
+        RunTest(
+            "store rejects a missing destination when a revision is expected",
+            AddressOf LegacyXmlCatalogueStoreTests.MissingDestinationRejectsExpectedRevision)
+        RunTest(
+            "store preserves destination bytes after a revision mismatch",
+            AddressOf LegacyXmlCatalogueStoreTests.RevisionMismatchPreservesDestinationBytes)
+        RunTest(
+            "store removes only its owned temporary output",
+            AddressOf LegacyXmlCatalogueStoreTests.RemovesOnlyOwnedTemporaryOutput)
+        RunTest(
+            "store round-trip remains culture independent",
+            AddressOf LegacyXmlCatalogueStoreTests.RoundTripRemainsCultureIndependent)
         RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
         RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)
@@ -39,6 +64,33 @@ Module Program
         RunTest(
             "future update timestamps do not suppress scheduled checks",
             AddressOf UpdateCheckScheduleTryParseStoredTests.FutureTimestampsDoNotSuppressScheduledChecks)
+        RunTest(
+            "unpublished update manifests never advertise availability",
+            AddressOf UpdateReleaseManifestTests.UnpublishedManifestNeverAdvertisesAvailability)
+        RunTest(
+            "update identities compare alpha beta release candidate and stable precedence",
+            AddressOf UpdateReleaseManifestTests.ComparesCompletePrereleaseAndStableIdentity)
+        RunTest(
+            "update manifest reader rejects unsafe and inconsistent JSON",
+            AddressOf UpdateReleaseManifestTests.RejectsUnsafeAndInconsistentJson)
+        RunTest(
+            "update manifest reader rejects wrong JSON token types and published alpha",
+            AddressOf UpdateReleaseManifestTests.RejectsWrongJsonTypesAndAlphaPublication)
+        RunTest(
+            "update manifest reader accepts the generated manifest contract",
+            AddressOf UpdateReleaseManifestTests.AcceptsCurrentGeneratedManifestContract)
+        RunTest(
+            "published update manifests require exact tagged release assets",
+            AddressOf UpdateReleaseManifestTests.PublishedManifestRequiresExactReleaseAssets)
+        RunTest(
+            "update endpoints are exact and channel-bound",
+            AddressOf UpdateEndpointTransportTests.AcceptsOnlyExactChannelEndpoints)
+        RunTest(
+            "update service isolates injected retrieval failures",
+            AddressOf UpdateEndpointTransportTests.ServiceUsesInjectedManifestSource)
+        RunTest(
+            "HTTP update source defaults to the modern TLS policy",
+            AddressOf UpdateEndpointTransportTests.HttpSourceRequiresExplicitLegacyTlsMode)
         RunTest(
             "legacy settings locator accepts exact known paths in newest-first order",
             AddressOf LegacySettingsProfileLocatorTests.AcceptsExactKnownPathsAndOrdersNewestFirst)
@@ -211,72 +263,7 @@ Module Program
         AssertEqual(3, eventCount, "session changed event count")
     End Sub
 
-    Private Sub StoreClassifiesRejectedInput()
-        Dim store As New LegacyXmlCatalogueStore()
-        Dim schema As DataSet = CreateFixtureSchema()
-        Dim supported As String() = {"1.1.0"}
-
-        AssertEqual(
-            LegacyCatalogueFileFailure.InvalidXml,
-            store.Load(FixturePath("invalid", "malformed.xml"), schema, supported).Failure,
-            "malformed failure")
-        AssertEqual(
-            LegacyCatalogueFileFailure.MissingVersion,
-            store.Load(FixturePath("invalid", "missing-version.xml"), schema, supported).Failure,
-            "missing-version failure")
-        AssertEqual(
-            LegacyCatalogueFileFailure.UnsupportedVersion,
-            store.Load(FixturePath("invalid", "unsupported-version.xml"), schema, supported).Failure,
-            "unsupported-version failure")
-        AssertEqual(
-            LegacyCatalogueFileFailure.InvalidXml,
-            store.Load(FixturePath("security", "external-entity.xml"), schema, supported).Failure,
-            "external-entity failure")
-    End Sub
-
-    Private Sub StoreSavesTransactionally()
-        Dim store As New LegacyXmlCatalogueStore()
-        Dim schema As DataSet = CreateFixtureSchema()
-        Dim supported As String() = {"1.1.0"}
-        Dim loaded As LegacyCatalogueLoadResult = store.Load(
-            FixturePath("valid", "populated.xml"),
-            schema,
-            supported)
-        AssertEqual(True, loaded.IsSuccess, "fixture load")
-
-        Dim workDirectory As String = Path.Combine(_repositoryRoot, "artifacts\tests\work\transactional-store")
-        If Directory.Exists(workDirectory) Then
-            Directory.Delete(workDirectory, True)
-        End If
-        Directory.CreateDirectory(workDirectory)
-
-        Try
-            Dim destination As String = Path.Combine(workDirectory, "round-trip.xml")
-            Dim saved As LegacyCatalogueSaveResult = store.Save(destination, loaded.Document, Nothing, supported)
-            AssertEqual(True, saved.IsSuccess, "initial transactional save")
-            AssertEqual(True, File.Exists(destination), "saved destination exists")
-
-            Dim reopened As LegacyCatalogueLoadResult = store.Load(destination, schema, supported)
-            AssertEqual(True, reopened.IsSuccess, "saved file reopens")
-            AssertEqual(1, reopened.Document.Tables("Tapes").Rows.Count, "saved tape count")
-
-            File.AppendAllText(destination, Environment.NewLine & "<!-- external edit -->")
-            Dim rejected As LegacyCatalogueSaveResult = store.Save(
-                destination,
-                reopened.Document,
-                reopened.Revision,
-                supported)
-            AssertEqual(False, rejected.IsSuccess, "external edit save result")
-            AssertEqual(LegacyCatalogueFileFailure.ExternalModification, rejected.Failure, "external edit failure")
-            AssertEqual(True, File.ReadAllText(destination).Contains("external edit"), "external edit preserved")
-        Finally
-            If Directory.Exists(workDirectory) Then
-                Directory.Delete(workDirectory, True)
-            End If
-        End Try
-    End Sub
-
-    Private Function CreateFixtureSchema() As DataSet
+    Friend Function CreateFixtureSchema() As DataSet
         Return LegacyCatalogueSchema.Create(New LegacyCatalogueMetadata() With {
             .FileVersion = "1.1.0",
             .ProductVersion = "9.9.9-test",
