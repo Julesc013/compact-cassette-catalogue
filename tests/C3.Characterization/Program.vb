@@ -25,6 +25,9 @@ Module Program
         RunTest("tape service creates batches without identifier reuse", AddressOf TapeServiceOwnsRules)
         RunTest("update schedule normalizes and evaluates policies", AddressOf UpdateScheduleOwnsPolicy)
         RunTest(
+            "preference format example matches schema and runtime",
+            AddressOf PreferenceFormatContractTests.CanonicalExampleMatchesSchemaAndRuntime)
+        RunTest(
             "user preference defaults and clones preserve independent values",
             AddressOf UserPreferencesSnapshotTests.DefaultsAndClonePreserveIndependentValues)
         RunTest(

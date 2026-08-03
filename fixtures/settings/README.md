@@ -17,3 +17,8 @@ default expression, not a valid resolved directory.
 
 Do not edit these files to match a new implementation. Add a new fixture and
 provenance row for a newly discovered public variant.
+
+The fixtures are read-only inputs to the bounded importer documented in
+[`docs/architecture/preferences.md`](../../docs/architecture/preferences.md).
+They are not native C3 2 profiles; that format is specified independently under
+[`spec/preferences/v1`](../../spec/preferences/v1/README.md).

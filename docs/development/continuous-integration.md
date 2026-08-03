@@ -11,7 +11,8 @@ pinned Windows Server 2022 image. It verifies:
 
 - canonical version and release metadata;
 - dependency direction between production modules;
-- typed WinForms access through the catalogue services and settings adapter;
+- typed WinForms access through catalogue services and the C3-owned preference
+  boundary, with `My.Settings` reintroduction prohibited;
 - identical physical source ownership in both WinForms project files; and
 - whitespace integrity.
 

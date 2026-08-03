@@ -19,8 +19,11 @@ complete.
   users cannot be offered an unavailable preview.
 - Gives every shipped EXE and DLL consistent assembly, file, and informational
   identity and verifies it before packaging.
-- Imports supported previous-version user preferences once, normalizes them,
-  persists a retry-safe completion marker, and characterizes repeat/failure paths.
+- Uses one C3-owned preference profile shared by both builds and executable
+  locations. It imports supported 1.x profiles read-only, checkpoints outcomes
+  atomically, merges concurrent dirty fields, recovers backups, quarantines
+  invalid native files, retries transient failures, and never overwrites a future
+  preference schema.
 - Securely loads catalogue XML into temporary state and rejects DTD/external
   entity input, malformed structure, unsupported versions, and oversized files.
 - Saves through verified temporary output, external-edit detection, atomic

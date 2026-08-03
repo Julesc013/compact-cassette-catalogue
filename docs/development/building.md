@@ -45,8 +45,8 @@ synchronizer.
 
 ## Compatibility evidence
 
-A successful compile proves neither minimum-OS launch nor catalogue/settings
+A successful compile proves neither minimum-OS launch nor catalogue/preference
 compatibility. Publication also requires candidate-specific runtime workflows,
-old/new reader matrices, settings migration, PE and binary metadata checks,
+old/new reader matrices, preference migration, PE and binary metadata checks,
 package reproducibility, and the applicable accessibility/DPI evidence in the
 release-validation record.

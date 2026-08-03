@@ -19,7 +19,7 @@ not a completed claim.
 | Legacy editing | Offer a clearly labelled v1.1 compatibility mode whose saves remain readable by the chosen 1.x baseline. |
 | Native conversion | Convert to a new destination, retain the original, generate deterministic stable identities, and report every normalization. |
 | Legacy export | Preview information that cannot be represented, require an explicit destination, and emit a loss report. |
-| Settings | Import supported user preferences once, normalize invalid historical values, record completion, and tolerate repeat startup. |
+| Preferences | Import supported 1.x values read-only into one shared 2.x profile, checkpoint a versioned outcome atomically, preserve sources, and keep transient failures retryable. |
 | Updates | Never direct stable 1.x users to an unavailable 2.x preview; channel promotion occurs only after matching assets exist. |
 | Distribution | Keep portable ZIPs authoritative; a setup product consumes the same payload and preserves side-by-side and rollback semantics. |
 | Runtime lanes | Preserve identical catalogue behavior in x86/net40 and x64/net48; validate each minimum-OS claim independently. |
@@ -66,11 +66,18 @@ cannot represent.
 
 ## Settings and side-by-side behavior
 
-Product-version changes can change the .NET per-user configuration path. The 2.0
-application performs a one-time idempotent settings upgrade before normalizing
-settings. Migration covers at least message preference, default directory,
-update policy, and last update-check time. It must not change or delete a 1.x
-configuration file.
+Product-version, executable-location, and CPU-lane changes can change the .NET
+per-user configuration path. C3 2 therefore does not use that provider as its
+live owner. Both lanes share the versioned product path
+`%LOCALAPPDATA%\Jules Carboni\C3\2\preferences.xml`.
+
+On first successful initialization, a bounded importer examines only known C3
+1.x profile shapes and reads message preference, default directory, update
+policy, and last update-check time. The values and a versioned
+`imported`/`not-found`/`invalid` outcome are checkpointed together. Discovery,
+access, lock, or save failures do not mark completion and remain retryable. C3
+does not change or delete a 1.x `user.config`; an older 2.x executable likewise
+does not quarantine or overwrite a future preference schema.
 
 Future setup integration uses distinct 1.x and 2.x product identities so either
 can be kept for rollback. File association takeover is opt-in. Uninstalling one
@@ -92,7 +99,8 @@ For each supported 1.x baseline, automation and manual evidence cover:
 - deterministic convert-copy and repeated migration identity;
 - v2 export preview, v1.1 reopen, and loss-report accuracy;
 - x86/net40 and x64/net48 parity; and
-- settings migration on first and repeated startup.
+- preference migration on first/repeated startup, transient failure retry,
+  cross-lane sharing, and source-byte preservation.
 
 Characterized behavior is classified as **required behavior**, **tolerated
 legacy quirk**, or **defect to correct**. A characterization test does not turn a

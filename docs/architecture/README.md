@@ -17,8 +17,8 @@ The architecture optimizes for four things, in this order:
 | Module | Owns | Must not own |
 | --- | --- | --- |
 | `C3.Catalogue` | Catalogue concepts, commands, rules, results, session semantics, and store interfaces | Files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
-| `C3.Infrastructure` | XML format adapters, atomic file I/O, settings migration policy, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
-| `C3.WinForms` | Forms, controls, user interaction, workspace state, settings adapters, composition, and runtime-lane policy | XML parsing or duplicated domain rules |
+| `C3.Infrastructure` | XML format adapters, atomic file I/O, C3-owned preferences and legacy import, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
+| `C3.WinForms` | Forms, controls, user interaction, workspace state, preference composition, and runtime-lane policy | Persistence parsing or duplicated domain rules |
 
 `C3.WinForms` has two project files over the same physical UI sources:
 
@@ -94,7 +94,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 
 - Use product language: `CatalogueSession`, `TapeDraft`, `BrandRules`.
 - Name adapters after their mechanism: `LegacyXmlCatalogueStore`,
-  `LegacyTapeRepository`, or a future `MySettingsStore`.
+  `LegacyTapeRepository`, or `XmlUserPreferencesStore`.
 - Name forms by feature and purpose: `TapeListForm`, `BrandEditorForm`.
 - Do not introduce `Utils`, `Helpers`, `Common`, `Managers`, or `Platform`
   catch-all folders or types.
@@ -105,9 +105,11 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 
 - [Repository layout](repository-layout.md)
 - [Catalogue persistence](persistence.md)
+- [Preference ownership and recovery](preferences.md)
 - [ADR 0001: Modular monolith](decisions/0001-modular-monolith.md)
 - [ADR 0002: Compatibility build lanes](decisions/0002-compatibility-build-lanes.md)
 - [ADR 0003: C3 2.0 product boundary](decisions/0003-c3-2-product-boundary.md)
 - [ADR 0004: Managed language strategy](decisions/0004-managed-language-strategy.md)
 - [ADR 0005: Proposed native-v2 format and migration](decisions/0005-native-v2-format-and-migration.md)
 - [ADR 0006: Separate update channels](decisions/0006-separate-update-channels.md)
+- [ADR 0007: C3-owned shared preferences](decisions/0007-c3-owned-shared-preferences.md)

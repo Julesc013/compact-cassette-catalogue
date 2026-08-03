@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+  <xs:simpleType name="updatePolicyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="startup" />
+      <xs:enumeration value="weekly" />
+      <xs:enumeration value="monthly" />
+      <xs:enumeration value="never" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="defaultDirectoryType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="32768" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="emptyStringType">
+    <xs:restriction base="xs:string">
+      <xs:length value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="optionalDateTimeType">
+    <xs:union memberTypes="xs:dateTime emptyStringType" />
+  </xs:simpleType>
+  <xs:simpleType name="legacyImportOutcomeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pending" />
+      <xs:enumeration value="imported" />
+      <xs:enumeration value="not-found" />
+      <xs:enumeration value="invalid" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="c3Preferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="showMessages" type="xs:boolean" />
+        <xs:element name="defaultDirectory" type="defaultDirectoryType" />
+        <xs:element name="updatePolicy" type="updatePolicyType" />
+        <xs:element name="lastUpdateCheck" type="optionalDateTimeType" />
+      </xs:sequence>
+      <xs:attribute name="schemaVersion" type="xs:positiveInteger" use="required" fixed="1" />
+      <xs:attribute name="legacy1xImportVersion" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:nonNegativeInteger">
+            <xs:maxInclusive value="1" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="legacy1xImportOutcome" type="legacyImportOutcomeType" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

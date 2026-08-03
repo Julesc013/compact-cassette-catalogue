@@ -19,16 +19,29 @@ build or feed visible on `dev` is not automatically a published package.
 
 ## Settings
 
-On first 2.0 launch, C3 asks the .NET settings provider to import the previous
-profile, normalizes known values, checkpoints them, and marks the upgrade
-complete. Repeated launch does not import again. C3 does not delete the 1.x
-profile.
+On first successful 2.0 launch, C3 searches only the known C3 1.x per-user profile
+locations, reads the newest usable profile without changing it, normalizes known
+historical values, and checkpoints the result into the shared C3-owned profile:
 
-Current migrated settings are message preference, default catalogue directory,
-update policy, and last update-check time. If migration fails, C3 records a
-diagnostic warning and keeps the retry marker armed. Preserve the diagnostic
-report and describe whether this was first or repeated launch; do not share
-`user.config` without removing private paths.
+```text
+%LOCALAPPDATA%\Jules Carboni\C3\2\preferences.xml
+```
+
+Both the x86 and x64 builds use this file, including when the portable executable
+is moved. Repeated launch does not import again. C3 never deletes, renames, or
+rewrites the 1.x `user.config`.
+
+Current migrated values are message preference, default catalogue directory,
+update policy, and last update-check time. A malformed newest profile may fall
+back to an older valid C3 profile and record diagnostic evidence. Access, lock,
+discovery, or checkpoint failures show a warning, keep completion pending, and
+retry before a later save. C3 preserves invalid native preferences under a
+timestamped quarantine name when safe recovery occurs and can restore its last
+known-good `.bak` file.
+
+Preserve diagnostic/recovery files when reporting a problem and describe whether
+this was first or repeated launch. Preference files can contain private local
+paths; review or redact them before sharing.
 
 ## Catalogues in Alpha 1
 

@@ -23,6 +23,11 @@ provide the required legacy MSBuild contract. A release record names the exact
 resolved path and version. Do not describe an uninstalled toolchain as the local
 authority.
 
+The 2.0 source tree may use compiler features such as read-only auto-properties
+that target .NET Framework 4.0 correctly but are not accepted by the Visual
+Studio 2010-era VB compiler. Visual Studio 2010 is therefore a historical
+behavior/designer reference, not a supported compiler for the current solution.
+
 ## Installed IDE roles
 
 | IDE | C3 role | Authority |

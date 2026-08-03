@@ -34,18 +34,22 @@ Each supported baseline eventually proves:
 - convert-copy is deterministic and never changes the source;
 - native-to-v1.1 export preview and loss report match baseline-reader results;
 - both C3 runtime lanes produce the same logical model; and
-- settings import succeeds once and repeated startup is idempotent.
+- preference import succeeds once, preserves its source, and repeated startup is
+  idempotent.
 
 A characterized result is classified as required behavior, tolerated legacy
 quirk, or defect. Never add a personal catalogue; construct the smallest
 synthetic reproduction with a provenance/expected-result record.
 
-## Settings, migration, and recovery
+## Preferences, migration, and recovery
 
-Settings tests cover previous, missing, malformed, and current profiles; import
-ordering; retry markers; normalization; save failure; repeated launch; and
-side-by-side 1.x/2.x behavior. Framework-level fakes prove coordinator logic,
-while real profile directories and both EXEs require isolated manual/VM evidence.
+Preference tests cover exact allowlisted 1.x paths, Boolean/string historical
+schemas, unchanged source bytes, candidate ordering/fallback, missing/invalid and
+transient failures, atomic import markers, native schema/limits, backup recovery,
+future-version downgrade safety, dirty-field merging, save/checkpoint retry, and
+repeated launch. The canonical v1 example must pass both its XSD and the runtime
+reader. Real profiles and both packaged EXEs still require isolated manual/VM
+evidence.
 
 Migration/export tests cover dry runs, deterministic identity maps, ambiguity,
 normalization, unknown/critical extensions, interrupted writes, destination

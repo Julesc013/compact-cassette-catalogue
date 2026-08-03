@@ -29,8 +29,8 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |   `-- Tapes/
 |   |-- C3.Infrastructure/
 |   |   |-- CatalogueFiles/Xml/V1_1/
-|   |   |-- Configuration/
 |   |   |-- Diagnostics/
+|   |   |-- Preferences/
 |   |   `-- Updates/
 |   |-- C3.WinForms/
 |   |   |-- C3.WinForms.Net40.vbproj
@@ -45,14 +45,17 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |   `-- My Project/
 |   `-- Shared/Generated/            # linked generated assembly identity
 |-- tests/C3.Characterization/
-|-- fixtures/catalogues/v1.1.0/
-|   |-- valid/
-|   |-- invalid/
-|   |-- security/
-|   `-- cultures/
+|-- fixtures/
+|   |-- catalogues/v1.1.0/
+|   |   |-- valid/
+|   |   |-- invalid/
+|   |   |-- security/
+|   |   `-- cultures/
+|   `-- settings/legacy/
 |-- spec/catalogue/
 |   |-- v1.1.0/                      # implemented public contract
 |   `-- v2.0.0/                      # explicitly unimplemented design draft
+|-- spec/preferences/v1/             # implemented shared profile contract
 |-- build/
 |-- release/
 |   |-- feeds/
@@ -89,7 +92,7 @@ settings, networking, or OS APIs.
 
 `C3.Infrastructure` implements external mechanisms. Its versioned legacy XML
 directory is the only production code allowed to know v1.1 table/column names.
-Configuration upgrade policy, update policy, and diagnostics live beside their
+Preference persistence/import, update policy, and diagnostics live beside their
 mechanism rather than in a catch-all platform module.
 
 `C3.WinForms` composes services and owns interaction and presentation. Its two
@@ -116,7 +119,9 @@ extract a shared abstraction only after more than one real owner needs it.
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |
 | Document path/revision/dirty state | `CatalogueSession` | forms observe session state |
 | Brand/model/deck/tape rules | matching `C3.Catalogue` feature | typed results and adapter tests |
-| Settings migration sequence | `SettingsUpgradeCoordinator` | `MySettingsStore`, schema, characterization |
+| Native preference lifecycle and dirty state | `UserPreferencesService` | store/importer characterization |
+| Preference format v1 | `spec/preferences/v1` | `XmlUserPreferencesStore`, canonical example test |
+| C3 1.x preference discovery/import | `LegacyUserSettingsImporter` | `fixtures/settings`, path/reader tests |
 | UI mutation refresh | `CatalogueUiCoordinator` | owning main window |
 | Runtime capability | `Runtime/RuntimeInfo.vb` | About and diagnostics |
 | Durable product doctrine/scope | product vision and 2.0 scope docs | README summary |

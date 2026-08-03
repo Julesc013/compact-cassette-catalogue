@@ -64,6 +64,7 @@
       <Link>Properties\VersionAssemblyInfo.g.vb</Link>
     </Compile>
     <Compile Include="Program.vb" />
+    <Compile Include="PreferenceFormatContractTests.vb" />
     <Compile Include="LegacySettingsProfileLocatorTests.vb" />
     <Compile Include="LegacySettingsProfileReaderTests.vb" />
     <Compile Include="LegacyUserSettingsImporterTests.vb" />

@@ -13,9 +13,14 @@
 - Separated current build identity from the root 1.x update feed so legacy users
   cannot be offered an unavailable 2.0 preview.
 - Kept catalogue writer version 1.1.0 independent from the 2.0 product version.
-- Added ordered, one-time migration of supported 1.x user settings with a
-  persisted retry marker, normalization, diagnostic failure context, and
-  idempotency/failure characterization.
+- Replaced path- and CPU-scoped `My.Settings` with one versioned C3-owned profile
+  shared by both build lanes, using cross-process locking, dirty-field merging,
+  verified atomic writes, durable flush, backups, quarantine, recovery, and
+  downgrade-safe future-schema refusal.
+- Added a bounded read-only importer for known C3 1.x profile locations and
+  Boolean/string schemas. It preserves source bytes, records imported/not-found/
+  invalid outcomes atomically, falls back only from invalid content, and keeps
+  discovery/access/checkpoint failures retryable.
 
 - Reorganized C3 as a four-project modular monolith: catalogue rules,
   infrastructure adapters, characterization tests, and shared WinForms sources.
@@ -46,15 +51,18 @@
   versioned XML adapter.
 - Preserved legacy cassette-model brand references stored as display names,
   including deletion protection and migration to stable codes during rename.
-- Centralized application preferences behind one `My.Settings` adapter and moved
-  update-check parsing, serialization, and scheduling into a tested policy.
+- Removed generated `My.Settings`, automatic settings-on-exit behavior, and the
+  superseded upgrade coordinator; the boundary gate now rejects reintroduction.
+- Moved update-check parsing, serialization, UTC normalization, clock-skew safety,
+  and scheduling into a tested policy.
 - Fixed Save As cancellation continuing into save, a duplicate Open dialog,
   deck deletion writing the tape count, model notes loading from the wrong table,
   duplicate deck combo entries, recursive application shutdown, unapplied tape
   edits being lost on close, and console-export path failures terminating C3.
-- Added 16 executable characterization scenarios, dependency-direction and
-  WinForms-boundary enforcement, shared-project parity validation, hosted
-  repository checks, and an authoritative legacy-capable self-hosted
+- Expanded executable characterization to preference format, import, security,
+  recovery, retry, concurrency, and compatibility contracts; retained dependency
+  direction, WinForms-boundary enforcement, shared-project parity validation,
+  hosted repository checks, and an authoritative legacy-capable self-hosted
   compatibility workflow.
 
 

@@ -28,9 +28,12 @@ of the user payload. The ZIP entry timestamp is fixed from `build/Version.props`
 and entries are written in name order to reduce avoidable package drift.
 
 The word portable currently means no installer and no administrator requirement.
-It does not yet promise that settings and diagnostics remain beside the
-executable; those continue to use the current user's application-data folders.
-Do not add a `portable.mode` marker until the settings provider honors it.
+It does not promise that preferences and diagnostics remain beside the
+executable. Both lanes use
+`%LOCALAPPDATA%\Jules Carboni\C3\2\preferences.xml`; diagnostics use their
+documented application-data path. Do not add a `portable.mode` marker until an
+explicit portable-profile design covers identity, migration, locking, backup,
+privacy, and side-by-side behavior.
 
 Preview package names include their channel stage, for example
 `C3-v2.0.0-alpha.1-win-x86-net40-portable.zip`. Package availability is not

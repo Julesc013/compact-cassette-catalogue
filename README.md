@@ -44,9 +44,11 @@ The x86 package is the conservative compatibility choice, including on newer
 64-bit Windows. Minimum-OS and DPI claims are published only after the exact
 candidate passes its recorded runtime matrix.
 
-Portable means no installer and no administrator requirement. Per-user settings
-and diagnostics currently use Windows application-data locations; a future
-portable-profile mode will be named explicitly rather than implied.
+Portable means no installer and no administrator requirement. Both lanes share
+the C3-owned profile at
+`%LOCALAPPDATA%\Jules Carboni\C3\2\preferences.xml`; diagnostics also use Windows
+application-data locations. A future portable-profile mode will be named
+explicitly rather than implied.
 
 ## Catalogue compatibility
 
@@ -76,12 +78,12 @@ GitHub.
 
 ```text
 src/C3.Catalogue       catalogue concepts, rules, commands, and session semantics
-src/C3.Infrastructure  versioned XML, settings, diagnostics, and external adapters
+src/C3.Infrastructure  versioned XML, preferences, diagnostics, external adapters
 src/C3.WinForms        shared native UI and two compatibility-lane projects
 src/Shared             generated identity source linked into managed assemblies
 tests                  executable compatibility characterization
 fixtures               privacy-safe valid, invalid, culture, and security examples
-spec                    language-neutral catalogue contracts and design drafts
+spec                    catalogue and preference contracts plus design drafts
 build                   build, verification, and deterministic packaging automation
 release/feeds           independently promoted legacy/preview update metadata
 release/validation      immutable evidence for exact release candidates
