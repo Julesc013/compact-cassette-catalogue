@@ -11,7 +11,7 @@ Friend Module LegacyGlobalState
     Public Const WEBSITEMAIN As String = "https://github.com/Julesc013/compact-cassette-catalogue"
     Public Const WEBSITEHELP As String = "https://github.com/Julesc013/compact-cassette-catalogue/wiki"
     Public Const UPDATELINKDOWNLOAD As String = "https://github.com/Julesc013/compact-cassette-catalogue/releases"
-    Public Const UPDATELINKCHECK As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION"
+    Public Const UPDATELINKCHECK As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/release/feeds/alpha/VERSION"
     Public Const FEEDBACKLINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/issues/new/choose"
 
     Public ReadOnly catalogueSession As New CatalogueSession("New Catalogue")

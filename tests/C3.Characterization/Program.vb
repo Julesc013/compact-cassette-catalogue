@@ -200,7 +200,7 @@ Module Program
     Private Function CreateFixtureSchema() As DataSet
         Return LegacyCatalogueSchema.Create(New LegacyCatalogueMetadata() With {
             .FileVersion = "1.1.0",
-            .ProductVersion = "1.2.1",
+            .ProductVersion = "9.9.9-test",
             .ProductStage = "Test",
             .ProductDate = New DateTime(2026, 8, 4),
             .CreatedAt = New DateTime(2026, 8, 4)

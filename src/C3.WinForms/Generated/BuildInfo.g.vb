@@ -3,13 +3,16 @@
 
 Public Module C3BuildInfo
 
-    Public Const VERSION As String = "1.2.1"
-    Public Const VERSIONSTAGE As String = "Beta 1"
+    Public Const VERSION As String = "2.0.0"
+    Public Const VERSIONSTAGE As String = "Alpha 1"
     Public ReadOnly VERSIONDATE As DateTime = New DateTime(2026, 8, 4, 0, 0, 0, DateTimeKind.Local)
 
     Public Const VERSIONFILE As String = "1.1.0"
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
 
-    Public Const AssemblyVersion As String = "1.2.1.0"
+    Public Const ReleaseChannel As String = "alpha"
+    Public Const AssemblyVersion As String = "2.0.0.0"
+    Public Const FileVersion As String = "2.0.0.1"
+    Public Const InformationalVersion As String = "2.0.0-alpha.1"
 
 End Module

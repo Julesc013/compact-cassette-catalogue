@@ -6,7 +6,13 @@
 
 
 
-### Version 1.2.1 Beta 1 - In development
+### Version 2.0.0 Alpha 1 - In development
+
+- Reclassified the unpublished 1.2.1 overhaul as the C3 2.0 programme before
+  publication; no 1.2.1 release or artifact was relabelled.
+- Separated current build identity from the root 1.x update feed so legacy users
+  cannot be offered an unavailable 2.0 preview.
+- Kept catalogue writer version 1.1.0 independent from the 2.0 product version.
 
 - Reorganized C3 as a four-project modular monolith: catalogue rules,
   infrastructure adapters, characterization tests, and shared WinForms sources.

@@ -33,6 +33,24 @@ Stable users never receive preview metadata automatically. A channel document is
 promoted only after its exact packages and checksum manifest exist. Removing a
 release does not retarget its users silently to another channel.
 
+## Permanent branch contract
+
+`master` is the maintained published-product line. While C3 2.0 is in development,
+it remains on C3 1.2 Beta and accepts only bounded 1.x maintenance, release, and
+security changes. `dev` is the permanent integration line for C3 2.0 and later
+unreleased work.
+
+Normal feature branches target `dev`. A 1.x correction targets `master` first,
+is verified under the 1.x contract, and is then forward-merged or deliberately
+ported to `dev` with its regression evidence. A 2.x-only change never flows
+backward into `master`.
+
+Neither permanent branch is force-pushed after the initial split. Stable 2.0 is
+promoted by an evidence-backed merge from a frozen `dev` candidate into `master`,
+followed by an immutable tag. `dev` remains and advances to the next development
+line. Git branches do not replace release channels: a commit is available to
+users only after artifacts and its channel feed are promoted.
+
 ## Legacy root `VERSION`
 
 Published 1.x binaries fetch the repository root `VERSION` and understand only a

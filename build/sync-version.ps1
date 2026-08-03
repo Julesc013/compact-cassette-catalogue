@@ -11,14 +11,22 @@ $values = $props.Project.PropertyGroup
 
 $productVersion = [string]$values.C3ProductVersion
 $releaseStage = [string]$values.C3ReleaseStage
+$releaseChannel = [string]$values.C3ReleaseChannel
 $releaseDate = [DateTime]::ParseExact(
     [string]$values.C3ReleaseDate,
     'yyyy-MM-dd',
     [Globalization.CultureInfo]::InvariantCulture)
 $assemblyVersion = [string]$values.C3AssemblyVersion
-$catalogueFormatVersion = [string]$values.C3CatalogueFormatVersion
+$fileVersion = [string]$values.C3FileVersion
+$catalogueFormatVersion = [string]$values.C3LegacyCatalogueFormatVersion
 
-$legacyVersion = @(
+$stageSlug = ($releaseStage.Trim().ToLowerInvariant() -replace '[^a-z0-9]+', '.').Trim('.')
+$informationalVersion = $productVersion
+if (-not [string]::Equals($releaseStage, 'Release', [StringComparison]::OrdinalIgnoreCase)) {
+    $informationalVersion += '-' + $stageSlug
+}
+
+$channelVersion = @(
     $productVersion
     $releaseStage
     $releaseDate.ToString('dd/MM/yyyy', [Globalization.CultureInfo]::InvariantCulture)
@@ -37,16 +45,40 @@ Public Module C3BuildInfo
     Public Const VERSIONFILE As String = "$catalogueFormatVersion"
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"$catalogueFormatVersion"}
 
+    Public Const ReleaseChannel As String = "$releaseChannel"
     Public Const AssemblyVersion As String = "$assemblyVersion"
+    Public Const FileVersion As String = "$fileVersion"
+    Public Const InformationalVersion As String = "$informationalVersion"
 
 End Module
 "@
 
-$legacyVersionPath = Join-Path $repositoryRoot 'VERSION'
+$channelDirectory = Join-Path $repositoryRoot ("release\feeds\" + $releaseChannel)
+$channelVersionPath = Join-Path $channelDirectory 'VERSION'
+$channelManifestPath = Join-Path $channelDirectory 'release.json'
 $buildInfoPath = Join-Path $repositoryRoot 'src\C3.WinForms\Generated\BuildInfo.g.vb'
 
 $utf8WithoutBom = New-Object Text.UTF8Encoding($false)
-[IO.File]::WriteAllText($legacyVersionPath, $legacyVersion + [Environment]::NewLine, $utf8WithoutBom)
+if (-not [IO.Directory]::Exists($channelDirectory)) {
+    [IO.Directory]::CreateDirectory($channelDirectory) | Out-Null
+}
+
+$channelManifest = [ordered]@{
+    schemaVersion = 1
+    product = 'Compact Cassette Catalogue'
+    productId = 'c3'
+    channel = $releaseChannel
+    version = $productVersion
+    stage = $releaseStage
+    informationalVersion = $informationalVersion
+    releaseDate = $releaseDate.ToString('yyyy-MM-dd', [Globalization.CultureInfo]::InvariantCulture)
+    catalogueWriteFormat = $catalogueFormatVersion
+    published = $false
+}
+$channelManifestJson = $channelManifest | ConvertTo-Json
+
+[IO.File]::WriteAllText($channelVersionPath, $channelVersion + [Environment]::NewLine, $utf8WithoutBom)
+[IO.File]::WriteAllText($channelManifestPath, $channelManifestJson + [Environment]::NewLine, $utf8WithoutBom)
 [IO.File]::WriteAllText($buildInfoPath, $buildInfo, $utf8WithoutBom)
 
-Write-Host "Synchronized C3 $productVersion ($releaseStage) metadata."
+Write-Host "Synchronized C3 $informationalVersion metadata to the '$releaseChannel' development feed."
