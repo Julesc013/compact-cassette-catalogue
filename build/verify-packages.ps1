@@ -6,6 +6,9 @@ $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $packagesRoot = Join-Path $repositoryRoot 'artifacts\packages'
+$identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
+$packageDefinitions = @(& (Join-Path $PSScriptRoot 'get-release-packages.ps1') -Identity $identity)
+$expectedPackageNames = @($packageDefinitions | ForEach-Object { $_.FileName } | Sort-Object)
 $hashPath = Join-Path $packagesRoot 'SHA256SUMS.txt'
 if (-not (Test-Path -LiteralPath $hashPath -PathType Leaf)) {
     throw 'SHA256SUMS.txt is missing from artifacts/packages.'
@@ -42,6 +45,11 @@ foreach ($record in $hashRecords) {
         throw "Duplicate package in SHA256SUMS: $fileName"
     }
     $listedPackages.Add($fileName)
+    $matchingDefinitions = @($packageDefinitions | Where-Object { $_.FileName -ceq $fileName })
+    if ($matchingDefinitions.Count -ne 1) {
+        throw "Package is not defined by build/lanes.json and Version.props: $fileName"
+    }
+    $packageDefinition = $matchingDefinitions[0]
     $packagePath = Join-Path $packagesRoot $fileName
     if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
         throw "Package listed in SHA256SUMS is missing: $fileName"
@@ -55,13 +63,43 @@ foreach ($record in $hashRecords) {
     $archive = [IO.Compression.ZipFile]::OpenRead($packagePath)
     try {
         $entryNames = @($archive.Entries | ForEach-Object { $_.FullName })
-        foreach ($requiredEntry in $requiredEntries) {
-            if ($entryNames -notcontains $requiredEntry) {
-                throw "$fileName is missing required entry '$requiredEntry'."
+        if ($entryNames.Count -ne $requiredEntries.Count) {
+            throw "$fileName has $($entryNames.Count) entries; expected $($requiredEntries.Count)."
+        }
+        for ($index = 0; $index -lt $requiredEntries.Count; $index++) {
+            if ($entryNames[$index] -cne $requiredEntries[$index]) {
+                throw "$fileName entry $index is '$($entryNames[$index])'; expected '$($requiredEntries[$index])'."
             }
         }
-        if ($entryNames.Count -ne $requiredEntries.Count) {
-            throw "$fileName contains unexpected entries: $($entryNames -join ', ')"
+
+        $expectedTimestamp = $identity.ReleaseDate.Date
+        foreach ($entry in $archive.Entries) {
+            # ZIP stores a DOS wall-clock timestamp without an offset. Compare
+            # the encoded wall-clock value, not the reader machine's local zone.
+            if ($entry.LastWriteTime.DateTime -ne $expectedTimestamp) {
+                throw "$fileName entry '$($entry.FullName)' has a noncanonical timestamp."
+            }
+        }
+
+        $buildEntry = $archive.GetEntry('BUILD.txt')
+        $buildReader = New-Object IO.StreamReader($buildEntry.Open(), [Text.Encoding]::UTF8, $true)
+        try {
+            $actualBuildText = $buildReader.ReadToEnd().Replace("`r`n", "`n")
+        }
+        finally {
+            $buildReader.Dispose()
+        }
+        $expectedBuildText = @(
+            'Product: Compact Cassette Catalogue (C3)'
+            "Version: $($identity.ProductVersion)"
+            "Stage: $($identity.ReleaseStage)"
+            "Lane: $($packageDefinition.LaneId)"
+            "Target framework: $($packageDefinition.TargetFramework)"
+            "Runtime claim: $($packageDefinition.RuntimeClaim)"
+        ) -join "`n"
+        $expectedBuildText += "`n"
+        if ($actualBuildText -cne $expectedBuildText) {
+            throw "$fileName BUILD.txt does not match the canonical identity and lane contract."
         }
     }
     finally {
@@ -71,8 +109,13 @@ foreach ($record in $hashRecords) {
     Write-Host "Package verified: $fileName"
 }
 
-if ($hashRecords.Count -ne 2) {
-    throw "Expected two portable packages, found $($hashRecords.Count)."
+if ($hashRecords.Count -ne $expectedPackageNames.Count) {
+    throw "Expected $($expectedPackageNames.Count) portable packages, found $($hashRecords.Count)."
+}
+
+$listedDifference = @(Compare-Object $expectedPackageNames @($listedPackages | Sort-Object) -CaseSensitive)
+if ($listedDifference.Count -gt 0) {
+    throw "SHA256SUMS does not match the lane-defined package set:`n$($listedDifference | Out-String)"
 }
 
 $expectedFiles = @($listedPackages) + @('SHA256SUMS.txt') | Sort-Object

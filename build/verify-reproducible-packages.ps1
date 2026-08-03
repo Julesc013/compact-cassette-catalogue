@@ -12,6 +12,10 @@ $firstRoot = Join-Path $reproductionRoot 'candidate-a'
 $secondRoot = Join-Path $reproductionRoot 'candidate-with-a-different-path-b'
 $retainedPackagesRoot = Join-Path $artifactsRoot 'packages'
 $windowsPowerShell = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
+$identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
+$packageDefinitions = @(& (Join-Path $PSScriptRoot 'get-release-packages.ps1') -Identity $identity)
+$expectedArtifactNames = @($packageDefinitions | ForEach-Object { $_.FileName }) +
+    @('SHA256SUMS.txt') | Sort-Object
 
 function Assert-SafeArtifactsPath {
     param([string]$Path)
@@ -61,14 +65,10 @@ function Get-PackageSnapshot {
     }
 
     $files = @(Get-ChildItem -LiteralPath $packagesRoot -File | Sort-Object Name)
-    if ($files.Count -ne 3) {
-        throw "Expected two portable ZIPs and SHA256SUMS.txt, found $($files.Count) files."
-    }
-    if (@($files | Where-Object { $_.Extension -ceq '.zip' }).Count -ne 2) {
-        throw 'Expected exactly two portable ZIPs.'
-    }
-    if (@($files | Where-Object { $_.Name -ceq 'SHA256SUMS.txt' }).Count -ne 1) {
-        throw 'Expected exactly one SHA256SUMS.txt.'
+    $actualNames = @($files | ForEach-Object { $_.Name })
+    $nameDifference = @(Compare-Object $expectedArtifactNames $actualNames -CaseSensitive)
+    if ($nameDifference.Count -gt 0) {
+        throw "Release artifact set does not match the lane contract:`n$($nameDifference | Out-String)"
     }
 
     return @($files | ForEach-Object {

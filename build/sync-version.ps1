@@ -5,27 +5,16 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
-$propsPath = Join-Path $PSScriptRoot 'Version.props'
-[xml]$props = Get-Content -LiteralPath $propsPath -Raw
-$values = $props.Project.PropertyGroup
-
-$productVersion = [string]$values.C3ProductVersion
-$releaseStage = [string]$values.C3ReleaseStage
-$releaseChannel = [string]$values.C3ReleaseChannel
-$updateFeedUrl = [string]$values.C3UpdateFeedUrl
-$releaseDate = [DateTime]::ParseExact(
-    [string]$values.C3ReleaseDate,
-    'yyyy-MM-dd',
-    [Globalization.CultureInfo]::InvariantCulture)
-$assemblyVersion = [string]$values.C3AssemblyVersion
-$fileVersion = [string]$values.C3FileVersion
-$catalogueFormatVersion = [string]$values.C3LegacyCatalogueFormatVersion
-
-$stageSlug = ($releaseStage.Trim().ToLowerInvariant() -replace '[^a-z0-9]+', '.').Trim('.')
-$informationalVersion = $productVersion
-if (-not [string]::Equals($releaseStage, 'Release', [StringComparison]::OrdinalIgnoreCase)) {
-    $informationalVersion += '-' + $stageSlug
-}
+$identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
+$productVersion = $identity.ProductVersion
+$releaseStage = $identity.ReleaseStage
+$releaseChannel = $identity.ReleaseChannel
+$updateFeedUrl = $identity.UpdateFeedUrl
+$releaseDate = $identity.ReleaseDate
+$assemblyVersion = $identity.AssemblyVersion
+$fileVersion = $identity.FileVersion
+$catalogueFormatVersion = $identity.CatalogueFormatVersion
+$informationalVersion = $identity.InformationalVersion
 
 $channelVersion = @(
     $productVersion

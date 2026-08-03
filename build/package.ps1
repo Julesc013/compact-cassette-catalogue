@@ -45,24 +45,16 @@ if (-not $SkipBuild) {
 
 & (Join-Path $PSScriptRoot 'verify-binary-metadata.ps1') -Configuration Release
 
-[xml]$versionProps = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'Version.props') -Raw
-$versionValues = $versionProps.Project.PropertyGroup
-$productVersion = [string]$versionValues.C3ProductVersion
-$releaseStage = [string]$versionValues.C3ReleaseStage
-$releaseDate = [DateTime]::ParseExact(
-    [string]$versionValues.C3ReleaseDate,
-    'yyyy-MM-dd',
-    [Globalization.CultureInfo]::InvariantCulture)
+$identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
+$productVersion = $identity.ProductVersion
+$releaseStage = $identity.ReleaseStage
+$releaseDate = $identity.ReleaseDate
 if ($releaseDate.Year -lt 1980 -or $releaseDate.Year -gt 2107) {
     throw "Release date $($releaseDate.ToString('yyyy-MM-dd')) is outside the ZIP timestamp range."
 }
-$versionLabel = $productVersion
-if (-not [string]::Equals($releaseStage, 'Release', [StringComparison]::OrdinalIgnoreCase)) {
-    $stageSlug = ($releaseStage.Trim().ToLowerInvariant() -replace '[^a-z0-9]+', '.').Trim('.')
-    $versionLabel += '-' + $stageSlug
-}
+$versionLabel = $identity.ReleaseLabel
 
-$manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
+$packageDefinitions = @(& (Join-Path $PSScriptRoot 'get-release-packages.ps1') -Identity $identity)
 
 foreach ($path in @($stagingRoot, $packagesRoot)) {
     Assert-UnderArtifacts $path
@@ -84,13 +76,9 @@ $fixedTimestamp = New-Object DateTimeOffset(
     [TimeSpan]::Zero)
 $packagePaths = New-Object Collections.Generic.List[String]
 
-foreach ($lane in @($manifest.lanes)) {
-    if ([string]$lane.distribution -ne 'portable') {
-        continue
-    }
-
-    $laneId = [string]$lane.id
-    $outputDirectory = Join-Path $repositoryRoot ([string]$lane.outputDirectory)
+foreach ($packageDefinition in $packageDefinitions) {
+    $laneId = $packageDefinition.LaneId
+    $outputDirectory = Join-Path $repositoryRoot $packageDefinition.OutputDirectory
     $stageDirectory = Join-Path $stagingRoot $laneId
     Assert-UnderArtifacts $stageDirectory
     New-Item -ItemType Directory -Path $stageDirectory -Force | Out-Null
@@ -116,15 +104,15 @@ foreach ($lane in @($manifest.lanes)) {
         "Version: $productVersion"
         "Stage: $releaseStage"
         "Lane: $laneId"
-        "Target framework: $($lane.targetFramework)"
-        "Runtime claim: $($lane.runtimeClaim)"
+        "Target framework: $($packageDefinition.TargetFramework)"
+        "Runtime claim: $($packageDefinition.RuntimeClaim)"
     ) -join [Environment]::NewLine
     [IO.File]::WriteAllText(
         (Join-Path $stageDirectory 'BUILD.txt'),
         $buildText + [Environment]::NewLine,
         (New-Object Text.UTF8Encoding($false)))
 
-    $packageName = "C3-v$versionLabel-$laneId-portable.zip"
+    $packageName = $packageDefinition.FileName
     $packagePath = Join-Path $packagesRoot $packageName
     $stream = [IO.File]::Open($packagePath, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
     $archive = New-Object IO.Compression.ZipArchive($stream, [IO.Compression.ZipArchiveMode]::Create, $false)

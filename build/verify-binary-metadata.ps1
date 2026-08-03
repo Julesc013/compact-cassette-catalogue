@@ -8,16 +8,10 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
-[xml]$versionProps = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'Version.props') -Raw
-$values = $versionProps.Project.PropertyGroup
-$expectedAssemblyVersion = [string]$values.C3AssemblyVersion
-$expectedFileVersion = [string]$values.C3FileVersion
-$releaseStage = [string]$values.C3ReleaseStage
-$stageSlug = ($releaseStage.Trim().ToLowerInvariant() -replace '[^a-z0-9]+', '.').Trim('.')
-$expectedProductVersion = [string]$values.C3ProductVersion
-if (-not [string]::Equals($releaseStage, 'Release', [StringComparison]::OrdinalIgnoreCase)) {
-    $expectedProductVersion += '-' + $stageSlug
-}
+$identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
+$expectedAssemblyVersion = $identity.AssemblyVersion
+$expectedFileVersion = $identity.FileVersion
+$expectedProductVersion = $identity.InformationalVersion
 
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $binaryNames = @(
