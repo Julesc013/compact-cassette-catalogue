@@ -17,6 +17,8 @@ Module Program
         RunTest("external entities are rejected", AddressOf ExternalEntityIsRejected)
         RunTest("XML decimals remain culture independent", AddressOf XmlDecimalsAreCultureIndependent)
         RunTest("catalogue session owns dirty and revision state", AddressOf CatalogueSessionOwnsDocumentState)
+        RunTest("store classifies unsafe and incompatible input", AddressOf StoreClassifiesRejectedInput)
+        RunTest("store saves transactionally and detects external edits", AddressOf StoreSavesTransactionally)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -124,6 +126,87 @@ Module Program
         AssertEqual(revision, session.Revision, "saved session revision")
         AssertEqual(3, eventCount, "session changed event count")
     End Sub
+
+    Private Sub StoreClassifiesRejectedInput()
+        Dim store As New LegacyXmlCatalogueStore()
+        Dim schema As DataSet = CreateFixtureSchema()
+        Dim supported As String() = {"1.1.0"}
+
+        AssertEqual(
+            LegacyCatalogueFileFailure.InvalidXml,
+            store.Load(FixturePath("invalid", "malformed.xml"), schema, supported).Failure,
+            "malformed failure")
+        AssertEqual(
+            LegacyCatalogueFileFailure.MissingVersion,
+            store.Load(FixturePath("invalid", "missing-version.xml"), schema, supported).Failure,
+            "missing-version failure")
+        AssertEqual(
+            LegacyCatalogueFileFailure.UnsupportedVersion,
+            store.Load(FixturePath("invalid", "unsupported-version.xml"), schema, supported).Failure,
+            "unsupported-version failure")
+        AssertEqual(
+            LegacyCatalogueFileFailure.InvalidXml,
+            store.Load(FixturePath("security", "external-entity.xml"), schema, supported).Failure,
+            "external-entity failure")
+    End Sub
+
+    Private Sub StoreSavesTransactionally()
+        Dim store As New LegacyXmlCatalogueStore()
+        Dim schema As DataSet = CreateFixtureSchema()
+        Dim supported As String() = {"1.1.0"}
+        Dim loaded As LegacyCatalogueLoadResult = store.Load(
+            FixturePath("valid", "populated.xml"),
+            schema,
+            supported)
+        AssertEqual(True, loaded.IsSuccess, "fixture load")
+
+        Dim workDirectory As String = Path.Combine(_repositoryRoot, "artifacts\tests\work\transactional-store")
+        If Directory.Exists(workDirectory) Then
+            Directory.Delete(workDirectory, True)
+        End If
+        Directory.CreateDirectory(workDirectory)
+
+        Try
+            Dim destination As String = Path.Combine(workDirectory, "round-trip.xml")
+            Dim saved As LegacyCatalogueSaveResult = store.Save(destination, loaded.Document, Nothing, supported)
+            AssertEqual(True, saved.IsSuccess, "initial transactional save")
+            AssertEqual(True, File.Exists(destination), "saved destination exists")
+
+            Dim reopened As LegacyCatalogueLoadResult = store.Load(destination, schema, supported)
+            AssertEqual(True, reopened.IsSuccess, "saved file reopens")
+            AssertEqual(1, reopened.Document.Tables("Tapes").Rows.Count, "saved tape count")
+
+            File.AppendAllText(destination, Environment.NewLine & "<!-- external edit -->")
+            Dim rejected As LegacyCatalogueSaveResult = store.Save(
+                destination,
+                reopened.Document,
+                reopened.Revision,
+                supported)
+            AssertEqual(False, rejected.IsSuccess, "external edit save result")
+            AssertEqual(LegacyCatalogueFileFailure.ExternalModification, rejected.Failure, "external edit failure")
+            AssertEqual(True, File.ReadAllText(destination).Contains("external edit"), "external edit preserved")
+        Finally
+            If Directory.Exists(workDirectory) Then
+                Directory.Delete(workDirectory, True)
+            End If
+        End Try
+    End Sub
+
+    Private Function CreateFixtureSchema() As DataSet
+        Dim source As New DataSet("Catalogue")
+        source.ReadXml(FixturePath("valid", "populated.xml"), XmlReadMode.InferSchema)
+
+        Dim schema As New DataSet("Catalogue")
+        Dim information As New DataTable("Information")
+        information.Columns.Add("Information", GetType(String))
+        information.Columns.Add("Value", GetType(String))
+        schema.Tables.Add(information)
+
+        For Each tableName As String In {"Counters", "Decks", "Brands", "Models", "Tapes"}
+            schema.Tables.Add(source.Tables(tableName).Clone())
+        Next
+        Return schema
+    End Function
 
     Private Sub ValidateAgainstSchema(xmlPath As String)
         Dim validationMessages As New List(Of String)()

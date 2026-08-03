@@ -36,18 +36,21 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
     <Import Include="System.Globalization" />
     <Import Include="System.IO" />
     <Import Include="System.Text.RegularExpressions" />
     <Import Include="System.Xml" />
     <Import Include="System.Xml.Schema" />
     <Import Include="C3.Catalogue.Catalogues" />
+    <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.vb" />
@@ -56,6 +59,10 @@
     <ProjectReference Include="..\..\src\C3.Catalogue\C3.Catalogue.vbproj">
       <Project>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</Project>
       <Name>C3.Catalogue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\C3.Infrastructure\C3.Infrastructure.vbproj">
+      <Project>{BDF6C715-A5C6-4776-A5A1-7599F47610E0}</Project>
+      <Name>C3.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -13,6 +13,12 @@
 - Repaired the solution so every referenced project exists and builds.
 - Defined module ownership, compatibility build lanes, and contribution rules.
 - Established one canonical product and catalogue-format version source.
+- Added secure temporary-state catalogue loading so failed input cannot clear the
+  active catalogue.
+- Added verified temporary-file saving, atomic replacement with backup, and
+  external-edit detection.
+- Fixed Save As cancellation continuing into the save path and removed the
+  duplicate open-dialog path after save-before-open.
 
 
 

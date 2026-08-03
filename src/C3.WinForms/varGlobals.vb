@@ -23,6 +23,7 @@ Module varGlobals
 
     ' Current document state. Legacy properties delegate to the single session owner.
     Public ReadOnly catalogueSession As New CatalogueSession("New Catalogue")
+    Public ReadOnly catalogueStore As New LegacyXmlCatalogueStore()
 
     Public Property filePath As String
         Get
@@ -82,6 +83,31 @@ Module varGlobals
     Public brandCount As Integer
     Public modelCount As Integer
     Public tapeCount As Integer
+
+    Public Sub replaceCatalogue(replacement As DataSet)
+        If replacement Is Nothing Then
+            Throw New ArgumentNullException("replacement")
+        End If
+
+        For Each tableName As String In {"Information", "Counters", "Decks", "Brands", "Models", "Tapes"}
+            If replacement.Tables(tableName) Is Nothing Then
+                Throw New InvalidOperationException("Catalogue is missing required table '" & tableName & "'.")
+            End If
+        Next
+
+        catalogue = replacement
+        information = replacement.Tables("Information")
+        counters = replacement.Tables("Counters")
+        decks = replacement.Tables("Decks")
+        brands = replacement.Tables("Brands")
+        models = replacement.Tables("Models")
+        tapes = replacement.Tables("Tapes")
+
+        deckCount = decks.Rows.Count
+        brandCount = brands.Rows.Count
+        modelCount = models.Rows.Count
+        tapeCount = tapes.Rows.Count
+    End Sub
 
     Function makeInformation() As DataTable
 

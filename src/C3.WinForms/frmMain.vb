@@ -3,10 +3,8 @@
 ' Author: Jules Carboni
 ' Date Created: 22 Aug 2019
 
-Imports System.Xml
 Imports System.IO
 Imports System.Net
-Imports System.Text.RegularExpressions
 
 Public Class frmMain
 
@@ -652,6 +650,7 @@ Public Class frmMain
 
         'If there is no filepath, it is not saved
         Dim saved As Boolean = filePath IsNot Nothing
+        Dim destinationPath As String = filePath
 
         Dim message As String = Nothing
 
@@ -661,25 +660,15 @@ Public Class frmMain
             Dim dlgResult As DialogResult = dlgSaveAs.ShowDialog()
             Dim selectedPath As String = dlgSaveAs.FileName
 
-            If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
+            If dlgResult = DialogResult.OK And Not String.IsNullOrWhiteSpace(selectedPath) Then
                 'If user has given a valid file path.
 
-                'Lock in selected file path
-                filePath = selectedPath
-                Dim fileTree As String() = selectedPath.Split("\"c)
-                fileName = fileTree(fileTree.Length - 1)
-
-                'Create file directory string
-                fileDirectory = Nothing
-                Dim folder As Integer
-                For folder = 0 To fileTree.Length - 2 'Every string except the final (the file name).
-                    fileDirectory += fileTree(folder) & "\"
-                Next
+                destinationPath = selectedPath
 
                 'Make confirmation message
                 message = "Saved catalogue successfully (as new file)."
 
-            ElseIf dlgResult <> DialogResult.Cancel Then
+            ElseIf dlgResult = DialogResult.Cancel Then
                 'If user DID deliberately cancel save procedure.
 
                 Exit Sub 'Exit and don't try to save.
@@ -689,6 +678,7 @@ Public Class frmMain
 
                 'Show error message
                 MsgBox("Bad file path selected. Catalogue not saved.", MsgBoxStyle.Critical, "File Path Error")
+                Exit Sub
 
             End If
 
@@ -704,21 +694,47 @@ Public Class frmMain
         'Update file information
         information.Rows(5)("Value") = DateTime.Now.ToString
 
-        catalogue.WriteXml(filePath)
+        Dim expectedRevision As CatalogueRevision = Nothing
+        If Not saveAs AndAlso String.Equals(
+                destinationPath,
+                catalogueSession.FilePath,
+                StringComparison.OrdinalIgnoreCase) Then
+            expectedRevision = catalogueSession.Revision
+        End If
+
+        Dim saveResult As LegacyCatalogueSaveResult = catalogueStore.Save(
+            destinationPath,
+            catalogue,
+            expectedRevision,
+            VERSIONFILESUPPORTED)
+        If Not saveResult.IsSuccess Then
+            BufferedLogger.Error("Catalogue save failed: " & saveResult.Message)
+            MsgBox(
+                "Catalogue was not saved." & vbNewLine & vbNewLine & saveResult.Message,
+                MsgBoxStyle.Critical,
+                "Catalogue Save Error")
+            Exit Sub
+        End If
+
+        Dim savedFileName As String = Path.GetFileName(destinationPath)
+        catalogueSession.MarkSaved(destinationPath, savedFileName, saveResult.Revision)
+        fileDirectory = Path.GetDirectoryName(destinationPath)
+        If Not String.IsNullOrEmpty(fileDirectory) Then
+            fileDirectory &= Path.DirectorySeparatorChar
+        End If
 
 
         'Discard updates made to current tape and reload from saved data.
 
         'Reset changes variable
         updates = False
-        changes = False
 
         'Reset buttons
         btnUpdate.Enabled = False
         UpdateTapeToolStripMenuItem.Enabled = False
 
         'Update title bar
-        Me.Text = fileName & " - C3"
+        Me.Text = catalogueSession.DisplayName & " - C3"
 
         'Reload from saved data
         loadData()
@@ -783,9 +799,6 @@ Public Class frmMain
 
                 saveChangesActual(False, True)
 
-                'OPEN CAT
-                openCatalogueActual()
-
             ElseIf result = vbNo Then
 
                 'OPEN CAT
@@ -802,35 +815,6 @@ Public Class frmMain
 
     End Sub
 
-    Private Function normaliseCatalogueFileVersion(rawVersion As String) As String
-
-        If rawVersion Is Nothing Then
-            Return Nothing
-        End If
-
-        Dim versionMatch As Match = Regex.Match(rawVersion.Trim(), "^(\d+)\.(\d+)\.(\d+)")
-        If versionMatch.Success Then
-            Return versionMatch.Groups(1).Value & "." & versionMatch.Groups(2).Value & "." & versionMatch.Groups(3).Value
-        End If
-
-        Return rawVersion.Trim()
-
-    End Function
-
-    Private Function getCatalogueFileVersion(cataloguePath As String) As String
-
-        Dim catalogueDocument As New XmlDocument()
-        catalogueDocument.Load(cataloguePath)
-
-        Dim fileVersionNode As XmlNode = catalogueDocument.SelectSingleNode("//Information[normalize-space(Information)='File Version']/Value")
-        If fileVersionNode IsNot Nothing Then
-            Return normaliseCatalogueFileVersion(fileVersionNode.InnerText)
-        End If
-
-        Return Nothing
-
-    End Function
-
     Public Sub openCatalogueActual()
 
         BufferedLogger.RecordAction("Open catalogue")
@@ -842,56 +826,44 @@ Public Class frmMain
         If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
             'If user has given a valid file path.
 
-            Dim fileVersion As String = Nothing
-
-            'Check file format version
-            Try
-
-                fileVersion = getCatalogueFileVersion(selectedPath)
-
-            Catch ex As Exception
-
-                consoleAdd("Failed to read catalogue file version. Error: " & ex.Message)
-                MsgBox("Could not read the catalogue file version." & vbNewLine & vbNewLine & "Error: " & ex.Message, MsgBoxStyle.Critical, "Catalogue Load Error")
+            Dim loadResult As LegacyCatalogueLoadResult = catalogueStore.Load(
+                selectedPath,
+                catalogue,
+                VERSIONFILESUPPORTED)
+            If Not loadResult.IsSuccess Then
+                BufferedLogger.Error("Catalogue load failed: " & loadResult.Message)
+                MsgBox(
+                    "Catalogue was not opened. The current catalogue is unchanged." &
+                        vbNewLine & vbNewLine & loadResult.Message,
+                    MsgBoxStyle.Critical,
+                    "Catalogue Load Error")
                 Exit Sub
+            End If
 
-            End Try
+            Dim fileVersion As String = loadResult.FileVersion
 
             'Only load if the file version is supported.
             If VERSIONFILESUPPORTED.Contains(fileVersion) Then
 
-                'Lock in selected file path
+                Dim selectedFileName As String = Path.GetFileName(selectedPath)
+                fileDirectory = Path.GetDirectoryName(selectedPath)
+                If Not String.IsNullOrEmpty(fileDirectory) Then
+                    fileDirectory &= Path.DirectorySeparatorChar
+                End If
 
-                filePath = selectedPath
-                Dim fileTree As String() = selectedPath.Split("\"c)
-                fileName = fileTree(fileTree.Length - 1)
-
-                'Create file directory string
-                fileDirectory = Nothing
-                Dim folder As Integer
-                For folder = 0 To fileTree.Length - 2 'Every string except the final (the file name).
-                    fileDirectory += fileTree(folder) & "\"
-                Next
-
-
-                'Temporarily Disable strict loading rules
-                catalogue.EnforceConstraints = False
-                'Clear the existing dataset
-                catalogue.Clear()
-                'Read the XML file
-                catalogue.ReadXml(selectedPath)
+                replaceCatalogue(loadResult.Document)
+                catalogueSession.MarkLoaded(selectedPath, selectedFileName, loadResult.Revision)
 
 
                 'Reset changes variable
                 updates = False
-                changes = False
 
                 'Reset buttons
                 btnUpdate.Enabled = False
                 UpdateTapeToolStripMenuItem.Enabled = False
 
                 'Update title bar
-                Me.Text = fileName & " - C3"
+                Me.Text = catalogueSession.DisplayName & " - C3"
 
 
                 'Update file information

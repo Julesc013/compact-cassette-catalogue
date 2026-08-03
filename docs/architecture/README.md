@@ -101,6 +101,6 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 ## Further reading
 
 - [Repository layout](repository-layout.md)
+- [Catalogue persistence](persistence.md)
 - [ADR 0001: Modular monolith](decisions/0001-modular-monolith.md)
 - [ADR 0002: Compatibility build lanes](decisions/0002-compatibility-build-lanes.md)
-
