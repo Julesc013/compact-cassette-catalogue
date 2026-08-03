@@ -1,5 +1,8 @@
 # Building C3
 
+For automation ownership and runner requirements, see
+[Continuous Integration](continuous-integration.md).
+
 ## Supported build environment
 
 Use Windows with Visual Studio 2019 16.11 and the .NET desktop development

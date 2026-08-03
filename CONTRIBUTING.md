@@ -46,3 +46,7 @@ also require the relevant manual smoke workflow and a designer-open check.
 Never claim Windows XP, DPI, installer, signing, or upgrade compatibility without
 recorded evidence for that exact path.
 
+Pull requests receive hosted repository-contract checks. The authoritative
+dual-lane build uses a Visual Studio 2019 self-hosted runner because newer Visual
+Studio releases cannot compile the .NET Framework 4.0 lane. See
+[`docs/development/continuous-integration.md`](docs/development/continuous-integration.md).

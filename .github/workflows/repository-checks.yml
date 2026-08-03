@@ -1,0 +1,40 @@
+name: Repository checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contracts:
+    name: Metadata, boundaries, and project parity
+    runs-on: windows-2022
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify canonical release metadata
+        shell: powershell
+        run: ./build/verify-metadata.ps1
+
+      - name: Verify dependency direction
+        shell: powershell
+        run: ./build/validate-dependencies.ps1
+
+      - name: Verify shared WinForms project parity
+        shell: powershell
+        run: ./build/validate-project-parity.ps1
+
+      - name: Check whitespace
+        shell: powershell
+        run: |
+          git show --check --format= HEAD
+          if ($LASTEXITCODE -ne 0) { throw 'git show --check failed.' }
