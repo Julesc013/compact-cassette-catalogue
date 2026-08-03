@@ -8,6 +8,7 @@
       "configuration": "Release",
       "platform": "x86",
       "targetFramework": "v4.0",
+      "outputDirectory": "artifacts/bin/win-x86-net40/Release",
       "runtimeClaim": "Windows XP SP3 or newer",
       "distribution": "portable"
     },
@@ -17,6 +18,7 @@
       "configuration": "Release",
       "platform": "x64",
       "targetFramework": "v4.8",
+      "outputDirectory": "artifacts/bin/win-x64-net48/Release",
       "runtimeClaim": "Windows 7 SP1 or newer, 64-bit",
       "distribution": "portable"
     }
