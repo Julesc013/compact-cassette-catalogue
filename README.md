@@ -25,9 +25,9 @@ C3 does not require a network connection for catalogue work.
 
 ## What C3 records
 
-- cassette brand, model, type, year, length, region, and condition;
-- per-side recording date, deck, input, levels, noise reduction, speed, bias, equalization, contents, artist, and title; and
-- tape-deck capabilities and technical specifications.
+- cassette brand, model, type, year, length, region, and condition
+- per-side recording date, deck, input, levels, noise reduction, speed, bias, equalization, contents, artist, and title
+- tape-deck capabilities and technical specifications
 
 ## Repository map
 
