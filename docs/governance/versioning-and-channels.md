@@ -10,6 +10,7 @@ a catalogue format, and an update audience do not evolve at the same rate.
 | Product version | `build/Version.props` | `2.0.0` |
 | Release label | generated from product version and stage | `2.0.0-alpha.1` |
 | Release channel | `build/Version.props` | `alpha` |
+| Update feed endpoint | `build/Version.props` | generated into the client; HTTPS `dev/alpha` endpoint |
 | Assembly contract | `build/Version.props` | `2.0.0.0` for the 2.x contract line |
 | File build identity | `build/Version.props` | numeric four-part version |
 | Informational version | generated assembly metadata | SemVer release label, optionally plus a source revision |
@@ -61,7 +62,9 @@ after matching 1.x assets are public.
 
 Current 2.x binaries read their configured channel feed. Build synchronization
 must never overwrite the root legacy feed. Verification checks build identity
-and published-feed identity independently.
+and published-feed identity independently. The client endpoint is generated from
+the same build contract, and validation rejects an endpoint whose feed path does
+not match its channel; alpha additionally must remain on `dev`.
 
 ## Release naming
 

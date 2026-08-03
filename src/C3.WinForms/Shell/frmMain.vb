@@ -104,7 +104,7 @@ Public Class frmMain
             enableBestEffortTls()
 
             Dim updateClient As WebClient = New WebClient()
-            Using updateReader As New StreamReader(updateClient.OpenRead(UPDATELINKCHECK))
+            Using updateReader As New StreamReader(updateClient.OpenRead(UpdateFeedUrl))
 
                 ' Assume there are only 3 lines (and in data is in this order).
                 latestVersion = updateReader.ReadLine()

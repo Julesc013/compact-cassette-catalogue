@@ -12,6 +12,7 @@ $values = $props.Project.PropertyGroup
 $productVersion = [string]$values.C3ProductVersion
 $releaseStage = [string]$values.C3ReleaseStage
 $releaseChannel = [string]$values.C3ReleaseChannel
+$updateFeedUrl = [string]$values.C3UpdateFeedUrl
 $releaseDate = [DateTime]::ParseExact(
     [string]$values.C3ReleaseDate,
     'yyyy-MM-dd',
@@ -27,6 +28,35 @@ if (-not [string]::Equals($releaseStage, 'Release', [StringComparison]::OrdinalI
 }
 
 $failures = New-Object Collections.Generic.List[String]
+
+$updateFeedUri = $null
+if (-not [Uri]::TryCreate($updateFeedUrl, [UriKind]::Absolute, [ref]$updateFeedUri)) {
+    $failures.Add("update feed URL is not absolute: '$updateFeedUrl'")
+}
+else {
+    if ($updateFeedUri.Scheme -cne 'https') {
+        $failures.Add('update feed URL must use HTTPS.')
+    }
+    if ($updateFeedUri.Host -cne 'raw.githubusercontent.com') {
+        $failures.Add('update feed URL must use the approved raw.githubusercontent.com host.')
+    }
+    $expectedFeedSuffix = "/release/feeds/$releaseChannel/VERSION"
+    if (-not $updateFeedUri.AbsolutePath.EndsWith(
+            $expectedFeedSuffix,
+            [StringComparison]::Ordinal)) {
+        $failures.Add("update feed URL must end with '$expectedFeedSuffix'.")
+    }
+    if ($releaseChannel -ceq 'alpha' -and
+        $updateFeedUri.AbsolutePath.IndexOf(
+            '/Julesc013/compact-cassette-catalogue/dev/',
+            [StringComparison]::Ordinal) -lt 0) {
+        $failures.Add('the alpha update feed must remain isolated on the dev branch.')
+    }
+    if (-not [string]::IsNullOrEmpty($updateFeedUri.Query) -or
+        -not [string]::IsNullOrEmpty($updateFeedUri.Fragment)) {
+        $failures.Add('update feed URL must not contain a query or fragment.')
+    }
+}
 
 function Assert-Equal {
     param(
@@ -93,6 +123,7 @@ $expectedFragments = @(
     "New DateTime($($releaseDate.Year), $($releaseDate.Month), $($releaseDate.Day), 0, 0, 0, DateTimeKind.Local)"
     "Public Const VERSIONFILE As String = `"$catalogueFormatVersion`""
     "Public Const ReleaseChannel As String = `"$releaseChannel`""
+    "Public Const UpdateFeedUrl As String = `"$updateFeedUrl`""
     "Public Const AssemblyVersion As String = `"$assemblyVersion`""
     "Public Const FileVersion As String = `"$fileVersion`""
     "Public Const InformationalVersion As String = `"$informationalVersion`""

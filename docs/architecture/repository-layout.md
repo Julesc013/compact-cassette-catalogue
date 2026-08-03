@@ -109,7 +109,7 @@ extract a shared abstraction only after more than one real owner needs it.
 
 | Fact or behavior | Canonical owner | Projection or evidence |
 | --- | --- | --- |
-| Current development product/stage/channel/assembly identity | `build/Version.props` | generated BuildInfo, shared assembly attributes, alpha feed, binary/package names |
+| Current development product/stage/channel/feed/assembly identity | `build/Version.props` | generated BuildInfo, shared assembly attributes, alpha feed, client endpoint, binary/package names |
 | Published legacy updater value | `release/feeds/legacy-1x/VERSION` | root `VERSION`; deliberately independent from current build |
 | Update-channel policy and branch contract | `docs/governance/versioning-and-channels.md` | release scripts and feed directories |
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |

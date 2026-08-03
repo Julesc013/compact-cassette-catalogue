@@ -5,6 +5,7 @@
     <C3ProductVersion>2.0.0</C3ProductVersion>
     <C3ReleaseStage>Alpha 1</C3ReleaseStage>
     <C3ReleaseChannel>alpha</C3ReleaseChannel>
+    <C3UpdateFeedUrl>https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/VERSION</C3UpdateFeedUrl>
     <C3ReleaseDate>2026-08-04</C3ReleaseDate>
     <C3AssemblyVersion>2.0.0.0</C3AssemblyVersion>
     <C3FileVersion>2.0.0.1</C3FileVersion>

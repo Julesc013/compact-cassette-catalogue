@@ -12,6 +12,7 @@ $values = $props.Project.PropertyGroup
 $productVersion = [string]$values.C3ProductVersion
 $releaseStage = [string]$values.C3ReleaseStage
 $releaseChannel = [string]$values.C3ReleaseChannel
+$updateFeedUrl = [string]$values.C3UpdateFeedUrl
 $releaseDate = [DateTime]::ParseExact(
     [string]$values.C3ReleaseDate,
     'yyyy-MM-dd',
@@ -46,6 +47,7 @@ Public Module C3BuildInfo
     Public ReadOnly VERSIONFILESUPPORTED As String() = {"$catalogueFormatVersion"}
 
     Public Const ReleaseChannel As String = "$releaseChannel"
+    Public Const UpdateFeedUrl As String = "$updateFeedUrl"
     Public Const AssemblyVersion As String = "$assemblyVersion"
     Public Const FileVersion As String = "$fileVersion"
     Public Const InformationalVersion As String = "$informationalVersion"
