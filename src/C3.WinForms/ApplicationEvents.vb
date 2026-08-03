@@ -22,6 +22,12 @@
             BufferedLogger.Error("Unhandled exception: " & e.Exception.Message)
 
             Dim context As New CrashReportContext() With {
+                .ProductVersion = VERSION,
+                .ReleaseStage = VERSIONSTAGE,
+                .BuildLane = RuntimeInfo.BuildLabel,
+                .OperatingSystem = Environment.OSVersion.ToString(),
+                .ClrVersion = Environment.Version.ToString(),
+                .ProcessBitness = (IntPtr.Size * 8).ToString() & "-bit",
                 .CataloguePath = filePath,
                 .LastAction = BufferedLogger.LastAction
             }

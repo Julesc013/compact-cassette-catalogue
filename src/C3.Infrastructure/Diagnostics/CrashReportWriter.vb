@@ -1,8 +1,16 @@
 Imports System.IO
 Imports System.Text
 
+Namespace Diagnostics
+
 Public NotInheritable Class CrashReportContext
 
+    Public Property ProductVersion As String
+    Public Property ReleaseStage As String
+    Public Property BuildLane As String
+    Public Property OperatingSystem As String
+    Public Property ClrVersion As String
+    Public Property ProcessBitness As String
     Public Property CataloguePath As String
     Public Property LastAction As String
 
@@ -33,15 +41,19 @@ Public NotInheritable Class CrashReportWriter
     End Function
 
     Private Shared Function BuildReport(exception As Exception, context As CrashReportContext) As String
+        If context Is Nothing Then
+            context = New CrashReportContext() With {.LastAction = BufferedLogger.LastAction}
+        End If
+
         Dim report As New StringBuilder()
         report.AppendLine("C3 crash report")
         report.AppendLine("===============")
         report.AppendLine("Created (UTC): " & DateTime.UtcNow.ToString("O"))
-        report.AppendLine("Product version: " & VERSION & " " & VERSIONSTAGE)
-        report.AppendLine("Build lane: " & RuntimeInfo.BuildLabel)
-        report.AppendLine("Operating system: " & Environment.OSVersion.ToString())
-        report.AppendLine("CLR version: " & Environment.Version.ToString())
-        report.AppendLine("Process bitness: " & (IntPtr.Size * 8).ToString() & "-bit")
+        report.AppendLine("Product version: " & If(context.ProductVersion, "(unknown)") & " " & If(context.ReleaseStage, String.Empty))
+        report.AppendLine("Build lane: " & If(context.BuildLane, "(unknown)"))
+        report.AppendLine("Operating system: " & If(context.OperatingSystem, "(unknown)"))
+        report.AppendLine("CLR version: " & If(context.ClrVersion, "(unknown)"))
+        report.AppendLine("Process bitness: " & If(context.ProcessBitness, "(unknown)"))
 
         If context IsNot Nothing Then
             report.AppendLine("Catalogue path: " & If(context.CataloguePath, "(new catalogue)"))
@@ -67,3 +79,4 @@ Public NotInheritable Class CrashReportWriter
 
 End Class
 
+End Namespace

@@ -1,5 +1,7 @@
 Imports System.Collections.ObjectModel
 
+Namespace Diagnostics
+
 Public NotInheritable Class BufferedLogger
 
     Private Const MaximumEntries As Integer = 200
@@ -66,3 +68,4 @@ Public NotInheritable Class BufferedLogger
 
 End Class
 
+End Namespace

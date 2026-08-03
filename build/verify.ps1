@@ -7,6 +7,7 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 & (Join-Path $PSScriptRoot 'verify-metadata.ps1')
+& (Join-Path $PSScriptRoot 'validate-dependencies.ps1')
 & (Join-Path $PSScriptRoot 'validate-project-parity.ps1')
 & (Join-Path $PSScriptRoot 'test.ps1') -Configuration Release
 & (Join-Path $PSScriptRoot 'build.ps1') -Configuration Release -Rebuild:$Rebuild

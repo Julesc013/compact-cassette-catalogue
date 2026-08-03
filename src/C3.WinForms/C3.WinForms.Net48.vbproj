@@ -77,6 +77,18 @@
     <Import Include="System.Threading.Tasks" />
     <Import Include="System.Windows.Forms" />
     <Import Include="System.Xml.Linq" />
+    <Import Include="C3.Catalogue.Catalogues" />
+    <Import Include="C3.Infrastructure.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.vbproj">
+      <Project>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</Project>
+      <Name>C3.Catalogue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\C3.Infrastructure\C3.Infrastructure.vbproj">
+      <Project>{BDF6C715-A5C6-4776-A5A1-7599F47610E0}</Project>
+      <Name>C3.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**\*.vb" Exclude="bin\**\*;obj\**\*" />

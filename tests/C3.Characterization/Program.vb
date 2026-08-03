@@ -16,6 +16,7 @@ Module Program
         RunTest("malformed XML is rejected", AddressOf MalformedXmlIsRejected)
         RunTest("external entities are rejected", AddressOf ExternalEntityIsRejected)
         RunTest("XML decimals remain culture independent", AddressOf XmlDecimalsAreCultureIndependent)
+        RunTest("catalogue session owns dirty and revision state", AddressOf CatalogueSessionOwnsDocumentState)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -99,6 +100,29 @@ Module Program
         Finally
             Thread.CurrentThread.CurrentCulture = originalCulture
         End Try
+    End Sub
+
+    Private Sub CatalogueSessionOwnsDocumentState()
+        Dim session As New CatalogueSession("New Catalogue")
+        Dim eventCount As Integer
+        AddHandler session.SessionChanged, Sub(sender As Object, args As EventArgs) eventCount += 1
+
+        AssertEqual(Nothing, session.FilePath, "new session path")
+        AssertEqual("New Catalogue", session.DisplayName, "new session display name")
+        AssertEqual(False, session.IsDirty, "new session dirty state")
+        AssertEqual(0L, session.ChangeSequence, "new session change sequence")
+
+        session.MarkChanged()
+        session.MarkChanged()
+        AssertEqual(True, session.IsDirty, "changed session dirty state")
+        AssertEqual(2L, session.ChangeSequence, "monotonic change sequence")
+
+        Dim revision As New CatalogueRevision("fixture-revision")
+        session.MarkSaved("C:\Catalogues\fixture.xml", "fixture.xml", revision)
+        AssertEqual(False, session.IsDirty, "saved session dirty state")
+        AssertEqual("fixture.xml", session.DisplayName, "saved session display name")
+        AssertEqual(revision, session.Revision, "saved session revision")
+        AssertEqual(3, eventCount, "session changed event count")
     End Sub
 
     Private Sub ValidateAgainstSchema(xmlPath As String)

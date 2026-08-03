@@ -21,13 +21,38 @@ Module varGlobals
     Public Const FEEDBACKLINK As String = "https://github.com/Julesc013/compact-cassette-catalogue/issues/new/choose" ' Github issues page.
 
 
-    ' Current file (and directory). If path is nothing, cannot save (must save-as).
-    Public filePath As String = Nothing ' Includes file name.
+    ' Current document state. Legacy properties delegate to the single session owner.
+    Public ReadOnly catalogueSession As New CatalogueSession("New Catalogue")
+
+    Public Property filePath As String
+        Get
+            Return catalogueSession.FilePath
+        End Get
+        Set(value As String)
+            catalogueSession.SetDocumentLocation(value, catalogueSession.DisplayName)
+        End Set
+    End Property
+
     Public fileDirectory As String = Nothing ' Directory only.
-    Public fileName As String = "New Catalogue" ' Name only.
+
+    Public Property fileName As String
+        Get
+            Return catalogueSession.DisplayName
+        End Get
+        Set(value As String)
+            catalogueSession.SetDocumentLocation(catalogueSession.FilePath, value)
+        End Set
+    End Property
 
     ' Has a change been made since last save?
-    Public changes As Boolean = False
+    Public Property changes As Boolean
+        Get
+            Return catalogueSession.IsDirty
+        End Get
+        Set(value As Boolean)
+            catalogueSession.SetDirtyForMigration(value)
+        End Set
+    End Property
     Public updates As Boolean = False
 
     ' Time the program was loaded sucessfully.
