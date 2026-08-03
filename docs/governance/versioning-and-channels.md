@@ -10,7 +10,7 @@ a catalogue format, and an update audience do not evolve at the same rate.
 | Product version | `build/Version.props` | `2.0.0` |
 | Release label | generated from product version and stage | `2.0.0-alpha.1` |
 | Release channel | `build/Version.props` | `alpha` |
-| Update feed endpoint | `build/Version.props` | generated into the client; HTTPS `dev/alpha` endpoint |
+| Update publication metadata | channel `release.json` | `published: false`; Alpha 1 must not advertise availability |
 | Assembly contract | `build/Version.props` | `2.0.0.0` for the 2.x contract line |
 | File build identity | `build/Version.props` | numeric four-part version |
 | Informational version | generated assembly metadata | SemVer release label, optionally plus a source revision |
@@ -27,7 +27,8 @@ Channels are promotion targets, not branch names:
 - **stable** receives only a stable release after assets and downloaded hashes
   pass the complete gate;
 - **beta** receives public feature-complete previews after beta gates pass;
-- **alpha** receives explicit development previews and is opt-in;
+- **alpha** records generated development identity but is not promoted while
+  alphas remain intentionally unpublished;
 - **legacy-1x** remains the maintenance feed for existing 1.x clients.
 
 Stable users never receive preview metadata automatically. A channel document is
@@ -36,21 +37,22 @@ release does not retarget its users silently to another channel.
 
 ## Permanent branch contract
 
-`master` is the maintained published-product line. While C3 2.0 is in development,
-it remains on C3 1.2 Beta and accepts only bounded 1.x maintenance, release, and
-security changes. `dev` is the permanent integration line for C3 2.0 and later
-unreleased work.
+`maintenance/1.x` owns bounded supported 1.x maintenance. `master` is the
+append-only promotion ledger for every qualified alpha, beta, release candidate,
+and stable checkpoint. `dev` owns active, unqualified development toward exactly
+one next checkpoint.
 
-Normal feature branches target `dev`. A 1.x correction targets `master` first,
-is verified under the 1.x contract, and is then forward-merged or deliberately
-ported to `dev` with its regression evidence. A 2.x-only change never flows
-backward into `master`.
+Normal feature branches target `dev`. A 1.x correction targets
+`maintenance/1.x` first, is verified under the 1.x contract, and is then
+forward-merged or deliberately ported to `dev` with the same regression evidence.
+A 2.x-only change never flows backward into the maintenance line.
 
-Neither permanent branch is force-pushed after the initial split. Stable 2.0 is
-promoted by an evidence-backed merge from a frozen `dev` candidate into `master`,
-followed by an immutable tag. `dev` remains and advances to the next development
-line. Git branches do not replace release channels: a commit is available to
-users only after artifacts and its channel feed are promoted.
+No permanent branch is force-pushed. After a milestone is frozen and qualified,
+its evidence attestation is fast-forwarded to `master` and tagged immutably.
+`dev` begins the next identity only after that tag exists. Git branches and tags
+do not replace release channels: alpha checkpoints are visible but unpublished;
+beta/stable availability begins only after the matching immutable assets and
+channel promotion pass their stage-specific gates.
 
 ## Legacy root `VERSION`
 
@@ -60,11 +62,12 @@ projection of the current source tree. It remains synchronized with the
 `legacy-1x` feed while those clients exist and is promoted deliberately only
 after matching 1.x assets are public.
 
-Current 2.x binaries read their configured channel feed. Build synchronization
-must never overwrite the root legacy feed. Verification checks build identity
-and published-feed identity independently. The client endpoint is generated from
-the same build contract, and validation rejects an endpoint whose feed path does
-not match its channel; alpha additionally must remain on `dev`.
+Build synchronization must never overwrite the root legacy feed. Verification
+checks build identity and published-feed identity independently. The 2.x updater
+contract must read explicit publication state and compare the complete release
+identity; a moving three-line `/dev/` VERSION endpoint cannot satisfy that rule.
+Remediating the current Alpha 1 client behavior is a qualification gate, not a
+future documentation aspiration.
 
 ## Release naming
 
@@ -82,13 +85,16 @@ numeric first line because legacy code parses `System.Version`.
 
 ## Promotion and immutability
 
-1. Freeze one source commit and generate all version projections.
-2. Build and test both lanes from that commit.
-3. Create the packages once, verify exact contents, and record hashes.
-4. Complete required manual, OS, compatibility, and migration evidence.
-5. Publish the immutable assets and checksum manifest.
-6. Download and verify them independently.
-7. Promote the matching channel document last.
+1. Freeze source/payload commit `C`; generate every packaged projection before it.
+2. Build, test, and reproduce both lanes from `C` under the milestone gate.
+3. Complete the manual, OS, compatibility, and migration evidence required for
+   that stage; deferred alpha evidence remains explicit.
+4. Create evidence-only commit `E`, naming `C` and the exact package hashes.
+5. Rebuild `E` and prove that its evidence-only diff leaves payload bytes intact.
+6. Fast-forward `E` to `master` and create the immutable annotated tag there.
+7. For unpublished alphas, stop. For beta/RC/stable, publish exact tested assets,
+   download and verify them, then promote the matching channel document last.
+8. Return to `dev` and commit the next milestone identity before implementation.
 
 Historical tags, validation records, package names, and hashes are never
 relabelled. An unpublished candidate may be marked superseded, but its identity

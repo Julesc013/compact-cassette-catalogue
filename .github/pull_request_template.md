@@ -2,6 +2,13 @@
 
 Describe the user-visible result and why the change is needed.
 
+## Target branch
+
+- [ ] Ordinary 2.x work targets `dev`, or bounded 1.x work targets
+      `maintenance/1.x`.
+- [ ] If this changes `master`, it is an evidence-backed checkpoint promotion
+      with the matching validation record, catalogue entry, and tag plan.
+
 ## Ownership and compatibility
 
 - [ ] The change follows `docs/architecture/README.md` dependency rules.
@@ -20,6 +27,7 @@ Describe the user-visible result and why the change is needed.
 - [ ] Relevant manual workflow tested
 - [ ] Designer opened for changed WinForms layouts
 - [ ] Candidate/compatibility matrix updated where the claim changed
+- [ ] Checkpoint lifecycle/catalogue evidence updated where promotion changed
 
 List commands, environments, screenshots, or release-validation records:
 

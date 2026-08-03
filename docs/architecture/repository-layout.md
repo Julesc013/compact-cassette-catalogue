@@ -58,6 +58,7 @@ adjacent. Target-state paths are not added until code actually needs them.
 |-- spec/preferences/v1/             # implemented shared profile contract
 |-- build/
 |-- release/
+|   |-- catalog.v1.json              # machine lifecycle and artifact identity
 |   |-- feeds/
 |   `-- validation/
 |-- docs/
@@ -112,6 +113,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Current development product/stage/channel/feed/assembly identity | `build/Version.props` | generated BuildInfo, shared assembly attributes, alpha feed, client endpoint, binary/package names |
 | Published legacy updater value | `release/feeds/legacy-1x/VERSION` | root `VERSION`; deliberately independent from current build |
 | Update-channel policy and branch contract | `docs/governance/versioning-and-channels.md` | release scripts and feed directories |
+| Checkpoint lifecycle and artifact identity | `release/catalog.v1.json` | validation records and promotion/tag checks |
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |
 | Catalogue format 1.1.0 | `spec/catalogue/v1.1.0` | legacy XML adapter and fixtures |
 | Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | no production projection while draft |
@@ -127,7 +129,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Durable product doctrine/scope | product vision and 2.0 scope docs | README summary |
 | UI design contract | `docs/ui/oem-plus-design.md` | forms and manual evidence |
 | Programme dependency order | `docs/planning/2.0-execution-plan.md` | ROADMAP summary; issues/AIDE assignments |
-| Current candidate narrative | `RELEASE_NOTES.md` | GitHub release draft |
+| Current candidate narrative | `RELEASE_NOTES.md` | local alpha notes or stage-dependent GitHub release draft |
 | Historical product change | `CHANGELOG.md` | tagged history |
 | Exact candidate proof | `release/validation/<version>.md` | commands, CI/VM runs, hashes |
 | AIDE/Universal Setup boundaries | their integration documents | future pinned bindings/evidence |

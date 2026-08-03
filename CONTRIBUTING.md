@@ -10,12 +10,15 @@ owner decision and an open 2.0 foundation task.
 ## Choose the correct branch
 
 - Target `dev` for C3 2.0 features, refactors, ports, documentation, and fixes.
-- Target `master` only for bounded C3 1.2 maintenance/security work.
+- Target `maintenance/1.x` only for bounded C3 1.x maintenance/security work.
+- Do not target `master` directly; it advances only by qualified checkpoint
+  promotion from `dev`.
 - Carry accepted 1.x fixes forward to `dev` with the same regression evidence.
 - Never backport a 2.x-only model, format, UI, or update-channel change to
-  `master` merely to reduce diff size.
+  `maintenance/1.x` merely to reduce diff size.
 
-Use a short-lived topic branch. Do not force-push either permanent branch.
+Use a short-lived topic branch. Do not force-push or delete any permanent branch
+or replace a qualified tag.
 
 ## Read before changing code
 

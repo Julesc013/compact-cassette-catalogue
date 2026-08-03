@@ -28,3 +28,11 @@ after its exact release assets exist and pass post-download verification.
 - Release automation must validate and promote channel metadata independently.
 - Root `VERSION` cannot be retired until remaining 1.x clients have an alternate
   maintenance strategy or their support window closes.
+
+## 2026-08-04 amendment
+
+Generated alpha metadata with `published: false` is build identity, not a
+promoted update feed. Under ADR 0008, qualified alphas remain unpublished and do
+not promote channel availability. A 2.x updater must honor explicit publication
+state and complete prerelease identity; the legacy three-line numeric comparison
+is not sufficient for Alpha/Beta/RC discovery.

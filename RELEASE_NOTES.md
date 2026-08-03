@@ -15,8 +15,9 @@ complete.
   and x64/.NET Framework 4.8 lanes.
 - Retains the legacy catalogue 1.1.0 writer; C3 product version 2.0 does not imply
   a native-v2 catalogue file.
-- Separates the root 1.x update feed from the opt-in 2.x alpha feed so existing
-  users cannot be offered an unavailable preview.
+- Separates the root 1.x compatibility feed from 2.x development metadata so
+  existing users cannot be offered an unavailable preview. Unpublished
+  prerelease discovery remains an explicit Alpha 1 gate.
 - Gives every shipped EXE and DLL consistent assembly, file, and informational
   identity and verifies it before packaging.
 - Uses one C3-owned preference profile shared by both builds and executable
@@ -57,9 +58,10 @@ When the candidate is frozen, the packaging gate produces:
 - `C3-v2.0.0-alpha.1-win-x64-net48-portable.zip`
 - `SHA256SUMS.txt`
 
-Do not publish or mirror locally generated files until their source commit,
-sizes, hashes, reproducibility comparison, and post-download verification are in
-the validation record.
+Alpha packages remain local qualification artifacts. Do not publish or mirror
+them. Their source commit, sizes, hashes, two-root reproducibility comparison,
+and critical local smoke evidence belong in the validation record; public
+post-download evidence is intentionally not applicable to Alpha 1.
 
 ## Runtime contract
 

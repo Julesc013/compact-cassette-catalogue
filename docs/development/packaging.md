@@ -13,7 +13,7 @@ for every shipped binary, stages each payload under
 `artifacts/packages`, writes `SHA256SUMS.txt`, and reopens every ZIP to verify its
 hash and exact entry set.
 
-For a release candidate, prove that a rebuild does not change those bytes:
+For a checkpoint candidate, prove that a rebuild does not change those bytes:
 
 ```powershell
 .\build\verify-reproducible-packages.ps1

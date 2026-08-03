@@ -2,11 +2,12 @@
 
 ## Supported versions
 
-Security fixes are considered for the maintained C3 1.2 line on `master` and the
-current 2.0 development line on `dev`. A development build is not a supported
-release merely because its branch exists. Older binaries may remain useful on
-legacy systems but do not receive separate security maintenance unless a release
-notice says otherwise.
+Security fixes are considered for the maintained C3 1.x line on
+`maintenance/1.x` and the current 2.0 development line on `dev`. `master`
+records qualified checkpoints; ancestry there does not make an unpublished alpha
+a supported public release. Older binaries may remain useful on legacy systems
+but do not receive separate security maintenance unless a release notice says
+otherwise.
 
 ## Reporting a vulnerability
 

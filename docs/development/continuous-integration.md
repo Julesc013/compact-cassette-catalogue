@@ -10,6 +10,8 @@ compatibility evidence.
 pinned Windows Server 2022 image. It verifies:
 
 - canonical version and release metadata;
+- release-catalogue lifecycle and checkpoint contracts;
+- the shared deterministic compiler contract;
 - dependency direction between production modules;
 - typed WinForms access through catalogue services and the C3-owned preference
   boundary, with `My.Settings` reintroduction prohibited;
@@ -36,22 +38,35 @@ c3-legacy-msbuild
 The runner must satisfy the [toolchain policy](toolchain.md). The maintained
 machine currently resolves Visual Studio 2017 Enterprise 15.9. It must have:
 
-- Visual Studio 2017 15.9 or Visual Studio 2019 with MSBuild and VB/C# desktop support;
+- Visual Studio 2017 15.9 with MSBuild and VB/C# desktop support;
 - the .NET Framework 4.0 targeting pack;
 - the .NET Framework 4.8 targeting pack; and
 - Windows PowerShell 5.1 or later.
 
 The workflow runs the complete repository gate, compiles both release lanes,
 runs characterization, verifies binary identities and PE architecture, builds
-deterministic portable archives, verifies contents/hashes, and uploads the result
-as a short-lived workflow artifact.
+the candidate twice from clean path-distinct source roots, verifies exact
+contents/hashes, and uploads the retained proven result as a short-lived workflow
+artifact.
+
+Qualified `v2.*` tag pushes also run the release-contract check with full Git
+history. It verifies annotated-tag identity, reachability from `master`, the
+matching catalogue/validation record, the frozen source ancestor, the
+evidence-only attestation diff, and recorded package identities. A shallow
+checkout cannot provide this evidence.
 
 ## Branch protection
 
-Make `Repository checks / Metadata, boundaries, and project parity` required for
-pull requests. Do not make the manually dispatched self-hosted job a pull-request
-requirement because an offline private runner would leave every contribution
-permanently queued.
+Make `Repository checks / Metadata, lifecycle, boundaries, and project parity`
+required for pull requests. Protect `master` from direct feature commits,
+force-push, and deletion; protect `maintenance/1.x` from force-push/deletion and
+2.x identity changes; and prevent replacement of `v2.*` tags. `master` advances
+only by the documented fast-forward checkpoint promotion.
+
+Do not make the manually dispatched self-hosted job a routine pull-request
+requirement because an offline private runner would leave ordinary contributions
+permanently queued. It is mandatory evidence for checkpoint promotion and public
+release candidates.
 
 Before merging a release candidate, a maintainer must run the authoritative
 compatibility workflow and record its run URL in the release-validation record.
