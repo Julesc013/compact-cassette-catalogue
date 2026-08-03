@@ -50,9 +50,11 @@ Namespace Tapes
                 Dim number As Integer = firstNumber + offset
                 Dim numberCode As String = number.ToString("000", CultureInfo.InvariantCulture)
                 Dim shortIdentifier As String = modelIdentifier & numberCode
-                Dim identifier As String = modelIdentifier &
-                    (draft.Year Mod 100).ToString("00", CultureInfo.InvariantCulture) &
-                    EncodeLength(draft.LengthMinutes) & numberCode
+                Dim identifier As String = BuildIdentifier(
+                    modelIdentifier,
+                    draft.Year,
+                    draft.LengthMinutes,
+                    numberCode)
                 If _repository.IdentifierExists(identifier, shortIdentifier) Then
                     Return TapeOperationResult.Failed(
                         TapeFailure.DuplicateIdentifier,
@@ -99,7 +101,11 @@ Namespace Tapes
                 draft.LengthMinutes,
                 Normalize(draft.Region),
                 existing.Number,
-                existing.Identifier,
+                BuildIdentifier(
+                    existing.ModelIdentifier,
+                    draft.Year,
+                    draft.LengthMinutes,
+                    existing.Number.ToString("000", CultureInfo.InvariantCulture)),
                 existing.ShortIdentifier,
                 draft.Condition,
                 draft.Packaged,
@@ -181,6 +187,17 @@ Namespace Tapes
                 Return "X" & digits.Substring(1, 1)
             End If
             Return rounded.ToString("00", CultureInfo.InvariantCulture)
+        End Function
+
+        Private Shared Function BuildIdentifier(
+                modelIdentifier As String,
+                year As Integer,
+                lengthMinutes As Decimal,
+                numberCode As String) As String
+
+            Return modelIdentifier &
+                (year Mod 100).ToString("00", CultureInfo.InvariantCulture) &
+                EncodeLength(lengthMinutes) & numberCode
         End Function
 
         Private Shared Function Normalize(value As String) As String

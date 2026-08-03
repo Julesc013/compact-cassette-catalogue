@@ -420,6 +420,22 @@ Module Program
         AssertEqual(2, CInt(document.Tables("Counters").Rows.Find("Tapes")("Number")), "tape counter")
         AssertEqual(2, modelService.Find("MX2XL").TapeCount, "model tape count")
 
+        Dim revisedDraft As New TapeDraft(
+            "ignored",
+            1991,
+            60D,
+            "Japan",
+            8,
+            False,
+            sideA,
+            TapeSide.Empty(),
+            "Updated")
+        Dim updated As TapeOperationResult = service.Update("MX2XL001", revisedDraft)
+        AssertEqual(True, updated.IsSuccess, "tape update")
+        AssertEqual("MX2XL9160001", updated.Tapes(0).Identifier, "recomputed long identifier")
+        AssertEqual("MX2XL001", updated.Tapes(0).ShortIdentifier, "immutable short identifier")
+        AssertEqual(New DateTime(2026, 8, 4), updated.Tapes(0).AddedAt, "immutable tape creation date")
+
         AssertEqual(True, service.Delete("MX2XL000").IsSuccess, "tape delete")
         Dim afterDelete As TapeOperationResult = service.CreateMany(draft, 1, DateTime.Now)
         AssertEqual(True, afterDelete.IsSuccess, "tape create after gap")

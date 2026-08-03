@@ -273,21 +273,12 @@ Public Class frmMain
         tapeCount = CInt(counters.Rows(3)("Number"))
         thisTapeIndex = tapeCount - 1 'Select latest tape
 
-        'Load decks into combination boxes
-        If deckCount > 0 Then
-            'If no decks, catch don't crash
-
-            cmbDeckA.Items.Clear()
-
-            For i As Integer = 0 To deckCount - 1
-                Dim row As DataRow = decks.Rows(i)
-
-                Dim thisDeck As String = CStr(row("Name"))
-                cmbDeckA.Items.Add(thisDeck)
-                cmbDeckB.Items.Add(thisDeck)
-            Next
-
-        End If
+        cmbDeckA.Items.Clear()
+        cmbDeckB.Items.Clear()
+        For Each value As Deck In deckService.GetAll()
+            cmbDeckA.Items.Add(value.Name)
+            cmbDeckB.Items.Add(value.Name)
+        Next
 
         'Load latest tape if any exist
         If tapeCount > 0 Then
@@ -496,19 +487,62 @@ Public Class frmMain
                 End If
 
 
-                'Write data to record
-
-                Dim thisTape As Object() = {modelCode, year, length, cmbRegion.Text, Number, identifier, identifierShort, condition, packaged, tapedA, tapedB, nameA, recordedA, deckA, inputA, peakA, NRA, HXA, MPXA, dubbedA, speedA, biasCodeA, biasCalA, EQA, levelA, levelCalA, contentsA, artistA, titleA, nameB, recordedB, deckB, inputB, peakB, NRB, HXB, MPXB, dubbedB, speedB, biasCodeB, biasCalB, EQB, levelB, levelCalB, contentsB, artistB, titleB, DateTime.Now, txtNotes.Text} 'The data to be written for this tape entry
-
-                'Write new data to existing row
-                Dim counter As Integer = 0
-
-                For Each thisObject As Object In thisTape
-
-                    tapes.Rows(thisTapeIndex)(counter) = thisObject
-                    counter += 1
-
-                Next
+                Dim sideA As New TapeSide(
+                    tapedA,
+                    nameA,
+                    recordedA,
+                    deckA,
+                    inputA,
+                    peakA,
+                    NRA,
+                    HXA,
+                    MPXA,
+                    dubbedA,
+                    speedA,
+                    biasCodeA,
+                    biasCalA,
+                    EQA,
+                    levelA,
+                    levelCalA,
+                    contentsA,
+                    artistA,
+                    titleA)
+                Dim sideB As New TapeSide(
+                    tapedB,
+                    nameB,
+                    recordedB,
+                    deckB,
+                    inputB,
+                    peakB,
+                    NRB,
+                    HXB,
+                    MPXB,
+                    dubbedB,
+                    speedB,
+                    biasCodeB,
+                    biasCalB,
+                    EQB,
+                    levelB,
+                    levelCalB,
+                    contentsB,
+                    artistB,
+                    titleB)
+                Dim draft As New TapeDraft(
+                    modelCode,
+                    year,
+                    length,
+                    cmbRegion.Text,
+                    condition,
+                    packaged,
+                    sideA,
+                    sideB,
+                    txtNotes.Text)
+                Dim updateResult As TapeOperationResult = tapeService.Update(identifierShort, draft)
+                If Not updateResult.IsSuccess Then
+                    Throw New InvalidOperationException(updateResult.Message)
+                End If
+                identifier = updateResult.Tapes(0).Identifier
+                txtLong.Text = identifier
 
                 updates = False
                 changes = True

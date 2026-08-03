@@ -207,10 +207,10 @@ Namespace CatalogueFiles.Xml.V1_1
             If includeIdentity Then
                 row("Model") = value.ModelIdentifier
                 row("Number") = value.Number
-                row("Identifier") = value.Identifier
                 row("IdentifierShort") = value.ShortIdentifier
                 row("Date") = value.AddedAt
             End If
+            row("Identifier") = value.Identifier
             row("Year") = value.Year
             row("Length") = value.LengthMinutes
             row("Region") = value.Region
