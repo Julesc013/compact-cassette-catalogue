@@ -24,6 +24,81 @@ Module Program
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)
         RunTest("tape service creates batches without identifier reuse", AddressOf TapeServiceOwnsRules)
         RunTest("update schedule normalizes and evaluates policies", AddressOf UpdateScheduleOwnsPolicy)
+        RunTest(
+            "user preference defaults and clones preserve independent values",
+            AddressOf UserPreferencesSnapshotTests.DefaultsAndClonePreserveIndependentValues)
+        RunTest(
+            "stored update policy parsing accepts canonical and legacy values",
+            AddressOf UpdateCheckScheduleTryParseStoredTests.AcceptsCanonicalAndLegacyValues)
+        RunTest(
+            "stored update policy parsing rejects unknown values",
+            AddressOf UpdateCheckScheduleTryParseStoredTests.RejectsUnknownValues)
+        RunTest(
+            "future update timestamps do not suppress scheduled checks",
+            AddressOf UpdateCheckScheduleTryParseStoredTests.FutureTimestampsDoNotSuppressScheduledChecks)
+        RunTest(
+            "legacy settings locator accepts exact known paths in newest-first order",
+            AddressOf LegacySettingsProfileLocatorTests.AcceptsExactKnownPathsAndOrdersNewestFirst)
+        RunTest(
+            "legacy settings locator rejects untrusted full and deep lookalikes",
+            AddressOf LegacySettingsProfileLocatorTests.RejectsUntrustedFullAndDeepLookalikes)
+        RunTest(
+            "legacy settings reader accepts Boolean and String schemas without mutation",
+            AddressOf LegacySettingsProfileReaderTests.ReadsBooleanAndStringSchemasWithoutChangingSources)
+        RunTest(
+            "legacy settings reader rejects nested and oversized values",
+            AddressOf LegacySettingsProfileReaderTests.RejectsNestedAndOversizedValues)
+        RunTest(
+            "legacy settings importer distinguishes absence from discovery failure",
+            AddressOf LegacyUserSettingsImporterTests.AbsenceIsNotFoundButDiscoveryIoFailurePropagates)
+        RunTest(
+            "legacy settings importer falls back from invalid newer content",
+            AddressOf LegacyUserSettingsImporterTests.InvalidNewerContentFallsBackWithEvidence)
+        RunTest(
+            "legacy settings importer stops fallback when newer content is unavailable",
+            AddressOf LegacyUserSettingsImporterTests.UnavailableNewerContentStopsFallback)
+        RunTest(
+            "XML user preferences store reports missing files and round-trips values",
+            AddressOf XmlUserPreferencesStoreTests.ReportsMissingFilesAndRoundTripsValues)
+        RunTest(
+            "XML user preferences store merges dirty fields and creates a backup",
+            AddressOf XmlUserPreferencesStoreTests.MergesDirtyFieldsAndCreatesBackup)
+        RunTest(
+            "XML user preferences store rejects invalid snapshots and unsafe XML",
+            AddressOf XmlUserPreferencesStoreTests.RejectsInvalidSnapshotsAndUnsafeXml)
+        RunTest(
+            "XML user preferences store preserves unsupported future schemas",
+            AddressOf XmlUserPreferencesStoreTests.FutureSchemaIsRejectedWithoutBeingOverwritten)
+        RunTest(
+            "XML user preferences store rejects attributes and nested scalar markup",
+            AddressOf XmlUserPreferencesStoreTests.ScalarFieldsRejectAttributesAndNestedMarkup)
+        RunTest(
+            "XML user preferences store normalizes nulls and rejects unknown dirty bits",
+            AddressOf XmlUserPreferencesStoreTests.NullDirectoriesNormalizeAndUnknownDirtyBitsAreRejected)
+        RunTest(
+            "user preferences service checkpoints first import and remains idempotent",
+            AddressOf UserPreferencesServiceTests.FirstImportIsCheckpointedAndRepeatInitializationIsIdempotent)
+        RunTest(
+            "user preferences service checkpoints not-found and invalid import outcomes",
+            AddressOf UserPreferencesServiceTests.NotFoundAndInvalidImportsAreCheckpointed)
+        RunTest(
+            "user preferences service recovers invalid native preferences from backup",
+            AddressOf UserPreferencesServiceTests.InvalidNativePreferencesRecoverFromBackup)
+        RunTest(
+            "user preferences service preserves unsupported future native schemas",
+            AddressOf UserPreferencesServiceTests.FutureNativeSchemaIsNotQuarantinedOrReplaced)
+        RunTest(
+            "user preferences service merges dirty fields across instances",
+            AddressOf UserPreferencesServiceTests.DirtyFieldsMergeAcrossServiceInstances)
+        RunTest(
+            "user preferences service normalizes only the historical documents sentinel",
+            AddressOf UserPreferencesServiceTests.NormalizesOnlyTheHistoricalDocumentsSentinel)
+        RunTest(
+            "user preferences service retries transient legacy discovery failures",
+            AddressOf UserPreferencesServiceTests.TransientDiscoveryFailureRemainsRetryable)
+        RunTest(
+            "user preferences service retries failed native checkpoints",
+            AddressOf UserPreferencesServiceTests.FailedCheckpointRemainsRetryable)
         RunTest("settings upgrade is ordered and idempotent", AddressOf SettingsUpgradeIsOrderedAndIdempotent)
         RunTest("settings upgrade failure remains retryable", AddressOf SettingsUpgradeFailureRemainsRetryable)
         RunTest("public 1.x settings schemas remain captured", AddressOf PublicSettingsSchemasRemainCaptured)

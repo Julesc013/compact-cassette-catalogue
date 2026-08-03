@@ -26,7 +26,20 @@ Public Class frmSettings
             Case Else
                 preferences.UpdatePolicy = UpdateCheckPolicy.Never
         End Select
-        preferences.Save()
+        Dim saveResult As UserPreferencesSaveResult = preferences.TrySave()
+        If Not saveResult.IsSuccess Then
+            Dim failureMessage As String =
+                "C3 could not save the settings. Your changes remain pending so you can retry." &
+                Environment.NewLine & Environment.NewLine &
+                saveResult.Message
+            consoleAdd("Settings save failed: " & saveResult.Message)
+            MessageBox.Show(
+                failureMessage,
+                "Settings Not Saved",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation)
+            Return
+        End If
 
         Dim message As String = "Successfully saved changes to settings."
         If preferences.ShowMessages Then

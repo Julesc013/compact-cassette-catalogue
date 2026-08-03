@@ -46,6 +46,7 @@
     <Import Include="System.Data" />
     <Import Include="System.Globalization" />
     <Import Include="System.IO" />
+    <Import Include="System.Text" />
     <Import Include="System.Text.RegularExpressions" />
     <Import Include="System.Xml" />
     <Import Include="System.Xml.Schema" />
@@ -56,6 +57,7 @@
     <Import Include="C3.Catalogue.Tapes" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
     <Import Include="C3.Infrastructure.Configuration" />
+    <Import Include="C3.Infrastructure.Preferences" />
     <Import Include="C3.Infrastructure.Updates" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +65,13 @@
       <Link>Properties\VersionAssemblyInfo.g.vb</Link>
     </Compile>
     <Compile Include="Program.vb" />
+    <Compile Include="LegacySettingsProfileLocatorTests.vb" />
+    <Compile Include="LegacySettingsProfileReaderTests.vb" />
+    <Compile Include="LegacyUserSettingsImporterTests.vb" />
+    <Compile Include="UpdateCheckScheduleTryParseStoredTests.vb" />
+    <Compile Include="UserPreferencesServiceTests.vb" />
+    <Compile Include="UserPreferencesSnapshotTests.vb" />
+    <Compile Include="XmlUserPreferencesStoreTests.vb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\C3.Catalogue\C3.Catalogue.vbproj">

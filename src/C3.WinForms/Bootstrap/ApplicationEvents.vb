@@ -14,12 +14,33 @@
             BufferedLogger.RecordAction("Starting C3")
             BufferedLogger.Information("Runtime: " & RuntimeInfo.BuildLabel)
 
-            Dim settingsResult As SettingsUpgradeResult = SettingsUpgradeCoordinator.Prepare(preferences)
-            If settingsResult.Status = SettingsUpgradeStatus.Upgraded Then
-                BufferedLogger.Information("Imported and normalized settings from the previous C3 version.")
-            ElseIf settingsResult.Status = SettingsUpgradeStatus.Failed Then
+            Dim settingsResult As UserPreferencesLoadResult = preferences.Initialize()
+            If settingsResult.IsSuccess Then
+                If settingsResult.MigrationOutcome =
+                        UserPreferencesSnapshot.ImportOutcomeImported Then
+                    BufferedLogger.Information(
+                        "Imported C3 1.x preferences into the shared C3 2 profile.")
+                End If
+                If settingsResult.RecoveryPath IsNot Nothing Then
+                    BufferedLogger.Warning(
+                        "Recovered preferences; the rejected file is at " &
+                            settingsResult.RecoveryPath)
+                End If
+                If Not String.IsNullOrWhiteSpace(settingsResult.Message) Then
+                    BufferedLogger.Information(settingsResult.Message)
+                End If
+            Else
                 BufferedLogger.Warning(
-                    "Settings migration could not be completed: " & settingsResult.Failure.Message)
+                    "Preferences could not be initialized safely: " &
+                        settingsResult.Message)
+                MessageBox.Show(
+                    "C3 could not load or checkpoint your saved preferences safely. " &
+                        "It will continue with temporary in-memory values and will retry " &
+                        "before saving changes." & Environment.NewLine & Environment.NewLine &
+                        settingsResult.Message,
+                    "Preferences Need Attention",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation)
             End If
         End Sub
 

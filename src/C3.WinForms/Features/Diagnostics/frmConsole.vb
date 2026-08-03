@@ -165,12 +165,15 @@ Public Class frmConsole
 
                             Dim toggle As Boolean = CBool(arguments(1))
                             preferences.ShowMessages = toggle
-                            preferences.Save()
-
-                            'Build message.
-                            Dim now As DateTime = DateTime.Now
-                            Dim stamp As String = "[" & consoleStamp(now) & "]"
-                            message = stamp & " Set showMessages to " & CStr(toggle)
+                            Dim saveResult As UserPreferencesSaveResult = preferences.TrySave()
+                            If saveResult.IsSuccess Then
+                                'Build message.
+                                Dim now As DateTime = DateTime.Now
+                                Dim stamp As String = "[" & consoleStamp(now) & "]"
+                                message = stamp & " Set showMessages to " & CStr(toggle)
+                            Else
+                                message = "Could not save showMessages: " & saveResult.Message
+                            End If
 
                         End If
 
@@ -194,12 +197,15 @@ Public Class frmConsole
                             'If valid directory supplied, update value
 
                             preferences.DefaultDirectory = folderpath
-                            preferences.Save()
-
-                            'Build message.
-                            Dim now As DateTime = DateTime.Now
-                            Dim stamp As String = "[" & consoleStamp(now) & "]"
-                            message = stamp & " Set defaultDirectory to " & folderpath
+                            Dim saveResult As UserPreferencesSaveResult = preferences.TrySave()
+                            If saveResult.IsSuccess Then
+                                'Build message.
+                                Dim now As DateTime = DateTime.Now
+                                Dim stamp As String = "[" & consoleStamp(now) & "]"
+                                message = stamp & " Set defaultDirectory to " & folderpath
+                            Else
+                                message = "Could not save defaultDirectory: " & saveResult.Message
+                            End If
 
                         End If
 

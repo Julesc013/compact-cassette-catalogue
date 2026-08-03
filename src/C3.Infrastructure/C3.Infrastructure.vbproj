@@ -66,6 +66,18 @@
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyXmlCatalogueStore.vb" />
     <Compile Include="Diagnostics\BufferedLogger.vb" />
     <Compile Include="Diagnostics\CrashReportWriter.vb" />
+    <Compile Include="Preferences\LegacySettingsProfileCandidate.vb" />
+    <Compile Include="Preferences\LegacySettingsProfileLocator.vb" />
+    <Compile Include="Preferences\LegacySettingsProfileReader.vb" />
+    <Compile Include="Preferences\LegacySettingsProfileReadResult.vb" />
+    <Compile Include="Preferences\LegacyUserSettingsImporter.vb" />
+    <Compile Include="Preferences\LegacyUserSettingsImportResult.vb" />
+    <Compile Include="Preferences\LegacyUserSettingsProfile.vb" />
+    <Compile Include="Preferences\UserPreferenceFields.vb" />
+    <Compile Include="Preferences\UserPreferencesResults.vb" />
+    <Compile Include="Preferences\UserPreferencesService.vb" />
+    <Compile Include="Preferences\UserPreferencesSnapshot.vb" />
+    <Compile Include="Preferences\XmlUserPreferencesStore.vb" />
     <Compile Include="Updates\UpdateCheckPolicy.vb" />
     <Compile Include="Updates\UpdateCheckSchedule.vb" />
   </ItemGroup>
