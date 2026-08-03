@@ -52,7 +52,7 @@ present these results; they do not interpret exceptions or XML themselves.
 ## Transition boundary
 
 The adapter currently consumes the existing `DataSet` schema because this is a
-strangler migration, not a format rewrite. As features move to typed catalogue
-objects, their mapping will be added inside this adapter. `DataSet` must not cross
-into `C3.Catalogue`.
-
+strangler migration, not a format rewrite. `LegacyGlobalState` is the single
+WinForms composition seam that owns the active document and wires its typed
+repositories. Forms never access tables or rows. `DataSet` must not cross into
+`C3.Catalogue`, and new WinForms source must consume typed services instead.

@@ -10,10 +10,10 @@ Run from Windows PowerShell:
 .\build\verify.ps1 -Rebuild
 ```
 
-The gate verifies metadata projections, module dependency direction, shared
-WinForms source parity, local documentation links, catalogue fixtures, domain
-and adapter characterization, both release builds, executable architecture, and
-diff whitespace.
+The gate verifies metadata projections, module dependency direction, WinForms
+data/settings boundaries, shared WinForms source parity, local documentation
+links, catalogue fixtures, domain and adapter characterization, both release
+builds, executable architecture, and diff whitespace.
 
 Tests target .NET Framework 4.0 so the same domain and infrastructure binaries
 used by the XP lane are exercised. The runner is deliberately dependency-light

@@ -23,7 +23,7 @@ Public Class frmModelNew
             Return
         End If
 
-        modelCount = models.Rows.Count
+        modelCount = cassetteModelService.GetAll().Count
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added cassette model " & result.Model.Identifier & " successfully."

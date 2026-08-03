@@ -29,6 +29,10 @@ jobs:
         shell: powershell
         run: ./build/validate-dependencies.ps1
 
+      - name: Verify WinForms boundaries
+        shell: powershell
+        run: ./build/validate-ui-boundaries.ps1
+
       - name: Verify shared WinForms project parity
         shell: powershell
         run: ./build/validate-project-parity.ps1

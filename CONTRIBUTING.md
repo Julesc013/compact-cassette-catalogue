@@ -15,7 +15,8 @@ preserve users' catalogues and behave consistently in both Windows build lanes.
 - Put domain rules in `C3.Catalogue`, external mechanisms in
   `C3.Infrastructure`, and interaction/layout in `C3.WinForms`.
 - Keep feature files together; do not create generic catch-all folders.
-- Do not expose `DataSet` or `DataRow` outside the legacy XML adapter boundary.
+- Keep `DataSet` inside the legacy XML adapter and the one WinForms composition
+  seam; forms must use typed services and never access `DataRow` or `DataTable`.
 - Do not use Visual Basic default form instances for cross-form coordination.
 - Do not add conditional compilation to designer-generated files.
 - Do not change the catalogue format implicitly. Format changes require a

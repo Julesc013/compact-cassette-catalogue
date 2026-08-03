@@ -31,7 +31,7 @@ Public Class frmDeckNew
             Return
         End If
 
-        deckCount = decks.Rows.Count
+        deckCount = deckService.GetAll().Count
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added deck " & result.Deck.Name & " successfully."

@@ -25,15 +25,6 @@ Public Class frmMain
         ' Indicate to subroutines that the program is in the 'initial setup' phase.
         duringSetup = True
 
-        ' Update varaibles.
-        'deckCount = CInt(counters.Rows(0)("Number"))
-        'brandCount = CInt(counters.Rows(1)("Number"))
-        'modelCount = CInt(counters.Rows(2)("Number"))
-        'tapeCount = CInt(counters.Rows(3)("Number"))
-        ' Re-assert variables that for some reasion change.
-        'changes = False
-        'updates = False
-
         ' Display about information.
         lblAbout.Text = "© " & COPYRIGHTAUTHOR & ", " & VERSIONSTAGE & " " & VERSION & " (" & COPYRIGHTYEAR & ")"
 
@@ -234,8 +225,8 @@ Public Class frmMain
 
         'Load data (decks, brands and models)
 
-        deckCount = CInt(counters.Rows(0)("Number"))
-        tapeCount = CInt(counters.Rows(3)("Number"))
+        deckCount = deckService.GetAll().Count
+        tapeCount = tapeService.GetAll().Count
         thisTapeIndex = tapeCount - 1 'Select latest tape
 
         cmbDeckA.Items.Clear()
@@ -283,20 +274,29 @@ Public Class frmMain
 
     End Sub
 
+    Private Function CurrentTape() As Tape
+        Dim values As IList(Of Tape) = tapeService.GetAll()
+        If thisTapeIndex < 0 OrElse thisTapeIndex >= values.Count Then
+            Return Nothing
+        End If
+        Return values(thisTapeIndex)
+    End Function
+
     Private Sub updateTape()
 
         If updates = True Then
 
             Try
 
-                'Open existing data row
-                Dim tape As DataRow = tapes.Rows(thisTapeIndex)
-                Dim identifierShort As String = CStr(tape("IdentifierShort"))
-                Dim number As Integer = CInt(tape("Number"))
-                Dim modelCode As String = CStr(tape("Model"))
+                Dim tape As Tape = CurrentTape()
+                If tape Is Nothing Then
+                    Throw New InvalidOperationException("The selected tape no longer exists.")
+                End If
+                Dim identifierShort As String = tape.ShortIdentifier
+                Dim number As Integer = tape.Number
+                Dim modelCode As String = tape.ModelIdentifier
 
                 ''model Name from identification/code
-                'Dim modelRow As DataRow = models.Rows.Find(modelCode)
                 'Dim modelName As String = CStr(modelRow("Brand")) & " " & CStr(modelRow("Model"))
                 ''Find model type
                 'thisModelType = CInt(modelCode.Substring(2, 1))
@@ -564,9 +564,12 @@ Public Class frmMain
 
         If result = vbYes Then
 
-            'Get tape identification
-            Dim tape As DataRow = tapes.Rows(subTapeIndex)
-            Dim identifierShort As String = CStr(tape("IdentifierShort"))
+            Dim values As IList(Of Tape) = tapeService.GetAll()
+            If subTapeIndex < 0 OrElse subTapeIndex >= values.Count Then
+                MsgBox("The selected tape no longer exists.", MsgBoxStyle.Exclamation, "Tape Not Found")
+                Return
+            End If
+            Dim identifierShort As String = values(subTapeIndex).ShortIdentifier
 
 
             Dim deletion As TapeOperationResult = tapeService.Delete(identifierShort)
@@ -574,7 +577,7 @@ Public Class frmMain
                 MsgBox(deletion.Message, MsgBoxStyle.Exclamation, "Tape Not Deleted")
                 Return
             End If
-            tapeCount = tapes.Rows.Count
+            tapeCount = tapeService.GetAll().Count
 
             'Reset change detection variables
             updates = False
@@ -591,9 +594,6 @@ Public Class frmMain
 
             'Show confirmation message
             Dim message As String = "Deleted tape " & identifierShort & " successfully."
-            'If My.Settings.showMessages = True Then
-            '    MsgBox(message, MsgBoxStyle.Question, "Successfully Deleted Tape")
-            'End If
             consoleAdd(message)
 
         End If
@@ -679,8 +679,7 @@ Public Class frmMain
 
         End If
 
-        'Update file information
-        information.Rows(5)("Value") = DateTime.Now.ToString
+        catalogueMetadata.MarkModified(DateTime.Now)
 
         Dim expectedRevision As CatalogueRevision = Nothing
         If Not saveAs AndAlso String.Equals(
@@ -729,9 +728,6 @@ Public Class frmMain
 
 
         'Show confirmation message
-        'If My.Settings.showMessages = True Then
-        '    MsgBox(message, MsgBoxStyle.Question, "Successfully Saved Catalogue")
-        'End If
         consoleAdd(message)
 
         If thenOpen = True Then
@@ -857,16 +853,10 @@ Public Class frmMain
                 Me.Text = catalogueSession.DisplayName & " - C3"
 
 
-                'Update file information
-                information.Rows(1)("Value") = VERSION
-                information.Rows(2)("Value") = VERSIONSTAGE
-                information.Rows(3)("Value") = VERSIONDATE.ToString
+                catalogueMetadata.RefreshProductMetadata(VERSION, VERSIONSTAGE, VERSIONDATE)
 
                 'Show confirmation message
                 Dim message As String = "Opened catalogue successfully."
-                'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Saved Catalogue")
-                'End If
                 consoleAdd(message)
 
                 'Load data into forms
@@ -941,67 +931,75 @@ Public Class frmMain
         updateScrollers()
 
 
-        Dim tape As DataRow = tapes.Rows(thisTapeIndex)
+        Dim tape As Tape = CurrentTape()
+        If tape Is Nothing Then
+            updatesMask = False
+            Return
+        End If
 
         'Display identifiers
-        txtLong.Text = CStr(tape("Identifier"))
-        txtShort.Text = CStr(tape("IdentifierShort"))
+        txtLong.Text = tape.Identifier
+        txtShort.Text = tape.ShortIdentifier
         'numIndex.Maximum = tapeCount ' Update the maximum index that can be scrolled to.
         'numIndex.Value = thisTapeIndex + 1
         txtIndex.Text = CStr(thisTapeIndex + 1)
         txtTotal.Text = CStr(tapeCount)
 
         'Find model name from identification/code
-        Dim modelCode As String = CStr(tape("Model"))
-        Dim modelRow As DataRow = models.Rows.Find(modelCode)
-        Dim modelName As String = CStr(modelRow("Brand")) & " " & CStr(modelRow("Model"))
-        'Find model type
-        thisModelType = CInt(modelCode.Substring(2, 1))
+        Dim model As CassetteModel = cassetteModelService.Find(tape.ModelIdentifier)
+        Dim modelName As String = tape.ModelIdentifier
+        If model IsNot Nothing Then
+            Dim brand As Brand = brandService.Find(model.BrandCode)
+            modelName = If(brand Is Nothing, model.BrandCode, brand.Name) & " " & model.ModelName
+            thisModelType = model.TypeNumber
+        Else
+            thisModelType = 1
+        End If
 
         'Populate groups and elements
         txtModel.Text = modelName
-        numYear.Value = CInt(tape("Year"))
-        numLength.Value = CInt(tape("Length"))
-        cmbRegion.Text = CStr(tape("Region"))
+        numYear.Value = tape.Year
+        numLength.Value = tape.LengthMinutes
+        cmbRegion.Text = tape.Region
         'txtNumber.Text = CStr(tape("Number"))
 
-        Dim condition As Integer = getCondition(CInt(tape("Condition")))
+        Dim condition As Integer = getCondition(tape.Condition)
         cmbCondition.SelectedIndex = condition
-        chkPackaged.Checked = CBool(tape("Packaged"))
+        chkPackaged.Checked = tape.Packaged
 
         'Enable "taped sides" groups and load data
 
-        thisTapedA = CBool(tape("TapedA"))
+        thisTapedA = tape.SideA.IsRecorded
         If thisTapedA = True Then
             'If side A recorded, load data
 
             chkTapedA.Checked = True
 
-            txtNameA.Text = CStr(tape("NameA"))
-            datRecordedA.Value = CDate(tape("RecordedA"))
+            txtNameA.Text = tape.SideA.Name
+            datRecordedA.Value = tape.SideA.RecordedAt
 
-            cmbDeckA.Text = CStr(tape("DeckA"))
-            cmbInputA.Text = CStr(tape("InputA"))
+            cmbDeckA.Text = tape.SideA.DeckName
+            cmbInputA.Text = tape.SideA.InputName
 
-            numPeakA.Value = CInt(tape("PeakA"))
-            numLevelA.Value = CDec(tape("LevelA"))
-            numLevelCalA.Value = CDec(tape("LevelCalA"))
+            numPeakA.Value = tape.SideA.PeakLevel
+            numLevelA.Value = tape.SideA.Level
+            numLevelCalA.Value = tape.SideA.LevelCalibration
 
-            cmbEQA.Text = CStr(tape("EQA"))
-            cmbBiasA.SelectedIndex = CInt(tape("BiasA")) - 1
-            numBiasCalA.Value = CInt(tape("BiasCalA"))
+            cmbEQA.Text = tape.SideA.Equalization
+            cmbBiasA.SelectedIndex = tape.SideA.Bias - 1
+            numBiasCalA.Value = tape.SideA.BiasCalibration
 
-            cmbNRA.Text = CStr(tape("NRA"))
-            chkHXA.Checked = CBool(tape("HXA"))
-            chkMPXA.Checked = CBool(tape("MPXA"))
+            cmbNRA.Text = tape.SideA.NoiseReduction
+            chkHXA.Checked = tape.SideA.Hx
+            chkMPXA.Checked = tape.SideA.Mpx
 
-            cmbSpeedA.Text = CStr(tape("SpeedA"))
-            chkDubbedA.Checked = CBool(tape("DubbedA"))
+            cmbSpeedA.Text = tape.SideA.Speed
+            chkDubbedA.Checked = tape.SideA.Dubbed
 
             'Contents for recording
-            cmbContentsA.Text = CStr(tape("ContentsA"))
-            txtArtistA.Text = CStr(tape("ArtistA"))
-            txtTitleA.Text = CStr(tape("TitleA"))
+            cmbContentsA.Text = tape.SideA.Contents
+            txtArtistA.Text = tape.SideA.Artist
+            txtTitleA.Text = tape.SideA.Title
 
         Else
             'Else, return all objects to their default values
@@ -1037,36 +1035,36 @@ Public Class frmMain
 
         End If
 
-        thisTapedB = CBool(tape("TapedB"))
+        thisTapedB = tape.SideB.IsRecorded
         If thisTapedB = True Then
 
             chkTapedB.Checked = True
 
-            txtNameB.Text = CStr(tape("NameB"))
-            datRecordedB.Value = CDate(tape("RecordedB"))
+            txtNameB.Text = tape.SideB.Name
+            datRecordedB.Value = tape.SideB.RecordedAt
 
-            cmbDeckB.Text = CStr(tape("DeckB"))
-            cmbInputB.Text = CStr(tape("InputB"))
+            cmbDeckB.Text = tape.SideB.DeckName
+            cmbInputB.Text = tape.SideB.InputName
 
-            numPeakB.Value = CInt(tape("PeakB"))
-            numLevelB.Value = CDec(tape("LevelB"))
-            numLevelCalB.Value = CDec(tape("LevelCalB"))
+            numPeakB.Value = tape.SideB.PeakLevel
+            numLevelB.Value = tape.SideB.Level
+            numLevelCalB.Value = tape.SideB.LevelCalibration
 
-            cmbEQB.Text = CStr(tape("EQB"))
-            cmbBiasB.SelectedIndex = CInt(tape("BiasB")) - 1
-            numBiasCalB.Value = CInt(tape("BiasCalB"))
+            cmbEQB.Text = tape.SideB.Equalization
+            cmbBiasB.SelectedIndex = tape.SideB.Bias - 1
+            numBiasCalB.Value = tape.SideB.BiasCalibration
 
-            cmbNRB.Text = CStr(tape("NRB"))
-            chkHXB.Checked = CBool(tape("HXB"))
-            chkMPXB.Checked = CBool(tape("MPXB"))
+            cmbNRB.Text = tape.SideB.NoiseReduction
+            chkHXB.Checked = tape.SideB.Hx
+            chkMPXB.Checked = tape.SideB.Mpx
 
-            cmbSpeedB.Text = CStr(tape("SpeedB"))
-            chkDubbedB.Checked = CBool(tape("DubbedB"))
+            cmbSpeedB.Text = tape.SideB.Speed
+            chkDubbedB.Checked = tape.SideB.Dubbed
 
             'Contents for recording
-            cmbContentsB.Text = CStr(tape("ContentsB"))
-            txtArtistB.Text = CStr(tape("ArtistB"))
-            txtTitleB.Text = CStr(tape("TitleB"))
+            cmbContentsB.Text = tape.SideB.Contents
+            txtArtistB.Text = tape.SideB.Artist
+            txtTitleB.Text = tape.SideB.Title
 
         Else
             'Else, return all objects to their default values
@@ -1103,7 +1101,7 @@ Public Class frmMain
         End If
 
         'Load notes
-        txtNotes.Text = CStr(tape("Notes"))
+        txtNotes.Text = tape.Notes
 
         'Unmask update routines
         updatesMask = False
@@ -1152,7 +1150,7 @@ Public Class frmMain
 
         If chkTapedA.Checked = True Then
 
-            deckCount = CInt(counters.Rows(0)("Number"))
+            deckCount = deckService.GetAll().Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
@@ -1213,7 +1211,7 @@ Public Class frmMain
 
         If chkTapedB.Checked = True Then
 
-            deckCount = CInt(counters.Rows(0)("Number"))
+            deckCount = deckService.GetAll().Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
@@ -1287,7 +1285,7 @@ Public Class frmMain
 
     Private Sub NewModelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewModelToolStripMenuItem.Click
 
-        If CInt(counters.Rows(1)("Number")) > 0 Then
+        If brandService.GetAll(Nothing).Count > 0 Then
             Using editor As New frmModelNew()
                 editor.ShowDialog(Me)
             End Using
@@ -1344,7 +1342,7 @@ Public Class frmMain
 
     Private Sub addNewTapeActual()
 
-        modelCount = CInt(counters.Rows(2)("Number"))
+        modelCount = cassetteModelService.GetAll().Count
 
         'Check that there is at least 1 model (and 1 deck for recording)
 
@@ -1439,12 +1437,17 @@ Public Class frmMain
     End Sub
 
     Public Sub ScrollToTape(shortIdentifier As String)
-        Dim tape As DataRow = tapes.Rows.Find(shortIdentifier)
-        If tape Is Nothing Then
-            MsgBox("The selected tape no longer exists.", MsgBoxStyle.Exclamation, "Tape Not Found")
-            Return
-        End If
-        scrollTo(tapes.Rows.IndexOf(tape), True)
+        Dim values As IList(Of Tape) = tapeService.GetAll()
+        For index As Integer = 0 To values.Count - 1
+            If String.Equals(
+                    values(index).ShortIdentifier,
+                    shortIdentifier,
+                    StringComparison.OrdinalIgnoreCase) Then
+                scrollTo(index, True)
+                Return
+            End If
+        Next
+        MsgBox("The selected tape no longer exists.", MsgBoxStyle.Exclamation, "Tape Not Found")
     End Sub
 
     Public Sub scrollTo(change As Integer, jump As Boolean)

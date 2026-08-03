@@ -1,7 +1,7 @@
 ' Transitional compatibility facade for forms that have not yet moved to typed
 ' feature services. New code must use the owning session, store, or feature type.
 
-Module varGlobals
+Friend Module LegacyGlobalState
 
     Public Const COPYRIGHTAUTHOR As String = "Jules Carboni"
     Public Const COPYRIGHTYEAR As String = "2019-2026"
@@ -17,6 +17,7 @@ Module varGlobals
     Public ReadOnly catalogueSession As New CatalogueSession("New Catalogue")
     Public ReadOnly catalogueStore As New LegacyXmlCatalogueStore()
     Public ReadOnly preferences As New MySettingsStore()
+    Public ReadOnly catalogueMetadata As New LegacyCatalogueMetadataWriter(Function() catalogue)
 
     Public Property filePath As String
         Get
@@ -52,12 +53,6 @@ Module varGlobals
     Public duringSetup As Boolean
 
     Public catalogue As DataSet = CreateInitialCatalogue()
-    Public information As DataTable = catalogue.Tables("Information")
-    Public counters As DataTable = catalogue.Tables("Counters")
-    Public decks As DataTable = catalogue.Tables("Decks")
-    Public brands As DataTable = catalogue.Tables("Brands")
-    Public models As DataTable = catalogue.Tables("Models")
-    Public tapes As DataTable = catalogue.Tables("Tapes")
     Public ReadOnly brandService As New BrandService(New LegacyBrandRepository(Function() catalogue))
     Public ReadOnly cassetteModelService As New CassetteModelService(
         New LegacyCassetteModelRepository(Function() catalogue))
@@ -93,17 +88,10 @@ Module varGlobals
         Next
 
         catalogue = replacement
-        information = replacement.Tables("Information")
-        counters = replacement.Tables("Counters")
-        decks = replacement.Tables("Decks")
-        brands = replacement.Tables("Brands")
-        models = replacement.Tables("Models")
-        tapes = replacement.Tables("Tapes")
-
-        deckCount = decks.Rows.Count
-        brandCount = brands.Rows.Count
-        modelCount = models.Rows.Count
-        tapeCount = tapes.Rows.Count
+        deckCount = deckService.GetAll().Count
+        brandCount = brandService.GetAll(Nothing).Count
+        modelCount = cassetteModelService.GetAll().Count
+        tapeCount = tapeService.GetAll().Count
     End Sub
 
     Function getCondition(value As Integer) As Integer

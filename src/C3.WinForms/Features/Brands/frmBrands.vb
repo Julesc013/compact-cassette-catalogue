@@ -60,7 +60,7 @@ Public Class frmBrands
             End If
         Next
 
-        brandCount = brands.Rows.Count
+        brandCount = brandService.GetAll(Nothing).Count
         If changed Then
             CompleteCatalogueMutation(Me)
         End If

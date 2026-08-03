@@ -273,7 +273,7 @@ Public Class frmTapes
             End If
         Next
         If changed Then
-            tapeCount = tapes.Rows.Count
+            tapeCount = tapeService.GetAll().Count
             CompleteCatalogueMutation(Me)
         End If
         If failures.Count > 0 Then
