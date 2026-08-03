@@ -2,6 +2,21 @@
 
 Documentation is organized by its audience and ownership.
 
+## Product and governance
+
+- [Product vision](product/vision.md)
+- [C3 2.0 scope](product/c3-2.0-scope.md)
+- [Versioning and update channels](governance/versioning-and-channels.md)
+- [C3 1.x to 2.x compatibility charter](compatibility/1x-to-2x-charter.md)
+
+## Design, migration, and planning
+
+- [C3 2.0 execution plan](planning/2.0-execution-plan.md)
+- [Catalogue 1.1 to native v2 migration design](migration/catalogue-1.1-to-2.0.md)
+- [OEM+ desktop experience contract](ui/oem-plus-design.md)
+- [AIDE integration boundary](integrations/aide.md)
+- [Universal Setup integration boundary](integrations/universal-setup.md)
+
 ## Architecture
 
 - [System boundaries and design rules](architecture/README.md)
@@ -11,6 +26,7 @@ Documentation is organized by its audience and ownership.
 
 ## Development
 
+- [Toolchain policy](development/toolchain.md)
 - [Build environment and commands](development/building.md)
 - [Automated and manual testing](development/testing.md)
 - [Continuous integration](development/continuous-integration.md)

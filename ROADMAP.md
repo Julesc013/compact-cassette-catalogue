@@ -1,60 +1,75 @@
-# C3 Roadmap
+# C3 roadmap
 
-The roadmap records outcomes, not promises or duplicate implementation notes.
-Release scope is accepted only when catalogue compatibility and both build lanes
-remain verifiable. Concrete defects belong in GitHub Issues.
+The roadmap communicates release outcomes. It does not duplicate the canonical
+[C3 2.0 execution plan](docs/planning/2.0-execution-plan.md), candidate evidence,
+or issue tracker.
 
-## 1.2.1 Beta stabilization
+## 2.0.0 Alpha 1 — safe major-version foundation
 
-- Complete manual New/Open/Save/Save As/Edit/Delete/Close smoke workflows in
-  both build lanes.
-- Record Windows XP SP3 x86 and Windows 7 SP1 x64 runtime evidence on the exact
-  release candidate, or clearly mark any unverified claim.
-- Manually verify settings persistence across restart in both build lanes.
-- Exercise invalid, externally modified, and interrupted catalogue saves through
-  the UI as well as the store-level tests.
-- Review accessibility, keyboard navigation, scaling, clipping, and contrast on
-  representative 100%, 125%, 150%, and 200% display settings.
-- Complete user documentation and downloadable-hash verification.
-- Select an explicit repository license before advertising third-party reuse;
-  licensing is an owner decision and is not inferred by the build overhaul.
+- Reclassify the unpublished overhaul as C3 2.0 development.
+- Isolate legacy and preview update channels before changing build identity.
+- Preserve catalogue format 1.1.0 and all historical 1.x evidence.
+- Publish the product vision, compatibility charter, language strategy, native-v2
+  design gate, OEM+ contract, and integration boundaries.
+- Apply consistent binary identity and migrate supported 1.x preferences once.
+- Re-verify and repackage both portable lanes under the new identity.
 
-## 1.3 usability and interoperability
+## 2.0.0 Alpha 2 — compatibility laboratory
 
-- Resizable layouts and deliberate high-DPI behavior in the .NET 4.8 lane,
-  while retaining a conservative XP-safe layout.
-- Sortable and persistent list columns, clearer empty states, and task-oriented
-  search/filter presets.
-- Import and export selected records through documented, versioned profiles.
-- Optional starter data packs that never change the catalogue format silently.
-- A privacy-reviewed diagnostic support bundle with explicit user consent.
-- Localization-ready resources and removal of remaining hard-coded UI strings.
+- Inventory public 1.x releases, formats, settings, and updater behavior.
+- Build privacy-safe fixtures and baseline-reader/new-reader matrices.
+- Classify required behavior, tolerated quirks, and defects.
+- Turn catalogue, settings, update-channel, and side-by-side compatibility into
+  executable evidence.
 
-## Future format evolution
+## 2.0.0 Alpha 3 — typed identity and C# substrate
 
-A format after 1.1.0 may add stable opaque identifiers, attachments, richer
-metadata, or alternative serializations. It requires:
+- Establish stable opaque identity, typed relationships, and command/draft/result
+  application contracts.
+- Port reusable managed slices to explicit C# 7.3 in dependency order.
+- Keep the VB implementation as a differential oracle until each slice passes,
+  then remove the superseded production owner.
 
-- a new language-neutral specification and schema;
-- forward and backward compatibility rules;
-- deterministic migration with backups and rollback;
-- golden fixtures for every supported source version; and
-- independent reader/writer conformance tests.
+## 2.0.0 Alpha 4 — native format and migration
 
-Brand/model/deck/tape keys and the 1.1.0 XML shape will not be silently rewritten
-inside a maintenance release.
+- Accept and implement the deterministic native-v2 XML profile.
+- Provide explicit legacy mode, transactional convert-copy, migration reports,
+  and loss-aware v1.1 export.
+- Add an independent minimal validator/migrator CLI and recovery evidence.
 
-## Extensibility direction
+## 2.0.0 Alpha 5–6 — OEM+ workspace
 
-Prefer declarative, versioned extensions such as data packs, export profiles,
-column presets, and validation profiles. C3 1.x will not load arbitrary
-in-process plugin assemblies. If executable extensions are introduced, they need
-a versioned contract, capability boundaries, and process isolation.
+- Introduce explicit workspace/document state, command history, and undo/redo.
+- Build and prove reusable native WinForms patterns and a coherent C# shell.
+- Replace workflows feature by feature with keyboard, accessibility, DPI,
+  recovery, performance, and dual-lane parity gates.
 
-## Deliberate non-goals for the current release
+## 2.0.0 Beta — feature and compatibility complete
 
-- automatic self-updating;
-- an official installer independent from the verified portable payload;
-- HTTP downgrade or TLS security bypasses;
-- divergent catalogue formats between x86 and x64; and
-- a whole-application rewrite during stabilization.
+- Freeze accepted 2.0 scope, model, commands, formats, migrations, and terminology.
+- Pass the complete 1.x, security, accessibility, performance, recovery, and
+  minimum-OS matrices.
+- Complete versioned user, migration, backup, rollback, and support documentation.
+- Validate a Universal Setup binding only if it consumes the exact portable
+  payload; retain portable distribution as the complete fallback.
+- Use AIDE only through capabilities proven in a pinned revision.
+
+## 2.0.0 release candidate and stable
+
+- Freeze one candidate and make only release-blocking corrections.
+- Reproduce packages and verify binary identities, hashes, side-by-side behavior,
+  settings migration, and downloaded artifacts.
+- Promote unchanged, evidence-backed artifacts and their channel metadata.
+- Publish an exact compatibility matrix and known limitations.
+
+## 2.1 and later
+
+Candidates include richer reference packs and custom fields, media/J-card
+handling, catalogue merge, rich CLI automation, additional interchange/report
+profiles, and an isolated extension protocol. ARM64, alternate native shells,
+sync, accounts, hosted storage, and recognition assistance require separate
+product and compatibility decisions.
+
+Automatic self-update, insecure transport fallbacks, divergent lane behavior,
+in-process arbitrary plugins, and silent catalogue conversion are not inherited
+goals.
