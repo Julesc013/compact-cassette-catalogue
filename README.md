@@ -49,7 +49,7 @@ The complete repository tree and ownership map are documented in [docs/architect
 
 ## Build and verify
 
-> The authoritative toolchain for `1.1.2` is Visual Studio 2019 with .NET Framework 4.6 targeting pack for 64 bit only.
+> The authoritative toolchain for `1.1.2` is Visual Studio 2019 with .NET Framework 4.6 targeting pack.
 > The authoritative toolchain for `1.2.0b1` is Visual Studio 2015 with .NET Framework 4.0 and 4.8 targeting packs.
 
 The authoritative toolchain for future development is **Visual Studio 2017**, **2022**, and **2026** with **.NET Framework 4.0**, **4.8**, and **4.8.1** targeting packs respectively.
