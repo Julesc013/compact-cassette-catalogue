@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Bytes embedded in portable packages are canonical LF text in every checkout.
+README.md text eol=lf
+RELEASE_NOTES.md text eol=lf

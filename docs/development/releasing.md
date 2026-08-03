@@ -34,11 +34,14 @@ claim through wording.
 .\build\verify-reproducible-packages.ps1
 ```
 
-The reproducibility gate performs two independent full Release rebuild/package
-passes and fails if any final filename, length, or SHA-256 changes. Record the
-resolved toolchain, exact binary identities, package filenames, sizes, and final
-hashes. Do not modify or restage a file after hashing. A setup build, if present,
-consumes these exact payload bytes and has separate transaction evidence.
+The reproducibility gate refuses a dirty worktree, exports the frozen commit to
+two clean source roots with different paths, and performs a complete Release
+rebuild/package pass in each using the pinned Windows PowerShell host. It fails
+if any final filename, length, or SHA-256 changes, then copies and re-verifies one
+already-proven set under `artifacts/packages`. Record its reported commit,
+MSBuild patch, PowerShell/CLR, OS, package names, sizes, and hashes. Do not modify
+or restage a file after hashing. A setup build, if present, consumes these exact
+payload bytes and has separate transaction evidence.
 
 ## Publish and promote
 

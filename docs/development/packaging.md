@@ -19,11 +19,19 @@ For a release candidate, prove that a rebuild does not change those bytes:
 .\build\verify-reproducible-packages.ps1
 ```
 
-That gate runs the complete Release rebuild and packaging transaction twice,
-then compares the name, length, and SHA-256 of both ZIPs and
-`SHA256SUMS.txt`. The second pass remains in `artifacts/packages` for candidate
-inspection. Running `package.ps1 -SkipBuild` twice is not equivalent evidence,
-because it cannot detect nondeterministic compiler output.
+That gate requires a clean committed worktree, exports the exact `HEAD` tree into
+two fresh source roots with different absolute paths, and runs the complete
+Release rebuild/package transaction in each through Windows PowerShell 5.1. It
+compares the name, length, and SHA-256 of both ZIPs and `SHA256SUMS.txt`, verifies
+the retained copy, and leaves that proven second set in `artifacts/packages` for
+candidate inspection. It also records the commit, MSBuild patch, PowerShell/CLR,
+and host OS in the run output. Running `package.ps1 -SkipBuild` twice is not
+equivalent evidence because it cannot detect compiler or source-path drift.
+
+Packaged `README.md` and `RELEASE_NOTES.md` use repository-canonical UTF-8/LF
+bytes. ZIP entry timestamps come from the release date, which must remain in the
+ZIP format's 1980–2107 range. Package cleanup refuses reparse-point targets, and
+verification rejects extra files as well as missing or changed files.
 
 Each package contains only:
 

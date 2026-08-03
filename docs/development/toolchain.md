@@ -18,9 +18,10 @@ Required components:
 - .NET Framework 4.8 developer/targeting pack; and
 - Windows PowerShell 5.1 or later for repository automation.
 
-`build/resolve-msbuild.ps1` accepts Visual Studio 2017 or 2019 because either can
-provide the required legacy MSBuild contract. A release record names the exact
-resolved path and version. Do not describe an uninstalled toolchain as the local
+`build/resolve-msbuild.ps1` deliberately resolves only Visual Studio 2017 15.9.
+A different compiler is a reviewed toolchain migration, not an automatic
+selection of the newest installed IDE. A release record names the exact resolved
+path and patch version. Do not describe an uninstalled toolchain as the local
 authority.
 
 The 2.0 source tree may use compiler features such as read-only auto-properties

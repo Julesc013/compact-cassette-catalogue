@@ -25,6 +25,7 @@ Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $hashRecords = @(Get-Content -LiteralPath $hashPath | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+$listedPackages = New-Object Collections.Generic.List[String]
 foreach ($record in $hashRecords) {
     if ($record -notmatch '^([0-9a-f]{64})  (.+\.zip)$') {
         throw "Invalid SHA256SUMS record: $record"
@@ -32,6 +33,15 @@ foreach ($record in $hashRecords) {
 
     $expectedHash = $matches[1]
     $fileName = $matches[2]
+    if ([IO.Path]::GetFileName($fileName) -cne $fileName) {
+        throw "Package name must not contain a path: $fileName"
+    }
+    if (@($listedPackages | Where-Object {
+            $_.Equals($fileName, [StringComparison]::OrdinalIgnoreCase)
+        }).Count -gt 0) {
+        throw "Duplicate package in SHA256SUMS: $fileName"
+    }
+    $listedPackages.Add($fileName)
     $packagePath = Join-Path $packagesRoot $fileName
     if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
         throw "Package listed in SHA256SUMS is missing: $fileName"
@@ -65,5 +75,13 @@ if ($hashRecords.Count -ne 2) {
     throw "Expected two portable packages, found $($hashRecords.Count)."
 }
 
-Write-Host 'All portable packages and SHA-256 records verified.'
+$expectedFiles = @($listedPackages) + @('SHA256SUMS.txt') | Sort-Object
+$actualFiles = @(Get-ChildItem -LiteralPath $packagesRoot -File |
+    ForEach-Object { $_.Name } |
+    Sort-Object)
+$unexpectedDifference = @(Compare-Object $expectedFiles $actualFiles -CaseSensitive)
+if ($unexpectedDifference.Count -gt 0) {
+    throw "Package directory contains a missing or unexpected file:`n$($unexpectedDifference | Out-String)"
+}
 
+Write-Host 'All portable packages and SHA-256 records verified.'

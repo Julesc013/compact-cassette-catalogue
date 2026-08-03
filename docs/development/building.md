@@ -25,7 +25,7 @@ Run from Windows PowerShell at the repository root:
 # Create verified deterministic portable candidates after a successful build.
 .\build\package.ps1 -SkipBuild
 
-# Prove release reproducibility with two independent full rebuild/package passes.
+# Prove release reproducibility with two clean, path-distinct build/package passes.
 .\build\verify-reproducible-packages.ps1
 ```
 

@@ -9,17 +9,17 @@ if (-not (Test-Path -LiteralPath $vswhere -PathType Leaf)) {
     throw 'Visual Studio Installer vswhere.exe was not found.'
 }
 
-# Visual Studio 2017 and 2019 can build the legacy .NET Framework 4.0 project.
-# Visual Studio 2022 and newer are intentionally excluded from this resolver.
+# Visual Studio 2017 15.9 is the one canonical compiler for release evidence.
+# Newer installations remain useful editors but must not silently change output.
 $installationPath = & $vswhere `
     -latest `
     -products '*' `
-    -version '[15.0,17.0)' `
+    -version '[15.9,16.0)' `
     -requires Microsoft.Component.MSBuild `
     -property installationPath
 
 if ([string]::IsNullOrWhiteSpace($installationPath)) {
-    throw 'No compatible Visual Studio 2017 or 2019 MSBuild installation was found.'
+    throw 'Visual Studio 2017 15.9 MSBuild was not found.'
 }
 
 $msbuild = Join-Path $installationPath 'MSBuild\Current\Bin\MSBuild.exe'
@@ -32,4 +32,3 @@ if (-not (Test-Path -LiteralPath $msbuild -PathType Leaf)) {
 }
 
 Write-Output $msbuild
-

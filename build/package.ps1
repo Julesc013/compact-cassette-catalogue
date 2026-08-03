@@ -14,9 +14,28 @@ $packagesRoot = Join-Path $artifactsRoot 'packages'
 function Assert-UnderArtifacts {
     param([string]$Path)
     $fullPath = [IO.Path]::GetFullPath($Path)
-    $fullArtifacts = [IO.Path]::GetFullPath($artifactsRoot) + [IO.Path]::DirectorySeparatorChar
-    if (-not $fullPath.StartsWith($fullArtifacts, [StringComparison]::OrdinalIgnoreCase)) {
+    $fullArtifactsRoot = [IO.Path]::GetFullPath($artifactsRoot)
+    $fullArtifactsPrefix = $fullArtifactsRoot + [IO.Path]::DirectorySeparatorChar
+    if (-not $fullPath.StartsWith($fullArtifactsPrefix, [StringComparison]::OrdinalIgnoreCase)) {
         throw "Refusing to modify a path outside artifacts: $fullPath"
+    }
+
+    $currentPath = $fullPath
+    while ($true) {
+        if (Test-Path -LiteralPath $currentPath) {
+            $item = Get-Item -LiteralPath $currentPath -Force
+            if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                throw "Refusing to modify a reparse-point path: $currentPath"
+            }
+        }
+        if ($currentPath.Equals($fullArtifactsRoot, [StringComparison]::OrdinalIgnoreCase)) {
+            break
+        }
+        $parent = [IO.Directory]::GetParent($currentPath)
+        if ($null -eq $parent) {
+            throw "Could not validate artifacts ancestry for: $fullPath"
+        }
+        $currentPath = $parent.FullName
     }
 }
 
@@ -34,6 +53,9 @@ $releaseDate = [DateTime]::ParseExact(
     [string]$versionValues.C3ReleaseDate,
     'yyyy-MM-dd',
     [Globalization.CultureInfo]::InvariantCulture)
+if ($releaseDate.Year -lt 1980 -or $releaseDate.Year -gt 2107) {
+    throw "Release date $($releaseDate.ToString('yyyy-MM-dd')) is outside the ZIP timestamp range."
+}
 $versionLabel = $productVersion
 if (-not [string]::Equals($releaseStage, 'Release', [StringComparison]::OrdinalIgnoreCase)) {
     $stageSlug = ($releaseStage.Trim().ToLowerInvariant() -replace '[^a-z0-9]+', '.').Trim('.')
