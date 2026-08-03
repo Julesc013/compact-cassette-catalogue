@@ -26,6 +26,7 @@ Module Program
         RunTest("update schedule normalizes and evaluates policies", AddressOf UpdateScheduleOwnsPolicy)
         RunTest("settings upgrade is ordered and idempotent", AddressOf SettingsUpgradeIsOrderedAndIdempotent)
         RunTest("settings upgrade failure remains retryable", AddressOf SettingsUpgradeFailureRemainsRetryable)
+        RunTest("public 1.x settings schemas remain captured", AddressOf PublicSettingsSchemasRemainCaptured)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -521,6 +522,40 @@ Module Program
             "failed upgrade operation order")
     End Sub
 
+    Private Sub PublicSettingsSchemasRemainCaptured()
+        Dim v100 As XmlDocument = LoadSecureDocument(SettingsFixturePath("v1.0.0"))
+        AssertEqual(
+            "True",
+            NodeText(v100, "//setting[@name='showMessages']/value"),
+            "v1.0 message default")
+        AssertEqual(
+            0,
+            v100.SelectNodes("//setting[@name='checkUpdates']").Count,
+            "v1.0 update setting absence")
+
+        Dim v111 As XmlDocument = LoadSecureDocument(SettingsFixturePath("v1.1.1"))
+        AssertEqual(
+            "True",
+            NodeText(v111, "//setting[@name='checkUpdates']/value"),
+            "v1.1 Boolean update value")
+
+        Dim v112 As XmlDocument = LoadSecureDocument(SettingsFixturePath("v1.1.2"))
+        AssertEqual(
+            "startup",
+            NodeText(v112, "//setting[@name='checkUpdates']/value"),
+            "v1.1.2 String update policy")
+        AssertEqual(
+            1,
+            v112.SelectNodes("//setting[@name='lastUpdateCheck']").Count,
+            "v1.1.2 last-check setting")
+
+        Dim v120 As XmlDocument = LoadSecureDocument(SettingsFixturePath("v1.2.0-beta.1"))
+        AssertEqual(
+            "never",
+            NodeText(v120, "//setting[@name='checkUpdates']/value"),
+            "v1.2 default update policy")
+    End Sub
+
     Private NotInheritable Class FakeSettingsUpgradeStore
         Implements ISettingsUpgradeStore
 
@@ -631,6 +666,10 @@ Module Program
 
     Private Function FixturePath(group As String, fileName As String) As String
         Return Path.Combine(_repositoryRoot, "fixtures\catalogues\v1.1.0", group, fileName)
+    End Function
+
+    Private Function SettingsFixturePath(version As String) As String
+        Return Path.Combine(_repositoryRoot, "fixtures\settings\legacy", version, "user.config")
     End Function
 
     Private Function FindRepositoryRoot() As String
