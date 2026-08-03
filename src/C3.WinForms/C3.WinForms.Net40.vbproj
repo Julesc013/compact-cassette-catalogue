@@ -110,108 +110,108 @@
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAbout.Designer.vb">
+    <Compile Include="Features\About\frmAbout.Designer.vb">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAbout.vb">
+    <Compile Include="Features\About\frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="frmBrandEdit.Designer.vb">
+    <Compile Include="Bootstrap\ApplicationEvents.vb" />
+    <Compile Include="Features\Brands\frmBrandEdit.Designer.vb">
       <DependentUpon>frmBrandEdit.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmBrandEdit.vb">
+    <Compile Include="Features\Brands\frmBrandEdit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBrandNew.Designer.vb">
+    <Compile Include="Features\Brands\frmBrandNew.Designer.vb">
       <DependentUpon>frmBrandNew.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmBrandNew.vb">
+    <Compile Include="Features\Brands\frmBrandNew.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDeckEdit.Designer.vb">
+    <Compile Include="Features\Decks\frmDeckEdit.Designer.vb">
       <DependentUpon>frmDeckEdit.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDeckEdit.vb">
+    <Compile Include="Features\Decks\frmDeckEdit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDeckNew.Designer.vb">
+    <Compile Include="Features\Decks\frmDeckNew.Designer.vb">
       <DependentUpon>frmDeckNew.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDeckNew.vb">
+    <Compile Include="Features\Decks\frmDeckNew.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmModelEdit.Designer.vb">
+    <Compile Include="Features\CassetteModels\frmModelEdit.Designer.vb">
       <DependentUpon>frmModelEdit.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmModelEdit.vb">
+    <Compile Include="Features\CassetteModels\frmModelEdit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmModelNew.Designer.vb">
+    <Compile Include="Features\CassetteModels\frmModelNew.Designer.vb">
       <DependentUpon>frmModelNew.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmModelNew.vb">
+    <Compile Include="Features\CassetteModels\frmModelNew.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSettings.Designer.vb">
+    <Compile Include="Features\Settings\frmSettings.Designer.vb">
       <DependentUpon>frmSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSettings.vb">
+    <Compile Include="Features\Settings\frmSettings.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTapeNew.Designer.vb">
+    <Compile Include="Features\Tapes\frmTapeNew.Designer.vb">
       <DependentUpon>frmTapeNew.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmTapeNew.vb">
+    <Compile Include="Features\Tapes\frmTapeNew.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConsole.Designer.vb">
+    <Compile Include="Features\Diagnostics\frmConsole.Designer.vb">
       <DependentUpon>frmConsole.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmConsole.vb">
+    <Compile Include="Features\Diagnostics\frmConsole.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFindResults.Designer.vb">
+    <Compile Include="Features\Search\frmFindResults.Designer.vb">
       <DependentUpon>frmFindResults.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmFindResults.vb">
+    <Compile Include="Features\Search\frmFindResults.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.vb">
+    <Compile Include="Shell\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.vb">
+    <Compile Include="Shell\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmStatistics.Designer.vb">
+    <Compile Include="Features\Statistics\frmStatistics.Designer.vb">
       <DependentUpon>frmStatistics.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmStatistics.vb">
+    <Compile Include="Features\Statistics\frmStatistics.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBrands.Designer.vb">
+    <Compile Include="Features\Brands\frmBrands.Designer.vb">
       <DependentUpon>frmBrands.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmBrands.vb">
+    <Compile Include="Features\Brands\frmBrands.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDecks.Designer.vb">
+    <Compile Include="Features\Decks\frmDecks.Designer.vb">
       <DependentUpon>frmDecks.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDecks.vb">
+    <Compile Include="Features\Decks\frmDecks.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmModels.Designer.vb">
+    <Compile Include="Features\CassetteModels\frmModels.Designer.vb">
       <DependentUpon>frmModels.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmModels.vb">
+    <Compile Include="Features\CassetteModels\frmModels.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTapes.Designer.vb">
+    <Compile Include="Features\Tapes\frmTapes.Designer.vb">
       <DependentUpon>frmTapes.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmTapes.vb">
+    <Compile Include="Features\Tapes\frmTapes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -231,58 +231,58 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Runtime\RuntimeInfo.vb" />
-    <Compile Include="varGlobals.vb" />
+    <Compile Include="State\LegacyGlobalState.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmAbout.resx">
+    <EmbeddedResource Include="Features\About\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBrandEdit.resx">
+    <EmbeddedResource Include="Features\Brands\frmBrandEdit.resx">
       <DependentUpon>frmBrandEdit.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBrandNew.resx">
+    <EmbeddedResource Include="Features\Brands\frmBrandNew.resx">
       <DependentUpon>frmBrandNew.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDeckEdit.resx">
+    <EmbeddedResource Include="Features\Decks\frmDeckEdit.resx">
       <DependentUpon>frmDeckEdit.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDeckNew.resx">
+    <EmbeddedResource Include="Features\Decks\frmDeckNew.resx">
       <DependentUpon>frmDeckNew.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmModelEdit.resx">
+    <EmbeddedResource Include="Features\CassetteModels\frmModelEdit.resx">
       <DependentUpon>frmModelEdit.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmModelNew.resx">
+    <EmbeddedResource Include="Features\CassetteModels\frmModelNew.resx">
       <DependentUpon>frmModelNew.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSettings.resx">
+    <EmbeddedResource Include="Features\Settings\frmSettings.resx">
       <DependentUpon>frmSettings.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTapeNew.resx">
+    <EmbeddedResource Include="Features\Tapes\frmTapeNew.resx">
       <DependentUpon>frmTapeNew.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConsole.resx">
+    <EmbeddedResource Include="Features\Diagnostics\frmConsole.resx">
       <DependentUpon>frmConsole.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFindResults.resx">
+    <EmbeddedResource Include="Features\Search\frmFindResults.resx">
       <DependentUpon>frmFindResults.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Shell\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmStatistics.resx">
+    <EmbeddedResource Include="Features\Statistics\frmStatistics.resx">
       <DependentUpon>frmStatistics.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBrands.resx">
+    <EmbeddedResource Include="Features\Brands\frmBrands.resx">
       <DependentUpon>frmBrands.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDecks.resx">
+    <EmbeddedResource Include="Features\Decks\frmDecks.resx">
       <DependentUpon>frmDecks.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmModels.resx">
+    <EmbeddedResource Include="Features\CassetteModels\frmModels.resx">
       <DependentUpon>frmModels.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTapes.resx">
+    <EmbeddedResource Include="Features\Tapes\frmTapes.resx">
       <DependentUpon>frmTapes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
