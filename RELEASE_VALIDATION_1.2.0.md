@@ -1,4 +1,8 @@
-# C3 1.2.0 Release Validation
+# C3 1.2.0 Beta 1 Historical Validation
+
+This record predates the architecture overhaul and is retained as historical
+evidence for the `v1.2.0b1` compatibility build. It is not evidence for the
+in-development 1.2.1 build lanes.
 
 Validation date: 14 May 2026
 

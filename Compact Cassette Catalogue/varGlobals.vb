@@ -7,14 +7,6 @@ Imports System.Text.RegularExpressions
 
 Module varGlobals
 
-    ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
-    ' About program information.
-    Public Const VERSION As String = "1.2.0"
-    Public Const VERSIONSTAGE As String = "Release"
-    Public ReadOnly VERSIONDATE As DateTime = New DateTime(2026, 5, 14, 0, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
-    ' About catalogue information.
-    Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
-    Public ReadOnly VERSIONFILESUPPORTED As String() = {"1.1.0"}
     Public Const COPYRIGHTAUTHOR = "Jules Carboni"
     Public Const COPYRIGHTYEAR = "2019-2026"
 

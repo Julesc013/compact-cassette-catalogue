@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- This is the canonical product and catalogue-format version source. -->
+  <PropertyGroup>
+    <C3ProductVersion>1.2.1</C3ProductVersion>
+    <C3ReleaseStage>Beta 1</C3ReleaseStage>
+    <C3ReleaseDate>2026-08-04</C3ReleaseDate>
+    <C3AssemblyVersion>1.2.1.0</C3AssemblyVersion>
+    <C3CatalogueFormatVersion>1.1.0</C3CatalogueFormatVersion>
+  </PropertyGroup>
+</Project>
+

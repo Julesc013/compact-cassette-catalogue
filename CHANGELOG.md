@@ -6,6 +6,16 @@
 
 
 
+### Version 1.2.1 Beta 1 - In development
+
+- Began the behavior-preserving C3 architecture overhaul.
+- Retired obsolete installer and uninstaller backup projects from the active tree.
+- Repaired the solution so every referenced project exists and builds.
+- Defined module ownership, compatibility build lanes, and contribution rules.
+- Established one canonical product and catalogue-format version source.
+
+
+
 ### Version 1.2 Beta 1 - 14 May 2026
 
 - Retargeted the main application from .NET Framework 4.6 to .NET Framework 4.0.
