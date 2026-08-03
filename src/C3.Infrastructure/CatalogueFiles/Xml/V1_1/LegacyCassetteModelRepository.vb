@@ -137,14 +137,14 @@ Namespace CatalogueFiles.Xml.V1_1
             Return Nothing
         End Function
 
-        Private Shared Function Map(row As DataRow) As CassetteModel
+        Private Function Map(row As DataRow) As CassetteModel
             Dim addedAt As DateTime = DateTime.MinValue
             If Not row.IsNull("Date") Then
                 addedAt = Convert.ToDateTime(row("Date"))
             End If
 
             Return New CassetteModel(
-                Convert.ToString(row("Brand")),
+                ResolveBrandCode(Convert.ToString(row("Brand"))),
                 ReadInteger(row, "Type"),
                 Convert.ToString(row("Model")),
                 Convert.ToString(row("Code")),
@@ -153,6 +153,20 @@ Namespace CatalogueFiles.Xml.V1_1
                 ReadInteger(row, "Number"),
                 addedAt,
                 Convert.ToString(row("Notes")))
+        End Function
+
+        Private Function ResolveBrandCode(storedValue As String) As String
+            For Each row As DataRow In RequireTable("Brands").Rows
+                If row.RowState <> DataRowState.Deleted Then
+                    Dim code As String = Convert.ToString(row("Code"))
+                    Dim name As String = Convert.ToString(row("Brand"))
+                    If String.Equals(storedValue, code, StringComparison.OrdinalIgnoreCase) OrElse
+                            String.Equals(storedValue, name, StringComparison.OrdinalIgnoreCase) Then
+                        Return code
+                    End If
+                End If
+            Next
+            Return storedValue
         End Function
 
         Private Shared Function ReadInteger(row As DataRow, columnName As String) As Integer

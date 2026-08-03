@@ -232,11 +232,23 @@ Module Program
         AssertEqual("Maxell Audio", service.Find("MX").Name, "updated brand name")
 
         Dim model As DataRow = document.Tables("Models").NewRow()
-        model("Brand") = "MX"
+        ' Historical C3 releases stored the brand display name in Models.Brand.
+        model("Brand") = "Maxell Audio"
         model("Identifier") = "MX-2-XLII"
         document.Tables("Models").Rows.Add(model)
+        Dim modelRepository As New LegacyCassetteModelRepository(Function() document)
+        AssertEqual("MX", modelRepository.GetAll()(0).BrandCode, "legacy model brand resolves to code")
         Dim referencedDelete As BrandOperationResult = service.Delete("MX")
-        AssertEqual(BrandFailure.ReferencedByModel, referencedDelete.Failure, "referenced brand delete")
+        AssertEqual(
+            BrandFailure.ReferencedByModel,
+            referencedDelete.Failure,
+            "legacy-name referenced brand delete")
+
+        Dim renamed As BrandOperationResult = service.Update(
+            "MX",
+            New BrandDraft("Maxell International", "ignored", "Renamed"))
+        AssertEqual(True, renamed.IsSuccess, "referenced brand rename")
+        AssertEqual("MX", CStr(model("Brand")), "legacy brand reference migrates to stable code")
 
         document.Tables("Models").Rows.Remove(model)
         AssertEqual(True, service.Delete("MX").IsSuccess, "unreferenced brand delete")

@@ -46,10 +46,20 @@ Namespace CatalogueFiles.Xml.V1_1
         Public Function IsReferencedByModel(code As String) As Boolean _
                 Implements IBrandRepository.IsReferencedByModel
 
+            Dim brandRow As DataRow = FindRow(code)
+            Dim legacyName As String = String.Empty
+            If brandRow IsNot Nothing Then
+                legacyName = Convert.ToString(brandRow("Brand"))
+            End If
+
             For Each row As DataRow In ModelsTable().Rows
-                If row.RowState <> DataRowState.Deleted AndAlso
-                        String.Equals(CStr(row("Brand")), code, StringComparison.OrdinalIgnoreCase) Then
-                    Return True
+                If row.RowState <> DataRowState.Deleted Then
+                    Dim storedBrand As String = Convert.ToString(row("Brand"))
+                    If String.Equals(storedBrand, code, StringComparison.OrdinalIgnoreCase) OrElse
+                            (legacyName.Length > 0 AndAlso
+                             String.Equals(storedBrand, legacyName, StringComparison.OrdinalIgnoreCase)) Then
+                        Return True
+                    End If
                 End If
             Next
             Return False
@@ -66,9 +76,22 @@ Namespace CatalogueFiles.Xml.V1_1
                 Throw New InvalidOperationException("The selected brand no longer exists.")
             End If
 
+            Dim previousName As String = Convert.ToString(row("Brand"))
             row("Brand") = value.Name
             row("Date") = value.AddedAt
             row("Notes") = value.Notes
+
+            ' Older C3 files stored the display name in Models.Brand. Migrate
+            ' those references to the stable code when the owning brand changes.
+            For Each modelRow As DataRow In ModelsTable().Rows
+                If modelRow.RowState <> DataRowState.Deleted AndAlso
+                        String.Equals(
+                            Convert.ToString(modelRow("Brand")),
+                            previousName,
+                            StringComparison.OrdinalIgnoreCase) Then
+                    modelRow("Brand") = value.Code
+                End If
+            Next
         End Sub
 
         Public Sub Delete(code As String) Implements IBrandRepository.Delete
@@ -139,4 +162,3 @@ Namespace CatalogueFiles.Xml.V1_1
     End Class
 
 End Namespace
-
