@@ -83,6 +83,10 @@ jobs:
         shell: powershell
         run: ./build/validate-docs.ps1
 
+      - name: Test documentation discovery in exported source trees
+        shell: powershell
+        run: ./build/test-doc-validation.ps1
+
       - name: Check whitespace
         shell: powershell
         run: |

@@ -18,6 +18,7 @@ $ErrorActionPreference = 'Stop'
 & (Join-Path $PSScriptRoot 'validate-ui-boundaries.ps1')
 & (Join-Path $PSScriptRoot 'validate-project-parity.ps1')
 & (Join-Path $PSScriptRoot 'validate-docs.ps1')
+& (Join-Path $PSScriptRoot 'test-doc-validation.ps1')
 & (Join-Path $PSScriptRoot 'test.ps1') -Configuration Release
 & (Join-Path $PSScriptRoot 'build.ps1') -Configuration Release -Rebuild:$Rebuild
 & (Join-Path $PSScriptRoot 'verify-binary-metadata.ps1') -Configuration Release

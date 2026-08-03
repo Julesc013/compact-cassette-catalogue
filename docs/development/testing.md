@@ -11,9 +11,9 @@ compatibility, UI usability, or operating-system support.
 
 The gate verifies build/update metadata, module dependency direction, WinForms
 data/settings boundaries, shared UI and linked-source parity, local documentation
-links, catalogue/domain/settings characterization, both release builds, assembly/
-file/product identity for every shipped binary, executable architecture, and diff
-whitespace.
+links (including non-vacuous discovery in exported source trees), catalogue/domain/
+settings characterization, both release builds, assembly/file/product identity for
+every shipped binary, executable architecture, and diff whitespace.
 
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane
 are exercised. The runner is deliberately dependency-light and returns a nonzero

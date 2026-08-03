@@ -7,8 +7,17 @@ $ErrorActionPreference = 'Stop'
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $failures = New-Object Collections.Generic.List[String]
 $markdownFiles = @(Get-ChildItem -LiteralPath $repositoryRoot -Recurse -File -Filter '*.md' |
-    Where-Object { $_.FullName -notmatch '[\\/](\.git|artifacts|bin|obj)[\\/]' })
+    Where-Object {
+        # Exclusions belong to this source tree. An exported checkout may itself
+        # live below a parent directory named artifacts, bin, or obj.
+        $repositoryRelativePath = $_.FullName.Substring($repositoryRoot.Length)
+        $repositoryRelativePath -notmatch '[\\/](\.git|artifacts|bin|obj)[\\/]'
+    })
 $linkPattern = [regex]'\[[^\]]*\]\((?<target>[^)]+)\)'
+
+if ($markdownFiles.Count -eq 0) {
+    throw "Documentation validation found no Markdown files below '$repositoryRoot'."
+}
 
 foreach ($file in $markdownFiles) {
     $content = Get-Content -LiteralPath $file.FullName -Raw
