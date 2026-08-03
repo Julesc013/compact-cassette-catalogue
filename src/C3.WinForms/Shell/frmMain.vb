@@ -1125,7 +1125,8 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchModelsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchModelsToolStripMenuItem.Click
-        frmModels.Show() 'temp
+        Dim window As New frmModels()
+        window.Show(Me)
     End Sub
 
     Private Sub SearchManufacturersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchManufacturersToolStripMenuItem.Click
@@ -1281,7 +1282,9 @@ Public Class frmMain
     Private Sub NewModelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewModelToolStripMenuItem.Click
 
         If CInt(counters.Rows(1)("Number")) > 0 Then
-            frmModelNew.Show()
+            Using editor As New frmModelNew()
+                editor.ShowDialog(Me)
+            End Using
         Else
             MsgBox("Add at least one brand first.", MsgBoxStyle.Exclamation, "No Brands")
         End If

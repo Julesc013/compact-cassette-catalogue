@@ -58,6 +58,8 @@ Module varGlobals
     Public models As DataTable = catalogue.Tables("Models")
     Public tapes As DataTable = catalogue.Tables("Tapes")
     Public ReadOnly brandService As New BrandService(New LegacyBrandRepository(Function() catalogue))
+    Public ReadOnly cassetteModelService As New CassetteModelService(
+        New LegacyCassetteModelRepository(Function() catalogue))
 
     Public deckCount As Integer
     Public brandCount As Integer

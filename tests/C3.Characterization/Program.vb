@@ -20,6 +20,7 @@ Module Program
         RunTest("store classifies unsafe and incompatible input", AddressOf StoreClassifiesRejectedInput)
         RunTest("store saves transactionally and detects external edits", AddressOf StoreSavesTransactionally)
         RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
+        RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -237,6 +238,52 @@ Module Program
         document.Tables("Models").Rows.Remove(model)
         AssertEqual(True, service.Delete("MX").IsSuccess, "unreferenced brand delete")
         AssertEqual(0, document.Tables("Brands").Rows.Count, "deleted brand count")
+    End Sub
+
+    Private Sub CassetteModelServiceOwnsRules()
+        Dim document As DataSet = CreateFixtureSchema()
+        Dim brands As New BrandService(New LegacyBrandRepository(Function() document))
+        AssertEqual(
+            True,
+            brands.Create(New BrandDraft("Maxell", "MX", String.Empty), DateTime.Now).IsSuccess,
+            "model test brand")
+
+        Dim service As New CassetteModelService(
+            New LegacyCassetteModelRepository(Function() document))
+        Dim created As CassetteModelOperationResult = service.Create(
+            New CassetteModelDraft("mx", 2, "XL II", "xl", "Maxell XL II", "Reference model"),
+            New DateTime(2026, 8, 4))
+        AssertEqual(True, created.IsSuccess, "cassette model create")
+        AssertEqual("MX2XL", created.Model.Identifier, "canonical legacy identifier")
+        AssertEqual("MX", created.Model.BrandCode, "normalized model brand")
+        AssertEqual(1, CInt(document.Tables("Counters").Rows.Find("Models")("Number")), "model counter")
+
+        Dim duplicate As CassetteModelOperationResult = service.Create(
+            New CassetteModelDraft("MX", 2, "Duplicate", "XL", String.Empty, String.Empty),
+            DateTime.Now)
+        AssertEqual(CassetteModelFailure.DuplicateIdentifier, duplicate.Failure, "duplicate model identifier")
+
+        Dim updated As CassetteModelOperationResult = service.Update(
+            "MX2XL",
+            New CassetteModelDraft("ignored", 4, "XL II-S", "ZZ", "Updated display", "Updated notes"))
+        AssertEqual(True, updated.IsSuccess, "cassette model update")
+        AssertEqual("MX2XL", updated.Model.Identifier, "immutable model identifier")
+        AssertEqual(2, updated.Model.TypeNumber, "immutable model type")
+        AssertEqual("Updated notes", service.Find("MX2XL").Notes, "updated model notes")
+
+        Dim tape As DataRow = document.Tables("Tapes").NewRow()
+        tape("Model") = "MX2XL"
+        tape("IdentifierShort") = "MX2XL-1"
+        document.Tables("Tapes").Rows.Add(tape)
+        Dim referencedDelete As CassetteModelOperationResult = service.Delete("MX2XL")
+        AssertEqual(
+            CassetteModelFailure.ReferencedByTape,
+            referencedDelete.Failure,
+            "referenced model delete")
+
+        document.Tables("Tapes").Rows.Remove(tape)
+        AssertEqual(True, service.Delete("MX2XL").IsSuccess, "unreferenced model delete")
+        AssertEqual(0, document.Tables("Models").Rows.Count, "deleted model count")
     End Sub
 
     Private Sub ValidateAgainstSchema(xmlPath As String)

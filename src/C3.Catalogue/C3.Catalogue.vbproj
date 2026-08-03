@@ -52,6 +52,11 @@
     <Compile Include="Brands\BrandOperationResult.vb" />
     <Compile Include="Brands\BrandService.vb" />
     <Compile Include="Brands\IBrandRepository.vb" />
+    <Compile Include="CassetteModels\CassetteModel.vb" />
+    <Compile Include="CassetteModels\CassetteModelDraft.vb" />
+    <Compile Include="CassetteModels\CassetteModelOperationResult.vb" />
+    <Compile Include="CassetteModels\CassetteModelService.vb" />
+    <Compile Include="CassetteModels\ICassetteModelRepository.vb" />
     <Compile Include="Catalogues\CatalogueRevision.vb" />
     <Compile Include="Catalogues\CatalogueSession.vb" />
   </ItemGroup>
