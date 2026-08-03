@@ -13,6 +13,9 @@
 - Separated current build identity from the root 1.x update feed so legacy users
   cannot be offered an unavailable 2.0 preview.
 - Kept catalogue writer version 1.1.0 independent from the 2.0 product version.
+- Added ordered, one-time migration of supported 1.x user settings with a
+  persisted retry marker, normalization, diagnostic failure context, and
+  idempotency/failure characterization.
 
 - Reorganized C3 as a four-project modular monolith: catalogue rules,
   infrastructure adapters, characterization tests, and shared WinForms sources.

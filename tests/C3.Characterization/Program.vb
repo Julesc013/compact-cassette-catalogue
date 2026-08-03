@@ -24,6 +24,8 @@ Module Program
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)
         RunTest("tape service creates batches without identifier reuse", AddressOf TapeServiceOwnsRules)
         RunTest("update schedule normalizes and evaluates policies", AddressOf UpdateScheduleOwnsPolicy)
+        RunTest("settings upgrade is ordered and idempotent", AddressOf SettingsUpgradeIsOrderedAndIdempotent)
+        RunTest("settings upgrade failure remains retryable", AddressOf SettingsUpgradeFailureRemainsRetryable)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -485,6 +487,79 @@ Module Program
             UpdateCheckSchedule.ShouldCheck(UpdateCheckPolicy.Never, DateTime.MinValue, now),
             "never policy")
     End Sub
+
+    Private Sub SettingsUpgradeIsOrderedAndIdempotent()
+        Dim store As New FakeSettingsUpgradeStore(True, False)
+        Dim first As SettingsUpgradeResult = SettingsUpgradeCoordinator.Prepare(store)
+
+        AssertEqual(SettingsUpgradeStatus.Upgraded, first.Status, "first upgrade status")
+        AssertEqual(False, store.UpgradeRequired, "upgrade completion marker")
+        AssertEqual(
+            "upgrade|normalize|save|required=False|save",
+            String.Join("|", store.Calls.ToArray()),
+            "upgrade operation order")
+
+        Dim second As SettingsUpgradeResult = SettingsUpgradeCoordinator.Prepare(store)
+        AssertEqual(SettingsUpgradeStatus.Current, second.Status, "repeat upgrade status")
+        AssertEqual(
+            "upgrade|normalize|save|required=False|save|normalize|save",
+            String.Join("|", store.Calls.ToArray()),
+            "repeat startup operation order")
+    End Sub
+
+    Private Sub SettingsUpgradeFailureRemainsRetryable()
+        Dim store As New FakeSettingsUpgradeStore(True, True)
+        Dim result As SettingsUpgradeResult = SettingsUpgradeCoordinator.Prepare(store)
+
+        AssertEqual(SettingsUpgradeStatus.Failed, result.Status, "failed upgrade status")
+        AssertEqual(False, result.IsSuccess, "failed upgrade success flag")
+        AssertEqual("synthetic settings failure", result.Failure.Message, "failed upgrade context")
+        AssertEqual(True, store.UpgradeRequired, "failed upgrade remains armed")
+        AssertEqual(
+            "upgrade|required=True",
+            String.Join("|", store.Calls.ToArray()),
+            "failed upgrade operation order")
+    End Sub
+
+    Private NotInheritable Class FakeSettingsUpgradeStore
+        Implements ISettingsUpgradeStore
+
+        Private _upgradeRequired As Boolean
+        Private ReadOnly _throwOnUpgrade As Boolean
+
+        Public Sub New(upgradeRequired As Boolean, throwOnUpgrade As Boolean)
+            _upgradeRequired = upgradeRequired
+            _throwOnUpgrade = throwOnUpgrade
+            Calls = New List(Of String)()
+        End Sub
+
+        Public ReadOnly Property Calls As List(Of String)
+
+        Public Property UpgradeRequired As Boolean Implements ISettingsUpgradeStore.UpgradeRequired
+            Get
+                Return _upgradeRequired
+            End Get
+            Set(value As Boolean)
+                _upgradeRequired = value
+                Calls.Add("required=" & value.ToString())
+            End Set
+        End Property
+
+        Public Sub UpgradeFromPreviousVersion() Implements ISettingsUpgradeStore.UpgradeFromPreviousVersion
+            Calls.Add("upgrade")
+            If _throwOnUpgrade Then
+                Throw New InvalidOperationException("synthetic settings failure")
+            End If
+        End Sub
+
+        Public Sub Normalize() Implements ISettingsUpgradeStore.Normalize
+            Calls.Add("normalize")
+        End Sub
+
+        Public Sub Save() Implements ISettingsUpgradeStore.Save
+            Calls.Add("save")
+        End Sub
+    End Class
 
     Private Sub ValidateAgainstSchema(xmlPath As String)
         Dim validationMessages As New List(Of String)()

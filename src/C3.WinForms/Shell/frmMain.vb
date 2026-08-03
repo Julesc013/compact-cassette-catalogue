@@ -44,8 +44,6 @@ Public Class frmMain
 
         consoleAdd("Successfully loaded program.") ' Add success note to console.
 
-        preferences.Normalize()
-        preferences.Save()
         If UpdateCheckSchedule.ShouldCheck(
                 preferences.UpdatePolicy,
                 preferences.LastUpdateCheck,

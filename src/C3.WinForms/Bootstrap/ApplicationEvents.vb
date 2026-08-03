@@ -13,6 +13,14 @@
 
             BufferedLogger.RecordAction("Starting C3")
             BufferedLogger.Information("Runtime: " & RuntimeInfo.BuildLabel)
+
+            Dim settingsResult As SettingsUpgradeResult = SettingsUpgradeCoordinator.Prepare(preferences)
+            If settingsResult.Status = SettingsUpgradeStatus.Upgraded Then
+                BufferedLogger.Information("Imported and normalized settings from the previous C3 version.")
+            ElseIf settingsResult.Status = SettingsUpgradeStatus.Failed Then
+                BufferedLogger.Warning(
+                    "Settings migration could not be completed: " & settingsResult.Failure.Message)
+            End If
         End Sub
 
         Private Sub MyApplication_UnhandledException(

@@ -55,6 +55,7 @@
     <Import Include="C3.Catalogue.Decks" />
     <Import Include="C3.Catalogue.Tapes" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
+    <Import Include="C3.Infrastructure.Configuration" />
     <Import Include="C3.Infrastructure.Updates" />
   </ItemGroup>
   <ItemGroup>

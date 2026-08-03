@@ -1,4 +1,14 @@
 Friend NotInheritable Class MySettingsStore
+    Implements ISettingsUpgradeStore
+
+    Public Property UpgradeRequired As Boolean Implements ISettingsUpgradeStore.UpgradeRequired
+        Get
+            Return My.Settings.settingsUpgradeRequired
+        End Get
+        Set(value As Boolean)
+            My.Settings.settingsUpgradeRequired = value
+        End Set
+    End Property
 
     Public Property ShowMessages As Boolean
         Get
@@ -36,7 +46,11 @@ Friend NotInheritable Class MySettingsStore
         End Set
     End Property
 
-    Public Sub Normalize()
+    Public Sub UpgradeFromPreviousVersion() Implements ISettingsUpgradeStore.UpgradeFromPreviousVersion
+        My.Settings.Upgrade()
+    End Sub
+
+    Public Sub Normalize() Implements ISettingsUpgradeStore.Normalize
         My.Settings.checkUpdates = UpdateCheckSchedule.Serialize(UpdatePolicy)
         If String.IsNullOrWhiteSpace(DefaultDirectory) OrElse
                 DefaultDirectory.StartsWith("My.", StringComparison.Ordinal) Then
@@ -44,7 +58,7 @@ Friend NotInheritable Class MySettingsStore
         End If
     End Sub
 
-    Public Sub Save()
+    Public Sub Save() Implements ISettingsUpgradeStore.Save
         My.Settings.Save()
     End Sub
 
