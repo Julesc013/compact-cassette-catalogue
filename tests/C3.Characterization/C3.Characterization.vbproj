@@ -70,6 +70,7 @@
     <Compile Include="CatalogueRevisionDifferentialTests.vb" />
     <Compile Include="CatalogueSessionDifferentialTests.vb" />
     <Compile Include="DomainContractTests.vb" />
+    <Compile Include="NativeCatalogueContractTests.vb" />
     <Compile Include="PreferenceFormatContractTests.vb" />
     <Compile Include="LegacySettingsProfileLocatorTests.vb" />
     <Compile Include="LegacySettingsProfileReaderTests.vb" />

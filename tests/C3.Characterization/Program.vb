@@ -49,6 +49,9 @@ Module Program
             "command results separate changes from rejections",
             AddressOf DomainContractTests.CommandResultsSeparateChangesFromRejections)
         RunTest(
+            "native catalogue graph uses stable typed references",
+            AddressOf NativeCatalogueContractTests.NativeGraphUsesStableTypedReferencesAndCanonicalOrder)
+        RunTest(
             "store classifies unsafe and incompatible input",
             AddressOf LegacyXmlCatalogueStoreTests.StoreClassifiesRejectedInput)
         RunTest(

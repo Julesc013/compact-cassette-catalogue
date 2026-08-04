@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "profile": "2.0.0",
+  "namespace": "urn:c3:catalogue:2",
+  "extensions": "reject",
+  "nativeRead": ["2.0.0"],
+  "nativeWrite": "2.0.0",
+  "legacyImport": ["1.1.0"],
+  "legacyExport": "1.1.0-loss-aware",
+  "migrationProfile": "v1.1-to-v2.0/1",
+  "minimumReaderPolicy": "exact-profile",
+  "maximumFileBytes": 67108864,
+  "maximumXmlDepth": 16
+}

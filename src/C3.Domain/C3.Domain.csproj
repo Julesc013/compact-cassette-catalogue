@@ -48,6 +48,7 @@
     <Compile Include="Commands\CommandResult.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Identity\DeterministicEntityIdGenerator.cs" />
+    <Compile Include="Identity\DeterministicEntityId.cs" />
     <Compile Include="Identity\EntityId.cs" />
     <Compile Include="Identity\IEntityIdGenerator.cs" />
     <Compile Include="Identity\RandomEntityIdGenerator.cs" />

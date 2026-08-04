@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "profile": "v1.1-to-v2.0/1",
+  "vectors": [
+    {
+      "kind": "legacy-local-wall-clock-assumed-utc",
+      "input": "2026-08-04T00:00:00+10:00",
+      "normalized": "2026-08-04T00:00:00.0000000Z"
+    },
+    {
+      "kind": "decimal-invariant",
+      "input": "90.000",
+      "normalized": "90"
+    },
+    {
+      "kind": "empty-text-preserved",
+      "input": "",
+      "normalized": ""
+    },
+    {
+      "kind": "legacy-code-preserved",
+      "input": "MAX-2-XLII-1",
+      "normalized": "MAX-2-XLII-1"
+    }
+  ]
+}

@@ -57,6 +57,13 @@
     <Compile Include="Decks\DeckOperationResult.cs" />
     <Compile Include="Decks\DeckService.cs" />
     <Compile Include="Decks\IDeckRepository.cs" />
+    <Compile Include="Native\NativeBrand.cs" />
+    <Compile Include="Native\NativeCassetteModel.cs" />
+    <Compile Include="Native\NativeCatalogue.cs" />
+    <Compile Include="Native\NativeCatalogueMetadata.cs" />
+    <Compile Include="Native\NativeDeck.cs" />
+    <Compile Include="Native\NativeTape.cs" />
+    <Compile Include="Native\NativeText.cs" />
     <Compile Include="Tapes\ITapeRepository.cs" />
     <Compile Include="Tapes\Tape.cs" />
     <Compile Include="Tapes\TapeDraft.cs" />

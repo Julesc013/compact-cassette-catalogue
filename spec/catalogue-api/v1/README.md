@@ -1,7 +1,9 @@
 # Catalogue-library public API baseline v1
 
-This directory freezes the public compiled surface of the VB
-`C3.Catalogue` assembly at the start of the Alpha 3 C# migration.
+This directory versions the accepted public compiled surface of the
+`C3.Catalogue` assembly. It began as the VB oracle for the Alpha 3 C# migration;
+Alpha 4 deliberately extends the same contract with the typed native-v2 model
+after ADR 0009, the candidate format invariants, and executable graph tests.
 
 `public-api.txt` is a deterministic reflection projection containing exported
 types, enum values, constructors, properties, events, and ordinary methods. It
@@ -22,6 +24,7 @@ An intentional API change requires all of the following in one reviewed slice:
 3. make one implementation the sole production owner; and
 4. regenerate the baseline explicitly with `-WriteBaseline` only after review.
 
-Do not edit the baseline to hide an unexplained difference. A mechanical C#
-port must first reproduce the frozen signatures and behavior; later native-2.0
-contracts evolve through their own versioned boundary.
+Do not edit the baseline to hide an unexplained difference. The Alpha 3
+mechanical port first reproduced all 269 legacy signatures. The Alpha 4 native
+model expands the accepted surface to 398 signatures; later changes still need
+their own explicit contract-and-test slice.

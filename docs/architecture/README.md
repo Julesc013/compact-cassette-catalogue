@@ -22,7 +22,9 @@ The architecture optimizes for four things, in this order:
 | `C3.WinForms` | Forms, controls, user interaction, workspace state, preference composition, and runtime-lane policy | Persistence parsing or duplicated domain rules |
 
 During Alpha 3, named behaviors moved to `C3.Domain` without retaining a second
-implementation. The compiled Catalogue surface remains frozen in
+implementation. Alpha 4 adds the stable-ID native catalogue graph to
+`C3.Catalogue.Native`; format syntax and migration remain Infrastructure
+concerns. The compiled Catalogue surface is versioned in
 [`spec/catalogue-api/v1`](../../spec/catalogue-api/v1/README.md) and checked after
 every characterization build; behavior remains protected by the executable
 characterization suite.
@@ -95,10 +97,12 @@ Saving uses a snapshot and a temporary file in the destination directory. The
 temporary output is flushed, reopened, and validated before replacement. A failed
 save never clears dirty state and never destroys the last known-good file.
 
-The v1.1 catalogue reader is tolerant of compatible historical input. The writer
-is deterministic. The versioned specification, invariants, and golden fixtures
-are the current implemented compatibility contract; the complete public 1.x
-corpus remains a C3 2.0 programme gate.
+The v1.1 catalogue reader is tolerant of compatible historical input. Its writer
+remains the sole legacy-format owner. The frozen native-v2 candidate profile uses
+the typed graph, stable references, canonical ordering, and strict limits in
+[`spec/catalogue/v2.0.0`](../../spec/catalogue/v2.0.0/README.md); no published
+support claim exists until reader, writer, migration, export, CLI, and recovery
+gates pass together.
 
 ## Extensibility policy
 

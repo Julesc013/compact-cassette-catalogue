@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:c3:catalogue:2"
+           xmlns:c3="urn:c3:catalogue:2"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+  <xs:simpleType name="EntityId">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-f]{32}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Sha256">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-f]{64}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UtcTimestamp">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{7}Z" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RequiredText">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1048576" />
+      <xs:pattern value=".*[^&#x9;&#xA;&#xD; ].*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Text">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1048576" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NonNegativeDecimal">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SidePosition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="A" />
+      <xs:enumeration value="B" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="catalogue" type="c3:Catalogue" />
+
+  <xs:complexType name="Catalogue">
+    <xs:sequence>
+      <xs:element name="metadata" type="c3:Metadata" />
+      <xs:element name="brands" type="c3:Brands" />
+      <xs:element name="cassetteModels" type="c3:CassetteModels" />
+      <xs:element name="deckModels" type="c3:DeckModels" />
+      <xs:element name="deckUnits" type="c3:DeckUnits" />
+      <xs:element name="tapes" type="c3:Tapes" />
+    </xs:sequence>
+    <xs:attribute name="format" use="required" fixed="2.0.0" />
+    <xs:attribute name="id" type="c3:EntityId" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="Metadata">
+    <xs:sequence>
+      <xs:element name="producer" type="c3:RequiredText" />
+      <xs:element name="createdUtc" type="c3:UtcTimestamp" />
+      <xs:element name="modifiedUtc" type="c3:UtcTimestamp" />
+      <xs:element name="provenance" type="c3:Provenance" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Provenance">
+    <xs:sequence>
+      <xs:element name="sourceFormat" type="c3:RequiredText" />
+      <xs:element name="sourceRevision" type="c3:Sha256" />
+      <xs:element name="migrationProfile" type="c3:RequiredText" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Brands">
+    <xs:sequence>
+      <xs:element name="brand" type="c3:Brand" minOccurs="0" maxOccurs="100000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Brand">
+    <xs:sequence>
+      <xs:element name="name" type="c3:RequiredText" />
+      <xs:element name="legacyCode" type="c3:RequiredText" />
+      <xs:element name="addedUtc" type="c3:UtcTimestamp" />
+      <xs:element name="notes" type="c3:Text" />
+    </xs:sequence>
+    <xs:attribute name="id" type="c3:EntityId" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="CassetteModels">
+    <xs:sequence>
+      <xs:element name="cassetteModel" type="c3:CassetteModel" minOccurs="0" maxOccurs="250000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CassetteModel">
+    <xs:sequence>
+      <xs:element name="brandId" type="c3:EntityId" />
+      <xs:element name="typeNumber" type="xs:int" />
+      <xs:element name="modelName" type="c3:RequiredText" />
+      <xs:element name="legacyCode" type="c3:RequiredText" />
+      <xs:element name="legacyIdentifier" type="c3:RequiredText" />
+      <xs:element name="displayName" type="c3:RequiredText" />
+      <xs:element name="addedUtc" type="c3:UtcTimestamp" />
+      <xs:element name="notes" type="c3:Text" />
+    </xs:sequence>
+    <xs:attribute name="id" type="c3:EntityId" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="DeckModels">
+    <xs:sequence>
+      <xs:element name="deckModel" type="c3:DeckModel" minOccurs="0" maxOccurs="100000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeckModel">
+    <xs:sequence>
+      <xs:element name="manufacturer" type="c3:RequiredText" />
+      <xs:element name="model" type="c3:RequiredText" />
+      <xs:element name="year" type="xs:int" />
+      <xs:element name="capabilities" type="c3:DeckCapabilities" />
+    </xs:sequence>
+    <xs:attribute name="id" type="c3:EntityId" use="required" />
+  </xs:complexType>
+  <xs:complexType name="DeckCapabilities">
+    <xs:sequence>
+      <xs:element name="type1" type="xs:boolean" /><xs:element name="type2" type="xs:boolean" />
+      <xs:element name="type3" type="xs:boolean" /><xs:element name="type4" type="xs:boolean" />
+      <xs:element name="hx" type="xs:boolean" /><xs:element name="mpx" type="xs:boolean" />
+      <xs:element name="dolbyB" type="xs:boolean" /><xs:element name="dolbyC" type="xs:boolean" />
+      <xs:element name="dolbyS" type="xs:boolean" /><xs:element name="dbx1" type="xs:boolean" />
+      <xs:element name="dbx2" type="xs:boolean" /><xs:element name="stereo" type="xs:boolean" />
+      <xs:element name="programSearch" type="xs:boolean" /><xs:element name="reverse" type="xs:boolean" />
+      <xs:element name="calibration" type="xs:boolean" /><xs:element name="azimuth" type="xs:boolean" />
+      <xs:element name="dubbingSlow" type="xs:boolean" /><xs:element name="dubbingFast" type="xs:boolean" />
+      <xs:element name="frequencyLow" type="xs:int" /><xs:element name="frequencyHigh" type="xs:int" />
+      <xs:element name="signalRatio" type="xs:int" /><xs:element name="signalRatioNoiseReduction" type="c3:Text" />
+      <xs:element name="wowFlutter" type="xs:decimal" /><xs:element name="distortion" type="xs:decimal" />
+      <xs:element name="heads" type="xs:int" /><xs:element name="wells" type="xs:int" />
+      <xs:element name="speedSlow" type="xs:boolean" /><xs:element name="speedNormal" type="xs:boolean" />
+      <xs:element name="speedFast" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeckUnits">
+    <xs:sequence>
+      <xs:element name="deckUnit" type="c3:DeckUnit" minOccurs="0" maxOccurs="100000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeckUnit">
+    <xs:sequence>
+      <xs:element name="deckModelId" type="c3:EntityId" />
+      <xs:element name="name" type="c3:RequiredText" />
+      <xs:element name="legacyKey" type="c3:RequiredText" />
+      <xs:element name="condition" type="xs:int" />
+      <xs:element name="addedUtc" type="c3:UtcTimestamp" />
+      <xs:element name="notes" type="c3:Text" />
+    </xs:sequence>
+    <xs:attribute name="id" type="c3:EntityId" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="Tapes">
+    <xs:sequence>
+      <xs:element name="tape" type="c3:Tape" minOccurs="0" maxOccurs="1000000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Tape">
+    <xs:sequence>
+      <xs:element name="cassetteModelId" type="c3:EntityId" />
+      <xs:element name="year" type="xs:int" />
+      <xs:element name="lengthMinutes" type="c3:NonNegativeDecimal" />
+      <xs:element name="region" type="c3:Text" />
+      <xs:element name="number" type="xs:int" />
+      <xs:element name="legacyIdentifier" type="c3:RequiredText" />
+      <xs:element name="legacyShortIdentifier" type="c3:RequiredText" />
+      <xs:element name="condition" type="xs:int" />
+      <xs:element name="packaged" type="xs:boolean" />
+      <xs:element name="addedUtc" type="c3:UtcTimestamp" />
+      <xs:element name="notes" type="c3:Text" />
+      <xs:element name="sides" type="c3:TapeSides" />
+    </xs:sequence>
+    <xs:attribute name="id" type="c3:EntityId" use="required" />
+  </xs:complexType>
+  <xs:complexType name="TapeSides">
+    <xs:sequence>
+      <xs:element name="side" type="c3:TapeSide" minOccurs="2" maxOccurs="2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TapeSide">
+    <xs:sequence>
+      <xs:element name="name" type="c3:Text" />
+      <xs:element name="recording" type="c3:Recording" minOccurs="0" />
+    </xs:sequence>
+    <xs:attribute name="position" type="c3:SidePosition" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Recording">
+    <xs:sequence>
+      <xs:element name="deckUnitId" type="c3:EntityId" minOccurs="0" />
+      <xs:element name="recordedUtc" type="c3:UtcTimestamp" />
+      <xs:element name="inputName" type="c3:Text" />
+      <xs:element name="peakLevel" type="xs:int" />
+      <xs:element name="noiseReduction" type="c3:Text" />
+      <xs:element name="hx" type="xs:boolean" /><xs:element name="mpx" type="xs:boolean" />
+      <xs:element name="dubbed" type="xs:boolean" /><xs:element name="speed" type="c3:Text" />
+      <xs:element name="bias" type="xs:int" /><xs:element name="biasCalibration" type="xs:int" />
+      <xs:element name="equalization" type="c3:Text" /><xs:element name="level" type="xs:decimal" />
+      <xs:element name="levelCalibration" type="xs:decimal" /><xs:element name="contents" type="c3:Text" />
+      <xs:element name="artist" type="c3:Text" /><xs:element name="title" type="c3:Text" />
+    </xs:sequence>
+    <xs:attribute name="id" type="c3:EntityId" use="required" />
+  </xs:complexType>
+</xs:schema>

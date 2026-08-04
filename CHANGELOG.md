@@ -6,7 +6,11 @@
 
 ### Version 2.0.0 Alpha 4 - In development
 
-- Milestone implementation in progress.
+- Froze the candidate native-v2 namespace, XML Schema, semantic/canonical
+  invariants, security limits, support matrix, and normalization vectors.
+- Added the stable-ID native catalogue graph for brands, cassette models, deck
+  models, physical deck units, tapes, sides, and owned recordings, with exact
+  typed-reference validation and deterministic key-based migration identity.
 
 
 ### Version 2.0.0 Alpha 3 - Qualified, intentionally unpublished (2026-08-04)

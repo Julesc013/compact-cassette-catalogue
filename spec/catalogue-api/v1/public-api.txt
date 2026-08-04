@@ -9,6 +9,17 @@ ctor|C3.Catalogue.Catalogues.CatalogueSession|System.String newCatalogueDisplayN
 ctor|C3.Catalogue.Decks.Deck|System.String name,System.DateTime addedAt,C3.Catalogue.Decks.DeckDetails details
 ctor|C3.Catalogue.Decks.DeckDetails|System.String manufacturer,System.String model,System.Int32 year,System.Int32 condition,System.Boolean type1,System.Boolean type2,System.Boolean type3,System.Boolean type4,System.Boolean hx,System.Boolean mpx,System.Boolean dolbyB,System.Boolean dolbyC,System.Boolean dolbyS,System.Boolean dbx1,System.Boolean dbx2,System.Boolean stereo,System.Boolean programSearch,System.Boolean reverse,System.Boolean calibration,System.Boolean azimuth,System.Boolean dubbingSlow,System.Boolean dubbingFast,System.Int32 frequencyLow,System.Int32 frequencyHigh,System.Int32 signalRatio,System.String signalRatioNoiseReduction,System.Decimal wowFlutter,System.Decimal distortion,System.Int32 heads,System.Int32 wells,System.Boolean speedSlow,System.Boolean speedNormal,System.Boolean speedFast,System.String notes
 ctor|C3.Catalogue.Decks.DeckService|C3.Catalogue.Decks.IDeckRepository repository
+ctor|C3.Catalogue.Native.NativeBrand|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeBrand> id,System.String name,System.String legacyCode,C3.Domain.Time.UtcTimestamp addedAt,System.String notes
+ctor|C3.Catalogue.Native.NativeCassetteModel|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeCassetteModel> id,C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeBrand> brandId,System.Int32 typeNumber,System.String modelName,System.String legacyCode,System.String legacyIdentifier,System.String displayName,C3.Domain.Time.UtcTimestamp addedAt,System.String notes
+ctor|C3.Catalogue.Native.NativeCatalogue|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeCatalogue> id,C3.Catalogue.Native.NativeCatalogueMetadata metadata,System.Collections.Generic.IEnumerable<C3.Catalogue.Native.NativeBrand> brands,System.Collections.Generic.IEnumerable<C3.Catalogue.Native.NativeCassetteModel> cassetteModels,System.Collections.Generic.IEnumerable<C3.Catalogue.Native.NativeDeckModel> deckModels,System.Collections.Generic.IEnumerable<C3.Catalogue.Native.NativeDeckUnit> deckUnits,System.Collections.Generic.IEnumerable<C3.Catalogue.Native.NativeTape> tapes
+ctor|C3.Catalogue.Native.NativeCatalogueMetadata|System.String producer,C3.Domain.Time.UtcTimestamp createdAt,C3.Domain.Time.UtcTimestamp modifiedAt,C3.Domain.Values.Optional<C3.Catalogue.Native.NativeCatalogueProvenance> provenance
+ctor|C3.Catalogue.Native.NativeCatalogueProvenance|System.String sourceFormat,System.String sourceRevision,System.String migrationProfile
+ctor|C3.Catalogue.Native.NativeDeckCapabilities|System.Boolean type1,System.Boolean type2,System.Boolean type3,System.Boolean type4,System.Boolean hx,System.Boolean mpx,System.Boolean dolbyB,System.Boolean dolbyC,System.Boolean dolbyS,System.Boolean dbx1,System.Boolean dbx2,System.Boolean stereo,System.Boolean programSearch,System.Boolean reverse,System.Boolean calibration,System.Boolean azimuth,System.Boolean dubbingSlow,System.Boolean dubbingFast,System.Int32 frequencyLow,System.Int32 frequencyHigh,System.Int32 signalRatio,System.String signalRatioNoiseReduction,System.Decimal wowFlutter,System.Decimal distortion,System.Int32 heads,System.Int32 wells,System.Boolean speedSlow,System.Boolean speedNormal,System.Boolean speedFast
+ctor|C3.Catalogue.Native.NativeDeckModel|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckModel> id,System.String manufacturer,System.String model,System.Int32 year,C3.Catalogue.Native.NativeDeckCapabilities capabilities
+ctor|C3.Catalogue.Native.NativeDeckUnit|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckUnit> id,C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckModel> deckModelId,System.String name,System.String legacyKey,System.Int32 condition,C3.Domain.Time.UtcTimestamp addedAt,System.String notes
+ctor|C3.Catalogue.Native.NativeRecording|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeRecording> id,C3.Domain.Values.Optional<C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckUnit>> deckUnitId,C3.Domain.Time.UtcTimestamp recordedAt,System.String inputName,System.Int32 peakLevel,System.String noiseReduction,System.Boolean hx,System.Boolean mpx,System.Boolean dubbed,System.String speed,System.Int32 bias,System.Int32 biasCalibration,System.String equalization,System.Decimal level,System.Decimal levelCalibration,System.String contents,System.String artist,System.String title
+ctor|C3.Catalogue.Native.NativeTape|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeTape> id,C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeCassetteModel> cassetteModelId,System.Int32 year,System.Decimal lengthMinutes,System.String region,System.Int32 number,System.String legacyIdentifier,System.String legacyShortIdentifier,System.Int32 condition,System.Boolean packaged,C3.Domain.Time.UtcTimestamp addedAt,System.String notes,C3.Catalogue.Native.NativeTapeSide sideA,C3.Catalogue.Native.NativeTapeSide sideB
+ctor|C3.Catalogue.Native.NativeTapeSide|C3.Catalogue.Native.NativeTapeSidePosition position,System.String name,C3.Domain.Values.Optional<C3.Catalogue.Native.NativeRecording> recording
 ctor|C3.Catalogue.Tapes.Tape|System.String modelIdentifier,System.Int32 year,System.Decimal lengthMinutes,System.String region,System.Int32 number,System.String identifier,System.String shortIdentifier,System.Int32 condition,System.Boolean packaged,C3.Catalogue.Tapes.TapeSide sideA,C3.Catalogue.Tapes.TapeSide sideB,System.DateTime addedAt,System.String notes
 ctor|C3.Catalogue.Tapes.TapeDraft|System.String modelIdentifier,System.Int32 year,System.Decimal lengthMinutes,System.String region,System.Int32 condition,System.Boolean packaged,C3.Catalogue.Tapes.TapeSide sideA,C3.Catalogue.Tapes.TapeSide sideB,System.String notes
 ctor|C3.Catalogue.Tapes.TapeService|C3.Catalogue.Tapes.ITapeRepository repository
@@ -39,6 +50,8 @@ enum|C3.Catalogue.Decks.DeckFailure|ReferencedByTape|7
 enum|C3.Catalogue.Decks.DeckFailure|SpeedRequired|4
 enum|C3.Catalogue.Decks.DeckFailure|StorageFailure|8
 enum|C3.Catalogue.Decks.DeckFailure|TapeTypeRequired|3
+enum|C3.Catalogue.Native.NativeTapeSidePosition|A|0
+enum|C3.Catalogue.Native.NativeTapeSidePosition|B|1
 enum|C3.Catalogue.Tapes.TapeFailure|DuplicateIdentifier|6
 enum|C3.Catalogue.Tapes.TapeFailure|IdentifierCapacityExceeded|4
 enum|C3.Catalogue.Tapes.TapeFailure|InvalidBulkCount|3
@@ -195,6 +208,110 @@ property|C3.Catalogue.Decks.DeckOperationResult|Deck|C3.Catalogue.Decks.Deck|get
 property|C3.Catalogue.Decks.DeckOperationResult|Failure|C3.Catalogue.Decks.DeckFailure|getset
 property|C3.Catalogue.Decks.DeckOperationResult|IsSuccess|System.Boolean|getset
 property|C3.Catalogue.Decks.DeckOperationResult|Message|System.String|getset
+property|C3.Catalogue.Native.NativeBrand|AddedAt|C3.Domain.Time.UtcTimestamp|get
+property|C3.Catalogue.Native.NativeBrand|Id|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeBrand>|get
+property|C3.Catalogue.Native.NativeBrand|LegacyCode|System.String|get
+property|C3.Catalogue.Native.NativeBrand|Name|System.String|get
+property|C3.Catalogue.Native.NativeBrand|Notes|System.String|get
+property|C3.Catalogue.Native.NativeCassetteModel|AddedAt|C3.Domain.Time.UtcTimestamp|get
+property|C3.Catalogue.Native.NativeCassetteModel|BrandId|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeBrand>|get
+property|C3.Catalogue.Native.NativeCassetteModel|DisplayName|System.String|get
+property|C3.Catalogue.Native.NativeCassetteModel|Id|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeCassetteModel>|get
+property|C3.Catalogue.Native.NativeCassetteModel|LegacyCode|System.String|get
+property|C3.Catalogue.Native.NativeCassetteModel|LegacyIdentifier|System.String|get
+property|C3.Catalogue.Native.NativeCassetteModel|ModelName|System.String|get
+property|C3.Catalogue.Native.NativeCassetteModel|Notes|System.String|get
+property|C3.Catalogue.Native.NativeCassetteModel|TypeNumber|System.Int32|get
+property|C3.Catalogue.Native.NativeCatalogue|Brands|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Native.NativeBrand>|get
+property|C3.Catalogue.Native.NativeCatalogue|CassetteModels|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Native.NativeCassetteModel>|get
+property|C3.Catalogue.Native.NativeCatalogue|DeckModels|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Native.NativeDeckModel>|get
+property|C3.Catalogue.Native.NativeCatalogue|DeckUnits|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Native.NativeDeckUnit>|get
+property|C3.Catalogue.Native.NativeCatalogue|Id|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeCatalogue>|get
+property|C3.Catalogue.Native.NativeCatalogue|Metadata|C3.Catalogue.Native.NativeCatalogueMetadata|get
+property|C3.Catalogue.Native.NativeCatalogue|Tapes|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Native.NativeTape>|get
+property|C3.Catalogue.Native.NativeCatalogueMetadata|CreatedAt|C3.Domain.Time.UtcTimestamp|get
+property|C3.Catalogue.Native.NativeCatalogueMetadata|ModifiedAt|C3.Domain.Time.UtcTimestamp|get
+property|C3.Catalogue.Native.NativeCatalogueMetadata|Producer|System.String|get
+property|C3.Catalogue.Native.NativeCatalogueMetadata|Provenance|C3.Domain.Values.Optional<C3.Catalogue.Native.NativeCatalogueProvenance>|get
+property|C3.Catalogue.Native.NativeCatalogueProvenance|MigrationProfile|System.String|get
+property|C3.Catalogue.Native.NativeCatalogueProvenance|SourceFormat|System.String|get
+property|C3.Catalogue.Native.NativeCatalogueProvenance|SourceRevision|System.String|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Azimuth|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Calibration|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Dbx1|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Dbx2|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Distortion|System.Decimal|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|DolbyB|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|DolbyC|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|DolbyS|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|DubbingFast|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|DubbingSlow|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|FrequencyHigh|System.Int32|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|FrequencyLow|System.Int32|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Heads|System.Int32|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Hx|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Mpx|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|ProgramSearch|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Reverse|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|SignalRatio|System.Int32|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|SignalRatioNoiseReduction|System.String|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|SpeedFast|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|SpeedNormal|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|SpeedSlow|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Stereo|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Type1|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Type2|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Type3|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Type4|System.Boolean|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|Wells|System.Int32|get
+property|C3.Catalogue.Native.NativeDeckCapabilities|WowFlutter|System.Decimal|get
+property|C3.Catalogue.Native.NativeDeckModel|Capabilities|C3.Catalogue.Native.NativeDeckCapabilities|get
+property|C3.Catalogue.Native.NativeDeckModel|Id|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckModel>|get
+property|C3.Catalogue.Native.NativeDeckModel|Manufacturer|System.String|get
+property|C3.Catalogue.Native.NativeDeckModel|Model|System.String|get
+property|C3.Catalogue.Native.NativeDeckModel|Year|System.Int32|get
+property|C3.Catalogue.Native.NativeDeckUnit|AddedAt|C3.Domain.Time.UtcTimestamp|get
+property|C3.Catalogue.Native.NativeDeckUnit|Condition|System.Int32|get
+property|C3.Catalogue.Native.NativeDeckUnit|DeckModelId|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckModel>|get
+property|C3.Catalogue.Native.NativeDeckUnit|Id|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckUnit>|get
+property|C3.Catalogue.Native.NativeDeckUnit|LegacyKey|System.String|get
+property|C3.Catalogue.Native.NativeDeckUnit|Name|System.String|get
+property|C3.Catalogue.Native.NativeDeckUnit|Notes|System.String|get
+property|C3.Catalogue.Native.NativeRecording|Artist|System.String|get
+property|C3.Catalogue.Native.NativeRecording|Bias|System.Int32|get
+property|C3.Catalogue.Native.NativeRecording|BiasCalibration|System.Int32|get
+property|C3.Catalogue.Native.NativeRecording|Contents|System.String|get
+property|C3.Catalogue.Native.NativeRecording|DeckUnitId|C3.Domain.Values.Optional<C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeDeckUnit>>|get
+property|C3.Catalogue.Native.NativeRecording|Dubbed|System.Boolean|get
+property|C3.Catalogue.Native.NativeRecording|Equalization|System.String|get
+property|C3.Catalogue.Native.NativeRecording|Hx|System.Boolean|get
+property|C3.Catalogue.Native.NativeRecording|Id|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeRecording>|get
+property|C3.Catalogue.Native.NativeRecording|InputName|System.String|get
+property|C3.Catalogue.Native.NativeRecording|Level|System.Decimal|get
+property|C3.Catalogue.Native.NativeRecording|LevelCalibration|System.Decimal|get
+property|C3.Catalogue.Native.NativeRecording|Mpx|System.Boolean|get
+property|C3.Catalogue.Native.NativeRecording|NoiseReduction|System.String|get
+property|C3.Catalogue.Native.NativeRecording|PeakLevel|System.Int32|get
+property|C3.Catalogue.Native.NativeRecording|RecordedAt|C3.Domain.Time.UtcTimestamp|get
+property|C3.Catalogue.Native.NativeRecording|Speed|System.String|get
+property|C3.Catalogue.Native.NativeRecording|Title|System.String|get
+property|C3.Catalogue.Native.NativeTape|AddedAt|C3.Domain.Time.UtcTimestamp|get
+property|C3.Catalogue.Native.NativeTape|CassetteModelId|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeCassetteModel>|get
+property|C3.Catalogue.Native.NativeTape|Condition|System.Int32|get
+property|C3.Catalogue.Native.NativeTape|Id|C3.Domain.Identity.EntityId<C3.Catalogue.Native.NativeTape>|get
+property|C3.Catalogue.Native.NativeTape|LegacyIdentifier|System.String|get
+property|C3.Catalogue.Native.NativeTape|LegacyShortIdentifier|System.String|get
+property|C3.Catalogue.Native.NativeTape|LengthMinutes|System.Decimal|get
+property|C3.Catalogue.Native.NativeTape|Notes|System.String|get
+property|C3.Catalogue.Native.NativeTape|Number|System.Int32|get
+property|C3.Catalogue.Native.NativeTape|Packaged|System.Boolean|get
+property|C3.Catalogue.Native.NativeTape|Region|System.String|get
+property|C3.Catalogue.Native.NativeTape|SideA|C3.Catalogue.Native.NativeTapeSide|get
+property|C3.Catalogue.Native.NativeTape|SideB|C3.Catalogue.Native.NativeTapeSide|get
+property|C3.Catalogue.Native.NativeTape|Year|System.Int32|get
+property|C3.Catalogue.Native.NativeTapeSide|Name|System.String|get
+property|C3.Catalogue.Native.NativeTapeSide|Position|C3.Catalogue.Native.NativeTapeSidePosition|get
+property|C3.Catalogue.Native.NativeTapeSide|Recording|C3.Domain.Values.Optional<C3.Catalogue.Native.NativeRecording>|get
 property|C3.Catalogue.Tapes.Tape|AddedAt|System.DateTime|get
 property|C3.Catalogue.Tapes.Tape|Condition|System.Int32|get
 property|C3.Catalogue.Tapes.Tape|Identifier|System.String|get
@@ -260,6 +377,18 @@ type|C3.Catalogue.Decks.DeckFailure|enum|sealed
 type|C3.Catalogue.Decks.DeckOperationResult|class|sealed
 type|C3.Catalogue.Decks.DeckService|class|sealed
 type|C3.Catalogue.Decks.IDeckRepository|interface|abstract
+type|C3.Catalogue.Native.NativeBrand|class|sealed
+type|C3.Catalogue.Native.NativeCassetteModel|class|sealed
+type|C3.Catalogue.Native.NativeCatalogue|class|sealed
+type|C3.Catalogue.Native.NativeCatalogueMetadata|class|sealed
+type|C3.Catalogue.Native.NativeCatalogueProvenance|class|sealed
+type|C3.Catalogue.Native.NativeDeckCapabilities|class|sealed
+type|C3.Catalogue.Native.NativeDeckModel|class|sealed
+type|C3.Catalogue.Native.NativeDeckUnit|class|sealed
+type|C3.Catalogue.Native.NativeRecording|class|sealed
+type|C3.Catalogue.Native.NativeTape|class|sealed
+type|C3.Catalogue.Native.NativeTapeSide|class|sealed
+type|C3.Catalogue.Native.NativeTapeSidePosition|enum|sealed
 type|C3.Catalogue.Tapes.ITapeRepository|interface|abstract
 type|C3.Catalogue.Tapes.Tape|class|sealed
 type|C3.Catalogue.Tapes.TapeDraft|class|sealed

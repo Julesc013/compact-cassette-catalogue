@@ -1,56 +1,49 @@
-# C3 catalogue format 2.0.0 design draft
+# C3 catalogue format 2.0.0 candidate profile
 
-Status: **Draft — not implemented, emitted, or supported by a release**
+Status: **Frozen Alpha 4 candidate contract**
 
-This directory is the language-neutral design space for a future native C3
-catalogue profile. Catalogue format 1.1.0 remains the only implemented writer.
-Do not add `2.0.0` to a supported-format list until ADR 0005's acceptance gate
-and the complete release gate pass.
+This directory is the language-neutral contract for C3's native, inspectable
+catalogue format. The profile is not a ZIP container or database: one
+`.c3catalogue` file is deterministic UTF-8 XML without a byte-order mark. C3
+also accepts the profile when it is named `.xml`; extensions are file-association
+hints, not format detection.
 
-## Design goals
+The namespace and format identifier are immutable:
 
-- Plain, deterministic UTF-8 XML that remains inspectable without C3.
-- Stable opaque identity separated from editable names and legacy codes.
-- Explicit references with referential-integrity validation.
-- Lossless representation of C3 2.0's accepted domain.
-- Stream-safe parsing with documented size and complexity limits.
-- Canonical ordering, decimal, date/time, whitespace, and normalization rules.
-- Forward-compatible extension envelopes without accepting unknown core meaning.
-- Deterministic migration from supported legacy fixtures and loss-aware export.
+```text
+namespace  urn:c3:catalogue:2
+format     2.0.0
+```
 
-## Provisional logical model
+The [XML Schema](catalogue.xsd) defines syntax. [Invariants](invariants.md)
+define meaning and canonical writer order. [Security limits](security-limits.md)
+define mandatory rejection boundaries. `support-matrix.v1.json` and
+`normalization-vectors.v1.json` are machine-readable compatibility inputs.
 
-The model is expected to distinguish:
+## Ownership
 
-- catalogue identity and metadata;
-- brands;
-- cassette models;
-- physical tape units;
-- tape sides and recordings;
-- deck models and owned deck units where the accepted domain requires both;
-- user-defined views/tags only if they enter the 2.0 stable scope; and
-- provenance/migration records needed to explain imported identity.
+- `C3.Catalogue.Native` owns the typed native model and referential invariants.
+- `C3.Infrastructure.CatalogueFiles.Xml.V2_0` exclusively owns v2 XML parsing,
+  canonical writing, revisions, and transactional file replacement.
+- `C3.Infrastructure.Migrations.V1_1ToV2_0` exclusively owns legacy mapping,
+  dry runs, reports, recovery journals, and convert-copy orchestration.
+- `C3.Infrastructure.CatalogueFiles.Xml.V1_1` remains the only legacy-format
+  reader/writer and is reused by loss-aware export.
+- WinForms and the CLI call those owners; neither duplicates XML or migration
+  logic.
 
-Names and human-readable codes are editable attributes or aliases. Relationships
-use stable IDs. Timestamps have explicit meaning and offset policy. Derived
-counts are not serialized as independent authority.
+## Compatibility posture
 
-## Provisional XML rules
+Native identifiers are stable opaque 128-bit values. Editable names and legacy
+codes are attributes, never relationship identity. Relationships use IDs and
+must resolve within the same catalogue. Derived counters are never serialized.
 
-- XML declaration and UTF-8 without a byte-order mark.
-- One namespace-qualified root identifying the format profile.
-- DTDs and external entities prohibited.
-- Unknown core elements rejected; documented extension elements retained or
-  reported according to their declared criticality.
-- Canonical element/attribute order defined by the future schema and writer
-  profile, never by reflection or dictionary enumeration.
-- Binary media excluded from the initial XML file; references are URI/path data
-  with an explicit base and portability policy.
+Opening or saving a 1.1 catalogue never converts it. Conversion is a separately
+named operation that writes a new destination, verifies it through the native
+reader, preserves the source bytes, and emits an auditable mapping report.
+Export to 1.1 is also separately named and refuses unreported loss.
 
-## Required artifacts before acceptance
-
-This directory will eventually contain the normative overview, XML Schema,
-canonical examples, invariants, compatibility/loss table, security limits, and
-normalization vectors. Executable fixtures live under a matching versioned
-fixture directory. Migration algorithms and reports are documented separately so
-the format contract does not become implementation-specific.
+ADR 0005 becomes Accepted only after the candidate contract, both build lanes,
+the independent CLI, migration/export fixtures, recovery tests, and exact
+package gates pass together. Until then no published release claims native-v2
+support.
