@@ -44,6 +44,11 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |-- C3.Cli/
 |   |   |-- C3.Cli.csproj
 |   |   `-- Program.cs
+|   |-- C3.Presentation.WinForms/
+|   |   |-- C3.Presentation.WinForms.csproj
+|   |   |-- Workspace/
+|   |   |-- Interaction/
+|   |   `-- Features/
 |   |-- C3.WinForms/
 |   |   |-- C3.WinForms.Net40.vbproj
 |   |   |-- C3.WinForms.Net48.vbproj
@@ -139,8 +144,16 @@ source owns argument parsing, help text, exit-code projection, and composition.
 All catalogue reading, validation, migration, recovery, and legacy export remain
 owned by the same Infrastructure services used by other product surfaces.
 
-`C3.WinForms` composes services and owns interaction and presentation. Its two
-project files compile the same physical feature sources. The Net40 project is the
+`C3.Presentation.WinForms` is the shared C# 7.3, net40-compatible presentation
+boundary accepted in ADR 0011. It owns workspace projections, presenter-level
+state, command-history coordination, and reusable WinForms patterns for both
+lane hosts. It may depend on Catalogue and Domain, but never on Infrastructure,
+XML, files, `DataSet`, concrete settings, or update transport. Feature folders
+are created only as workflows enter the production path.
+
+`C3.WinForms` owns the lane executables, startup composition, runtime-edge policy,
+and the legacy forms that remain until their replacement gates pass. Its two
+project files compile the same physical host sources. The Net40 project is the
 authoritative current designer owner. Generated shared version attributes are
 linked into every managed project from `src/Shared`; no hand-written business
 code belongs there.
@@ -178,6 +191,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Preference format v1 | `spec/preferences/v1` | `XmlUserPreferencesStore`, canonical example test |
 | C3 1.x preference discovery/import | `LegacyUserSettingsImporter` | `fixtures/settings`, path/reader tests |
 | UI mutation refresh | `CatalogueUiCoordinator` | owning main window |
+| Workspace, selection, drafts, command history, and shared interaction patterns | `C3.Presentation.WinForms` and ADR 0011 | presenter/controller tests and both-lane workflow evidence |
 | Runtime capability | `Runtime/RuntimeInfo.vb` | About and diagnostics |
 | Durable product doctrine/scope | product vision and 2.0 scope docs | README summary |
 | UI design contract | `docs/ui/oem-plus-design.md` | forms and manual evidence |

@@ -20,7 +20,8 @@ The architecture optimizes for four things, in this order:
 | `C3.Catalogue` | Compatibility-facing catalogue concepts, commands, rules, results, session semantics, store interfaces, and narrow facades over migrated behavior | Files, XML, `DataSet`, WinForms, settings, networking, OS APIs, or a second implementation of migrated rules |
 | `C3.Infrastructure` | XML format adapters, atomic file I/O, C3-owned preferences and legacy import, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
 | `C3.Cli` | Thin argument parsing, exit-code projection, and headless composition over Infrastructure services | A second parser, mapper, validator, migration, or export implementation |
-| `C3.WinForms` | Forms, controls, user interaction, workspace state, preference composition, and runtime-lane policy | Persistence parsing or duplicated domain rules |
+| `C3.Presentation.WinForms` | Shared C# workspace state, presenters, command-history coordination, and reusable WinForms interaction patterns | Infrastructure, XML, files, `DataSet`, concrete settings, update transport, or catalogue rules |
+| `C3.WinForms` | Lane executables, startup composition, manifests/configuration, runtime-edge policy, and legacy forms pending proven replacement | Shared workspace rules, persistence parsing, or duplicated domain rules |
 
 During Alpha 3, named behaviors moved to `C3.Domain` without retaining a second
 implementation. Alpha 4 adds the stable-ID native catalogue graph to
@@ -54,11 +55,11 @@ small runtime adapters may differ between those project files.
 ## Dependency rule
 
 ```text
-C3.WinForms.Net40 ----+--> C3.Infrastructure --> C3.Catalogue --> C3.Domain
-                      |          |              ^
-C3.WinForms.Net48 ----+----------+--------------+
-                                 +--------------------------> C3.Domain
-C3.Cli --------------------------> C3.Infrastructure
+C3.WinForms.Net40 ----+--> C3.Presentation.WinForms --> C3.Catalogue --> C3.Domain
+                      |                                   ^
+C3.WinForms.Net48 ----+-----------------------------------+
+                      +--> C3.Infrastructure -------------+
+C3.Cli -------------------> C3.Infrastructure
 ```
 
 Dependencies never point toward WinForms. `C3.Catalogue` depends only on APIs
@@ -144,6 +145,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0008: Qualified checkpoint ledger](decisions/0008-qualified-checkpoint-ledger.md)
 - [ADR 0009: Typed domain identity and command contracts](decisions/0009-typed-domain-contracts.md)
 - [ADR 0010: Stable release identity](decisions/0010-stable-release-identity.md)
+- [ADR 0011: Shared C# WinForms presentation boundary](decisions/0011-shared-winforms-presentation-boundary.md)
 - [Distribution doctrine](../development/distribution.md)
 - [Release catalogue v1 contract](../../spec/release-catalog/v1/README.md)
 - [Update release manifest v1 contract](../../spec/update-feed/v1/README.md)
