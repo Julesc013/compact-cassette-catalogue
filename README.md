@@ -19,9 +19,11 @@ safety, typed identity and commands, deterministic migration, recovery and
 undo/redo, an OEM+ accessible WinForms workspace, reproducible distribution, and
 open language-neutral contracts. It is not a big-bang rewrite.
 
-The domain, catalogue, and infrastructure layers are explicit C# 7.3 after
-proven, API-frozen slices. Remaining VB presentation code stays in production
-until its replacement passes compatibility and UI parity. C11 belongs to
+The domain, catalogue, infrastructure, and shared presentation layers are
+explicit C# 7.3 after proven slices. Alpha 5 now routes the first complete
+Brands workflow through the same C# form and semantic undo/redo commands in both
+lanes; remaining VB presentation code stays in production until each replacement
+passes its own compatibility and UI gate. C11 belongs to
 Universal Setup/bootstrap work;
 C++11 is reserved for a measured isolated native boundary, never catalogue logic.
 

@@ -86,6 +86,7 @@
     <Import Include="C3.Infrastructure.Preferences" />
     <Import Include="C3.Infrastructure.Updates" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
+    <Import Include="C3.Presentation.WinForms.Features.Brands" />
     <Import Include="C3.Presentation.WinForms.Workspace" />
   </ItemGroup>
   <ItemGroup>

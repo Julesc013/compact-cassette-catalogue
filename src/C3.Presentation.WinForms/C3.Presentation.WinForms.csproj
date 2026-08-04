@@ -44,6 +44,12 @@
     </Compile>
     <Compile Include="Features\Brands\BrandCommands.cs" />
     <Compile Include="Features\Brands\BrandEditorModel.cs" />
+    <Compile Include="Features\Brands\BrandWorkspaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Brands\BrandWorkspaceForm.Designer.cs">
+      <DependentUpon>BrandWorkspaceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Brands\BrandWorkspacePresenter.cs" />
     <Compile Include="Interaction\EmptyStatePresentation.cs" />
     <Compile Include="Interaction\FeedbackPresentation.cs" />

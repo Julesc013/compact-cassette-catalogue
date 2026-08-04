@@ -19,6 +19,10 @@
   progress presentations, plus a control-independent Brands workflow whose
   create, update, and delete commands use the existing catalogue owner and
   support checkpoint-aware undo/redo.
+- Replaced the duplicate VB Brand browse/create/edit forms with one shared C#
+  Brands workspace for both runtime lanes, with DPI-aware layout, keyboard and
+  accessibility contracts, stable multi-selection, draft-close protection, and
+  reference-safe reversible commands.
 
 
 ### Version 2.0.0 Alpha 4 - Qualified, intentionally unpublished (2026-08-05)

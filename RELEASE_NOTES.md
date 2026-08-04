@@ -23,6 +23,11 @@ Implemented so far:
   reference-safe failure handling, dirty checkpoints, and exact undo/redo; and
 - introduced reusable field, validation, list, inspector, empty-state,
   feedback, and progress presentation contracts; and
+- replaced the three VB Brand browse/create/edit forms with one shared,
+  resizable, DPI-scaled C# Brands workspace used by both lanes, including
+  keyboard operation, accessible names, stable multi-selection, partial
+  reference-safe delete, explicit draft-close handling, and semantic undo/redo;
+  and
 - expanded the canonical portable payload to include the shared presentation
   assembly from the same manifest in both lanes.
 

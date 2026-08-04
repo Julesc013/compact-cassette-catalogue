@@ -21,6 +21,8 @@ Documentation is organized by its audience and ownership.
 - [C3 2.0 execution plan](planning/2.0-execution-plan.md)
 - [Catalogue 1.1 to native v2 migration design](migration/catalogue-1.1-to-2.0.md)
 - [OEM+ desktop experience contract](ui/oem-plus-design.md)
+- [Shared interaction patterns](ui/interaction-patterns.md)
+- [Brands workspace design and evidence](ui/brands-workspace.md)
 - [AIDE integration boundary](integrations/aide.md)
 - [Universal Setup integration boundary](integrations/universal-setup.md)
 
@@ -44,6 +46,7 @@ Documentation is organized by its audience and ownership.
 ## User and support material
 
 - [Versioned user documentation](user/README.md)
+- [Using the Brands workspace](user/brands-workspace.md)
 - [Migrating from C3 1.x](user/migrating-from-1.x.md)
 - [Diagnostic reports](user/diagnostics.md)
 - [Support policy](../SUPPORT.md)

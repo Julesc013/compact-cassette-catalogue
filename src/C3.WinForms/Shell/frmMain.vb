@@ -1209,8 +1209,7 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchManufacturersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchManufacturersToolStripMenuItem.Click
-        Dim window As New frmBrands()
-        window.Show(Me)
+        OpenBrandWorkspace(False)
     End Sub
 
     Private Sub ViewDecksToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDecksToolStripMenuItem.Click
@@ -1358,9 +1357,23 @@ Public Class frmMain
     End Sub
 
     Private Sub NewManufactererToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewManufactererToolStripMenuItem.Click
-        Using editor As New frmBrandNew()
-            editor.ShowDialog(Me)
+        OpenBrandWorkspace(True)
+    End Sub
+
+    Private Sub OpenBrandWorkspace(beginCreate As Boolean)
+        Using window As New BrandWorkspaceForm(
+                Composition.BrandService,
+                Composition.Workspace,
+                beginCreate)
+            window.Icon = Me.Icon
+            AddHandler window.CatalogueChanged, AddressOf BrandWorkspaceCatalogueChanged
+            window.ShowDialog(Me)
+            RemoveHandler window.CatalogueChanged, AddressOf BrandWorkspaceCatalogueChanged
         End Using
+    End Sub
+
+    Private Sub BrandWorkspaceCatalogueChanged(sender As Object, e As EventArgs)
+        RefreshAfterCatalogueMutation()
     End Sub
 
     Private Sub NewModelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewModelToolStripMenuItem.Click

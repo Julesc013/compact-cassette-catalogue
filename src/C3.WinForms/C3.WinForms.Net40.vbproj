@@ -114,6 +114,7 @@
     <Import Include="C3.Infrastructure.Preferences" />
     <Import Include="C3.Infrastructure.Updates" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
+    <Import Include="C3.Presentation.WinForms.Features.Brands" />
     <Import Include="C3.Presentation.WinForms.Workspace" />
   </ItemGroup>
   <ItemGroup>
@@ -125,18 +126,6 @@
     </Compile>
     <Compile Include="Bootstrap\ApplicationEvents.vb" />
     <Compile Include="Bootstrap\ApplicationComposition.vb" />
-    <Compile Include="Features\Brands\frmBrandEdit.Designer.vb">
-      <DependentUpon>frmBrandEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Brands\frmBrandEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Brands\frmBrandNew.Designer.vb">
-      <DependentUpon>frmBrandNew.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Brands\frmBrandNew.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Features\Decks\frmDeckEdit.Designer.vb">
       <DependentUpon>frmDeckEdit.vb</DependentUpon>
     </Compile>
@@ -201,12 +190,6 @@
     <Compile Include="Features\Statistics\frmStatistics.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Brands\frmBrands.Designer.vb">
-      <DependentUpon>frmBrands.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Brands\frmBrands.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Features\Decks\frmDecks.Designer.vb">
       <DependentUpon>frmDecks.vb</DependentUpon>
     </Compile>
@@ -248,12 +231,6 @@
     <EmbeddedResource Include="Features\About\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Brands\frmBrandEdit.resx">
-      <DependentUpon>frmBrandEdit.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Brands\frmBrandNew.resx">
-      <DependentUpon>frmBrandNew.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Features\Decks\frmDeckEdit.resx">
       <DependentUpon>frmDeckEdit.vb</DependentUpon>
     </EmbeddedResource>
@@ -284,9 +261,6 @@
     <EmbeddedResource Include="Features\Statistics\frmStatistics.resx">
       <DependentUpon>frmStatistics.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Brands\frmBrands.resx">
-      <DependentUpon>frmBrands.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Features\Decks\frmDecks.resx">
       <DependentUpon>frmDecks.vb</DependentUpon>
     </EmbeddedResource>
@@ -309,7 +283,6 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\DataSources\Compact_Cassette_Catalogue.My.MyApplication.datasource" />
-    <None Include="My Project\DataSources\frmBrandNew.datasource" />
     <None Include="My Project\DataSources\frmConsole.datasource" />
     <None Include="My Project\DataSources\frmDeckNew.datasource" />
     <None Include="My Project\DataSources\frmDecks.datasource" />

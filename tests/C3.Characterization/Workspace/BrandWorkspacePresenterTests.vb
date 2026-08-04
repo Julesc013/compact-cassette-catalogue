@@ -74,6 +74,21 @@ Friend Module BrandWorkspacePresenterTests
         AssertEqual("Maxell Audio", service.Find("MX").Name, "undo delete restores value")
         AssertEqual(addedAt, service.Find("MX").AddedAt, "undo delete restores timestamp")
 
+        presenter.BeginCreate()
+        presenter.UpdateDraft("TDK", "TD", "Archive stock")
+        AssertEqual(True, presenter.Apply(), "second brand create")
+        presenter.Select(New String() {"MX", "TD"})
+        AssertEqual(2, presenter.SelectedCount, "stable multiple selection")
+        AssertEqual(False, presenter.CanEdit, "multiple selection cannot edit one")
+        AssertEqual(True, presenter.CanDelete, "multiple selection can delete")
+        AssertEqual(True, presenter.DeleteSelected(), "multiple delete")
+        AssertEqual(Nothing, service.Find("MX"), "first selected brand deleted")
+        AssertEqual(Nothing, service.Find("TD"), "second selected brand deleted")
+        AssertEqual(True, presenter.Undo(), "undo second selected delete")
+        AssertEqual("TDK", service.Find("TD").Name, "second selected brand restored")
+        AssertEqual(True, presenter.Undo(), "undo first selected delete")
+        AssertEqual("Maxell Audio", service.Find("MX").Name, "first selected brand restored")
+
         Dim model As DataRow = document.Tables("Models").NewRow()
         model("Brand") = "MX"
         model("Identifier") = "MX-2-XLII"

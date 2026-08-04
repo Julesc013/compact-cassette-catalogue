@@ -61,6 +61,9 @@ Module Program
             "shared interaction patterns expose empty error and progress states",
             AddressOf BrandWorkspacePresenterTests.SharedPatternsExposeExplicitStates)
         RunTest(
+            "shared Brand form preserves designer DPI keyboard and accessibility contracts",
+            AddressOf BrandWorkspaceFormContractTests.PreservesDesignerDpiKeyboardAndAccessibilityContracts)
+        RunTest(
             "native catalogue graph uses stable typed references",
             AddressOf NativeCatalogueContractTests.NativeGraphUsesStableTypedReferencesAndCanonicalOrder)
         RunTest(

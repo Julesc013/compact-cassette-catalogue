@@ -2,6 +2,7 @@ using C3.Catalogue.Brands;
 using C3.Presentation.WinForms.Interaction;
 using C3.Presentation.WinForms.Workspace;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -70,9 +71,13 @@ namespace C3.Presentation.WinForms.Features.Brands
             ? workspace.State.View.FilterText
             : string.Empty;
 
-        public bool CanEdit => Inspector.HasSelection;
+        public int SelectedCount => workspace.State.Selection.Feature == FeatureKey
+            ? workspace.State.Selection.SelectedIds.Count
+            : 0;
 
-        public bool CanDelete => Inspector.HasSelection;
+        public bool CanEdit => SelectedCount == 1 && Inspector.HasSelection;
+
+        public bool CanDelete => SelectedCount > 0;
 
         public bool CanUndo => workspace.History.CanUndo;
 
@@ -95,16 +100,40 @@ namespace C3.Presentation.WinForms.Features.Brands
 
         public void Select(string code)
         {
-            var value = service.Find(code);
-            if (value == null)
+            Select(string.IsNullOrWhiteSpace(code) ? new string[0] : new[] { code });
+        }
+
+        public void Select(IEnumerable<string> codes)
+        {
+            if (codes == null)
+            {
+                throw new ArgumentNullException(nameof(codes));
+            }
+
+            var values = codes
+                .Select(service.Find)
+                .Where(value => value != null)
+                .GroupBy(value => value.Code, StringComparer.OrdinalIgnoreCase)
+                .Select(group => group.First())
+                .ToList();
+            if (values.Count == 0)
             {
                 workspace.State.Selection.Clear();
-                Inspector.Clear();
             }
             else
             {
-                workspace.State.Selection.SelectOnly(FeatureKey, value.Code);
-                Inspector.Select(value);
+                workspace.State.Selection.Select(
+                    FeatureKey,
+                    values.Select(value => value.Code));
+            }
+
+            if (values.Count == 1)
+            {
+                Inspector.Select(values[0]);
+            }
+            else
+            {
+                Inspector.Clear();
             }
 
             Validation.Clear();
@@ -148,7 +177,6 @@ namespace C3.Presentation.WinForms.Features.Brands
             Editor.Update(name, code, notes);
             workspace.State.EditorDraft.MarkChanged();
             Validation.Clear();
-            RaiseStateChanged();
         }
 
         public bool Apply()
@@ -205,30 +233,48 @@ namespace C3.Presentation.WinForms.Features.Brands
 
         public bool DeleteSelected()
         {
-            if (!Inspector.HasSelection)
+            if (!CanDelete)
             {
-                Feedback.Show(FeedbackKind.Warning, "Select one brand to delete.");
+                Feedback.Show(FeedbackKind.Warning, "Select one or more brands to delete.");
                 RaiseStateChanged();
                 return false;
             }
 
-            var code = Inspector.Value.Code;
-            var result = workspace.Execute(new DeleteBrandCommand(service, code));
-            if (!result.IsSuccess)
+            var selectedCodes = workspace.State.Selection.SelectedIds.ToList();
+            var failedCodes = new List<string>();
+            var changedCount = 0;
+            foreach (var code in selectedCodes)
             {
-                PresentFailure(result.Message, code);
-                RaiseStateChanged();
-                return false;
+                var result = workspace.Execute(new DeleteBrandCommand(service, code));
+                if (result.IsSuccess)
+                {
+                    changedCount += 1;
+                }
+                else
+                {
+                    failedCodes.Add(code + ": " + result.Message);
+                }
             }
 
-            workspace.State.Selection.Clear();
-            Inspector.Clear();
-            Feedback.Show(
-                FeedbackKind.Information,
-                "Brand " + code + " was deleted. Use Undo to restore it.");
             ReplaceListPreservingSelection();
+            if (failedCodes.Count > 0)
+            {
+                var message = string.Join("; ", failedCodes.ToArray());
+                Validation.Show(new ValidationMessage(string.Empty, message));
+                Feedback.Show(FeedbackKind.Error, message);
+            }
+            else
+            {
+                Feedback.Show(
+                    FeedbackKind.Information,
+                    changedCount == 1
+                        ? "One brand was deleted. Use Undo to restore it."
+                        : changedCount.ToString() +
+                            " brands were deleted. Undo restores one command at a time.");
+            }
+
             RaiseStateChanged();
-            return true;
+            return changedCount > 0;
         }
 
         public bool Undo()
@@ -266,22 +312,29 @@ namespace C3.Presentation.WinForms.Features.Brands
                     ? "Create a brand to begin describing cassette models."
                     : "Clear or change the notes filter to see other brands.");
 
-            var selectedCode = workspace.State.Selection.Feature == FeatureKey &&
-                workspace.State.Selection.SelectedIds.Count == 1
-                    ? workspace.State.Selection.SelectedIds[0]
-                    : null;
-            var selected = values.FirstOrDefault(value => string.Equals(
-                value.Code,
-                selectedCode,
-                StringComparison.OrdinalIgnoreCase));
-            if (selected == null)
+            var selectedCodes = workspace.State.Selection.Feature == FeatureKey
+                ? workspace.State.Selection.SelectedIds
+                : new List<string>().AsReadOnly();
+            var visibleSelections = values.Where(value => selectedCodes.Any(code =>
+                string.Equals(code, value.Code, StringComparison.OrdinalIgnoreCase))).ToList();
+            if (visibleSelections.Count == 0)
             {
                 workspace.State.Selection.Clear();
                 Inspector.Clear();
             }
             else
             {
-                Inspector.Select(selected);
+                workspace.State.Selection.Select(
+                    FeatureKey,
+                    visibleSelections.Select(value => value.Code));
+                if (visibleSelections.Count == 1)
+                {
+                    Inspector.Select(visibleSelections[0]);
+                }
+                else
+                {
+                    Inspector.Clear();
+                }
             }
         }
 

@@ -159,7 +159,8 @@ XML, files, `DataSet`, concrete settings, or update transport. Feature folders
 are created only as workflows enter the production path.
 
 `C3.WinForms` owns the lane executables, startup composition, runtime-edge policy,
-and the legacy forms that remain until their replacement gates pass. Its two
+and the remaining legacy forms until their replacement gates pass. Brands is
+already owned by the shared C# presentation boundary. Its two
 project files compile the same physical host sources. The Net40 project is the
 authoritative current designer owner. Generated shared version attributes are
 linked into every managed project from `src/Shared`; no hand-written business
@@ -202,7 +203,8 @@ extract a shared abstraction only after more than one real owner needs it.
 | Workspace, selection, drafts, command history, and shared interaction patterns | `C3.Presentation.WinForms` and ADR 0011 | presenter/controller tests and both-lane workflow evidence |
 | Runtime capability | `Runtime/RuntimeInfo.vb` | About and diagnostics |
 | Durable product doctrine/scope | product vision and 2.0 scope docs | README summary |
-| UI design contract | `docs/ui/oem-plus-design.md` | forms and manual evidence |
+| UI design contract | `docs/ui/oem-plus-design.md` and shared interaction patterns | feature forms, presenter tests, and manual evidence |
+| Brands interaction workflow | `C3.Presentation.WinForms/Features/Brands` | one shared form/presenter/command set, both host launch points, characterization, and Alpha 5 UI evidence |
 | Programme dependency order | `docs/planning/2.0-execution-plan.md` | ROADMAP summary; issues/AIDE assignments |
 | Current candidate narrative | `RELEASE_NOTES.md` | local alpha notes or stage-dependent GitHub release draft |
 | Historical product change | `CHANGELOG.md` | tagged history |

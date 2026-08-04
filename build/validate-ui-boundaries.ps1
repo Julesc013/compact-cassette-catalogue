@@ -26,6 +26,52 @@ if (Test-Path -LiteralPath $retiredGlobalState) {
     $failures.Add("Retired global document seam '$retiredGlobalState' has been reintroduced.")
 }
 
+$retiredBrandForms = @(
+    'Features\Brands\frmBrands.vb',
+    'Features\Brands\frmBrandNew.vb',
+    'Features\Brands\frmBrandEdit.vb')
+foreach ($relativePath in $retiredBrandForms) {
+    $retiredPath = Join-Path $winFormsRoot $relativePath
+    if (Test-Path -LiteralPath $retiredPath) {
+        $failures.Add("Retired duplicate Brand form '$retiredPath' has been reintroduced.")
+    }
+}
+
+$presentationRoot = Join-Path $repositoryRoot 'src\C3.Presentation.WinForms'
+$brandFormPath = Join-Path $presentationRoot 'Features\Brands\BrandWorkspaceForm.cs'
+$brandDesignerPath = Join-Path $presentationRoot 'Features\Brands\BrandWorkspaceForm.Designer.cs'
+foreach ($requiredPath in @($brandFormPath, $brandDesignerPath)) {
+    if (-not (Test-Path -LiteralPath $requiredPath -PathType Leaf)) {
+        $failures.Add("Shared Brand workspace file '$requiredPath' is missing.")
+    }
+}
+if (Test-Path -LiteralPath $brandFormPath -PathType Leaf) {
+    $brandFormText = Get-Content -LiteralPath $brandFormPath -Raw
+    foreach ($requiredFragment in @(
+            'BrandWorkspacePresenter',
+            'WorkspaceController',
+            'CatalogueChanged',
+            'ProcessCmdKey')) {
+        if ($brandFormText -notmatch [regex]::Escape($requiredFragment)) {
+            $failures.Add("Shared Brand workspace does not contain '$requiredFragment'.")
+        }
+    }
+}
+if (Test-Path -LiteralPath $brandDesignerPath -PathType Leaf) {
+    $brandDesignerText = Get-Content -LiteralPath $brandDesignerPath -Raw
+    foreach ($requiredFragment in @(
+            'AutoScaleMode.Dpi',
+            'MinimumSize = new System.Drawing.Size(720, 450)',
+            'AccessibleName = "Brands"',
+            'AccessibleName = "Brand name"',
+            'AccessibleName = "Brand code"',
+            'AccessibleName = "Brand notes"')) {
+        if ($brandDesignerText -notmatch [regex]::Escape($requiredFragment)) {
+            $failures.Add("Shared Brand designer does not contain '$requiredFragment'.")
+        }
+    }
+}
+
 function Test-SamePath {
     param([string]$Left, [string]$Right)
     return [string]::Equals(
