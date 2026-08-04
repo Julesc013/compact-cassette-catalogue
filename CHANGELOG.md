@@ -4,7 +4,12 @@
 
 ## Releases
 
-### Version 2.0.0 Alpha 2 - In development
+### Version 2.0.0 Alpha 3 - In development
+
+- Milestone implementation in progress.
+
+
+### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)
 
 - Began the executable C3 1.x compatibility laboratory: public-release
   inventory, provenance-bearing fixtures, supported-baseline classification,

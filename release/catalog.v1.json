@@ -96,6 +96,36 @@
         "length": 224,
         "sha256": "f5536a1bc2a4c6be4741283c04810bd71dc7a7e906915915ae7737a014eba4f9"
       }
+    },
+    {
+      "releaseLabel": "2.0.0-alpha.3",
+      "productVersion": "2.0.0",
+      "stage": "Alpha 3",
+      "channel": "alpha",
+      "predecessor": "2.0.0-alpha.2",
+      "qualification": {
+        "state": "active",
+        "sourceCommit": null
+      },
+      "supersededBy": null,
+      "promotion": {
+        "state": "unpromoted",
+        "targetBranch": "master",
+        "tag": "v2.0.0-alpha.3",
+        "tagObject": null
+      },
+      "publication": {
+        "policy": "intentionally-unpublished",
+        "state": "unpublished",
+        "releaseUrl": null,
+        "feedPromoted": false
+      },
+      "postVerification": {
+        "state": "not-applicable"
+      },
+      "validationRecord": "release/validation/2.0.0-alpha.3.md",
+      "packages": [],
+      "checksumManifest": null
     }
   ]
 }

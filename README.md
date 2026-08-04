@@ -5,7 +5,7 @@ recordings, cassette models, brands, and tape decks. Catalogues remain ordinary,
 inspectable local files that users can copy, back up, and move between supported
 builds.
 
-> **Development status:** C3 2.0.0 Alpha 2 is active on `dev/2.x`. Its source is
+> **Development status:** C3 2.0.0 Alpha 3 is active on `dev/2.x`. Its source is
 > visible, but its binaries, GitHub release, and update feed are intentionally
 > unpublished. C3 1.x development continues on `dev/1.x`; its latest
 > qualified checkpoint is preserved on `legacy/1.x`.
@@ -55,15 +55,15 @@ behavior on the maintenance line.
 
 ## Catalogue compatibility
 
-Product and catalogue-format versions are independent. Alpha 2 still reads and
+Product and catalogue-format versions are independent. Alpha 3 still reads and
 writes the legacy catalogue 1.1.0 profile. A native-v2 format is only a design
 draft until its typed model, schema, migration, legacy mode, loss-aware export,
 security limits, fixtures, and both implementations pass together.
 
 C3 2.0's full 1.x compatibility target covers catalogues, settings, update
-channels, side-by-side use, portable/setup payloads, and rollback. Alpha 2 now
-has a hash-pinned inventory of every public 1.x producer and an exact-binary
-legacy `1.1.0` reader/writer matrix. Packaged/minimum-OS evidence and native-v2
+channels, side-by-side use, portable/setup payloads, and rollback. Qualified
+Alpha 2 established a hash-pinned inventory of every public 1.x producer and an
+exact-binary legacy `1.1.0` reader/writer matrix. Packaged/minimum-OS evidence and native-v2
 migration/export remain explicit later gates. See the
 [evidence matrix](docs/compatibility/1x-evidence-matrix.md) and
 [1.x to 2.x charter](docs/compatibility/1x-to-2x-charter.md).

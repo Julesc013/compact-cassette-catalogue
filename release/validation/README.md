@@ -69,7 +69,8 @@ successful public `P`.
 | `1.2.0-beta.1.md` | Historical 1.x candidate/release evidence |
 | `1.2.1-beta.1.md` | Superseded unpublished local candidate evidence |
 | `2.0.0-alpha.1.md` | Qualified, tagged, intentionally unpublished C3 2.0 checkpoint evidence |
-| `2.0.0-alpha.2.md` | Active C3 2.0 compatibility-laboratory milestone record |
+| `2.0.0-alpha.2.md` | Qualified, tagged, intentionally unpublished C3 2.0 compatibility checkpoint evidence |
+| `2.0.0-alpha.3.md` | Active C3 2.0 typed-domain and C# substrate milestone record |
 
 A superseded record keeps its original hashes and limitations. A new identity
 requires a clean build, new packages, new hashes, and a new validation record.
