@@ -199,12 +199,11 @@ if ($PSCmdlet.ShouldProcess($nextLabel, "begin release-train milestone $Mileston
     }
     foreach ($property in $replacements.Keys) {
         $pattern = "<$property>[^<]+</$property>"
-        $replacement = "<$property>$($replacements[$property])</$property>"
-        $updated = [regex]::Replace($propsText, $pattern, $replacement)
-        if ($updated -ceq $propsText) {
-            throw "Could not update build identity property '$property'."
+        if (-not [regex]::IsMatch($propsText, $pattern)) {
+            throw "Could not find build identity property '$property'."
         }
-        $propsText = $updated
+        $replacement = "<$property>$($replacements[$property])</$property>"
+        $propsText = [regex]::Replace($propsText, $pattern, $replacement)
     }
     [IO.File]::WriteAllText($propsPath, $propsText, $utf8WithoutBom)
 
