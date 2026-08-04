@@ -10,12 +10,16 @@ Alpha 1 is an intentionally unpublished source checkpoint for the recovered
 legacy maintenance programme. It does not contain the planned runtime repairs
 and is not advertised to existing C3 users.
 
-- Reconstructed `dev/1.x` directly from the manually qualified `v1.2.0b1`
-  lineage instead of the broad unpublished 1.2.1-era refactor.
+- Reconstructed `dev/1.x` from safe post-release tip `58a5b7d...`, retaining all
+  eleven documentation-only commits after the manually qualified `v1.2.0b1`
+  tag instead of starting from the broad unpublished 1.2.1-era refactor.
+- Distinguished exact package source `509c9ec...`, qualified release checkpoint
+  `2413e913...`, and development baseline `58a5b7d...`; proved that their
+  production trees are identical.
 - Preserved the superseded refactor tip exactly under annotated archival tag
   `archive/1x-refactor-attempt-2026-08-03`.
-- Corrected `legacy/1.x` to the documented, production-identical baseline
-  checkpoint and recorded the exceptional one-time branch recovery.
+- Defined `legacy/1.x` as the qualified checkpoint ledger: initially the release
+  tag, then the evidence-only qualified 58a-derived reconstruction checkpoint.
 - Defined the final 1.x maintenance constitution: original VB.NET WinForms
   application, forms, filenames, DataSet model, settings, resources, assembly
   identity, and catalogue format 1.1.0 remain authoritative.

@@ -11,6 +11,7 @@ $requiredFiles = @(
     'RELEASE_NOTES.md',
     'TODO.md',
     'docs/README.md',
+    'docs/governance/1x-branch-recovery-2026-08-05.md',
     'docs/governance/legacy-maintenance.md',
     'docs/planning/1.3.0-recovery-plan.md',
     'docs/planning/1.3.0-salvage-ledger.md',
@@ -74,6 +75,11 @@ foreach ($heading in @(
 foreach ($staleHeading in @('## 1.2.x Maintenance', '## 1.3 Usability', '## 3.0 UI Rebuild')) {
     if ($todo.Contains($staleHeading)) {
         $failures.Add("TODO still contains superseded legacy scope: $staleHeading")
+    }
+}
+foreach ($baselineStatement in @('58a5b7d', '509c9ec', '2413e913', 'archive/1.2-postrelease-tip')) {
+    if (-not $todo.Contains($baselineStatement)) {
+        $failures.Add("TODO is missing corrected baseline identity: $baselineStatement")
     }
 }
 

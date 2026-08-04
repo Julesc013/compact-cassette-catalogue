@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$OutputPath = (Join-Path $PSScriptRoot 'baseline-genome.v1.json'),
-    [string]$BaselineRef = 'v1.2.0b1'
+    [string]$BaselineRef = '509c9ec29679e30dcdcb1f57d8874b850cee310c'
 )
 
 Set-StrictMode -Version 2.0

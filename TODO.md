@@ -6,7 +6,11 @@ off only when its committed evidence passes; implementation alone is not done.
 
 ## Alpha 1 — maintenance foundation
 
-- [x] Recover `dev/1.x` directly from `v1.2.0b1`.
+- [x] Recover `dev/1.x` from safe post-release tip `58a5b7d...`.
+- [x] Preserve `58a5b7d...` under annotated tag
+  `archive/1.2-postrelease-tip`.
+- [x] Pin the production genome to exact package source `509c9ec...` while
+  retaining `v1.2.0b1` / `2413e913...` as the release oracle.
 - [x] Preserve the superseded refactor tip under an annotated archival tag.
 - [x] Record the branch correction and permanent branch roles.
 - [x] Define the frozen 1.3 genetic compatibility constitution.

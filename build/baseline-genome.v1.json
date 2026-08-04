@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "baseline": {
-    "ref": "v1.2.0b1",
-    "commit": "2413e9139a098f3321385f2f946e743012a447f5",
+    "ref": "509c9ec29679e30dcdcb1f57d8874b850cee310c",
+    "commit": "509c9ec29679e30dcdcb1f57d8874b850cee310c",
     "productionRoot": "Compact Cassette Catalogue/"
   },
   "productionFiles": [

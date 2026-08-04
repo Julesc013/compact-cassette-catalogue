@@ -7,7 +7,9 @@ integrity repairs.
 
 ## What Alpha 1 establishes
 
-- Direct ancestry from the manually qualified `v1.2.0b1` program.
+- Direct development ancestry from safe post-release tip `58a5b7d...`.
+- Exact production-genome authority from package source `509c9ec...`, with
+  `v1.2.0b1` / `2413e913...` retained as the qualified release oracle.
 - Archival preservation of the superseded 1.2.1/refactor attempt.
 - A hard compatibility constitution for the original VB.NET WinForms app,
   DataSet catalogue, settings, UI resources, and XML format 1.1.0.

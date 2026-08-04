@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$RepositoryRoot = (Split-Path -Parent $PSScriptRoot),
-    [string]$BaselineRef = 'v1.2.0b1'
+    [string]$BaselineRef = '509c9ec29679e30dcdcb1f57d8874b850cee310c'
 )
 
 Set-StrictMode -Version 2.0

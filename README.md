@@ -72,8 +72,9 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 ## Legacy maintenance status
 
 C3 1.3.0 is the final planned release of the original VB.NET/WinForms program.
-It is being repaired directly from `v1.2.0b1`; the later project-splitting
-refactor is not its production ancestry.
+It develops from safe post-release tip `58a5b7d...`; its exact production genome
+is frozen to package source `509c9ec...`, with `v1.2.0b1` as the qualified
+release oracle. The later project-splitting refactor is not production ancestry.
 
 - Alpha 1 freezes the recovery doctrine, compatibility evidence, genome gate,
   and four-lane build scaffolding. It is source-only and unpublished.

@@ -1,7 +1,8 @@
 # Legacy 1.x maintenance policy
 
-This policy governs the final original C3 line from the reconstructed
-`v1.2.0b1` ancestry through C3 1.3.0 and any exceptional 1.3.1 correction.
+This policy governs the final original C3 line from development baseline
+`58a5b7d21daf19e1b6112d44efb887c7d8ea9500` through C3 1.3.0 and any
+exceptional 1.3.1 correction.
 
 ## Purpose and authority
 
@@ -12,11 +13,12 @@ architecture.
 
 The authority order is:
 
-1. the frozen genetic compatibility constitution;
-2. the exact behaviour and data contract of `v1.2.0b1`;
-3. the compatibility oracle supplied by `v1.1.2`;
-4. accepted reproductions and regression tests; and
-5. archived refactor discoveries as patch intent only.
+1. the genetic baseline generated from package source `509c9ec...`;
+2. the qualified behaviour and data contract at `v1.2.0b1` / `2413e913...`;
+3. the documentation-preserving development ancestry through `58a5b7d...`;
+4. the compatibility oracle supplied by `v1.1.2`;
+5. accepted reproductions and regression tests; and
+6. archived refactor discoveries as patch intent only.
 
 If an attractive change conflicts with a higher authority, it is deferred to
 2.x.
