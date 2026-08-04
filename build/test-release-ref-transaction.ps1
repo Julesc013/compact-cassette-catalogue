@@ -118,6 +118,22 @@ try {
         -LiteralPath (Join-Path $repositoryRoot 'release\catalog.v1.json') `
         -Destination (Join-Path $fixtureReleaseRoot 'catalog.v1.json')
 
+    # This fixture always constructs a fresh C -> E -> P transaction. Do not
+    # inherit the live repository's E/P phase when the suite runs after a real
+    # checkpoint has already been tagged and attested.
+    $fixtureCatalogPath = Join-Path $fixtureReleaseRoot 'catalog.v1.json'
+    $fixtureCatalog = Get-Content -LiteralPath $fixtureCatalogPath -Raw | ConvertFrom-Json
+    $fixtureCatalog.milestones[0].promotion.state = 'unpromoted'
+    $fixtureCatalog.milestones[0].promotion.tagObject = $null
+    $fixtureCatalog.milestones[0].publication.state = 'unpublished'
+    $fixtureCatalog.milestones[0].publication.releaseUrl = $null
+    $fixtureCatalog.milestones[0].publication.feedPromoted = $false
+    $fixtureCatalog.milestones[0].postVerification.state = 'not-applicable'
+    [IO.File]::WriteAllText(
+        $fixtureCatalogPath,
+        (($fixtureCatalog | ConvertTo-Json -Depth 10) + "`n"),
+        (New-Object Text.UTF8Encoding($false)))
+
     Set-Content -LiteralPath (Join-Path $workRoot 'payload.txt') -Value 'master baseline'
     [void](Invoke-FixtureGit $workRoot @('add', '--all'))
     [void](Invoke-FixtureGit $workRoot @('commit', '-m', 'Fixture master baseline'))
@@ -160,7 +176,6 @@ try {
     Assert-Equal $eCommit (Get-RemoteObject "refs/tags/$tagName^{}") 'candidate promotion creates annotated tag'
 
     Set-Content -LiteralPath (Join-Path $workRoot 'evidence.txt') -Value 'post-operation P'
-    $fixtureCatalogPath = Join-Path $fixtureReleaseRoot 'catalog.v1.json'
     $fixtureCatalog = Get-Content -LiteralPath $fixtureCatalogPath -Raw | ConvertFrom-Json
     $fixtureCatalog.milestones[0].promotion.state = 'tagged'
     $fixtureCatalog.milestones[0].promotion.tagObject =
