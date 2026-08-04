@@ -25,6 +25,11 @@ off only when its committed evidence passes; implementation alone is not done.
 - [x] Verify PE architecture, framework metadata, settings parity, and no runtime
   DLL payload.
 - [x] Download and hash-check the official `v1.2.0b1` x86/x64 executables.
+- [x] Rebuild all four diagnostic lanes from the production-identical
+  58a-derived reconstruction checkpoint.
+- [x] Run the corrected three-anchor baseline verifier and record exact evidence.
+- [ ] Promote `legacy/1.x` to the qualified production-identical reconstruction
+  checkpoint.
 - [x] Document the Alpha 1, Beta 1, and stable milestone gates.
 - [ ] Set and mechanically verify `1.3.0 / Alpha 1` source identity while leaving
   the public 1.2 feed unchanged.
