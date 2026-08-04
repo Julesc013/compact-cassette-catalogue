@@ -10,6 +10,8 @@ $domainRoot = Join-Path $repositoryRoot 'src\C3.Domain'
 $infrastructureRoot = Join-Path $repositoryRoot 'src\C3.Infrastructure'
 $catalogueProject = Join-Path $catalogueRoot 'C3.Catalogue.csproj'
 $infrastructureProject = Join-Path $infrastructureRoot 'C3.Infrastructure.vbproj'
+$infrastructureCandidateProject = Join-Path $infrastructureRoot `
+    'C3.Infrastructure.CSharpCandidate.csproj'
 $net40Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net40.vbproj'
 $net48Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net48.vbproj'
 
@@ -97,6 +99,22 @@ if ($catalogueProjectReferenceCount -ne 1) {
 $infrastructureProjectText = Get-Content -LiteralPath $infrastructureProject -Raw
 if (-not $infrastructureProjectText.Contains('..\C3.Catalogue\C3.Catalogue.csproj')) {
     $failures.Add('C3.Infrastructure must reference C3.Catalogue.')
+}
+
+$infrastructureCandidateProjectText = Get-Content `
+    -LiteralPath $infrastructureCandidateProject -Raw
+if ($infrastructureCandidateProjectText -notmatch '<LangVersion>7\.3</LangVersion>') {
+    $failures.Add('The C3.Infrastructure C# candidate must pin language version 7.3.')
+}
+if (-not $infrastructureCandidateProjectText.Contains(
+        '..\C3.Catalogue\C3.Catalogue.csproj')) {
+    $failures.Add('The C3.Infrastructure C# candidate must reference C3.Catalogue.')
+}
+$infrastructureCandidateReferenceCount = [regex]::Matches(
+    $infrastructureCandidateProjectText,
+    '<ProjectReference\b').Count
+if ($infrastructureCandidateReferenceCount -ne 1) {
+    $failures.Add('The C3.Infrastructure C# candidate may reference only C3.Catalogue.')
 }
 
 foreach ($appProject in @($net40Project, $net48Project)) {

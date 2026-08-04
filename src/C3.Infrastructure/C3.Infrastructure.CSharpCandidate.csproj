@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\build\C3.Common.props" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{273A231D-86D9-4D2C-850B-CB586E5DF1A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>C3.Infrastructure</RootNamespace>
+    <AssemblyName>C3.Infrastructure.CSharpCandidate</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\artifacts\migration\infrastructure-csharp\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\CSharpCandidate\Debug\</IntermediateOutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\artifacts\migration\infrastructure-csharp\Release\</OutputPath>
+    <IntermediateOutputPath>obj\CSharpCandidate\Release\</IntermediateOutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.cs"><Link>Properties\VersionAssemblyInfo.g.cs</Link></Compile>
+    <Compile Include="..\Shared\Generated\UpdateBranches.g.cs"><Link>Properties\UpdateBranches.g.cs</Link></Compile>
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyBrandRepository.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCassetteModelRepository.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueFileFailure.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueLoadResult.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueMetadata.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueMetadataWriter.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueSaveResult.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueSchema.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyDeckRepository.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyTapeRepository.cs" />
+    <Compile Include="CatalogueFiles\Xml\V1_1\LegacyXmlCatalogueStore.cs" />
+    <Compile Include="Diagnostics\BufferedLogger.cs" />
+    <Compile Include="Diagnostics\CrashReportContext.cs" />
+    <Compile Include="Diagnostics\CrashReportWriter.cs" />
+    <Compile Include="FileOperations\CompactSiblingFileName.cs" />
+    <Compile Include="FileOperations\OwnedSiblingTemporaryFile.cs" />
+    <Compile Include="Preferences\LegacySettingsProfileCandidate.cs" />
+    <Compile Include="Preferences\LegacySettingsProfileLocator.cs" />
+    <Compile Include="Preferences\LegacySettingsProfileReader.cs" />
+    <Compile Include="Preferences\LegacySettingsProfileReadFailure.cs" />
+    <Compile Include="Preferences\LegacySettingsProfileReadResult.cs" />
+    <Compile Include="Preferences\LegacyUserSettingsImporter.cs" />
+    <Compile Include="Preferences\LegacyUserSettingsImportResult.cs" />
+    <Compile Include="Preferences\LegacyUserSettingsImportStatus.cs" />
+    <Compile Include="Preferences\LegacyUserSettingsProfile.cs" />
+    <Compile Include="Preferences\UserPreferenceFields.cs" />
+    <Compile Include="Preferences\UserPreferencesFailure.cs" />
+    <Compile Include="Preferences\UserPreferencesLoadResult.cs" />
+    <Compile Include="Preferences\UserPreferencesSaveResult.cs" />
+    <Compile Include="Preferences\UserPreferencesService.cs" />
+    <Compile Include="Preferences\UserPreferencesSnapshot.cs" />
+    <Compile Include="Preferences\XmlUserPreferencesStore.cs" />
+    <Compile Include="Updates\HttpUpdateManifestSource.cs" />
+    <Compile Include="Updates\IUpdateManifestSource.cs" />
+    <Compile Include="Updates\SemanticVersion.cs" />
+    <Compile Include="Updates\UpdateCheckOutcome.cs" />
+    <Compile Include="Updates\UpdateCheckPolicy.cs" />
+    <Compile Include="Updates\UpdateCheckResult.cs" />
+    <Compile Include="Updates\UpdateCheckSchedule.cs" />
+    <Compile Include="Updates\UpdateCheckService.cs" />
+    <Compile Include="Updates\UpdateChecksumManifest.cs" />
+    <Compile Include="Updates\UpdateChecksumManifestDocument.cs" />
+    <Compile Include="Updates\UpdateEndpointPolicy.cs" />
+    <Compile Include="Updates\UpdateManifestReadFailure.cs" />
+    <Compile Include="Updates\UpdateManifestReadResult.cs" />
+    <Compile Include="Updates\UpdateReleaseManifest.cs" />
+    <Compile Include="Updates\UpdateReleaseManifestDocument.cs" />
+    <Compile Include="Updates\UpdateReleaseManifestReader.cs" />
+    <Compile Include="Updates\UpdateReleasePackage.cs" />
+    <Compile Include="Updates\UpdateReleasePackageDocument.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.csproj">
+      <Project>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</Project>
+      <Name>C3.Catalogue</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

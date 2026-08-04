@@ -31,6 +31,8 @@ if ($LASTEXITCODE -ne 0) {
     -AssemblyPath (Join-Path $repositoryRoot "artifacts\bin\libraries\net40\$Configuration\C3.Infrastructure.dll") `
     -BaselinePath (Join-Path $repositoryRoot 'spec\infrastructure-api\v1\public-api.txt') `
     -ContractName 'Infrastructure'
+& (Join-Path $PSScriptRoot 'test-infrastructure-csharp-candidate.ps1') `
+    -Configuration $Configuration
 
 $testExecutable = Join-Path $repositoryRoot "artifacts\tests\characterization\$Configuration\C3.CharacterizationTests.exe"
 & $testExecutable

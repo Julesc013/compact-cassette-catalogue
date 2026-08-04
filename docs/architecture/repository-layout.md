@@ -35,6 +35,7 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |   |-- Decks/
 |   |   `-- Tapes/
 |   |-- C3.Infrastructure/
+|   |   |-- C3.Infrastructure.CSharpCandidate.csproj  # temporary Alpha 3 harness
 |   |   |-- CatalogueFiles/Xml/V1_1/
 |   |   |-- Diagnostics/
 |   |   |-- FileOperations/
@@ -123,7 +124,10 @@ directory is the only production code allowed to know v1.1 table/column names.
 Preference persistence/import, update policy, and diagnostics live beside their
 mechanism rather than in a catch-all platform module. `FileOperations` contains
 only reusable, same-volume transaction primitives required by more than one
-persistence adapter; it does not own catalogue or preference policy.
+persistence adapter; it does not own catalogue or preference policy. During the
+remaining Alpha 3 port, the unpackaged C# candidate compiles translated types
+beside their VB oracles and must match all 312 frozen signatures before the
+atomic project swap.
 
 `C3.WinForms` composes services and owns interaction and presentation. Its two
 project files compile the same physical feature sources. The Net40 project is the

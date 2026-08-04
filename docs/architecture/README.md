@@ -41,6 +41,12 @@ at 312 compiled public signatures under
 its staged C# translation. Existing external-behavior characterization remains
 the semantic gate; the compiled surface prevents accidental caller drift.
 
+The temporary `C3.Infrastructure.CSharpCandidate` compiles the mechanically
+translated types from the same feature directories but is not referenced by the
+application or package graph. It must reproduce the complete frozen surface
+before the production project can be swapped, and it is removed immediately
+after the behavior gate proves the new single owner.
+
 `C3.WinForms` has two project files over the same physical UI sources:
 
 - `C3.WinForms.Net40.vbproj`: x86, .NET Framework 4.0, Windows XP SP3+

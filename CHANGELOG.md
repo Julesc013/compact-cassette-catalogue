@@ -52,6 +52,9 @@
 - Froze the 312-signature compiled Infrastructure API before its language port
   and generalized the reflection gate to resolve layered assemblies from
   isolated copies without locking build outputs.
+- Added the complete unpackaged C# 7.3 Infrastructure candidate as 50
+  type-focused sources across its existing feature directories, with its build
+  and 312-signature differential comparison now enforced by the normal gate.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)
