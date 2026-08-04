@@ -21,6 +21,11 @@ ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue|C3.Infrastructure.Mi
 ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping|System.String entityKind,System.String legacyKey,System.String nativeId
 ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|System.String code,System.String path,System.String input,System.String output
 ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReportWriter|
+ctor|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssue|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssueSeverity severity,System.String code,System.String path,System.String message
+ctor|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|
+ctor|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReportWriter|
+ctor|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|
+ctor|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore store,C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReportWriter reportWriter
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|System.String filePath,System.Version profileVersion,System.DateTime lastWriteTimeUtc
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileReader|
@@ -69,6 +74,9 @@ enum|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationConversionStatus|Interrupt
 enum|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|Blocking|2
 enum|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|Information|0
 enum|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|Warning|1
+enum|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssueSeverity|Blocking|2
+enum|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssueSeverity|Information|0
+enum|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssueSeverity|Warning|1
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|DuplicateSetting|5
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidStructure|4
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidValue|6
@@ -149,6 +157,7 @@ method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|NextNumber
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|Update|instance|System.Void|C3.Catalogue.Tapes.Tape value
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|Load|instance|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|System.String path,System.Data.DataSet schema,System.Collections.Generic.IEnumerable<System.String> supportedVersions
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|Save|instance|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|System.String path,System.Data.DataSet document,C3.Catalogue.Catalogues.CatalogueRevision expectedRevision,System.Collections.Generic.IEnumerable<System.String> supportedVersions
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|SaveNew|instance|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|System.String path,System.Data.DataSet document,System.Collections.Generic.IEnumerable<System.String> supportedVersions
 method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Failed|static|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure failure,System.String message
 method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Success|static|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|C3.Catalogue.Native.NativeCatalogue document,C3.Catalogue.Catalogues.CatalogueRevision revision
 method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|Failed|static|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure failure,System.String message
@@ -173,6 +182,9 @@ method|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeConversionService|R
 method|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrator|DryRun|instance|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|System.String sourcePath
 method|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReportWriter|WriteJson|instance|System.Byte[]|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport report,System.String status
 method|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReportWriter|WriteText|instance|System.Byte[]|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport report,System.String status
+method|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReportWriter|WriteJson|instance|System.Byte[]|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport report
+method|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|ExportCopy|instance|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|C3.Catalogue.Native.NativeCatalogue source,System.String destinationPath
+method|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|Preview|instance|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportPreview|C3.Catalogue.Native.NativeCatalogue source
 method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|
 method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|System.String localApplicationDataDirectory
 method|C3.Infrastructure.Preferences.LegacySettingsProfileReader|Read|instance|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate candidate
@@ -277,6 +289,22 @@ property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|Normalizations|
 property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|Profile|System.String|get
 property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|SourcePath|System.String|get
 property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|SourceRevision|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssue|Code|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssue|Message|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssue|Path|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssue|Severity|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssueSeverity|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportPreview|IsExportable|System.Boolean|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportPreview|Report|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|DestinationPath|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|DestinationRevision|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|HasBlockingIssues|System.Boolean|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|Issues|System.Collections.ObjectModel.ReadOnlyCollection<C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssue>|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|Profile|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|Message|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|Report|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|ReportPath|System.String|get
+property|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|Revision|C3.Catalogue.Catalogues.CatalogueRevision|get
 property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|FilePath|System.String|get
 property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|LastWriteTimeUtc|System.DateTime|get
 property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|ProfileVersion|System.Version|get
@@ -402,6 +430,13 @@ type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping|class|sealed
 type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|class|sealed
 type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|class|sealed
 type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReportWriter|class|sealed
+type|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssue|class|sealed
+type|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportIssueSeverity|enum|sealed
+type|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportPreview|class|sealed
+type|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport|class|sealed
+type|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReportWriter|class|sealed
+type|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|class|sealed
+type|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|class|sealed
 type|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|class|sealed
 type|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|class|sealed
 type|C3.Infrastructure.Preferences.LegacySettingsProfileReader|class|sealed

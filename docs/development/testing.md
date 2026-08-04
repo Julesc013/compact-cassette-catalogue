@@ -76,8 +76,11 @@ hash-pinned but not redistributed in Git:
 ```
 
 The first command performs network I/O. The second and third run the complete
-current-writer/old-reader/old-writer/current-reader matrix against verified local
-artifacts. See the [evidence matrix](../compatibility/1x-evidence-matrix.md).
+current-writer and native-export inputs through each old reader/writer, then
+through the current reader, against verified local artifacts. The supported
+Alpha 4 corpus currently produces 12 exact-binary rows: six historical artifacts
+times two input profiles. See the
+[evidence matrix](../compatibility/1x-evidence-matrix.md).
 
 ## Preferences, migration, and recovery
 

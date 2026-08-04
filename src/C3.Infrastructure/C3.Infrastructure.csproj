@@ -68,6 +68,9 @@
     <Compile Include="Migrations\V1_1ToV2_0\MigrationContracts.cs" />
     <Compile Include="Migrations\V1_1ToV2_0\MigrationRecoveryJournal.cs" />
     <Compile Include="Migrations\V1_1ToV2_0\MigrationReportWriter.cs" />
+    <Compile Include="Migrations\V2_0ToV1_1\LegacyExportContracts.cs" />
+    <Compile Include="Migrations\V2_0ToV1_1\LegacyExportReportWriter.cs" />
+    <Compile Include="Migrations\V2_0ToV1_1\NativeToLegacyExporter.cs" />
     <Compile Include="Preferences\LegacySettingsProfileCandidate.cs" />
     <Compile Include="Preferences\LegacySettingsProfileLocator.cs" />
     <Compile Include="Preferences\LegacySettingsProfileReader.cs" />

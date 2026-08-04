@@ -1,5 +1,6 @@
 Imports C3.Infrastructure.CatalogueFiles.Xml.V2_0
 Imports C3.Infrastructure.Migrations.V1_1ToV2_0
+Imports C3.Infrastructure.Migrations.V2_0ToV1_1
 
 Friend NotInheritable Class LegacyToNativeMigratorTests
 
@@ -120,6 +121,40 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
             End Sub)
     End Sub
 
+    Public Shared Sub NativeExportIsLossAwareAndLegacyReadable()
+        WithTemporaryDirectory(
+            "legacy-export",
+            Sub(workDirectory As String)
+                Dim nativeResult As LegacyToNativeMigrationResult =
+                    New LegacyToNativeMigrator().DryRun(FixturePath("valid", "populated.xml"))
+                AssertEqual(True, nativeResult.IsSuccess, "native export source")
+                Dim exporter As New NativeToLegacyExporter()
+                Dim preview As LegacyExportPreview = exporter.Preview(nativeResult.Document)
+                AssertEqual(True, preview.IsExportable, "legacy export preview")
+                AssertEqual(True, HasExportIssue(preview.Report, "identity.omitted"), "identity loss")
+                AssertEqual(True, HasExportIssue(preview.Report, "provenance.omitted"), "provenance loss")
+                AssertEqual(True, HasExportIssue(preview.Report, "timestamp.utc-semantics"), "timestamp loss")
+
+                Dim destination As String = Path.Combine(workDirectory, "legacy-export.xml")
+                Dim exported As LegacyExportResult = exporter.ExportCopy(nativeResult.Document, destination)
+                AssertEqual(True, exported.IsSuccess, "legacy export")
+                AssertEqual(True, File.Exists(exported.ReportPath), "loss report")
+                Dim reopened As LegacyToNativeMigrationResult =
+                    New LegacyToNativeMigrator().DryRun(destination)
+                AssertEqual(True, reopened.IsSuccess, "legacy export reader")
+                AssertEqual(1, reopened.Report.Counts.Brands, "exported brand count")
+                AssertEqual(1, reopened.Report.Counts.CassetteModels, "exported model count")
+                AssertEqual(1, reopened.Report.Counts.DeckUnits, "exported deck count")
+                AssertEqual(1, reopened.Report.Counts.Tapes, "exported tape count")
+                AssertEqual(2, reopened.Report.Counts.Recordings, "exported recording count")
+
+                Dim bytes As Byte() = File.ReadAllBytes(destination)
+                Dim refused As LegacyExportResult = exporter.ExportCopy(nativeResult.Document, destination)
+                AssertEqual(False, refused.IsSuccess, "legacy overwrite refusal")
+                AssertBytesEqual(bytes, File.ReadAllBytes(destination), "legacy overwrite bytes")
+            End Sub)
+    End Sub
+
     Private Shared Function HasNormalization(report As MigrationReport, code As String) As Boolean
         For Each item As MigrationNormalization In report.Normalizations
             If String.Equals(item.Code, code, StringComparison.Ordinal) Then Return True
@@ -129,6 +164,13 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
 
     Private Shared Function HasIssue(report As MigrationReport, code As String) As Boolean
         For Each item As MigrationIssue In report.Issues
+            If String.Equals(item.Code, code, StringComparison.Ordinal) Then Return True
+        Next
+        Return False
+    End Function
+
+    Private Shared Function HasExportIssue(report As LegacyExportReport, code As String) As Boolean
+        For Each item As LegacyExportIssue In report.Issues
             If String.Equals(item.Code, code, StringComparison.Ordinal) Then Return True
         Next
         Return False

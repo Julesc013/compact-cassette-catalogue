@@ -3,10 +3,12 @@
 This directory versions the accepted public compiled surface of
 `C3.Infrastructure`. It began as the 312-signature VB oracle for Alpha 3; Alpha
 4 intentionally extends it with reviewed native persistence and migration
-contracts. The current conversion boundary contains 435 signatures: strict
+contracts. The current bidirectional conversion boundary contains 470 signatures: strict
 reader/writer, typed results and failures, transactional new-only storage,
 deterministic mapping and reports, resumable recovery checkpoints, and the
-read-only plus convert-copy legacy-to-native services.
+read-only plus convert-copy legacy-to-native services. It also includes the
+previewable, loss-aware native-to-v1.1 exporter and its create-only legacy
+output contract.
 
 `public-api.txt` is a deterministic reflection projection containing exported
 types, enum values, constructors, properties, events, and ordinary methods. It

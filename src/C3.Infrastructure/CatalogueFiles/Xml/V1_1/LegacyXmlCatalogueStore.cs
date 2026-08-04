@@ -180,6 +180,51 @@ namespace C3.Infrastructure.CatalogueFiles.Xml.V1_1
 			return LegacyCatalogueSaveResult.Failed(LegacyCatalogueFileFailure.InvalidStructure, "There is no catalogue document to save.");
 		}
 
+		public LegacyCatalogueSaveResult SaveNew(string path, DataSet document, IEnumerable<string> supportedVersions)
+		{
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				return LegacyCatalogueSaveResult.Failed(LegacyCatalogueFileFailure.IoFailure, "A destination path is required.");
+			}
+			string fullPath = Path.GetFullPath(path);
+			try
+			{
+				using (FileStream reservation = new FileStream(fullPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+				{
+					reservation.Flush(true);
+				}
+				CatalogueRevision reservationRevision = CalculateRevision(fullPath);
+				LegacyCatalogueSaveResult saved = Save(fullPath, document, reservationRevision, supportedVersions);
+				if (saved.IsSuccess)
+				{
+					if (!string.IsNullOrWhiteSpace(saved.BackupPath) && File.Exists(saved.BackupPath))
+					{
+						File.Delete(saved.BackupPath);
+					}
+					return LegacyCatalogueSaveResult.Success(saved.Revision, null);
+				}
+				if (File.Exists(fullPath) && reservationRevision.Equals(CalculateRevision(fullPath)))
+				{
+					File.Delete(fullPath);
+				}
+				return saved;
+			}
+			catch (IOException exception)
+			{
+				if (File.Exists(fullPath))
+				{
+					return LegacyCatalogueSaveResult.Failed(
+						LegacyCatalogueFileFailure.ExternalModification,
+						"Legacy export refuses to overwrite an existing destination.");
+				}
+				return LegacyCatalogueSaveResult.Failed(LegacyCatalogueFileFailure.IoFailure, exception.Message);
+			}
+			catch (UnauthorizedAccessException exception)
+			{
+				return LegacyCatalogueSaveResult.Failed(LegacyCatalogueFileFailure.AccessDenied, exception.Message);
+			}
+		}
+
 		private static XmlDocument LoadSecureDocument(string path)
 		{
 			XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();

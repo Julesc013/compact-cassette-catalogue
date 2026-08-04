@@ -102,6 +102,9 @@ Module Program
         RunTest(
             "interrupted legacy-to-native conversion resumes from its journal",
             AddressOf LegacyToNativeMigratorTests.InterruptedConvertCopyRecoversFromVerifiedCheckpoint)
+        RunTest(
+            "native export reports loss and remains legacy-readable",
+            AddressOf LegacyToNativeMigratorTests.NativeExportIsLossAwareAndLegacyReadable)
         RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
         RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)
@@ -237,9 +240,34 @@ Module Program
                 WriteCurrentCompatibilityCatalogue(arguments(1))
             Case "--validate-v1.1"
                 ValidateCompatibilityCatalogue(arguments(1))
+            Case "--write-native-export-v1.1"
+                WriteNativeExportCompatibilityCatalogue(arguments(1))
             Case Else
                 Throw New ArgumentException("Unknown compatibility command: " & arguments(0))
         End Select
+    End Sub
+
+    Private Sub WriteNativeExportCompatibilityCatalogue(destination As String)
+        Dim migrated As C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult =
+            New C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrator().DryRun(
+                FixturePath("valid", "populated.xml"))
+        If Not migrated.IsSuccess Then
+            Throw New InvalidOperationException("Could not prepare native export source.")
+        End If
+        Dim fullDestination As String = Path.GetFullPath(destination)
+        Dim parent As String = Path.GetDirectoryName(fullDestination)
+        If String.IsNullOrWhiteSpace(parent) Then
+            Throw New ArgumentException("Compatibility output requires a parent directory.")
+        End If
+        Directory.CreateDirectory(parent)
+        Dim exported As C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult =
+            New C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter().ExportCopy(
+                migrated.Document,
+                fullDestination)
+        If Not exported.IsSuccess Then
+            Throw New InvalidOperationException("Native-to-v1.1 export failed: " & exported.Message)
+        End If
+        Console.WriteLine("NATIVE_EXPORT_V1_1_PASS|" & fullDestination)
     End Sub
 
     Private Sub WriteCurrentCompatibilityCatalogue(destination As String)
