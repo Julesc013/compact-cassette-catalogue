@@ -15,6 +15,12 @@ links (including non-vacuous discovery in exported source trees), catalogue/doma
 settings characterization, both release builds, assembly/file/product identity for
 every shipped binary, executable architecture, and diff whitespace.
 
+The characterization build also reflects `C3.Catalogue.dll` and compares its
+269 exported type/member signatures with
+[`spec/catalogue-api/v1/public-api.txt`](../../spec/catalogue-api/v1/public-api.txt).
+This freezes the VB migration oracle independently from behavior tests; neither
+contract can be regenerated merely to make an unexplained port difference pass.
+
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane
 are exercised. The runner is deliberately dependency-light and returns a nonzero
 process code on any failure.

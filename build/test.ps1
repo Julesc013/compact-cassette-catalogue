@@ -24,9 +24,11 @@ if ($LASTEXITCODE -ne 0) {
     throw "Characterization test build failed with exit code $LASTEXITCODE."
 }
 
+& (Join-Path $PSScriptRoot 'validate-catalogue-api.ps1') `
+    -Configuration $Configuration
+
 $testExecutable = Join-Path $repositoryRoot "artifacts\tests\characterization\$Configuration\C3.CharacterizationTests.exe"
 & $testExecutable
 if ($LASTEXITCODE -ne 0) {
     throw "Characterization tests failed with exit code $LASTEXITCODE."
 }
-

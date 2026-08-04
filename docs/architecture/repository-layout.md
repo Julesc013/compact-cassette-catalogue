@@ -64,6 +64,7 @@ adjacent. Target-state paths are not added until code actually needs them.
 |-- spec/catalogue/
 |   |-- v1.1.0/                      # implemented public contract
 |   `-- v2.0.0/                      # explicitly unimplemented design draft
+|-- spec/catalogue-api/v1/           # frozen compiled VB oracle surface
 |-- spec/preferences/v1/             # implemented shared profile contract
 |-- spec/release-catalog/v1/          # checkpoint lifecycle/artifact schema
 |-- spec/release-train/v1/            # resumable milestone-controller schema
@@ -143,6 +144,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |
 | Catalogue format 1.1.0 | `spec/catalogue/v1.1.0` | legacy XML adapter and fixtures |
 | Native domain identity, time, validation, command/change-set, and undo semantics | `C3.Domain` and ADR 0009 | characterization/property tests; migrated aggregate slices |
+| Current catalogue-library compiled public surface | `spec/catalogue-api/v1/public-api.txt` | reflection validator after every characterization build; semantics remain in source/tests |
 | Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | no production projection while draft |
 | 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |

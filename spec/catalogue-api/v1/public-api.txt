@@ -1,0 +1,269 @@
+ctor|C3.Catalogue.Brands.Brand|System.String name,System.String code,System.DateTime addedAt,System.String notes
+ctor|C3.Catalogue.Brands.BrandDraft|System.String name,System.String code,System.String notes
+ctor|C3.Catalogue.Brands.BrandService|C3.Catalogue.Brands.IBrandRepository repository
+ctor|C3.Catalogue.CassetteModels.CassetteModel|System.String brandCode,System.Int32 typeNumber,System.String modelName,System.String code,System.String identifier,System.String displayName,System.Int32 tapeCount,System.DateTime addedAt,System.String notes
+ctor|C3.Catalogue.CassetteModels.CassetteModelDraft|System.String brandCode,System.Int32 typeNumber,System.String modelName,System.String code,System.String displayName,System.String notes
+ctor|C3.Catalogue.CassetteModels.CassetteModelService|C3.Catalogue.CassetteModels.ICassetteModelRepository repository
+ctor|C3.Catalogue.Catalogues.CatalogueRevision|System.String token
+ctor|C3.Catalogue.Catalogues.CatalogueSession|System.String newCatalogueDisplayName
+ctor|C3.Catalogue.Decks.Deck|System.String name,System.DateTime addedAt,C3.Catalogue.Decks.DeckDetails details
+ctor|C3.Catalogue.Decks.DeckDetails|System.String manufacturer,System.String model,System.Int32 year,System.Int32 condition,System.Boolean type1,System.Boolean type2,System.Boolean type3,System.Boolean type4,System.Boolean hx,System.Boolean mpx,System.Boolean dolbyB,System.Boolean dolbyC,System.Boolean dolbyS,System.Boolean dbx1,System.Boolean dbx2,System.Boolean stereo,System.Boolean programSearch,System.Boolean reverse,System.Boolean calibration,System.Boolean azimuth,System.Boolean dubbingSlow,System.Boolean dubbingFast,System.Int32 frequencyLow,System.Int32 frequencyHigh,System.Int32 signalRatio,System.String signalRatioNoiseReduction,System.Decimal wowFlutter,System.Decimal distortion,System.Int32 heads,System.Int32 wells,System.Boolean speedSlow,System.Boolean speedNormal,System.Boolean speedFast,System.String notes
+ctor|C3.Catalogue.Decks.DeckService|C3.Catalogue.Decks.IDeckRepository repository
+ctor|C3.Catalogue.Tapes.Tape|System.String modelIdentifier,System.Int32 year,System.Decimal lengthMinutes,System.String region,System.Int32 number,System.String identifier,System.String shortIdentifier,System.Int32 condition,System.Boolean packaged,C3.Catalogue.Tapes.TapeSide sideA,C3.Catalogue.Tapes.TapeSide sideB,System.DateTime addedAt,System.String notes
+ctor|C3.Catalogue.Tapes.TapeDraft|System.String modelIdentifier,System.Int32 year,System.Decimal lengthMinutes,System.String region,System.Int32 condition,System.Boolean packaged,C3.Catalogue.Tapes.TapeSide sideA,C3.Catalogue.Tapes.TapeSide sideB,System.String notes
+ctor|C3.Catalogue.Tapes.TapeService|C3.Catalogue.Tapes.ITapeRepository repository
+ctor|C3.Catalogue.Tapes.TapeSide|System.Boolean isRecorded,System.String name,System.DateTime recordedAt,System.String deckName,System.String inputName,System.Int32 peakLevel,System.String noiseReduction,System.Boolean hx,System.Boolean mpx,System.Boolean dubbed,System.String speed,System.Int32 bias,System.Int32 biasCalibration,System.String equalization,System.Decimal level,System.Decimal levelCalibration,System.String contents,System.String artist,System.String title
+enum|C3.Catalogue.Brands.BrandFailure|DuplicateCode|3
+enum|C3.Catalogue.Brands.BrandFailure|InvalidCode|2
+enum|C3.Catalogue.Brands.BrandFailure|NameRequired|1
+enum|C3.Catalogue.Brands.BrandFailure|None|0
+enum|C3.Catalogue.Brands.BrandFailure|NotFound|4
+enum|C3.Catalogue.Brands.BrandFailure|ReferencedByModel|5
+enum|C3.Catalogue.Brands.BrandFailure|StorageFailure|6
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|BrandNotFound|2
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|BrandRequired|1
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|DuplicateIdentifier|6
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|InvalidCode|5
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|InvalidType|3
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|ModelNameRequired|4
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|None|0
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|NotFound|7
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|ReferencedByTape|8
+enum|C3.Catalogue.CassetteModels.CassetteModelFailure|StorageFailure|9
+enum|C3.Catalogue.Decks.DeckFailure|DuplicateName|5
+enum|C3.Catalogue.Decks.DeckFailure|ManufacturerRequired|1
+enum|C3.Catalogue.Decks.DeckFailure|ModelRequired|2
+enum|C3.Catalogue.Decks.DeckFailure|None|0
+enum|C3.Catalogue.Decks.DeckFailure|NotFound|6
+enum|C3.Catalogue.Decks.DeckFailure|ReferencedByTape|7
+enum|C3.Catalogue.Decks.DeckFailure|SpeedRequired|4
+enum|C3.Catalogue.Decks.DeckFailure|StorageFailure|8
+enum|C3.Catalogue.Decks.DeckFailure|TapeTypeRequired|3
+enum|C3.Catalogue.Tapes.TapeFailure|DuplicateIdentifier|6
+enum|C3.Catalogue.Tapes.TapeFailure|IdentifierCapacityExceeded|4
+enum|C3.Catalogue.Tapes.TapeFailure|InvalidBulkCount|3
+enum|C3.Catalogue.Tapes.TapeFailure|ModelNotFound|2
+enum|C3.Catalogue.Tapes.TapeFailure|ModelRequired|1
+enum|C3.Catalogue.Tapes.TapeFailure|None|0
+enum|C3.Catalogue.Tapes.TapeFailure|NotFound|7
+enum|C3.Catalogue.Tapes.TapeFailure|SideNameRequired|5
+enum|C3.Catalogue.Tapes.TapeFailure|StorageFailure|8
+event|C3.Catalogue.Catalogues.CatalogueSession|SessionChanged|System.EventHandler
+method|C3.Catalogue.Brands.BrandOperationResult|Failed|static|C3.Catalogue.Brands.BrandOperationResult|C3.Catalogue.Brands.BrandFailure failure,System.String message
+method|C3.Catalogue.Brands.BrandOperationResult|Success|static|C3.Catalogue.Brands.BrandOperationResult|C3.Catalogue.Brands.Brand value
+method|C3.Catalogue.Brands.BrandService|Create|instance|C3.Catalogue.Brands.BrandOperationResult|C3.Catalogue.Brands.BrandDraft draft,System.DateTime addedAt
+method|C3.Catalogue.Brands.BrandService|Delete|instance|C3.Catalogue.Brands.BrandOperationResult|System.String code
+method|C3.Catalogue.Brands.BrandService|Find|instance|C3.Catalogue.Brands.Brand|System.String code
+method|C3.Catalogue.Brands.BrandService|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Brands.Brand>|System.String notesFilter
+method|C3.Catalogue.Brands.BrandService|Update|instance|C3.Catalogue.Brands.BrandOperationResult|System.String code,C3.Catalogue.Brands.BrandDraft draft
+method|C3.Catalogue.Brands.IBrandRepository|Add|instance|System.Void|C3.Catalogue.Brands.Brand value
+method|C3.Catalogue.Brands.IBrandRepository|Delete|instance|System.Void|System.String code
+method|C3.Catalogue.Brands.IBrandRepository|FindByCode|instance|C3.Catalogue.Brands.Brand|System.String code
+method|C3.Catalogue.Brands.IBrandRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Brands.Brand>|
+method|C3.Catalogue.Brands.IBrandRepository|IsCodeInUse|instance|System.Boolean|System.String code
+method|C3.Catalogue.Brands.IBrandRepository|IsReferencedByModel|instance|System.Boolean|System.String code
+method|C3.Catalogue.Brands.IBrandRepository|Update|instance|System.Void|C3.Catalogue.Brands.Brand value
+method|C3.Catalogue.CassetteModels.CassetteModelOperationResult|Failed|static|C3.Catalogue.CassetteModels.CassetteModelOperationResult|C3.Catalogue.CassetteModels.CassetteModelFailure failure,System.String message
+method|C3.Catalogue.CassetteModels.CassetteModelOperationResult|Success|static|C3.Catalogue.CassetteModels.CassetteModelOperationResult|C3.Catalogue.CassetteModels.CassetteModel value
+method|C3.Catalogue.CassetteModels.CassetteModelService|Create|instance|C3.Catalogue.CassetteModels.CassetteModelOperationResult|C3.Catalogue.CassetteModels.CassetteModelDraft draft,System.DateTime addedAt
+method|C3.Catalogue.CassetteModels.CassetteModelService|Delete|instance|C3.Catalogue.CassetteModels.CassetteModelOperationResult|System.String identifier
+method|C3.Catalogue.CassetteModels.CassetteModelService|Find|instance|C3.Catalogue.CassetteModels.CassetteModel|System.String identifier
+method|C3.Catalogue.CassetteModels.CassetteModelService|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.CassetteModels.CassetteModel>|
+method|C3.Catalogue.CassetteModels.CassetteModelService|Update|instance|C3.Catalogue.CassetteModels.CassetteModelOperationResult|System.String identifier,C3.Catalogue.CassetteModels.CassetteModelDraft draft
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|Add|instance|System.Void|C3.Catalogue.CassetteModels.CassetteModel value
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|BrandExists|instance|System.Boolean|System.String code
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|Delete|instance|System.Void|System.String identifier
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|FindByIdentifier|instance|C3.Catalogue.CassetteModels.CassetteModel|System.String identifier
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.CassetteModels.CassetteModel>|
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|IdentifierExists|instance|System.Boolean|System.String identifier
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|IsReferencedByTape|instance|System.Boolean|System.String identifier
+method|C3.Catalogue.CassetteModels.ICassetteModelRepository|Update|instance|System.Void|C3.Catalogue.CassetteModels.CassetteModel value
+method|C3.Catalogue.Catalogues.CatalogueRevision|Equals|instance|System.Boolean|C3.Catalogue.Catalogues.CatalogueRevision other
+method|C3.Catalogue.Catalogues.CatalogueRevision|Equals|instance|System.Boolean|System.Object value
+method|C3.Catalogue.Catalogues.CatalogueRevision|GetHashCode|instance|System.Int32|
+method|C3.Catalogue.Catalogues.CatalogueRevision|ToString|instance|System.String|
+method|C3.Catalogue.Catalogues.CatalogueSession|BeginNew|instance|System.Void|System.String displayName
+method|C3.Catalogue.Catalogues.CatalogueSession|MarkChanged|instance|System.Void|
+method|C3.Catalogue.Catalogues.CatalogueSession|MarkLoaded|instance|System.Void|System.String path,System.String displayName,C3.Catalogue.Catalogues.CatalogueRevision revision
+method|C3.Catalogue.Catalogues.CatalogueSession|MarkSaved|instance|System.Void|System.String path,System.String displayName,C3.Catalogue.Catalogues.CatalogueRevision revision
+method|C3.Catalogue.Catalogues.CatalogueSession|SetDirtyForMigration|instance|System.Void|System.Boolean isDirty
+method|C3.Catalogue.Catalogues.CatalogueSession|SetDocumentLocation|instance|System.Void|System.String path,System.String displayName
+method|C3.Catalogue.Decks.DeckOperationResult|Failed|static|C3.Catalogue.Decks.DeckOperationResult|C3.Catalogue.Decks.DeckFailure failure,System.String message
+method|C3.Catalogue.Decks.DeckOperationResult|Success|static|C3.Catalogue.Decks.DeckOperationResult|C3.Catalogue.Decks.Deck value
+method|C3.Catalogue.Decks.DeckService|Create|instance|C3.Catalogue.Decks.DeckOperationResult|C3.Catalogue.Decks.DeckDetails details,System.DateTime addedAt
+method|C3.Catalogue.Decks.DeckService|Delete|instance|C3.Catalogue.Decks.DeckOperationResult|System.String name
+method|C3.Catalogue.Decks.DeckService|Find|instance|C3.Catalogue.Decks.Deck|System.String name
+method|C3.Catalogue.Decks.DeckService|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Decks.Deck>|
+method|C3.Catalogue.Decks.DeckService|Update|instance|C3.Catalogue.Decks.DeckOperationResult|System.String name,C3.Catalogue.Decks.DeckDetails details
+method|C3.Catalogue.Decks.IDeckRepository|Add|instance|System.Void|C3.Catalogue.Decks.Deck value
+method|C3.Catalogue.Decks.IDeckRepository|Delete|instance|System.Void|System.String name
+method|C3.Catalogue.Decks.IDeckRepository|FindByName|instance|C3.Catalogue.Decks.Deck|System.String name
+method|C3.Catalogue.Decks.IDeckRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Decks.Deck>|
+method|C3.Catalogue.Decks.IDeckRepository|IsReferencedByTape|instance|System.Boolean|System.String name
+method|C3.Catalogue.Decks.IDeckRepository|NameExists|instance|System.Boolean|System.String name
+method|C3.Catalogue.Decks.IDeckRepository|Update|instance|System.Void|C3.Catalogue.Decks.Deck value
+method|C3.Catalogue.Tapes.ITapeRepository|AddRange|instance|System.Void|System.Collections.Generic.IList<C3.Catalogue.Tapes.Tape> values
+method|C3.Catalogue.Tapes.ITapeRepository|Delete|instance|System.Void|System.String shortIdentifier
+method|C3.Catalogue.Tapes.ITapeRepository|FindByShortIdentifier|instance|C3.Catalogue.Tapes.Tape|System.String identifier
+method|C3.Catalogue.Tapes.ITapeRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Tapes.Tape>|
+method|C3.Catalogue.Tapes.ITapeRepository|IdentifierExists|instance|System.Boolean|System.String identifier,System.String shortIdentifier
+method|C3.Catalogue.Tapes.ITapeRepository|ModelExists|instance|System.Boolean|System.String identifier
+method|C3.Catalogue.Tapes.ITapeRepository|NextNumberForModel|instance|System.Int32|System.String identifier
+method|C3.Catalogue.Tapes.ITapeRepository|Update|instance|System.Void|C3.Catalogue.Tapes.Tape value
+method|C3.Catalogue.Tapes.TapeOperationResult|Failed|static|C3.Catalogue.Tapes.TapeOperationResult|C3.Catalogue.Tapes.TapeFailure failure,System.String message
+method|C3.Catalogue.Tapes.TapeOperationResult|Success|static|C3.Catalogue.Tapes.TapeOperationResult|System.Collections.Generic.IList<C3.Catalogue.Tapes.Tape> values
+method|C3.Catalogue.Tapes.TapeService|CreateMany|instance|C3.Catalogue.Tapes.TapeOperationResult|C3.Catalogue.Tapes.TapeDraft draft,System.Int32 count,System.DateTime addedAt
+method|C3.Catalogue.Tapes.TapeService|Delete|instance|C3.Catalogue.Tapes.TapeOperationResult|System.String shortIdentifier
+method|C3.Catalogue.Tapes.TapeService|Find|instance|C3.Catalogue.Tapes.Tape|System.String shortIdentifier
+method|C3.Catalogue.Tapes.TapeService|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Tapes.Tape>|
+method|C3.Catalogue.Tapes.TapeService|Update|instance|C3.Catalogue.Tapes.TapeOperationResult|System.String shortIdentifier,C3.Catalogue.Tapes.TapeDraft draft
+method|C3.Catalogue.Tapes.TapeSide|Empty|static|C3.Catalogue.Tapes.TapeSide|
+property|C3.Catalogue.Brands.Brand|AddedAt|System.DateTime|get
+property|C3.Catalogue.Brands.Brand|Code|System.String|get
+property|C3.Catalogue.Brands.Brand|Name|System.String|get
+property|C3.Catalogue.Brands.Brand|Notes|System.String|get
+property|C3.Catalogue.Brands.BrandDraft|Code|System.String|get
+property|C3.Catalogue.Brands.BrandDraft|Name|System.String|get
+property|C3.Catalogue.Brands.BrandDraft|Notes|System.String|get
+property|C3.Catalogue.Brands.BrandOperationResult|Brand|C3.Catalogue.Brands.Brand|getset
+property|C3.Catalogue.Brands.BrandOperationResult|Failure|C3.Catalogue.Brands.BrandFailure|getset
+property|C3.Catalogue.Brands.BrandOperationResult|IsSuccess|System.Boolean|getset
+property|C3.Catalogue.Brands.BrandOperationResult|Message|System.String|getset
+property|C3.Catalogue.CassetteModels.CassetteModel|AddedAt|System.DateTime|get
+property|C3.Catalogue.CassetteModels.CassetteModel|BrandCode|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModel|Code|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModel|DisplayName|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModel|Identifier|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModel|ModelName|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModel|Notes|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModel|TapeCount|System.Int32|get
+property|C3.Catalogue.CassetteModels.CassetteModel|TypeNumber|System.Int32|get
+property|C3.Catalogue.CassetteModels.CassetteModelDraft|BrandCode|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModelDraft|Code|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModelDraft|DisplayName|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModelDraft|ModelName|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModelDraft|Notes|System.String|get
+property|C3.Catalogue.CassetteModels.CassetteModelDraft|TypeNumber|System.Int32|get
+property|C3.Catalogue.CassetteModels.CassetteModelOperationResult|Failure|C3.Catalogue.CassetteModels.CassetteModelFailure|getset
+property|C3.Catalogue.CassetteModels.CassetteModelOperationResult|IsSuccess|System.Boolean|getset
+property|C3.Catalogue.CassetteModels.CassetteModelOperationResult|Message|System.String|getset
+property|C3.Catalogue.CassetteModels.CassetteModelOperationResult|Model|C3.Catalogue.CassetteModels.CassetteModel|getset
+property|C3.Catalogue.Catalogues.CatalogueRevision|Token|System.String|get
+property|C3.Catalogue.Catalogues.CatalogueSession|ChangeSequence|System.Int64|get
+property|C3.Catalogue.Catalogues.CatalogueSession|DisplayName|System.String|get
+property|C3.Catalogue.Catalogues.CatalogueSession|FilePath|System.String|get
+property|C3.Catalogue.Catalogues.CatalogueSession|IsDirty|System.Boolean|get
+property|C3.Catalogue.Catalogues.CatalogueSession|Revision|C3.Catalogue.Catalogues.CatalogueRevision|get
+property|C3.Catalogue.Decks.Deck|AddedAt|System.DateTime|get
+property|C3.Catalogue.Decks.Deck|Details|C3.Catalogue.Decks.DeckDetails|get
+property|C3.Catalogue.Decks.Deck|Name|System.String|get
+property|C3.Catalogue.Decks.DeckDetails|Azimuth|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Calibration|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Condition|System.Int32|get
+property|C3.Catalogue.Decks.DeckDetails|Dbx1|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Dbx2|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Distortion|System.Decimal|get
+property|C3.Catalogue.Decks.DeckDetails|DolbyB|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|DolbyC|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|DolbyS|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|DubbingFast|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|DubbingSlow|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|FrequencyHigh|System.Int32|get
+property|C3.Catalogue.Decks.DeckDetails|FrequencyLow|System.Int32|get
+property|C3.Catalogue.Decks.DeckDetails|Heads|System.Int32|get
+property|C3.Catalogue.Decks.DeckDetails|Hx|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Manufacturer|System.String|get
+property|C3.Catalogue.Decks.DeckDetails|Model|System.String|get
+property|C3.Catalogue.Decks.DeckDetails|Mpx|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Notes|System.String|get
+property|C3.Catalogue.Decks.DeckDetails|ProgramSearch|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Reverse|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|SignalRatio|System.Int32|get
+property|C3.Catalogue.Decks.DeckDetails|SignalRatioNoiseReduction|System.String|get
+property|C3.Catalogue.Decks.DeckDetails|SpeedFast|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|SpeedNormal|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|SpeedSlow|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Stereo|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Type1|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Type2|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Type3|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Type4|System.Boolean|get
+property|C3.Catalogue.Decks.DeckDetails|Wells|System.Int32|get
+property|C3.Catalogue.Decks.DeckDetails|WowFlutter|System.Decimal|get
+property|C3.Catalogue.Decks.DeckDetails|Year|System.Int32|get
+property|C3.Catalogue.Decks.DeckOperationResult|Deck|C3.Catalogue.Decks.Deck|getset
+property|C3.Catalogue.Decks.DeckOperationResult|Failure|C3.Catalogue.Decks.DeckFailure|getset
+property|C3.Catalogue.Decks.DeckOperationResult|IsSuccess|System.Boolean|getset
+property|C3.Catalogue.Decks.DeckOperationResult|Message|System.String|getset
+property|C3.Catalogue.Tapes.Tape|AddedAt|System.DateTime|get
+property|C3.Catalogue.Tapes.Tape|Condition|System.Int32|get
+property|C3.Catalogue.Tapes.Tape|Identifier|System.String|get
+property|C3.Catalogue.Tapes.Tape|LengthMinutes|System.Decimal|get
+property|C3.Catalogue.Tapes.Tape|ModelIdentifier|System.String|get
+property|C3.Catalogue.Tapes.Tape|Notes|System.String|get
+property|C3.Catalogue.Tapes.Tape|Number|System.Int32|get
+property|C3.Catalogue.Tapes.Tape|Packaged|System.Boolean|get
+property|C3.Catalogue.Tapes.Tape|Region|System.String|get
+property|C3.Catalogue.Tapes.Tape|ShortIdentifier|System.String|get
+property|C3.Catalogue.Tapes.Tape|SideA|C3.Catalogue.Tapes.TapeSide|get
+property|C3.Catalogue.Tapes.Tape|SideB|C3.Catalogue.Tapes.TapeSide|get
+property|C3.Catalogue.Tapes.Tape|Year|System.Int32|get
+property|C3.Catalogue.Tapes.TapeDraft|Condition|System.Int32|get
+property|C3.Catalogue.Tapes.TapeDraft|LengthMinutes|System.Decimal|get
+property|C3.Catalogue.Tapes.TapeDraft|ModelIdentifier|System.String|get
+property|C3.Catalogue.Tapes.TapeDraft|Notes|System.String|get
+property|C3.Catalogue.Tapes.TapeDraft|Packaged|System.Boolean|get
+property|C3.Catalogue.Tapes.TapeDraft|Region|System.String|get
+property|C3.Catalogue.Tapes.TapeDraft|SideA|C3.Catalogue.Tapes.TapeSide|get
+property|C3.Catalogue.Tapes.TapeDraft|SideB|C3.Catalogue.Tapes.TapeSide|get
+property|C3.Catalogue.Tapes.TapeDraft|Year|System.Int32|get
+property|C3.Catalogue.Tapes.TapeOperationResult|Failure|C3.Catalogue.Tapes.TapeFailure|getset
+property|C3.Catalogue.Tapes.TapeOperationResult|IsSuccess|System.Boolean|getset
+property|C3.Catalogue.Tapes.TapeOperationResult|Message|System.String|getset
+property|C3.Catalogue.Tapes.TapeOperationResult|Tapes|System.Collections.Generic.IList<C3.Catalogue.Tapes.Tape>|getset
+property|C3.Catalogue.Tapes.TapeSide|Artist|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|Bias|System.Int32|get
+property|C3.Catalogue.Tapes.TapeSide|BiasCalibration|System.Int32|get
+property|C3.Catalogue.Tapes.TapeSide|Contents|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|DeckName|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|Dubbed|System.Boolean|get
+property|C3.Catalogue.Tapes.TapeSide|Equalization|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|Hx|System.Boolean|get
+property|C3.Catalogue.Tapes.TapeSide|InputName|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|IsRecorded|System.Boolean|get
+property|C3.Catalogue.Tapes.TapeSide|Level|System.Decimal|get
+property|C3.Catalogue.Tapes.TapeSide|LevelCalibration|System.Decimal|get
+property|C3.Catalogue.Tapes.TapeSide|Mpx|System.Boolean|get
+property|C3.Catalogue.Tapes.TapeSide|Name|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|NoiseReduction|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|PeakLevel|System.Int32|get
+property|C3.Catalogue.Tapes.TapeSide|RecordedAt|System.DateTime|get
+property|C3.Catalogue.Tapes.TapeSide|Speed|System.String|get
+property|C3.Catalogue.Tapes.TapeSide|Title|System.String|get
+type|C3.Catalogue.Brands.Brand|class|sealed
+type|C3.Catalogue.Brands.BrandDraft|class|sealed
+type|C3.Catalogue.Brands.BrandFailure|enum|sealed
+type|C3.Catalogue.Brands.BrandOperationResult|class|sealed
+type|C3.Catalogue.Brands.BrandService|class|sealed
+type|C3.Catalogue.Brands.IBrandRepository|interface|abstract
+type|C3.Catalogue.CassetteModels.CassetteModel|class|sealed
+type|C3.Catalogue.CassetteModels.CassetteModelDraft|class|sealed
+type|C3.Catalogue.CassetteModels.CassetteModelFailure|enum|sealed
+type|C3.Catalogue.CassetteModels.CassetteModelOperationResult|class|sealed
+type|C3.Catalogue.CassetteModels.CassetteModelService|class|sealed
+type|C3.Catalogue.CassetteModels.ICassetteModelRepository|interface|abstract
+type|C3.Catalogue.Catalogues.CatalogueRevision|class|sealed
+type|C3.Catalogue.Catalogues.CatalogueSession|class|sealed
+type|C3.Catalogue.Decks.Deck|class|sealed
+type|C3.Catalogue.Decks.DeckDetails|class|sealed
+type|C3.Catalogue.Decks.DeckFailure|enum|sealed
+type|C3.Catalogue.Decks.DeckOperationResult|class|sealed
+type|C3.Catalogue.Decks.DeckService|class|sealed
+type|C3.Catalogue.Decks.IDeckRepository|interface|abstract
+type|C3.Catalogue.Tapes.ITapeRepository|interface|abstract
+type|C3.Catalogue.Tapes.Tape|class|sealed
+type|C3.Catalogue.Tapes.TapeDraft|class|sealed
+type|C3.Catalogue.Tapes.TapeFailure|enum|sealed
+type|C3.Catalogue.Tapes.TapeOperationResult|class|sealed
+type|C3.Catalogue.Tapes.TapeService|class|sealed
+type|C3.Catalogue.Tapes.TapeSide|class|sealed

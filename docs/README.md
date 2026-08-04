@@ -8,6 +8,7 @@ Documentation is organized by its audience and ownership.
 - [C3 2.0 scope](product/c3-2.0-scope.md)
 - [Versioning and update channels](governance/versioning-and-channels.md)
 - [Machine-readable contract index](../spec/README.md)
+- [Catalogue-library public API baseline](../spec/catalogue-api/v1/README.md)
 - [Release catalogue v1 contract](../spec/release-catalog/v1/README.md)
 - [Release-train controller v1 contract](../spec/release-train/v1/README.md)
 - [Current C3 2.0 train state](../release/train/README.md)

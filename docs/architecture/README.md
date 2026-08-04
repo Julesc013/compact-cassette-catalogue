@@ -23,7 +23,10 @@ The architecture optimizes for four things, in this order:
 
 During Alpha 3, `C3.Catalogue` remains the sole production behavior owner and VB
 differential oracle while named slices move to `C3.Domain`. The transition does
-not authorize two production implementations of one rule.
+not authorize two production implementations of one rule. Its compiled public
+surface is frozen in [`spec/catalogue-api/v1`](../../spec/catalogue-api/v1/README.md)
+and checked after every characterization build; behavior remains protected by
+the executable characterization suite.
 
 `C3.WinForms` has two project files over the same physical UI sources:
 

@@ -16,6 +16,9 @@
 - Accepted the native aggregate vocabulary, including separate `DeckModel` and
   physical `DeckUnit` identities, tape-owned recordings, and legacy-key mapping
   as an explicit migration responsibility rather than domain identity.
+- Froze all 269 exported signatures of the current VB catalogue library as a
+  deterministic reflection oracle and made unexplained API drift fail the
+  characterization gate before behavior-preserving C# ports begin.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)
