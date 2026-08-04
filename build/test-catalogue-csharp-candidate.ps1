@@ -30,6 +30,7 @@ $translatedNamespaces = @(
     'C3.Catalogue.Brands.'
     'C3.Catalogue.CassetteModels.'
     'C3.Catalogue.Decks.'
+    'C3.Catalogue.Tapes.'
 )
 foreach ($namespacePrefix in $translatedNamespaces) {
     & (Join-Path $PSScriptRoot 'validate-catalogue-api.ps1') `

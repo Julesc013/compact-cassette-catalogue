@@ -40,6 +40,9 @@
 - Mechanically translated Decks into the isolated C# candidate, including its
   full immutable capability/specification value and validation, identity,
   ordering, recording-reference, and storage-failure behavior.
+- Mechanically translated Tapes and side recording values into the isolated C#
+  candidate, preserving bulk allocation, three-digit capacity, VB-compatible
+  decimal rounding, identifiers, packaged-side clearing, and mutation failures.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

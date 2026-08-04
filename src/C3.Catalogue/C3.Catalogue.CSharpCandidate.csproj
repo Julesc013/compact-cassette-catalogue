@@ -55,6 +55,12 @@
     <Compile Include="Decks\DeckOperationResult.cs" />
     <Compile Include="Decks\DeckService.cs" />
     <Compile Include="Decks\IDeckRepository.cs" />
+    <Compile Include="Tapes\ITapeRepository.cs" />
+    <Compile Include="Tapes\Tape.cs" />
+    <Compile Include="Tapes\TapeDraft.cs" />
+    <Compile Include="Tapes\TapeOperationResult.cs" />
+    <Compile Include="Tapes\TapeService.cs" />
+    <Compile Include="Tapes\TapeSide.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\C3.Domain\C3.Domain.csproj">
