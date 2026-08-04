@@ -6,6 +6,10 @@
 
 ### Version 2.0.0 Alpha 5 - In development
 
+- Added an exact-archive Brands workflow driver that exercises both packaged
+  Desktop lanes through real controls and proves all same-lane and cross-lane
+  save/reopen combinations without adding a second implementation path.
+
 - Began the explicit workspace/document controller, command-history, undo/redo,
   and reusable OEM+ interaction-pattern milestone. One end-to-end workflow must
   prove both lanes before the new shell expands.

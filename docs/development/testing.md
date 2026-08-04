@@ -129,6 +129,30 @@ activations after setup and warm-up. This headless presenter measurement catches
 algorithmic regressions but does not replace packaged paint, input-latency,
 launch, memory, or minimum-OS measurements.
 
+## Exact-package Brands workflow
+
+After building and packaging, run the black-box Brands workflow against the
+actual portable archives:
+
+```powershell
+.\build\test-packaged-brand-workspace.ps1 -SkipPackage
+```
+
+Omit `-SkipPackage` to regenerate packages from the existing build outputs first.
+The driver derives package names and lanes from the authoritative release
+identity and lane manifests, extracts each ZIP to a unique temporary root, and
+uses the Windows accessibility surface to exercise real executable controls. It
+performs create, edit, filter, confirmed delete, undo, redo, and save separately
+in both lanes, then reopens both saved catalogues in both lanes. Successful runs
+remove their temporary catalogues and payloads; failed runs retain the exact
+temporary root for diagnosis. `-KeepWork` retains successful evidence when a
+release investigation needs it.
+
+This is an interactive desktop gate: it requires an unlocked user session and
+may briefly foreground C3 and Windows file dialogs. It is intentionally separate
+from the headless default verifier. Candidate evidence must name the archive and
+executable hashes printed by the command.
+
 ## UI, accessibility, DPI, and performance
 
 Open every changed form in the authoritative Visual Studio designer. Test
