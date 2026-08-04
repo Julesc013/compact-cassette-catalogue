@@ -45,21 +45,25 @@ stable reuses RC bytes or that a metadata-only rebuild is sufficient.
 
 ## Permanent branch contract
 
-`maintenance/1.x` owns bounded supported 1.x maintenance. `master` is the
-append-only promotion ledger for every qualified alpha, beta, release candidate,
-and stable checkpoint. `dev` owns active, unqualified development toward exactly
-one next checkpoint.
+`maintenance/1.x` owns active, unqualified work toward the next bounded supported
+1.x maintenance checkpoint. `legacy/1.x` is the append-only ledger of qualified
+1.x checkpoints. `master` is the append-only promotion ledger for every
+qualified 2.x alpha, beta, release candidate, and stable checkpoint. `dev` owns
+active, unqualified 2.x development toward exactly one next checkpoint.
 
 Normal feature branches target `dev`. A 1.x correction targets
 `maintenance/1.x` first, is verified under the 1.x contract, and is then
-forward-merged or deliberately ported to `dev` with the same regression evidence.
-A 2.x-only change never flows backward into the maintenance line. Reserved,
-SHA-bound `attest/v*-candidate-<E>` and `attest/v*-post-<P>` refs temporarily
-make exact attestation commits reachable to private gates while permanent refs
+promoted to `legacy/1.x` through its 1.x qualification gate. Applicable fixes are
+then forward-merged or deliberately ported to `dev` with the same regression
+evidence. A 2.x-only change never flows backward into either 1.x line. Reserved,
+SHA-bound `attest/v*-candidate-<E>` and `attest/v*-post-<P>` refs temporarily make
+exact 2.x attestation commits reachable to private gates while permanent refs
 remain at their expected old objects. They are create-only transport, not version
 lines, and are consumed by the leased atomic promotion transactions.
 
-No permanent branch is force-pushed. A checkpoint follows `C -> E(tag) -> P`:
+No permanent branch is force-pushed. `legacy/1.x` advances only by fast-forward
+from a qualified `maintenance/1.x` checkpoint under the applicable 1.x release
+contract. A 2.x checkpoint follows `C -> E(tag) -> P`:
 
 - `C` freezes every payload input;
 - `E`, the direct, single-parent child of `C`, changes exactly the release

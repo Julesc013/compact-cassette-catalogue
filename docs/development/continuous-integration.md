@@ -107,10 +107,12 @@ publication and verification procedure.
 
 ## Branch protection
 
-Make the hosted contract job required for pull requests. Protect `master` from
-direct feature commits, force-push, and deletion; protect `maintenance/1.x` from
-force-push/deletion and 2.x identity changes; and prevent replacement of `v2.*`
-tags. `master` advances only through the documented exact-SHA transaction:
+Make the hosted contract job required for pull requests. Protect `master` and
+`legacy/1.x` from direct feature commits, force-push, and deletion; protect
+`maintenance/1.x` from force-push/deletion and 2.x identity changes; and prevent
+replacement of qualified tags. `legacy/1.x` advances only by fast-forward from a
+qualified `maintenance/1.x` checkpoint. `master` advances only through the
+documented exact-SHA transaction:
 
 1. expose `E` through create-only `attest/v*-candidate-<E>` while `dev` remains
    at `C`, then use exact-old-object leases to atomically advance both permanent

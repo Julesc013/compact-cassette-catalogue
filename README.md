@@ -7,7 +7,8 @@ builds.
 
 > **Development status:** C3 2.0.0 Alpha 1 is active on `dev`. Its source is
 > visible, but its binaries, GitHub release, and update feed are intentionally
-> unpublished. C3 1.2 Beta maintenance is preserved on `maintenance/1.x`.
+> unpublished. C3 1.x development continues on `maintenance/1.x`; its latest
+> qualified checkpoint is preserved on `legacy/1.x`.
 
 ![C3 main window](assets/screenshots/demonstration-screenshot.png)
 
@@ -137,9 +138,11 @@ See the [toolchain policy](docs/development/toolchain.md),
 
 ## Branches, checkpoints, and publication
 
-- `maintenance/1.x`: bounded C3 1.x maintenance and compatibility-feed fixes.
-- `master`: append-only ledger of the latest qualified product checkpoint.
-- `dev`: active, unqualified work toward the next checkpoint.
+- `maintenance/1.x`: active, unqualified work toward the next bounded C3 1.x
+  maintenance checkpoint.
+- `legacy/1.x`: append-only ledger of the latest qualified C3 1.x checkpoint.
+- `master`: append-only ledger of qualified C3 2.x checkpoints.
+- `dev`: active, unqualified work toward the next C3 2.x checkpoint.
 - `feature/*` and `fix/*`: short-lived contribution branches targeting the
   appropriate permanent line.
 - `attest/v*-candidate-<E>` and `attest/v*-post-<P>`: create-only, SHA-bound
@@ -164,8 +167,9 @@ also promotes exactly one matching beta or stable `release.json`. Branch or tag
 presence never substitutes for publication status; see
 [versioning and channels](docs/governance/versioning-and-channels.md).
 
-Applicable 1.x fixes flow forward into `dev`; 2.x-only changes never flow into
-`maintenance/1.x`.
+Qualified 1.x work advances from `maintenance/1.x` to `legacy/1.x`; applicable
+fixes then flow forward into `dev`. A 2.x-only change never flows into either 1.x
+branch.
 
 - [Current candidate notes](RELEASE_NOTES.md)
 - [Changelog](CHANGELOG.md)

@@ -6,8 +6,8 @@ Describe the user-visible result and why the change is needed.
 
 - [ ] Ordinary 2.x work targets `dev`, or bounded 1.x work targets
       `maintenance/1.x`.
-- [ ] If this changes `master`, it is an evidence-backed checkpoint promotion
-      with the matching validation record, catalogue entry, and tag plan.
+- [ ] If this changes `master` or `legacy/1.x`, it is an evidence-backed
+      checkpoint promotion with the matching validation record and tag plan.
 
 ## Ownership and compatibility
 

@@ -18,15 +18,19 @@ small explicit transaction rather than self-referential metadata.
 
 ## Decision
 
-Use three permanent lines:
+Use four permanent lines in two independently promoted trains:
 
-- `maintenance/1.x` owns bounded supported 1.x maintenance;
-- `master` is the append-only ledger of verified product checkpoints; and
-- `dev` owns the next unqualified milestone.
+- `maintenance/1.x` owns active, unqualified bounded 1.x maintenance;
+- `legacy/1.x` is the append-only ledger of qualified 1.x checkpoints;
+- `master` is the append-only ledger of verified 2.x product checkpoints; and
+- `dev` owns the next unqualified 2.x milestone.
 
-Every alpha, beta, release-candidate, and stable tag is reachable from `master`.
-No permanent branch or qualified tag is force-pushed or replaced. Applicable 1.x
-changes flow forward; 2.x-only changes never flow backward.
+Every 2.x alpha, beta, release-candidate, and stable tag is reachable from
+`master`; every newly qualified 1.x maintenance tag is reachable from
+`legacy/1.x`. No permanent branch or qualified tag is force-pushed or replaced.
+Qualified 1.x changes advance by fast-forward from `maintenance/1.x` to
+`legacy/1.x`, then applicable fixes flow forward to `dev`; 2.x-only changes never
+flow backward.
 
 Each checkpoint is the linear transaction:
 

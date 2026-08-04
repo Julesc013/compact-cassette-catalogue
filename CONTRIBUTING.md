@@ -5,14 +5,15 @@ lanes behaviorally identical, and leave clearer ownership than they found.
 
 The repository currently has no explicit license. Contribution does not imply a
 license grant beyond GitHub's applicable terms; selecting a project license is an
-owner decision and an open 2.0 foundation task.
+owner decision and a required gate before the first public C3 2.0 beta is tagged
+or published.
 
 ## Choose the correct branch
 
 - Target `dev` for C3 2.0 features, refactors, ports, documentation, and fixes.
 - Target `maintenance/1.x` only for bounded C3 1.x maintenance/security work.
-- Do not target `master` directly; it advances only by qualified checkpoint
-  promotion from `dev`.
+- Do not target `master` or `legacy/1.x` directly. They advance only through
+  qualified checkpoint promotion from `dev` or `maintenance/1.x`, respectively.
 - Carry accepted 1.x fixes forward to `dev` with the same regression evidence.
 - Never backport a 2.x-only model, format, UI, or update-channel change to
   `maintenance/1.x` merely to reduce diff size.

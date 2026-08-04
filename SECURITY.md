@@ -2,12 +2,12 @@
 
 ## Supported versions
 
-Security fixes are considered for the maintained C3 1.x line on
-`maintenance/1.x` and the current 2.0 development line on `dev`. `master`
-records qualified checkpoints; ancestry there does not make an unpublished alpha
-a supported public release. Older binaries may remain useful on legacy systems
-but do not receive separate security maintenance unless a release notice says
-otherwise.
+Security fixes are considered for the active C3 1.x maintenance line on
+`maintenance/1.x` and the current 2.0 development line on `dev`. `legacy/1.x`
+and `master` record qualified 1.x and 2.x checkpoints respectively; ancestry on
+either ledger does not by itself make an unpublished checkpoint a supported
+public release. Older binaries may remain useful on legacy systems but do not
+receive separate security maintenance unless a release notice says otherwise.
 
 ## Reporting a vulnerability
 

@@ -18,16 +18,19 @@ SHA. A moving `dev` reference is never a release input.
 
 ## Permanent branches
 
-- `maintenance/1.x` owns bounded supported C3 1.x fixes.
-- `master` is the append-only ledger of verified C3 checkpoints.
-- `dev` owns the next unqualified milestone.
+- `maintenance/1.x` owns active, unqualified bounded C3 1.x fixes.
+- `legacy/1.x` is the append-only ledger of qualified C3 1.x checkpoints.
+- `master` is the append-only ledger of verified C3 2.x checkpoints.
+- `dev` owns the next unqualified C3 2.x milestone.
 - topic branches are short-lived.
 - `attest/v*-candidate-<E>` and `attest/v*-post-<P>` are reserved, short-lived,
   SHA-bound transports for one exact attestation commit. They are never product
   lines or substitutes for either permanent 2.x branch.
 
-Applicable 1.x changes flow forward to `dev`; 2.x-only work never flows backward.
-No permanent branch or qualified tag is force-pushed, replaced, or deleted.
+Qualified 1.x checkpoints fast-forward from `maintenance/1.x` to `legacy/1.x`;
+applicable 1.x changes then flow forward to `dev`. 2.x-only work never flows
+backward. No permanent branch or qualified tag is force-pushed, replaced, or
+deleted.
 
 Every alpha, beta, release candidate, and stable tag must be reachable from
 `master`. A tag proves qualification, not publication. Because this repository
@@ -305,5 +308,6 @@ Catalogue rollback uses the preserved original/export and its own documented
 workflow.
 
 The repository currently has no explicit licence. Selecting one is an owner
-decision and remains a qualification blocker before C3 advertises third-party
-reuse or redistribution rights.
+decision and remains a hard gate before the first public C3 2.0 beta is tagged or
+published, or before C3 advertises third-party reuse or redistribution rights. It
+does not block qualified, intentionally unpublished Alpha checkpoints.
