@@ -1,54 +1,127 @@
-# Roadmap
+# C3 1.3.0 legacy maintenance workboard
 
-## 1.2 Public Release
+This file is the short operational view. Detailed requirements live in
+`docs/planning` and `docs/testing/1.3.0-qualification-matrix.md`. Work is checked
+off only when its committed evidence passes; implementation alone is not done.
 
-- Complete and record a clean Windows XP SP3 32-bit runtime test with .NET Framework 4.0 installed.
-- Manually smoke-test the 1.2.0 portable x86 build on modern Windows after each release candidate.
-- Verify list windows before release: tapes, models, brands, decks, filtering, selecting results, editing, and deletion.
-- Confirm settings persistence across close/reopen, especially update-check policy and message display preference.
-- Sunset the old installer and installer, as we are abandoning them.
-- Review update version comparison for pre-release, beta, and four-part version strings, and rewrite it because it sucks.
-- Review all browser-opening paths after release packaging so failures remain non-crashing.
-- Keep the wiki and quick-start documentation synchronized with the portable x86 release path.
-- Add back all fhe features that we lost by downgrading to .net 4.0 (like high dpi and tls support and all the other improvements from .net 4.8)
+## Alpha 1 — maintenance foundation
 
-## 1.3 Public Release
+- [x] Recover `dev/1.x` directly from `v1.2.0b1`.
+- [x] Preserve the superseded refactor tip under an annotated archival tag.
+- [x] Record the branch correction and permanent branch roles.
+- [x] Define the frozen 1.3 genetic compatibility constitution.
+- [x] Create the itemized refactor salvage ledger.
+- [x] Project the catalogue 1.1.0 specification and fixtures.
+- [x] Project historical release provenance and settings fixtures.
+- [x] Add strict compatibility-corpus and JSON validation.
+- [x] Add standalone VB.NET XML characterization tests.
+- [x] Generate the baseline-genome manifest and empty allow-list.
+- [x] Add one-project build lanes for x86/net40, x64/net40, x64/net48, and
+  x64/net481.
+- [x] Verify PE architecture, framework metadata, settings parity, and no runtime
+  DLL payload.
+- [x] Download and hash-check the official `v1.2.0b1` x86/x64 executables.
+- [x] Document the Alpha 1, Beta 1, and stable milestone gates.
+- [ ] Set and mechanically verify `1.3.0 / Alpha 1` source identity while leaving
+  the public 1.2 feed unchanged.
+- [ ] Rebuild all four diagnostic lanes from the exact Alpha candidate.
+- [ ] Run the complete Alpha validator and record exact evidence.
+- [ ] Create and verify annotated tag `v1.3.0a1`.
+- [ ] Push the exact `dev/1.x` tip and absent tag atomically.
 
-- add option enabled by default for when an unhandled exception or other irrecoverable crash occurs, the error message, dumps, and console log should be saved to a file.
-- Built in option for users that automatically adds popular or select brands and tapes and decks and etc to a new or existing database.
-- allow exporting and importing and sharing a range of selection of entries to other databases or backup archives.
-- Improve search and filtering behavior, and add much more intuitive and real use oriented searching abilities and quality of life.
-- Add sorting for list-view items.
-- Save column reorderings for list views.
-- Add more tape filters, including speed and recording-related fields.
-- Add more deck filters.
-- Improve console logging and optional log-file output.
-- Fix console scrolling behavior.
-- Fix notes textbox Enter-key behavior where accept buttons interfere with multiline input.
-- Populate combo boxes programmatically.
-- Improve validation, including regex validation and case-sensitive searching options.
+Alpha 1 is intentionally unpublished. It does not advance `legacy/1.x`, publish
+binaries, or change the update feed.
 
-## 2.0 Public Release?
+## Beta 1 entry — finish baseline reconstruction
 
-- Add a catalogue version upgrade/conversion/import/export tool to the App.
-- Allow saving and editing as older catalogue protocol versions and alternative file formats where practical.
-- Add file associations if OS integration is safe on supported systems, if we create our own speed and storage optimized file format.
-- Add optional managed catalogue folders (for example, in user documents or program data) for users who do not want manual XML file handling.
-- Retain advanced file-management model for users who prefer manual XML save/open behavior.
-- Add a backup function that exports catalogue XML files into a C3 backup archive?
-- Store brands and models by stable codes so names can be edited safely.
-- Give decks stable hidden identifiers so deck names and manufacturers can be edited safely.
-- Support adding multiple instances of the same deck model.
-- Support alternative file formats and save formats and packages and etc.
-- Support importing and exporting to and from human readable formats of various file types.
-- Rebuild the UI for resizing and high DPI displays.
-- Add resizable and fullscreen layout support.
-- Show tape lists in a side pane in fullscreen layouts.
-- Show console output in a non-obtrusive area.
-- Allow users to add and remove fields from view forms.
-- Add the ability to add pictures of the tape and jcards to the Catalog.
-- make it much easier to identify the make and model and year and market and formulation of any given tape the user my find (either by image recognition or by procedural elimination and identification of the features of the tapes manufacture and design).
-- Clearly mark brand/model codes that cannot be changed after creation.
-- Support cli or tui use on gui incapable machines, and even add a dos 16bit cli to the binary stubs.
-- Support modularity and extensibility oriented design for modders and forks and etc, so users can easily extend or integrate this into their systems.
-- Maybe transition to .net 4.8.0 to get high dpi support and better features and etc if we can't make it work on .net 4.0.3
+- [ ] Install or reconstruct VS2015/MSBuild `14.0.25420.1`.
+- [ ] Rebuild `v1.2.0b1` x86/net40 and x64/net40 with the authoritative toolchain.
+- [ ] Repeat launch, catalogue, list/filter/edit/delete, settings, and blocked-
+  network workflows in disposable environments.
+- [ ] Retain representative real catalogues as private test copies outside Git.
+- [ ] Capture baseline screenshots and control/resource evidence.
+- [ ] Prove `v1.1.2` and both `v1.2.0b1` architectures exchange the canonical
+  catalogue without semantic loss.
+
+No Beta runtime repair starts until this entry gate passes or the owner records
+a specific governance amendment.
+
+## Beta 1 — lifecycle and data safety
+
+- [ ] S1: resolve pending tape edits before close/open/new/scroll transitions.
+- [ ] S1: replace recursive close cancellation with one explicit close gate.
+- [ ] S1: stop Save As cancellation from continuing into save/open operations.
+- [ ] S1: eliminate the duplicate Open dialog after save-before-open.
+- [ ] S0: load and validate temporary catalogue state before replacing active
+  data or path.
+- [ ] S0: implement verified same-directory temporary save, backup, replacement,
+  and cleanup.
+- [ ] S1: detect external catalogue modification before overwrite.
+- [ ] S0: replace positional tape updates with explicit named assignments.
+- [ ] S1: preserve existing tape identifiers and creation dates during edits.
+- [ ] S2: persist peak, bias, and calibration values from the actual controls.
+
+Every item requires an isolated reproduction, regression, minimal original-file
+patch, genome validation, and focused commit.
+
+## Beta 1 — referential and counter integrity
+
+- [ ] S2: read model notes from `Models`, not `Brands`.
+- [ ] S2: update the deck counter when deleting a deck.
+- [ ] S1: block deletion of referenced brands, models, and decks.
+- [ ] S1: make brand rename relationship-safe without changing identifiers.
+- [ ] S2: derive runtime counts from actual rows.
+- [ ] S1: allocate tape sequences from the maximum existing sequence.
+- [ ] S1: validate a complete bulk batch before inserting any row.
+- [ ] S1: assign every bulk copy an independent monotonic sequence.
+- [ ] S2: maintain correct per-model tape counters.
+- [ ] S2: clear both deck combo boxes before repopulation.
+- [ ] S1: recognize historical display-name `Models.Brand` references without a
+  format migration.
+
+## Beta 1 — settings, diagnostics, lanes, and packages
+
+- [ ] Add `settingsUpgradeRequired=True` and guarded `My.Settings.Upgrade()`.
+- [ ] Keep migration failures nonfatal and retryable; never alter old profiles.
+- [ ] Normalize only known values and preserve directory/message/update settings.
+- [ ] Execute every real-profile and cross-lane settings transition.
+- [ ] Resolve console export through configured directory/Documents using
+  `Path.Combine`.
+- [ ] Keep console write failures nonfatal.
+- [ ] Use short same-directory temporary filenames on classic Windows paths.
+- [ ] Finalize lane-specific config/manifest metadata with identical application
+  logic and resources.
+- [ ] Add deterministic portable packaging and exact payload verification.
+- [ ] Prove two clean, path-distinct builds produce identical ZIPs.
+- [ ] Complete all automated, manual, compatibility, and OS Beta gates.
+- [ ] Resolve or reject every S0–S2 salvage-ledger entry with evidence.
+- [ ] Freeze, qualify, tag, and optionally publish `v1.3.0b1` without changing the
+  stable legacy feed.
+
+## Stable 1.3.0
+
+- [ ] Obtain owner acceptance of the exact Beta source and retained packages.
+- [ ] Record the licence decision for redistributed package contents.
+- [ ] Make a direct metadata-only transition to `1.3.0 / Release`.
+- [ ] Audit the transition for zero functional/dependency/format/payload change.
+- [ ] Build twice from clean, different absolute paths with authoritative tools.
+- [ ] Run the complete automated, manual, compatibility, settings, and OS matrix.
+- [ ] Create the evidence-only qualification commit and annotated `v1.3.0` tag.
+- [ ] Fast-forward `legacy/1.x` to the qualified checkpoint.
+- [ ] Publish the already-qualified ZIPs and checksum manifest without rebuilding.
+- [ ] Download and reverify every published byte and critical workflow.
+- [ ] Commit post-publication evidence.
+- [ ] Promote the root legacy feed to `1.3.0 / Release` only after success.
+- [ ] Align `dev/1.x` and `legacy/1.x`, archive evidence, and freeze ordinary 1.x
+  development.
+
+## Explicitly outside C3 1.3
+
+- new catalogue fields, formats, plugins, import/export framework, or updater;
+- modular-monolith/service/repository architecture;
+- C# translation or production source relocation;
+- broad UI/DPI/localization redesign; and
+- ordinary feature requests formerly listed as 1.3 usability work.
+
+Those belong to 2.x planning. After stable, 1.3.1 is reserved for a critical
+data-loss, security, startup, or platform regression.
