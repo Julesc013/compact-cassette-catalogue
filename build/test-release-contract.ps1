@@ -752,7 +752,9 @@ try {
         version = '2.0.0'
         stage = 'Beta 1'
         informationalVersion = '2.0.0-beta.1'
-        releaseDate = '2026-08-04'
+        releaseDate = $betaIdentity.ReleaseDate.ToString(
+            'yyyy-MM-dd',
+            [Globalization.CultureInfo]::InvariantCulture)
         catalogueWriteFormat = '1.1.0'
         published = $true
         releaseUrl = $betaReleaseUrl
