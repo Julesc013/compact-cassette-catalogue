@@ -35,6 +35,12 @@ all 269 frozen VB signatures, then promoted atomically through the behavior
 suite. The candidate project and superseded VB implementations were removed so
 there is one production owner.
 
+The current VB `C3.Infrastructure` production assembly is independently frozen
+at 312 compiled public signatures under
+[`spec/infrastructure-api/v1`](../../spec/infrastructure-api/v1/README.md) before
+its staged C# translation. Existing external-behavior characterization remains
+the semantic gate; the compiled surface prevents accidental caller drift.
+
 `C3.WinForms` has two project files over the same physical UI sources:
 
 - `C3.WinForms.Net40.vbproj`: x86, .NET Framework 4.0, Windows XP SP3+

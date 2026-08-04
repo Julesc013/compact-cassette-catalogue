@@ -27,6 +27,13 @@ admitted feature namespace with the same baseline. After its complete
 atomically and the temporary harness was removed. The baseline continues to
 protect the C# assembly from unintended API drift.
 
+The same reflection mechanism freezes all 312 exported Infrastructure
+signatures under `spec/infrastructure-api/v1`. It reflects layered assemblies
+from an isolated copy of the library output directory so cross-assembly public
+types resolve without locking the real outputs before the later rebuild gate.
+The Infrastructure baseline is the independent API oracle for the remaining
+Alpha 3 language-only migration.
+
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane
 are exercised. The runner is deliberately dependency-light and returns a nonzero
 process code on any failure.

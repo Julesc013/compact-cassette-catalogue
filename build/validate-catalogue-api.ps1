@@ -5,6 +5,7 @@ param(
     [string]$AssemblyPath,
     [string]$BaselinePath,
     [string]$NamespacePrefix,
+    [string]$ContractName = 'Catalogue',
     [switch]$WriteBaseline
 )
 
@@ -55,13 +56,26 @@ function Get-Parameters {
 }
 
 if (-not (Test-Path -LiteralPath $AssemblyPath -PathType Leaf)) {
-    throw "Catalogue assembly is missing: $AssemblyPath"
+    throw "$ContractName assembly is missing: $AssemblyPath"
 }
 
-# Load a byte copy so reflection does not lock the build output for the
-# remainder of a long-running parent verification process.
-$assemblyBytes = [IO.File]::ReadAllBytes($AssemblyPath)
-$assembly = [Reflection.Assembly]::Load($assemblyBytes)
+# Reflect from an isolated copy of the complete output directory. The CLR can
+# resolve public cross-assembly types beside the copied contract assembly while
+# the real build outputs remain unlocked for later rebuilds in the same process.
+$assemblyDirectory = Split-Path -Parent $AssemblyPath
+$reflectionDirectory = Join-Path $repositoryRoot (
+    'artifacts\api-reflection\' + $PID + '-' + [Guid]::NewGuid().ToString('N'))
+[IO.Directory]::CreateDirectory($reflectionDirectory) | Out-Null
+foreach ($siblingPath in @(Get-ChildItem -LiteralPath $assemblyDirectory -Filter '*.dll' |
+        Sort-Object FullName |
+        Select-Object -ExpandProperty FullName)) {
+    [IO.File]::Copy(
+        $siblingPath,
+        (Join-Path $reflectionDirectory ([IO.Path]::GetFileName($siblingPath))),
+        $false)
+}
+$assembly = [Reflection.Assembly]::LoadFrom(
+    (Join-Path $reflectionDirectory ([IO.Path]::GetFileName($AssemblyPath))))
 $lines = New-Object Collections.Generic.List[String]
 foreach ($type in @($assembly.GetExportedTypes() | Sort-Object FullName)) {
     $isInterface = (($type.Attributes -band
@@ -133,12 +147,12 @@ if ($WriteBaseline) {
     }
     $utf8WithoutBom = New-Object Text.UTF8Encoding($false)
     [IO.File]::WriteAllText($BaselinePath, (($actual -join "`n") + "`n"), $utf8WithoutBom)
-    Write-Host "Wrote catalogue public API baseline: $BaselinePath"
+    Write-Host "Wrote $ContractName public API baseline: $BaselinePath"
     return
 }
 
 if (-not (Test-Path -LiteralPath $BaselinePath -PathType Leaf)) {
-    throw "Catalogue public API baseline is missing: $BaselinePath"
+    throw "$ContractName public API baseline is missing: $BaselinePath"
 }
 $expected = @(Get-Content -LiteralPath $BaselinePath | Where-Object {
         -not [string]::IsNullOrWhiteSpace($_) -and -not $_.StartsWith('#')
@@ -148,7 +162,7 @@ if (-not [string]::IsNullOrWhiteSpace($NamespacePrefix)) {
 }
 $difference = @(Compare-Object -ReferenceObject $expected -DifferenceObject $actual -CaseSensitive)
 if ($difference.Count -gt 0) {
-    throw ("Catalogue public API differs from the frozen VB oracle:`n" +
+    throw ("$ContractName public API differs from the frozen VB oracle:`n" +
         (($difference | Format-Table -AutoSize | Out-String).TrimEnd()))
 }
 
@@ -158,4 +172,4 @@ $scope = if ([string]::IsNullOrWhiteSpace($NamespacePrefix)) {
 else {
     $NamespacePrefix
 }
-Write-Host "Catalogue public API matches the frozen VB oracle for ${scope}: $($actual.Count) signatures."
+Write-Host "$ContractName public API matches the frozen VB oracle for ${scope}: $($actual.Count) signatures."

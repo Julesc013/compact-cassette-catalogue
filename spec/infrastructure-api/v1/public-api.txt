@@ -1,0 +1,312 @@
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|System.Func<System.Data.DataSet> documentProvider
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|System.Func<System.Data.DataSet> documentProvider
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadataWriter|System.Func<System.Data.DataSet> documentProvider
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|System.Func<System.Data.DataSet> documentProvider
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|System.Func<System.Data.DataSet> documentProvider
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|
+ctor|C3.Infrastructure.Diagnostics.CrashReportContext|
+ctor|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|System.String filePath,System.Version profileVersion,System.DateTime lastWriteTimeUtc
+ctor|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|
+ctor|C3.Infrastructure.Preferences.LegacySettingsProfileReader|
+ctor|C3.Infrastructure.Preferences.LegacyUserSettingsImporter|
+ctor|C3.Infrastructure.Preferences.LegacyUserSettingsImporter|C3.Infrastructure.Preferences.LegacySettingsProfileLocator locator,C3.Infrastructure.Preferences.LegacySettingsProfileReader reader
+ctor|C3.Infrastructure.Preferences.UserPreferencesService|C3.Infrastructure.Preferences.XmlUserPreferencesStore store,C3.Infrastructure.Preferences.LegacyUserSettingsImporter legacyImporter,System.String localApplicationDataDirectory,System.String myDocumentsDirectory,System.Action<System.String> warningSink
+ctor|C3.Infrastructure.Preferences.UserPreferencesSnapshot|
+ctor|C3.Infrastructure.Preferences.XmlUserPreferencesStore|System.String preferencesPath,System.Func<System.DateTime> clock
+ctor|C3.Infrastructure.Updates.HttpUpdateManifestSource|
+ctor|C3.Infrastructure.Updates.HttpUpdateManifestSource|System.Boolean enableLegacyTls12Compatibility
+ctor|C3.Infrastructure.Updates.UpdateCheckService|
+ctor|C3.Infrastructure.Updates.UpdateCheckService|C3.Infrastructure.Updates.IUpdateManifestSource source
+ctor|C3.Infrastructure.Updates.UpdateReleaseManifestReader|
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|AccessDenied|9
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|ConstraintViolation|7
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|ExternalModification|8
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|FileNotFound|1
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|FileTooLarge|2
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|InvalidStructure|6
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|InvalidXml|3
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|IoFailure|10
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|MissingVersion|4
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|None|0
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|UnsupportedVersion|5
+enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|VerificationFailure|11
+enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|DuplicateSetting|5
+enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidStructure|4
+enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidValue|6
+enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|MalformedXml|3
+enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|None|0
+enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|TooLarge|2
+enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|Unavailable|1
+enum|C3.Infrastructure.Preferences.LegacyUserSettingsImportStatus|Failed|2
+enum|C3.Infrastructure.Preferences.LegacyUserSettingsImportStatus|Imported|1
+enum|C3.Infrastructure.Preferences.LegacyUserSettingsImportStatus|NotFound|0
+enum|C3.Infrastructure.Preferences.UserPreferenceFields|All|15
+enum|C3.Infrastructure.Preferences.UserPreferenceFields|DefaultDirectory|2
+enum|C3.Infrastructure.Preferences.UserPreferenceFields|LastUpdateCheck|8
+enum|C3.Infrastructure.Preferences.UserPreferenceFields|None|0
+enum|C3.Infrastructure.Preferences.UserPreferenceFields|ShowMessages|1
+enum|C3.Infrastructure.Preferences.UserPreferenceFields|UpdatePolicy|4
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|AccessDenied|5
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|Busy|7
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|Invalid|2
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|IoFailure|6
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|Missing|1
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|None|0
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|TooLarge|4
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|UnsupportedVersion|3
+enum|C3.Infrastructure.Preferences.UserPreferencesFailure|VerificationFailure|8
+enum|C3.Infrastructure.Updates.UpdateCheckOutcome|Failed|0
+enum|C3.Infrastructure.Updates.UpdateCheckOutcome|NoPublishedRelease|1
+enum|C3.Infrastructure.Updates.UpdateCheckOutcome|UpdateAvailable|3
+enum|C3.Infrastructure.Updates.UpdateCheckOutcome|UpToDate|2
+enum|C3.Infrastructure.Updates.UpdateCheckPolicy|Monthly|3
+enum|C3.Infrastructure.Updates.UpdateCheckPolicy|Never|0
+enum|C3.Infrastructure.Updates.UpdateCheckPolicy|Startup|1
+enum|C3.Infrastructure.Updates.UpdateCheckPolicy|Weekly|2
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|Empty|1
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|InvalidManifest|7
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|MalformedJson|3
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|None|0
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|TooLarge|2
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|UnsupportedSchema|4
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongChannel|6
+enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongProduct|5
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Add|instance|System.Void|C3.Catalogue.Brands.Brand value
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Delete|instance|System.Void|System.String code
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|FindByCode|instance|C3.Catalogue.Brands.Brand|System.String code
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Brands.Brand>|
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|IsCodeInUse|instance|System.Boolean|System.String code
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|IsReferencedByModel|instance|System.Boolean|System.String code
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Update|instance|System.Void|C3.Catalogue.Brands.Brand value
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|Add|instance|System.Void|C3.Catalogue.CassetteModels.CassetteModel value
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|BrandExists|instance|System.Boolean|System.String code
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|Delete|instance|System.Void|System.String identifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|FindByIdentifier|instance|C3.Catalogue.CassetteModels.CassetteModel|System.String identifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.CassetteModels.CassetteModel>|
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|IdentifierExists|instance|System.Boolean|System.String identifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|IsReferencedByTape|instance|System.Boolean|System.String identifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|Update|instance|System.Void|C3.Catalogue.CassetteModels.CassetteModel value
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Failed|static|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure failure,System.String message
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Success|static|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|System.Data.DataSet document,C3.Catalogue.Catalogues.CatalogueRevision revision,System.String fileVersion
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadataWriter|MarkModified|instance|System.Void|System.DateTime modifiedAt
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadataWriter|RefreshProductMetadata|instance|System.Void|System.String productVersion,System.String productStage,System.DateTime productDate
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Failed|static|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure failure,System.String message
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Success|static|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|C3.Catalogue.Catalogues.CatalogueRevision revision,System.String backupPath
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSchema|Create|static|System.Data.DataSet|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata metadata
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|Add|instance|System.Void|C3.Catalogue.Decks.Deck value
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|Delete|instance|System.Void|System.String name
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|FindByName|instance|C3.Catalogue.Decks.Deck|System.String name
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Decks.Deck>|
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|IsReferencedByTape|instance|System.Boolean|System.String name
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|NameExists|instance|System.Boolean|System.String name
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|Update|instance|System.Void|C3.Catalogue.Decks.Deck value
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|AddRange|instance|System.Void|System.Collections.Generic.IList<C3.Catalogue.Tapes.Tape> values
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|Delete|instance|System.Void|System.String shortIdentifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|FindByShortIdentifier|instance|C3.Catalogue.Tapes.Tape|System.String identifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|GetAll|instance|System.Collections.Generic.IList<C3.Catalogue.Tapes.Tape>|
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|IdentifierExists|instance|System.Boolean|System.String identifier,System.String shortIdentifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|ModelExists|instance|System.Boolean|System.String identifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|NextNumberForModel|instance|System.Int32|System.String identifier
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|Update|instance|System.Void|C3.Catalogue.Tapes.Tape value
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|Load|instance|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|System.String path,System.Data.DataSet schema,System.Collections.Generic.IEnumerable<System.String> supportedVersions
+method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|Save|instance|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|System.String path,System.Data.DataSet document,C3.Catalogue.Catalogues.CatalogueRevision expectedRevision,System.Collections.Generic.IEnumerable<System.String> supportedVersions
+method|C3.Infrastructure.Diagnostics.BufferedLogger|Error|static|System.Void|System.String message
+method|C3.Infrastructure.Diagnostics.BufferedLogger|Information|static|System.Void|System.String message
+method|C3.Infrastructure.Diagnostics.BufferedLogger|RecordAction|static|System.Void|System.String action
+method|C3.Infrastructure.Diagnostics.BufferedLogger|Tail|static|System.Collections.ObjectModel.ReadOnlyCollection<System.String>|
+method|C3.Infrastructure.Diagnostics.BufferedLogger|Warning|static|System.Void|System.String message
+method|C3.Infrastructure.Diagnostics.CrashReportWriter|TryWrite|static|System.String|System.Exception exception,C3.Infrastructure.Diagnostics.CrashReportContext context
+method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|
+method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|System.String localApplicationDataDirectory
+method|C3.Infrastructure.Preferences.LegacySettingsProfileReader|Read|instance|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate candidate
+method|C3.Infrastructure.Preferences.LegacyUserSettingsImporter|Import|instance|C3.Infrastructure.Preferences.LegacyUserSettingsImportResult|
+method|C3.Infrastructure.Preferences.LegacyUserSettingsImporter|Import|instance|C3.Infrastructure.Preferences.LegacyUserSettingsImportResult|System.String localApplicationDataDirectory
+method|C3.Infrastructure.Preferences.UserPreferencesLoadResult|Failed|static|C3.Infrastructure.Preferences.UserPreferencesLoadResult|C3.Infrastructure.Preferences.UserPreferencesFailure failure,System.String message,System.String recoveryPath,C3.Infrastructure.Preferences.UserPreferencesSnapshot fallbackPreferences,System.String migrationOutcome
+method|C3.Infrastructure.Preferences.UserPreferencesLoadResult|Loaded|static|C3.Infrastructure.Preferences.UserPreferencesLoadResult|C3.Infrastructure.Preferences.UserPreferencesSnapshot preferences,System.String recoveryPath,System.String migrationOutcome,System.String message
+method|C3.Infrastructure.Preferences.UserPreferencesLoadResult|Missing|static|C3.Infrastructure.Preferences.UserPreferencesLoadResult|
+method|C3.Infrastructure.Preferences.UserPreferencesSaveResult|Failed|static|C3.Infrastructure.Preferences.UserPreferencesSaveResult|C3.Infrastructure.Preferences.UserPreferencesFailure failure,System.String message
+method|C3.Infrastructure.Preferences.UserPreferencesSaveResult|Saved|static|C3.Infrastructure.Preferences.UserPreferencesSaveResult|C3.Infrastructure.Preferences.UserPreferencesSnapshot preferences,System.String backupPath
+method|C3.Infrastructure.Preferences.UserPreferencesService|Initialize|instance|C3.Infrastructure.Preferences.UserPreferencesLoadResult|
+method|C3.Infrastructure.Preferences.UserPreferencesService|Save|instance|System.Void|
+method|C3.Infrastructure.Preferences.UserPreferencesService|Snapshot|instance|C3.Infrastructure.Preferences.UserPreferencesSnapshot|
+method|C3.Infrastructure.Preferences.UserPreferencesService|TrySave|instance|C3.Infrastructure.Preferences.UserPreferencesSaveResult|
+method|C3.Infrastructure.Preferences.UserPreferencesSnapshot|Clone|instance|C3.Infrastructure.Preferences.UserPreferencesSnapshot|
+method|C3.Infrastructure.Preferences.UserPreferencesSnapshot|CreateDefaults|static|C3.Infrastructure.Preferences.UserPreferencesSnapshot|System.String myDocumentsPath
+method|C3.Infrastructure.Preferences.XmlUserPreferencesStore|Load|instance|C3.Infrastructure.Preferences.UserPreferencesLoadResult|
+method|C3.Infrastructure.Preferences.XmlUserPreferencesStore|Save|instance|C3.Infrastructure.Preferences.UserPreferencesSaveResult|C3.Infrastructure.Preferences.UserPreferencesSnapshot preferences,C3.Infrastructure.Preferences.UserPreferenceFields dirtyFields
+method|C3.Infrastructure.Updates.HttpUpdateManifestSource|Read|instance|C3.Infrastructure.Updates.UpdateManifestReadResult|System.Uri feedUri,System.String expectedChannel
+method|C3.Infrastructure.Updates.IUpdateManifestSource|Read|instance|C3.Infrastructure.Updates.UpdateManifestReadResult|System.Uri feedUri,System.String expectedChannel
+method|C3.Infrastructure.Updates.SemanticVersion|CompareTo|instance|System.Int32|C3.Infrastructure.Updates.SemanticVersion other
+method|C3.Infrastructure.Updates.SemanticVersion|TryParse|static|System.Boolean|System.String value,C3.Infrastructure.Updates.SemanticVersion& parsed
+method|C3.Infrastructure.Updates.UpdateCheckSchedule|NormalizeUtc|static|System.DateTime|System.DateTime value
+method|C3.Infrastructure.Updates.UpdateCheckSchedule|Parse|static|C3.Infrastructure.Updates.UpdateCheckPolicy|System.String value
+method|C3.Infrastructure.Updates.UpdateCheckSchedule|Serialize|static|System.String|C3.Infrastructure.Updates.UpdateCheckPolicy value
+method|C3.Infrastructure.Updates.UpdateCheckSchedule|ShouldCheck|static|System.Boolean|C3.Infrastructure.Updates.UpdateCheckPolicy policy,System.DateTime lastCheckedAt,System.DateTime now
+method|C3.Infrastructure.Updates.UpdateCheckSchedule|TryParseStored|static|System.Boolean|System.String value,C3.Infrastructure.Updates.UpdateCheckPolicy& policy
+method|C3.Infrastructure.Updates.UpdateCheckService|Check|instance|C3.Infrastructure.Updates.UpdateCheckResult|System.String feedUrl,System.String currentInformationalVersion,System.String expectedChannel
+method|C3.Infrastructure.Updates.UpdateCheckService|Evaluate|static|C3.Infrastructure.Updates.UpdateCheckResult|System.String currentInformationalVersion,C3.Infrastructure.Updates.UpdateReleaseManifest manifest
+method|C3.Infrastructure.Updates.UpdateEndpointPolicy|ExpectedUrl|static|System.String|System.String channel
+method|C3.Infrastructure.Updates.UpdateEndpointPolicy|TryValidate|static|System.Boolean|System.Uri feedUri,System.String expectedChannel,System.String& failureMessage
+method|C3.Infrastructure.Updates.UpdateEndpointPolicy|Validate|static|System.Void|System.Uri feedUri,System.String expectedChannel
+method|C3.Infrastructure.Updates.UpdateReleaseManifestReader|Read|instance|C3.Infrastructure.Updates.UpdateManifestReadResult|System.Byte[] payload,System.String expectedChannel
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Document|System.Data.DataSet|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Failure|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|FileVersion|System.String|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|IsSuccess|System.Boolean|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Message|System.String|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Revision|C3.Catalogue.Catalogues.CatalogueRevision|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|CreatedAt|System.DateTime|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|FileVersion|System.String|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|ProductDate|System.DateTime|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|ProductStage|System.String|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|ProductVersion|System.String|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|BackupPath|System.String|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Failure|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|IsSuccess|System.Boolean|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Message|System.String|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Revision|C3.Catalogue.Catalogues.CatalogueRevision|getset
+property|C3.Infrastructure.Diagnostics.BufferedLogger|LastAction|System.String|get
+property|C3.Infrastructure.Diagnostics.CrashReportContext|BuildLane|System.String|getset
+property|C3.Infrastructure.Diagnostics.CrashReportContext|CataloguePath|System.String|getset
+property|C3.Infrastructure.Diagnostics.CrashReportContext|ClrVersion|System.String|getset
+property|C3.Infrastructure.Diagnostics.CrashReportContext|LastAction|System.String|getset
+property|C3.Infrastructure.Diagnostics.CrashReportContext|OperatingSystem|System.String|getset
+property|C3.Infrastructure.Diagnostics.CrashReportContext|ProcessBitness|System.String|getset
+property|C3.Infrastructure.Diagnostics.CrashReportContext|ProductVersion|System.String|getset
+property|C3.Infrastructure.Diagnostics.CrashReportContext|ReleaseStage|System.String|getset
+property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|FilePath|System.String|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|LastWriteTimeUtc|System.DateTime|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|ProfileVersion|System.Version|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|Candidate|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|Failure|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|FailureException|System.Exception|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|FailureMessage|System.String|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|Profile|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsImportResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsImportResult|Profile|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsImportResult|RejectedCandidates|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileReadResult>|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsImportResult|Status|C3.Infrastructure.Preferences.LegacyUserSettingsImportStatus|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|Candidate|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|DefaultDirectory|System.String|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|HasDefaultDirectory|System.Boolean|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|HasLastUpdateCheck|System.Boolean|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|HasShowMessages|System.Boolean|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|HasUpdatePolicy|System.Boolean|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|LastUpdateCheck|System.DateTime|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|ShowMessages|System.Boolean|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|SourcePath|System.String|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|SourceVersion|System.Version|get
+property|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|UpdatePolicy|C3.Infrastructure.Updates.UpdateCheckPolicy|get
+property|C3.Infrastructure.Preferences.UserPreferencesLoadResult|Failure|C3.Infrastructure.Preferences.UserPreferencesFailure|get
+property|C3.Infrastructure.Preferences.UserPreferencesLoadResult|IsMissing|System.Boolean|get
+property|C3.Infrastructure.Preferences.UserPreferencesLoadResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Preferences.UserPreferencesLoadResult|Message|System.String|get
+property|C3.Infrastructure.Preferences.UserPreferencesLoadResult|MigrationOutcome|System.String|get
+property|C3.Infrastructure.Preferences.UserPreferencesLoadResult|Preferences|C3.Infrastructure.Preferences.UserPreferencesSnapshot|get
+property|C3.Infrastructure.Preferences.UserPreferencesLoadResult|RecoveryPath|System.String|get
+property|C3.Infrastructure.Preferences.UserPreferencesSaveResult|BackupPath|System.String|get
+property|C3.Infrastructure.Preferences.UserPreferencesSaveResult|Failure|C3.Infrastructure.Preferences.UserPreferencesFailure|get
+property|C3.Infrastructure.Preferences.UserPreferencesSaveResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Preferences.UserPreferencesSaveResult|Message|System.String|get
+property|C3.Infrastructure.Preferences.UserPreferencesSaveResult|Preferences|C3.Infrastructure.Preferences.UserPreferencesSnapshot|get
+property|C3.Infrastructure.Preferences.UserPreferencesService|DefaultDirectory|System.String|getset
+property|C3.Infrastructure.Preferences.UserPreferencesService|HasUnsavedChanges|System.Boolean|get
+property|C3.Infrastructure.Preferences.UserPreferencesService|IsInitialized|System.Boolean|get
+property|C3.Infrastructure.Preferences.UserPreferencesService|LastUpdateCheck|System.DateTime|getset
+property|C3.Infrastructure.Preferences.UserPreferencesService|PreferencesPath|System.String|get
+property|C3.Infrastructure.Preferences.UserPreferencesService|ShowMessages|System.Boolean|getset
+property|C3.Infrastructure.Preferences.UserPreferencesService|UpdatePolicy|C3.Infrastructure.Updates.UpdateCheckPolicy|getset
+property|C3.Infrastructure.Preferences.UserPreferencesSnapshot|DefaultDirectory|System.String|getset
+property|C3.Infrastructure.Preferences.UserPreferencesSnapshot|LastUpdateCheck|System.DateTime|getset
+property|C3.Infrastructure.Preferences.UserPreferencesSnapshot|Legacy1xImportOutcome|System.String|getset
+property|C3.Infrastructure.Preferences.UserPreferencesSnapshot|Legacy1xImportVersion|System.Int32|getset
+property|C3.Infrastructure.Preferences.UserPreferencesSnapshot|ShowMessages|System.Boolean|getset
+property|C3.Infrastructure.Preferences.UserPreferencesSnapshot|UpdatePolicy|C3.Infrastructure.Updates.UpdateCheckPolicy|getset
+property|C3.Infrastructure.Preferences.XmlUserPreferencesStore|BackupPath|System.String|get
+property|C3.Infrastructure.Preferences.XmlUserPreferencesStore|PreferencesPath|System.String|get
+property|C3.Infrastructure.Updates.HttpUpdateManifestSource|UsesLegacyTls12Compatibility|System.Boolean|get
+property|C3.Infrastructure.Updates.SemanticVersion|CoreVersion|System.String|get
+property|C3.Infrastructure.Updates.SemanticVersion|FirstPrereleaseIdentifier|System.String|get
+property|C3.Infrastructure.Updates.SemanticVersion|HasPrerelease|System.Boolean|get
+property|C3.Infrastructure.Updates.SemanticVersion|OriginalText|System.String|get
+property|C3.Infrastructure.Updates.SemanticVersion|PrereleaseLabel|System.String|get
+property|C3.Infrastructure.Updates.SemanticVersion|ReleaseLabel|System.String|get
+property|C3.Infrastructure.Updates.UpdateCheckResult|FailureException|System.Exception|get
+property|C3.Infrastructure.Updates.UpdateCheckResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Updates.UpdateCheckResult|IsUpdateAvailable|System.Boolean|get
+property|C3.Infrastructure.Updates.UpdateCheckResult|Manifest|C3.Infrastructure.Updates.UpdateReleaseManifest|get
+property|C3.Infrastructure.Updates.UpdateCheckResult|Message|System.String|get
+property|C3.Infrastructure.Updates.UpdateCheckResult|Outcome|C3.Infrastructure.Updates.UpdateCheckOutcome|get
+property|C3.Infrastructure.Updates.UpdateChecksumManifest|FileName|System.String|get
+property|C3.Infrastructure.Updates.UpdateChecksumManifest|Length|System.Int64|get
+property|C3.Infrastructure.Updates.UpdateChecksumManifest|Sha256|System.String|get
+property|C3.Infrastructure.Updates.UpdateChecksumManifest|Url|System.String|get
+property|C3.Infrastructure.Updates.UpdateManifestReadResult|Failure|C3.Infrastructure.Updates.UpdateManifestReadFailure|get
+property|C3.Infrastructure.Updates.UpdateManifestReadResult|FailureException|System.Exception|get
+property|C3.Infrastructure.Updates.UpdateManifestReadResult|FailureMessage|System.String|get
+property|C3.Infrastructure.Updates.UpdateManifestReadResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Updates.UpdateManifestReadResult|Manifest|C3.Infrastructure.Updates.UpdateReleaseManifest|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|CatalogueWriteFormat|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|Channel|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|ChecksumManifest|C3.Infrastructure.Updates.UpdateChecksumManifest|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|InformationalVersion|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|Packages|System.Collections.Generic.IList<C3.Infrastructure.Updates.UpdateReleasePackage>|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|ProductVersion|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|Published|System.Boolean|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|ReleaseDate|System.DateTime|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|ReleaseIdentity|C3.Infrastructure.Updates.SemanticVersion|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|ReleaseUrl|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleaseManifest|Stage|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleasePackage|Distribution|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleasePackage|FileName|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleasePackage|Lane|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleasePackage|Length|System.Int64|get
+property|C3.Infrastructure.Updates.UpdateReleasePackage|Sha256|System.String|get
+property|C3.Infrastructure.Updates.UpdateReleasePackage|Url|System.String|get
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|enum|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadataWriter|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSchema|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|class|sealed
+type|C3.Infrastructure.Diagnostics.BufferedLogger|class|sealed
+type|C3.Infrastructure.Diagnostics.CrashReportContext|class|sealed
+type|C3.Infrastructure.Diagnostics.CrashReportWriter|class|sealed
+type|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|class|sealed
+type|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|class|sealed
+type|C3.Infrastructure.Preferences.LegacySettingsProfileReader|class|sealed
+type|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|enum|sealed
+type|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|class|sealed
+type|C3.Infrastructure.Preferences.LegacyUserSettingsImporter|class|sealed
+type|C3.Infrastructure.Preferences.LegacyUserSettingsImportResult|class|sealed
+type|C3.Infrastructure.Preferences.LegacyUserSettingsImportStatus|enum|sealed
+type|C3.Infrastructure.Preferences.LegacyUserSettingsProfile|class|sealed
+type|C3.Infrastructure.Preferences.UserPreferenceFields|enum|sealed
+type|C3.Infrastructure.Preferences.UserPreferencesFailure|enum|sealed
+type|C3.Infrastructure.Preferences.UserPreferencesLoadResult|class|sealed
+type|C3.Infrastructure.Preferences.UserPreferencesSaveResult|class|sealed
+type|C3.Infrastructure.Preferences.UserPreferencesService|class|sealed
+type|C3.Infrastructure.Preferences.UserPreferencesSnapshot|class|sealed
+type|C3.Infrastructure.Preferences.XmlUserPreferencesStore|class|sealed
+type|C3.Infrastructure.Updates.HttpUpdateManifestSource|class|sealed
+type|C3.Infrastructure.Updates.IUpdateManifestSource|interface|abstract
+type|C3.Infrastructure.Updates.SemanticVersion|class|sealed
+type|C3.Infrastructure.Updates.UpdateCheckOutcome|enum|sealed
+type|C3.Infrastructure.Updates.UpdateCheckPolicy|enum|sealed
+type|C3.Infrastructure.Updates.UpdateCheckResult|class|sealed
+type|C3.Infrastructure.Updates.UpdateCheckSchedule|class|sealed
+type|C3.Infrastructure.Updates.UpdateCheckService|class|sealed
+type|C3.Infrastructure.Updates.UpdateChecksumManifest|class|sealed
+type|C3.Infrastructure.Updates.UpdateEndpointPolicy|class|sealed
+type|C3.Infrastructure.Updates.UpdateManifestReadFailure|enum|sealed
+type|C3.Infrastructure.Updates.UpdateManifestReadResult|class|sealed
+type|C3.Infrastructure.Updates.UpdateReleaseManifest|class|sealed
+type|C3.Infrastructure.Updates.UpdateReleaseManifestReader|class|sealed
+type|C3.Infrastructure.Updates.UpdateReleasePackage|class|sealed

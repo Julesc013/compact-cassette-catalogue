@@ -26,6 +26,11 @@ if ($LASTEXITCODE -ne 0) {
 
 & (Join-Path $PSScriptRoot 'validate-catalogue-api.ps1') `
     -Configuration $Configuration
+& (Join-Path $PSScriptRoot 'validate-catalogue-api.ps1') `
+    -Configuration $Configuration `
+    -AssemblyPath (Join-Path $repositoryRoot "artifacts\bin\libraries\net40\$Configuration\C3.Infrastructure.dll") `
+    -BaselinePath (Join-Path $repositoryRoot 'spec\infrastructure-api\v1\public-api.txt') `
+    -ContractName 'Infrastructure'
 
 $testExecutable = Join-Path $repositoryRoot "artifacts\tests\characterization\$Configuration\C3.CharacterizationTests.exe"
 & $testExecutable

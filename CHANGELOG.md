@@ -49,6 +49,9 @@
 - Promoted the complete 269-signature C# 7.3 catalogue assembly under its
   original project GUID and binary identity, redirected every consumer, and
   removed the candidate harness plus all superseded VB catalogue sources.
+- Froze the 312-signature compiled Infrastructure API before its language port
+  and generalized the reflection gate to resolve layered assemblies from
+  isolated copies without locking build outputs.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

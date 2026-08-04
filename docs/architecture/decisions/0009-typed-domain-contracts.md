@@ -88,6 +88,12 @@ the production project GUID and assembly identity, passed the behavior gate, and
 replaced the VB project. The candidate identity and every superseded VB catalogue
 implementation were removed.
 
+The remaining Infrastructure translation uses the same rule. Its 312 exported
+signatures are frozen before candidate source is admitted, and its existing
+file, preference, update, diagnostics, and v1.1 XML scenarios remain the
+behavioral oracle. Reflection resolves the layered public surface from isolated
+output copies so validation cannot lock later build outputs.
+
 ## Consequences
 
 - Renames no longer break identity in native 2.0.
