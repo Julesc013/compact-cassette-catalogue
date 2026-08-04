@@ -5,7 +5,7 @@ recordings, cassette models, brands, and tape decks. Catalogues remain ordinary,
 inspectable local files that users can copy, back up, and move between supported
 builds.
 
-> **Development status:** C3 2.0.0 Alpha 4 is active on `dev/2.x`. Its source is
+> **Development status:** C3 2.0.0 Alpha 5 is active on `dev/2.x`. Its source is
 > visible, but its binaries, GitHub release, and update feed are intentionally
 > unpublished. C3 1.x development continues on `dev/1.x`; its latest
 > qualified checkpoint is preserved on `legacy/1.x`.
@@ -57,7 +57,7 @@ behavior on the maintenance line.
 
 ## Catalogue compatibility
 
-Product and catalogue-format versions are independent. Alpha 4 implements the
+Product and catalogue-format versions are independent. Qualified Alpha 4 implements the
 legacy catalogue 1.1.0 profile and the candidate native-v2 XML profile, including
 typed identity, secure deterministic I/O, convert-copy migration, recovery,
 loss-aware legacy export, and `c3.exe` validation/migration commands. Native-v2

@@ -4,7 +4,14 @@
 
 ## Releases
 
-### Version 2.0.0 Alpha 4 - In development
+### Version 2.0.0 Alpha 5 - In development
+
+- Began the explicit workspace/document controller, command-history, undo/redo,
+  and reusable OEM+ interaction-pattern milestone. One end-to-end workflow must
+  prove both lanes before the new shell expands.
+
+
+### Version 2.0.0 Alpha 4 - Qualified, intentionally unpublished (2026-08-05)
 
 - Froze the candidate native-v2 namespace, XML Schema, semantic/canonical
   invariants, security limits, support matrix, and normalization vectors.

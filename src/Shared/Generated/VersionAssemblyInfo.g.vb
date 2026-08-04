@@ -4,5 +4,5 @@
 Imports System.Reflection
 
 <Assembly: AssemblyVersion("2.0.0.0")>
-<Assembly: AssemblyFileVersion("2.0.0.4")>
-<Assembly: AssemblyInformationalVersion("2.0.0-alpha.4")>
+<Assembly: AssemblyFileVersion("2.0.0.5")>
+<Assembly: AssemblyInformationalVersion("2.0.0-alpha.5")>
