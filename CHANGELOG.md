@@ -9,6 +9,12 @@
 - Began the explicit workspace/document controller, command-history, undo/redo,
   and reusable OEM+ interaction-pattern milestone. One end-to-end workflow must
   prove both lanes before the new shell expands.
+- Accepted the shared net40/C# 7.3 WinForms presentation boundary and added
+  explicit owners for document projection, selection, views, drafts,
+  compatibility, recovery, background work, and bounded command history.
+- Replaced the mutable module-level document/service seam with one
+  instance-owned application composition root, and made untracked legacy
+  mutations invalidate unsafe undo history.
 
 
 ### Version 2.0.0 Alpha 4 - Qualified, intentionally unpublished (2026-08-05)

@@ -62,6 +62,7 @@ That root contains only:
 - `C3.Catalogue.dll`
 - `C3.Domain.dll`
 - `C3.Infrastructure.dll`
+- `C3.Presentation.WinForms.dll`
 - `c3.exe`
 - `BUILD.txt`
 - `README.md`

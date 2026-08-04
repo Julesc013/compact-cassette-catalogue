@@ -22,8 +22,8 @@ Public Class frmTapeNew
         cmbCondition.SelectedIndex = 2
 
         Dim choices As New List(Of ModelChoice)()
-        For Each value As CassetteModel In cassetteModelService.GetAll()
-            Dim brand As Brand = brandService.Find(value.BrandCode)
+        For Each value As CassetteModel In My.Application.Composition.CassetteModelService.GetAll()
+            Dim brand As Brand = My.Application.Composition.BrandService.Find(value.BrandCode)
             Dim brandName As String = If(brand Is Nothing, value.BrandCode, brand.Name)
             choices.Add(New ModelChoice(brandName & " " & value.ModelName, value))
         Next
@@ -33,7 +33,7 @@ Public Class frmTapeNew
 
         cmbDeckA.Items.Clear()
         cmbDeckB.Items.Clear()
-        For Each value As Deck In deckService.GetAll()
+        For Each value As Deck In My.Application.Composition.DeckService.GetAll()
             cmbDeckA.Items.Add(value.Name)
             cmbDeckB.Items.Add(value.Name)
         Next
@@ -56,12 +56,12 @@ Public Class frmTapeNew
             CInt(numYear.Value),
             numLength.Value,
             cmbRegion.Text,
-            getCondition(cmbCondition.SelectedIndex),
+            CassettePresentationText.ConditionValue(cmbCondition.SelectedIndex),
             chkPackaged.Checked,
             ReadSideA(),
             ReadSideB(),
             txtNotes.Text)
-        Dim result As TapeOperationResult = tapeService.CreateMany(
+        Dim result As TapeOperationResult = My.Application.Composition.TapeService.CreateMany(
             draft,
             CInt(numBulkAdd.Value),
             DateTime.Now)
@@ -71,9 +71,9 @@ Public Class frmTapeNew
         End If
 
         For Each value As Tape In result.Tapes
-            consoleAdd("Added tape " & value.ShortIdentifier & " successfully.")
+            UiDiagnostics.Add("Added tape " & value.ShortIdentifier & " successfully.")
         Next
-        If preferences.ShowMessages Then
+        If My.Application.Composition.Preferences.ShowMessages Then
             Dim message As String = If(
                 result.Tapes.Count = 1,
                 "Added tape " & result.Tapes(0).ShortIdentifier & " successfully.",
@@ -143,7 +143,7 @@ Public Class frmTapeNew
             grpSideA.Enabled = False
             Return
         End If
-        If deckService.GetAll().Count = 0 Then
+        If My.Application.Composition.DeckService.GetAll().Count = 0 Then
             MsgBox("Add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No Decks")
             chkTapedA.Checked = False
             Return
@@ -157,7 +157,7 @@ Public Class frmTapeNew
             grpSideB.Enabled = False
             Return
         End If
-        If deckService.GetAll().Count = 0 Then
+        If My.Application.Composition.DeckService.GetAll().Count = 0 Then
             MsgBox("Add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No Decks")
             chkTapedB.Checked = False
             Return

@@ -35,7 +35,7 @@ Public Class frmTapes
     End Sub
 
     Private Sub LoadBrandChoices()
-        _brands = brandService.GetAll(Nothing)
+        _brands = My.Application.Composition.BrandService.GetAll(Nothing)
         cmbBrand.Items.Clear()
         cmbBrand.Items.Add("All Brands")
         For Each value As Brand In _brands
@@ -46,7 +46,7 @@ Public Class frmTapes
     Private Sub LoadDeckChoices()
         cmbDeck.Items.Clear()
         cmbDeck.Items.Add("All Decks")
-        For Each value As Deck In deckService.GetAll()
+        For Each value As Deck In My.Application.Composition.DeckService.GetAll()
             cmbDeck.Items.Add(value.Name)
         Next
     End Sub
@@ -58,11 +58,13 @@ Public Class frmTapes
         End If
         Dim selectedModel As ModelChoice = TryCast(cmbModel.SelectedItem, ModelChoice)
         Dim typeFilter As Integer = cmbTypes.SelectedIndex
-        Dim conditionFilter As Integer = getCondition(cmbCondition.SelectedIndex - 1)
+        Dim conditionFilter As Integer =
+            CassettePresentationText.ConditionValue(cmbCondition.SelectedIndex - 1)
         Dim results As New List(Of Tape)()
 
-        For Each value As Tape In tapeService.GetAll()
-            Dim model As CassetteModel = cassetteModelService.Find(value.ModelIdentifier)
+        For Each value As Tape In My.Application.Composition.TapeService.GetAll()
+            Dim model As CassetteModel =
+                My.Application.Composition.CassetteModelService.Find(value.ModelIdentifier)
             If model Is Nothing Then
                 Continue For
             End If
@@ -126,18 +128,19 @@ Public Class frmTapes
         Try
             lstTapes.Items.Clear()
             For Each value As Tape In results
-                Dim model As CassetteModel = cassetteModelService.Find(value.ModelIdentifier)
-                Dim brand As Brand = brandService.Find(model.BrandCode)
+                Dim model As CassetteModel =
+                    My.Application.Composition.CassetteModelService.Find(value.ModelIdentifier)
+                Dim brand As Brand = My.Application.Composition.BrandService.Find(model.BrandCode)
                 Dim item As New ListViewItem(value.ShortIdentifier)
                 item.SubItems.Add(value.Identifier)
                 item.SubItems.Add(DisplayPair(value.SideA.Name, value.SideB.Name))
                 item.SubItems.Add(If(brand Is Nothing, model.BrandCode, brand.Name))
                 item.SubItems.Add(model.ModelName)
-                item.SubItems.Add(getTypeNumeral(model.TypeNumber, True))
+                item.SubItems.Add(CassettePresentationText.TypeLabel(model.TypeNumber, True))
                 item.SubItems.Add(value.Year.ToString())
                 item.SubItems.Add(value.LengthMinutes.ToString())
                 item.SubItems.Add(value.Region)
-                item.SubItems.Add(getConditionWorded(value.Condition))
+                item.SubItems.Add(CassettePresentationText.ConditionLabel(value.Condition))
                 item.SubItems.Add(value.Packaged.ToString())
                 item.SubItems.Add(DisplayDatePair(value.SideA, value.SideB))
                 item.SubItems.Add(DisplayPair(value.SideA.NoiseReduction, value.SideB.NoiseReduction))
@@ -199,7 +202,8 @@ Public Class frmTapes
     Private Sub cmbTypes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTypes.SelectedIndexChanged
         Dim selectedIndex As Integer = cmbTypes.SelectedIndex
         If selectedIndex > 0 Then
-            chkTypeBetter.Text = "Type " & getTypeNumeral(selectedIndex, False) & " or better."
+            chkTypeBetter.Text = "Type " &
+                CassettePresentationText.TypeLabel(selectedIndex, False) & " or better."
             chkTypeBetter.Enabled = True
         Else
             chkTypeBetter.Enabled = False
@@ -227,7 +231,7 @@ Public Class frmTapes
             selectedBrandCode = _brands(cmbBrand.SelectedIndex - 1).Code
         End If
         If selectedBrandCode IsNot Nothing Then
-            For Each value As CassetteModel In cassetteModelService.GetAll()
+            For Each value As CassetteModel In My.Application.Composition.CassetteModelService.GetAll()
                 If String.Equals(value.BrandCode, selectedBrandCode, StringComparison.OrdinalIgnoreCase) Then
                     cmbModel.Items.Add(New ModelChoice(value))
                 End If
@@ -264,10 +268,11 @@ Public Class frmTapes
         Dim failures As New List(Of String)()
         Dim changed As Boolean = False
         For Each identifier As String In _selectedIdentifiers
-            Dim result As TapeOperationResult = tapeService.Delete(identifier)
+            Dim result As TapeOperationResult =
+                My.Application.Composition.TapeService.Delete(identifier)
             If result.IsSuccess Then
                 changed = True
-                consoleAdd("Deleted tape " & identifier & " successfully.")
+                UiDiagnostics.Add("Deleted tape " & identifier & " successfully.")
             Else
                 failures.Add(identifier & ": " & result.Message)
             End If

@@ -4,7 +4,7 @@ Public Class frmDeckEdit
 
     Private Sub frmDeckEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         numYear.Maximum = Date.Today.Year
-        Dim value As Deck = deckService.Find(DeckName)
+        Dim value As Deck = My.Application.Composition.DeckService.Find(DeckName)
         If value Is Nothing Then
             MsgBox("The selected deck no longer exists.", MsgBoxStyle.Exclamation, "Deck Not Found")
             DialogResult = DialogResult.Cancel
@@ -26,7 +26,8 @@ Public Class frmDeckEdit
             Return
         End If
 
-        Dim validation As DeckOperationResult = deckService.Update(DeckName, details)
+        Dim validation As DeckOperationResult =
+            My.Application.Composition.DeckService.Update(DeckName, details)
         If Not validation.IsSuccess Then
             MsgBox(validation.Message, MsgBoxStyle.Exclamation, "Invalid Deck")
             Return
@@ -41,10 +42,10 @@ Public Class frmDeckEdit
 
         CompleteCatalogueMutation(Me)
         Dim message As String = "Updated deck " & validation.Deck.Name & " successfully."
-        If preferences.ShowMessages Then
+        If My.Application.Composition.Preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Deck Updated")
         End If
-        consoleAdd(message)
+        UiDiagnostics.Add(message)
         DialogResult = DialogResult.OK
         Close()
     End Sub
@@ -53,7 +54,7 @@ Public Class frmDeckEdit
         txtManufacturer.Text = value.Manufacturer
         txtModel.Text = value.Model
         numYear.Value = value.Year
-        cmbCondition.SelectedIndex = getCondition(value.Condition)
+        cmbCondition.SelectedIndex = CassettePresentationText.ConditionValue(value.Condition)
         chkType1.Checked = value.Type1
         chkType2.Checked = value.Type2
         chkType3.Checked = value.Type3
@@ -91,7 +92,7 @@ Public Class frmDeckEdit
             txtManufacturer.Text,
             txtModel.Text,
             CInt(numYear.Value),
-            getCondition(cmbCondition.SelectedIndex),
+            CassettePresentationText.ConditionValue(cmbCondition.SelectedIndex),
             chkType1.Checked,
             chkType2.Checked,
             chkType3.Checked,

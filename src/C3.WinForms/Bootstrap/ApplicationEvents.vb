@@ -7,14 +7,27 @@
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
 
+        Private _composition As ApplicationComposition
+
+        Friend ReadOnly Property Composition As ApplicationComposition
+            Get
+                If _composition Is Nothing Then
+                    Throw New InvalidOperationException(
+                        "The C3 application composition has not been initialized.")
+                End If
+                Return _composition
+            End Get
+        End Property
+
         Private Sub MyApplication_Startup(
                 sender As Object,
                 e As Microsoft.VisualBasic.ApplicationServices.StartupEventArgs) Handles Me.Startup
 
+            _composition = ApplicationComposition.CreateDefault()
             BufferedLogger.RecordAction("Starting C3")
             BufferedLogger.Information("Runtime: " & RuntimeInfo.BuildLabel)
 
-            Dim settingsResult As UserPreferencesLoadResult = preferences.Initialize()
+            Dim settingsResult As UserPreferencesLoadResult = Composition.Preferences.Initialize()
             If settingsResult.IsSuccess Then
                 If settingsResult.MigrationOutcome =
                         UserPreferencesSnapshot.ImportOutcomeImported Then
@@ -57,7 +70,10 @@
                 .OperatingSystem = Environment.OSVersion.ToString(),
                 .ClrVersion = Environment.Version.ToString(),
                 .ProcessBitness = (IntPtr.Size * 8).ToString() & "-bit",
-                .CataloguePath = catalogueSession.FilePath,
+                .CataloguePath = If(
+                    _composition Is Nothing,
+                    Nothing,
+                    _composition.CatalogueSession.FilePath),
                 .LastAction = BufferedLogger.LastAction
             }
             Dim reportPath As String = CrashReportWriter.TryWrite(e.Exception, context)

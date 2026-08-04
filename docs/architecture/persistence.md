@@ -61,10 +61,11 @@ present these results; they do not interpret exceptions or XML themselves.
 ### Transition boundary
 
 The adapter currently consumes the existing `DataSet` schema because this is a
-strangler migration, not a format rewrite. `LegacyGlobalState` is the single
-WinForms composition seam that owns the active document and wires its typed
-repositories. Forms never access tables or rows. `DataSet` must not cross into
-`C3.Catalogue`, and new WinForms source must consume typed services instead.
+strangler migration, not a format rewrite. The instance-owned
+`ApplicationComposition` is the single WinForms adapter seam that owns the
+active document and wires its typed repositories to the shared workspace. Forms
+never access tables or rows. `DataSet` must not cross into `C3.Catalogue` or
+`C3.Presentation.WinForms`; presentation consumes typed services instead.
 
 Legacy mode continues to use this adapter after native-v2 exists. No native
 element, ID, namespace, or extension is ever injected into a legacy Save.

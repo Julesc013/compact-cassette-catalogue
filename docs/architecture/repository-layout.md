@@ -186,11 +186,12 @@ extract a shared abstraction only after more than one real owner needs it.
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |
 | Persisted catalogue revision identity | `C3.Domain.Catalogues.CatalogueRevision` | frozen `C3.Catalogue` compatibility facade and differential characterization |
 | Document path/dirty state | `C3.Domain.Catalogues.CatalogueSession` | frozen `C3.Catalogue` compatibility facade; forms observe session state |
+| Process object graph and sole legacy `DataSet` adapter seam | `C3.WinForms/Bootstrap/ApplicationComposition.vb` | boundary validator; repositories receive the instance-owned document provider |
 | Brand/model/deck/tape rules | matching `C3.Catalogue` feature | typed results and adapter tests |
 | Native preference lifecycle and dirty state | `UserPreferencesService` | store/importer characterization |
 | Preference format v1 | `spec/preferences/v1` | `XmlUserPreferencesStore`, canonical example test |
 | C3 1.x preference discovery/import | `LegacyUserSettingsImporter` | `fixtures/settings`, path/reader tests |
-| UI mutation refresh | `CatalogueUiCoordinator` | owning main window |
+| Legacy UI mutation refresh and history invalidation | `CatalogueUiCoordinator` | owning main window; removed as workflows adopt reversible commands |
 | Workspace, selection, drafts, command history, and shared interaction patterns | `C3.Presentation.WinForms` and ADR 0011 | presenter/controller tests and both-lane workflow evidence |
 | Runtime capability | `Runtime/RuntimeInfo.vb` | About and diagnostics |
 | Durable product doctrine/scope | product vision and 2.0 scope docs | README summary |

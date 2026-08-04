@@ -8,6 +8,12 @@ Imports System.Threading
 
 Public Class frmMain
 
+    Private ReadOnly Property Composition As ApplicationComposition
+        Get
+            Return My.Application.Composition
+        End Get
+    End Property
+
     'Declare variables
     Private _allowClose As Boolean
     Private _consoleWindow As frmConsole
@@ -25,7 +31,8 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Display about information.
-        lblAbout.Text = "© " & COPYRIGHTAUTHOR & ", " & VERSIONSTAGE & " " & VERSION & " (" & COPYRIGHTYEAR & ")"
+        lblAbout.Text = "© " & ProductInformation.CopyrightAuthor & ", " &
+            VERSIONSTAGE & " " & VERSION & " (" & ProductInformation.CopyrightYear & ")"
 
         ' Initialise objects.
         cmbField.SelectedIndex = 0
@@ -43,11 +50,11 @@ Public Class frmMain
         ' Load data (decks, brands and models).
         loadData()
 
-        consoleAdd("Successfully loaded program.") ' Add success note to console.
+        UiDiagnostics.Add("Successfully loaded program.")
 
         If UpdateCheckSchedule.ShouldCheck(
-                preferences.UpdatePolicy,
-                preferences.LastUpdateCheck,
+                Composition.Preferences.UpdatePolicy,
+                Composition.Preferences.LastUpdateCheck,
                 DateTime.Now) Then
             checkUpdates(False)
         End If
@@ -70,7 +77,7 @@ Public Class frmMain
         End If
 
         CheckForUpdatesToolStripMenuItem.Enabled = False
-        consoleAdd("Checking for updates on the " & ReleaseChannel & " channel.")
+        UiDiagnostics.Add("Checking for updates on the " & ReleaseChannel & " channel.")
 
         Try
             If Not ThreadPool.QueueUserWorkItem(
@@ -174,7 +181,7 @@ Public Class frmMain
         If failureException IsNot Nothing Then
             failureDetails &= " Error: " & failureException.Message
         End If
-        consoleAdd("Failed to check for updates. " & failureDetails)
+        UiDiagnostics.Add("Failed to check for updates. " & failureDetails)
 
         If manualCheck Then
             Dim boxTitle As String = "Update Check Failed"
@@ -192,17 +199,17 @@ Public Class frmMain
                 MessageBoxIcon.Exclamation)
 
             If boxResult = DialogResult.Yes Then
-                openWebLink(UPDATELINKDOWNLOAD)
+                ExternalLinkLauncher.Open(ProductInformation.DownloadsWebsite)
             End If
         End If
     End Sub
 
     Private Sub recordSuccessfulUpdateCheck()
         Try
-            preferences.LastUpdateCheck = DateTime.Now
-            preferences.Save()
+            Composition.Preferences.LastUpdateCheck = DateTime.Now
+            Composition.Preferences.Save()
         Catch ex As Exception
-            consoleAdd(
+            UiDiagnostics.Add(
                 "The successful update-check time could not be saved. Error: " &
                 ex.Message)
         End Try
@@ -213,15 +220,15 @@ Public Class frmMain
             manualCheck As Boolean)
 
         If updateResult.Outcome = UpdateCheckOutcome.NoPublishedRelease Then
-            consoleAdd(
+            UiDiagnostics.Add(
                 "Successfully checked for updates. The " & ReleaseChannel &
                 " channel manifest is intentionally unpublished.")
         ElseIf updateResult.IsUpdateAvailable Then
-            consoleAdd(
+            UiDiagnostics.Add(
                 "Successfully checked for updates. Found v" &
                 updateResult.Manifest.InformationalVersion & ".")
         Else
-            consoleAdd("Successfully checked for updates. None found.")
+            UiDiagnostics.Add("Successfully checked for updates. None found.")
         End If
 
         ' If an update exists, show a message with a link.
@@ -240,7 +247,7 @@ Public Class frmMain
 
             If boxResult = vbYes Then
 
-                openWebLink(updateResult.Manifest.ReleaseUrl) ' Open the exact published release.
+                ExternalLinkLauncher.Open(updateResult.Manifest.ReleaseUrl)
 
             End If
 
@@ -291,12 +298,12 @@ Public Class frmMain
 
         'Load data (decks, brands and models)
 
-        _tapeCount = tapeService.GetAll().Count
+        _tapeCount = Composition.TapeService.GetAll().Count
         _currentTapeIndex = _tapeCount - 1 'Select latest tape
 
         cmbDeckA.Items.Clear()
         cmbDeckB.Items.Clear()
-        For Each value As Deck In deckService.GetAll()
+        For Each value As Deck In Composition.DeckService.GetAll()
             cmbDeckA.Items.Add(value.Name)
             cmbDeckB.Items.Add(value.Name)
         Next
@@ -340,7 +347,7 @@ Public Class frmMain
     End Sub
 
     Private Function CurrentTape() As Tape
-        Dim values As IList(Of Tape) = tapeService.GetAll()
+        Dim values As IList(Of Tape) = Composition.TapeService.GetAll()
         If _currentTapeIndex < 0 OrElse _currentTapeIndex >= values.Count Then
             Return Nothing
         End If
@@ -414,7 +421,8 @@ Public Class frmMain
 
                 Dim identifier As String = CStr(modelCode) & yearCode & lengthCode & numberCode 'Format: MMTmmYYLL###
 
-                Dim condition As Integer = getCondition(cmbCondition.SelectedIndex)
+                Dim condition As Integer =
+                    CassettePresentationText.ConditionValue(cmbCondition.SelectedIndex)
 
                 Dim biasCodeA As Integer = cmbBiasA.SelectedIndex + 1
                 Dim biasCodeB As Integer = cmbBiasB.SelectedIndex + 1
@@ -570,7 +578,8 @@ Public Class frmMain
                     sideA,
                     sideB,
                     txtNotes.Text)
-                Dim updateResult As TapeOperationResult = tapeService.Update(identifierShort, draft)
+                Dim updateResult As TapeOperationResult =
+                    Composition.TapeService.Update(identifierShort, draft)
                 If Not updateResult.IsSuccess Then
                     Throw New InvalidOperationException(updateResult.Message)
                 End If
@@ -578,10 +587,10 @@ Public Class frmMain
                 txtLong.Text = identifier
 
                 _hasPendingTapeEdits = False
-                catalogueSession.MarkChanged()
+                Composition.Workspace.RecordUntrackedMutation()
 
                 'Update title bar
-                Me.Text = catalogueSession.DisplayName & "* - C3"
+                Me.Text = Composition.CatalogueSession.DisplayName & "* - C3"
                 'Update buttons
                 btnUpdate.Enabled = False
                 UpdateTapeToolStripMenuItem.Enabled = False
@@ -589,10 +598,10 @@ Public Class frmMain
 
                 'Show confirmation message
                 Dim message As String = "Updated tape " & identifierShort & " successfully."
-                If preferences.ShowMessages Then
+                If Composition.Preferences.ShowMessages Then
                     MsgBox(message, MsgBoxStyle.Question, "Successfully Updated Tape")
                 End If
-                consoleAdd(message)
+                UiDiagnostics.Add(message)
 
 
             Catch ex As Exception
@@ -605,10 +614,9 @@ Public Class frmMain
 
             'No changes to update tape with
             Dim message As String = "No changes to update tape with."
-            If preferences.ShowMessages Then
+            If Composition.Preferences.ShowMessages Then
                 MsgBox(message, MsgBoxStyle.Question, "No Updates to Tape")
             End If
-            'consoleAdd(message)
 
         End If
 
@@ -632,7 +640,7 @@ Public Class frmMain
 
         If result = vbYes Then
 
-            Dim values As IList(Of Tape) = tapeService.GetAll()
+            Dim values As IList(Of Tape) = Composition.TapeService.GetAll()
             If subTapeIndex < 0 OrElse subTapeIndex >= values.Count Then
                 MsgBox("The selected tape no longer exists.", MsgBoxStyle.Exclamation, "Tape Not Found")
                 Return
@@ -640,29 +648,30 @@ Public Class frmMain
             Dim identifierShort As String = values(subTapeIndex).ShortIdentifier
 
 
-            Dim deletion As TapeOperationResult = tapeService.Delete(identifierShort)
+            Dim deletion As TapeOperationResult =
+                Composition.TapeService.Delete(identifierShort)
             If Not deletion.IsSuccess Then
                 MsgBox(deletion.Message, MsgBoxStyle.Exclamation, "Tape Not Deleted")
                 Return
             End If
-            _tapeCount = tapeService.GetAll().Count
+            _tapeCount = Composition.TapeService.GetAll().Count
 
             'Reset change detection variables
             _hasPendingTapeEdits = False
-            catalogueSession.MarkChanged()
+            Composition.Workspace.RecordUntrackedMutation()
             'Reset buttons
             btnUpdate.Enabled = False
             UpdateTapeToolStripMenuItem.Enabled = False
 
             'Update title bar
-            Me.Text = catalogueSession.DisplayName & "* - C3"
+            Me.Text = Composition.CatalogueSession.DisplayName & "* - C3"
 
             'Reload data and display latest tape
             loadData()
 
             'Show confirmation message
             Dim message As String = "Deleted tape " & identifierShort & " successfully."
-            consoleAdd(message)
+            UiDiagnostics.Add(message)
 
         End If
 
@@ -706,16 +715,16 @@ Public Class frmMain
         BufferedLogger.RecordAction(If(saveAs, "Save catalogue as", "Save catalogue"))
 
         'If there is no filepath, it is not saved
-        Dim saved As Boolean = catalogueSession.FilePath IsNot Nothing
-        Dim destinationPath As String = catalogueSession.FilePath
+        Dim saved As Boolean = Composition.CatalogueSession.FilePath IsNot Nothing
+        Dim destinationPath As String = Composition.CatalogueSession.FilePath
 
         Dim message As String = Nothing
 
         If saved = False Or saveAs = True Then
             'SAVE AS NEW FILE
 
-            If Directory.Exists(preferences.DefaultDirectory) Then
-                dlgSaveAs.InitialDirectory = preferences.DefaultDirectory
+            If Directory.Exists(Composition.Preferences.DefaultDirectory) Then
+                dlgSaveAs.InitialDirectory = Composition.Preferences.DefaultDirectory
             End If
             Dim dlgResult As DialogResult = dlgSaveAs.ShowDialog()
             Dim selectedPath As String = dlgSaveAs.FileName
@@ -751,19 +760,19 @@ Public Class frmMain
 
         End If
 
-        catalogueMetadata.MarkModified(DateTime.Now)
+        Composition.CatalogueMetadata.MarkModified(DateTime.Now)
 
         Dim expectedRevision As CatalogueRevision = Nothing
         If Not saveAs AndAlso String.Equals(
                 destinationPath,
-                catalogueSession.FilePath,
+                Composition.CatalogueSession.FilePath,
                 StringComparison.OrdinalIgnoreCase) Then
-            expectedRevision = catalogueSession.Revision
+            expectedRevision = Composition.CatalogueSession.Revision
         End If
 
-        Dim saveResult As LegacyCatalogueSaveResult = catalogueStore.Save(
+        Dim saveResult As LegacyCatalogueSaveResult = Composition.CatalogueStore.Save(
             destinationPath,
-            catalogue,
+            Composition.Catalogue,
             expectedRevision,
             VERSIONFILESUPPORTED)
         If Not saveResult.IsSuccess Then
@@ -776,7 +785,7 @@ Public Class frmMain
         End If
 
         Dim savedFileName As String = Path.GetFileName(destinationPath)
-        catalogueSession.MarkSaved(destinationPath, savedFileName, saveResult.Revision)
+        Composition.Workspace.MarkSaved(destinationPath, savedFileName, saveResult.Revision)
         'Discard updates made to current tape and reload from saved data.
 
         'Reset changes variable
@@ -787,14 +796,14 @@ Public Class frmMain
         UpdateTapeToolStripMenuItem.Enabled = False
 
         'Update title bar
-        Me.Text = catalogueSession.DisplayName & " - C3"
+        Me.Text = Composition.CatalogueSession.DisplayName & " - C3"
 
         'Reload from saved data
         loadData()
 
 
         'Show confirmation message
-        consoleAdd(message)
+        UiDiagnostics.Add(message)
 
         If thenOpen = True Then
             openCatalogueActual()
@@ -845,7 +854,7 @@ Public Class frmMain
     Sub openCatalogueCheckChanges()
         'Check for unsaved changes to the whole catalogue
 
-        If catalogueSession.IsDirty Then
+        If Composition.CatalogueSession.IsDirty Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before opening new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
 
@@ -874,8 +883,8 @@ Public Class frmMain
         BufferedLogger.RecordAction("Open catalogue")
 
         'Get directories
-        If Directory.Exists(preferences.DefaultDirectory) Then
-            dlgOpen.InitialDirectory = preferences.DefaultDirectory
+        If Directory.Exists(Composition.Preferences.DefaultDirectory) Then
+            dlgOpen.InitialDirectory = Composition.Preferences.DefaultDirectory
         End If
         Dim dlgResult As DialogResult = dlgOpen.ShowDialog()
         Dim selectedPath As String = dlgOpen.FileName
@@ -883,9 +892,9 @@ Public Class frmMain
         If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
             'If user has given a valid file path.
 
-            Dim loadResult As LegacyCatalogueLoadResult = catalogueStore.Load(
+            Dim loadResult As LegacyCatalogueLoadResult = Composition.CatalogueStore.Load(
                 selectedPath,
-                catalogue,
+                Composition.Catalogue,
                 VERSIONFILESUPPORTED)
             If Not loadResult.IsSuccess Then
                 BufferedLogger.Error("Catalogue load failed: " & loadResult.Message)
@@ -903,8 +912,13 @@ Public Class frmMain
             If VERSIONFILESUPPORTED.Contains(fileVersion) Then
 
                 Dim selectedFileName As String = Path.GetFileName(selectedPath)
-                replaceCatalogue(loadResult.Document)
-                catalogueSession.MarkLoaded(selectedPath, selectedFileName, loadResult.Revision)
+                Composition.ReplaceCatalogue(loadResult.Document)
+                Composition.Workspace.MarkLoaded(
+                    selectedPath,
+                    selectedFileName,
+                    loadResult.Revision,
+                    CatalogueCompatibilityMode.LegacyV1_1,
+                    False)
 
 
                 'Reset changes variable
@@ -915,14 +929,17 @@ Public Class frmMain
                 UpdateTapeToolStripMenuItem.Enabled = False
 
                 'Update title bar
-                Me.Text = catalogueSession.DisplayName & " - C3"
+                Me.Text = Composition.CatalogueSession.DisplayName & " - C3"
 
 
-                catalogueMetadata.RefreshProductMetadata(VERSION, VERSIONSTAGE, VERSIONDATE)
+                Composition.CatalogueMetadata.RefreshProductMetadata(
+                    VERSION,
+                    VERSIONSTAGE,
+                    VERSIONDATE)
 
                 'Show confirmation message
                 Dim message As String = "Opened catalogue successfully."
-                consoleAdd(message)
+                UiDiagnostics.Add(message)
 
                 'Load data into forms
                 loadData()
@@ -959,7 +976,7 @@ Public Class frmMain
             _hasPendingTapeEdits = True
 
             ' Update title bar.
-            Me.Text = catalogueSession.DisplayName & "* - C3"
+            Me.Text = Composition.CatalogueSession.DisplayName & "* - C3"
 
             ' Enable buttons.
             btnUpdate.Enabled = True
@@ -1009,10 +1026,11 @@ Public Class frmMain
         txtTotal.Text = CStr(_tapeCount)
 
         'Find model name from identification/code
-        Dim model As CassetteModel = cassetteModelService.Find(tape.ModelIdentifier)
+        Dim model As CassetteModel =
+            Composition.CassetteModelService.Find(tape.ModelIdentifier)
         Dim modelName As String = tape.ModelIdentifier
         If model IsNot Nothing Then
-            Dim brand As Brand = brandService.Find(model.BrandCode)
+            Dim brand As Brand = Composition.BrandService.Find(model.BrandCode)
             modelName = If(brand Is Nothing, model.BrandCode, brand.Name) & " " & model.ModelName
             _currentModelType = model.TypeNumber
         Else
@@ -1026,7 +1044,7 @@ Public Class frmMain
         cmbRegion.Text = tape.Region
         'txtNumber.Text = CStr(tape("Number"))
 
-        Dim condition As Integer = getCondition(tape.Condition)
+        Dim condition As Integer = CassettePresentationText.ConditionValue(tape.Condition)
         cmbCondition.SelectedIndex = condition
         chkPackaged.Checked = tape.Packaged
 
@@ -1173,7 +1191,6 @@ Public Class frmMain
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
 
-        'MsgBox("Compact Cassette Catalogue (C3)" & vbNewLine & "© " & COPYRIGHTAUTHOR & ", " & COPYRIGHTYEAR & vbNewLine & vbNewLine & "Program Version: " & VERSIONSTAGE & " " & VERSION & vbNewLine & "Catalogue Version: " & VERSIONFILE & vbNewLine & VERSIONDATE.ToLongDateString & ", " & VERSIONDATE.ToLongTimeString, MsgBoxStyle.Question, "About C3")
 
         Using window As New frmAbout()
             window.ShowDialog(Me)
@@ -1213,7 +1230,7 @@ Public Class frmMain
 
         If chkTapedA.Checked = True Then
 
-            Dim deckCount As Integer = deckService.GetAll().Count
+            Dim deckCount As Integer = Composition.DeckService.GetAll().Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
@@ -1274,7 +1291,7 @@ Public Class frmMain
 
         If chkTapedB.Checked = True Then
 
-            Dim deckCount As Integer = deckService.GetAll().Count
+            Dim deckCount As Integer = Composition.DeckService.GetAll().Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
@@ -1348,7 +1365,7 @@ Public Class frmMain
 
     Private Sub NewModelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewModelToolStripMenuItem.Click
 
-        If brandService.GetAll(Nothing).Count > 0 Then
+        If Composition.BrandService.GetAll(Nothing).Count > 0 Then
             Using editor As New frmModelNew()
                 editor.ShowDialog(Me)
             End Using
@@ -1409,7 +1426,7 @@ Public Class frmMain
 
     Private Sub addNewTapeActual()
 
-        Dim modelCount As Integer = cassetteModelService.GetAll().Count
+        Dim modelCount As Integer = Composition.CassetteModelService.GetAll().Count
 
         'Check that there is at least 1 model (and 1 deck for recording)
 
@@ -1433,7 +1450,7 @@ Public Class frmMain
     End Sub
 
     Public Sub RefreshAfterCatalogueMutation()
-        Me.Text = catalogueSession.DisplayName & "* - C3"
+        Me.Text = Composition.CatalogueSession.DisplayName & "* - C3"
         loadData()
     End Sub
 
@@ -1457,7 +1474,7 @@ Public Class frmMain
             End If
         End If
 
-        If Not catalogueSession.IsDirty Then
+        If Not Composition.CatalogueSession.IsDirty Then
             Return True
         End If
 
@@ -1473,7 +1490,7 @@ Public Class frmMain
         End If
 
         saveChanges(False)
-        Return Not catalogueSession.IsDirty
+        Return Not Composition.CatalogueSession.IsDirty
     End Function
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -1523,7 +1540,7 @@ Public Class frmMain
     End Sub
 
     Public Sub ScrollToTape(shortIdentifier As String)
-        Dim values As IList(Of Tape) = tapeService.GetAll()
+        Dim values As IList(Of Tape) = Composition.TapeService.GetAll()
         For index As Integer = 0 To values.Count - 1
             If String.Equals(
                     values(index).ShortIdentifier,
@@ -1654,7 +1671,7 @@ Public Class frmMain
     Private Sub newCatalogueCheckChanges()
         'Check for unsaved changes to the whole catalogue
 
-        If catalogueSession.IsDirty Then
+        If Composition.CatalogueSession.IsDirty Then
 
             Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before creating new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
 
@@ -1689,7 +1706,7 @@ Public Class frmMain
 
     Private Sub FeedbackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FeedbackToolStripMenuItem.Click
 
-        openWebLink(FEEDBACKLINK)
+        ExternalLinkLauncher.Open(ProductInformation.FeedbackWebsite)
 
     End Sub
 
@@ -1844,15 +1861,16 @@ Public Class frmMain
     End Sub
 
     Private Function ResolveOutputDirectory() As String
-        If Not String.IsNullOrWhiteSpace(catalogueSession.FilePath) Then
-            Dim catalogueDirectory As String = Path.GetDirectoryName(catalogueSession.FilePath)
+        If Not String.IsNullOrWhiteSpace(Composition.CatalogueSession.FilePath) Then
+            Dim catalogueDirectory As String =
+                Path.GetDirectoryName(Composition.CatalogueSession.FilePath)
             If Directory.Exists(catalogueDirectory) Then
                 Return catalogueDirectory
             End If
         End If
 
-        If Directory.Exists(preferences.DefaultDirectory) Then
-            Return preferences.DefaultDirectory
+        If Directory.Exists(Composition.Preferences.DefaultDirectory) Then
+            Return Composition.Preferences.DefaultDirectory
         End If
 
         Return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
@@ -1880,7 +1898,7 @@ Public Class frmMain
 
             End Using
         Catch ex As Exception
-            consoleAdd("Failed to output console log. Error: " & ex.Message)
+            UiDiagnostics.Add("Failed to output console log. Error: " & ex.Message)
             MsgBox(
                 "C3 could not write the console log." & vbNewLine & vbNewLine & ex.Message,
                 MsgBoxStyle.Exclamation,
@@ -1891,10 +1909,10 @@ Public Class frmMain
         'Show confirmation message
         Dim message As String = "Successfully output console to log file."
         Dim messageDetails As String = vbNewLine & vbNewLine & "File name: " & outputName & vbNewLine & "Full directory: " & outputPath
-        If preferences.ShowMessages Then
+        If Composition.Preferences.ShowMessages Then
             MsgBox(message & messageDetails, MsgBoxStyle.Question, "Successfully Output Console Log")
         End If
-        consoleAdd(message)
+        UiDiagnostics.Add(message)
 
     End Sub
 
@@ -2022,14 +2040,14 @@ Public Class frmMain
 
     Private Sub OpenDownloadsPageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDownloadsPageToolStripMenuItem.Click
 
-        openWebLink(UPDATELINKDOWNLOAD) ' Open the downloads page.
+        ExternalLinkLauncher.Open(ProductInformation.DownloadsWebsite)
 
     End Sub
 
     Private Sub HelpGuideToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpGuideToolStripMenuItem.Click
 
         ' Open help/wiki website.
-        openWebLink(WEBSITEHELP)
+        ExternalLinkLauncher.Open(ProductInformation.HelpWebsite)
 
     End Sub
 

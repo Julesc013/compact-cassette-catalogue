@@ -155,6 +155,9 @@ foreach ($appProject in @($net40Project, $net48Project)) {
     if (-not $appProjectText.Contains('..\C3.Infrastructure\C3.Infrastructure.csproj')) {
         $failures.Add("WinForms project '$appProject' does not reference C3.Infrastructure.")
     }
+    if (-not $appProjectText.Contains('..\C3.Presentation.WinForms\C3.Presentation.WinForms.csproj')) {
+        $failures.Add("WinForms project '$appProject' does not reference C3.Presentation.WinForms.")
+    }
 }
 
 $toolProjectText = Get-Content -LiteralPath $toolProject -Raw

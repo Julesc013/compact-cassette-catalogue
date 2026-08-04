@@ -29,6 +29,12 @@
       "target": "C3.Infrastructure.dll"
     },
     {
+      "role": "presentation-assembly",
+      "sourceRoot": "lane-output",
+      "source": "C3.Presentation.WinForms.dll",
+      "target": "C3.Presentation.WinForms.dll"
+    },
+    {
       "role": "cli-executable",
       "sourceRoot": "cli-output",
       "source": "c3.exe",

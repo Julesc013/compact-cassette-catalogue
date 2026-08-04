@@ -107,6 +107,7 @@ $requiredRoles = @(
     'catalogue-assembly',
     'domain-assembly',
     'infrastructure-assembly',
+    'presentation-assembly',
     'cli-executable',
     'desktop-executable',
     'desktop-configuration',

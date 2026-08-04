@@ -74,6 +74,11 @@ Friend Module WorkspaceControllerTests
         Dim replacement As New IntegerCommand("Replacement command", first.CurrentValue, 5)
         AssertEqual(True, controller.Execute(replacement).IsSuccess, "replacement command")
         AssertEqual(False, controller.History.CanRedo, "new command clears redo branch")
+
+        controller.RecordUntrackedMutation()
+        AssertEqual(0, controller.History.UndoCount, "untracked mutation clears unsafe history")
+        AssertEqual(False, controller.History.IsAtCheckpoint, "untracked mutation invalidates checkpoint")
+        AssertEqual(True, session.IsDirty, "untracked mutation remains dirty")
     End Sub
 
     Private Sub AssertEqual(expected As Object, actual As Object, context As String)

@@ -11,7 +11,7 @@ Public Class frmModels
     End Sub
 
     Private Sub LoadBrandChoices()
-        _brands = brandService.GetAll(Nothing)
+        _brands = My.Application.Composition.BrandService.GetAll(Nothing)
         cmbBrand.Items.Clear()
         cmbBrand.Items.Add("All Brands")
         For Each value As Brand In _brands
@@ -31,7 +31,7 @@ Public Class frmModels
         Dim notesFilter As String = txtNotes.Text
 
         Dim results As New List(Of CassetteModel)()
-        For Each value As CassetteModel In cassetteModelService.GetAll()
+        For Each value As CassetteModel In My.Application.Composition.CassetteModelService.GetAll()
             If selectedBrandCode IsNot Nothing AndAlso
                     Not String.Equals(value.BrandCode, selectedBrandCode, StringComparison.OrdinalIgnoreCase) Then
                 Continue For
@@ -57,7 +57,7 @@ Public Class frmModels
             For Each value As CassetteModel In results
                 Dim item As New ListViewItem(value.Identifier)
                 item.SubItems.Add(ResolveBrandName(value.BrandCode))
-                item.SubItems.Add(getTypeNumeral(value.TypeNumber, True))
+                item.SubItems.Add(CassettePresentationText.TypeLabel(value.TypeNumber, True))
                 item.SubItems.Add(value.ModelName)
                 item.SubItems.Add(value.Code)
                 item.SubItems.Add(value.DisplayName)
@@ -95,7 +95,8 @@ Public Class frmModels
     Private Sub cmbTypes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTypes.SelectedIndexChanged
         Dim selectedType As Integer = cmbTypes.SelectedIndex
         If selectedType > 0 Then
-            chkTypeBetter.Text = "Type " & getTypeNumeral(selectedType, False) & " or better."
+            chkTypeBetter.Text = "Type " &
+                CassettePresentationText.TypeLabel(selectedType, False) & " or better."
             chkTypeBetter.Enabled = True
         Else
             chkTypeBetter.Enabled = False
@@ -127,10 +128,11 @@ Public Class frmModels
         Dim failures As New List(Of String)()
         Dim changed As Boolean = False
         For Each identifier As String In _selectedIdentifiers
-            Dim result As CassetteModelOperationResult = cassetteModelService.Delete(identifier)
+            Dim result As CassetteModelOperationResult =
+                My.Application.Composition.CassetteModelService.Delete(identifier)
             If result.IsSuccess Then
                 changed = True
-                consoleAdd("Deleted cassette model " & identifier & " successfully.")
+                UiDiagnostics.Add("Deleted cassette model " & identifier & " successfully.")
             Else
                 failures.Add(identifier & ": " & result.Message)
             End If

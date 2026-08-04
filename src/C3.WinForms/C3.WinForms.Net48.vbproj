@@ -86,6 +86,7 @@
     <Import Include="C3.Infrastructure.Preferences" />
     <Import Include="C3.Infrastructure.Updates" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
+    <Import Include="C3.Presentation.WinForms.Workspace" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.csproj">
@@ -95,6 +96,10 @@
     <ProjectReference Include="..\C3.Infrastructure\C3.Infrastructure.csproj">
       <Project>{BDF6C715-A5C6-4776-A5A1-7599F47610E0}</Project>
       <Name>C3.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\C3.Presentation.WinForms\C3.Presentation.WinForms.csproj">
+      <Project>{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}</Project>
+      <Name>C3.Presentation.WinForms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

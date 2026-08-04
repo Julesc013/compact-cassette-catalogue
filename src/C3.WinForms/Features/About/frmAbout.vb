@@ -5,16 +5,16 @@
         ' Load data into text labels.
 
         lblProgramName.Text = "Compact Cassette Catalogue (C3)"
-        lblCopyright.Text = "© " & COPYRIGHTAUTHOR & ", " & COPYRIGHTYEAR
+        lblCopyright.Text = "© " & ProductInformation.CopyrightAuthor & ", " &
+            ProductInformation.CopyrightYear
 
         lblProgramVersion.Text = "Program Version: " & VERSIONSTAGE & " " & VERSION
         lblCatalogueVersion.Text = "Catalogue Version: " & VERSIONFILE
         lblProgramDate.Text = VERSIONDATE.ToLongDateString
 
         'lblWebsite.Text = "Website: " & WEBSITE
-        'lblContactEmail.Text = "Contact: " & CONTACTLABEL
         lnkWebsite.Text = "Compact Cassette Catalogue"
-        lnkContactEmail.Text = CONTACTLABEL
+        lnkContactEmail.Text = ProductInformation.ContactLabel
 
     End Sub
 
@@ -28,13 +28,13 @@
 
     Private Sub LblWebsiteLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkWebsite.LinkClicked
 
-        openWebLink(WEBSITEMAIN)
+        ExternalLinkLauncher.Open(ProductInformation.Website)
 
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkContactEmail.LinkClicked
 
-        openWebLink(CONTACTLINK)
+        ExternalLinkLauncher.Open(ProductInformation.ContactLink)
 
     End Sub
 End Class

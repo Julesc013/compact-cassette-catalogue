@@ -19,6 +19,7 @@ release identity.
 | C3 CLI (`c3.exe`) | `src/C3.Cli` | required in both portable lanes |
 | Domain and catalogue behavior | `src/C3.Domain`, `src/C3.Catalogue` | shared product implementation |
 | External mechanisms | `src/C3.Infrastructure` | shared product implementation |
+| Shared desktop presentation | `src/C3.Presentation.WinForms` | required in both portable lanes |
 | Portable payload definition | `release/profiles/portable-payload.v1.json` | authoritative |
 | Universal Setup binding | not yet created | planned, gated on a stable external schema |
 | Packs and executable extensions | not yet created | future, separately versioned contracts |

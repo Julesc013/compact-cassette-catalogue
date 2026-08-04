@@ -76,6 +76,16 @@ namespace C3.Presentation.WinForms.Workspace
             History.MarkCheckpoint();
         }
 
+        public void RecordUntrackedMutation()
+        {
+            // Legacy surfaces cannot supply a reversible semantic command. Their
+            // successful mutation therefore invalidates history rather than
+            // pretending that a partial undo chain is safe.
+            History.Clear();
+            History.InvalidateCheckpoint();
+            session.MarkChanged();
+        }
+
         private void ResetTransientState(
             CatalogueCompatibilityMode compatibilityMode,
             bool isReadOnly)

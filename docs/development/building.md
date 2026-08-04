@@ -42,6 +42,8 @@ do not belong in the manifest before implementation.
 - `C3.Infrastructure.csproj`: explicit C# 7.3/net40-compatible adapters and external mechanisms.
 - `C3.Cli.csproj`: headless net40-compatible validator, migrator,
   recovery, and loss-aware export shell over the same infrastructure owners.
+- `C3.Presentation.WinForms.csproj`: shared C# 7.3/net40 workspace,
+  command-history, presenter, and reusable WinForms interaction boundary.
 - `C3.WinForms.Net40.vbproj`: x86/net40 executable and authoritative current
   WinForms designer project.
 - `C3.WinForms.Net48.vbproj`: x64/net48 executable over the same feature sources.

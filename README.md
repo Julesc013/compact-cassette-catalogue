@@ -99,7 +99,8 @@ src/C3.Domain          dependency-free C# 7.3 identity and command substrate
 src/C3.Catalogue       catalogue concepts, rules, commands, and session semantics
 src/C3.Infrastructure  versioned XML, preferences, diagnostics, external adapters
 src/C3.Cli             canonical headless validator/migrator (`c3.exe`)
-src/C3.WinForms        shared native UI and two compatibility-lane projects
+src/C3.Presentation.WinForms shared C# workspace, history, presenters, UI patterns
+src/C3.WinForms        lane bootstrap, runtime policy, and transitional VB hosts
 src/Shared             generated identity source linked into managed assemblies
 tests                  executable compatibility characterization
 fixtures               privacy-safe valid, invalid, culture, and security examples

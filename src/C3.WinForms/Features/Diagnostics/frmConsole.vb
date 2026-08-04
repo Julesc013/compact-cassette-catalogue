@@ -155,7 +155,8 @@ Public Class frmConsole
                     If arguments.Length = 1 Then
                         'Display current value
 
-                        message = "showMessages currently is " & CStr(preferences.ShowMessages)
+                        message = "showMessages currently is " &
+                            CStr(My.Application.Composition.Preferences.ShowMessages)
 
                     ElseIf arguments.Length = 2 Then
                         'Update value
@@ -164,12 +165,13 @@ Public Class frmConsole
                             'If valid boolean supplied, update value
 
                             Dim toggle As Boolean = CBool(arguments(1))
-                            preferences.ShowMessages = toggle
-                            Dim saveResult As UserPreferencesSaveResult = preferences.TrySave()
+                            My.Application.Composition.Preferences.ShowMessages = toggle
+                            Dim saveResult As UserPreferencesSaveResult =
+                                My.Application.Composition.Preferences.TrySave()
                             If saveResult.IsSuccess Then
                                 'Build message.
                                 Dim now As DateTime = DateTime.Now
-                                Dim stamp As String = "[" & consoleStamp(now) & "]"
+                                Dim stamp As String = "[" & UiDiagnostics.FormatTimestamp(now) & "]"
                                 message = stamp & " Set showMessages to " & CStr(toggle)
                             Else
                                 message = "Could not save showMessages: " & saveResult.Message
@@ -186,7 +188,8 @@ Public Class frmConsole
                     If arguments.Length = 1 Then
                         'Display current value
 
-                        message = "defaultDirectory currently is " & preferences.DefaultDirectory
+                        message = "defaultDirectory currently is " &
+                            My.Application.Composition.Preferences.DefaultDirectory
 
                     ElseIf arguments.Length >= 2 Then
                         'Update value
@@ -196,12 +199,13 @@ Public Class frmConsole
                         If Directory.Exists(folderpath) Then
                             'If valid directory supplied, update value
 
-                            preferences.DefaultDirectory = folderpath
-                            Dim saveResult As UserPreferencesSaveResult = preferences.TrySave()
+                            My.Application.Composition.Preferences.DefaultDirectory = folderpath
+                            Dim saveResult As UserPreferencesSaveResult =
+                                My.Application.Composition.Preferences.TrySave()
                             If saveResult.IsSuccess Then
                                 'Build message.
                                 Dim now As DateTime = DateTime.Now
-                                Dim stamp As String = "[" & consoleStamp(now) & "]"
+                                Dim stamp As String = "[" & UiDiagnostics.FormatTimestamp(now) & "]"
                                 message = stamp & " Set defaultDirectory to " & folderpath
                             Else
                                 message = "Could not save defaultDirectory: " & saveResult.Message
@@ -227,7 +231,7 @@ Public Class frmConsole
 
         Else
             'Show error is invalid command
-            If preferences.ShowMessages Then
+            If My.Application.Composition.Preferences.ShowMessages Then
                 MsgBox("Command cannot be empty or whitespace (spaces)", MsgBoxStyle.Exclamation, "Invalid Command")
             End If
 

@@ -3,7 +3,8 @@ Public Class frmModelEdit
     Public Property ModelIdentifier As String
 
     Private Sub frmModelEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim value As CassetteModel = cassetteModelService.Find(ModelIdentifier)
+        Dim value As CassetteModel =
+            My.Application.Composition.CassetteModelService.Find(ModelIdentifier)
         If value Is Nothing Then
             MsgBox(
                 "The selected cassette model no longer exists.",
@@ -15,9 +16,9 @@ Public Class frmModelEdit
         End If
 
         ModelIdentifier = value.Identifier
-        Dim brand As Brand = brandService.Find(value.BrandCode)
+        Dim brand As Brand = My.Application.Composition.BrandService.Find(value.BrandCode)
         txtBrand.Text = If(brand Is Nothing, value.BrandCode, brand.Name)
-        txtType.Text = getTypeNumeral(value.TypeNumber, True)
+        txtType.Text = CassettePresentationText.TypeLabel(value.TypeNumber, True)
         txtModel.Text = value.ModelName
         txtCode.Text = value.Code
         txtName.Text = value.DisplayName
@@ -25,7 +26,8 @@ Public Class frmModelEdit
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        Dim existing As CassetteModel = cassetteModelService.Find(ModelIdentifier)
+        Dim existing As CassetteModel =
+            My.Application.Composition.CassetteModelService.Find(ModelIdentifier)
         If existing Is Nothing Then
             MsgBox(
                 "The selected cassette model no longer exists.",
@@ -42,7 +44,8 @@ Public Class frmModelEdit
             existing.Code,
             txtName.Text,
             txtNotes.Text)
-        Dim result As CassetteModelOperationResult = cassetteModelService.Update(ModelIdentifier, draft)
+        Dim result As CassetteModelOperationResult =
+            My.Application.Composition.CassetteModelService.Update(ModelIdentifier, draft)
         If Not result.IsSuccess Then
             MsgBox(result.Message, MsgBoxStyle.Exclamation, "Invalid Cassette Model")
             Return
@@ -51,10 +54,10 @@ Public Class frmModelEdit
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Updated cassette model " & result.Model.Identifier & " successfully."
-        If preferences.ShowMessages Then
+        If My.Application.Composition.Preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Cassette Model Updated")
         End If
-        consoleAdd(message)
+        UiDiagnostics.Add(message)
         DialogResult = DialogResult.OK
         Close()
     End Sub

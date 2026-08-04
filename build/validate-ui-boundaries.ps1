@@ -6,8 +6,8 @@ $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $winFormsRoot = Join-Path $repositoryRoot 'src\C3.WinForms'
-$legacyState = [IO.Path]::GetFullPath(
-    (Join-Path $winFormsRoot 'State\LegacyGlobalState.vb'))
+$compositionRoot = [IO.Path]::GetFullPath(
+    (Join-Path $winFormsRoot 'Bootstrap\ApplicationComposition.vb'))
 $failures = New-Object Collections.Generic.List[String]
 
 $retiredSettingsPaths = @(
@@ -19,6 +19,11 @@ foreach ($retiredPath in $retiredSettingsPaths) {
     if (Test-Path -LiteralPath $retiredPath) {
         $failures.Add("Retired My.Settings artifact '$retiredPath' has been reintroduced.")
     }
+}
+
+$retiredGlobalState = Join-Path $winFormsRoot 'State\LegacyGlobalState.vb'
+if (Test-Path -LiteralPath $retiredGlobalState) {
+    $failures.Add("Retired global document seam '$retiredGlobalState' has been reintroduced.")
 }
 
 function Test-SamePath {
@@ -33,7 +38,7 @@ foreach ($source in Get-ChildItem -LiteralPath $winFormsRoot -Recurse -File -Fil
     $content = Get-Content -LiteralPath $source.FullName -Raw
 
     if (($content -match '\bDataSet\b' -or $content -match '\.Tables\s*\(') -and
-            -not (Test-SamePath $source.FullName $legacyState)) {
+            -not (Test-SamePath $source.FullName $compositionRoot)) {
         $failures.Add(
             "WinForms source '$($source.FullName)' crosses the legacy DataSet composition boundary.")
     }
@@ -47,6 +52,14 @@ foreach ($source in Get-ChildItem -LiteralPath $winFormsRoot -Recurse -File -Fil
         $failures.Add(
             "WinForms source '$($source.FullName)' uses the retired My.Settings provider.")
     }
+}
+
+$compositionText = Get-Content -LiteralPath $compositionRoot -Raw
+if ($compositionText -match '(?im)^\s*(Friend|Public)?\s*Module\b') {
+    $failures.Add('ApplicationComposition must be an explicit instance, not a module-level global.')
+}
+if ($compositionText -notmatch 'NotInheritable Class ApplicationComposition') {
+    $failures.Add('The WinForms composition root must be the explicit ApplicationComposition class.')
 }
 
 foreach ($configurationPath in @(
@@ -63,4 +76,4 @@ if ($failures.Count -gt 0) {
     throw ("WinForms boundary validation failed:`n - " + ($failures -join "`n - "))
 }
 
-Write-Host 'WinForms boundaries verified: typed services, one DataSet composition seam, C3-owned preferences.'
+Write-Host 'WinForms boundaries verified: explicit application composition, one DataSet adapter seam, shared workspace, and C3-owned preferences.'

@@ -11,7 +11,8 @@ Public Class frmBrands
     End Sub
 
     Public Sub loadList()
-        Dim values As IList(Of Brand) = brandService.GetAll(txtNotes.Text)
+        Dim values As IList(Of Brand) =
+            My.Application.Composition.BrandService.GetAll(txtNotes.Text)
         lstBrands.BeginUpdate()
         Try
             lstBrands.Items.Clear()
@@ -51,10 +52,11 @@ Public Class frmBrands
         Dim failures As New List(Of String)()
         Dim changed As Boolean = False
         For Each code As String In _selectedCodes
-            Dim result As BrandOperationResult = brandService.Delete(code)
+            Dim result As BrandOperationResult =
+                My.Application.Composition.BrandService.Delete(code)
             If result.IsSuccess Then
                 changed = True
-                consoleAdd("Deleted brand " & code & " successfully.")
+                UiDiagnostics.Add("Deleted brand " & code & " successfully.")
             Else
                 failures.Add(code & ": " & result.Message)
             End If

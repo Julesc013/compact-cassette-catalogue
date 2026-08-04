@@ -1,7 +1,7 @@
 Public Class frmModelNew
 
     Private Sub FrmAddModel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cmbBrand.DataSource = brandService.GetAll(Nothing)
+        cmbBrand.DataSource = My.Application.Composition.BrandService.GetAll(Nothing)
         cmbBrand.DisplayMember = "Name"
         cmbBrand.ValueMember = "Code"
         cmbBrand.SelectedIndex = -1
@@ -17,7 +17,8 @@ Public Class frmModelNew
             txtCode.Text,
             txtName.Text,
             txtNotes.Text)
-        Dim result As CassetteModelOperationResult = cassetteModelService.Create(draft, DateTime.Now)
+        Dim result As CassetteModelOperationResult =
+            My.Application.Composition.CassetteModelService.Create(draft, DateTime.Now)
         If Not result.IsSuccess Then
             MsgBox(result.Message, MsgBoxStyle.Exclamation, "Invalid Cassette Model")
             Return
@@ -26,10 +27,10 @@ Public Class frmModelNew
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added cassette model " & result.Model.Identifier & " successfully."
-        If preferences.ShowMessages Then
+        If My.Application.Composition.Preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Cassette Model Added")
         End If
-        consoleAdd(message)
+        UiDiagnostics.Add(message)
         DialogResult = DialogResult.OK
         Close()
     End Sub

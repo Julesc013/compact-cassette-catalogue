@@ -122,6 +122,15 @@ namespace C3.Presentation.WinForms.Workspace
             RaiseChanged();
         }
 
+        public void InvalidateCheckpoint()
+        {
+            if (checkpointStateId >= 0)
+            {
+                checkpointStateId = -1;
+                RaiseChanged();
+            }
+        }
+
         public void Clear()
         {
             undoEntries.Clear();

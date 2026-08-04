@@ -3,7 +3,7 @@ Public Class frmBrandEdit
     Public Property BrandCode As String
 
     Private Sub frmBrandEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim value As Brand = brandService.Find(BrandCode)
+        Dim value As Brand = My.Application.Composition.BrandService.Find(BrandCode)
         If value Is Nothing Then
             MsgBox("The selected brand no longer exists.", MsgBoxStyle.Exclamation, "Brand Not Found")
             DialogResult = DialogResult.Cancel
@@ -20,7 +20,8 @@ Public Class frmBrandEdit
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Dim draft As New BrandDraft(txtBrand.Text, BrandCode, txtNotes.Text)
-        Dim result As BrandOperationResult = brandService.Update(BrandCode, draft)
+        Dim result As BrandOperationResult =
+            My.Application.Composition.BrandService.Update(BrandCode, draft)
         If Not result.IsSuccess Then
             MsgBox(result.Message, MsgBoxStyle.Exclamation, "Invalid Brand")
             Return
@@ -29,10 +30,10 @@ Public Class frmBrandEdit
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Updated brand " & result.Brand.Name & " successfully."
-        If preferences.ShowMessages Then
+        If My.Application.Composition.Preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Brand Updated")
         End If
-        consoleAdd(message)
+        UiDiagnostics.Add(message)
         DialogResult = DialogResult.OK
         Close()
     End Sub

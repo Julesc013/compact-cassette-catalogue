@@ -1,7 +1,7 @@
 Friend Module CatalogueUiCoordinator
 
     Public Sub CompleteCatalogueMutation(source As Form)
-        catalogueSession.MarkChanged()
+        My.Application.Composition.Workspace.RecordUntrackedMutation()
         Dim mainWindow As frmMain = FindMainWindow(source)
         If mainWindow IsNot Nothing Then
             mainWindow.RefreshAfterCatalogueMutation()

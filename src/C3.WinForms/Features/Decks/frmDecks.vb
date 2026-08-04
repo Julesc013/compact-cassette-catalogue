@@ -19,7 +19,7 @@ Public Class frmDecks
         Dim noiseReductionFilter As String = cmbNR.Text
         Dim typeFilter As Integer = cmbTypes.SelectedIndex
 
-        For Each value As Deck In deckService.GetAll()
+        For Each value As Deck In My.Application.Composition.DeckService.GetAll()
             Dim details As DeckDetails = value.Details
             If Not ContainsText(details.Manufacturer, manufacturerFilter) Then
                 Continue For
@@ -80,7 +80,7 @@ Public Class frmDecks
                     details.SignalRatioNoiseReduction)
                 item.SubItems.Add(details.WowFlutter.ToString() & "%")
                 item.SubItems.Add(details.Distortion.ToString() & "%")
-                item.SubItems.Add(getConditionWorded(details.Condition))
+                item.SubItems.Add(CassettePresentationText.ConditionLabel(details.Condition))
                 lstDecks.Items.Add(item)
             Next
         Finally
@@ -159,10 +159,11 @@ Public Class frmDecks
         Dim failures As New List(Of String)()
         Dim changed As Boolean = False
         For Each name As String In _selectedNames
-            Dim result As DeckOperationResult = deckService.Delete(name)
+            Dim result As DeckOperationResult =
+                My.Application.Composition.DeckService.Delete(name)
             If result.IsSuccess Then
                 changed = True
-                consoleAdd("Deleted deck " & name & " successfully.")
+                UiDiagnostics.Add("Deleted deck " & name & " successfully.")
             Else
                 failures.Add(name & ": " & result.Message)
             End If

@@ -114,6 +114,7 @@
     <Import Include="C3.Infrastructure.Preferences" />
     <Import Include="C3.Infrastructure.Updates" />
     <Import Include="C3.Infrastructure.CatalogueFiles.Xml.V1_1" />
+    <Import Include="C3.Presentation.WinForms.Workspace" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\About\frmAbout.Designer.vb">
@@ -123,6 +124,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bootstrap\ApplicationEvents.vb" />
+    <Compile Include="Bootstrap\ApplicationComposition.vb" />
     <Compile Include="Features\Brands\frmBrandEdit.Designer.vb">
       <DependentUpon>frmBrandEdit.vb</DependentUpon>
     </Compile>
@@ -171,12 +173,14 @@
     <Compile Include="Features\Tapes\frmTapeNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Features\Tapes\CassettePresentationText.vb" />
     <Compile Include="Features\Diagnostics\frmConsole.Designer.vb">
       <DependentUpon>frmConsole.vb</DependentUpon>
     </Compile>
     <Compile Include="Features\Diagnostics\frmConsole.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Features\Diagnostics\UiDiagnostics.vb" />
     <Compile Include="Features\Search\frmFindResults.Designer.vb">
       <DependentUpon>frmFindResults.vb</DependentUpon>
     </Compile>
@@ -190,6 +194,7 @@
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Shell\ExternalLinkLauncher.vb" />
     <Compile Include="Features\Statistics\frmStatistics.Designer.vb">
       <DependentUpon>frmStatistics.vb</DependentUpon>
     </Compile>
@@ -235,7 +240,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Runtime\RuntimeInfo.vb" />
-    <Compile Include="State\LegacyGlobalState.vb" />
+    <Compile Include="Runtime\ProductInformation.vb" />
     <Compile Include="State\CatalogueUiCoordinator.vb" />
     <Compile Include="Configuration\UserPreferencesFactory.vb" />
   </ItemGroup>
@@ -337,6 +342,10 @@
     <ProjectReference Include="..\C3.Infrastructure\C3.Infrastructure.csproj">
       <Project>{BDF6C715-A5C6-4776-A5A1-7599F47610E0}</Project>
       <Name>C3.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\C3.Presentation.WinForms\C3.Presentation.WinForms.csproj">
+      <Project>{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}</Project>
+      <Name>C3.Presentation.WinForms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

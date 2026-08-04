@@ -25,7 +25,8 @@ Public Class frmDeckNew
             Return
         End If
 
-        Dim result As DeckOperationResult = deckService.Create(details, DateTime.Now)
+        Dim result As DeckOperationResult =
+            My.Application.Composition.DeckService.Create(details, DateTime.Now)
         If Not result.IsSuccess Then
             MsgBox(result.Message, MsgBoxStyle.Exclamation, "Invalid Deck")
             Return
@@ -34,10 +35,10 @@ Public Class frmDeckNew
         CompleteCatalogueMutation(Me)
 
         Dim message As String = "Added deck " & result.Deck.Name & " successfully."
-        If preferences.ShowMessages Then
+        If My.Application.Composition.Preferences.ShowMessages Then
             MsgBox(message, MsgBoxStyle.Information, "Deck Added")
         End If
-        consoleAdd(message)
+        UiDiagnostics.Add(message)
         DialogResult = DialogResult.OK
         Close()
     End Sub
@@ -47,7 +48,7 @@ Public Class frmDeckNew
             txtManufacturer.Text,
             txtModel.Text,
             CInt(numYear.Value),
-            getCondition(cmbCondition.SelectedIndex),
+            CassettePresentationText.ConditionValue(cmbCondition.SelectedIndex),
             chkType1.Checked,
             chkType2.Checked,
             chkType3.Checked,
