@@ -2,9 +2,9 @@
   "$schema": "../../spec/release-train/v1/train.schema.json",
   "schemaVersion": 1,
   "programme": "2.0.0",
-  "currentMilestone": "alpha.3",
+  "currentMilestone": "alpha.4",
   "status": "active",
-  "lastQualifiedTag": "v2.0.0-alpha.2",
+  "lastQualifiedTag": "v2.0.0-alpha.3",
   "candidateCommit": null,
   "publicationPolicy": {
     "alpha": "tag-only",
@@ -26,12 +26,12 @@
     {
       "id": "alpha.3",
       "releaseLabel": "2.0.0-alpha.3",
-      "state": "active"
+      "state": "qualified"
     },
     {
       "id": "alpha.4",
       "releaseLabel": "2.0.0-alpha.4",
-      "state": "pending"
+      "state": "active"
     },
     {
       "id": "alpha.5",

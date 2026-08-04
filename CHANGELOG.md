@@ -4,7 +4,12 @@
 
 ## Releases
 
-### Version 2.0.0 Alpha 3 - In development
+### Version 2.0.0 Alpha 4 - In development
+
+- Milestone implementation in progress.
+
+
+### Version 2.0.0 Alpha 3 - Qualified, intentionally unpublished (2026-08-04)
 
 - Made hosted tag-event checkout preserve annotated tag objects by checking out
   the immutable event commit explicitly, and added a repository-owned workflow
