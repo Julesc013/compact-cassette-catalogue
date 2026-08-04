@@ -1,9 +1,9 @@
 # Migrating from C3 1.x
 
-Status: **Alpha 1 safety guidance; native-v2 conversion is not implemented**
+Status: **Alpha 2 safety guidance; native-v2 conversion is not implemented**
 
 C3 2.0 is designed to coexist with C3 1.x and preserve supported legacy
-catalogues. During Alpha 1 the product still writes catalogue format 1.1.0; there
+catalogues. During Alpha 2 the product still writes catalogue format 1.1.0; there
 is no native-v2 conversion command yet.
 
 ## Before trying a preview
@@ -43,9 +43,9 @@ Preserve diagnostic/recovery files when reporting a problem and describe whether
 this was first or repeated launch. Preference files can contain private local
 paths; review or redact them before sharing.
 
-## Catalogues in Alpha 1
+## Catalogues in Alpha 2
 
-Alpha 1 operates on the legacy 1.1 profile. Keep a test copy because the complete
+Alpha 2 operates on the legacy 1.1 profile. Keep a test copy because the complete
 matrix of every public 1.x producer is still being assembled. Cross-build or
 old-reader differences are release-blocking defects.
 
@@ -61,7 +61,7 @@ Open, Save, and Save As will never silently change modes.
 
 ## Rollback
 
-To stop testing Alpha 1, close it, keep its diagnostic/profile data for a bug
+To stop testing Alpha 2, close it, keep its diagnostic/profile data for a bug
 report if needed, and reopen the untouched/test legacy catalogue with the retained
 1.x build. Do not expect uninstalling/replacing application binaries to reverse a
 future native catalogue migration; rollback uses the preserved original or an

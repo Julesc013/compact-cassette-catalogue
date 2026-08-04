@@ -4,9 +4,23 @@
 
 ## Releases
 
+### Version 2.0.0 Alpha 2 - In development
+
+- Began the executable C3 1.x compatibility laboratory: public-release
+  inventory, provenance-bearing fixtures, supported-baseline classification,
+  old/new reader-writer evidence, settings migration, and update-channel dry
+  runs.
+- Adopted the permanent `master`, `dev/2.x`, `legacy/1.x`, and `dev/1.x` branch
+  contract with one schema-validated machine-readable owner and generated strict
+  updater projections.
+- Replaced the unavailable named runner-group assumption with a provider-neutral
+  trusted-runner capability contract and an isolated ephemeral fallback for
+  intentionally unpublished Alpha qualification.
 
 
-### Version 2.0.0 Alpha 1 - In development
+
+
+### Version 2.0.0 Alpha 1 - Qualified, intentionally unpublished (2026-08-04)
 
 - Reclassified the unpublished 1.2.1 overhaul as the C3 2.0 programme before
   publication; no 1.2.1 release or artifact was relabelled.

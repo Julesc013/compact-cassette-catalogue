@@ -57,8 +57,8 @@ against both the local object and origin's raw/peeled tag refs:
 
 Validate the full `P` SHA from its create-only `attest/v*-post-<P>` ref while
 both permanent refs remain at `E`, then use exact-old-object leases to atomically
-fast-forward exact `P` to both `master` and `dev` and consume the temporary ref.
-Only then may `dev` begin the
+fast-forward exact `P` to both `master` and `dev/2.x` and consume the temporary ref.
+Only then may `dev/2.x` begin the
 next identity. Neither promotion step accepts a moving branch name. Release candidates use the
 beta/public-prerelease policy. C3 2.x has no
 three-line `VERSION` projection; beta/stable `release.json` is changed only by a
@@ -68,7 +68,8 @@ successful public `P`.
 | --- | --- |
 | `1.2.0-beta.1.md` | Historical 1.x candidate/release evidence |
 | `1.2.1-beta.1.md` | Superseded unpublished local candidate evidence |
-| `2.0.0-alpha.1.md` | Blocked, intentionally unpublished C3 2.0 candidate evidence |
+| `2.0.0-alpha.1.md` | Qualified, tagged, intentionally unpublished C3 2.0 checkpoint evidence |
+| `2.0.0-alpha.2.md` | Active C3 2.0 compatibility-laboratory milestone record |
 
 A superseded record keeps its original hashes and limitations. A new identity
 requires a clean build, new packages, new hashes, and a new validation record.

@@ -8,9 +8,9 @@ a catalogue format, and an update audience do not evolve at the same rate.
 | Identity | Canonical owner | Current 2.0 alpha policy |
 | --- | --- | --- |
 | Product version | `build/Version.props` | `2.0.0` |
-| Release label | generated from product version and stage | `2.0.0-alpha.1` |
+| Release label | generated from product version and stage | `2.0.0-alpha.2` |
 | Release channel | `build/Version.props` | `alpha` |
-| Update publication metadata | channel `release.json` | `published: false`; Alpha 1 must not advertise availability |
+| Update publication metadata | channel `release.json` | `published: false`; Alpha 2 must not advertise availability |
 | Assembly contract | `build/Version.props` | `2.0.0.0` for the 2.x contract line |
 | File build identity | `build/Version.props` | numeric four-part version |
 | Informational version | generated assembly metadata | SemVer release label, optionally plus a source revision |

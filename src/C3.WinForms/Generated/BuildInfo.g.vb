@@ -4,7 +4,7 @@
 Public Module C3BuildInfo
 
     Public Const VERSION As String = "2.0.0"
-    Public Const VERSIONSTAGE As String = "Alpha 1"
+    Public Const VERSIONSTAGE As String = "Alpha 2"
     Public ReadOnly VERSIONDATE As DateTime = New DateTime(2026, 8, 4, 0, 0, 0, DateTimeKind.Local)
 
     Public Const VERSIONFILE As String = "1.1.0"
@@ -13,7 +13,7 @@ Public Module C3BuildInfo
     Public Const ReleaseChannel As String = "alpha"
     Public Const UpdateFeedUrl As String = "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json"
     Public Const AssemblyVersion As String = "2.0.0.0"
-    Public Const FileVersion As String = "2.0.0.1"
-    Public Const InformationalVersion As String = "2.0.0-alpha.1"
+    Public Const FileVersion As String = "2.0.0.2"
+    Public Const InformationalVersion As String = "2.0.0-alpha.2"
 
 End Module
