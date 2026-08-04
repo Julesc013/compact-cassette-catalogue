@@ -29,6 +29,7 @@ $assemblyPath = Join-Path $repositoryRoot (
 $translatedNamespaces = @(
     'C3.Catalogue.Brands.'
     'C3.Catalogue.CassetteModels.'
+    'C3.Catalogue.Catalogues.'
     'C3.Catalogue.Decks.'
     'C3.Catalogue.Tapes.'
 )

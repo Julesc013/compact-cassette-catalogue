@@ -50,6 +50,8 @@
     <Compile Include="CassetteModels\CassetteModelOperationResult.cs" />
     <Compile Include="CassetteModels\CassetteModelService.cs" />
     <Compile Include="CassetteModels\ICassetteModelRepository.cs" />
+    <Compile Include="Catalogues\CatalogueRevision.cs" />
+    <Compile Include="Catalogues\CatalogueSession.cs" />
     <Compile Include="Decks\Deck.cs" />
     <Compile Include="Decks\DeckDetails.cs" />
     <Compile Include="Decks\DeckOperationResult.cs" />
