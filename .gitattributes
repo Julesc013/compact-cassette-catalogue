@@ -4,3 +4,8 @@
 # Bytes embedded in portable packages are canonical LF text in every checkout.
 README.md text eol=lf
 RELEASE_NOTES.md text eol=lf
+
+# JSON is a machine-owned interoperability surface. Keep its checked-out bytes
+# identical on Windows and non-Windows runners so deterministic generators can
+# compare their projections directly with the committed repository state.
+*.json text eol=lf
