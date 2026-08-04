@@ -203,6 +203,19 @@ foreach ($fragment in $expectedBranchFragments) {
     }
 }
 
+$csharpUpdateBranchesPath = Join-Path $repositoryRoot `
+    'src\Shared\Generated\UpdateBranches.g.cs'
+$csharpUpdateBranches = Get-Content -LiteralPath $csharpUpdateBranchesPath -Raw
+$expectedCSharpBranchFragments = @(
+    "public const string AlphaFeedBranch = `"$($branchContract.CurrentIntegration)`";"
+    "public const string PublishedFeedBranch = `"$($branchContract.CurrentQualified)`";"
+)
+foreach ($fragment in $expectedCSharpBranchFragments) {
+    if (-not $csharpUpdateBranches.Contains($fragment)) {
+        $failures.Add("Generated C# UpdateBranches is missing: $fragment")
+    }
+}
+
 $changelogPath = Join-Path $repositoryRoot 'CHANGELOG.md'
 $changelog = Get-Content -LiteralPath $changelogPath -Raw
 if (-not $changelog.Contains("Version $productVersion $releaseStage")) {
