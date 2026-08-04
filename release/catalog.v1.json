@@ -15,10 +15,10 @@
       },
       "supersededBy": null,
       "promotion": {
-        "state": "unpromoted",
+        "state": "tagged",
         "targetBranch": "master",
         "tag": "v2.0.0-alpha.1",
-        "tagObject": null
+        "tagObject": "2c6d00528247b6dbafeb530e3c1aeae345a15f4c"
       },
       "publication": {
         "policy": "intentionally-unpublished",
