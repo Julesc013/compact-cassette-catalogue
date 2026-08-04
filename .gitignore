@@ -23,6 +23,10 @@ mono_crash.*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+# Root release/ contains source-controlled qualification records, not binaries.
+!/release/
+!/release/validation/
+!/release/validation/*.md
 x64/
 x86/
 [Aa][Rr][Mm]/

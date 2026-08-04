@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!DOCTYPE Catalogue [<!ENTITY external SYSTEM "file:///C:/Windows/win.ini">]>
+<Catalogue>
+  <Information><Information>File Version</Information><Value>&external;</Value></Information>
+</Catalogue>
