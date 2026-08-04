@@ -383,6 +383,17 @@ try {
     }
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Version.props') `
         -Destination (Join-Path $historyBuildRoot 'Version.props')
+    $historyPropsPath = Join-Path $historyBuildRoot 'Version.props'
+    $historyProps = [IO.File]::ReadAllText($historyPropsPath)
+    $historyProps = [regex]::Replace(
+        $historyProps,
+        '<C3ReleaseStage>[^<]+</C3ReleaseStage>',
+        '<C3ReleaseStage>Alpha 1</C3ReleaseStage>')
+    $historyProps = [regex]::Replace(
+        $historyProps,
+        '<C3FileVersion>[^<]+</C3FileVersion>',
+        '<C3FileVersion>2.0.0.1</C3FileVersion>')
+    [IO.File]::WriteAllText($historyPropsPath, $historyProps, $utf8WithoutBom)
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') `
         -Destination (Join-Path $historyBuildRoot 'lanes.json')
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'branches.json') `
@@ -399,6 +410,7 @@ try {
     # The canonical repository may be at either E or P. This synthetic history
     # always starts at pre-qualification C, so project every mutable lifecycle
     # field explicitly instead of inheriting the live checkpoint phase.
+    $historyCatalog.milestones = @($historyCatalog.milestones | Select-Object -First 1)
     $historyCatalog.milestones[0].qualification.state = 'blocked'
     $historyCatalog.milestones[0].qualification.sourceCommit = $null
     $historyCatalog.milestones[0].promotion.state = 'unpromoted'
