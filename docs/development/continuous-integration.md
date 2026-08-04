@@ -23,6 +23,14 @@ pinned Windows Server 2022 image. It verifies:
 - local documentation links; and
 - whitespace integrity.
 
+The workflow checks out the immutable event commit explicitly. On a tag event,
+checking out `refs/tags/<name>` can make `actions/checkout` replace the local
+annotated tag ref with its peeled commit after fetching tags. That breaks the
+fail-closed immutable-tag refresh even though origin still owns the correct
+annotated object. `build/validate-workflow-contract.ps1` prevents that checkout
+regression, retains full tag history, rejects persisted checkout credentials,
+and requires every external action to use a full reviewed commit SHA.
+
 These checks intentionally do not compile C3. Microsoft documents that Visual
 Studio 2022 and later cannot build applications targeting .NET Framework 4.0
 through 4.5.1. GitHub retired its Visual Studio 2019-capable `windows-2019`
