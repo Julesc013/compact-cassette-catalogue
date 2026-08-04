@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Julesc013/compact-cassette-catalogue/spec/distribution/v1/distribution-profile.schema.json",
+  "title": "C3 distribution profile v1 normalized projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "product",
+    "lane",
+    "delivery",
+    "status",
+    "payloadProfile",
+    "archiveRoot"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]*-portable$" },
+    "product": { "const": "c3" },
+    "lane": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+    "delivery": { "const": "portable" },
+    "status": {
+      "enum": [
+        "supported",
+        "preview",
+        "internal",
+        "planned",
+        "experimental",
+        "reserved",
+        "community-maintained",
+        "archive-only",
+        "unsupported"
+      ]
+    },
+    "payloadProfile": { "const": "release/profiles/portable-payload.v1.json" },
+    "archiveRoot": { "const": "C3-v{release-label}-{lane}-portable" }
+  }
+}

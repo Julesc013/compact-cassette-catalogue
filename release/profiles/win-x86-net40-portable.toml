@@ -1,0 +1,8 @@
+schema-version = 1
+id = "win-x86-net40-portable"
+product = "c3"
+lane = "win-x86-net40"
+delivery = "portable"
+status = "internal"
+payload-profile = "release/profiles/portable-payload.v1.json"
+archive-root = "C3-v{release-label}-{lane}-portable"

@@ -1,0 +1,8 @@
+schema-version = 1
+id = "win-x64-net48-portable"
+product = "c3"
+lane = "win-x64-net48"
+delivery = "portable"
+status = "internal"
+payload-profile = "release/profiles/portable-payload.v1.json"
+archive-root = "C3-v{release-label}-{lane}-portable"

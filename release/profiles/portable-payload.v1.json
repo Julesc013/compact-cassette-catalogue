@@ -1,0 +1,62 @@
+{
+  "$schema": "../../spec/distribution/v1/payload.schema.json",
+  "schemaVersion": 1,
+  "id": "c3-desktop-portable-payload-v1",
+  "product": "c3",
+  "entries": [
+    {
+      "role": "build-metadata",
+      "sourceRoot": "generated",
+      "source": "build-metadata",
+      "target": "BUILD.txt"
+    },
+    {
+      "role": "catalogue-assembly",
+      "sourceRoot": "lane-output",
+      "source": "C3.Catalogue.dll",
+      "target": "C3.Catalogue.dll"
+    },
+    {
+      "role": "domain-assembly",
+      "sourceRoot": "lane-output",
+      "source": "C3.Domain.dll",
+      "target": "C3.Domain.dll"
+    },
+    {
+      "role": "infrastructure-assembly",
+      "sourceRoot": "lane-output",
+      "source": "C3.Infrastructure.dll",
+      "target": "C3.Infrastructure.dll"
+    },
+    {
+      "role": "cli-executable",
+      "sourceRoot": "cli-output",
+      "source": "c3.exe",
+      "target": "c3.exe"
+    },
+    {
+      "role": "desktop-executable",
+      "sourceRoot": "lane-output",
+      "source": "Compact Cassette Catalogue.exe",
+      "target": "Compact Cassette Catalogue.exe"
+    },
+    {
+      "role": "desktop-configuration",
+      "sourceRoot": "lane-output",
+      "source": "Compact Cassette Catalogue.exe.config",
+      "target": "Compact Cassette Catalogue.exe.config"
+    },
+    {
+      "role": "readme",
+      "sourceRoot": "repository",
+      "source": "README.md",
+      "target": "README.md"
+    },
+    {
+      "role": "release-notes",
+      "sourceRoot": "repository",
+      "source": "RELEASE_NOTES.md",
+      "target": "RELEASE_NOTES.md"
+    }
+  ]
+}

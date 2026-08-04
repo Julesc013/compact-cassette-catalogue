@@ -9,6 +9,7 @@ RELEASE_NOTES.md text eol=lf
 # identical on Windows and non-Windows runners so deterministic generators can
 # compare their projections directly with the committed repository state.
 *.json text eol=lf
+*.toml text eol=lf
 
 # Hash-pinned compatibility fixtures require checkout-stable bytes. Historical
 # catalogue fixtures use repository-canonical LF; captured .NET user.config
