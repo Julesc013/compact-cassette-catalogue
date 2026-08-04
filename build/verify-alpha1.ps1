@@ -5,6 +5,7 @@ param(
     [ValidateSet('Candidate', 'Tagged')]
     [string]$TagState = 'Candidate',
     [switch]$SkipBuildOutputs,
+    [switch]$RunLaunchSmoke,
     [switch]$AllowDirty
 )
 
@@ -27,6 +28,12 @@ $legacyCheckpoint = '99ee814f0632fc1af99610cdf40cee7ca26bb896'
     -Configuration $Configuration `
     -VerifyBuildOutputs:(-not $SkipBuildOutputs)
 & (Join-Path $PSScriptRoot 'download-baseline-assets.ps1')
+if ($RunLaunchSmoke) {
+    if ($SkipBuildOutputs) {
+        throw '-RunLaunchSmoke cannot be combined with -SkipBuildOutputs.'
+    }
+    & (Join-Path $PSScriptRoot 'smoke-launch.ps1') -Configuration $Configuration
+}
 
 $resolvedBaseline = (& git -C $repositoryRoot rev-parse 'v1.2.0b1^{commit}').Trim()
 if ($resolvedBaseline -cne $baseline) {
