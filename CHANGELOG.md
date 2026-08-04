@@ -22,6 +22,9 @@
 - Added the first mechanical C# catalogue candidate—opaque persisted revision
   identity—and differential characterization against the still-authoritative VB
   implementation before changing production ownership.
+- Promoted the proven C# revision identity to the sole behavior owner while
+  retaining a logic-free VB compatibility facade, and made `C3.Domain.dll` an
+  explicit version- and package-verified runtime payload in both lanes.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

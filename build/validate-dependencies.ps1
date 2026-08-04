@@ -70,8 +70,14 @@ foreach ($source in Get-ChildItem -LiteralPath $infrastructureRoot -Recurse -Fil
 }
 
 $catalogueProjectText = Get-Content -LiteralPath $catalogueProject -Raw
-if ($catalogueProjectText -match '<ProjectReference') {
-    $failures.Add('C3.Catalogue must not have project references.')
+if (-not $catalogueProjectText.Contains('..\C3.Domain\C3.Domain.csproj')) {
+    $failures.Add('C3.Catalogue must reference the dependency-free C3.Domain substrate.')
+}
+$catalogueProjectReferenceCount = [regex]::Matches(
+    $catalogueProjectText,
+    '<ProjectReference\b').Count
+if ($catalogueProjectReferenceCount -ne 1) {
+    $failures.Add('C3.Catalogue may reference only C3.Domain.')
 }
 
 $infrastructureProjectText = Get-Content -LiteralPath $infrastructureProject -Raw
@@ -93,4 +99,4 @@ if ($failures.Count -gt 0) {
     throw ("Dependency validation failed:`n - " + ($failures -join "`n - "))
 }
 
-Write-Host 'Dependency direction verified: WinForms -> Infrastructure -> Catalogue; Domain remains dependency-free.'
+Write-Host 'Dependency direction verified: WinForms -> Infrastructure -> Catalogue -> Domain; Domain remains dependency-free.'

@@ -87,6 +87,7 @@ foreach ($packageDefinition in $packageDefinitions) {
         @{ Source = Join-Path $outputDirectory 'Compact Cassette Catalogue.exe'; Name = 'Compact Cassette Catalogue.exe' },
         @{ Source = Join-Path $outputDirectory 'Compact Cassette Catalogue.exe.config'; Name = 'Compact Cassette Catalogue.exe.config' },
         @{ Source = Join-Path $outputDirectory 'C3.Catalogue.dll'; Name = 'C3.Catalogue.dll' },
+        @{ Source = Join-Path $outputDirectory 'C3.Domain.dll'; Name = 'C3.Domain.dll' },
         @{ Source = Join-Path $outputDirectory 'C3.Infrastructure.dll'; Name = 'C3.Infrastructure.dll' },
         @{ Source = Join-Path $repositoryRoot 'README.md'; Name = 'README.md' },
         @{ Source = Join-Path $repositoryRoot 'RELEASE_NOTES.md'; Name = 'RELEASE_NOTES.md' }

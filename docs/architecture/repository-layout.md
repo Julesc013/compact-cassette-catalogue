@@ -108,8 +108,10 @@ not generic convenience code.
 
 `C3.Catalogue` contains framework-4.0-compatible legacy product concepts, commands,
 rules, and results. It cannot reference files, XML, `DataSet`, WinForms, concrete
-settings, networking, or OS APIs. During Alpha 3 it remains the production owner
-and differential oracle until each named C# slice passes and replaces it.
+settings, networking, or OS APIs. It may reference only `C3.Domain`. During
+Alpha 3 its unmigrated features remain production owners and differential
+oracles; a frozen public facade may delegate to one proven C# owner without
+retaining duplicate behavior.
 
 `C3.Infrastructure` implements external mechanisms. Its versioned legacy XML
 directory is the only production code allowed to know v1.1 table/column names.
@@ -148,7 +150,8 @@ extract a shared abstraction only after more than one real owner needs it.
 | Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | no production projection while draft |
 | 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |
-| Document path/revision/dirty state | `CatalogueSession` | forms observe session state |
+| Persisted catalogue revision identity | `C3.Domain.Catalogues.CatalogueRevision` | frozen `C3.Catalogue` compatibility facade and differential characterization |
+| Document path/dirty state | `CatalogueSession` | forms observe session state |
 | Brand/model/deck/tape rules | matching `C3.Catalogue` feature | typed results and adapter tests |
 | Native preference lifecycle and dirty state | `UserPreferencesService` | store/importer characterization |
 | Preference format v1 | `spec/preferences/v1` | `XmlUserPreferencesStore`, canonical example test |

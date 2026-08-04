@@ -68,7 +68,12 @@ until a named slice passes its API/behavior comparison. A port commit is
 mechanical. Redesign, persistence changes, and cleanup are separate commits.
 Once a slice is accepted, only the C# implementation remains on the production
 path; any retained VB source is test-only oracle material with an explicit exit
-gate.
+gate or a logic-free compatibility facade whose compiled surface is frozen.
+
+The first accepted slice is persisted catalogue revision identity. The C# type
+owns validation, ordinal equality, hashing, and text projection. The public VB
+type delegates to it solely to preserve the frozen `C3.Catalogue` binary/source
+surface while existing callers migrate.
 
 ## Consequences
 

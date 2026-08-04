@@ -3,24 +3,21 @@ Namespace Catalogues
     Public NotInheritable Class CatalogueRevision
         Implements IEquatable(Of CatalogueRevision)
 
-        Private ReadOnly _token As String
+        Private ReadOnly _value As C3.Domain.Catalogues.CatalogueRevision
 
         Public Sub New(token As String)
-            If String.IsNullOrWhiteSpace(token) Then
-                Throw New ArgumentException("A catalogue revision token is required.", "token")
-            End If
-            _token = token
+            _value = New C3.Domain.Catalogues.CatalogueRevision(token)
         End Sub
 
         Public ReadOnly Property Token As String
             Get
-                Return _token
+                Return _value.Token
             End Get
         End Property
 
         Public Overloads Function Equals(other As CatalogueRevision) As Boolean _
                 Implements IEquatable(Of CatalogueRevision).Equals
-            Return other IsNot Nothing AndAlso String.Equals(_token, other._token, StringComparison.Ordinal)
+            Return other IsNot Nothing AndAlso _value.Equals(other._value)
         End Function
 
         Public Overrides Function Equals(value As Object) As Boolean
@@ -28,13 +25,12 @@ Namespace Catalogues
         End Function
 
         Public Overrides Function GetHashCode() As Integer
-            Return StringComparer.Ordinal.GetHashCode(_token)
+            Return _value.GetHashCode()
         End Function
 
         Public Overrides Function ToString() As String
-            Return _token
+            Return _value.ToString()
         End Function
     End Class
 
 End Namespace
-

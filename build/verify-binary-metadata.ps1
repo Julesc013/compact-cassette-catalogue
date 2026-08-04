@@ -17,6 +17,7 @@ $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw
 $binaryNames = @(
     'Compact Cassette Catalogue.exe'
     'C3.Catalogue.dll'
+    'C3.Domain.dll'
     'C3.Infrastructure.dll'
 )
 

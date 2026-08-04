@@ -17,6 +17,7 @@ if (-not (Test-Path -LiteralPath $hashPath -PathType Leaf)) {
 $requiredEntries = @(
     'BUILD.txt',
     'C3.Catalogue.dll',
+    'C3.Domain.dll',
     'C3.Infrastructure.dll',
     'Compact Cassette Catalogue.exe',
     'Compact Cassette Catalogue.exe.config',

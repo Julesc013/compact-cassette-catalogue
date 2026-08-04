@@ -1,9 +1,16 @@
 Imports LegacyRevision = C3.Catalogue.Catalogues.CatalogueRevision
 Imports NativeRevision = C3.Domain.Catalogues.CatalogueRevision
+Imports System.Reflection
 
 Friend Module CatalogueRevisionDifferentialTests
 
     Friend Sub NativeRevisionMatchesTheVbOracle()
+        Dim valueField As FieldInfo = GetType(LegacyRevision).GetField(
+            "_value",
+            BindingFlags.Instance Or BindingFlags.NonPublic)
+        AssertEqual(False, valueField Is Nothing, "compatibility facade value field")
+        AssertEqual(GetType(NativeRevision), valueField.FieldType, "production behavior owner")
+
         Dim tokens As String() = {
             "fixture-revision",
             "Fixture-Revision",

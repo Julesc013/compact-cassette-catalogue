@@ -16,14 +16,15 @@ The architecture optimizes for four things, in this order:
 
 | Module | Owns | Must not own |
 | --- | --- | --- |
-| `C3.Domain` | Native-2.0 opaque identity, UTC/optional values, validation, commands, change sets, undo contracts, and migrated aggregates | Legacy keys, files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
-| `C3.Catalogue` | Catalogue concepts, commands, rules, results, session semantics, and store interfaces | Files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
+| `C3.Domain` | Native-2.0 opaque identity, UTC/optional values, validation, commands, change sets, undo contracts, and migrated behavior such as persisted revision identity | Legacy keys, files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
+| `C3.Catalogue` | Compatibility-facing catalogue concepts, commands, rules, results, session semantics, store interfaces, and narrow facades over migrated behavior | Files, XML, `DataSet`, WinForms, settings, networking, OS APIs, or a second implementation of migrated rules |
 | `C3.Infrastructure` | XML format adapters, atomic file I/O, C3-owned preferences and legacy import, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
 | `C3.WinForms` | Forms, controls, user interaction, workspace state, preference composition, and runtime-lane policy | Persistence parsing or duplicated domain rules |
 
-During Alpha 3, `C3.Catalogue` remains the sole production behavior owner and VB
-differential oracle while named slices move to `C3.Domain`. The transition does
-not authorize two production implementations of one rule. Its compiled public
+During Alpha 3, unmigrated `C3.Catalogue` features remain the sole production
+behavior owners and VB differential oracles while named slices move to
+`C3.Domain`. A frozen VB public facade may delegate to the migrated owner; it may
+not retain a second implementation of the rule. Its compiled public
 surface is frozen in [`spec/catalogue-api/v1`](../../spec/catalogue-api/v1/README.md)
 and checked after every characterization build; behavior remains protected by
 the executable characterization suite.
@@ -39,11 +40,9 @@ small runtime adapters may differ between those project files.
 ## Dependency rule
 
 ```text
-C3.WinForms.Net40 ----+--> C3.Infrastructure --> C3.Catalogue
+C3.WinForms.Net40 ----+--> C3.Infrastructure --> C3.Catalogue --> C3.Domain
                       |                         ^
 C3.WinForms.Net48 ----+-------------------------+
-
-C3.Domain (dependency-free substrate; adopted by proven migration slices)
 ```
 
 Dependencies never point toward WinForms. `C3.Catalogue` depends only on APIs

@@ -75,5 +75,11 @@
     <Compile Include="Tapes\TapeService.vb" />
     <Compile Include="Tapes\TapeSide.vb" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C3.Domain\C3.Domain.csproj">
+      <Project>{9C51184F-1A7B-4B57-B70C-3A5400F62BA1}</Project>
+      <Name>C3.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
