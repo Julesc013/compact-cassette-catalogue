@@ -40,6 +40,7 @@
     <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.cs">
       <Link>Properties\VersionAssemblyInfo.g.cs</Link>
     </Compile>
+    <Compile Include="Catalogues\CatalogueRevision.cs" />
     <Compile Include="Commands\Change.cs" />
     <Compile Include="Commands\ChangeSet.cs" />
     <Compile Include="Commands\CommandContext.cs" />

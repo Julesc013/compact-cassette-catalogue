@@ -19,6 +19,9 @@
 - Froze all 269 exported signatures of the current VB catalogue library as a
   deterministic reflection oracle and made unexplained API drift fail the
   characterization gate before behavior-preserving C# ports begin.
+- Added the first mechanical C# catalogue candidate—opaque persisted revision
+  identity—and differential characterization against the still-authoritative VB
+  implementation before changing production ownership.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

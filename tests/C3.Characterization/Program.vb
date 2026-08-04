@@ -31,6 +31,9 @@ Module Program
         RunTest("XML decimals remain culture independent", AddressOf XmlDecimalsAreCultureIndependent)
         RunTest("catalogue session owns dirty and revision state", AddressOf CatalogueSessionOwnsDocumentState)
         RunTest(
+            "C# catalogue revision matches the VB oracle",
+            AddressOf CatalogueRevisionDifferentialTests.NativeRevisionMatchesTheVbOracle)
+        RunTest(
             "domain identifiers are opaque typed and canonical",
             AddressOf DomainContractTests.EntityIdsAreOpaqueTypedAndCanonical)
         RunTest(
