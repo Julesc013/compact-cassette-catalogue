@@ -6,6 +6,7 @@ $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $catalogueRoot = Join-Path $repositoryRoot 'src\C3.Catalogue'
+$domainRoot = Join-Path $repositoryRoot 'src\C3.Domain'
 $infrastructureRoot = Join-Path $repositoryRoot 'src\C3.Infrastructure'
 $catalogueProject = Join-Path $catalogueRoot 'C3.Catalogue.vbproj'
 $infrastructureProject = Join-Path $infrastructureRoot 'C3.Infrastructure.vbproj'
@@ -38,6 +39,25 @@ foreach ($source in Get-ChildItem -LiteralPath $catalogueRoot -Recurse -File -Fi
         '\bDataRow\b',
         '\bMy\.Settings\b'
     ) 'C3.Catalogue'
+}
+
+foreach ($source in Get-ChildItem -LiteralPath $domainRoot -Recurse -File -Filter '*.cs') {
+    Assert-FileDoesNotContain $source.FullName @(
+        'System\.Data',
+        'System\.Windows\.Forms',
+        'System\.Xml',
+        '\bDataSet\b',
+        '\bDataRow\b'
+    ) 'C3.Domain'
+}
+
+$domainProject = Join-Path $domainRoot 'C3.Domain.csproj'
+$domainProjectText = Get-Content -LiteralPath $domainProject -Raw
+if ($domainProjectText -match '<ProjectReference') {
+    $failures.Add('C3.Domain must not have project references.')
+}
+if ($domainProjectText -notmatch '<LangVersion>7\.3</LangVersion>') {
+    $failures.Add('C3.Domain must compile with the explicit C# 7.3 language contract.')
 }
 
 foreach ($source in Get-ChildItem -LiteralPath $infrastructureRoot -Recurse -File -Filter '*.vb') {
@@ -73,5 +93,4 @@ if ($failures.Count -gt 0) {
     throw ("Dependency validation failed:`n - " + ($failures -join "`n - "))
 }
 
-Write-Host 'Dependency direction verified: WinForms -> Infrastructure -> Catalogue.'
-
+Write-Host 'Dependency direction verified: WinForms -> Infrastructure -> Catalogue; Domain remains dependency-free.'

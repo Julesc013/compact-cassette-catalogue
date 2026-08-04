@@ -21,6 +21,12 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |-- workflows/
 |   `-- ISSUE_TEMPLATE/
 |-- src/
+|   |-- C3.Domain/
+|   |   |-- Commands/
+|   |   |-- Identity/
+|   |   |-- Time/
+|   |   |-- Validation/
+|   |   `-- Values/
 |   |-- C3.Catalogue/
 |   |   |-- Catalogues/
 |   |   |-- Brands/
@@ -94,9 +100,15 @@ plugin directories are not committed.
 
 ## Projects by dependency, folders by feature
 
-`C3.Catalogue` contains framework-4.0-compatible product concepts, commands,
+`C3.Domain` is the dependency-free C# 7.3 target for native 2.0 identity,
+commands, results, change sets, undo, and migrated aggregates. Shared concepts
+are introduced there once; its directories correspond to real semantic owners,
+not generic convenience code.
+
+`C3.Catalogue` contains framework-4.0-compatible legacy product concepts, commands,
 rules, and results. It cannot reference files, XML, `DataSet`, WinForms, concrete
-settings, networking, or OS APIs.
+settings, networking, or OS APIs. During Alpha 3 it remains the production owner
+and differential oracle until each named C# slice passes and replaces it.
 
 `C3.Infrastructure` implements external mechanisms. Its versioned legacy XML
 directory is the only production code allowed to know v1.1 table/column names.
@@ -130,6 +142,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Published 2.x beta/stable availability | matching channel `release.json`, changed only by successful public `P` | catalogue and validation evidence; release candidates use beta |
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |
 | Catalogue format 1.1.0 | `spec/catalogue/v1.1.0` | legacy XML adapter and fixtures |
+| Native domain identity, time, validation, command/change-set, and undo semantics | `C3.Domain` and ADR 0009 | characterization/property tests; migrated aggregate slices |
 | Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | no production projection while draft |
 | 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |

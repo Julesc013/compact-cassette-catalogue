@@ -9,6 +9,13 @@
 - Made hosted tag-event checkout preserve annotated tag objects by checking out
   the immutable event commit explicitly, and added a repository-owned workflow
   contract that rejects regressions or unpinned third-party actions.
+- Added the dependency-free .NET 4.0/C# 7.3 `C3.Domain` substrate with opaque
+  aggregate-typed identifiers, deterministic and production generators, strict
+  UTC/optional values, stable validation issues, command contexts/results,
+  versioned change sets, and explicit undo-command semantics.
+- Accepted the native aggregate vocabulary, including separate `DeckModel` and
+  physical `DeckUnit` identities, tape-owned recordings, and legacy-key mapping
+  as an explicit migration responsibility rather than domain identity.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

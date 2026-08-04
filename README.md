@@ -91,6 +91,7 @@ contains the current user guide.
 ## Repository map
 
 ```text
+src/C3.Domain          dependency-free C# 7.3 identity and command substrate
 src/C3.Catalogue       catalogue concepts, rules, commands, and session semantics
 src/C3.Infrastructure  versioned XML, preferences, diagnostics, external adapters
 src/C3.WinForms        shared native UI and two compatibility-lane projects

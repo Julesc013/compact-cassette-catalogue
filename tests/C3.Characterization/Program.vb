@@ -31,6 +31,18 @@ Module Program
         RunTest("XML decimals remain culture independent", AddressOf XmlDecimalsAreCultureIndependent)
         RunTest("catalogue session owns dirty and revision state", AddressOf CatalogueSessionOwnsDocumentState)
         RunTest(
+            "domain identifiers are opaque typed and canonical",
+            AddressOf DomainContractTests.EntityIdsAreOpaqueTypedAndCanonical)
+        RunTest(
+            "deterministic identifiers are repeatable unique and type-separated",
+            AddressOf DomainContractTests.DeterministicIdsAreRepeatableAndTypeSeparated)
+        RunTest(
+            "domain timestamps and optional values reject ambiguity",
+            AddressOf DomainContractTests.UtcAndOptionalValuesRejectAmbiguity)
+        RunTest(
+            "command results separate changes from rejections",
+            AddressOf DomainContractTests.CommandResultsSeparateChangesFromRejections)
+        RunTest(
             "store classifies unsafe and incompatible input",
             AddressOf LegacyXmlCatalogueStoreTests.StoreClassifiesRejectedInput)
         RunTest(

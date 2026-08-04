@@ -16,9 +16,14 @@ The architecture optimizes for four things, in this order:
 
 | Module | Owns | Must not own |
 | --- | --- | --- |
+| `C3.Domain` | Native-2.0 opaque identity, UTC/optional values, validation, commands, change sets, undo contracts, and migrated aggregates | Legacy keys, files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
 | `C3.Catalogue` | Catalogue concepts, commands, rules, results, session semantics, and store interfaces | Files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
 | `C3.Infrastructure` | XML format adapters, atomic file I/O, C3-owned preferences and legacy import, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
 | `C3.WinForms` | Forms, controls, user interaction, workspace state, preference composition, and runtime-lane policy | Persistence parsing or duplicated domain rules |
+
+During Alpha 3, `C3.Catalogue` remains the sole production behavior owner and VB
+differential oracle while named slices move to `C3.Domain`. The transition does
+not authorize two production implementations of one rule.
 
 `C3.WinForms` has two project files over the same physical UI sources:
 
@@ -34,6 +39,8 @@ small runtime adapters may differ between those project files.
 C3.WinForms.Net40 ----+--> C3.Infrastructure --> C3.Catalogue
                       |                         ^
 C3.WinForms.Net48 ----+-------------------------+
+
+C3.Domain (dependency-free substrate; adopted by proven migration slices)
 ```
 
 Dependencies never point toward WinForms. `C3.Catalogue` depends only on APIs
@@ -114,5 +121,6 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0006: Separate update channels](decisions/0006-separate-update-channels.md)
 - [ADR 0007: C3-owned shared preferences](decisions/0007-c3-owned-shared-preferences.md)
 - [ADR 0008: Qualified checkpoint ledger](decisions/0008-qualified-checkpoint-ledger.md)
+- [ADR 0009: Typed domain identity and command contracts](decisions/0009-typed-domain-contracts.md)
 - [Release catalogue v1 contract](../../spec/release-catalog/v1/README.md)
 - [Update release manifest v1 contract](../../spec/update-feed/v1/README.md)
