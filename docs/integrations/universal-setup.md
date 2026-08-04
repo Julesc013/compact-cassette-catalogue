@@ -2,6 +2,10 @@
 
 Status: **Planned; portable packages remain authoritative**
 
+This boundary specializes the canonical
+[distribution doctrine](../development/distribution.md). It creates no current
+setup artifact or support claim.
+
 [Universal Setup](https://github.com/Julesc013/universal-setup) is intended to own
 generic install, verify, repair, rollback, and uninstall mechanics. C3 supplies a
 declarative product binding after that contract is stable and audited.

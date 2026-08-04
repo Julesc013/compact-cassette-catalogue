@@ -7,6 +7,7 @@ Documentation is organized by its audience and ownership.
 - [Product vision](product/vision.md)
 - [C3 2.0 scope](product/c3-2.0-scope.md)
 - [Versioning and update channels](governance/versioning-and-channels.md)
+- [Distribution doctrine](development/distribution.md)
 - [Machine-readable contract index](../spec/README.md)
 - [Catalogue-library public API baseline](../spec/catalogue-api/v1/README.md)
 - [Release catalogue v1 contract](../spec/release-catalog/v1/README.md)
@@ -37,6 +38,7 @@ Documentation is organized by its audience and ownership.
 - [Automated and manual testing](development/testing.md)
 - [Continuous integration](development/continuous-integration.md)
 - [Packaging](development/packaging.md)
+- [Catalogue CLI](development/catalogue-cli.md)
 - [Release process](development/releasing.md)
 
 ## User and support material

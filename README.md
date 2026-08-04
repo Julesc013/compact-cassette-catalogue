@@ -26,7 +26,8 @@ Universal Setup/bootstrap work;
 C++11 is reserved for a measured isolated native boundary, never catalogue logic.
 
 Read the [product vision](docs/product/vision.md),
-[accepted 2.0 scope](docs/product/c3-2.0-scope.md), and
+[accepted 2.0 scope](docs/product/c3-2.0-scope.md),
+[distribution doctrine](docs/development/distribution.md), and
 [execution plan](docs/planning/2.0-execution-plan.md) for the complete contract.
 
 ## Downloads and build lanes
@@ -56,10 +57,12 @@ behavior on the maintenance line.
 
 ## Catalogue compatibility
 
-Product and catalogue-format versions are independent. Alpha 4 initially reads and
-writes the legacy catalogue 1.1.0 profile. A native-v2 format is only a design
-draft until its typed model, schema, migration, legacy mode, loss-aware export,
-security limits, fixtures, and both implementations pass together.
+Product and catalogue-format versions are independent. Alpha 4 implements the
+legacy catalogue 1.1.0 profile and the candidate native-v2 XML profile, including
+typed identity, secure deterministic I/O, convert-copy migration, recovery,
+loss-aware legacy export, and `c3.exe` validation/migration commands. Native-v2
+does not become a public support claim until the exact checkpoint passes its
+combined specification, compatibility, package, and recovery gates.
 
 C3 2.0's full 1.x compatibility target covers catalogues, settings, update
 channels, side-by-side use, portable/setup payloads, and rollback. Qualified
@@ -95,12 +98,14 @@ contains the current user guide.
 src/C3.Domain          dependency-free C# 7.3 identity and command substrate
 src/C3.Catalogue       catalogue concepts, rules, commands, and session semantics
 src/C3.Infrastructure  versioned XML, preferences, diagnostics, external adapters
+src/C3.Cli             canonical headless validator/migrator (`c3.exe`)
 src/C3.WinForms        shared native UI and two compatibility-lane projects
 src/Shared             generated identity source linked into managed assemblies
 tests                  executable compatibility characterization
 fixtures               privacy-safe valid, invalid, culture, and security examples
-spec                    catalogue, preference, and release-catalogue contracts
+spec                    catalogue, distribution, preference, and release contracts
 build                   build, verification, and deterministic packaging automation
+release/profiles        canonical payload and implemented distribution profiles
 release/catalog.v1.json canonical checkpoint lifecycle and artifact index
 release/train           resumable milestone order and active programme pointer
 release/feeds           legacy compatibility and published-channel metadata

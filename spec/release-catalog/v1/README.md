@@ -29,8 +29,8 @@ E  direct, single-parent child; exact catalogue + matching validation diff
 P  direct, single-parent child of tagged E; exact stage/outcome-specific evidence diff
 ```
 
-The full `E` SHA, never moving `dev`, is validated and atomically fast-forwarded
-to `master` with its annotated tag. The catalogue at tagged `E` remains
+The full `E` SHA, never moving `dev/2.x`, is validated and atomically
+fast-forwarded to `master` with its annotated tag. The catalogue at tagged `E` remains
 `unpromoted` with a null `promotion.tagObject`: it cannot truthfully predict an
 external tag operation. `P` records the lowercase 40-character annotated-tag
 object ID. Validation binds both that immutable object and its peeled commit on
@@ -47,13 +47,14 @@ commit does not change.
 | Failed public post-verification | catalogue + matching validation record | `published / failed / feed false`; channel feed unchanged |
 
 `P` must have only tagged `E` as its parent. Its full SHA is validated and then
-atomically fast-forwarded to both `master` and `dev`; only afterward may `dev`
-begin the next release identity. A failed public checkpoint and its immutable
+atomically fast-forwarded to both `master` and `dev/2.x`; only afterward may
+`dev/2.x` begin the next release identity. A failed public checkpoint and its immutable
 tag/assets may be linked as superseded by an immediate successor.
 
-Release candidates use channel `beta` and policy `public-prerelease`. The stable
-RC/byte-identity strategy remains unresolved and must be accepted before the
-first RC. C3 2.x uses channel `release.json` and never a `VERSION` projection.
+Release candidates use channel `beta` and policy `public-prerelease`. Stable is
+a direct metadata-only source transition from the accepted RC followed by a
+complete rebuild and requalification of its new bytes; RC and stable artifacts
+are not claimed to be byte-identical. C3 2.x uses channel `release.json` and never a `VERSION` projection.
 Ordinary version synchronization cannot own published beta/stable metadata;
 successful public `P` is its sole repository owner.
 

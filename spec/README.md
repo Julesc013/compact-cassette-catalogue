@@ -31,9 +31,11 @@ for the long-lived release catalogue.
 Current contracts:
 
 - [`branch-contract/v1/`](branch-contract/v1/) — permanent branch roles and identities;
-- [`catalogue-api/v1/`](catalogue-api/v1/) — frozen compiled VB catalogue-library oracle;
+- [`catalogue-api/v1/`](catalogue-api/v1/) — frozen compiled catalogue-library contract;
 - [`compatibility-corpus/v1/`](compatibility-corpus/v1/) — historical producer, artifact, format, and fixture provenance;
 - [`catalogue/v1.1.0/`](catalogue/v1.1.0/) — accepted legacy catalogue profile;
+- [`catalogue/v2.0.0/`](catalogue/v2.0.0/) — candidate native catalogue profile and canonical/security fixtures;
+- [`distribution/v1/`](distribution/v1/) — implemented portable profile and payload contracts;
 - [`release-catalog/v1/`](release-catalog/v1/) — checkpoint ledger;
 - [`release-train/v1/`](release-train/v1/) — resumable programme controller; and
 - [`update-feed/v1/`](update-feed/v1/) — update discovery and release assets.

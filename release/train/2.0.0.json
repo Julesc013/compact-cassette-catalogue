@@ -10,7 +10,7 @@
     "alpha": "tag-only",
     "beta": "owner-manual-acceptance",
     "rc": "public-prerelease",
-    "stable": "unchanged-rc-promotion"
+    "stable": "metadata-only-rebuild-and-requalification"
   },
   "milestones": [
     {

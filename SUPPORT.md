@@ -18,6 +18,13 @@ Include the package lane (`win-x86-net40` or `win-x64-net48`), update channel,
 Windows version, .NET Framework version, catalogue format/source producer, and
 whether the problem also occurs with a new blank catalogue.
 
+Only GitHub-release assets identified as `supported` or `preview` by their
+release evidence are publicly distributed C3 builds. An internal alpha tag,
+branch build, loose executable, future reserved profile, or planned setup
+binding is not a supported download. See the
+[distribution doctrine](docs/development/distribution.md) for the complete status
+vocabulary and artifact contract.
+
 For C3 2.0 migration work, also include:
 
 - catalogue operating mode (legacy, convert-copy, native, export, or read-only);

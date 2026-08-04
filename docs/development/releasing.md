@@ -52,7 +52,7 @@ remain authoritative for C/E/P topology, artifacts, and observed external facts.
 | Evidence | Alpha | Beta | Release candidate | Stable |
 | --- | --- | --- | --- | --- |
 | Metadata, feed isolation, boundaries, tests, both builds, PE checks | Required | Required | Required | Required |
-| Two clean path-distinct package builds and checksums | Required | Required | Required | Required under the accepted identity strategy |
+| Two clean path-distinct package builds and checksums | Required | Required | Required | Required for newly built stable bytes |
 | Known data-loss defects | Zero | Zero | Zero | Zero |
 | Critical local workflow smoke | Required | Required | Required | Required |
 | Full owner workflow matrix | Selected changed/critical paths | Required | Required | Required |
@@ -62,10 +62,11 @@ remain authoritative for C/E/P topology, artifacts, and observed external facts.
 | Update-feed promotion | No | Beta feed last | Beta feed last | Stable feed last |
 
 Beta 1 is feature complete and compatibility complete. Release candidates use
-the `beta` channel and `public-prerelease` publication policy. The stable
-byte-identity strategy is deliberately unresolved; it must be accepted before
-the first release candidate. Until then, C3 claims neither unchanged RC bytes
-nor a metadata-only stable rebuild.
+the `beta` channel and `public-prerelease` publication policy. Stable is a direct
+metadata-only source transition from the accepted RC, followed by a complete
+rebuild and requalification of the new stable bytes. C3 never claims that RC and
+stable payloads are byte-identical; any functional correction requires another
+RC. See [ADR 0010](../architecture/decisions/0010-stable-release-identity.md).
 
 ## Prepare and freeze source commit C
 
@@ -244,12 +245,18 @@ immediate successor.
 
 ### Successful stable publication
 
-The same transaction rule applies after an RC/stable identity strategy is
-accepted: successful stable `P` changes exactly the catalogue, matching
-validation record, and `release/feeds/stable/release.json`; a failure changes
-only the two evidence files and leaves the stable feed untouched. The accepted
-strategy must define which bytes are qualified and whether a stable rebuild is
-required. This document intentionally does not decide that unresolved contract.
+Begin stable only from the exact owner-accepted RC source. Create one direct
+metadata-only commit that changes canonical release identity and its generated
+or documented projections, then audit that diff for the absence of behavior,
+dependency, format, migration, and payload-composition changes. Build and fully
+qualify those newly stable bytes through the normal C/E/P transaction; RC hashes
+must not be reused as stable hashes. A functional change returns the train to a
+new RC.
+
+Successful stable `P` changes exactly the catalogue, matching validation record,
+and `release/feeds/stable/release.json`; a failure changes only the two evidence
+files and leaves the stable feed untouched. Downloaded-asset verification must
+pass before the stable feed is promoted.
 
 ## Promote exact P
 

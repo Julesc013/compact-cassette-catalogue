@@ -46,7 +46,7 @@
         "alpha": { "const": "tag-only" },
         "beta": { "const": "owner-manual-acceptance" },
         "rc": { "const": "public-prerelease" },
-        "stable": { "const": "unchanged-rc-promotion" }
+        "stable": { "const": "metadata-only-rebuild-and-requalification" }
       }
     },
     "milestones": {

@@ -19,6 +19,7 @@ The architecture optimizes for four things, in this order:
 | `C3.Domain` | Native-2.0 opaque identity, UTC/optional values, validation, commands, change sets, undo contracts, and migrated behavior such as persisted revision identity | Legacy keys, files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
 | `C3.Catalogue` | Compatibility-facing catalogue concepts, commands, rules, results, session semantics, store interfaces, and narrow facades over migrated behavior | Files, XML, `DataSet`, WinForms, settings, networking, OS APIs, or a second implementation of migrated rules |
 | `C3.Infrastructure` | XML format adapters, atomic file I/O, C3-owned preferences and legacy import, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
+| `C3.Cli` | Thin argument parsing, exit-code projection, and headless composition over Infrastructure services | A second parser, mapper, validator, migration, or export implementation |
 | `C3.WinForms` | Forms, controls, user interaction, workspace state, preference composition, and runtime-lane policy | Persistence parsing or duplicated domain rules |
 
 During Alpha 3, named behaviors moved to `C3.Domain` without retaining a second
@@ -57,6 +58,7 @@ C3.WinForms.Net40 ----+--> C3.Infrastructure --> C3.Catalogue --> C3.Domain
                       |          |              ^
 C3.WinForms.Net48 ----+----------+--------------+
                                  +--------------------------> C3.Domain
+C3.Cli --------------------------> C3.Infrastructure
 ```
 
 Dependencies never point toward WinForms. `C3.Catalogue` depends only on APIs
@@ -100,7 +102,7 @@ temporary output is flushed, reopened, and validated before replacement. A faile
 save never clears dirty state and never destroys the last known-good file.
 
 The v1.1 catalogue reader is tolerant of compatible historical input. Its writer
-remains the sole legacy-format owner. The frozen native-v2 candidate profile uses
+remains the sole legacy-format owner. The implemented native-v2 candidate profile uses
 the typed graph, stable references, canonical ordering, and strict limits in
 [`spec/catalogue/v2.0.0`](../../spec/catalogue/v2.0.0/README.md); no published
 support claim exists until reader, writer, migration, export, CLI, and recovery
@@ -141,5 +143,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0007: C3-owned shared preferences](decisions/0007-c3-owned-shared-preferences.md)
 - [ADR 0008: Qualified checkpoint ledger](decisions/0008-qualified-checkpoint-ledger.md)
 - [ADR 0009: Typed domain identity and command contracts](decisions/0009-typed-domain-contracts.md)
+- [ADR 0010: Stable release identity](decisions/0010-stable-release-identity.md)
+- [Distribution doctrine](../development/distribution.md)
 - [Release catalogue v1 contract](../../spec/release-catalog/v1/README.md)
 - [Update release manifest v1 contract](../../spec/update-feed/v1/README.md)

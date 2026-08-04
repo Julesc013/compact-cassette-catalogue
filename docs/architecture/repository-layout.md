@@ -41,6 +41,9 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |   |-- FileOperations/
 |   |   |-- Preferences/
 |   |   `-- Updates/
+|   |-- C3.Cli/
+|   |   |-- C3.Cli.csproj
+|   |   `-- Program.cs
 |   |-- C3.WinForms/
 |   |   |-- C3.WinForms.Net40.vbproj
 |   |   |-- C3.WinForms.Net48.vbproj
@@ -65,8 +68,9 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   `-- settings/legacy/
 |-- spec/catalogue/
 |   |-- v1.1.0/                      # implemented public contract
-|   `-- v2.0.0/                      # explicitly unimplemented design draft
-|-- spec/catalogue-api/v1/           # frozen compiled VB oracle surface
+|   `-- v2.0.0/                      # implemented Alpha 4 candidate profile
+|-- spec/catalogue-api/v1/           # frozen compiled catalogue surface
+|-- spec/distribution/v1/            # portable profile/payload schemas
 |-- spec/preferences/v1/             # implemented shared profile contract
 |-- spec/release-catalog/v1/          # checkpoint lifecycle/artifact schema
 |-- spec/release-train/v1/            # resumable milestone-controller schema
@@ -75,6 +79,7 @@ adjacent. Target-state paths are not added until code actually needs them.
 |-- release/
 |   |-- catalog.v1.json              # machine lifecycle and artifact identity
 |   |-- feeds/
+|   |-- profiles/                    # implemented lane bindings + one payload list
 |   |-- train/                        # current programme pointer and order
 |   `-- validation/
 |-- docs/
@@ -129,6 +134,11 @@ completed C# 7.3 port preserved the original project GUID, binary identity,
 net40 contract, and all 312 frozen public signatures; the candidate and VB
 implementations no longer exist.
 
+`C3.Cli` is the canonical net40/AnyCPU headless component. Its only production
+source owns argument parsing, help text, exit-code projection, and composition.
+All catalogue reading, validation, migration, recovery, and legacy export remain
+owned by the same Infrastructure services used by other product surfaces.
+
 `C3.WinForms` composes services and owns interaction and presentation. Its two
 project files compile the same physical feature sources. The Net40 project is the
 authoritative current designer owner. Generated shared version attributes are
@@ -153,11 +163,12 @@ extract a shared abstraction only after more than one real owner needs it.
 | 2.x update manifest syntax and publication shape | `spec/update-feed/v1` | generated candidates, promoted channel feeds, and bounded runtime reader |
 | Published 2.x beta/stable availability | matching channel `release.json`, changed only by successful public `P` | catalogue and validation evidence; release candidates use beta |
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |
+| Implemented distribution profiles and exact portable file list | `release/profiles` | `spec/distribution/v1`, validator, staging, ZIP packaging, and future setup binding |
 | Catalogue format 1.1.0 | `spec/catalogue/v1.1.0` | legacy XML adapter and fixtures |
 | Native domain identity, time, validation, command/change-set, and undo semantics | `C3.Domain` and ADR 0009 | characterization/property tests; migrated aggregate slices |
 | Current catalogue-library compiled public surface | `spec/catalogue-api/v1/public-api.txt` | reflection validator after every characterization build; semantics remain in source/tests |
 | Current infrastructure-library compiled public surface | `spec/infrastructure-api/v1/public-api.txt` | reflection validator after every characterization build; external semantics remain in source/tests |
-| Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | no production projection while draft |
+| Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | implemented Alpha 4 candidate; qualification controls public support |
 | 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |
 | Persisted catalogue revision identity | `C3.Domain.Catalogues.CatalogueRevision` | frozen `C3.Catalogue` compatibility facade and differential characterization |
@@ -175,6 +186,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Historical product change | `CHANGELOG.md` | tagged history |
 | Exact candidate proof | `release/validation/<version>.md` | commands, CI/VM runs, hashes |
 | AIDE/Universal Setup boundaries | their integration documents | future pinned bindings/evidence |
+| Distribution vocabulary, artifact grammar, and delivery horizons | `docs/development/distribution.md` | README, packaging, roadmap, and profile status projections |
 | Asset purpose and provenance | `assets/README.md` | files below `assets/` |
 
 If two files appear to own the same fact, one becomes a generated projection or

@@ -119,6 +119,12 @@ try {
 
     Reset-Fixtures
     $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.publicationPolicy.stable = 'unchanged-rc-promotion'
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'obsolete unchanged-RC stable policy'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
     $first = $train.milestones[0]
     $train.milestones[0] = $train.milestones[1]
     $train.milestones[1] = $first

@@ -8,14 +8,14 @@ a catalogue format, and an update audience do not evolve at the same rate.
 | Identity | Canonical owner | Current 2.0 alpha policy |
 | --- | --- | --- |
 | Product version | `build/Version.props` | `2.0.0` |
-| Release label | generated from product version and stage | `2.0.0-alpha.2` |
+| Release label | generated from product version and stage | `2.0.0-alpha.4` |
 | Release channel | `build/Version.props` | `alpha` |
-| Update publication metadata | channel `release.json` | `published: false`; Alpha 2 must not advertise availability |
+| Update publication metadata | channel `release.json` | `published: false`; Alpha 4 must not advertise availability |
 | Assembly contract | `build/Version.props` | `2.0.0.0` for the 2.x contract line |
 | File build identity | `build/Version.props` | numeric four-part version |
 | Informational version | generated assembly metadata | SemVer release label, optionally plus a source revision |
-| Legacy catalogue format | format specification and adapter | `1.1.0` until native v2 is implemented |
-| Native catalogue format | versioned specification | unclaimed; `spec/catalogue/v2.0.0` is a draft design space |
+| Legacy catalogue format | format specification and adapter | `1.1.0` compatibility profile |
+| Native catalogue format | versioned specification and adapter | implemented Alpha 4 candidate at `spec/catalogue/v2.0.0`; public support awaits qualification |
 
 A product major version does not imply a catalogue-format major version. The UI
 may display both when the distinction matters.
@@ -39,9 +39,13 @@ post-operation commit `P`, after its exact packages and checksum manifest exist
 and downloaded verification has passed. Removing a release does not silently
 retarget its users.
 
-The final RC/stable byte-identity strategy remains unresolved. C3 must accept a
-strategy before the first release candidate; until then it does not promise that
-stable reuses RC bytes or that a metadata-only rebuild is sufficient.
+Stable identity is rebuilt and fully requalified from the accepted RC source.
+The stable transition is a direct metadata-only source commit: it may change
+canonical stage/version projections but no behavior, dependency, format,
+migration, or payload composition. Stable artifacts are new bytes with new
+hashes; C3 does not claim byte-identical RC promotion. Any functional correction
+requires another RC. [ADR 0010](../architecture/decisions/0010-stable-release-identity.md)
+owns this decision.
 
 ## Permanent branch contract
 
@@ -133,7 +137,8 @@ feeds retain the three-line numeric format because old code parses
      `release/feeds/beta/release.json` and records
      `published / passed / feed true`.
    - Successful stable changes those two files plus
-     `release/feeds/stable/release.json` under the accepted stable strategy.
+     `release/feeds/stable/release.json` after the metadata-only stable source
+     transition has been rebuilt and fully requalified.
    - Public post-verification failure changes only the two evidence files,
      records `published / failed / feed false`, leaves the feed unchanged, and
      may be superseded by an immediate successor.

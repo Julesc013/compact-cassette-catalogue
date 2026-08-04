@@ -15,6 +15,11 @@ The semantic validator additionally requires:
 - qualified state to agree with the immutable release catalogue and tags; and
 - any non-null `candidateCommit` to agree with the catalogue's recorded `C`.
 
+The v1 publication policy fixes stable to
+`metadata-only-rebuild-and-requalification`, as accepted by ADR 0010. This is a
+new stable identity from accepted RC source, not renamed or byte-identical RC
+artifacts.
+
 The schema is strict UTF-8, rejects duplicate members, has a 256 KiB transport
 limit, and permits no extension members. A future train shape requires a new
 schema version rather than an ad hoc field.

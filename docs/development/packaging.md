@@ -1,4 +1,8 @@
-# Packaging and distribution
+# Packaging
+
+The canonical [distribution doctrine](distribution.md) owns product-wide status
+vocabulary, artifact grammar, delivery boundaries, and future horizons. This
+document owns how the current machine-readable portable contract is built.
 
 Portable ZIPs are C3's authoritative distribution. Both lanes consume the same
 verified build outputs and packaging script:

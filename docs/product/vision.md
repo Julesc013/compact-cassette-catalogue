@@ -17,6 +17,12 @@ or framework. It is the combination of:
 Implementation technology may be replaced when evidence proves the replacement.
 User data and user intent remain authoritative throughout that change.
 
+C3 Desktop and C3 CLI are components of this one product. Compatibility lanes
+are build targets, not Classic/Modern editions. The canonical
+[distribution doctrine](../development/distribution.md) owns delivery vocabulary,
+artifact identity, and future-platform reservation without inventing current
+support.
+
 ## Product promise
 
 C3 should let a collector understand and control the complete lifecycle of a
@@ -137,3 +143,12 @@ locked in. The release has no known release-blocking defect, every fixed defect
 has lasting regression evidence, unsupported paths are explicit, artifacts are
 reproducible and hash-verified, and a future implementation can validate itself
 against the same public contracts.
+
+## Product horizons
+
+2.0 proves the dual portable lanes, minimal CLI, native/legacy lifecycle, OEM+
+workspace, and release evidence. Later releases may add declarative packs and
+customization, measured indexing and analytics, richer CLI automation, an
+isolated extension protocol, setup maturity, ARM64, or alternate shells in that
+dependency order. Each remains gated by a versioned contract and executable
+evidence; a roadmap name alone creates no platform or compatibility promise.

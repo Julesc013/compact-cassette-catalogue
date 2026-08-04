@@ -61,8 +61,8 @@ observed stage facts:
   `release/feeds/beta/release.json` and records `published`, post-verification
   `passed`, and feed promotion `true`;
 - successful public stable `P` additionally changes exactly
-  `release/feeds/stable/release.json` under the separately accepted stable
-  identity strategy; and
+  `release/feeds/stable/release.json` after the metadata-only stable transition
+  has been rebuilt and fully requalified under ADR 0010; and
 - public post-verification-failure `P` changes only the two evidence files,
   records `published / failed / feed false`, preserves the failed tag and assets,
   and may be superseded by an immediate successor.
@@ -80,10 +80,9 @@ supersession remain separate facts. Release candidates use the beta channel and
 public-prerelease policy. C3 2.x publication uses channel `release.json`; no 2.x
 `VERSION` files are introduced.
 
-The RC/stable byte-identity strategy is intentionally outside this decision and
-remains unresolved. It must be accepted before the first release candidate. No
-claim that stable reuses RC bytes or that a metadata-only rebuild is adequate is
-valid until then.
+RC/stable byte identity is decided separately by ADR 0010: stable is a direct
+metadata-only source transition from the accepted RC and its new bytes are fully
+requalified. RC and stable artifacts are not claimed to be byte-identical.
 
 ## Consequences
 

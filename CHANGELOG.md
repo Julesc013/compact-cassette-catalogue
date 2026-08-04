@@ -22,6 +22,18 @@
   unknown-zone timestamp normalization evidence, typed counts/issues, source
   byte preservation, repeated-migration byte identity, and blocking unresolved
   relationship behavior.
+- Added transactional convert-copy migration, interruption-safe recovery,
+  machine-readable reports, explicit legacy compatibility mode, and loss-aware
+  v1.1 export that never silently replaces its source.
+- Added canonical net40/AnyCPU `c3.exe` validation, dry-run/convert migration,
+  recovery, and legacy-export commands as a thin shell over the same
+  Infrastructure owners used by the product.
+- Defined strict machine-readable portable distribution profiles and one shared
+  payload manifest, then made both deterministic ZIP lanes stage that exact
+  payload beneath a single versioned root directory.
+- Accepted the product-wide distribution doctrine and the metadata-only
+  RC-to-stable transition: stable bytes are rebuilt and fully requalified rather
+  than relabelled or claimed byte-identical to an RC.
 
 
 ### Version 2.0.0 Alpha 3 - Qualified, intentionally unpublished (2026-08-04)

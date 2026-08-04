@@ -30,14 +30,17 @@ or replace a qualified tag.
    relevant ADRs.
 3. For data/settings/update work, read the
    [1.x compatibility charter](docs/compatibility/1x-to-2x-charter.md).
-4. Identify the single current owner of the behavior.
-5. Add or update a regression test, fixture, differential comparison, or named
+4. For build, package, installer, or artifact work, read the
+   [distribution doctrine](docs/development/distribution.md).
+5. Identify the single current owner of the behavior.
+6. Add or update a regression test, fixture, differential comparison, or named
    manual reproduction before changing behavior.
 
 ## Design rules
 
 - Put catalogue concepts and rules in `C3.Catalogue`, external mechanisms in
-  `C3.Infrastructure`, and interaction/layout/composition in `C3.WinForms`.
+  `C3.Infrastructure`, headless command parsing/composition in `C3.Cli`, and
+  interaction/layout/composition in `C3.WinForms`.
 - Organize inside a module by product feature. Do not add generic `Core`,
   `Common`, `Helpers`, `Managers`, `Platform`, `Misc`, or speculative directories.
 - Keep `DataSet`, raw XML, filesystem, concrete settings, and update transport at
@@ -50,6 +53,10 @@ or replace a qualified tag.
   compatibility notes before implementation is promoted.
 - Treat paths, catalogue contents, logs, screenshots, settings, migration maps,
   and support bundles as potentially private.
+- Do not duplicate the portable file list, lane identities, or artifact grammar.
+  Change their machine owners and validators together. Do not add future platform,
+  pack, plugin, or setup directories before an accepted executable contract needs
+  them.
 
 ## Language and porting rules
 

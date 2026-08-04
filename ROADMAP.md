@@ -59,21 +59,29 @@ or issue tracker.
 ## 2.0.0 release candidate and stable
 
 - Freeze one candidate and make only release-blocking corrections.
-- Resolve and document the RC/stable identity strategy before the final RC; do
-  not claim byte-identical promotion while stage identity remains in payloads.
+- Apply the accepted metadata-only stable transition from the owner-approved RC
+  source, then rebuild and fully requalify the newly stable bytes.
 - Reproduce packages and verify binary identities, hashes, side-by-side behavior,
   settings migration, and downloaded artifacts.
-- Promote only the exact evidence-backed artifacts allowed by the accepted
-  identity strategy and qualify any rebuilt bytes again.
+- Never claim byte-identical RC/stable promotion; any functional correction
+  requires another RC.
 - Publish an exact compatibility matrix and known limitations.
 
 ## 2.1 and later
 
-Candidates include richer reference packs and custom fields, media/J-card
-handling, catalogue merge, rich CLI automation, additional interchange/report
-profiles, and an isolated extension protocol. ARM64, alternate native shells,
-sync, accounts, hosted storage, and recognition assistance require separate
-product and compatibility decisions.
+- 2.1 candidates include declarative reference packs, custom fields, saved
+  views, richer import/export profiles, and media/J-card foundations.
+- 2.2 may add measured indexing, search, and analytics improvements.
+- 2.3 may expand CLI automation and introduce an isolated versioned extension
+  protocol.
+- 2.4 may mature Universal Setup and evaluate ARM64 only through a separately
+  accepted build-lane contract.
+- 3.x and later may add alternate shells over the same language-neutral
+  catalogue and behavior contracts.
+
+These horizons reserve direction, not present source trees or support claims.
+Sync, accounts, hosted storage, and recognition assistance require separate
+product, privacy, and compatibility decisions.
 
 Automatic self-update, insecure transport fallbacks, divergent lane behavior,
 in-process arbitrary plugins, and silent catalogue conversion are not inherited
