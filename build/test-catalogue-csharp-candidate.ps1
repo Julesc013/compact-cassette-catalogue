@@ -28,6 +28,7 @@ $assemblyPath = Join-Path $repositoryRoot (
     "artifacts\bin\candidates\net40\$Configuration\C3.Catalogue.CSharpCandidate.dll")
 $translatedNamespaces = @(
     'C3.Catalogue.Brands.'
+    'C3.Catalogue.CassetteModels.'
 )
 foreach ($namespacePrefix in $translatedNamespaces) {
     & (Join-Path $PSScriptRoot 'validate-catalogue-api.ps1') `

@@ -45,6 +45,11 @@
     <Compile Include="Brands\BrandOperationResult.cs" />
     <Compile Include="Brands\BrandService.cs" />
     <Compile Include="Brands\IBrandRepository.cs" />
+    <Compile Include="CassetteModels\CassetteModel.cs" />
+    <Compile Include="CassetteModels\CassetteModelDraft.cs" />
+    <Compile Include="CassetteModels\CassetteModelOperationResult.cs" />
+    <Compile Include="CassetteModels\CassetteModelService.cs" />
+    <Compile Include="CassetteModels\ICassetteModelRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\C3.Domain\C3.Domain.csproj">

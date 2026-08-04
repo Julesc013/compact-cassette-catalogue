@@ -34,6 +34,9 @@
 - Added a temporary side-by-side C# catalogue translation lane and mechanically
   translated the complete Brands feature; its compiled types and members must
   match the namespace-filtered VB API oracle before the production swap.
+- Mechanically translated the Cassette Models feature into the isolated C#
+  candidate, retaining legacy identifier construction, immutable update keys,
+  normalization, ordering, reference protection, and failure contracts.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)
