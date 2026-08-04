@@ -14,17 +14,10 @@ if (-not (Test-Path -LiteralPath $hashPath -PathType Leaf)) {
     throw 'SHA256SUMS.txt is missing from artifacts/packages.'
 }
 
-$requiredEntries = @(
-    'BUILD.txt',
-    'C3.Catalogue.dll',
-    'C3.Domain.dll',
-    'C3.Infrastructure.dll',
-    'c3.exe',
-    'Compact Cassette Catalogue.exe',
-    'Compact Cassette Catalogue.exe.config',
-    'README.md',
-    'RELEASE_NOTES.md'
-)
+$payloadPath = Join-Path $repositoryRoot 'release\profiles\portable-payload.v1.json'
+& (Join-Path $PSScriptRoot 'validate-distribution-contract.ps1')
+$payload = Get-Content -LiteralPath $payloadPath -Raw | ConvertFrom-Json
+$payloadTargets = @($payload.entries | ForEach-Object { [string]$_.target } | Sort-Object)
 
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -52,6 +45,8 @@ foreach ($record in $hashRecords) {
         throw "Package is not defined by build/lanes.json and Version.props: $fileName"
     }
     $packageDefinition = $matchingDefinitions[0]
+    $archiveRoot = "C3-v$($identity.ReleaseLabel)-$($packageDefinition.LaneId)-portable"
+    $requiredEntries = @($payloadTargets | ForEach-Object { "$archiveRoot/$_" })
     $packagePath = Join-Path $packagesRoot $fileName
     if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
         throw "Package listed in SHA256SUMS is missing: $fileName"
@@ -83,7 +78,7 @@ foreach ($record in $hashRecords) {
             }
         }
 
-        $buildEntry = $archive.GetEntry('BUILD.txt')
+        $buildEntry = $archive.GetEntry("$archiveRoot/BUILD.txt")
         $buildReader = New-Object IO.StreamReader($buildEntry.Open(), [Text.Encoding]::UTF8, $true)
         try {
             $actualBuildText = $buildReader.ReadToEnd().Replace("`r`n", "`n")
@@ -93,11 +88,13 @@ foreach ($record in $hashRecords) {
         }
         $expectedBuildText = @(
             'Product: Compact Cassette Catalogue (C3)'
+            'Product ID: c3'
             "Version: $($identity.ProductVersion)"
             "Stage: $($identity.ReleaseStage)"
             "Lane: $($packageDefinition.LaneId)"
             "Target framework: $($packageDefinition.TargetFramework)"
             "Runtime claim: $($packageDefinition.RuntimeClaim)"
+            "Payload profile: $($payload.id)"
         ) -join "`n"
         $expectedBuildText += "`n"
         if ($actualBuildText -cne $expectedBuildText) {

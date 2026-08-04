@@ -30,10 +30,18 @@ migrate catalogues, or own C3 settings.
 
 ## Payload contract
 
-Portable staging is the single payload authority. A setup binding references the
-same files and hashes produced by C3 packaging. Setup may add its own bootstrap
-and transaction metadata, but installed C3 binaries must be byte-identical to the
-corresponding verified portable payload.
+Portable staging is the single payload authority. The machine-owned file list is
+`release/profiles/portable-payload.v1.json`; a setup binding references the exact
+rooted tree produced at `artifacts/staging/<lane>/C3-v<release-label>-<lane>-portable/`
+and its hashes. Setup may add its own bootstrap and transaction metadata, but
+installed C3 binaries must be byte-identical to the corresponding verified
+portable payload.
+
+Universal Setup must call or consume this staging contract. It must not parse a
+ZIP as an indirect source of product facts, rebuild C3, or introduce a binding
+with a second payload enumeration. No `bindings/universal-setup/` directory is
+created until Universal Setup publishes a stable versioned schema that C3 can
+validate mechanically.
 
 If Universal Setup cannot consume that contract, portable distribution remains
 the complete supported release. Setup availability is not allowed to delay a

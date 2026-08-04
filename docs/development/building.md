@@ -25,6 +25,9 @@ Run from Windows PowerShell at the repository root:
 # Create verified deterministic portable candidates after a successful build.
 .\build\package.ps1 -SkipBuild
 
+# Materialize the one canonical rooted payload per lane without archiving it.
+.\build\stage-portable-payload.ps1 -Configuration Release
+
 # Prove release reproducibility with two clean, path-distinct build/package passes.
 .\build\verify-reproducible-packages.ps1
 ```

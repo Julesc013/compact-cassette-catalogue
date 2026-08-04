@@ -8,7 +8,6 @@ $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $artifactsRoot = Join-Path $repositoryRoot 'artifacts'
-$stagingRoot = Join-Path $artifactsRoot 'staging'
 $packagesRoot = Join-Path $artifactsRoot 'packages'
 
 function Assert-UnderArtifacts {
@@ -56,13 +55,11 @@ $versionLabel = $identity.ReleaseLabel
 
 $packageDefinitions = @(& (Join-Path $PSScriptRoot 'get-release-packages.ps1') -Identity $identity)
 
-foreach ($path in @($stagingRoot, $packagesRoot)) {
-    Assert-UnderArtifacts $path
-    if (Test-Path -LiteralPath $path) {
-        Remove-Item -LiteralPath $path -Recurse -Force
-    }
-    New-Item -ItemType Directory -Path $path -Force | Out-Null
+Assert-UnderArtifacts $packagesRoot
+if (Test-Path -LiteralPath $packagesRoot) {
+    Remove-Item -LiteralPath $packagesRoot -Recurse -Force
 }
+New-Item -ItemType Directory -Path $packagesRoot -Force | Out-Null
 
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -75,52 +72,30 @@ $fixedTimestamp = New-Object DateTimeOffset(
     0,
     [TimeSpan]::Zero)
 $packagePaths = New-Object Collections.Generic.List[String]
+$stagedPayloads = @(& (Join-Path $PSScriptRoot 'stage-portable-payload.ps1') -Configuration Release)
 
 foreach ($packageDefinition in $packageDefinitions) {
     $laneId = $packageDefinition.LaneId
-    $outputDirectory = Join-Path $repositoryRoot $packageDefinition.OutputDirectory
-    $stageDirectory = Join-Path $stagingRoot $laneId
-    Assert-UnderArtifacts $stageDirectory
-    New-Item -ItemType Directory -Path $stageDirectory -Force | Out-Null
-
-    $payload = @(
-        @{ Source = Join-Path $outputDirectory 'Compact Cassette Catalogue.exe'; Name = 'Compact Cassette Catalogue.exe' },
-        @{ Source = Join-Path $outputDirectory 'Compact Cassette Catalogue.exe.config'; Name = 'Compact Cassette Catalogue.exe.config' },
-        @{ Source = Join-Path $outputDirectory 'C3.Catalogue.dll'; Name = 'C3.Catalogue.dll' },
-        @{ Source = Join-Path $outputDirectory 'C3.Domain.dll'; Name = 'C3.Domain.dll' },
-        @{ Source = Join-Path $outputDirectory 'C3.Infrastructure.dll'; Name = 'C3.Infrastructure.dll' },
-        @{ Source = Join-Path $repositoryRoot 'artifacts\bin\cli\Release\c3.exe'; Name = 'c3.exe' },
-        @{ Source = Join-Path $repositoryRoot 'README.md'; Name = 'README.md' },
-        @{ Source = Join-Path $repositoryRoot 'RELEASE_NOTES.md'; Name = 'RELEASE_NOTES.md' }
-    )
-
-    foreach ($item in $payload) {
-        if (-not (Test-Path -LiteralPath $item.Source -PathType Leaf)) {
-            throw "Missing package input for ${laneId}: $($item.Source)"
-        }
-        Copy-Item -LiteralPath $item.Source -Destination (Join-Path $stageDirectory $item.Name)
+    $staged = @($stagedPayloads | Where-Object { $_.LaneId -ceq $laneId })
+    if ($staged.Count -ne 1) {
+        throw "Expected one staged payload for lane '$laneId'."
     }
-
-    $buildText = @(
-        'Product: Compact Cassette Catalogue (C3)'
-        "Version: $productVersion"
-        "Stage: $releaseStage"
-        "Lane: $laneId"
-        "Target framework: $($packageDefinition.TargetFramework)"
-        "Runtime claim: $($packageDefinition.RuntimeClaim)"
-    ) -join [Environment]::NewLine
-    [IO.File]::WriteAllText(
-        (Join-Path $stageDirectory 'BUILD.txt'),
-        $buildText + [Environment]::NewLine,
-        (New-Object Text.UTF8Encoding($false)))
+    $stageDirectory = $staged[0].LaneStageRoot
 
     $packageName = $packageDefinition.FileName
     $packagePath = Join-Path $packagesRoot $packageName
     $stream = [IO.File]::Open($packagePath, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
     $archive = New-Object IO.Compression.ZipArchive($stream, [IO.Compression.ZipArchiveMode]::Create, $false)
     try {
-        foreach ($file in Get-ChildItem -LiteralPath $stageDirectory -File | Sort-Object Name) {
-            $entry = $archive.CreateEntry($file.Name, [IO.Compression.CompressionLevel]::Optimal)
+        $files = @(Get-ChildItem -LiteralPath $stageDirectory -File -Recurse | ForEach-Object {
+                [PSCustomObject]@{
+                    File = $_
+                    EntryName = $_.FullName.Substring($stageDirectory.Length + 1).Replace('\', '/')
+                }
+            } | Sort-Object EntryName)
+        foreach ($item in $files) {
+            $file = $item.File
+            $entry = $archive.CreateEntry($item.EntryName, [IO.Compression.CompressionLevel]::Optimal)
             $entry.LastWriteTime = $fixedTimestamp
             $entryStream = $entry.Open()
             $sourceStream = [IO.File]::OpenRead($file.FullName)

@@ -8,10 +8,21 @@ verified build outputs and packaging script:
 ```
 
 The command rebuilds both active lanes, verifies assembly/file/product identity
-for every shipped binary, stages each payload under
-`artifacts/staging`, writes a lane-specific `BUILD.txt`, creates ZIP files under
+for every shipped binary, resolves the profiles under `release/profiles`, stages
+each canonical rooted payload under `artifacts/staging`, creates ZIP files under
 `artifacts/packages`, writes `SHA256SUMS.txt`, and reopens every ZIP to verify its
 hash and exact entry set.
+
+Staging is independently callable:
+
+```powershell
+.\build\stage-portable-payload.ps1 -Configuration Release
+```
+
+`release/profiles/portable-payload.v1.json` is the only file list. Neither ZIP
+packaging nor a future Universal Setup binding may copy that list into another
+script or manifest. Lane profiles bind the shared list to `win-x86-net40` and
+`win-x64-net48` without restating its entries.
 
 For a checkpoint candidate, prove that a rebuild does not change those bytes:
 
@@ -33,7 +44,14 @@ bytes. ZIP entry timestamps come from the release date, which must remain in the
 ZIP format's 1980–2107 range. Package cleanup refuses reparse-point targets, and
 verification rejects extra files as well as missing or changed files.
 
-Each package contains only:
+Each ZIP contains one versioned root directory so extraction does not scatter
+files into the user's current directory:
+
+```text
+C3-v<release-label>-<lane>-portable/
+```
+
+That root contains only:
 
 - `Compact Cassette Catalogue.exe`
 - `Compact Cassette Catalogue.exe.config`
