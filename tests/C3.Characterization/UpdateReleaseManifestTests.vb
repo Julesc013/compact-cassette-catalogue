@@ -374,8 +374,9 @@ Friend NotInheritable Class UpdateReleaseManifestTests
     End Sub
 
     Public Shared Sub AcceptsCurrentGeneratedManifestContract()
+        Dim repositoryRoot As String = FindRepositoryRoot()
         Dim manifestPath As String = Path.Combine(
-            FindRepositoryRoot(),
+            repositoryRoot,
             "release\feeds\alpha\release.json")
         Dim readResult As UpdateManifestReadResult =
             New UpdateReleaseManifestReader().Read(
@@ -388,19 +389,79 @@ Friend NotInheritable Class UpdateReleaseManifestTests
         End If
         Dim manifest As UpdateReleaseManifest = readResult.Manifest
 
+        Dim versionDocument As New Xml.XmlDocument()
+        versionDocument.Load(Path.Combine(repositoryRoot, "build\Version.props"))
+        Dim namespaces As New Xml.XmlNamespaceManager(versionDocument.NameTable)
+        namespaces.AddNamespace("msb", "http://schemas.microsoft.com/developer/msbuild/2003")
+        Dim productVersion As String = VersionProperty(
+            versionDocument,
+            namespaces,
+            "C3ProductVersion")
+        Dim releaseStage As String = VersionProperty(
+            versionDocument,
+            namespaces,
+            "C3ReleaseStage")
+        Dim releaseDate As DateTime = DateTime.ParseExact(
+            VersionProperty(versionDocument, namespaces, "C3ReleaseDate"),
+            "yyyy-MM-dd",
+            Globalization.CultureInfo.InvariantCulture,
+            Globalization.DateTimeStyles.AssumeUniversal Or
+                Globalization.DateTimeStyles.AdjustToUniversal)
+
         AssertEqual("alpha", manifest.Channel, "manifest channel")
-        AssertEqual("2.0.0", manifest.ProductVersion, "manifest product version")
-        AssertEqual("Alpha 1", manifest.Stage, "manifest stage")
-        AssertEqual("2.0.0-alpha.1", manifest.InformationalVersion, "manifest identity")
+        AssertEqual(productVersion, manifest.ProductVersion, "manifest product version")
+        AssertEqual(releaseStage, manifest.Stage, "manifest stage")
+        AssertEqual(
+            ExpectedReleaseLabel(productVersion, releaseStage),
+            manifest.InformationalVersion,
+            "manifest identity")
         AssertEqual(False, manifest.Published, "manifest publication state")
         AssertEqual(Nothing, manifest.ReleaseUrl, "unpublished release URL")
         AssertEqual(Nothing, manifest.ChecksumManifest, "unpublished checksum manifest")
         AssertEqual(0, manifest.Packages.Count, "unpublished package count")
         AssertEqual(
-            New DateTime(2026, 8, 4, 0, 0, 0, DateTimeKind.Utc),
+            releaseDate,
             manifest.ReleaseDate,
             "manifest release date")
     End Sub
+
+    Private Shared Function VersionProperty(
+            document As Xml.XmlDocument,
+            namespaces As Xml.XmlNamespaceManager,
+            propertyName As String) As String
+
+        Dim node As Xml.XmlNode = document.SelectSingleNode(
+            "//msb:" & propertyName,
+            namespaces)
+        If node Is Nothing OrElse String.IsNullOrWhiteSpace(node.InnerText) Then
+            Throw New InvalidOperationException(
+                "Version.props is missing " & propertyName & ".")
+        End If
+        Return node.InnerText
+    End Function
+
+    Private Shared Function ExpectedReleaseLabel(
+            productVersion As String,
+            releaseStage As String) As String
+
+        If releaseStage.StartsWith("Alpha ", StringComparison.Ordinal) Then
+            Return productVersion & "-alpha." & releaseStage.Substring(6)
+        End If
+        If releaseStage.StartsWith("Beta ", StringComparison.Ordinal) Then
+            Return productVersion & "-beta." & releaseStage.Substring(5)
+        End If
+        If releaseStage.StartsWith(
+                "Release Candidate ",
+                StringComparison.Ordinal) Then
+            Return productVersion & "-rc." & releaseStage.Substring(18)
+        End If
+        If String.Equals(releaseStage, "Release", StringComparison.Ordinal) Then
+            Return productVersion
+        End If
+        Throw New InvalidOperationException(
+            "Version.props contains unsupported release stage '" &
+            releaseStage & "'.")
+    End Function
 
     Public Shared Sub PublishedManifestRequiresExactReleaseAssets()
         Const releaseLabel As String = "2.0.0-beta.1"
