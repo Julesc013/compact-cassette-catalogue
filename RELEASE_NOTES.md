@@ -1,60 +1,76 @@
-# Compact Cassette Catalogue 1.2.0
+# Compact Cassette Catalogue 1.3.0 Alpha 1
 
-C3 1.2.0 is a compatibility and repair release focused on a stable portable distribution path for Windows XP-era systems and newer Windows versions.
+C3 1.3.0 Alpha 1 is an intentionally unpublished source checkpoint. It freezes
+the recovered maintenance foundation for the final original C3 release line.
+It is not a user release and does not yet contain the planned data-safety and
+integrity repairs.
 
-## Highlights
+## What Alpha 1 establishes
 
-- Retargeted the main application to .NET Framework 4.0.
-- Added explicit x86 and x64 release build configurations.
-- Kept x86 as the Windows XP SP3 compatibility build.
-- Made the app offline-first by default.
-- Disabled automatic update checking by default.
-- Fixed update-check settings and weekly/monthly scheduling behavior.
-- Improved update-check failure handling so startup network/TLS failures do not block app use.
-- Hardened catalogue file-version detection when opening XML catalogues.
-- Updated documentation and release metadata for 1.2.0.
+- Direct ancestry from the manually qualified `v1.2.0b1` program.
+- Archival preservation of the superseded 1.2.1/refactor attempt.
+- A hard compatibility constitution for the original VB.NET WinForms app,
+  DataSet catalogue, settings, UI resources, and XML format 1.1.0.
+- A complete severity-classified ledger of legacy repair candidates.
+- Separate Alpha 1, Beta 1, and stable gates.
+- Historical catalogue and settings fixtures with strict provenance validation.
+- A mechanical baseline-genome manifest and reviewed exception mechanism.
+- Standalone XML characterization tests.
+- Four source-identical build lanes using the one original project:
+  x86/net40, x64/net40, x64/net48, and x64/net481.
+- Binary verification for CPU, target framework, settings parity, and the
+  absence of new runtime DLLs.
+- Exact download/hash verification for the official 1.2.0 Beta 1 executables.
 
-## Download
+## Validation status
 
-Use the x86 portable build for maximum compatibility.
+Alpha 1 requires the complete automated maintenance-foundation suite to pass.
+On the current preparation host:
 
-Recommended assets:
+- the baseline genome passes with zero approved differences;
+- the compatibility corpus validates ten releases and five supported producers;
+- all eight XML characterization tests pass;
+- all four lanes compile and pass PE/framework/settings/payload checks; and
+- both official baseline executables match their recorded sizes and SHA-256.
 
-- `C3-v1.2.0-win-x86.exe`
-- `C3-v1.2.0-win-x86-portable.zip`
-- `C3-v1.2.0-win-x64.exe`
-- `C3-v1.2.0-win-x64-portable.zip`
-- `SHA256SUMS.txt`
+VS2017/MSBuild 15 is available for diagnostic net40 builds on this host. The
+required historical VS2015/MSBuild 14.0.25420.1 reconstruction remains a Beta 1
+entry gate and is not represented as passed.
 
-## Requirements
+## Not included
 
-- Windows XP SP3 or newer for the x86 compatibility build.
-- 64-bit Windows for the x64 build.
-- .NET Framework 4.0.
-- 32 MB RAM minimum.
-- 2 MB disk space minimum.
+- No runtime lifecycle, persistence, tape, counter, referential, settings, or
+  diagnostic repair.
+- No 1.3 portable package.
+- No public GitHub prerelease.
+- No update-feed promotion.
+- No `legacy/1.x` promotion.
+- No new Windows support claim.
 
-## Notes For Windows XP Users
+Known baseline data-safety defects remain open and block Beta 1 until addressed
+through the documented one-defect/one-regression commit sequence.
 
-C3 stores catalogues locally as XML files and does not require network access to run.
+## Update feed and downloads
 
-Online update checking may fail on some old Windows installations because GitHub HTTPS connections may require newer TLS support than the operating system provides. If that happens, open the releases page manually in a browser.
+The repository-root three-line `VERSION` file intentionally remains:
 
-Windows XP x64 support is unverified unless tested separately. Use the x86 build for the Windows XP SP3 compatibility path.
+```text
+1.2.0
+Release
+14/05/2026
+```
 
-## Installer Status
+Existing clients therefore continue to see the available 1.2.0 release. Alpha
+1 is identified only by annotated source tag `v1.3.0a1`; no binaries are attached.
 
-The portable x86 build is the official 1.2.0 Windows XP compatibility distribution path. The older network installer is not the recommended XP installation path unless separately repaired and tested.
+## Next milestones
 
-## Verification Status
+Beta 1 (`v1.3.0b1`) completes the baseline reconstruction gate, every approved
+runtime repair, settings continuity, authoritative builds, deterministic
+packages, and the full compatibility/manual matrix. Stable (`v1.3.0`) is then a
+metadata-only transition from accepted Beta source followed by a complete new
+build, qualification, publication, download verification, and final feed
+promotion.
 
-- VS2015/MSBuild 14 Release x86 build: passed.
-- VS2015/MSBuild 14 Release x64 build: passed.
-- PE architecture verification: passed.
-  - x86: PE32, I386, 32-bit required.
-  - x64: PE32+, AMD64, 32-bit not required.
-- Limited launch smoke: passed for x86 and x64 on modern Windows.
-- Release assets and SHA256 sums: generated locally under `Releases\1.2.0`.
-- Full interactive workflow test: passed by manual regression test.
-- Manual update-check failure path: passed by manual regression test.
-- Windows XP SP3 runtime test: not run.
+See `docs/planning/1.3.0-beta.1.md`, `docs/planning/1.3.0-stable.md`, and
+`TODO.md` for the complete work breakdown.

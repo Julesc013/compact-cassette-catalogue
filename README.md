@@ -2,7 +2,12 @@
 
 **Cataloguing application for home recorded compact cassette tapes.**
 
-See [changes](CHANGELOG.md "C3 Changelog"), [planned features](TODO.md "C3 To-Do List"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
+See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](TODO.md "C3 1.3 Workboard"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
+
+> **Repository status:** the available user release remains C3 1.2.0 Beta 1.
+> `dev/1.x` contains the intentionally unpublished C3 1.3.0 Alpha 1 maintenance
+> foundation. Alpha 1 has no binary release and does not yet contain the planned
+> runtime repairs. See the [legacy maintenance documentation](docs/README.md).
 
 ![Screenshot of C3 in use.](https://github.com/Julesc013/compact-cassette-catalogue/blob/master/Resources/demonstration-screenshot.png)
 
@@ -63,6 +68,23 @@ Head over to the [releases page](https://github.com/Julesc013/compact-cassette-c
 *Note: C3 is offline-first. Catalogues are local XML files, update checking is optional, and automatic update checking is disabled by default.*
 
 *Note: Online update checking may fail on some old Windows versions because GitHub HTTPS connections can require newer TLS support than the operating system provides. If that happens, open the releases page in a browser and download updates manually. See [this site](https://mohalogiciels.runasp.net/Tutorials/NetFrameworkTls.xht) for a potential quick fix.*
+
+## Legacy maintenance status
+
+C3 1.3.0 is the final planned release of the original VB.NET/WinForms program.
+It is being repaired directly from `v1.2.0b1`; the later project-splitting
+refactor is not its production ancestry.
+
+- Alpha 1 freezes the recovery doctrine, compatibility evidence, genome gate,
+  and four-lane build scaffolding. It is source-only and unpublished.
+- Beta 1 will contain the complete bounded runtime repair set and qualification
+  evidence.
+- Stable will publish only already-qualified portable packages and will update
+  the legacy feed after downloaded assets pass verification.
+
+The existing DataSet catalogue format remains 1.1.0. No 1.3 milestone introduces
+a new runtime dependency, production assembly, C# source, project split, or UI
+redesign.
 
 The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
 this will help you get started and explains every function of the software.
