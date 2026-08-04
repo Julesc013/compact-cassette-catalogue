@@ -28,6 +28,13 @@ else {
     [IO.Path]::GetFullPath($SchemaOverridePath)
 }
 $validationRoot = [IO.Path]::GetFullPath((Join-Path $repositoryRoot 'release\validation'))
+$branchContract = & (Join-Path $PSScriptRoot 'get-branch-contract.ps1') `
+    -RepositoryRoot $repositoryRoot
+$qualifiedBranch = [string]$branchContract.CurrentQualified
+$integrationBranch = [string]$branchContract.CurrentIntegration
+$qualifiedLocalReference = "refs/heads/$qualifiedBranch"
+$qualifiedRemoteReference = "refs/remotes/origin/$qualifiedBranch"
+$integrationRemoteReference = "refs/remotes/origin/$integrationBranch"
 $identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
 $packageDefinitions = @(& (Join-Path $PSScriptRoot 'get-release-packages.ps1') -Identity $identity)
 $failures = New-Object Collections.Generic.List[String]
@@ -177,7 +184,7 @@ function Compare-ReleaseOrder {
 }
 
 function Get-MasterReference {
-    foreach ($candidate in @('refs/remotes/origin/master', 'refs/heads/master')) {
+    foreach ($candidate in @($qualifiedRemoteReference, $qualifiedLocalReference)) {
         & git -C $repositoryRoot show-ref --verify --quiet $candidate
         if ($LASTEXITCODE -eq 0) {
             return $candidate
@@ -215,15 +222,15 @@ function Update-RemoteReleaseReferences {
             --no-recurse-submodules `
             --prune `
             origin `
-            '+refs/heads/master:refs/remotes/origin/master' `
-            '+refs/heads/dev:refs/remotes/origin/dev' 1>$null 2>$null
+            "+refs/heads/${qualifiedBranch}:refs/remotes/origin/${qualifiedBranch}" `
+            "+refs/heads/${integrationBranch}:refs/remotes/origin/${integrationBranch}" 1>$null 2>$null
         $branchFetchExitCode = $LASTEXITCODE
     }
     finally {
         $ErrorActionPreference = $savedErrorActionPreference
     }
     if ($branchFetchExitCode -ne 0) {
-        Add-Failure 'could not refresh origin/master and origin/dev before release transaction validation.'
+        Add-Failure "could not refresh origin/$qualifiedBranch and origin/$integrationBranch before release transaction validation."
         return $false
     }
 
@@ -858,7 +865,7 @@ function Test-PostPromotionCommit {
     Test-EvidenceAttestation $Milestone $tagCommit "tag '$recordedTag'"
 
     if ($RequireRemoteAtTag) {
-        foreach ($remoteBranch in @('master', 'dev')) {
+        foreach ($remoteBranch in @($qualifiedBranch, $integrationBranch)) {
             $remoteReference = "refs/remotes/origin/$remoteBranch"
             & git -C $repositoryRoot show-ref --verify --quiet $remoteReference
             if ($LASTEXITCODE -ne 0) {
@@ -1115,8 +1122,8 @@ foreach ($milestone in $milestones) {
     else {
         $tags[$tag] = $milestone
     }
-    if ([string]$milestone.promotion.targetBranch -cne 'master') {
-        Add-Failure "$context promotion target must be master."
+    if ([string]$milestone.promotion.targetBranch -cne $qualifiedBranch) {
+        Add-Failure "$context promotion target must be $qualifiedBranch."
     }
     $tagObject = $milestone.promotion.tagObject
     if ($promotionState -ceq 'unpromoted' -and $null -ne $tagObject) {
@@ -1571,15 +1578,15 @@ if ($Mode -ceq 'Candidate') {
         }
         Test-EvidenceAttestation $current $headCommit 'candidate attestation'
 
-        & git -C $repositoryRoot show-ref --verify --quiet 'refs/remotes/origin/dev'
+        & git -C $repositoryRoot show-ref --verify --quiet $integrationRemoteReference
         if ($LASTEXITCODE -ne 0) {
-            Add-Failure 'candidate validation requires fetched origin/dev.'
+            Add-Failure "candidate validation requires fetched origin/$integrationBranch."
         }
         else {
-            $remoteDevCommit = ([string](& git -C $repositoryRoot rev-parse 'refs/remotes/origin/dev')).Trim()
+            $remoteDevCommit = ([string](& git -C $repositoryRoot rev-parse $integrationRemoteReference)).Trim()
             $sourceCommit = [string]$current.qualification.sourceCommit
             if ($remoteDevCommit -cne $sourceCommit) {
-                Add-Failure "origin/dev must remain at frozen source C $sourceCommit while candidate E $headCommit is qualified."
+                Add-Failure "origin/$integrationBranch must remain at frozen source C $sourceCommit while candidate E $headCommit is qualified."
             }
         }
 
@@ -1703,14 +1710,14 @@ if ($Mode -ceq 'Master') {
                 Add-Failure "master-ledger validation requires HEAD at $masterReference commit $masterCommit."
             }
         }
-        & git -C $repositoryRoot show-ref --verify --quiet 'refs/remotes/origin/dev'
+        & git -C $repositoryRoot show-ref --verify --quiet $integrationRemoteReference
         if ($LASTEXITCODE -ne 0) {
-            Add-Failure 'master-ledger validation requires fetched origin/dev.'
+            Add-Failure "qualified-ledger validation requires fetched origin/$integrationBranch."
         }
         else {
-            $remoteDevCommit = ([string](& git -C $repositoryRoot rev-parse 'refs/remotes/origin/dev')).Trim()
+            $remoteDevCommit = ([string](& git -C $repositoryRoot rev-parse $integrationRemoteReference)).Trim()
             if ($headCommit -cne $remoteDevCommit) {
-                Add-Failure "master-ledger validation requires HEAD at origin/dev commit $remoteDevCommit."
+                Add-Failure "qualified-ledger validation requires HEAD at origin/$integrationBranch commit $remoteDevCommit."
             }
         }
 

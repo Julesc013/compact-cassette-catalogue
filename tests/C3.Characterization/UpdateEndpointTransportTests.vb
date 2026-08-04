@@ -5,7 +5,7 @@ Friend NotInheritable Class UpdateEndpointTransportTests
 
     Public Shared Sub AcceptsOnlyExactChannelEndpoints()
         AssertAccepted(
-            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "alpha",
             "alpha endpoint")
         AssertAccepted(
@@ -23,31 +23,31 @@ Friend NotInheritable Class UpdateEndpointTransportTests
             "alpha",
             "relative URI")
         AssertRejected(
-            "http://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "http://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "alpha",
             "HTTP")
         AssertRejected(
-            "https://github.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "https://github.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "alpha",
             "wrong host")
         AssertRejected(
-            "https://raw.githubusercontent.com:444/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "https://raw.githubusercontent.com:444/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "alpha",
             "alternate port")
         AssertRejected(
-            "https://raw.githubusercontent.com:443/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "https://raw.githubusercontent.com:443/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "alpha",
             "explicit default port")
         AssertRejected(
-            "https://user@raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "https://user@raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "alpha",
             "credentials")
         AssertRejected(
-            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json?raw=1",
+            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json?raw=1",
             "alpha",
             "query")
         AssertRejected(
-            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json#manifest",
+            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json#manifest",
             "alpha",
             "fragment")
         AssertRejected(
@@ -55,7 +55,7 @@ Friend NotInheritable Class UpdateEndpointTransportTests
             "alpha",
             "alpha wrong branch")
         AssertRejected(
-            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/beta/release.json",
+            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/beta/release.json",
             "beta",
             "beta wrong branch")
         AssertRejected(
@@ -63,15 +63,15 @@ Friend NotInheritable Class UpdateEndpointTransportTests
             "stable",
             "wrong channel path")
         AssertRejected(
-            "https://raw.githubusercontent.com/julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "https://raw.githubusercontent.com/julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "alpha",
             "path casing drift")
         AssertRejected(
-            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/%72elease.json",
+            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/%72elease.json",
             "alpha",
             "encoded path drift")
         AssertRejected(
-            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/release/feeds/alpha/release.json",
+            "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/dev/2.x/release/feeds/alpha/release.json",
             "preview",
             "unsupported channel")
     End Sub

@@ -13,9 +13,7 @@ concurrency:
 jobs:
   development:
     name: Development compatibility
-    runs-on:
-      group: c3-private-release
-      labels: [self-hosted, Windows, X64, c3-legacy-msbuild]
+    runs-on: [self-hosted, Windows, X64, c3-legacy-msbuild]
     environment: c3-development-compatibility
     timeout-minutes: 60
 
@@ -30,8 +28,10 @@ jobs:
       - name: Require the permanent development branch
         shell: powershell
         run: |
-          if ($env:GITHUB_REF -cne 'refs/heads/dev') {
-            throw 'Development compatibility must be dispatched only from refs/heads/dev.'
+          $branches = Get-Content ./build/branches.json -Raw | ConvertFrom-Json
+          $expectedRef = 'refs/heads/' + $branches.currentGeneration.integration
+          if ($env:GITHUB_REF -cne $expectedRef) {
+            throw "Development compatibility must be dispatched only from $expectedRef."
           }
 
       - name: Verify repository release contract

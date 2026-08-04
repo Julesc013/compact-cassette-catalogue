@@ -49,8 +49,8 @@ plus the matching `release/feeds/beta/release.json` or
 
 ## Authoritative compatibility gates
 
-Four narrowly scoped workflows use a self-hosted runner in the
-`c3-private-release` runner group with these capability labels:
+Four narrowly scoped workflows use a trusted Windows runner selected by these
+capability labels:
 
 ```text
 self-hosted
@@ -67,10 +67,19 @@ machine currently resolves Visual Studio 2017 Enterprise 15.9. It must have:
 - the .NET Framework 4.8 targeting pack; and
 - Windows PowerShell 5.1 or later.
 
+An isolated organization-owned runner group is preferred. The accepted fallback
+is a repository-scoped, one-use or ephemeral self-hosted runner carrying the
+same exact labels. The fallback is enabled only for a trusted manual dispatch,
+uses read-only repository permission and checkout with
+`persist-credentials: false`, executes no untrusted pull-request code, and is
+removed or taken offline when the gate ends. Environment/reviewer controls are
+used where the hosting plan supports them. Workflow YAML deliberately selects
+capabilities rather than hardcoding one provider-specific runner-group name.
+
 | Workflow | Trigger and authority |
 | --- | --- |
-| `full-compatibility.yml` | Manually exercises the moving `dev` branch as development evidence only. |
-| `candidate-qualification.yml` | Dispatched from trusted `master`; independently guards and qualifies full `E` from exact `attest/v*-candidate-<E>` while `origin/dev` remains at `C`. |
+| `full-compatibility.yml` | Manually exercises the moving `dev/2.x` branch as development evidence only. |
+| `candidate-qualification.yml` | Dispatched from trusted `master`; independently guards and qualifies full `E` from exact `attest/v*-candidate-<E>` while `origin/dev/2.x` remains at `C`. |
 | `tagged-checkpoint-verification.yml` | Automatically re-verifies each pushed `v2.*` annotated tag at exact `E`. |
 | `post-promotion-attestation.yml` | Dispatched from trusted `master`; independently guards and qualifies full `P` from exact `attest/v*-post-<P>` while both ledger refs still identify `E`. |
 
@@ -93,7 +102,7 @@ as commit-status contexts attached to the checked-out SHA.
 The candidate-qualification run is mandatory before `E` is promoted or tagged.
 Alpha 1 is the bootstrap exception in transport, not rigor: GitHub only
 allows `workflow_dispatch` for a workflow definition present on the default
-branch, while this new definition initially exists only on `dev`. Run the same
+branch, while this new definition initially exists only on `dev/2.x`. Run the same
 candidate commands directly on the maintained machine against exact Alpha 1 `E`
 and record that evidence. The Alpha 1 tag push then places the workflow on
 `master` and triggers its independent tag check. Later checkpoints use the
@@ -105,16 +114,25 @@ and are not uploaded by CI. Candidate, tag, and post-operation workflows may
 retain public-stage packages for 14 days solely as inputs to the controlled
 publication and verification procedure.
 
+Qualification authority is stage-specific. An unpublished alpha may qualify
+from the complete maintained-machine gate plus reproducible-package evidence
+when repository-hosted self-hosted infrastructure is unavailable, provided the
+evidence origin and deferred minimum-OS checks are explicit and no public support
+claim is created. Public Beta, RC, and stable promotion require trusted CI plus
+the applicable owner/manual, minimum-OS, security, accessibility, performance,
+and publication evidence. A missing runner object never waives a failing data,
+migration, security, package, or compatibility invariant.
+
 ## Branch protection
 
 Make the hosted contract job required for pull requests. Protect `master` and
 `legacy/1.x` from direct feature commits, force-push, and deletion; protect
-`maintenance/1.x` from force-push/deletion and 2.x identity changes; and prevent
+`dev/1.x` from force-push/deletion and 2.x identity changes; and prevent
 replacement of qualified tags. `legacy/1.x` advances only by fast-forward from a
-qualified `maintenance/1.x` checkpoint. `master` advances only through the
+qualified `dev/1.x` checkpoint. `master` advances only through the
 documented exact-SHA transaction:
 
-1. expose `E` through create-only `attest/v*-candidate-<E>` while `dev` remains
+1. expose `E` through create-only `attest/v*-candidate-<E>` while `dev/2.x` remains
    at `C`, then use exact-old-object leases to atomically advance both permanent
    refs to verified `E`, create its absent annotated tag, and consume the ref;
 2. expose direct child `P` on create-only `attest/v*-post-<P>`, pass the exact-P
@@ -128,7 +146,7 @@ feeds; only a successful public `P` owns that change.
 
 The transaction deliberately has quiescent observation windows: wait for the
 `E` master/tag checks before constructing or exposing `P`, and wait for the `P`
-master check before committing the next identity on `dev`. Fresh-ref validation
+master check before committing the next identity on `dev/2.x`. Fresh-ref validation
 will reject an event whose permanent refs have already raced to the next state.
 
 Do not make the manually dispatched self-hosted job a routine pull-request
@@ -139,10 +157,10 @@ for every public release candidate.
 Create GitHub environments named `c3-release-qualification` and
 `c3-development-compatibility`. The release environment permits only `master`
 and protected `v2.*` tags and requires owner/designated-reviewer approval; the
-development environment permits only `dev` and carries no release authority.
-Bind jobs to the private `c3-private-release` runner group, restrict that group
-to this repository, and use an isolated/ephemeral compatibility worker with no
-unrelated credentials. A workflow ref check is a second line of defense, not a
+development environment permits only `dev/2.x` and carries no release authority.
+Restrict any organization runner group to this repository, or use the isolated
+ephemeral repository-scoped fallback described above, with no unrelated
+credentials. A workflow ref check is a second line of defense, not a
 replacement for environment, immutable-tag, and runner policy. Without those
 repository-side settings, the self-hosted gates are not authorized for release
 use. If the current hosting account/plan cannot provide an organization-scoped

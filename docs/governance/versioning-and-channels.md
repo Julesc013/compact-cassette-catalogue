@@ -45,24 +45,29 @@ stable reuses RC bytes or that a metadata-only rebuild is sufficient.
 
 ## Permanent branch contract
 
-`maintenance/1.x` owns active, unqualified work toward the next bounded supported
-1.x maintenance checkpoint. `legacy/1.x` is the append-only ledger of qualified
-1.x checkpoints. `master` is the append-only promotion ledger for every
-qualified 2.x alpha, beta, release candidate, and stable checkpoint. `dev` owns
-active, unqualified 2.x development toward exactly one next checkpoint.
+`build/branches.json` is the single machine-readable owner of permanent branch
+identities. The current contract is:
 
-Normal feature branches target `dev`. A 1.x correction targets
-`maintenance/1.x` first, is verified under the 1.x contract, and is then
-promoted to `legacy/1.x` through its 1.x qualification gate. Applicable fixes are
-then forward-merged or deliberately ported to `dev` with the same regression
-evidence. A 2.x-only change never flows backward into either 1.x line. Reserved,
+| Branch | Role |
+| --- | --- |
+| `master` | Qualified current-generation checkpoint ledger; C3 2.x for this programme. |
+| `dev/2.x` | Moving C3 2.x integration branch. |
+| `legacy/1.x` | Qualified C3 1.x checkpoint ledger and reconstruction authority. |
+| `dev/1.x` | Moving bounded C3 1.x maintenance branch. |
+
+Normal 2.x topic branches target `dev/2.x`. A 1.x correction targets `dev/1.x`
+first, is verified under the 1.x contract, and is then promoted to `legacy/1.x`
+through its qualification gate. Applicable fixes are reproduced and
+forward-implemented through the 2.x owner on `dev/2.x` with matching regression
+evidence; divergent 1.x implementation history is not merged wholesale. A
+2.x-only change never flows backward into either 1.x line. Reserved,
 SHA-bound `attest/v*-candidate-<E>` and `attest/v*-post-<P>` refs temporarily make
 exact 2.x attestation commits reachable to private gates while permanent refs
 remain at their expected old objects. They are create-only transport, not version
 lines, and are consumed by the leased atomic promotion transactions.
 
-No permanent branch is force-pushed. `legacy/1.x` advances only by fast-forward
-from a qualified `maintenance/1.x` checkpoint under the applicable 1.x release
+No permanent branch is force-pushed or deleted. `legacy/1.x` advances only by
+fast-forward from a qualified `dev/1.x` checkpoint under the applicable 1.x release
 contract. A 2.x checkpoint follows `C -> E(tag) -> P`:
 
 - `C` freezes every payload input;
@@ -73,7 +78,7 @@ contract. A 2.x checkpoint follows `C -> E(tag) -> P`:
   annotated tag-object identity, publication, feed, and post-verification facts.
 
 `master` advances only to the verified full `E` SHA and then the verified full
-`P` SHA, never to moving `dev`. `dev` begins the next identity only after `P` is
+`P` SHA, never to moving `dev/2.x`. `dev/2.x` begins the next identity only after `P` is
 also on `master`. Git branches and tags do not replace release channels: alpha
 checkpoints are visible but unpublished; beta/stable availability begins only
 after matching immutable assets and successful channel promotion.
@@ -90,7 +95,8 @@ Build synchronization must never overwrite the root legacy feed. Verification
 checks build identity and published-feed identity independently. C3 2.x uses
 channel `release.json` documents with explicit publication state and complete
 release identity. There are no 2.x `VERSION` files, and a moving three-line
-`/dev/` endpoint cannot satisfy the 2.x updater contract. Remediating current
+`/dev/2.x/` endpoint cannot satisfy the 2.x updater contract by branch identity
+alone. Remediating current
 Alpha 1 client behavior is a qualification gate, not a future aspiration.
 
 ## Release naming
@@ -117,9 +123,9 @@ feeds retain the three-line numeric format because old code parses
 4. Create direct, single-parent child `E` with the exact two-file evidence diff,
    naming full `C` and its artifact identities; record `pass / unpromoted`.
 5. Rebuild exact `E`, prove identical payload bytes, and validate its full SHA.
-6. Qualify exact `E` through its SHA-bound transport while `dev` remains at `C`,
+6. Qualify exact `E` through its SHA-bound transport while `dev/2.x` remains at `C`,
    then atomically and with exact-old-object leases fast-forward `master` and
-   `dev` to `E`, create the absent annotated tag, and consume the transport ref.
+   `dev/2.x` to `E`, create the absent annotated tag, and consume the transport ref.
 7. Create direct, single-parent child `P` after external operations:
    - Alpha changes exactly the two evidence files and records
      `tagged / unpublished / not-applicable / feed false`.
@@ -132,7 +138,7 @@ feeds retain the three-line numeric format because old code parses
      records `published / failed / feed false`, leaves the feed unchanged, and
      may be superseded by an immediate successor.
 8. Validate full `P` through its SHA-bound transport, then atomically and with
-   exact-old-object leases fast-forward `P` to both `master` and `dev`, consume
+   exact-old-object leases fast-forward `P` to both `master` and `dev/2.x`, consume
    the transport ref, and only then commit the next milestone identity.
 
 Historical tags, validation records, package names, hashes, failed publication

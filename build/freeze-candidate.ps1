@@ -9,13 +9,16 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
+$branchContract = & (Join-Path $PSScriptRoot 'get-branch-contract.ps1') `
+    -RepositoryRoot $repositoryRoot
+$integrationBranch = [string]$branchContract.CurrentIntegration
 if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot '.git'))) {
     throw 'Candidate freeze requires a full Git checkout.'
 }
 
 $branch = ([string](& git -C $repositoryRoot branch --show-current)).Trim()
-if ($LASTEXITCODE -ne 0 -or $branch -cne 'dev') {
-    throw "Candidate freeze requires branch 'dev'; found '$branch'."
+if ($LASTEXITCODE -ne 0 -or $branch -cne $integrationBranch) {
+    throw "Candidate freeze requires branch '$integrationBranch'; found '$branch'."
 }
 $worktree = @(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all)
 if ($LASTEXITCODE -ne 0 -or $worktree.Count -ne 0) {

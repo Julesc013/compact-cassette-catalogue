@@ -35,14 +35,18 @@ else {
 $buildInfoPath = Join-Path $repositoryRoot 'src\C3.WinForms\Generated\BuildInfo.g.vb'
 $versionAssemblyInfoPath = Join-Path $repositoryRoot (
     'src\Shared\Generated\VersionAssemblyInfo.g.vb')
+$updateBranchesPath = Join-Path $repositoryRoot (
+    'src\Shared\Generated\UpdateBranches.g.vb')
 $generatedProjectionPaths = @(
     $manifestPath,
     $buildInfoPath,
-    $versionAssemblyInfoPath)
+    $versionAssemblyInfoPath,
+    $updateBranchesPath)
 $generatedProjectionRelativePaths = @(
     $manifestPath.Substring($repositoryRoot.Length + 1).Replace('\', '/'),
     'src/C3.WinForms/Generated/BuildInfo.g.vb',
-    'src/Shared/Generated/VersionAssemblyInfo.g.vb')
+    'src/Shared/Generated/VersionAssemblyInfo.g.vb',
+    'src/Shared/Generated/UpdateBranches.g.vb')
 $passed = 0
 
 function Assert-Equal {

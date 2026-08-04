@@ -55,6 +55,9 @@
     <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.vb">
       <Link>Properties\VersionAssemblyInfo.g.vb</Link>
     </Compile>
+    <Compile Include="..\Shared\Generated\UpdateBranches.g.vb">
+      <Link>Properties\UpdateBranches.g.vb</Link>
+    </Compile>
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueFileResults.vb" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueMetadataWriter.vb" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyBrandRepository.vb" />

@@ -9,6 +9,9 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
+$branchContract = & (Join-Path $PSScriptRoot 'get-branch-contract.ps1') `
+    -RepositoryRoot $repositoryRoot
+$integrationBranch = [string]$branchContract.CurrentIntegration
 & (Join-Path $PSScriptRoot 'validate-release-train.ps1')
 $train = Get-Content -LiteralPath (
     Join-Path $repositoryRoot 'release\train\2.0.0.json') -Raw | ConvertFrom-Json
@@ -20,8 +23,8 @@ if ([string]$train.currentMilestone -cne 'beta.1' -or
 }
 
 $branch = ([string](& git -C $repositoryRoot branch --show-current)).Trim()
-if ($LASTEXITCODE -ne 0 -or $branch -cne 'dev') {
-    throw "Beta candidate preparation requires branch 'dev'; found '$branch'."
+if ($LASTEXITCODE -ne 0 -or $branch -cne $integrationBranch) {
+    throw "Beta candidate preparation requires branch '$integrationBranch'; found '$branch'."
 }
 $worktree = @(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all)
 if ($LASTEXITCODE -ne 0 -or $worktree.Count -ne 0) {
@@ -58,7 +61,7 @@ if ($Push -and $PSCmdlet.ShouldProcess('origin', "create $candidateBranch at $co
     }
 }
 
-Write-Host "Beta 1 candidate frozen: $commit on dev and $candidateBranch."
+Write-Host "Beta 1 candidate frozen: $commit on $integrationBranch and $candidateBranch."
 Write-Output ([PSCustomObject]@{
         ReleaseLabel = [string]$identity.ReleaseLabel
         CandidateCommit = $commit

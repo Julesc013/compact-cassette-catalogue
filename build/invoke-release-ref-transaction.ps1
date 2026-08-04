@@ -29,6 +29,12 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $RepositoryRoot = [IO.Path]::GetFullPath($RepositoryRoot)
+$branchContract = & (Join-Path $PSScriptRoot 'get-branch-contract.ps1') `
+    -RepositoryRoot $RepositoryRoot
+$qualifiedBranch = [string]$branchContract.CurrentQualified
+$integrationBranch = [string]$branchContract.CurrentIntegration
+$qualifiedReference = "refs/heads/$qualifiedBranch"
+$integrationReference = "refs/heads/$integrationBranch"
 $tagName = 'v' + $ReleaseLabel
 $phaseName = if ($Mode -like '*Candidate') { 'candidate' } else { 'post' }
 $attestationBranch = "attest/$tagName-$phaseName-$ExpectedCommit"
@@ -223,8 +229,8 @@ if ($parentFields.Count -ne 2) {
 }
 $parentCommit = $parentFields[1]
 
-Assert-RemoteReference 'refs/heads/master' $ExpectedMasterCommit
-Assert-RemoteReference 'refs/heads/dev' $ExpectedDevCommit
+Assert-RemoteReference $qualifiedReference $ExpectedMasterCommit
+Assert-RemoteReference $integrationReference $ExpectedDevCommit
 
 $remoteAttestation = Get-RemoteReferenceObject $attestationReference -AllowMissing
 $remoteTagObject = Get-RemoteReferenceObject $tagReference -AllowMissing
@@ -232,7 +238,7 @@ $transactionMilestone = Get-TransactionMilestone
 
 if ($Mode -like '*Candidate') {
     if ($parentCommit -cne $ExpectedDevCommit) {
-        throw "Candidate E must be the direct child of origin/dev C $ExpectedDevCommit."
+        throw "Candidate E must be the direct child of origin/$integrationBranch C $ExpectedDevCommit."
     }
     Assert-Ancestor $ExpectedMasterCommit $ExpectedCommit 'Candidate promotion'
     if ([string]$transactionMilestone.promotion.state -cne 'unpromoted' -or
@@ -242,7 +248,7 @@ if ($Mode -like '*Candidate') {
 }
 else {
     if ($ExpectedMasterCommit -cne $ExpectedDevCommit) {
-        throw 'Post-operation creation/promotion requires master and dev to identify the same E.'
+        throw "Post-operation creation/promotion requires $qualifiedBranch and $integrationBranch to identify the same E."
     }
     if ($parentCommit -cne $ExpectedMasterCommit) {
         throw "Post-operation P must be the direct child of E $ExpectedMasterCommit."
@@ -288,13 +294,13 @@ elseif ($Mode -ceq 'PromoteCandidate') {
 
     $arguments = @(
         'push', '--atomic',
-        "--force-with-lease=refs/heads/master:$ExpectedMasterCommit",
-        "--force-with-lease=refs/heads/dev:$ExpectedDevCommit",
+        "--force-with-lease=${qualifiedReference}:$ExpectedMasterCommit",
+        "--force-with-lease=${integrationReference}:$ExpectedDevCommit",
         "--force-with-lease=${attestationReference}:$ExpectedCommit",
         "--force-with-lease=${tagReference}:",
         $RemoteName,
-        "${ExpectedCommit}:refs/heads/master",
-        "${ExpectedCommit}:refs/heads/dev",
+        "${ExpectedCommit}:$qualifiedReference",
+        "${ExpectedCommit}:$integrationReference",
         "${tagReference}:${tagReference}",
         ":$attestationReference"
     )
@@ -342,12 +348,12 @@ else {
 
     $arguments = @(
         'push', '--atomic',
-        "--force-with-lease=refs/heads/master:$ExpectedMasterCommit",
-        "--force-with-lease=refs/heads/dev:$ExpectedDevCommit",
+        "--force-with-lease=${qualifiedReference}:$ExpectedMasterCommit",
+        "--force-with-lease=${integrationReference}:$ExpectedDevCommit",
         "--force-with-lease=${attestationReference}:$ExpectedCommit",
         $RemoteName,
-        "${ExpectedCommit}:refs/heads/master",
-        "${ExpectedCommit}:refs/heads/dev",
+        "${ExpectedCommit}:$qualifiedReference",
+        "${ExpectedCommit}:$integrationReference",
         ":$attestationReference"
     )
     if ($PSCmdlet.ShouldProcess(

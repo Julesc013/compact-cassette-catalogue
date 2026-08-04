@@ -89,9 +89,9 @@ Namespace Updates
         Private Shared Function BranchForChannel(channel As String) As String
             Select Case channel
                 Case AlphaChannel
-                    Return "dev"
+                    Return C3UpdateBranches.AlphaFeedBranch
                 Case BetaChannel, StableChannel
-                    Return "master"
+                    Return C3UpdateBranches.PublishedFeedBranch
                 Case Else
                     Throw New ArgumentException(
                         "The expected update channel is invalid.",

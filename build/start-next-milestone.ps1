@@ -10,6 +10,10 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
+$branchContract = & (Join-Path $PSScriptRoot 'get-branch-contract.ps1') `
+    -RepositoryRoot $repositoryRoot
+$qualifiedBranch = [string]$branchContract.CurrentQualified
+$integrationBranch = [string]$branchContract.CurrentIntegration
 $trainPath = Join-Path $repositoryRoot 'release\train\2.0.0.json'
 $catalogPath = Join-Path $repositoryRoot 'release\catalog.v1.json'
 $propsPath = Join-Path $PSScriptRoot 'Version.props'
@@ -29,18 +33,24 @@ catch {
 & (Join-Path $PSScriptRoot 'validate-release-contract.ps1') -Mode Master
 
 $branch = ([string](& git -C $repositoryRoot branch --show-current)).Trim()
-if ($LASTEXITCODE -ne 0 -or $branch -cne 'dev') {
-    throw "Milestone transition requires branch 'dev'; found '$branch'."
+if ($LASTEXITCODE -ne 0 -or $branch -cne $integrationBranch) {
+    throw "Milestone transition requires branch '$integrationBranch'; found '$branch'."
 }
 $worktree = @(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all)
 if ($LASTEXITCODE -ne 0 -or $worktree.Count -ne 0) {
     throw 'Milestone transition requires a clean worktree.'
 }
 $head = ([string](& git -C $repositoryRoot rev-parse HEAD)).Trim()
-$dev = ([string](& git -C $repositoryRoot rev-parse refs/heads/dev)).Trim()
-$master = ([string](& git -C $repositoryRoot rev-parse refs/heads/master)).Trim()
-if ($head -cne $dev -or $head -cne $master) {
-    throw 'Milestone transition requires local HEAD, dev, and master at the same verified P.'
+$integration = ([string](& git -C $repositoryRoot rev-parse (
+            "refs/heads/$integrationBranch"))).Trim()
+$qualified = ([string](& git -C $repositoryRoot rev-parse (
+            "refs/heads/$qualifiedBranch"))).Trim()
+if ($head -cne $integration) {
+    throw "Milestone transition requires HEAD at local $integrationBranch."
+}
+& git -C $repositoryRoot merge-base --is-ancestor $qualified $head
+if ($LASTEXITCODE -ne 0) {
+    throw "$integrationBranch must descend from qualified ledger $qualifiedBranch."
 }
 
 $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
@@ -89,7 +99,12 @@ $publicationPolicy = if ($channel -ceq 'beta') {
 else {
     'intentionally-unpublished'
 }
-$feedBranch = if ($channel -ceq 'alpha') { 'dev' } else { 'master' }
+$feedBranch = if ($channel -ceq 'alpha') {
+    $integrationBranch
+}
+else {
+    $qualifiedBranch
+}
 $feedUrl =
     'https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/' +
     "$feedBranch/release/feeds/$channel/release.json"
@@ -109,7 +124,7 @@ $nextCatalog = [PSCustomObject][ordered]@{
     supersededBy = $null
     promotion = [PSCustomObject][ordered]@{
         state = 'unpromoted'
-        targetBranch = 'master'
+        targetBranch = $qualifiedBranch
         tag = 'v' + $nextLabel
         tagObject = $null
     }

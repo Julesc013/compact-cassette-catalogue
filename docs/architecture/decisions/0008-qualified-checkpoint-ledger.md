@@ -7,7 +7,7 @@
 
 C3 2.0 is developed through six substantial alphas before owner-qualified public
 betas. Keeping `master` on 1.x until stable 2.0 would hide the sequence of proven
-engineering checkpoints, while treating every moving `dev` head as releasable
+engineering checkpoints, while treating every moving `dev/2.x` head as releasable
 would make tags and evidence meaningless. The public repository also means a
 pushed alpha branch or tag is visible even when no binary is published.
 
@@ -20,16 +20,16 @@ small explicit transaction rather than self-referential metadata.
 
 Use four permanent lines in two independently promoted trains:
 
-- `maintenance/1.x` owns active, unqualified bounded 1.x maintenance;
+- `dev/1.x` owns active, unqualified bounded 1.x maintenance;
 - `legacy/1.x` is the append-only ledger of qualified 1.x checkpoints;
 - `master` is the append-only ledger of verified 2.x product checkpoints; and
-- `dev` owns the next unqualified 2.x milestone.
+- `dev/2.x` owns the next unqualified 2.x milestone.
 
 Every 2.x alpha, beta, release-candidate, and stable tag is reachable from
 `master`; every newly qualified 1.x maintenance tag is reachable from
 `legacy/1.x`. No permanent branch or qualified tag is force-pushed or replaced.
-Qualified 1.x changes advance by fast-forward from `maintenance/1.x` to
-`legacy/1.x`, then applicable fixes flow forward to `dev`; 2.x-only changes never
+Qualified 1.x changes advance by fast-forward from `dev/1.x` to
+`legacy/1.x`, then applicable fixes are forward-implemented on `dev/2.x`; 2.x-only changes never
 flow backward.
 
 Each checkpoint is the linear transaction:
@@ -45,8 +45,8 @@ P  direct, single-parent child of tagged E; exact post-operation evidence diff
 
 The promotion validator rebuilds exact `E`, proves that it preserves the payload
 bytes qualified from `C`, and accepts only its full SHA through a create-only,
-SHA-bound candidate transport while `dev` remains at `C`. Exact-old-object leases
-then atomically fast-forward `master` and `dev` to `E`, create the absent
+SHA-bound candidate transport while `dev/2.x` remains at `C`. Exact-old-object leases
+then atomically fast-forward `master` and `dev/2.x` to `E`, create the absent
 annotated tag, and consume the transport. The tagged snapshot remains factually
 `unpromoted` because it cannot predict its own tag.
 
@@ -72,7 +72,7 @@ observed stage facts:
 Exact-old-object leases then atomically fast-forward both to `P` and consume the
 transport. It is not a fourth product line, and its moving name is never the
 promotion input.
-`dev` cannot begin the next identity until both permanent 2.x refs name verified
+`dev/2.x` cannot begin the next identity until both permanent 2.x refs name verified
 `P`.
 
 Qualification, promotion, publication policy/state, post-verification, and

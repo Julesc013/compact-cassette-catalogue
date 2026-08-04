@@ -33,6 +33,12 @@ jobs:
         shell: powershell
         run: ./build/test-json-validator.ps1
 
+      - name: Verify permanent branch contract
+        shell: powershell
+        run: |
+          ./build/validate-branch-contract.ps1
+          ./build/test-branch-contract.ps1
+
       - name: Verify resumable release-train state
         shell: powershell
         run: |

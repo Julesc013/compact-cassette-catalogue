@@ -1,0 +1,12 @@
+{
+  "$schema": "../spec/branch-contract/v1/branches.schema.json",
+  "schemaVersion": 1,
+  "currentGeneration": {
+    "qualified": "master",
+    "integration": "dev/2.x"
+  },
+  "legacyGeneration": {
+    "qualified": "legacy/1.x",
+    "integration": "dev/1.x"
+  }
+}

@@ -285,6 +285,12 @@ if ($ExpectedTrustedMasterCommit -cnotmatch $fullCommitPattern) {
 
 $trustedRoot = Get-NormalizedRepositoryPath $TrustedRepository 'Trusted master'
 $targetRoot = Get-NormalizedRepositoryPath $TargetRepository 'Target'
+$branchContract = & (Join-Path $trustedRoot 'build\get-branch-contract.ps1') `
+    -RepositoryRoot $trustedRoot
+$qualifiedBranch = [string]$branchContract.CurrentQualified
+$integrationBranch = [string]$branchContract.CurrentIntegration
+$qualifiedReference = "refs/heads/$qualifiedBranch"
+$integrationReference = "refs/heads/$integrationBranch"
 if ($trustedRoot.Equals($targetRoot, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'Trusted master and target must be separate repository checkouts.'
 }
@@ -351,7 +357,7 @@ if ([string]$milestone.qualification.state -cne 'pass') {
     throw "$Mode milestone must record qualification state 'pass'."
 }
 if ([string]$milestone.promotion.tag -cne "v$releaseLabel" -or
-    [string]$milestone.promotion.targetBranch -cne 'master') {
+    [string]$milestone.promotion.targetBranch -cne $qualifiedBranch) {
     throw "$Mode milestone tag or promotion target differs from its release identity."
 }
 
@@ -424,13 +430,13 @@ else {
 }
 
 $remoteReferences = @(
-    'refs/heads/master',
-    'refs/heads/dev',
+    $qualifiedReference,
+    $integrationReference,
     $fullTransportRef
 )
 $remoteHeads = Get-RemoteHeads $trustedRoot $remoteReferences
-if ([string]$remoteHeads['refs/heads/master'] -cne $ExpectedTrustedMasterCommit) {
-    throw 'origin/master moved away from the trusted workflow-control commit.'
+if ([string]$remoteHeads[$qualifiedReference] -cne $ExpectedTrustedMasterCommit) {
+    throw "origin/$qualifiedBranch moved away from the trusted workflow-control commit."
 }
 if ([string]$remoteHeads[$fullTransportRef] -cne $ExpectedCommit) {
     throw 'The exact SHA-bound attestation transport ref does not identify the target commit.'
@@ -441,8 +447,8 @@ $expectedDevCommit = if ($Mode -ceq 'Candidate') {
 else {
     $ExpectedTrustedMasterCommit
 }
-if ([string]$remoteHeads['refs/heads/dev'] -cne $expectedDevCommit) {
-    throw "origin/dev moved away from required $Mode baseline $expectedDevCommit."
+if ([string]$remoteHeads[$integrationReference] -cne $expectedDevCommit) {
+    throw "origin/$integrationBranch moved away from required $Mode baseline $expectedDevCommit."
 }
 
 $remoteTagRecords = Get-RemoteTagRecords $trustedRoot "v$releaseLabel"
@@ -463,5 +469,5 @@ else {
 
 Write-Host "Trusted $Mode target verified: $ExpectedCommit"
 Write-Host "Transport ref: $fullTransportRef"
-Write-Host "Remote master: $($remoteHeads['refs/heads/master'])"
-Write-Host "Remote dev: $($remoteHeads['refs/heads/dev'])"
+Write-Host "Remote $qualifiedBranch`: $($remoteHeads[$qualifiedReference])"
+Write-Host "Remote $integrationBranch`: $($remoteHeads[$integrationReference])"

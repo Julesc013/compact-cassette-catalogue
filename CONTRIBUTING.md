@@ -10,13 +10,13 @@ or published.
 
 ## Choose the correct branch
 
-- Target `dev` for C3 2.0 features, refactors, ports, documentation, and fixes.
-- Target `maintenance/1.x` only for bounded C3 1.x maintenance/security work.
+- Target `dev/2.x` for C3 2.0 features, refactors, ports, documentation, and fixes.
+- Target `dev/1.x` only for bounded C3 1.x maintenance/security work.
 - Do not target `master` or `legacy/1.x` directly. They advance only through
-  qualified checkpoint promotion from `dev` or `maintenance/1.x`, respectively.
-- Carry accepted 1.x fixes forward to `dev` with the same regression evidence.
+  qualified checkpoint promotion from `dev/2.x` or `dev/1.x`, respectively.
+- Carry accepted 1.x fixes forward to `dev/2.x` with the same regression evidence.
 - Never backport a 2.x-only model, format, UI, or update-channel change to
-  `maintenance/1.x` merely to reduce diff size.
+  `dev/1.x` merely to reduce diff size.
 
 Use a short-lived topic branch. Do not force-push or delete any permanent branch
 or replace a qualified tag.

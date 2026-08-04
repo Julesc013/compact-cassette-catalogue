@@ -24,6 +24,8 @@ function Invoke-RepositoryScript {
 
 Invoke-RepositoryScript 'verify-metadata.ps1'
 Invoke-RepositoryScript 'test-json-validator.ps1'
+Invoke-RepositoryScript 'validate-branch-contract.ps1'
+Invoke-RepositoryScript 'test-branch-contract.ps1'
 Invoke-RepositoryScript 'validate-release-train.ps1'
 Invoke-RepositoryScript 'test-release-train.ps1'
 Invoke-RepositoryScript 'validate-release-contract.ps1'

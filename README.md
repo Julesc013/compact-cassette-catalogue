@@ -5,9 +5,9 @@ recordings, cassette models, brands, and tape decks. Catalogues remain ordinary,
 inspectable local files that users can copy, back up, and move between supported
 builds.
 
-> **Development status:** C3 2.0.0 Alpha 1 is active on `dev`. Its source is
+> **Development status:** C3 2.0.0 Alpha 1 is active on `dev/2.x`. Its source is
 > visible, but its binaries, GitHub release, and update feed are intentionally
-> unpublished. C3 1.x development continues on `maintenance/1.x`; its latest
+> unpublished. C3 1.x development continues on `dev/1.x`; its latest
 > qualified checkpoint is preserved on `legacy/1.x`.
 
 ![C3 main window](assets/screenshots/demonstration-screenshot.png)
@@ -139,11 +139,14 @@ See the [toolchain policy](docs/development/toolchain.md),
 
 ## Branches, checkpoints, and publication
 
-- `maintenance/1.x`: active, unqualified work toward the next bounded C3 1.x
+`build/branches.json` is the machine-readable owner of the four permanent branch
+identities; automation and the strict updater projection consume that contract.
+
+- `dev/1.x`: active, unqualified work toward the next bounded C3 1.x
   maintenance checkpoint.
 - `legacy/1.x`: append-only ledger of the latest qualified C3 1.x checkpoint.
 - `master`: append-only ledger of qualified C3 2.x checkpoints.
-- `dev`: active, unqualified work toward the next C3 2.x checkpoint.
+- `dev/2.x`: active, unqualified work toward the next C3 2.x checkpoint.
 - `feature/*` and `fix/*`: short-lived contribution branches targeting the
   appropriate permanent line.
 - `attest/v*-candidate-<E>` and `attest/v*-post-<P>`: create-only, SHA-bound
@@ -160,7 +163,7 @@ before the first release candidate; no unchanged-byte claim is made yet.
 Each checkpoint freezes payload commit `C`, qualifies it in a direct,
 single-parent evidence child `E`, promotes and tags that exact `E`, then records
 observed results in a direct, single-parent child `P`. `master` advances only to
-the verified exact `E` and then the verified exact `P`; `dev` rejoins it only at
+the verified exact `E` and then the verified exact `P`; `dev/2.x` rejoins it only at
 verified `P`. A moving branch head is never a promotion input. Alpha `P` remains
 unpublished
 and changes only the catalogue and validation record. A successful public `P`
@@ -168,8 +171,9 @@ also promotes exactly one matching beta or stable `release.json`. Branch or tag
 presence never substitutes for publication status; see
 [versioning and channels](docs/governance/versioning-and-channels.md).
 
-Qualified 1.x work advances from `maintenance/1.x` to `legacy/1.x`; applicable
-fixes then flow forward into `dev`. A 2.x-only change never flows into either 1.x
+Qualified 1.x work advances from `dev/1.x` to `legacy/1.x`; applicable fixes
+then flow forward into `dev/2.x` through the 2.x behavior owner and matching
+regression evidence. A 2.x-only change never flows into either 1.x
 branch.
 
 - [Current candidate notes](RELEASE_NOTES.md)

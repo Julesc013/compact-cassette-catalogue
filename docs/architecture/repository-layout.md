@@ -119,7 +119,8 @@ extract a shared abstraction only after more than one real owner needs it.
 | --- | --- | --- |
 | Current development product/stage/channel/assembly identity | `build/Version.props` | generated BuildInfo, shared assembly attributes, unpublished alpha manifest/client endpoint, binary/package names |
 | Published legacy updater value | `release/feeds/legacy-1x/VERSION` | root `VERSION`; deliberately independent from current build |
-| Update-channel policy and branch contract | `docs/governance/versioning-and-channels.md` | release scripts and feed directories |
+| Permanent branch identities | `build/branches.json` | schema, validator, release scripts, CI, generated updater allow-list, and governance prose |
+| Update-channel and promotion policy | `docs/governance/versioning-and-channels.md` | release scripts and feed directories |
 | Checkpoint lifecycle and artifact identity | `release/catalog.v1.json` | validation records and C/E/P promotion checks |
 | Current programme milestone and order | `release/train/2.0.0.json` | train validator and transition scripts |
 | 2.x update manifest syntax and publication shape | `spec/update-feed/v1` | generated candidates, promoted channel feeds, and bounded runtime reader |

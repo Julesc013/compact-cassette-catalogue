@@ -177,7 +177,10 @@ try {
     foreach ($relativePath in @(
             'build\validate-trusted-release-target.ps1',
             'build\validate-json-document.ps1',
-            'spec\release-catalog\v1\catalog.schema.json')) {
+            'build\get-branch-contract.ps1',
+            'build\branches.json',
+            'spec\release-catalog\v1\catalog.schema.json',
+            'spec\branch-contract\v1\branches.schema.json')) {
         $sourcePath = Join-Path $repositoryRoot $relativePath
         $destinationPath = Join-Path $seed $relativePath
         [IO.Directory]::CreateDirectory((Split-Path -Parent $destinationPath)) |
@@ -196,7 +199,7 @@ try {
     $sourceCommit = Invoke-FixtureGit $seed @('rev-parse', 'HEAD')
     Invoke-FixtureGit $seed @('remote', 'add', 'origin', $origin) | Out-Null
     Invoke-FixtureGit $seed @('push', 'origin', 'master') | Out-Null
-    Invoke-FixtureGit $seed @('push', 'origin', 'HEAD:refs/heads/dev') | Out-Null
+    Invoke-FixtureGit $seed @('push', 'origin', 'HEAD:refs/heads/dev/2.x') | Out-Null
 
     Invoke-FixtureGit '' @('clone', '--branch', 'master', $origin, $trusted) |
         Out-Null
@@ -255,7 +258,7 @@ try {
     Invoke-FixtureGit $target @('checkout', '--detach', $candidateCommit) | Out-Null
 
     Invoke-FixtureGit $seed @('push', 'origin',
-        "$candidateCommit`:refs/heads/dev") | Out-Null
+        "$candidateCommit`:refs/heads/dev/2.x") | Out-Null
     Assert-GuardFails {
         & (Join-Path $trusted 'build\validate-trusted-release-target.ps1') `
             -Mode Candidate `
@@ -266,12 +269,12 @@ try {
             -AttestationRef $candidateRef
     } 'candidate rejects dev moving from C to E'
     Invoke-FixtureGit $seed @('push', '--force', 'origin',
-        "$sourceCommit`:refs/heads/dev") | Out-Null
+        "$sourceCommit`:refs/heads/dev/2.x") | Out-Null
 
     Invoke-FixtureGit $seed @('push', 'origin',
         "$candidateCommit`:refs/heads/master") | Out-Null
     Invoke-FixtureGit $seed @('push', 'origin',
-        "$candidateCommit`:refs/heads/dev") | Out-Null
+        "$candidateCommit`:refs/heads/dev/2.x") | Out-Null
     Invoke-FixtureGit $seed @('tag', '-a', $tagName, '-m',
         "Qualified $tagName", $candidateCommit) | Out-Null
     $tagObject = Invoke-FixtureGit $seed @('rev-parse', $tagName)

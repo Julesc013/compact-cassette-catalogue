@@ -5,6 +5,8 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
+$branchContract = & (Join-Path $PSScriptRoot 'get-branch-contract.ps1') `
+    -RepositoryRoot $repositoryRoot
 $identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
 $productVersion = $identity.ProductVersion
 $releaseStage = $identity.ReleaseStage
@@ -26,7 +28,12 @@ else {
     if (@('alpha', 'beta', 'stable') -cnotcontains $releaseChannel) {
         $failures.Add("update feed channel is not supported: '$releaseChannel'.")
     }
-    $expectedFeedBranch = if ($releaseChannel -ceq 'alpha') { 'dev' } else { 'master' }
+    $expectedFeedBranch = if ($releaseChannel -ceq 'alpha') {
+        [string]$branchContract.CurrentIntegration
+    }
+    else {
+        [string]$branchContract.CurrentQualified
+    }
     $expectedFeedUrl =
         "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/" +
         "$expectedFeedBranch/release/feeds/$releaseChannel/release.json"
@@ -180,6 +187,19 @@ $expectedAssemblyFragments = @(
 foreach ($fragment in $expectedAssemblyFragments) {
     if (-not $versionAssemblyInfo.Contains($fragment)) {
         $failures.Add("Generated VersionAssemblyInfo is missing: $fragment")
+    }
+}
+
+$updateBranchesPath = Join-Path $repositoryRoot `
+    'src\Shared\Generated\UpdateBranches.g.vb'
+$updateBranches = Get-Content -LiteralPath $updateBranchesPath -Raw
+$expectedBranchFragments = @(
+    "Public Const AlphaFeedBranch As String = `"$($branchContract.CurrentIntegration)`""
+    "Public Const PublishedFeedBranch As String = `"$($branchContract.CurrentQualified)`""
+)
+foreach ($fragment in $expectedBranchFragments) {
+    if (-not $updateBranches.Contains($fragment)) {
+        $failures.Add("Generated UpdateBranches is missing: $fragment")
     }
 }
 

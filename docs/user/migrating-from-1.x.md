@@ -15,7 +15,7 @@ is no native-v2 conversion command yet.
 5. Do not associate all XML files with a preview build.
 
 Use only a package whose SHA-256 matches the manifest on its GitHub release. A
-build or feed visible on `dev` is not automatically a published package.
+build or feed visible on `dev/2.x` is not automatically a published package.
 
 ## Settings
 

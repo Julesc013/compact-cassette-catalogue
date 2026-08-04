@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Julesc013/compact-cassette-catalogue/spec/branch-contract/v1/branches.schema.json",
+  "title": "C3 permanent branch contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "currentGeneration",
+    "legacyGeneration"
+  ],
+  "properties": {
+    "$schema": { "const": "../spec/branch-contract/v1/branches.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "currentGeneration": { "$ref": "#/$defs/generation" },
+    "legacyGeneration": { "$ref": "#/$defs/generation" }
+  },
+  "$defs": {
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["qualified", "integration"],
+      "properties": {
+        "qualified": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "integration": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      }
+    }
+  }
+}

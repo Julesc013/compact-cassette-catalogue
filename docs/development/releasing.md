@@ -14,21 +14,25 @@ P  post-operation attestation recording what actually happened
 
 `E` is the direct, single-parent child of `C`; `P` is the direct,
 single-parent child of tagged `E`. Promotion always names the full `E` or `P`
-SHA. A moving `dev` reference is never a release input.
+SHA. A moving `dev/2.x` reference is never a release input.
 
 ## Permanent branches
 
-- `maintenance/1.x` owns active, unqualified bounded C3 1.x fixes.
+`build/branches.json` is the machine-readable owner of these identities; release
+automation consumes it rather than repeating ref names.
+
+- `dev/1.x` owns active, unqualified bounded C3 1.x fixes.
 - `legacy/1.x` is the append-only ledger of qualified C3 1.x checkpoints.
 - `master` is the append-only ledger of verified C3 2.x checkpoints.
-- `dev` owns the next unqualified C3 2.x milestone.
+- `dev/2.x` owns the next unqualified C3 2.x milestone.
 - topic branches are short-lived.
 - `attest/v*-candidate-<E>` and `attest/v*-post-<P>` are reserved, short-lived,
   SHA-bound transports for one exact attestation commit. They are never product
   lines or substitutes for either permanent 2.x branch.
 
-Qualified 1.x checkpoints fast-forward from `maintenance/1.x` to `legacy/1.x`;
-applicable 1.x changes then flow forward to `dev`. 2.x-only work never flows
+Qualified 1.x checkpoints fast-forward from `dev/1.x` to `legacy/1.x`;
+applicable 1.x changes are then reproduced and forward-implemented on `dev/2.x`.
+2.x-only work never flows
 backward. No permanent branch or qualified tag is force-pushed, replaced, or
 deleted.
 
@@ -115,7 +119,7 @@ to `E`, so `E` cannot truthfully contain its own observed tag-object identity;
 `promotion.tagObject` remains null.
 
 Rebuild/package exact `E` and require byte-identical artifacts. Expose it through
-its create-only, SHA-bound candidate transport while `origin/dev` remains at
+its create-only, SHA-bound candidate transport while `origin/dev/2.x` remains at
 `C` and `origin/master` remains at the preceding verified checkpoint:
 
 ```powershell
@@ -138,14 +142,14 @@ has only `C` as its parent and that `C..E` is exactly the two-file evidence diff
 For Alpha 2 onward, dispatch `candidate-qualification.yml` from trusted
 `master` workflow control and supply full `E` plus the exact generated transport
 ref. The workflow checks out that SHA explicitly, runs a trusted-master topology
-guard before target code, and proves fresh `origin/dev` still identifies `C`.
+guard before target code, and proves fresh `origin/dev/2.x` still identifies `C`.
 The run URL and immutable inputs are release evidence; this manual dispatch is
 not treated as a branch-protection status attached to `E`.
 
 For the first 2.0 checkpoint only, run this gate directly on the maintained
 compatibility machine and record the commands and host evidence. GitHub permits
 manual dispatch only for workflow definitions already present on the default
-branch, so the new gate cannot be dispatched while it exists only on `dev`.
+branch, so the new gate cannot be dispatched while it exists only on `dev/2.x`.
 If candidate qualification fails, delete only its exact transport ref with an
 exact-object lease and reconstruct `E` from unchanged `C`; a corrected `E` has a
 new SHA-bound ref. Do not tag or advance a permanent branch.
@@ -168,7 +172,7 @@ git tag -a $tag $e -m "C3 2.0.0 Alpha N qualified checkpoint"
 ```
 
 This performs one server-atomic, exact-old-object leased transaction: `master`
-and `dev` advance to `E`, the absent annotated tag is created, and the exact
+and `dev/2.x` advance to `E`, the absent annotated tag is created, and the exact
 candidate transport ref is consumed. Any moved, missing, reused, non-fast-forward,
 or differently tagged ref rejects the complete transaction. Use the real
 stage-specific tag. The Alpha 1 tag push bootstraps the workflow definition onto
@@ -195,8 +199,8 @@ whether those bytes qualified later.
 
 `P` is one post-operation commit whose only parent is tagged `E`. It changes the
 exact files allowed for the outcome below. Validate the full `P` SHA, then
-atomically fast-forward both `master` and `dev` to that exact commit. Only after
-verified `P` is on both refs may `dev` begin the next release identity or scope.
+atomically fast-forward both `master` and `dev/2.x` to that exact commit. Only after
+verified `P` is on both refs may `dev/2.x` begin the next release identity or scope.
 
 ### Intentionally unpublished alpha
 
@@ -270,7 +274,7 @@ Dispatch `post-promotion-attestation.yml` from trusted `master` workflow control
 and supply both the full `P` SHA and the temporary branch name. The workflow
 checks out `P` explicitly, rejects a missing/mismatched attestation ref,
 reproduces the retained payload, and runs `PostPromotion` mode while fresh
-`origin/master` and `origin/dev` still equal tagged `E`. Its run URL and inputs,
+`origin/master` and `origin/dev/2.x` still equal tagged `E`. Its run URL and inputs,
 not a status attached to the temporary branch, are the durable evidence. A
 failed gate does not advance either permanent ref. Delete only that exact failed
 transport ref with an exact-object lease, correct the evidence, and reconstruct
@@ -301,7 +305,7 @@ both permanent refs and consume the exact transport ref. A race rejects every
 update. The hosted repository check then independently runs `Master` mode against
 the pushed ledger state. The resulting permanent history is linear: `C ->
 E(tag) -> P`, and both permanent 2.x refs name verified `P`. Commit the next
-identity separately on `dev`, but only after the `master` repository attestation
+identity separately on `dev/2.x`, but only after the `master` repository attestation
 for `P` finishes while both permanent refs remain quiescent at `P`.
 
 ## Rollback and immutability

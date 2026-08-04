@@ -104,13 +104,27 @@ try {
 
     $fixtureBuildRoot = Join-Path $workRoot 'build'
     $fixtureSchemaRoot = Join-Path $workRoot 'spec\release-catalog\v1'
+    $fixtureBranchSchemaRoot = Join-Path $workRoot 'spec\branch-contract\v1'
     $fixtureReleaseRoot = Join-Path $workRoot 'release'
-    foreach ($directory in @($fixtureBuildRoot, $fixtureSchemaRoot, $fixtureReleaseRoot)) {
+    foreach ($directory in @(
+            $fixtureBuildRoot,
+            $fixtureSchemaRoot,
+            $fixtureBranchSchemaRoot,
+            $fixtureReleaseRoot)) {
         New-Item -ItemType Directory -Path $directory -Force | Out-Null
     }
     Copy-Item `
         -LiteralPath (Join-Path $repositoryRoot 'build\validate-json-document.ps1') `
         -Destination (Join-Path $fixtureBuildRoot 'validate-json-document.ps1')
+    Copy-Item `
+        -LiteralPath (Join-Path $repositoryRoot 'build\get-branch-contract.ps1') `
+        -Destination (Join-Path $fixtureBuildRoot 'get-branch-contract.ps1')
+    Copy-Item `
+        -LiteralPath (Join-Path $repositoryRoot 'build\branches.json') `
+        -Destination (Join-Path $fixtureBuildRoot 'branches.json')
+    Copy-Item `
+        -LiteralPath (Join-Path $repositoryRoot 'spec\branch-contract\v1\branches.schema.json') `
+        -Destination (Join-Path $fixtureBranchSchemaRoot 'branches.schema.json')
     Copy-Item `
         -LiteralPath (Join-Path $repositoryRoot 'spec\release-catalog\v1\catalog.schema.json') `
         -Destination (Join-Path $fixtureSchemaRoot 'catalog.schema.json')
@@ -141,12 +155,12 @@ try {
     $masterCommit = ([string](@(Invoke-FixtureGit $workRoot @('rev-parse', 'HEAD'))[-1])).Trim()
     [void](Invoke-FixtureGit $workRoot @('push', 'origin', 'master:master'))
 
-    [void](Invoke-FixtureGit $workRoot @('checkout', '-b', 'dev'))
+    [void](Invoke-FixtureGit $workRoot @('checkout', '-b', 'dev/2.x'))
     Set-Content -LiteralPath (Join-Path $workRoot 'payload.txt') -Value 'frozen C'
     [void](Invoke-FixtureGit $workRoot @('add', 'payload.txt'))
     [void](Invoke-FixtureGit $workRoot @('commit', '-m', 'Fixture payload C'))
     $sourceCommit = ([string](@(Invoke-FixtureGit $workRoot @('rev-parse', 'HEAD'))[-1])).Trim()
-    [void](Invoke-FixtureGit $workRoot @('push', 'origin', 'dev:dev'))
+    [void](Invoke-FixtureGit $workRoot @('push', 'origin', 'dev/2.x:dev/2.x'))
 
     Set-Content -LiteralPath (Join-Path $workRoot 'evidence.txt') -Value 'qualification E'
     [void](Invoke-FixtureGit $workRoot @('add', 'evidence.txt'))
@@ -171,7 +185,7 @@ try {
     $candidateArguments.Mode = 'PromoteCandidate'
     & $transactionScript @candidateArguments -Confirm:$false | Out-Null
     Assert-Equal $eCommit (Get-RemoteObject 'refs/heads/master') 'candidate promotion advances master'
-    Assert-Equal $eCommit (Get-RemoteObject 'refs/heads/dev') 'candidate promotion advances dev'
+    Assert-Equal $eCommit (Get-RemoteObject 'refs/heads/dev/2.x') 'candidate promotion advances dev/2.x'
     Assert-Equal $null (Get-RemoteObject $candidateRef) 'candidate promotion consumes transport ref'
     Assert-Equal $eCommit (Get-RemoteObject "refs/tags/$tagName^{}") 'candidate promotion creates annotated tag'
 
@@ -202,14 +216,14 @@ try {
     Assert-Equal $pCommit (Get-RemoteObject $postRef) 'post ref is exact P'
     Assert-TransactionFails $postArguments 'post ref is create-only'
 
-    [void](Invoke-FixtureGit $workRoot @('push', 'origin', "${pCommit}:dev"))
+    [void](Invoke-FixtureGit $workRoot @('push', 'origin', "${pCommit}:dev/2.x"))
     $postArguments.Mode = 'PromotePost'
     Assert-TransactionFails $postArguments 'stale dev lease blocks post promotion'
-    [void](Invoke-FixtureGit $workRoot @('push', '--force', 'origin', "${eCommit}:dev"))
+    [void](Invoke-FixtureGit $workRoot @('push', '--force', 'origin', "${eCommit}:dev/2.x"))
 
     & $transactionScript @postArguments -Confirm:$false | Out-Null
     Assert-Equal $pCommit (Get-RemoteObject 'refs/heads/master') 'post promotion advances master'
-    Assert-Equal $pCommit (Get-RemoteObject 'refs/heads/dev') 'post promotion advances dev'
+    Assert-Equal $pCommit (Get-RemoteObject 'refs/heads/dev/2.x') 'post promotion advances dev/2.x'
     Assert-Equal $null (Get-RemoteObject $postRef) 'post promotion consumes transport ref'
     Assert-Equal $eCommit (Get-RemoteObject "refs/tags/$tagName^{}") 'post promotion preserves tag target'
 }

@@ -361,13 +361,19 @@ try {
     $historyRemoteRoot = Join-Path $testRoot 'history-origin.git'
     $historyBuildRoot = Join-Path $historyRoot 'build'
     $historySchemaRoot = Join-Path $historyRoot 'spec\release-catalog\v1'
+    $historyBranchSchemaRoot = Join-Path $historyRoot 'spec\branch-contract\v1'
     $historyValidationRoot = Join-Path $historyRoot 'release\validation'
-    foreach ($directory in @($historyBuildRoot, $historySchemaRoot, $historyValidationRoot)) {
+    foreach ($directory in @(
+            $historyBuildRoot,
+            $historySchemaRoot,
+            $historyBranchSchemaRoot,
+            $historyValidationRoot)) {
         [IO.Directory]::CreateDirectory($directory) | Out-Null
     }
     foreach ($scriptName in @(
             'get-release-identity.ps1',
             'get-release-packages.ps1',
+            'get-branch-contract.ps1',
             'resolve-release-label.ps1',
             'validate-json-document.ps1',
             'validate-release-contract.ps1')) {
@@ -379,6 +385,11 @@ try {
         -Destination (Join-Path $historyBuildRoot 'Version.props')
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') `
         -Destination (Join-Path $historyBuildRoot 'lanes.json')
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'branches.json') `
+        -Destination (Join-Path $historyBuildRoot 'branches.json')
+    Copy-Item `
+        -LiteralPath (Join-Path $repositoryRoot 'spec\branch-contract\v1\branches.schema.json') `
+        -Destination (Join-Path $historyBranchSchemaRoot 'branches.schema.json')
     Copy-Item -LiteralPath $schemaPath `
         -Destination (Join-Path $historySchemaRoot 'catalog.schema.json')
 
@@ -418,8 +429,8 @@ try {
     if ($LASTEXITCODE -ne 0 -or $sourceCommit -cnotmatch '^[0-9a-f]{40}$') {
         throw 'Could not resolve fixture source commit C.'
     }
-    Invoke-FixtureGit $historyRoot @('branch', 'dev', $sourceCommit)
-    Invoke-FixtureGit $historyRoot @('push', '--quiet', 'origin', 'master', 'dev')
+    Invoke-FixtureGit $historyRoot @('branch', 'dev/2.x', $sourceCommit)
+    Invoke-FixtureGit $historyRoot @('push', '--quiet', 'origin', 'master', 'dev/2.x')
 
     $historyIdentity = & (Join-Path $historyBuildRoot 'get-release-identity.ps1')
     $historyPackageDefinitions = @(& (Join-Path $historyBuildRoot 'get-release-packages.ps1') `
@@ -461,11 +472,11 @@ try {
             ([string](& git -C $historyRoot rev-parse HEAD)).Trim())
     } 'requires -RequireArtifacts' 'candidate permits origin dev to remain at frozen C'
 
-    Invoke-FixtureGit $historyRoot @('push', '--quiet', 'origin', 'master:dev')
+    Invoke-FixtureGit $historyRoot @('push', '--quiet', 'origin', 'master:dev/2.x')
     Assert-FailsWith {
         & $historyValidator -Mode Candidate -ExpectedCommit (
             ([string](& git -C $historyRoot rev-parse HEAD)).Trim())
-    } 'origin/dev must remain at frozen source C' 'candidate rejects origin dev advancing to E'
+    } 'origin/dev/2.x must remain at frozen source C' 'candidate rejects origin dev/2.x advancing to E'
 
     Invoke-FixtureGit $historyRoot @('push', '--quiet', 'origin', 'master:master')
     Assert-FailsWith {
@@ -497,8 +508,8 @@ try {
         $historyHashes.ToArray()
     Invoke-FixtureGit $historyRoot @('add', '--all')
     Invoke-FixtureGit $historyRoot @('commit', '-m', 'Fixture post-promotion P')
-    Invoke-FixtureGit $historyRoot @('branch', '-f', 'dev', 'master')
-    Invoke-FixtureGit $historyRoot @('push', '--quiet', 'origin', 'master', 'dev', '--tags')
+    Invoke-FixtureGit $historyRoot @('branch', '-f', 'dev/2.x', 'master')
+    Invoke-FixtureGit $historyRoot @('push', '--quiet', 'origin', 'master', 'dev/2.x', '--tags')
 
     & $historyValidator -Mode Master | Out-Null
     $passed++
@@ -587,7 +598,7 @@ try {
         '<C3ReleaseChannel>alpha</C3ReleaseChannel>',
         '<C3ReleaseChannel>beta</C3ReleaseChannel>')
     $historyPropsText = $historyPropsText.Replace(
-        '/dev/release/feeds/alpha/release.json',
+        '/dev/2.x/release/feeds/alpha/release.json',
         '/master/release/feeds/beta/release.json')
     [IO.File]::WriteAllText($historyPropsPath, $historyPropsText, $utf8WithoutBom)
 
@@ -745,8 +756,8 @@ try {
     Write-JsonDocument $betaFeed $betaFeedPath
     Invoke-FixtureGit $historyRoot @('add', '--all')
     Invoke-FixtureGit $historyRoot @('commit', '-m', 'Fixture beta post-promotion P')
-    Invoke-FixtureGit $historyRoot @('branch', '-f', 'dev', 'master')
-    Invoke-FixtureGit $historyRoot @('push', '--quiet', '--force', 'origin', 'master', 'dev', '--tags')
+    Invoke-FixtureGit $historyRoot @('branch', '-f', 'dev/2.x', 'master')
+    Invoke-FixtureGit $historyRoot @('push', '--quiet', '--force', 'origin', 'master', 'dev/2.x', '--tags')
 
     & $historyValidator -Mode Master | Out-Null
     $passed++
@@ -923,11 +934,11 @@ try {
     } 'requires HEAD at refs/remotes/origin/master commit' 'stale master event after origin/master advances'
 
     Invoke-FixtureGit $historyRoot @('push', '--quiet', '--force', 'origin', 'master:master')
-    Invoke-FixtureGit $remoteAdvanceRoot @('push', '--quiet', '--force', 'origin', 'HEAD:refs/heads/dev')
+    Invoke-FixtureGit $remoteAdvanceRoot @('push', '--quiet', '--force', 'origin', 'HEAD:refs/heads/dev/2.x')
     Assert-FailsWith {
         & $historyValidator -Mode Master
-    } 'requires HEAD at origin/dev commit' 'master ledger with origin/dev not atomically advanced'
-    Invoke-FixtureGit $historyRoot @('push', '--quiet', '--force', 'origin', 'master:dev')
+    } 'requires HEAD at origin/dev/2.x commit' 'master ledger with origin/dev/2.x not atomically advanced'
+    Invoke-FixtureGit $historyRoot @('push', '--quiet', '--force', 'origin', 'master:dev/2.x')
 
     [IO.File]::AppendAllText(
         $historyValidationPath,

@@ -22,9 +22,7 @@ concurrency:
 jobs:
   post-promotion:
     name: Post-promotion attestation (P)
-    runs-on:
-      group: c3-private-release
-      labels: [self-hosted, Windows, X64, c3-legacy-msbuild]
+    runs-on: [self-hosted, Windows, X64, c3-legacy-msbuild]
     environment: c3-release-qualification
     timeout-minutes: 60
 
