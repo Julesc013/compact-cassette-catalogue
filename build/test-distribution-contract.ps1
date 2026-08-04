@@ -15,10 +15,22 @@ $passed = 0
 
 function Invoke-Contract {
     param([string]$Profiles, [string]$Payload, [string]$Lanes)
+
+    # Windows PowerShell 5.1 surfaces redirected native-process stderr as an
+    # ErrorRecord. These child failures are the expected result for six negative
+    # contract scenarios, so capture their exit status without allowing the
+    # parent's Stop preference to terminate the harness.
+    $savedErrorActionPreference = $ErrorActionPreference
     $global:LASTEXITCODE = 0
-    & powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass `
-        -File $validator -ProfilesRoot $Profiles -PayloadPath $Payload -LanesPath $Lanes *> $null
-    return $LASTEXITCODE
+    try {
+        $ErrorActionPreference = 'Continue'
+        & powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass `
+            -File $validator -ProfilesRoot $Profiles -PayloadPath $Payload -LanesPath $Lanes *> $null
+        return $LASTEXITCODE
+    }
+    finally {
+        $ErrorActionPreference = $savedErrorActionPreference
+    }
 }
 
 function Reset-Fixture {
