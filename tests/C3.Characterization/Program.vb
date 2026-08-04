@@ -5,11 +5,24 @@ Module Program
     Private _failures As Integer
     Private _repositoryRoot As String
 
-    Sub Main()
+    Sub Main(arguments As String())
         _repositoryRoot = FindRepositoryRoot()
+
+        If arguments.Length > 0 Then
+            Try
+                RunCompatibilityCommand(arguments)
+            Catch ex As Exception
+                Console.Error.WriteLine(ex.ToString())
+                Environment.ExitCode = 1
+            End Try
+            Return
+        End If
 
         RunTest("blank catalogue matches the v1.1 contract", AddressOf BlankCatalogueMatchesContract)
         RunTest("populated catalogue matches the v1.1 contract", AddressOf PopulatedCatalogueMatchesContract)
+        RunTest(
+            "supported historical 1.x writers load through the production adapter",
+            AddressOf SupportedHistoricalWritersLoadThroughProductionAdapter)
         RunTest("missing file version is detected", AddressOf MissingVersionIsDetected)
         RunTest("unsupported file version remains distinguishable", AddressOf UnsupportedVersionIsDetected)
         RunTest("historical prerelease suffix normalizes to v1.1.0", AddressOf HistoricalVersionSuffixNormalizes)
@@ -171,6 +184,101 @@ Module Program
         Console.WriteLine("All C3 catalogue characterization tests passed.")
     End Sub
 
+    Private Sub RunCompatibilityCommand(arguments As String())
+        If arguments.Length <> 2 Then
+            Throw New ArgumentException(
+                "Compatibility commands require an operation and one catalogue path.")
+        End If
+
+        Select Case arguments(0)
+            Case "--write-current-v1.1"
+                WriteCurrentCompatibilityCatalogue(arguments(1))
+            Case "--validate-v1.1"
+                ValidateCompatibilityCatalogue(arguments(1))
+            Case Else
+                Throw New ArgumentException("Unknown compatibility command: " & arguments(0))
+        End Select
+    End Sub
+
+    Private Sub WriteCurrentCompatibilityCatalogue(destination As String)
+        Dim store As New LegacyXmlCatalogueStore()
+        Dim versions As String() = {"1.1.0"}
+        Dim loaded As LegacyCatalogueLoadResult = store.Load(
+            FixturePath("valid", "populated.xml"),
+            CreateFixtureSchema(),
+            versions)
+        If Not loaded.IsSuccess Then
+            Throw New InvalidOperationException(
+                "Could not load the canonical source fixture: " & loaded.Message)
+        End If
+
+        Dim versionProperties As XmlDocument = LoadSecureDocument(
+            Path.Combine(_repositoryRoot, "build\Version.props"))
+        Dim productVersion As String = VersionProperty(
+            versionProperties,
+            "C3ProductVersion")
+        Dim releaseStage As String = VersionProperty(
+            versionProperties,
+            "C3ReleaseStage")
+        Dim releaseDate As DateTime = DateTime.ParseExact(
+            VersionProperty(versionProperties, "C3ReleaseDate"),
+            "yyyy-MM-dd",
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.None)
+
+        Dim metadata As New LegacyCatalogueMetadataWriter(Function() loaded.Document)
+        metadata.RefreshProductMetadata(productVersion, releaseStage, releaseDate)
+        metadata.MarkModified(releaseDate)
+
+        Dim fullDestination As String = Path.GetFullPath(destination)
+        Dim parent As String = Path.GetDirectoryName(fullDestination)
+        If String.IsNullOrWhiteSpace(parent) Then
+            Throw New ArgumentException("Compatibility output requires a parent directory.")
+        End If
+        Directory.CreateDirectory(parent)
+        If File.Exists(fullDestination) Then
+            File.Delete(fullDestination)
+        End If
+
+        Dim saved As LegacyCatalogueSaveResult = store.Save(
+            fullDestination,
+            loaded.Document,
+            Nothing,
+            versions)
+        If Not saved.IsSuccess Then
+            Throw New InvalidOperationException(
+                "Current v1.1 writer failed: " & saved.Failure.ToString() & ": " & saved.Message)
+        End If
+        Console.WriteLine("CURRENT_V1_1_WRITER_PASS|" & fullDestination)
+    End Sub
+
+    Private Sub ValidateCompatibilityCatalogue(path As String)
+        Dim store As New LegacyXmlCatalogueStore()
+        Dim loaded As LegacyCatalogueLoadResult = store.Load(
+            IO.Path.GetFullPath(path),
+            CreateFixtureSchema(),
+            New String() {"1.1.0"})
+        If Not loaded.IsSuccess Then
+            Throw New InvalidOperationException(
+                "Current v1.1 reader failed: " & loaded.Failure.ToString() & ": " & loaded.Message)
+        End If
+        AssertEqual(1, loaded.Document.Tables("Brands").Rows.Count, "compatibility brand count")
+        AssertEqual(1, loaded.Document.Tables("Models").Rows.Count, "compatibility model count")
+        AssertEqual(1, loaded.Document.Tables("Decks").Rows.Count, "compatibility deck count")
+        AssertEqual(1, loaded.Document.Tables("Tapes").Rows.Count, "compatibility tape count")
+        Console.WriteLine("CURRENT_V1_1_READER_PASS|" & IO.Path.GetFullPath(path))
+    End Sub
+
+    Private Function VersionProperty(document As XmlDocument, name As String) As String
+        Dim node As XmlNode = document.SelectSingleNode(
+            "/*[local-name()='Project']/*[local-name()='PropertyGroup']/*[local-name()='" &
+            name & "']")
+        If node Is Nothing OrElse String.IsNullOrWhiteSpace(node.InnerText) Then
+            Throw New InvalidOperationException("Missing build version property: " & name)
+        End If
+        Return node.InnerText.Trim()
+    End Function
+
     Private Sub RunTest(name As String, test As Action)
         Try
             test()
@@ -206,6 +314,43 @@ Module Program
         AssertEqual("MAX", NodeText(document, "/Catalogue/Brands/Code"), "brand code")
         AssertEqual("MAX-2-XLII", NodeText(document, "/Catalogue/Models/Identifier"), "model identifier")
         AssertEqual("MAX-2-XLII-1", NodeText(document, "/Catalogue/Tapes/IdentifierShort"), "tape identifier")
+    End Sub
+
+    Private Sub SupportedHistoricalWritersLoadThroughProductionAdapter()
+        Dim producers As New Dictionary(Of String, String)(StringComparer.Ordinal) From {
+            {"v1.0.0", "1.0.0"},
+            {"v1.1.0", "1.1.0"},
+            {"v1.1.1", "1.1.1"},
+            {"v1.1.2", "1.1.2"},
+            {"v1.2.0-beta.1", "1.2.0"}
+        }
+        Dim store As New LegacyXmlCatalogueStore()
+
+        For Each producer As KeyValuePair(Of String, String) In producers
+            Dim historicalFixturePath As String = IO.Path.Combine(
+                _repositoryRoot,
+                "fixtures\catalogues\v1.1.0\historical",
+                producer.Key,
+                "blank.xml")
+            Dim loaded As LegacyCatalogueLoadResult = store.Load(
+                historicalFixturePath,
+                CreateFixtureSchema(),
+                New String() {"1.1.0"})
+            If Not loaded.IsSuccess Then
+                Throw New InvalidOperationException(
+                    producer.Key & " fixture failed production load: " & loaded.Message)
+            End If
+
+            AssertEqual("1.1.0", loaded.FileVersion, producer.Key & " file version")
+            AssertEqual(
+                producer.Value,
+                CStr(loaded.Document.Tables("Information").Rows.Find("Program Version")("Value")),
+                producer.Key & " producer version")
+            AssertEqual(0, loaded.Document.Tables("Brands").Rows.Count, producer.Key & " brand count")
+            AssertEqual(0, loaded.Document.Tables("Models").Rows.Count, producer.Key & " model count")
+            AssertEqual(0, loaded.Document.Tables("Decks").Rows.Count, producer.Key & " deck count")
+            AssertEqual(0, loaded.Document.Tables("Tapes").Rows.Count, producer.Key & " tape count")
+        Next
     End Sub
 
     Private Sub MissingVersionIsDetected()

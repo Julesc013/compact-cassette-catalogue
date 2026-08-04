@@ -22,9 +22,12 @@ process code on any failure.
 ## Compatibility corpus
 
 Fixtures are immutable, privacy-safe evidence organized by producer/profile and
-observed variant—not only by nominal schema version. Current fixtures cover
-catalogue 1.1.0; Alpha 2 must inventory other public 1.x formats and deviations
-before “full 1.x compatibility” is claimed.
+observed variant—not only by nominal schema version. The schema-validated
+[`corpus.v1.json`](../../fixtures/compatibility/1x/corpus.v1.json) inventories
+every public 1.x release and its exact official assets. It proves that all public
+1.x producers wrote catalogue `1.1.0`; formats `1.0.0`, `1.0.1`, and `1.0.2`
+belong to archival pre-1.x producers and are not silently included in the 1.x
+support promise.
 
 Each supported baseline eventually proves:
 
@@ -40,6 +43,19 @@ Each supported baseline eventually proves:
 A characterized result is classified as required behavior, tolerated legacy
 quirk, or defect. Never add a personal catalogue; construct the smallest
 synthetic reproduction with a provenance/expected-result record.
+
+The exact-binary compatibility laboratory is opt-in because historical EXEs are
+hash-pinned but not redistributed in Git:
+
+```powershell
+.\build\fetch-compatibility-baselines.ps1
+.\build\build.ps1 -Configuration Release
+.\build\test-compatibility-baselines.ps1 -SkipBuild
+```
+
+The first command performs network I/O. The second and third run the complete
+current-writer/old-reader/old-writer/current-reader matrix against verified local
+artifacts. See the [evidence matrix](../compatibility/1x-evidence-matrix.md).
 
 ## Preferences, migration, and recovery
 
