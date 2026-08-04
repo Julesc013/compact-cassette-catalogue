@@ -6,12 +6,13 @@ release, package, hash, or validation record has been relabelled.
 
 This alpha is currently a development candidate, not an advertised download.
 Its [validation record](release/validation/2.0.0-alpha.1.md) remains blocked until
-the final frozen-source automated evidence, critical local workflow smoke, real
-historical settings-profile exercise, and repository-licence owner decision are
-complete, and until the restricted GitHub environments/private runner policy is
-owner-configured. Minimum-OS checks may remain explicitly pending for this
-intentionally unpublished alpha; they cannot support a public OS claim until
-they pass.
+the final frozen-source automated evidence and critical local workflow smoke are
+complete. Real historical settings-profile and minimum-OS exercises may remain
+explicitly deferred to their later compatibility/public-support gates. The
+restricted GitHub environments/private runner policy must be owner-configured
+before self-hosted results gain release authority. Repository-licence selection
+is an owner gate before the first public Beta tag/publication, not before an
+intentionally unpublished Alpha checkpoint.
 
 ## Implemented foundation
 
