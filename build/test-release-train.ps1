@@ -22,6 +22,40 @@ function Reset-Fixtures {
     Copy-Item -LiteralPath $canonicalTrain -Destination $trainPath -Force
     Copy-Item -LiteralPath $canonicalCatalog -Destination $catalogPath -Force
     Copy-Item -LiteralPath $canonicalProps -Destination $propsPath -Force
+
+    # Keep failure-path scenarios independent of the live train's current
+    # milestone. The canonical validator is exercised separately before this
+    # harness; these fixtures always begin from the stable Alpha 1 controller
+    # shape so the same negative mutations remain meaningful through Beta 1.
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.currentMilestone = 'alpha.1'
+    $train.status = 'active'
+    $train.lastQualifiedTag = $null
+    $train.candidateCommit = $null
+    foreach ($milestone in @($train.milestones)) {
+        $milestone.state = if ([string]$milestone.id -ceq 'alpha.1') {
+            'active'
+        }
+        else {
+            'pending'
+        }
+    }
+    Write-JsonFixture $trainPath $train
+
+    $catalog = Get-Content -LiteralPath $catalogPath -Raw | ConvertFrom-Json
+    $catalog.milestones = @($catalog.milestones | Select-Object -First 1)
+    Write-JsonFixture $catalogPath $catalog
+
+    $props = [IO.File]::ReadAllText($propsPath)
+    $props = [regex]::Replace(
+        $props,
+        '<C3ReleaseStage>[^<]+</C3ReleaseStage>',
+        '<C3ReleaseStage>Alpha 1</C3ReleaseStage>')
+    $props = [regex]::Replace(
+        $props,
+        '<C3FileVersion>[^<]+</C3FileVersion>',
+        '<C3FileVersion>2.0.0.1</C3FileVersion>')
+    [IO.File]::WriteAllText($propsPath, $props, $utf8WithoutBom)
 }
 
 function Write-JsonFixture {
