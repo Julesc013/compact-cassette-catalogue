@@ -61,7 +61,10 @@ Automated evidence currently proves:
 - the complete 676-code legacy Brand space has a repeatable warm performance
   command and conservative regression budgets; and
 - off-screen browse and create-state renders have been inspected on the current
-  maintained development host.
+  maintained development host; and
+- Visual Studio 2017 Enterprise 15.9 opened and saved the shared form from an
+  isolated detached worktree at committed source without changing any tracked
+  byte, proving a clean round trip through the canonical current designer.
 
 The current pre-freeze development measurement over 20 warm iterations reported
 maximum presenter times of 0.459 ms for an unfiltered 676-Brand refresh, 0.981 ms
@@ -70,9 +73,8 @@ useful implementation evidence only; the exact candidate measurement and host
 identity will supersede them in release validation.
 
 This is implementation evidence, not yet Alpha 5 qualification. The exact frozen
-candidate still requires Visual Studio 2017 designer open/save, packaged workflow
-execution in both lanes, packaged paint/input/memory performance,
-100/125/150/200% DPI, keyboard-only, high-contrast,
+candidate still requires packaged workflow execution in both lanes, packaged
+paint/input/memory performance, 100/125/150/200% DPI, keyboard-only, high-contrast,
 screen-reader/accessibility, long-text,
 minimum-size, and dirty-close matrices. Those results belong in the Alpha 5
 validation record and cannot be inferred from source or automated contracts.
