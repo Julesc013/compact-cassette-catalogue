@@ -63,10 +63,13 @@ Module Program
         RunTest(
             "shared Brand form preserves designer DPI keyboard and accessibility contracts",
             AddressOf BrandWorkspaceFormContractTests.PreservesDesignerDpiKeyboardAndAccessibilityContracts)
-        RunTest(
-            "shared Brand form executes create edit filter undo and redo through controls",
-            AddressOf BrandWorkspaceFormContractTests.ExecutesCreateEditFilterUndoAndRedoThroughControls)
-        RunTest(
+          RunTest(
+              "shared Brand form executes create edit filter undo and redo through controls",
+              AddressOf BrandWorkspaceFormContractTests.ExecutesCreateEditFilterUndoAndRedoThroughControls)
+          RunTest(
+              "shared Brand form preserves layout under relative scaling and long content",
+              AddressOf BrandWorkspaceFormContractTests.PreservesLayoutUnderRelativeScalingAndLongContent)
+          RunTest(
             "maximum Brand workspace remains within conservative interaction budgets",
             AddressOf BrandWorkspacePerformanceTests.MaximumWorkspaceMeetsConservativeBudgets)
         RunTest(

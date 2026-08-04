@@ -69,7 +69,11 @@ Automated evidence currently proves:
   create/edit/filter/confirmed-delete/undo/redo/save through their real controls,
   and passed all four same-lane and cross-lane reopen combinations; and
 - both packages established pre-freeze startup, Brands-open, command-response,
-  native-paint, and peak-working-set baselines under conservative safety ceilings.
+  native-paint, and peak-working-set baselines under conservative safety ceilings;
+  and
+- an STA stress matrix proves usable minimum-size containment with maximum-length
+  representative data at 100%, 125%, 150%, and 200% relative scaling, while a
+  source boundary rejects fixed custom colors.
 
 The current pre-freeze development measurement over 20 warm iterations reported
 maximum presenter times of 0.459 ms for an unfiltered 676-Brand refresh, 0.981 ms
@@ -84,3 +88,6 @@ keyboard-only, high-contrast,
 screen-reader/accessibility, long-text,
 minimum-size, and dirty-close matrices. Those results belong in the Alpha 5
 validation record and cannot be inferred from source or automated contracts.
+
+The relative-scale matrix supports that manual work; it is not recorded as an
+operating-system DPI or high-contrast pass.

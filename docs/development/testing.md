@@ -169,6 +169,11 @@ accessible names/roles, system high contrast, empty/error/long data, and 100%,
 125%, 150%, and 200% scaling. Do not infer an operating-system capability from a
 newer development host.
 
+Relative programmatic scaling and containment tests are useful fast regression
+guards and should cover maximum accepted text lengths. They do not replace real
+display scaling, high contrast, or screen-reader checks because those depend on
+the operating system, device context, theme, and assistive technology.
+
 Performance uses named synthetic catalogue sizes and machine profiles. Capture
 launch, open/save, list/filter, editor, bulk preview/apply, memory high-water, and
 recovery-scan baselines before accepting numeric budgets. Optimize the measured

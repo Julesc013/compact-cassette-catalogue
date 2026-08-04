@@ -9,6 +9,9 @@
 - Added an exact-archive Brands workflow driver that exercises both packaged
   Desktop lanes through real controls and proves all same-lane and cross-lane
   save/reopen combinations without adding a second implementation path.
+- Added relative 100/125/150/200% minimum-layout and long-content stress plus a
+  fixed-color boundary, while retaining real DPI/high-contrast review as a
+  separate evidence gate.
 
 - Began the explicit workspace/document controller, command-history, undo/redo,
   and reusable OEM+ interaction-pattern milestone. One end-to-end workflow must

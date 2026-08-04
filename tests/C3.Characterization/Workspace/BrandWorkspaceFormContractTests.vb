@@ -1,6 +1,7 @@
 Imports C3.Infrastructure.CatalogueFiles.Xml.V1_1
 Imports C3.Presentation.WinForms.Features.Brands
 Imports C3.Presentation.WinForms.Workspace
+Imports System.Drawing
 Imports System.Threading
 Imports System.Windows.Forms
 
@@ -12,6 +13,10 @@ Friend Module BrandWorkspaceFormContractTests
 
     Public Sub ExecutesCreateEditFilterUndoAndRedoThroughControls()
         RunOnStaThread(AddressOf VerifyControlWorkflow)
+    End Sub
+
+    Public Sub PreservesLayoutUnderRelativeScalingAndLongContent()
+        RunOnStaThread(AddressOf VerifyLayoutStress)
     End Sub
 
     Private Sub RunOnStaThread(action As Action)
@@ -125,6 +130,11 @@ Friend Module BrandWorkspaceFormContractTests
             AssertEqual(AutoScaleMode.Dpi, form.AutoScaleMode, "DPI scaling")
             AssertEqual(True, form.KeyPreview, "form keyboard routing")
             AssertEqual(FormBorderStyle.Sizable, form.FormBorderStyle, "resizable shell")
+            AssertEqual(SystemColors.Control, form.BackColor, "system form color")
+            AssertEqual(
+                SystemFonts.MessageBoxFont.Name,
+                form.Font.Name,
+                "system message font family")
             AssertEqual(
                 True,
                 form.MinimumSize.Width <= form.Size.Width,
@@ -159,6 +169,87 @@ Friend Module BrandWorkspaceFormContractTests
                 form.GetType().Assembly.GetName().Name,
                 "single shared presentation assembly")
         End Using
+    End Sub
+
+    Private Sub VerifyLayoutStress()
+        Dim scaleFactors As Single() = {1.0F, 1.25F, 1.5F, 2.0F}
+        For Each scaleFactor As Single In scaleFactors
+            Dim document As DataSet = Program.CreateFixtureSchema()
+            Dim service As New BrandService(New LegacyBrandRepository(Function() document))
+            Dim longName As String = New String("W"c, 100)
+            Dim longNotes As String = New String("M"c, 2048)
+            Dim created = service.Create(
+                New BrandDraft(longName, "LX", longNotes),
+                New DateTime(2026, 8, 5, 12, 0, 0))
+            AssertEqual(True, created.IsSuccess, "long-content fixture")
+
+            Dim workspace As New WorkspaceController(
+                New CatalogueSession("Long Content Catalogue"),
+                CatalogueCompatibilityMode.LegacyV1_1,
+                False,
+                20)
+
+            Using form As New BrandWorkspaceForm(service, workspace, False)
+                form.ShowInTaskbar = False
+                form.Opacity = 0
+                form.Scale(New SizeF(scaleFactor, scaleFactor))
+                form.Show()
+                Application.DoEvents()
+                form.Size = form.MinimumSize
+                Application.DoEvents()
+
+                Dim scaleContext As String =
+                    CInt(scaleFactor * 100.0F).ToString() & "% relative scale"
+                Dim split As SplitContainer =
+                    RequireControl(Of SplitContainer)(form, "contentSplit")
+                Dim list As ListView = RequireControl(Of ListView)(form, "brandListView")
+                Dim filter As TextBox = RequireControl(Of TextBox)(form, "filterTextBox")
+                Dim name As TextBox = RequireControl(Of TextBox)(form, "brandNameTextBox")
+                Dim notes As TextBox = RequireControl(Of TextBox)(form, "brandNotesTextBox")
+                Dim commandBar As FlowLayoutPanel =
+                    RequireControl(Of FlowLayoutPanel)(form, "commandBar")
+
+                AssertEqual(True, split.Panel1.ClientSize.Width >= split.Panel1MinSize, scaleContext & " list panel")
+                AssertEqual(True, split.Panel2.ClientSize.Width >= split.Panel2MinSize, scaleContext & " inspector panel")
+                AssertEqual(True, list.ClientSize.Width >= 200, scaleContext & " list width")
+                AssertEqual(True, list.ClientSize.Height >= 100, scaleContext & " list height")
+                AssertEqual(True, filter.ClientSize.Width >= 100, scaleContext & " filter width")
+                AssertEqual(True, notes.ClientSize.Height >= notes.Font.Height * 3, scaleContext & " notes height")
+                AssertEqual(True, commandBar.PreferredSize.Width <= commandBar.ClientSize.Width, scaleContext & " command fit")
+
+                AssertEqual(1, list.Items.Count, scaleContext & " long row count")
+                AssertEqual(longName, list.Items(0).SubItems(1).Text, scaleContext & " long name row")
+                AssertEqual(longNotes, list.Items(0).SubItems(2).Text, scaleContext & " long notes row")
+                AssertEqual(SystemColors.Control, name.BackColor, scaleContext & " system read-only editor color")
+                AssertEqual(SystemColors.Control, notes.BackColor, scaleContext & " system read-only notes color")
+
+                AssertFitsParent(filter, scaleContext & " filter bounds")
+                AssertFitsParent(list, scaleContext & " list bounds")
+                AssertFitsParent(name, scaleContext & " name bounds")
+                AssertFitsParent(notes, scaleContext & " notes bounds")
+                For Each buttonName As String In {
+                        "newButton",
+                        "editButton",
+                        "deleteButton",
+                        "undoButton",
+                        "redoButton"}
+                    AssertFitsParent(
+                        RequireControl(Of Button)(form, buttonName),
+                        scaleContext & " " & buttonName)
+                Next
+
+                form.Close()
+                Application.DoEvents()
+            End Using
+        Next
+    End Sub
+
+    Private Sub AssertFitsParent(control As Control, context As String)
+        Dim parentClient As Size = control.Parent.ClientSize
+        AssertEqual(True, control.Width > 0 AndAlso control.Height > 0, context & " positive size")
+        AssertEqual(True, control.Left >= 0 AndAlso control.Top >= 0, context & " nonnegative origin")
+        AssertEqual(True, control.Right <= parentClient.Width + 1, context & " right edge")
+        AssertEqual(True, control.Bottom <= parentClient.Height + 1, context & " bottom edge")
     End Sub
 
     Private Function RequireControl(Of T As Control)(root As Control, name As String) As T

@@ -72,6 +72,19 @@ if (Test-Path -LiteralPath $brandDesignerPath -PathType Leaf) {
     }
 }
 
+foreach ($presentationSource in Get-ChildItem `
+        -LiteralPath $presentationRoot `
+        -Recurse `
+        -File `
+        -Filter '*.cs') {
+    $presentationText = Get-Content -LiteralPath $presentationSource.FullName -Raw
+    if ($presentationText -match '\bColor\s*\.\s*FromArgb\s*\(' -or
+            $presentationText -match '\bColor\s*\.\s*FromName\s*\(') {
+        $failures.Add(
+            "Presentation source '$($presentationSource.FullName)' introduces a fixed custom color instead of a system/theme color.")
+    }
+}
+
 function Test-SamePath {
     param([string]$Left, [string]$Right)
     return [string]::Equals(
