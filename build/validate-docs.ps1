@@ -23,7 +23,8 @@ $requiredFiles = @(
     'docs/compatibility/1x-evidence-matrix.md',
     'release/validation/1.3.0-preparation-2026-08-05.md',
     'release/validation/1.3.0-reconstructed-baseline.md',
-    'release/validation/1.3.0-alpha.1.md'
+    'release/validation/1.3.0-alpha.1.md',
+    'release/validation/1.3.0-alpha.1-post-correction.md'
 )
 
 $failures = New-Object Collections.Generic.List[String]

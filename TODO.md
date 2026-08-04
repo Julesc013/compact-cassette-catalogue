@@ -35,8 +35,10 @@ off only when its committed evidence passes; implementation alone is not done.
   the public 1.2 feed unchanged.
 - [x] Rebuild all four diagnostic lanes from the exact corrected Alpha candidate.
 - [x] Run the complete corrected Alpha validator and record exact evidence.
-- [ ] Create and verify annotated tag `v1.3.0a1`.
-- [ ] Push the exact `dev/1.x` tip and absent tag atomically.
+- [x] Create and verify corrected annotated tag `v1.3.0a1` after preserving the
+  original tag object and lineage.
+- [x] Atomically publish corrected `dev/1.x`, qualified `legacy/1.x`, the Alpha
+  tag, and all preservation tags under exact old-object leases.
 
 Alpha 1 is intentionally unpublished. It does not advance `legacy/1.x`, publish
 binaries, or change the update feed.
