@@ -197,16 +197,37 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
     End Function
 
     Private Shared Sub WithTemporaryDirectory(name As String, action As Action(Of String))
-        Dim testRoot As String = Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
-            "work",
-            "legacy-to-native-migration")
+        ' Keep product-path tests independent from the absolute source/build root.
+        ' The second reproducibility checkout is deliberately much longer and
+        ' must not consume the classic Windows path budget intended for the
+        ' destination, recovery journal, and two reports under test.
+        Dim tempRoot As String = Path.GetFullPath(Path.GetTempPath())
+        Dim testRoot As String = Path.GetFullPath(Path.Combine(tempRoot, "C3-MigrationTests"))
+        If Not testRoot.StartsWith(tempRoot, StringComparison.OrdinalIgnoreCase) Then
+            Throw New InvalidOperationException("Migration test root escaped the OS temporary directory.")
+        End If
         Dim workDirectory As String = Path.Combine(testRoot, name & "-" & Guid.NewGuid().ToString("N"))
         Directory.CreateDirectory(workDirectory)
         Try
             action(workDirectory)
         Finally
-            If Directory.Exists(workDirectory) Then Directory.Delete(workDirectory, True)
+            Dim resolvedWorkDirectory As String = Path.GetFullPath(workDirectory)
+            Dim expectedPrefix As String = testRoot.TrimEnd(Path.DirectorySeparatorChar) &
+                Path.DirectorySeparatorChar
+            If Not resolvedWorkDirectory.StartsWith(
+                    expectedPrefix,
+                    StringComparison.OrdinalIgnoreCase) OrElse
+                    Not String.Equals(
+                        Path.GetDirectoryName(resolvedWorkDirectory),
+                        testRoot,
+                        StringComparison.OrdinalIgnoreCase) Then
+                Throw New InvalidOperationException(
+                    "Refusing to clean an unsafe migration-test directory: " &
+                    resolvedWorkDirectory)
+            End If
+            If Directory.Exists(resolvedWorkDirectory) Then
+                Directory.Delete(resolvedWorkDirectory, True)
+            End If
         End Try
     End Sub
 
