@@ -15,6 +15,12 @@ Namespace Catalogues
             End Get
         End Property
 
+        Friend ReadOnly Property Value As C3.Domain.Catalogues.CatalogueRevision
+            Get
+                Return _value
+            End Get
+        End Property
+
         Public Overloads Function Equals(other As CatalogueRevision) As Boolean _
                 Implements IEquatable(Of CatalogueRevision).Equals
             Return other IsNot Nothing AndAlso _value.Equals(other._value)

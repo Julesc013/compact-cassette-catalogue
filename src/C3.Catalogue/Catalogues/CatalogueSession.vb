@@ -2,30 +2,26 @@ Namespace Catalogues
 
     Public NotInheritable Class CatalogueSession
 
-        Private _filePath As String
-        Private _displayName As String
+        Private ReadOnly _value As C3.Domain.Catalogues.CatalogueSession
         Private _revision As CatalogueRevision
-        Private _isDirty As Boolean
-        Private _changeSequence As Long
+        Private _coreRaisedChanged As Boolean
 
         Public Sub New(newCatalogueDisplayName As String)
-            If String.IsNullOrWhiteSpace(newCatalogueDisplayName) Then
-                Throw New ArgumentException("A display name is required.", "newCatalogueDisplayName")
-            End If
-            _displayName = newCatalogueDisplayName
+            _value = New C3.Domain.Catalogues.CatalogueSession(newCatalogueDisplayName)
+            AddHandler _value.SessionChanged, AddressOf OnCoreSessionChanged
         End Sub
 
         Public Event SessionChanged As EventHandler
 
         Public ReadOnly Property FilePath As String
             Get
-                Return _filePath
+                Return _value.FilePath
             End Get
         End Property
 
         Public ReadOnly Property DisplayName As String
             Get
-                Return _displayName
+                Return _value.DisplayName
             End Get
         End Property
 
@@ -37,76 +33,77 @@ Namespace Catalogues
 
         Public ReadOnly Property IsDirty As Boolean
             Get
-                Return _isDirty
+                Return _value.IsDirty
             End Get
         End Property
 
         Public ReadOnly Property ChangeSequence As Long
             Get
-                Return _changeSequence
+                Return _value.ChangeSequence
             End Get
         End Property
 
         Public Sub BeginNew(displayName As String)
-            _filePath = Nothing
-            _displayName = RequireDisplayName(displayName)
+            BeginCoreChange()
+            _value.BeginNew(displayName)
             _revision = Nothing
-            _isDirty = False
-            RaiseChanged()
+            CompleteCoreChange()
         End Sub
 
         Public Sub SetDocumentLocation(path As String, displayName As String)
-            _filePath = path
-            _displayName = RequireDisplayName(displayName)
-            RaiseChanged()
+            BeginCoreChange()
+            _value.SetDocumentLocation(path, displayName)
+            CompleteCoreChange()
         End Sub
 
         Public Sub MarkChanged()
-            _changeSequence += 1
-            _isDirty = True
-            RaiseChanged()
+            BeginCoreChange()
+            _value.MarkChanged()
+            CompleteCoreChange()
         End Sub
 
         Public Sub SetDirtyForMigration(isDirty As Boolean)
-            If isDirty Then
-                MarkChanged()
-                Return
-            End If
-
-            If _isDirty Then
-                _isDirty = False
-                RaiseChanged()
-            End If
+            BeginCoreChange()
+            _value.SetDirtyForMigration(isDirty)
+            CompleteCoreChange()
         End Sub
 
         Public Sub MarkLoaded(path As String, displayName As String, revision As CatalogueRevision)
-            _filePath = path
-            _displayName = RequireDisplayName(displayName)
+            BeginCoreChange()
+            _value.MarkLoaded(path, displayName, NativeRevision(revision))
             _revision = revision
-            _isDirty = False
-            RaiseChanged()
+            CompleteCoreChange()
         End Sub
 
         Public Sub MarkSaved(path As String, displayName As String, revision As CatalogueRevision)
-            _filePath = path
-            _displayName = RequireDisplayName(displayName)
+            BeginCoreChange()
+            _value.MarkSaved(path, displayName, NativeRevision(revision))
             _revision = revision
-            _isDirty = False
-            RaiseChanged()
+            CompleteCoreChange()
         End Sub
 
-        Private Shared Function RequireDisplayName(value As String) As String
-            If String.IsNullOrWhiteSpace(value) Then
-                Throw New ArgumentException("A display name is required.", "value")
+        Private Shared Function NativeRevision(
+                revision As CatalogueRevision) As C3.Domain.Catalogues.CatalogueRevision
+            If revision Is Nothing Then
+                Return Nothing
             End If
-            Return value
+            Return revision.Value
         End Function
 
-        Private Sub RaiseChanged()
-            RaiseEvent SessionChanged(Me, EventArgs.Empty)
+        Private Sub BeginCoreChange()
+            _coreRaisedChanged = False
+        End Sub
+
+        Private Sub OnCoreSessionChanged(sender As Object, arguments As EventArgs)
+            _coreRaisedChanged = True
+        End Sub
+
+        Private Sub CompleteCoreChange()
+            If _coreRaisedChanged Then
+                RaiseEvent SessionChanged(Me, EventArgs.Empty)
+            End If
         End Sub
 
     End Class
 
 End Namespace
-

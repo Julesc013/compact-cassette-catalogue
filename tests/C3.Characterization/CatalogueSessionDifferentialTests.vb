@@ -2,10 +2,17 @@ Imports LegacyRevision = C3.Catalogue.Catalogues.CatalogueRevision
 Imports LegacySession = C3.Catalogue.Catalogues.CatalogueSession
 Imports NativeRevision = C3.Domain.Catalogues.CatalogueRevision
 Imports NativeSession = C3.Domain.Catalogues.CatalogueSession
+Imports System.Reflection
 
 Friend Module CatalogueSessionDifferentialTests
 
     Friend Sub NativeSessionMatchesTheVbOracle()
+        Dim valueField As FieldInfo = GetType(LegacySession).GetField(
+            "_value",
+            BindingFlags.Instance Or BindingFlags.NonPublic)
+        AssertEqual(False, valueField Is Nothing, "compatibility facade value field")
+        AssertEqual(GetType(NativeSession), valueField.FieldType, "production behavior owner")
+
         Dim legacy As New LegacySession("New Catalogue")
         Dim native As New NativeSession("New Catalogue")
         Dim legacyEvents As Integer
@@ -15,9 +22,13 @@ Friend Module CatalogueSessionDifferentialTests
 
         AssertState(legacy, native, "initial")
 
+        Dim legacySender As Object = Nothing
+        AddHandler legacy.SessionChanged, Sub(sender, args) legacySender = sender
+
         legacy.MarkChanged()
         native.MarkChanged()
         AssertState(legacy, native, "changed")
+        AssertEqual(DirectCast(legacy, Object), legacySender, "compatibility event sender")
 
         legacy.SetDirtyForMigration(True)
         native.SetDirtyForMigration(True)

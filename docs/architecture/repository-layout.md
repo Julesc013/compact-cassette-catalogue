@@ -151,7 +151,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |
 | Persisted catalogue revision identity | `C3.Domain.Catalogues.CatalogueRevision` | frozen `C3.Catalogue` compatibility facade and differential characterization |
-| Document path/dirty state | `CatalogueSession` | forms observe session state |
+| Document path/dirty state | `C3.Domain.Catalogues.CatalogueSession` | frozen `C3.Catalogue` compatibility facade; forms observe session state |
 | Brand/model/deck/tape rules | matching `C3.Catalogue` feature | typed results and adapter tests |
 | Native preference lifecycle and dirty state | `UserPreferencesService` | store/importer characterization |
 | Preference format v1 | `spec/preferences/v1` | `XmlUserPreferencesStore`, canonical example test |

@@ -28,6 +28,9 @@
 - Added an independent C# document-session candidate and differential coverage
   for every state transition, dirty/sequence rule, revision projection, event
   count, and display-name rejection before production ownership changes.
+- Promoted the C# catalogue session to the sole document-lifecycle state owner;
+  the frozen VB facade now projects revisions and preserves compatibility event
+  identity without duplicating path, dirty, sequence, or transition logic.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

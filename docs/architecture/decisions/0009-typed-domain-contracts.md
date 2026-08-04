@@ -75,6 +75,11 @@ owns validation, ordinal equality, hashing, and text projection. The public VB
 type delegates to it solely to preserve the frozen `C3.Catalogue` binary/source
 surface while existing callers migrate.
 
+The second accepted slice is catalogue document/session state. The C# type owns
+path, display name, revision, dirty state, change sequence, transition ordering,
+and change notification. The VB facade retains only the legacy revision wrapper
+projection and re-emits notifications with the compatibility facade as sender.
+
 ## Consequences
 
 - Renames no longer break identity in native 2.0.
