@@ -31,10 +31,10 @@ off only when its committed evidence passes; implementation alone is not done.
 - [x] Promote `legacy/1.x` to the qualified production-identical reconstruction
   checkpoint.
 - [x] Document the Alpha 1, Beta 1, and stable milestone gates.
-- [ ] Set and mechanically verify `1.3.0 / Alpha 1` source identity while leaving
+- [x] Set and mechanically verify `1.3.0 / Alpha 1` source identity while leaving
   the public 1.2 feed unchanged.
-- [ ] Rebuild all four diagnostic lanes from the exact Alpha candidate.
-- [ ] Run the complete Alpha validator and record exact evidence.
+- [x] Rebuild all four diagnostic lanes from the exact corrected Alpha candidate.
+- [x] Run the complete corrected Alpha validator and record exact evidence.
 - [ ] Create and verify annotated tag `v1.3.0a1`.
 - [ ] Push the exact `dev/1.x` tip and absent tag atomically.
 

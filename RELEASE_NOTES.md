@@ -35,6 +35,11 @@ On the current preparation host:
 - all four lanes compile and pass PE/framework/settings/payload checks; and
 - both official baseline executables match their recorded sizes and SHA-256.
 
+All four diagnostic applications created their main windows. In the recorded
+full run, net48 and net481 closed normally; both net40 lanes reproduced the
+known recursive close-cancellation defect and were terminated by the bounded
+smoke cleanup. Alpha records this baseline defect for Beta repair.
+
 VS2017/MSBuild 15 is available for diagnostic net40 builds on this host. The
 required historical VS2015/MSBuild 14.0.25420.1 reconstruction remains a Beta 1
 entry gate and is not represented as passed.

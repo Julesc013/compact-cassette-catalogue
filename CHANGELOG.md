@@ -54,6 +54,11 @@ and is not advertised to existing C3 users.
 - Kept the root three-line update feed at the actually available 1.2.0 release.
 - Recorded that VS2017 fallback builds are diagnostic only and do not replace
   the pending authoritative VS2015/MSBuild 14 net40 gate.
+- Made GUI smoke report the known recursive `Closing`/`Application.Exit` defect
+  honestly: every lane must launch, normal-close timeouts are bounded and
+  cleaned up, and the lifecycle repair remains assigned to Beta 1.
+- Preserved the superseded Alpha tag object and original reconstruction lineage
+  under explicit archive tags before correcting the public development lineage.
 
 Known runtime data-safety and integrity defects remain assigned to Beta 1. No
 1.3 Alpha binary package is published from this checkpoint.
