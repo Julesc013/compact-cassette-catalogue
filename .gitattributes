@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+.gitattributes text eol=lf
+
+# Machine-owned manifests and hash-pinned historical fixtures must have stable
+# checkout bytes on every build host. Captured .NET settings retain CRLF.
+*.json text eol=lf
+fixtures/catalogues/v1.1.0/historical/** text eol=lf
+fixtures/settings/legacy/**/user.config text eol=crlf

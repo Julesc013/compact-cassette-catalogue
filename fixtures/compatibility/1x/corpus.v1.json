@@ -1,0 +1,423 @@
+{
+  "$schema": "../../../spec/compatibility-corpus/v1/corpus.schema.json",
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-04",
+  "supportPolicy": {
+    "productLine": "C3 1.x",
+    "catalogueFormat": "1.1.0",
+    "supportedProducerTags": [
+      "v1.0.0",
+      "v1.1.0",
+      "v1.1.1",
+      "v1.1.2",
+      "v1.2.0b1"
+    ],
+    "inventoryOnlyProducerTags": [
+      "v1.0.0b1",
+      "v1.0.0b2",
+      "v1.0.0b3",
+      "v1.0.0b4",
+      "v1.1.0b1"
+    ]
+  },
+  "settingsProfiles": [
+    {
+      "id": "settings-two-field",
+      "description": "showMessages Boolean and defaultDirectory String",
+      "fixtures": [
+        {
+          "path": "fixtures/settings/legacy/v1.0.0/user.config",
+          "size": 436,
+          "sha256": "07f1f18c0534e32ac7fc86674adaeac93c7e65969658cc033dbe9c4da4af8c33"
+        }
+      ]
+    },
+    {
+      "id": "settings-boolean-update",
+      "description": "two-field profile plus checkUpdates Boolean",
+      "fixtures": [
+        {
+          "path": "fixtures/settings/legacy/v1.1.1/user.config",
+          "size": 523,
+          "sha256": "be93e575c9db2e4679040339770c4ac4bf3427dd8cd836e543f030933934abcc"
+        }
+      ]
+    },
+    {
+      "id": "settings-scheduled-update",
+      "description": "two-field profile plus checkUpdates String and lastUpdateCheck DateTime",
+      "fixtures": [
+        {
+          "path": "fixtures/settings/legacy/v1.1.2/user.config",
+          "size": 606,
+          "sha256": "48ef4672b23c0d927d65a3df60aee490f7bcdc606d3e6d8f855a0b31dafec5fb"
+        },
+        {
+          "path": "fixtures/settings/legacy/v1.2.0-beta.1/user.config",
+          "size": 604,
+          "sha256": "e6ca6a8e6cdc03948c103d4dc98450c5637006077e405c2fe2c5d11d4fc9a58c"
+        }
+      ]
+    }
+  ],
+  "updateProfiles": [
+    {
+      "id": "no-update-client",
+      "description": "No in-application update discovery"
+    },
+    {
+      "id": "legacy-unconditional-text-feed",
+      "description": "Unconditional startup request to the three-line master/VERSION feed"
+    },
+    {
+      "id": "legacy-boolean-text-feed",
+      "description": "Boolean-gated request to the three-line master/VERSION feed"
+    },
+    {
+      "id": "legacy-scheduled-text-feed",
+      "description": "String schedule and last-check timestamp using the three-line master/VERSION feed"
+    },
+    {
+      "id": "legacy-hardened-text-feed",
+      "description": "Normalized schedule, corrected elapsed-time/version comparison, best-effort TLS, and the three-line master/VERSION feed"
+    }
+  ],
+  "formatProvenance": [
+    {
+      "format": "1.0.0",
+      "producerVersion": "0.1.0",
+      "artifactName": "C3-v0.1.0.exe",
+      "artifactSha256": "d31ec564a1a1a54b3910b65d1a37b383e7cd9037698aff6ca4692d5f595d1f26",
+      "releaseTag": "v0.5.4",
+      "classification": "archival-pre-1x"
+    },
+    {
+      "format": "1.0.1",
+      "producerVersion": "0.2.0",
+      "artifactName": "C3-v0.2.0.exe",
+      "artifactSha256": "c05d6cfcaf7fdc0bb3b72f0de67ff9d1dda1735aed1dc2d5cc173c8209a3e164",
+      "releaseTag": "v0.5.4",
+      "classification": "archival-pre-1x"
+    },
+    {
+      "format": "1.0.2",
+      "producerVersion": "0.3.0",
+      "artifactName": "C3-v0.3.0.exe",
+      "artifactSha256": "c5f454f09375d5867b2056fa63f924e7c7e36b5d62e924e377c2938644b87d4d",
+      "releaseTag": "v0.5.4",
+      "classification": "archival-pre-1x"
+    },
+    {
+      "format": "1.1.0",
+      "producerVersion": "0.5.1",
+      "artifactName": "C3-v0.5.1.exe",
+      "artifactSha256": "31832d16378cf8b05709886c4fb4464592cc017b60170d037f8af89801b29c0b",
+      "releaseTag": "v0.5.4",
+      "classification": "supported-1x"
+    }
+  ],
+  "releases": [
+    {
+      "tag": "v1.0.0b1",
+      "sourceCommit": "888480dd667975c60129c9f32389be9a3ee5dc75",
+      "publishedAt": "2019-12-07 08:04:35Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.0.0b1",
+      "prerelease": true,
+      "support": "inventory-only",
+      "reportedProductVersion": "1.0.0b1",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-two-field",
+      "updateProfile": "no-update-client",
+      "artifacts": [
+        {
+          "name": "C3-v1.0.0b1.exe",
+          "size": 422912,
+          "sha256": "b2cba3a3c2fe255b171f8a8a29cd2a465736d9f7bd24518edb4c50154ec1c4d5",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.0.0b1/C3-v1.0.0b1.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [],
+      "deviations": ["The binary reports stage Release although the GitHub release is a prerelease."]
+    },
+    {
+      "tag": "v1.0.0b2",
+      "sourceCommit": "ba25aaa7630986ec500dbce5280f054a43e53728",
+      "publishedAt": "2019-12-12 08:07:39Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.0.0b2",
+      "prerelease": true,
+      "support": "inventory-only",
+      "reportedProductVersion": "1.0.0b2",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-two-field",
+      "updateProfile": "no-update-client",
+      "artifacts": [
+        {
+          "name": "C3-v1.0.0b2.exe",
+          "size": 457216,
+          "sha256": "152336a4559dd80e9d3468c52f83f8a4fbdfa12a348c8f311e2d05b906ea9e86",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.0.0b2/C3-v1.0.0b2.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [],
+      "deviations": ["The binary reports stage Release although the GitHub release is a prerelease."]
+    },
+    {
+      "tag": "v1.0.0b3",
+      "sourceCommit": "73a8329502db61eb950e50b3a0b418587299a709",
+      "publishedAt": "2019-12-16 11:03:39Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.0.0b3",
+      "prerelease": true,
+      "support": "inventory-only",
+      "reportedProductVersion": "1.0.0b3",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-two-field",
+      "updateProfile": "no-update-client",
+      "artifacts": [
+        {
+          "name": "C3-v1.0.0b3.exe",
+          "size": 458240,
+          "sha256": "ffcc972282921a06bd52456eab1ff404c7a9dc48ebd14d09b2f44bb7e0074253",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.0.0b3/C3-v1.0.0b3.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [],
+      "deviations": ["The binary reports stage Release although the GitHub release is a prerelease."]
+    },
+    {
+      "tag": "v1.0.0b4",
+      "sourceCommit": "e68cb56ba34943b19d7081aa4c9fcbd38de0d4f8",
+      "publishedAt": "2019-12-17 03:18:21Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.0.0b4",
+      "prerelease": true,
+      "support": "inventory-only",
+      "reportedProductVersion": "1.0.0b4",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-two-field",
+      "updateProfile": "no-update-client",
+      "artifacts": [
+        {
+          "name": "C3-v1.0.0b4.exe",
+          "size": 462336,
+          "sha256": "949e4517e919418ada6d822d8f3478819d940fabd0964e3e10185801dd0ccd9e",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.0.0b4/C3-v1.0.0b4.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [],
+      "deviations": ["The binary reports stage Release although the GitHub release is a prerelease."]
+    },
+    {
+      "tag": "v1.0.0",
+      "sourceCommit": "0777c683ac674740afed5dc9b87368df9bb0d34f",
+      "publishedAt": "2019-12-19 16:24:19Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.0.0",
+      "prerelease": false,
+      "support": "supported",
+      "reportedProductVersion": "1.0.0",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-two-field",
+      "updateProfile": "no-update-client",
+      "artifacts": [
+        {
+          "name": "C3-v1.0.0.exe",
+          "size": 554496,
+          "sha256": "bb3f624d9702d96a445692b04cf4c367156387ceb6572a7914d087ef5b7ed822",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.0.0/C3-v1.0.0.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/catalogues/v1.1.0/historical/v1.0.0/blank.xml",
+          "size": 1183,
+          "sha256": "b8fa989d959e8c6ff50483731321215b727faf5a028e307bbf38bef32da476df",
+          "normalization": "Generated through the official writer schema; volatile timestamps use fixed ISO-8601 values and text uses repository-canonical LF."
+        }
+      ],
+      "deviations": []
+    },
+    {
+      "tag": "v1.1.0b1",
+      "sourceCommit": "cec4f599bb3da302208f1d48745a6354f13ed579",
+      "publishedAt": "2020-01-30 09:30:53Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.1.0b1",
+      "prerelease": true,
+      "support": "inventory-only",
+      "reportedProductVersion": "1.1.0b1",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-two-field",
+      "updateProfile": "legacy-unconditional-text-feed",
+      "artifacts": [
+        {
+          "name": "C3-v1.1.0b1.exe",
+          "size": 559104,
+          "sha256": "922b341f051c0728f713c5e5f0409fe6bd01ea47762b3d7b61bc1ab52b73f5d2",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.1.0b1/C3-v1.1.0b1.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [],
+      "deviations": ["The binary reports stage Release although the GitHub release is a prerelease."]
+    },
+    {
+      "tag": "v1.1.0",
+      "sourceCommit": "a8f7dbbb5af36b5917f649e52b5e198a9f0628ee",
+      "publishedAt": "2020-04-19 14:00:18Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.1.0",
+      "prerelease": false,
+      "support": "supported",
+      "reportedProductVersion": "1.1.0",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-boolean-update",
+      "updateProfile": "legacy-boolean-text-feed",
+      "artifacts": [
+        {
+          "name": "C3-v1.1.0.exe",
+          "size": 1355776,
+          "sha256": "ea4b5e8d004d1ca9e0e76f4d38762e882f99f0ee054ab5a308c59bc12544dd41",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.1.0/C3-v1.1.0.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/catalogues/v1.1.0/historical/v1.1.0/blank.xml",
+          "size": 1183,
+          "sha256": "f8f34c92c1603941c48e948624bcb67c9ec2501287dfaab04b947827426a4e24",
+          "normalization": "Generated through the official writer schema; volatile timestamps use fixed ISO-8601 values and text uses repository-canonical LF."
+        }
+      ],
+      "deviations": []
+    },
+    {
+      "tag": "v1.1.1",
+      "sourceCommit": "f87d042ce6946c26d8acf6ccfadb7520ec0f2564",
+      "publishedAt": "2020-04-22 07:20:46Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.1.1",
+      "prerelease": false,
+      "support": "supported",
+      "reportedProductVersion": "1.1.1",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-boolean-update",
+      "updateProfile": "legacy-boolean-text-feed",
+      "artifacts": [
+        {
+          "name": "C3-v1.1.1.exe",
+          "size": 1356288,
+          "sha256": "32597d91c1a90af9b3b8e8633779d2e35fbdb70584d3f06dcee4335c46473bba",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.1.1/C3-v1.1.1.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/catalogues/v1.1.0/historical/v1.1.1/blank.xml",
+          "size": 1183,
+          "sha256": "2978bd97be8ca9768cd2df348dbc0e4d367b385dce89b30b8150b9b8511ba35d",
+          "normalization": "Generated through the official writer schema; volatile timestamps use fixed ISO-8601 values and text uses repository-canonical LF."
+        }
+      ],
+      "deviations": []
+    },
+    {
+      "tag": "v1.1.2",
+      "sourceCommit": "817fbae296acb6cd6a5a56ed299a517bf6e62036",
+      "publishedAt": "2020-04-22 08:37:02Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.1.2",
+      "prerelease": false,
+      "support": "supported",
+      "reportedProductVersion": "1.1.2",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net46",
+      "platforms": ["anycpu"],
+      "settingsProfile": "settings-scheduled-update",
+      "updateProfile": "legacy-scheduled-text-feed",
+      "artifacts": [
+        {
+          "name": "C3-v1.1.2.exe",
+          "size": 1356800,
+          "sha256": "50183c989956f85364dd1cda55a1397209a646b58f7df6cda0604540e3382f9e",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.1.2/C3-v1.1.2.exe",
+          "architecture": "anycpu"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/catalogues/v1.1.0/historical/v1.1.2/blank.xml",
+          "size": 1183,
+          "sha256": "038a8a79dfa87eead5476ee0e143df7e09b8dd94da26e183388213fe06d4c48f",
+          "normalization": "Generated through the official writer schema; volatile timestamps use fixed ISO-8601 values and text uses repository-canonical LF."
+        }
+      ],
+      "deviations": ["The scheduled-check elapsed-time comparison runs checks too frequently; this is a defect, not required 2.x behavior."]
+    },
+    {
+      "tag": "v1.2.0b1",
+      "sourceCommit": "2413e9139a098f3321385f2f946e743012a447f5",
+      "publishedAt": "2026-05-14 09:31:13Z",
+      "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v1.2.0b1",
+      "prerelease": true,
+      "support": "supported",
+      "reportedProductVersion": "1.2.0",
+      "reportedStage": "Release",
+      "catalogueFormat": "1.1.0",
+      "targetFramework": "net40",
+      "platforms": ["x86", "x64"],
+      "settingsProfile": "settings-scheduled-update",
+      "updateProfile": "legacy-hardened-text-feed",
+      "artifacts": [
+        {
+          "name": "C3-v1.2.0b1-win-x86.exe",
+          "size": 1326592,
+          "sha256": "205ba251175d5a6fa20a3ace6127a00e5d10d73ad30581032c8f09b20ceb7222",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.2.0b1/C3-v1.2.0b1-win-x86.exe",
+          "architecture": "x86"
+        },
+        {
+          "name": "C3-v1.2.0b1-win-x64.exe",
+          "size": 1326080,
+          "sha256": "257ec9d0ea86f268d8328d71041e63eb379fc1809c91593db29d883359db747c",
+          "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v1.2.0b1/C3-v1.2.0b1-win-x64.exe",
+          "architecture": "x64"
+        }
+      ],
+      "fixtures": [
+        {
+          "path": "fixtures/catalogues/v1.1.0/historical/v1.2.0-beta.1/blank.xml",
+          "size": 1183,
+          "sha256": "9c0ce0034af341841b68b7887f71dd339a5f33c3e1807120cdd89f648e4d61d7",
+          "normalization": "The x86 and x64 writer schemas produced identical normalized content; volatile timestamps use fixed ISO-8601 values and text uses repository-canonical LF."
+        }
+      ],
+      "deviations": ["The tag and GitHub release are Beta 1 while VERSION, binary product version, and reported stage identify 1.2.0 Release."]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<Catalogue>
+  <Information>
+    <Information>File Version</Information>
+    <Value>1.1.0</Value>
+  </Information>
+  <Information>
+    <Information>Program Version</Information>
+    <Value>1.1.0</Value>
+  </Information>
+  <Information>
+    <Information>Program Stage</Information>
+    <Value>Release</Value>
+  </Information>
+  <Information>
+    <Information>Program Date</Information>
+    <Value>2020-04-19T23:40:00+10:00</Value>
+  </Information>
+  <Information>
+    <Information>File Created</Information>
+    <Value>2026-08-04T00:00:00+10:00</Value>
+  </Information>
+  <Information>
+    <Information>File Modified</Information>
+    <Value>2026-08-04T00:00:00+10:00</Value>
+  </Information>
+  <Information>
+    <Information>File Updated</Information>
+    <Value>2026-08-04T00:00:00+10:00</Value>
+  </Information>
+  <Counters>
+    <Counter>Decks</Counter>
+    <Number>0</Number>
+  </Counters>
+  <Counters>
+    <Counter>Brands</Counter>
+    <Number>0</Number>
+  </Counters>
+  <Counters>
+    <Counter>Models</Counter>
+    <Number>0</Number>
+  </Counters>
+  <Counters>
+    <Counter>Tapes</Counter>
+    <Number>0</Number>
+  </Counters>
+</Catalogue>
