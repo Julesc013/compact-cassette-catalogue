@@ -12,6 +12,8 @@ C3 release line.
 - [C3 1.3.0 stable plan](planning/1.3.0-stable.md)
 - [1.2.1/refactor salvage ledger](planning/1.3.0-salvage-ledger.md)
 - [Qualification matrix](testing/1.3.0-qualification-matrix.md)
+- [Alpha 1 qualification record](../release/validation/1.3.0-alpha.1.md)
+- [Alpha 1 post-tag attestation](../release/validation/1.3.0-alpha.1-post-tag.md)
 
 The controlling rule is: preserve the C3 1.2.0 Beta 1 program and repair it.
 The archived 1.2.1-era refactor is evidence and possible 2.x material, not the
