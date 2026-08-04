@@ -96,6 +96,12 @@ Module Program
         RunTest(
             "legacy-to-native dry run blocks unresolved relationships",
             AddressOf LegacyToNativeMigratorTests.DryRunBlocksUnresolvedRelationships)
+        RunTest(
+            "legacy-to-native convert-copy is verified and non-overwriting",
+            AddressOf LegacyToNativeMigratorTests.ConvertCopyWritesVerifiedReportsWithoutOverwriting)
+        RunTest(
+            "interrupted legacy-to-native conversion resumes from its journal",
+            AddressOf LegacyToNativeMigratorTests.InterruptedConvertCopyRecoversFromVerifiedCheckpoint)
         RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
         RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)

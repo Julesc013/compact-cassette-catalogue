@@ -95,6 +95,18 @@ Friend NotInheritable Class NativeXmlCatalogueStoreTests
                     0,
                     Directory.GetFiles(workDirectory, "~c3*.tmp").Length,
                     "owned temporary cleanup")
+
+                Dim copyPath As String = Path.Combine(workDirectory, "copy.c3catalogue")
+                Dim createdCopy As NativeCatalogueSaveResult = store.SaveNew(copyPath, CreateBlank())
+                AssertEqual(True, createdCopy.IsSuccess, "new-only save")
+                Dim copyBytes As Byte() = File.ReadAllBytes(copyPath)
+                Dim refusedCopy As NativeCatalogueSaveResult = store.SaveNew(copyPath, changed)
+                AssertEqual(False, refusedCopy.IsSuccess, "new-only overwrite")
+                AssertEqual(
+                    NativeCatalogueFileFailure.ExternalModification,
+                    refusedCopy.Failure,
+                    "new-only overwrite failure")
+                AssertBytesEqual(copyBytes, File.ReadAllBytes(copyPath), "new-only preserved bytes")
             End Sub)
     End Sub
 

@@ -133,4 +133,45 @@ namespace C3.Infrastructure.Migrations.V1_1ToV2_0
         public NativeCatalogue Document { get; }
         public MigrationReport Report { get; }
     }
+
+    public enum MigrationConversionStatus
+    {
+        Completed = 0,
+        Blocked = 1,
+        Interrupted = 2,
+        Failed = 3
+    }
+
+    public enum MigrationCheckpoint
+    {
+        Planned = 0,
+        NativeWritten = 1,
+        ReportsWritten = 2
+    }
+
+    public interface IMigrationProgress
+    {
+        bool ShouldContinue(MigrationCheckpoint checkpoint);
+    }
+
+    public sealed class MigrationConversionResult
+    {
+        internal MigrationConversionResult(
+            MigrationConversionStatus status,
+            MigrationReport report,
+            string recoveryPath,
+            string message)
+        {
+            Status = status;
+            Report = report;
+            RecoveryPath = recoveryPath ?? string.Empty;
+            Message = message ?? string.Empty;
+        }
+
+        public bool IsSuccess => Status == MigrationConversionStatus.Completed;
+        public MigrationConversionStatus Status { get; }
+        public MigrationReport Report { get; }
+        public string RecoveryPath { get; }
+        public string Message { get; }
+    }
 }

@@ -79,6 +79,22 @@ namespace C3.Infrastructure.CatalogueFiles.Xml.V2_0
             NativeCatalogue document,
             CatalogueRevision expectedRevision)
         {
+            return SaveCore(path, document, expectedRevision, false);
+        }
+
+        public NativeCatalogueSaveResult SaveNew(
+            string path,
+            NativeCatalogue document)
+        {
+            return SaveCore(path, document, null, true);
+        }
+
+        private NativeCatalogueSaveResult SaveCore(
+            string path,
+            NativeCatalogue document,
+            CatalogueRevision expectedRevision,
+            bool requireAbsent)
+        {
             if (string.IsNullOrWhiteSpace(path))
             {
                 return NativeCatalogueSaveResult.Failed(
@@ -104,6 +120,12 @@ namespace C3.Infrastructure.CatalogueFiles.Xml.V2_0
             var backupPath = fullPath + ".bak";
             try
             {
+                if (requireAbsent && File.Exists(fullPath))
+                {
+                    return NativeCatalogueSaveResult.Failed(
+                        NativeCatalogueFileFailure.ExternalModification,
+                        "Convert-copy refuses to overwrite an existing destination.");
+                }
                 if (expectedRevision != null)
                 {
                     if (!File.Exists(fullPath) ||
@@ -138,7 +160,18 @@ namespace C3.Infrastructure.CatalogueFiles.Xml.V2_0
                             "The temporary native output did not round-trip to canonical bytes.");
                     }
 
-                    if (File.Exists(fullPath))
+                    if (requireAbsent)
+                    {
+                        if (File.Exists(fullPath))
+                        {
+                            return NativeCatalogueSaveResult.Failed(
+                                NativeCatalogueFileFailure.ExternalModification,
+                                "The new destination appeared while the verified output was being prepared.");
+                        }
+                        File.Move(temporary.Path, fullPath);
+                        backupPath = null;
+                    }
+                    else if (File.Exists(fullPath))
                     {
                         File.Replace(temporary.Path, fullPath, backupPath, true);
                     }
@@ -161,6 +194,12 @@ namespace C3.Infrastructure.CatalogueFiles.Xml.V2_0
             }
             catch (IOException exception)
             {
+                if (requireAbsent && File.Exists(fullPath))
+                {
+                    return NativeCatalogueSaveResult.Failed(
+                        NativeCatalogueFileFailure.ExternalModification,
+                        "The new destination appeared while the verified output was being committed.");
+                }
                 return NativeCatalogueSaveResult.Failed(
                     NativeCatalogueFileFailure.IoFailure,
                     exception.Message);

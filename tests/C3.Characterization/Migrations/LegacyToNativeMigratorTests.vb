@@ -59,6 +59,67 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
         AssertBytesEqual(sourceBytes, File.ReadAllBytes(sourcePath), "unresolved source bytes")
     End Sub
 
+    Public Shared Sub ConvertCopyWritesVerifiedReportsWithoutOverwriting()
+        WithTemporaryDirectory(
+            "convert-copy",
+            Sub(workDirectory As String)
+                Dim sourcePath As String = FixturePath("valid", "populated.xml")
+                Dim sourceBytes As Byte() = File.ReadAllBytes(sourcePath)
+                Dim destination As String = Path.Combine(workDirectory, "converted.c3catalogue")
+                Dim service As New LegacyToNativeConversionService()
+                Dim converted As MigrationConversionResult = service.ConvertCopy(sourcePath, destination)
+
+                AssertEqual(True, converted.IsSuccess, "convert-copy result")
+                AssertEqual(True, File.Exists(destination), "native destination")
+                AssertEqual(True, File.Exists(destination & ".migration.json"), "machine report")
+                AssertEqual(True, File.Exists(destination & ".migration.txt"), "human report")
+                AssertEqual(False, File.Exists(destination & ".migration.recovery.xml"), "completed journal")
+                AssertBytesEqual(sourceBytes, File.ReadAllBytes(sourcePath), "convert-copy source")
+                AssertEqual(
+                    converted.Report.DestinationRevision,
+                    New NativeXmlCatalogueStore().Load(destination).Revision.Token,
+                    "destination revision")
+
+                Dim jsonBytes As Byte() = File.ReadAllBytes(destination & ".migration.json")
+                AssertEqual(False, jsonBytes.Length >= 3 AndAlso jsonBytes(0) = &HEF AndAlso jsonBytes(1) = &HBB, "report BOM")
+                Dim json As String = File.ReadAllText(destination & ".migration.json")
+                AssertEqual(True, json.Contains("""schemaVersion"": 1"), "report schema")
+                AssertEqual(True, json.Contains("""status"": ""completed"""), "report status")
+
+                Dim refused As MigrationConversionResult = service.ConvertCopy(sourcePath, destination)
+                AssertEqual(MigrationConversionStatus.Blocked, refused.Status, "existing destination")
+                AssertBytesEqual(sourceBytes, File.ReadAllBytes(sourcePath), "refused source")
+            End Sub)
+    End Sub
+
+    Public Shared Sub InterruptedConvertCopyRecoversFromVerifiedCheckpoint()
+        WithTemporaryDirectory(
+            "recover-copy",
+            Sub(workDirectory As String)
+                Dim sourcePath As String = FixturePath("valid", "populated.xml")
+                Dim sourceBytes As Byte() = File.ReadAllBytes(sourcePath)
+                Dim destination As String = Path.Combine(workDirectory, "interrupted.c3catalogue")
+                Dim service As New LegacyToNativeConversionService()
+                Dim interrupted As MigrationConversionResult = service.ConvertCopy(
+                    sourcePath,
+                    destination,
+                    New StopAfterProgress(MigrationCheckpoint.NativeWritten))
+
+                AssertEqual(MigrationConversionStatus.Interrupted, interrupted.Status, "interrupted status")
+                AssertEqual(True, File.Exists(destination), "interrupted native destination")
+                AssertEqual(True, File.Exists(interrupted.RecoveryPath), "interrupted journal")
+                AssertEqual(False, File.Exists(destination & ".migration.json"), "interrupted JSON report")
+                AssertBytesEqual(sourceBytes, File.ReadAllBytes(sourcePath), "interrupted source")
+
+                Dim recovered As MigrationConversionResult = service.Recover(interrupted.RecoveryPath)
+                AssertEqual(True, recovered.IsSuccess, "recovery result")
+                AssertEqual(False, File.Exists(interrupted.RecoveryPath), "recovery journal cleanup")
+                AssertEqual(True, File.Exists(destination & ".migration.json"), "recovered JSON report")
+                AssertEqual(True, File.Exists(destination & ".migration.txt"), "recovered text report")
+                AssertBytesEqual(sourceBytes, File.ReadAllBytes(sourcePath), "recovered source")
+            End Sub)
+    End Sub
+
     Private Shared Function HasNormalization(report As MigrationReport, code As String) As Boolean
         For Each item As MigrationNormalization In report.Normalizations
             If String.Equals(item.Code, code, StringComparison.Ordinal) Then Return True
@@ -93,6 +154,20 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
         Throw New DirectoryNotFoundException("Could not locate the C3 repository root.")
     End Function
 
+    Private Shared Sub WithTemporaryDirectory(name As String, action As Action(Of String))
+        Dim testRoot As String = Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory,
+            "work",
+            "legacy-to-native-migration")
+        Dim workDirectory As String = Path.Combine(testRoot, name & "-" & Guid.NewGuid().ToString("N"))
+        Directory.CreateDirectory(workDirectory)
+        Try
+            action(workDirectory)
+        Finally
+            If Directory.Exists(workDirectory) Then Directory.Delete(workDirectory, True)
+        End Try
+    End Sub
+
     Private Shared Sub AssertBytesEqual(expected As Byte(), actual As Byte(), name As String)
         AssertEqual(expected.Length, actual.Length, name & " length")
         For index As Integer = 0 To expected.Length - 1
@@ -108,4 +183,19 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
                 String.Format("{0}: expected '{1}', found '{2}'.", name, expected, actual))
         End If
     End Sub
+
+    Private NotInheritable Class StopAfterProgress
+        Implements IMigrationProgress
+
+        Private ReadOnly stopAfter As MigrationCheckpoint
+
+        Public Sub New(value As MigrationCheckpoint)
+            stopAfter = value
+        End Sub
+
+        Public Function ShouldContinue(checkpoint As MigrationCheckpoint) As Boolean _
+                Implements IMigrationProgress.ShouldContinue
+            Return checkpoint <> stopAfter
+        End Function
+    End Class
 End Class
