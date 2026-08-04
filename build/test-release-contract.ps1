@@ -385,6 +385,19 @@ try {
     $historyCatalogPath = Join-Path $historyRoot 'release\catalog.v1.json'
     $historyValidationPath = Join-Path $historyValidationRoot '2.0.0-alpha.1.md'
     $historyCatalog = New-CatalogCopy
+    # The canonical repository may be at either E or P. This synthetic history
+    # always starts at pre-qualification C, so project every mutable lifecycle
+    # field explicitly instead of inheriting the live checkpoint phase.
+    $historyCatalog.milestones[0].qualification.state = 'blocked'
+    $historyCatalog.milestones[0].qualification.sourceCommit = $null
+    $historyCatalog.milestones[0].promotion.state = 'unpromoted'
+    $historyCatalog.milestones[0].promotion.tagObject = $null
+    $historyCatalog.milestones[0].publication.state = 'unpublished'
+    $historyCatalog.milestones[0].publication.releaseUrl = $null
+    $historyCatalog.milestones[0].publication.feedPromoted = $false
+    $historyCatalog.milestones[0].postVerification.state = 'not-applicable'
+    $historyCatalog.milestones[0].packages = @()
+    $historyCatalog.milestones[0].checksumManifest = $null
     Write-JsonDocument $historyCatalog $historyCatalogPath
     Write-ValidationFixture `
         $historyValidationPath `
