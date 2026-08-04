@@ -44,18 +44,34 @@ Add-Type -AssemblyName UIAutomationClient
 Add-Type -AssemblyName UIAutomationTypes
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName Microsoft.VisualBasic
+Add-Type -AssemblyName System.Drawing
 Add-Type -TypeDefinition @'
 using System;
 using System.Runtime.InteropServices;
 
 public static class C3PackagedBrandNativeMethods
 {
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RECT
+    {
+        public int Left;
+        public int Top;
+        public int Right;
+        public int Bottom;
+    }
+
     [DllImport("user32.dll", CharSet = CharSet.Auto)]
     public static extern IntPtr SendMessage(
         IntPtr window,
         uint message,
         IntPtr parameter,
         string text);
+
+    [DllImport("user32.dll")]
+    public static extern bool GetWindowRect(IntPtr window, out RECT rectangle);
+
+    [DllImport("user32.dll")]
+    public static extern bool PrintWindow(IntPtr window, IntPtr deviceContext, uint flags);
 }
 '@
 
@@ -65,6 +81,7 @@ $script:activeProcess = $null
 $script:success = $false
 $script:catalogues = @{}
 $script:payloads = @{}
+$script:performance = @{}
 $temporaryBase = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
 $workRoot = Join-Path $temporaryBase ("C3-packaged-brand-workflow-{0}" -f [Guid]::NewGuid().ToString('N'))
 [void](New-Item -ItemType Directory -Path $workRoot)
@@ -358,9 +375,52 @@ function Assert-C3BrandCount {
     throw "Brand list did not contain the expected $Count row(s)."
 }
 
+function Measure-C3WindowPaint {
+    param([System.Windows.Automation.AutomationElement]$Window)
+
+    $handle = [IntPtr]$Window.Current.NativeWindowHandle
+    if ($handle -eq [IntPtr]::Zero) {
+        throw "C3 window '$($Window.Current.Name)' has no native handle for paint measurement."
+    }
+    $rectangle = New-Object C3PackagedBrandNativeMethods+RECT
+    if (-not [C3PackagedBrandNativeMethods]::GetWindowRect($handle, [ref]$rectangle)) {
+        throw "Could not read bounds for C3 window '$($Window.Current.Name)'."
+    }
+    $width = $rectangle.Right - $rectangle.Left
+    $height = $rectangle.Bottom - $rectangle.Top
+    if ($width -le 0 -or $height -le 0) {
+        throw "C3 window '$($Window.Current.Name)' has invalid paint bounds $width by $height."
+    }
+
+    $bitmap = New-Object Drawing.Bitmap($width, $height)
+    $graphics = [Drawing.Graphics]::FromImage($bitmap)
+    $deviceContext = [IntPtr]::Zero
+    try {
+        $deviceContext = $graphics.GetHdc()
+        $stopwatch = [Diagnostics.Stopwatch]::StartNew()
+        $painted = [C3PackagedBrandNativeMethods]::PrintWindow(
+            $handle,
+            $deviceContext,
+            0)
+        $stopwatch.Stop()
+        if (-not $painted) {
+            throw "PrintWindow failed for '$($Window.Current.Name)'."
+        }
+        return [Math]::Round($stopwatch.Elapsed.TotalMilliseconds, 3)
+    }
+    finally {
+        if ($deviceContext -ne [IntPtr]::Zero) {
+            $graphics.ReleaseHdc($deviceContext)
+        }
+        $graphics.Dispose()
+        $bitmap.Dispose()
+    }
+}
+
 function Start-C3Package {
     param([string]$Executable)
 
+    $startup = [Diagnostics.Stopwatch]::StartNew()
     $process = Start-Process `
         -FilePath $Executable `
         -WorkingDirectory (Split-Path -Parent $Executable) `
@@ -384,6 +444,11 @@ function Start-C3Package {
         -Property ([System.Windows.Automation.AutomationElement]::ProcessIdProperty) `
         -Value $process.Id
     Start-Sleep -Seconds 2
+    $startup.Stop()
+    $process | Add-Member `
+        -MemberType NoteProperty `
+        -Name C3StartupMilliseconds `
+        -Value ([Math]::Round($startup.Elapsed.TotalMilliseconds, 3))
     return $process
 }
 
@@ -512,7 +577,10 @@ function Invoke-BrandMutationAndSave {
     $process = $null
     try {
         $process = Start-C3Package -Executable $Executable
+        $brandOpen = [Diagnostics.Stopwatch]::StartNew()
         $brandWindow = Open-C3BrandWindow -Process $process
+        $brandOpen.Stop()
+        $interactionDurations = New-Object Collections.Generic.List[Double]
 
         Invoke-C3Element (Wait-C3Element 'newButton' '' $brandWindow)
         Set-C3Text (Wait-C3Element 'brandNameTextBox' '' $brandWindow) $OriginalName
@@ -520,42 +588,102 @@ function Invoke-BrandMutationAndSave {
         Set-C3Text `
             (Wait-C3Element 'brandNotesTextBox' '' $brandWindow) `
             "Created through the exact $Lane portable package."
+        $interaction = [Diagnostics.Stopwatch]::StartNew()
         Invoke-C3Element (Wait-C3Element 'applyButton' '' $brandWindow)
         Assert-C3BrandRow $brandWindow $Code $OriginalName
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
 
         Invoke-C3Element (Wait-C3Element 'editButton' '' $brandWindow)
         Set-C3Text (Wait-C3Element 'brandNameTextBox' '' $brandWindow) $FinalName
         Set-C3Text `
             (Wait-C3Element 'brandNotesTextBox' '' $brandWindow) `
             'Edited through the packaged OEM+ workspace.'
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'applyButton' '' $brandWindow)
         Assert-C3BrandRow $brandWindow $Code $FinalName
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
 
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'undoButton' '' $brandWindow)
         Assert-C3BrandRow $brandWindow $Code $OriginalName
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'redoButton' '' $brandWindow)
         Assert-C3BrandRow $brandWindow $Code $FinalName
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
 
         Set-C3Text `
             (Wait-C3Element 'filterTextBox' '' $brandWindow) `
             'no packaged brand matches this filter'
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'applyFilterButton' '' $brandWindow)
         Assert-C3BrandCount $brandWindow 0
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'clearFilterButton' '' $brandWindow)
         Assert-C3BrandCount $brandWindow 1
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
 
         Select-C3BrandRow $brandWindow $Code
         Invoke-C3Element (Wait-C3Element 'deleteButton' '' $brandWindow)
         $deleteDialog = Wait-C3Element '' 'Delete brand' $null 10
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element '6' 'Yes' $deleteDialog 10)
-        Wait-C3ElementAbsent '' 'Delete brand' 10
         Assert-C3BrandCount $brandWindow 0
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
+        Wait-C3ElementAbsent '' 'Delete brand' 10
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'undoButton' '' $brandWindow)
         Assert-C3BrandRow $brandWindow $Code $FinalName
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'redoButton' '' $brandWindow)
         Assert-C3BrandCount $brandWindow 0
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
+        $interaction.Restart()
         Invoke-C3Element (Wait-C3Element 'undoButton' '' $brandWindow)
         Assert-C3BrandRow $brandWindow $Code $FinalName
+        $interaction.Stop()
+        $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
+
+        $paintMilliseconds = Measure-C3WindowPaint -Window $brandWindow
+        $process.Refresh()
+        $peakWorkingSet = [Int64]$process.PeakWorkingSet64
+        $maximumInteraction = [Math]::Round(
+            ($interactionDurations | Measure-Object -Maximum).Maximum,
+            3)
+        $script:performance[$Lane] = [PSCustomObject]@{
+            StartupMilliseconds = $process.C3StartupMilliseconds
+            BrandOpenMilliseconds = [Math]::Round(
+                $brandOpen.Elapsed.TotalMilliseconds,
+                3)
+            MaximumInteractionMilliseconds = $maximumInteraction
+            PaintMilliseconds = $paintMilliseconds
+            PeakWorkingSetBytes = $peakWorkingSet
+        }
+        if ($process.C3StartupMilliseconds -gt 30000 -or
+                $brandOpen.Elapsed.TotalMilliseconds -gt 15000 -or
+                $maximumInteraction -gt 5000 -or
+                $paintMilliseconds -gt 5000 -or
+                $peakWorkingSet -gt 536870912) {
+            throw (
+                "Packaged Brand performance exceeded a conservative safety ceiling in '{0}': startup-ms={1}, brand-open-ms={2}, interaction-max-ms={3}, paint-ms={4}, peak-working-set-bytes={5}." -f `
+                    $Lane,
+                    $process.C3StartupMilliseconds,
+                    [Math]::Round($brandOpen.Elapsed.TotalMilliseconds, 3),
+                    $maximumInteraction,
+                    $paintMilliseconds,
+                    $peakWorkingSet)
+        }
 
         Close-C3Window $brandWindow
         Wait-C3ElementAbsent 'BrandWorkspaceForm' 'Brands - C3' 10
@@ -667,6 +795,15 @@ try {
                 $script:payloads[$definition.LaneId].PackageHash,
                 $script:payloads[$definition.LaneId].ExecutableHash,
                 $script:catalogues[$definition.LaneId].Hash)
+        $measurement = $script:performance[$definition.LaneId]
+        Write-Host (
+            'PACKAGED_BRAND_PERFORMANCE|lane={0}|startup-ms={1}|brand-open-ms={2}|interaction-max-ms={3}|paint-ms={4}|peak-working-set-bytes={5}' -f `
+                $definition.LaneId,
+                $measurement.StartupMilliseconds,
+                $measurement.BrandOpenMilliseconds,
+                $measurement.MaximumInteractionMilliseconds,
+                $measurement.PaintMilliseconds,
+                $measurement.PeakWorkingSetBytes)
     }
 
     foreach ($source in $packageDefinitions) {

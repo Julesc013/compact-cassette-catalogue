@@ -67,7 +67,9 @@ Automated evidence currently proves:
   byte, proving a clean round trip through the canonical current designer; and
 - a black-box driver extracted both exact portable archives, completed Brand
   create/edit/filter/confirmed-delete/undo/redo/save through their real controls,
-  and passed all four same-lane and cross-lane reopen combinations.
+  and passed all four same-lane and cross-lane reopen combinations; and
+- both packages established pre-freeze startup, Brands-open, command-response,
+  native-paint, and peak-working-set baselines under conservative safety ceilings.
 
 The current pre-freeze development measurement over 20 warm iterations reported
 maximum presenter times of 0.459 ms for an unfiltered 676-Brand refresh, 0.981 ms
@@ -76,8 +78,8 @@ useful implementation evidence only; the exact candidate measurement and host
 identity will supersede them in release validation.
 
 This is implementation evidence, not yet Alpha 5 qualification. The exact frozen
-candidate still requires rerunning the packaged workflow against its regenerated
-archives, packaged paint/input/memory performance, 100/125/150/200% DPI,
+candidate still requires rerunning the packaged workflow and performance matrix
+against its regenerated archives, 100/125/150/200% DPI,
 keyboard-only, high-contrast,
 screen-reader/accessibility, long-text,
 minimum-size, and dirty-close matrices. Those results belong in the Alpha 5

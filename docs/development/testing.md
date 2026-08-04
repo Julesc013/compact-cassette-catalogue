@@ -148,6 +148,14 @@ remove their temporary catalogues and payloads; failed runs retain the exact
 temporary root for diagnosis. `-KeepWork` retains successful evidence when a
 release investigation needs it.
 
+The same run measures package startup, opening Brands, observable command
+response, a native window paint, and process peak working set. The safety
+ceilings intentionally catch catastrophic regressions rather than asserting a
+universal performance promise. Record repeated frozen-candidate values and the
+host profile before accepting or tightening a product budget. Accessibility-tree
+retirement after a native file or confirmation dialog is not application response
+time and is kept outside the command measurement.
+
 This is an interactive desktop gate: it requires an unlocked user session and
 may briefly foreground C3 and Windows file dialogs. It is intentionally separate
 from the headless default verifier. Candidate evidence must name the archive and
