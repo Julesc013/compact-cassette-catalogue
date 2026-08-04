@@ -50,6 +50,11 @@
     <Compile Include="CassetteModels\CassetteModelOperationResult.cs" />
     <Compile Include="CassetteModels\CassetteModelService.cs" />
     <Compile Include="CassetteModels\ICassetteModelRepository.cs" />
+    <Compile Include="Decks\Deck.cs" />
+    <Compile Include="Decks\DeckDetails.cs" />
+    <Compile Include="Decks\DeckOperationResult.cs" />
+    <Compile Include="Decks\DeckService.cs" />
+    <Compile Include="Decks\IDeckRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\C3.Domain\C3.Domain.csproj">

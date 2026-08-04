@@ -37,6 +37,9 @@
 - Mechanically translated the Cassette Models feature into the isolated C#
   candidate, retaining legacy identifier construction, immutable update keys,
   normalization, ordering, reference protection, and failure contracts.
+- Mechanically translated Decks into the isolated C# candidate, including its
+  full immutable capability/specification value and validation, identity,
+  ordering, recording-reference, and storage-failure behavior.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

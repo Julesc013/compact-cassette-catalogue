@@ -29,6 +29,7 @@ $assemblyPath = Join-Path $repositoryRoot (
 $translatedNamespaces = @(
     'C3.Catalogue.Brands.'
     'C3.Catalogue.CassetteModels.'
+    'C3.Catalogue.Decks.'
 )
 foreach ($namespacePrefix in $translatedNamespaces) {
     & (Join-Path $PSScriptRoot 'validate-catalogue-api.ps1') `
