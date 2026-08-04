@@ -31,14 +31,11 @@ The same reflection mechanism freezes all 312 exported Infrastructure
 signatures under `spec/infrastructure-api/v1`. It reflects layered assemblies
 from an isolated copy of the library output directory so cross-assembly public
 types resolve without locking the real outputs before the later rebuild gate.
-The Infrastructure baseline is the independent API oracle for the remaining
-Alpha 3 language-only migration.
-
-`test-infrastructure-csharp-candidate.ps1` builds the unpackaged candidate and
-compares its entire compiled surface to that oracle. Production and all 68
-characterization scenarios continue to execute the VB implementation until an
-atomic project swap proves the complete C# assembly under the normal product
-test graph.
+The Infrastructure baseline was the independent API oracle for its Alpha 3
+language-only migration and remains an ongoing compatibility alarm. The
+complete 312-signature candidate was promoted atomically; the normal product
+graph and all 68 characterization scenarios now execute the C# production
+assembly, and the temporary candidate harness has been removed.
 
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane
 are exercised. The runner is deliberately dependency-light and returns a nonzero

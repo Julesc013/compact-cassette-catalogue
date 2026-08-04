@@ -88,11 +88,12 @@ the production project GUID and assembly identity, passed the behavior gate, and
 replaced the VB project. The candidate identity and every superseded VB catalogue
 implementation were removed.
 
-The remaining Infrastructure translation uses the same rule. Its 312 exported
-signatures are frozen before candidate source is admitted, and its existing
-file, preference, update, diagnostics, and v1.1 XML scenarios remain the
-behavioral oracle. Reflection resolves the layered public surface from isolated
-output copies so validation cannot lock later build outputs.
+The Infrastructure translation used the same rule. Its 312 exported signatures
+were frozen before candidate source was admitted, and the file, preference,
+update, diagnostics, and v1.1 XML scenarios remained the behavioral oracle. The
+C# project then preserved the production project GUID and binary identity, passed
+through the real application graph, and replaced the VB project. The candidate
+and superseded VB implementations were removed.
 
 ## Consequences
 

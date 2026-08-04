@@ -36,7 +36,7 @@ do not belong in the manifest before implementation.
 ## Current project roles
 
 - `C3.Catalogue.csproj`: explicit C# 7.3/net40-compatible catalogue concepts/rules.
-- `C3.Infrastructure.vbproj`: net40-compatible adapters and external mechanisms.
+- `C3.Infrastructure.csproj`: explicit C# 7.3/net40-compatible adapters and external mechanisms.
 - `C3.WinForms.Net40.vbproj`: x86/net40 executable and authoritative current
   WinForms designer project.
 - `C3.WinForms.Net48.vbproj`: x64/net48 executable over the same feature sources.

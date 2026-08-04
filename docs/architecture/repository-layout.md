@@ -35,7 +35,7 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |   |-- Decks/
 |   |   `-- Tapes/
 |   |-- C3.Infrastructure/
-|   |   |-- C3.Infrastructure.CSharpCandidate.csproj  # temporary Alpha 3 harness
+|   |   |-- C3.Infrastructure.csproj
 |   |   |-- CatalogueFiles/Xml/V1_1/
 |   |   |-- Diagnostics/
 |   |   |-- FileOperations/
@@ -124,10 +124,10 @@ directory is the only production code allowed to know v1.1 table/column names.
 Preference persistence/import, update policy, and diagnostics live beside their
 mechanism rather than in a catch-all platform module. `FileOperations` contains
 only reusable, same-volume transaction primitives required by more than one
-persistence adapter; it does not own catalogue or preference policy. During the
-remaining Alpha 3 port, the unpackaged C# candidate compiles translated types
-beside their VB oracles and must match all 312 frozen signatures before the
-atomic project swap.
+persistence adapter; it does not own catalogue or preference policy. The
+completed C# 7.3 port preserved the original project GUID, binary identity,
+net40 contract, and all 312 frozen public signatures; the candidate and VB
+implementations no longer exist.
 
 `C3.WinForms` composes services and owns interaction and presentation. Its two
 project files compile the same physical feature sources. The Net40 project is the
@@ -156,6 +156,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Catalogue format 1.1.0 | `spec/catalogue/v1.1.0` | legacy XML adapter and fixtures |
 | Native domain identity, time, validation, command/change-set, and undo semantics | `C3.Domain` and ADR 0009 | characterization/property tests; migrated aggregate slices |
 | Current catalogue-library compiled public surface | `spec/catalogue-api/v1/public-api.txt` | reflection validator after every characterization build; semantics remain in source/tests |
+| Current infrastructure-library compiled public surface | `spec/infrastructure-api/v1/public-api.txt` | reflection validator after every characterization build; external semantics remain in source/tests |
 | Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | no production projection while draft |
 | 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |

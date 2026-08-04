@@ -21,13 +21,11 @@ The architecture optimizes for four things, in this order:
 | `C3.Infrastructure` | XML format adapters, atomic file I/O, C3-owned preferences and legacy import, diagnostics, update feeds, and other external-system adapters | Form behavior or business rules |
 | `C3.WinForms` | Forms, controls, user interaction, workspace state, preference composition, and runtime-lane policy | Persistence parsing or duplicated domain rules |
 
-During Alpha 3, unmigrated `C3.Catalogue` features remain the sole production
-behavior owners and VB differential oracles while named slices move to
-`C3.Domain`. A frozen VB public facade may delegate to the migrated owner; it may
-not retain a second implementation of the rule. Its compiled public
-surface is frozen in [`spec/catalogue-api/v1`](../../spec/catalogue-api/v1/README.md)
-and checked after every characterization build; behavior remains protected by
-the executable characterization suite.
+During Alpha 3, named behaviors moved to `C3.Domain` without retaining a second
+implementation. The compiled Catalogue surface remains frozen in
+[`spec/catalogue-api/v1`](../../spec/catalogue-api/v1/README.md) and checked after
+every characterization build; behavior remains protected by the executable
+characterization suite.
 
 The complete `C3.Catalogue` production assembly is explicit C# 7.3. Its
 mechanical translation was staged in an unpackaged candidate, matched against
@@ -35,17 +33,12 @@ all 269 frozen VB signatures, then promoted atomically through the behavior
 suite. The candidate project and superseded VB implementations were removed so
 there is one production owner.
 
-The current VB `C3.Infrastructure` production assembly is independently frozen
-at 312 compiled public signatures under
-[`spec/infrastructure-api/v1`](../../spec/infrastructure-api/v1/README.md) before
-its staged C# translation. Existing external-behavior characterization remains
-the semantic gate; the compiled surface prevents accidental caller drift.
-
-The temporary `C3.Infrastructure.CSharpCandidate` compiles the mechanically
-translated types from the same feature directories but is not referenced by the
-application or package graph. It must reproduce the complete frozen surface
-before the production project can be swapped, and it is removed immediately
-after the behavior gate proves the new single owner.
+The complete `C3.Infrastructure` production assembly is also explicit C# 7.3.
+Its staged translation matched all 312 signatures under
+[`spec/infrastructure-api/v1`](../../spec/infrastructure-api/v1/README.md), then
+passed the external-behavior suite through the real application graph. The
+candidate and all superseded VB Infrastructure sources were removed so every
+external mechanism has one production owner.
 
 `C3.WinForms` has two project files over the same physical UI sources:
 

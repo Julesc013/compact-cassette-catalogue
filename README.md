@@ -19,10 +19,10 @@ safety, typed identity and commands, deterministic migration, recovery and
 undo/redo, an OEM+ accessible WinForms workspace, reproducible distribution, and
 open language-neutral contracts. It is not a big-bang rewrite.
 
-The catalogue and native domain layers are explicit C# 7.3 after proven,
-API-frozen slices. Remaining VB infrastructure and presentation code stays in
-production until each replacement passes compatibility and UI parity. C11
-belongs to Universal Setup/bootstrap work;
+The domain, catalogue, and infrastructure layers are explicit C# 7.3 after
+proven, API-frozen slices. Remaining VB presentation code stays in production
+until its replacement passes compatibility and UI parity. C11 belongs to
+Universal Setup/bootstrap work;
 C++11 is reserved for a measured isolated native boundary, never catalogue logic.
 
 Read the [product vision](docs/product/vision.md),

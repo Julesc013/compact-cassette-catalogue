@@ -55,6 +55,10 @@
 - Added the complete unpackaged C# 7.3 Infrastructure candidate as 50
   type-focused sources across its existing feature directories, with its build
   and 312-signature differential comparison now enforced by the normal gate.
+- Promoted the complete C# 7.3 Infrastructure assembly under its original
+  project GUID, binary identity, net40 contract, and feature directories;
+  redirected all consumers and removed the candidate plus every superseded VB
+  Infrastructure implementation.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

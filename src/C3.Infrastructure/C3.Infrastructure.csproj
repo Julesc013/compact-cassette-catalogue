@@ -5,10 +5,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{273A231D-86D9-4D2C-850B-CB586E5DF1A2}</ProjectGuid>
+    <ProjectGuid>{BDF6C715-A5C6-4776-A5A1-7599F47610E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>C3.Infrastructure</RootNamespace>
-    <AssemblyName>C3.Infrastructure.CSharpCandidate</AssemblyName>
+    <AssemblyName>C3.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <LangVersion>7.3</LangVersion>
@@ -18,16 +18,16 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\artifacts\migration\infrastructure-csharp\Debug\</OutputPath>
-    <IntermediateOutputPath>obj\CSharpCandidate\Debug\</IntermediateOutputPath>
+    <OutputPath>..\..\artifacts\bin\libraries\net40\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\artifacts\migration\infrastructure-csharp\Release\</OutputPath>
-    <IntermediateOutputPath>obj\CSharpCandidate\Release\</IntermediateOutputPath>
+    <OutputPath>..\..\artifacts\bin\libraries\net40\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
