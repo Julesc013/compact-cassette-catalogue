@@ -9,6 +9,7 @@ $catalogueRoot = Join-Path $repositoryRoot 'src\C3.Catalogue'
 $domainRoot = Join-Path $repositoryRoot 'src\C3.Domain'
 $infrastructureRoot = Join-Path $repositoryRoot 'src\C3.Infrastructure'
 $catalogueProject = Join-Path $catalogueRoot 'C3.Catalogue.vbproj'
+$catalogueCandidateProject = Join-Path $catalogueRoot 'C3.Catalogue.CSharpCandidate.csproj'
 $infrastructureProject = Join-Path $infrastructureRoot 'C3.Infrastructure.vbproj'
 $net40Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net40.vbproj'
 $net48Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net48.vbproj'
@@ -39,6 +40,17 @@ foreach ($source in Get-ChildItem -LiteralPath $catalogueRoot -Recurse -File -Fi
         '\bDataRow\b',
         '\bMy\.Settings\b'
     ) 'C3.Catalogue'
+}
+
+foreach ($source in Get-ChildItem -LiteralPath $catalogueRoot -Recurse -File -Filter '*.cs') {
+    Assert-FileDoesNotContain $source.FullName @(
+        'System\.Data',
+        'System\.Windows\.Forms',
+        'System\.Xml',
+        '\bDataSet\b',
+        '\bDataRow\b',
+        '\bMy\.Settings\b'
+    ) 'C3.Catalogue C# candidate'
 }
 
 foreach ($source in Get-ChildItem -LiteralPath $domainRoot -Recurse -File -Filter '*.cs') {
@@ -78,6 +90,20 @@ $catalogueProjectReferenceCount = [regex]::Matches(
     '<ProjectReference\b').Count
 if ($catalogueProjectReferenceCount -ne 1) {
     $failures.Add('C3.Catalogue may reference only C3.Domain.')
+}
+
+$catalogueCandidateProjectText = Get-Content -LiteralPath $catalogueCandidateProject -Raw
+if ($catalogueCandidateProjectText -notmatch '<LangVersion>7\.3</LangVersion>') {
+    $failures.Add('The C3.Catalogue C# candidate must pin language version 7.3.')
+}
+if (-not $catalogueCandidateProjectText.Contains('..\C3.Domain\C3.Domain.csproj')) {
+    $failures.Add('The C3.Catalogue C# candidate must reference C3.Domain.')
+}
+$catalogueCandidateReferenceCount = [regex]::Matches(
+    $catalogueCandidateProjectText,
+    '<ProjectReference\b').Count
+if ($catalogueCandidateReferenceCount -ne 1) {
+    $failures.Add('The C3.Catalogue C# candidate may reference only C3.Domain.')
 }
 
 $infrastructureProjectText = Get-Content -LiteralPath $infrastructureProject -Raw

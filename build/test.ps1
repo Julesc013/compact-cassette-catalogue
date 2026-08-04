@@ -26,6 +26,8 @@ if ($LASTEXITCODE -ne 0) {
 
 & (Join-Path $PSScriptRoot 'validate-catalogue-api.ps1') `
     -Configuration $Configuration
+& (Join-Path $PSScriptRoot 'test-catalogue-csharp-candidate.ps1') `
+    -Configuration $Configuration
 
 $testExecutable = Join-Path $repositoryRoot "artifacts\tests\characterization\$Configuration\C3.CharacterizationTests.exe"
 & $testExecutable

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\build\C3.Common.props" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6D9CCB3E-F290-4053-97E5-7DB9FD764411}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>C3.Catalogue</RootNamespace>
+    <AssemblyName>C3.Catalogue.CSharpCandidate</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\artifacts\bin\candidates\net40\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\CSharpCandidate\Debug\</IntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\artifacts\bin\candidates\net40\Release\</OutputPath>
+    <IntermediateOutputPath>obj\CSharpCandidate\Release\</IntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.cs">
+      <Link>Properties\VersionAssemblyInfo.g.cs</Link>
+    </Compile>
+    <Compile Include="Brands\Brand.cs" />
+    <Compile Include="Brands\BrandDraft.cs" />
+    <Compile Include="Brands\BrandOperationResult.cs" />
+    <Compile Include="Brands\BrandService.cs" />
+    <Compile Include="Brands\IBrandRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C3.Domain\C3.Domain.csproj">
+      <Project>{9C51184F-1A7B-4B57-B70C-3A5400F62BA1}</Project>
+      <Name>C3.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

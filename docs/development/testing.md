@@ -21,6 +21,12 @@ The characterization build also reflects `C3.Catalogue.dll` and compares its
 This freezes the VB migration oracle independently from behavior tests; neither
 contract can be regenerated merely to make an unexplained port difference pass.
 
+During the Alpha 3 mechanical port, `test-catalogue-csharp-candidate.ps1` builds
+the isolated C# 7.3 candidate and compares every admitted feature namespace with
+the same baseline. Production continues to execute the VB oracle until the
+complete candidate surface matches and the normal behavior suite passes after
+an atomic project swap.
+
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane
 are exercised. The runner is deliberately dependency-light and returns a nonzero
 process code on any failure.

@@ -29,6 +29,12 @@ surface is frozen in [`spec/catalogue-api/v1`](../../spec/catalogue-api/v1/READM
 and checked after every characterization build; behavior remains protected by
 the executable characterization suite.
 
+The temporary `C3.Catalogue.CSharpCandidate` build compiles translated feature
+sources beside, but never into, the running product. Each admitted namespace
+must match its filtered VB oracle surface. The candidate is removed when the
+complete assembly passes characterization and becomes the single production
+project; it is not a durable module or a place for redesign.
+
 `C3.WinForms` has two project files over the same physical UI sources:
 
 - `C3.WinForms.Net40.vbproj`: x86, .NET Framework 4.0, Windows XP SP3+

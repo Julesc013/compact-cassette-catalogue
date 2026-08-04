@@ -31,6 +31,9 @@
 - Promoted the C# catalogue session to the sole document-lifecycle state owner;
   the frozen VB facade now projects revisions and preserves compatibility event
   identity without duplicating path, dirty, sequence, or transition logic.
+- Added a temporary side-by-side C# catalogue translation lane and mechanically
+  translated the complete Brands feature; its compiled types and members must
+  match the namespace-filtered VB API oracle before the production swap.
 
 
 ### Version 2.0.0 Alpha 2 - Qualified, intentionally unpublished (2026-08-04)

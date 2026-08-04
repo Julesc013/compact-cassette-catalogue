@@ -4,6 +4,7 @@ param(
     [string]$Configuration = 'Release',
     [string]$AssemblyPath,
     [string]$BaselinePath,
+    [string]$NamespacePrefix,
     [switch]$WriteBaseline
 )
 
@@ -118,7 +119,14 @@ foreach ($type in @($assembly.GetExportedTypes() | Sort-Object FullName)) {
 }
 
 $actual = @($lines | Sort-Object -CaseSensitive -Unique)
+if (-not [string]::IsNullOrWhiteSpace($NamespacePrefix)) {
+    $escapedPrefix = [regex]::Escape($NamespacePrefix)
+    $actual = @($actual | Where-Object { $_ -match $escapedPrefix })
+}
 if ($WriteBaseline) {
+    if (-not [string]::IsNullOrWhiteSpace($NamespacePrefix)) {
+        throw 'A namespace-filtered projection cannot replace the complete baseline.'
+    }
     $parent = Split-Path -Parent $BaselinePath
     if (-not (Test-Path -LiteralPath $parent -PathType Container)) {
         [IO.Directory]::CreateDirectory($parent) | Out-Null
@@ -135,10 +143,19 @@ if (-not (Test-Path -LiteralPath $BaselinePath -PathType Leaf)) {
 $expected = @(Get-Content -LiteralPath $BaselinePath | Where-Object {
         -not [string]::IsNullOrWhiteSpace($_) -and -not $_.StartsWith('#')
     })
+if (-not [string]::IsNullOrWhiteSpace($NamespacePrefix)) {
+    $expected = @($expected | Where-Object { $_ -match $escapedPrefix })
+}
 $difference = @(Compare-Object -ReferenceObject $expected -DifferenceObject $actual -CaseSensitive)
 if ($difference.Count -gt 0) {
     throw ("Catalogue public API differs from the frozen VB oracle:`n" +
         (($difference | Format-Table -AutoSize | Out-String).TrimEnd()))
 }
 
-Write-Host "Catalogue public API matches the frozen VB oracle: $($actual.Count) signatures."
+$scope = if ([string]::IsNullOrWhiteSpace($NamespacePrefix)) {
+    'complete assembly'
+}
+else {
+    $NamespacePrefix
+}
+Write-Host "Catalogue public API matches the frozen VB oracle for ${scope}: $($actual.Count) signatures."

@@ -80,6 +80,13 @@ path, display name, revision, dirty state, change sequence, transition ordering,
 and change notification. The VB facade retains only the legacy revision wrapper
 projection and re-emits notifications with the compatibility facade as sender.
 
+Remaining `C3.Catalogue` language-only translations use an isolated candidate
+assembly with the same namespaces but a different assembly identity. A feature
+enters that candidate only when its compiled surface matches the corresponding
+namespace in the frozen VB baseline. It cannot be packaged or referenced by the
+application. Once complete, the project swap is tested as one exact behavioral
+change and the temporary candidate identity is removed.
+
 ## Consequences
 
 - Renames no longer break identity in native 2.0.
