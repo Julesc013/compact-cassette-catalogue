@@ -30,7 +30,7 @@ catch {
 }
 
 & (Join-Path $PSScriptRoot 'validate-release-train.ps1')
-& (Join-Path $PSScriptRoot 'validate-release-contract.ps1') -Mode Master
+& (Join-Path $PSScriptRoot 'validate-release-contract.ps1') -Mode Repository
 
 $branch = ([string](& git -C $repositoryRoot branch --show-current)).Trim()
 if ($LASTEXITCODE -ne 0 -or $branch -cne $integrationBranch) {
@@ -45,8 +45,18 @@ $integration = ([string](& git -C $repositoryRoot rev-parse (
             "refs/heads/$integrationBranch"))).Trim()
 $qualified = ([string](& git -C $repositoryRoot rev-parse (
             "refs/heads/$qualifiedBranch"))).Trim()
+$remoteIntegration = ([string](& git -C $repositoryRoot rev-parse (
+            "refs/remotes/origin/$integrationBranch"))).Trim()
+$remoteQualified = ([string](& git -C $repositoryRoot rev-parse (
+            "refs/remotes/origin/$qualifiedBranch"))).Trim()
 if ($head -cne $integration) {
     throw "Milestone transition requires HEAD at local $integrationBranch."
+}
+if ($head -cne $remoteIntegration) {
+    throw "Milestone transition requires origin/$integrationBranch at current HEAD."
+}
+if ($qualified -cne $remoteQualified) {
+    throw "Local and origin/$qualifiedBranch must identify the same qualified checkpoint."
 }
 & git -C $repositoryRoot merge-base --is-ancestor $qualified $head
 if ($LASTEXITCODE -ne 0) {
@@ -82,6 +92,19 @@ $tagType = ([string](& git -C $repositoryRoot cat-file -t (
             'refs/tags/' + $previousTag))).Trim()
 if ($LASTEXITCODE -ne 0 -or $tagType -cne 'tag') {
     throw "Previous qualified tag '$previousTag' is missing or not annotated."
+}
+$tagCommit = ([string](& git -C $repositoryRoot rev-list -n 1 (
+            'refs/tags/' + $previousTag))).Trim()
+$qualifiedLine = @((([string](& git -C $repositoryRoot rev-list `
+                    --parents -n 1 $qualified)).Trim()) -split ' ')
+if ($qualifiedLine.Count -ne 2 -or $qualifiedLine[1] -cne $tagCommit) {
+    throw "$qualifiedBranch must identify direct post-operation child P of $previousTag."
+}
+$previousValidationPath = "release/validation/$previousLabel.md"
+& git -C $repositoryRoot diff --quiet $qualified HEAD -- `
+    'release/catalog.v1.json' $previousValidationPath
+if ($LASTEXITCODE -ne 0) {
+    throw 'Integration lifecycle evidence differs from the qualified post-operation checkpoint.'
 }
 
 $next = $milestones[$currentIndex + 1]
