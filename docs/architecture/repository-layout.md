@@ -58,11 +58,13 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   `-- v2.0.0/                      # explicitly unimplemented design draft
 |-- spec/preferences/v1/             # implemented shared profile contract
 |-- spec/release-catalog/v1/          # checkpoint lifecycle/artifact schema
+|-- spec/release-train/v1/            # resumable milestone-controller schema
 |-- spec/update-feed/v1/              # bounded 2.x release-manifest contract
 |-- build/
 |-- release/
 |   |-- catalog.v1.json              # machine lifecycle and artifact identity
 |   |-- feeds/
+|   |-- train/                        # current programme pointer and order
 |   `-- validation/
 |-- docs/
 |   |-- product/
@@ -119,6 +121,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Published legacy updater value | `release/feeds/legacy-1x/VERSION` | root `VERSION`; deliberately independent from current build |
 | Update-channel policy and branch contract | `docs/governance/versioning-and-channels.md` | release scripts and feed directories |
 | Checkpoint lifecycle and artifact identity | `release/catalog.v1.json` | validation records and C/E/P promotion checks |
+| Current programme milestone and order | `release/train/2.0.0.json` | train validator and transition scripts |
 | 2.x update manifest syntax and publication shape | `spec/update-feed/v1` | generated candidates, promoted channel feeds, and bounded runtime reader |
 | Published 2.x beta/stable availability | matching channel `release.json`, changed only by successful public `P` | catalogue and validation evidence; release candidates use beta |
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |

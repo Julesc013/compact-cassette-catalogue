@@ -9,6 +9,8 @@ Documentation is organized by its audience and ownership.
 - [Versioning and update channels](governance/versioning-and-channels.md)
 - [Machine-readable contract index](../spec/README.md)
 - [Release catalogue v1 contract](../spec/release-catalog/v1/README.md)
+- [Release-train controller v1 contract](../spec/release-train/v1/README.md)
+- [Current C3 2.0 train state](../release/train/README.md)
 - [Update feed v1 contract](../spec/update-feed/v1/README.md)
 - [C3 1.x to 2.x compatibility charter](compatibility/1x-to-2x-charter.md)
 

@@ -8,6 +8,8 @@ $ErrorActionPreference = 'Stop'
 
 & (Join-Path $PSScriptRoot 'verify-metadata.ps1')
 & (Join-Path $PSScriptRoot 'test-json-validator.ps1')
+& (Join-Path $PSScriptRoot 'validate-release-train.ps1')
+& (Join-Path $PSScriptRoot 'test-release-train.ps1')
 & (Join-Path $PSScriptRoot 'validate-release-contract.ps1')
 & (Join-Path $PSScriptRoot 'test-release-contract.ps1')
 & (Join-Path $PSScriptRoot 'test-release-ref-transaction.ps1')

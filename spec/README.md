@@ -25,10 +25,12 @@ both supported PowerShell generations first.
 
 Schema documents themselves are strict UTF-8 and bounded to 1 MiB. Each
 consumer supplies its tighter or looser versioned document ceiling, such as
-32 KiB for update manifests and 4 MiB for the long-lived release catalogue.
+32 KiB for update manifests, 256 KiB for a release-train controller, and 4 MiB
+for the long-lived release catalogue.
 
 Current contracts:
 
 - [`catalogue/v1.1.0/`](catalogue/v1.1.0/) — accepted legacy catalogue profile;
-- [`release-catalog/v1/`](release-catalog/v1/) — checkpoint ledger; and
+- [`release-catalog/v1/`](release-catalog/v1/) — checkpoint ledger;
+- [`release-train/v1/`](release-train/v1/) — resumable programme controller; and
 - [`update-feed/v1/`](update-feed/v1/) — update discovery and release assets.

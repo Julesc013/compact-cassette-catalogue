@@ -33,6 +33,12 @@ jobs:
         shell: powershell
         run: ./build/test-json-validator.ps1
 
+      - name: Verify resumable release-train state
+        shell: powershell
+        run: |
+          ./build/validate-release-train.ps1
+          ./build/test-release-train.ps1
+
       - name: Verify repository release contract
         shell: powershell
         run: ./build/validate-release-contract.ps1 -Mode Repository -RequireRemoteBaseline

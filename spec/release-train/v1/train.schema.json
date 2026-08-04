@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Julesc013/compact-cassette-catalogue/spec/release-train/v1/train.schema.json",
+  "title": "C3 2.0 release-train controller v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "programme",
+    "currentMilestone",
+    "status",
+    "lastQualifiedTag",
+    "candidateCommit",
+    "publicationPolicy",
+    "milestones"
+  ],
+  "properties": {
+    "$schema": { "const": "../../spec/release-train/v1/train.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "programme": { "const": "2.0.0" },
+    "currentMilestone": {
+      "type": "string",
+      "pattern": "^(?:alpha\\.[1-6]|beta\\.1)$"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "blocked",
+        "awaiting-owner-manual-validation"
+      ]
+    },
+    "lastQualifiedTag": {
+      "type": ["string", "null"],
+      "pattern": "^v2\\.0\\.0-alpha\\.[1-6]$"
+    },
+    "candidateCommit": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "publicationPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alpha", "beta", "rc", "stable"],
+      "properties": {
+        "alpha": { "const": "tag-only" },
+        "beta": { "const": "owner-manual-acceptance" },
+        "rc": { "const": "public-prerelease" },
+        "stable": { "const": "unchanged-rc-promotion" }
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/milestone" }
+    }
+  },
+  "$defs": {
+    "milestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "releaseLabel", "state"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?:alpha\\.[1-6]|beta\\.1)$"
+        },
+        "releaseLabel": {
+          "type": "string",
+          "pattern": "^2\\.0\\.0-(?:alpha\\.[1-6]|beta\\.1)$"
+        },
+        "state": {
+          "enum": [
+            "pending",
+            "active",
+            "qualified",
+            "awaiting-owner-manual-validation"
+          ]
+        }
+      }
+    }
+  }
+}

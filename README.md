@@ -98,6 +98,7 @@ fixtures               privacy-safe valid, invalid, culture, and security exampl
 spec                    catalogue, preference, and release-catalogue contracts
 build                   build, verification, and deterministic packaging automation
 release/catalog.v1.json canonical checkpoint lifecycle and artifact index
+release/train           resumable milestone order and active programme pointer
 release/feeds           legacy compatibility and published-channel metadata
 release/validation      immutable evidence for exact release candidates
 docs                    product, architecture, design, development, and user contracts

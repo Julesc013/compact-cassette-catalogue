@@ -37,6 +37,12 @@ Every alpha, beta, release candidate, and stable tag must be reachable from
 is public, pushed alpha source and tags are visible; “internal alpha” means that
 no binary release is published, announced, or promoted through an update feed.
 
+`release/train/2.0.0.json` makes the current programme step resumable. Validate
+it with `build/validate-release-train.ps1`; use the thin orchestration scripts in
+`release/train/README.md` to compose the gates below. The train file owns order
+and the active pointer only. This release process and `release/catalog.v1.json`
+remain authoritative for C/E/P topology, artifacts, and observed external facts.
+
 ## Stage gates
 
 | Evidence | Alpha | Beta | Release candidate | Stable |

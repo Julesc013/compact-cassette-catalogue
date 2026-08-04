@@ -1,0 +1,158 @@
+[CmdletBinding()]
+param()
+
+Set-StrictMode -Version 2.0
+$ErrorActionPreference = 'Stop'
+
+$repositoryRoot = Split-Path -Parent $PSScriptRoot
+$validator = Join-Path $PSScriptRoot 'validate-release-train.ps1'
+$schemaPath = Join-Path $repositoryRoot 'spec\release-train\v1\train.schema.json'
+$canonicalTrain = Join-Path $repositoryRoot 'release\train\2.0.0.json'
+$canonicalCatalog = Join-Path $repositoryRoot 'release\catalog.v1.json'
+$canonicalProps = Join-Path $PSScriptRoot 'Version.props'
+$testRoot = Join-Path ([IO.Path]::GetTempPath()) (
+    'c3-release-train-' + [Guid]::NewGuid().ToString('N'))
+$trainPath = Join-Path $testRoot 'train.json'
+$catalogPath = Join-Path $testRoot 'catalog.json'
+$propsPath = Join-Path $testRoot 'Version.props'
+$utf8WithoutBom = New-Object Text.UTF8Encoding($false)
+$passed = 0
+
+function Reset-Fixtures {
+    Copy-Item -LiteralPath $canonicalTrain -Destination $trainPath -Force
+    Copy-Item -LiteralPath $canonicalCatalog -Destination $catalogPath -Force
+    Copy-Item -LiteralPath $canonicalProps -Destination $propsPath -Force
+}
+
+function Write-JsonFixture {
+    param(
+        [string]$Path,
+        [object]$Value
+    )
+
+    [IO.File]::WriteAllText(
+        $Path,
+        (($Value | ConvertTo-Json -Depth 100) + "`n"),
+        $utf8WithoutBom)
+}
+
+function Invoke-TrainValidator {
+    $arguments = @(
+        '-NoLogo',
+        '-NoProfile',
+        '-NonInteractive',
+        '-ExecutionPolicy', 'Bypass',
+        '-File', $validator,
+        '-TrainPath', $trainPath,
+        '-SchemaPath', $schemaPath,
+        '-CatalogPath', $catalogPath,
+        '-VersionPropsPath', $propsPath,
+        '-SkipGitFacts')
+    $savedErrorActionPreference = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        [void](& powershell.exe @arguments 2>&1)
+        return $LASTEXITCODE
+    }
+    finally {
+        $ErrorActionPreference = $savedErrorActionPreference
+    }
+}
+
+function Assert-Passes {
+    param([string]$Scenario)
+
+    if ((Invoke-TrainValidator) -ne 0) {
+        throw "$Scenario`: expected release-train validation to pass."
+    }
+    $script:passed++
+}
+
+function Assert-Fails {
+    param([string]$Scenario)
+
+    if ((Invoke-TrainValidator) -eq 0) {
+        throw "$Scenario`: expected release-train validation to fail."
+    }
+    $script:passed++
+}
+
+try {
+    [IO.Directory]::CreateDirectory($testRoot) | Out-Null
+
+    Reset-Fixtures
+    Assert-Passes 'canonical Alpha 1 controller'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $first = $train.milestones[0]
+    $train.milestones[0] = $train.milestones[1]
+    $train.milestones[1] = $first
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'milestone reordering'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.milestones = @($train.milestones | Select-Object -First 6)
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'missing Beta milestone'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.lastQualifiedTag = 'v2.0.0-alpha.1'
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'premature last-qualified tag'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.candidateCommit = '0000000000000000000000000000000000000000'
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'candidate SHA disagreement'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.status = 'awaiting-owner-manual-validation'
+    $train.milestones[0].state = 'awaiting-owner-manual-validation'
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'owner acceptance on an Alpha'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.currentMilestone = 'alpha.2'
+    $train.lastQualifiedTag = 'v2.0.0-alpha.1'
+    $train.milestones[0].state = 'qualified'
+    $train.milestones[1].state = 'active'
+    $props = [IO.File]::ReadAllText($propsPath)
+    $props = $props.Replace('<C3ReleaseStage>Alpha 1</C3ReleaseStage>',
+        '<C3ReleaseStage>Alpha 2</C3ReleaseStage>')
+    $props = $props.Replace('<C3FileVersion>2.0.0.1</C3FileVersion>',
+        '<C3FileVersion>2.0.0.2</C3FileVersion>')
+    [IO.File]::WriteAllText($propsPath, $props, $utf8WithoutBom)
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'advanced pointer without qualified catalogue evidence'
+
+    Reset-Fixtures
+    $props = [IO.File]::ReadAllText($propsPath)
+    $props = $props.Replace('<C3ReleaseStage>Alpha 1</C3ReleaseStage>',
+        '<C3ReleaseStage>Alpha 2</C3ReleaseStage>')
+    $props = $props.Replace('<C3FileVersion>2.0.0.1</C3FileVersion>',
+        '<C3FileVersion>2.0.0.2</C3FileVersion>')
+    [IO.File]::WriteAllText($propsPath, $props, $utf8WithoutBom)
+    Assert-Fails 'build identity disagreement'
+}
+finally {
+    if (Test-Path -LiteralPath $testRoot) {
+        $resolvedTestRoot = [IO.Path]::GetFullPath($testRoot)
+        $resolvedTempRoot = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
+        if (-not $resolvedTestRoot.StartsWith(
+                $resolvedTempRoot,
+                [StringComparison]::OrdinalIgnoreCase) -or
+            [IO.Path]::GetFileName($resolvedTestRoot) -cnotmatch
+                '^c3-release-train-[0-9a-f]{32}$') {
+            throw "Refusing to remove unsafe release-train test path: $resolvedTestRoot"
+        }
+        Remove-Item -LiteralPath $resolvedTestRoot -Recurse -Force
+    }
+}
+
+Write-Host "Release-train tests passed: $passed scenarios."
