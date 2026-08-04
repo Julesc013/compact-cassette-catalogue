@@ -1,10 +1,19 @@
-# Implemented legacy catalogue persistence
+# Implemented catalogue persistence boundaries
+
+Two format owners coexist without sharing syntax logic:
+
+| Profile | Sole owner | Model boundary |
+| --- | --- | --- |
+| Legacy 1.1.0 | `CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore` | Compatibility `DataSet` below the composition seam |
+| Native 2.0.0 candidate | `CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore` | `C3.Catalogue.Native.NativeCatalogue` |
+
+## Legacy 1.1.0
 
 `C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore` is the only
 component permitted to read or write the legacy v1.1 XML format. WinForms owns
 file dialogs and messages; catalogue rules do not know about files or XML.
 
-## Load transaction
+### Load transaction
 
 1. Check that the selected file exists and is at most 64 MiB.
 2. Parse with DTD processing prohibited, external resolution disabled, and XML
@@ -22,7 +31,7 @@ file dialogs and messages; catalogue rules do not know about files or XML.
 Any failure leaves the existing global compatibility references and active
 `CatalogueSession` untouched.
 
-## Save transaction
+### Save transaction
 
 1. Resolve the destination without changing the active session path.
 2. If overwriting the current document, compare its on-disk SHA-256 revision with
@@ -42,14 +51,14 @@ Cancellation, validation failure, I/O failure, and external modification all
 return before session identity or dirty state changes. A best-effort cleanup
 removes only the uniquely named temporary file created by the failed attempt.
 
-## Failure contract
+### Failure contract
 
 The adapter returns typed failures for missing files, excessive size, invalid
 XML, missing/unsupported versions, invalid structure, constraint violations,
 external changes, access denial, I/O errors, and verification failures. Forms
 present these results; they do not interpret exceptions or XML themselves.
 
-## Transition boundary
+### Transition boundary
 
 The adapter currently consumes the existing `DataSet` schema because this is a
 strangler migration, not a format rewrite. `LegacyGlobalState` is the single
@@ -57,8 +66,29 @@ WinForms composition seam that owns the active document and wires its typed
 repositories. Forms never access tables or rows. `DataSet` must not cross into
 `C3.Catalogue`, and new WinForms source must consume typed services instead.
 
-This document describes only implemented catalogue 1.1.0 persistence. The
-[native-v2 ADR](decisions/0005-native-v2-format-and-migration.md) and
-[migration design](../migration/catalogue-1.1-to-2.0.md) are proposed contracts,
-not current reader/writer claims. Legacy mode continues to use this adapter even
-after a native profile exists.
+Legacy mode continues to use this adapter after native-v2 exists. No native
+element, ID, namespace, or extension is ever injected into a legacy Save.
+
+## Native 2.0.0 candidate
+
+`NativeXmlCatalogueReader` preflights the 64 MiB input with DTD/entity expansion
+disabled and exact depth, element, attribute, and scalar limits. It then requires
+the immutable namespace/profile, canonical element sequence, known attributes,
+typed scalar lexemes, unique IDs, and a fully resolved in-document graph.
+Unknown core or extension content is rejected rather than ignored.
+
+`NativeXmlCatalogueWriter` is the only byte projection. It sorts entities by ID
+through the model, emits fixed schema order, canonical UTC/decimal/Boolean text,
+UTF-8 without BOM, LF, and no foreign content. Rewriting a canonical file is
+byte-identical.
+
+`NativeXmlCatalogueStore` owns path and revision behavior. It writes a unique
+sibling temporary file, flushes it, reopens it through the same reader, rewrites
+the reopened model and requires byte identity, then performs same-volume move or
+replacement with a byte-exact backup. Expected-revision mismatch leaves the
+destination untouched. Migration and UI call this store; they do not reproduce
+its XML or transaction rules.
+
+The [native-v2 ADR](decisions/0005-native-v2-format-and-migration.md) remains at
+its candidate gate until migration, loss-aware export, CLI, recovery, both lanes,
+and exact packages pass together.

@@ -54,13 +54,15 @@ small runtime adapters may differ between those project files.
 
 ```text
 C3.WinForms.Net40 ----+--> C3.Infrastructure --> C3.Catalogue --> C3.Domain
-                      |                         ^
-C3.WinForms.Net48 ----+-------------------------+
+                      |          |              ^
+C3.WinForms.Net48 ----+----------+--------------+
+                                 +--------------------------> C3.Domain
 ```
 
 Dependencies never point toward WinForms. `C3.Catalogue` depends only on APIs
-available in .NET Framework 4.0. `C3.Infrastructure` may depend on
-`C3.Catalogue`; the reverse reference is forbidden.
+available in .NET Framework 4.0. `C3.Infrastructure` explicitly references both
+`C3.Catalogue` and the Domain value types exposed by Catalogue's public native
+contracts; neither reference points back toward Infrastructure.
 
 ## Interaction rule
 

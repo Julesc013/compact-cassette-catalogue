@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalogue format="2.0.0" id="11111111111111111111111111111111" xmlns="urn:c3:catalogue:2">
+  <metadata>
+    <producer>C3 native-v2 fixture</producer>
+    <createdUtc>2026-08-04T00:00:00.0000000Z</createdUtc>
+    <modifiedUtc>2026-08-04T00:00:00.0000000Z</modifiedUtc>
+  </metadata>
+  <brands />
+  <cassetteModels />
+  <deckModels />
+  <deckUnits />
+  <tapes />
+</catalogue>

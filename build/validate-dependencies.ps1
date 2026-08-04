@@ -101,11 +101,14 @@ if ($infrastructureProjectText -notmatch '<LangVersion>7\.3</LangVersion>') {
 if (-not $infrastructureProjectText.Contains('..\C3.Catalogue\C3.Catalogue.csproj')) {
     $failures.Add('C3.Infrastructure must reference C3.Catalogue.')
 }
+if (-not $infrastructureProjectText.Contains('..\C3.Domain\C3.Domain.csproj')) {
+    $failures.Add('C3.Infrastructure must explicitly reference Domain types exposed by C3.Catalogue.')
+}
 $infrastructureReferenceCount = [regex]::Matches(
     $infrastructureProjectText,
     '<ProjectReference\b').Count
-if ($infrastructureReferenceCount -ne 1) {
-    $failures.Add('C3.Infrastructure may reference only C3.Catalogue.')
+if ($infrastructureReferenceCount -ne 2) {
+    $failures.Add('C3.Infrastructure may reference only C3.Catalogue and C3.Domain.')
 }
 
 foreach ($appProject in @($net40Project, $net48Project)) {
@@ -122,4 +125,4 @@ if ($failures.Count -gt 0) {
     throw ("Dependency validation failed:`n - " + ($failures -join "`n - "))
 }
 
-Write-Host 'Dependency direction verified: WinForms -> Infrastructure -> Catalogue -> Domain; Domain remains dependency-free.'
+Write-Host 'Dependency direction verified: WinForms -> Infrastructure -> Catalogue/Domain; Catalogue -> Domain; Domain remains dependency-free.'

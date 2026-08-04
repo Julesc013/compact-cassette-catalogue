@@ -52,6 +52,11 @@
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyDeckRepository.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyTapeRepository.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyXmlCatalogueStore.cs" />
+    <Compile Include="CatalogueFiles\Xml\V2_0\NativeCatalogueFileFailure.cs" />
+    <Compile Include="CatalogueFiles\Xml\V2_0\NativeCatalogueResults.cs" />
+    <Compile Include="CatalogueFiles\Xml\V2_0\NativeXmlCatalogueReader.cs" />
+    <Compile Include="CatalogueFiles\Xml\V2_0\NativeXmlCatalogueStore.cs" />
+    <Compile Include="CatalogueFiles\Xml\V2_0\NativeXmlCatalogueWriter.cs" />
     <Compile Include="Diagnostics\BufferedLogger.cs" />
     <Compile Include="Diagnostics\CrashReportContext.cs" />
     <Compile Include="Diagnostics\CrashReportWriter.cs" />
@@ -93,6 +98,10 @@
     <Compile Include="Updates\UpdateReleasePackageDocument.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\C3.Domain\C3.Domain.csproj">
+      <Project>{9C51184F-1A7B-4B57-B70C-3A5400F62BA1}</Project>
+      <Name>C3.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.csproj">
       <Project>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</Project>
       <Name>C3.Catalogue</Name>

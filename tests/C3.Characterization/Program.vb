@@ -81,6 +81,15 @@ Module Program
         RunTest(
             "store round-trip remains culture independent",
             AddressOf LegacyXmlCatalogueStoreTests.RoundTripRemainsCultureIndependent)
+        RunTest(
+            "native writer matches schema and canonical round-trip",
+            AddressOf NativeXmlCatalogueStoreTests.CanonicalWriterMatchesSchemaAndRoundTrips)
+        RunTest(
+            "native reader rejects unsafe and unknown input",
+            AddressOf NativeXmlCatalogueStoreTests.ReaderRejectsUnsafeAndUnknownInput)
+        RunTest(
+            "native store saves transactionally and detects external changes",
+            AddressOf NativeXmlCatalogueStoreTests.StoreSavesTransactionallyAndDetectsExternalChanges)
         RunTest("brand service validates and protects referenced brands", AddressOf BrandServiceProtectsCatalogueRules)
         RunTest("cassette model service owns identifiers and reference safety", AddressOf CassetteModelServiceOwnsRules)
         RunTest("deck service preserves identity and recording references", AddressOf DeckServiceOwnsRules)

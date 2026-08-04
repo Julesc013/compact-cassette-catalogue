@@ -11,6 +11,12 @@
 - Added the stable-ID native catalogue graph for brands, cassette models, deck
   models, physical deck units, tapes, sides, and owned recordings, with exact
   typed-reference validation and deterministic key-based migration identity.
+- Implemented one strict native-v2 reader and deterministic writer with exact
+  namespace/structure/value/reference validation, bounded XML complexity, XSD
+  and canonical-byte fixtures, and rejection coverage for unsafe input.
+- Added the native transactional store with SHA-256 revision checks, unique
+  sibling temporary files, re-open/canonical-byte verification, byte-exact
+  backups, external-edit protection, and typed failure results.
 
 
 ### Version 2.0.0 Alpha 3 - Qualified, intentionally unpublished (2026-08-04)

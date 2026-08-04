@@ -5,6 +5,12 @@ ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadataWriter|Sys
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueException|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure failure,System.String message
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueException|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure failure,System.String message,System.Exception innerException
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueReader|
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore|
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueReader reader,C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter writer
+ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter|
 ctor|C3.Infrastructure.Diagnostics.CrashReportContext|
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|System.String filePath,System.Version profileVersion,System.DateTime lastWriteTimeUtc
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|
@@ -31,6 +37,19 @@ enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|Missin
 enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|None|0
 enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|UnsupportedVersion|5
 enum|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|VerificationFailure|11
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|AccessDenied|10
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|DuplicateIdentity|7
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|ExternalModification|9
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|FileNotFound|1
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|FileTooLarge|2
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|InvalidStructure|4
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|InvalidValue|6
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|IoFailure|11
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|None|0
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|UnresolvedReference|8
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|UnsafeXml|3
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|UnsupportedFormat|5
+enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|VerificationFailure|12
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|DuplicateSetting|5
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidStructure|4
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidValue|6
@@ -111,6 +130,15 @@ method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|NextNumber
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|Update|instance|System.Void|C3.Catalogue.Tapes.Tape value
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|Load|instance|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|System.String path,System.Data.DataSet schema,System.Collections.Generic.IEnumerable<System.String> supportedVersions
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|Save|instance|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|System.String path,System.Data.DataSet document,C3.Catalogue.Catalogues.CatalogueRevision expectedRevision,System.Collections.Generic.IEnumerable<System.String> supportedVersions
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Failed|static|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure failure,System.String message
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Success|static|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|C3.Catalogue.Native.NativeCatalogue document,C3.Catalogue.Catalogues.CatalogueRevision revision
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|Failed|static|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure failure,System.String message
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|Success|static|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|C3.Catalogue.Catalogues.CatalogueRevision revision,System.String backupPath
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueReader|Read|instance|C3.Catalogue.Native.NativeCatalogue|System.Byte[] bytes
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore|Load|instance|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|System.String path
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore|Save|instance|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|System.String path,C3.Catalogue.Native.NativeCatalogue document,C3.Catalogue.Catalogues.CatalogueRevision expectedRevision
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter|Write|instance|System.Byte[]|C3.Catalogue.Native.NativeCatalogue document
+method|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter|Write|instance|System.Void|System.IO.Stream destination,C3.Catalogue.Native.NativeCatalogue document
 method|C3.Infrastructure.Diagnostics.BufferedLogger|Error|static|System.Void|System.String message
 method|C3.Infrastructure.Diagnostics.BufferedLogger|Information|static|System.Void|System.String message
 method|C3.Infrastructure.Diagnostics.BufferedLogger|RecordAction|static|System.Void|System.String action
@@ -166,6 +194,17 @@ property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Fai
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|IsSuccess|System.Boolean|getset
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Message|System.String|getset
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSaveResult|Revision|C3.Catalogue.Catalogues.CatalogueRevision|getset
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Document|C3.Catalogue.Native.NativeCatalogue|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Failure|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Message|System.String|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|Revision|C3.Catalogue.Catalogues.CatalogueRevision|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|BackupPath|System.String|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|Failure|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|Message|System.String|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|Revision|C3.Catalogue.Catalogues.CatalogueRevision|get
+property|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueException|Failure|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|get
 property|C3.Infrastructure.Diagnostics.BufferedLogger|LastAction|System.String|get
 property|C3.Infrastructure.Diagnostics.CrashReportContext|BuildLane|System.String|getset
 property|C3.Infrastructure.Diagnostics.CrashReportContext|CataloguePath|System.String|getset
@@ -276,6 +315,13 @@ type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueSchema|class|seale
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyDeckRepository|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyTapeRepository|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|enum|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueLoadResult|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueSaveResult|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueException|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueReader|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter|class|sealed
 type|C3.Infrastructure.Diagnostics.BufferedLogger|class|sealed
 type|C3.Infrastructure.Diagnostics.CrashReportContext|class|sealed
 type|C3.Infrastructure.Diagnostics.CrashReportWriter|class|sealed
