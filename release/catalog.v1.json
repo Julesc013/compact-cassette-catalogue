@@ -156,10 +156,10 @@
       },
       "supersededBy": null,
       "promotion": {
-        "state": "unpromoted",
+        "state": "tagged",
         "targetBranch": "master",
         "tag": "v2.0.0-alpha.4",
-        "tagObject": null
+        "tagObject": "53b09ee71c79ae77d39f72a4c6675dc9c1571ccc"
       },
       "publication": {
         "policy": "intentionally-unpublished",
