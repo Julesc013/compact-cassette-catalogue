@@ -88,6 +88,7 @@
     <Compile Include="Workspace\WorkspaceControllerTests.vb" />
     <Compile Include="Workspace\BrandWorkspacePresenterTests.vb" />
     <Compile Include="Workspace\BrandWorkspaceFormContractTests.vb" />
+    <Compile Include="Workspace\BrandWorkspacePerformanceTests.vb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\C3.Domain\C3.Domain.csproj">

@@ -7,11 +7,19 @@ Imports System.Windows.Forms
 Friend Module BrandWorkspaceFormContractTests
 
     Public Sub PreservesDesignerDpiKeyboardAndAccessibilityContracts()
+        RunOnStaThread(AddressOf VerifyFormContract)
+    End Sub
+
+    Public Sub ExecutesCreateEditFilterUndoAndRedoThroughControls()
+        RunOnStaThread(AddressOf VerifyControlWorkflow)
+    End Sub
+
+    Private Sub RunOnStaThread(action As Action)
         Dim failure As Exception = Nothing
         Dim worker As New Thread(
             Sub()
                 Try
-                    VerifyFormContract()
+                    action()
                 Catch ex As Exception
                     failure = ex
                 End Try
@@ -27,6 +35,80 @@ Friend Module BrandWorkspaceFormContractTests
                 "Brand workspace UI contract failed on its STA thread.",
                 failure)
         End If
+    End Sub
+
+    Private Sub VerifyControlWorkflow()
+        Dim document As DataSet = Program.CreateFixtureSchema()
+        Dim service As New BrandService(New LegacyBrandRepository(Function() document))
+        Dim session As New CatalogueSession("New Catalogue")
+        Dim workspace As New WorkspaceController(
+            session,
+            CatalogueCompatibilityMode.LegacyV1_1,
+            False,
+            20)
+
+        Using form As New BrandWorkspaceForm(service, workspace, False)
+            form.ShowInTaskbar = False
+            form.Opacity = 0
+            form.Show()
+            Application.DoEvents()
+
+            Dim list As ListView = RequireControl(Of ListView)(form, "brandListView")
+            Dim name As TextBox = RequireControl(Of TextBox)(form, "brandNameTextBox")
+            Dim code As TextBox = RequireControl(Of TextBox)(form, "brandCodeTextBox")
+            Dim notes As TextBox = RequireControl(Of TextBox)(form, "brandNotesTextBox")
+            Dim create As Button = RequireControl(Of Button)(form, "newButton")
+            Dim edit As Button = RequireControl(Of Button)(form, "editButton")
+            Dim apply As Button = RequireControl(Of Button)(form, "applyButton")
+            Dim undo As Button = RequireControl(Of Button)(form, "undoButton")
+            Dim redo As Button = RequireControl(Of Button)(form, "redoButton")
+            Dim filter As TextBox = RequireControl(Of TextBox)(form, "filterTextBox")
+            Dim applyFilter As Button = RequireControl(Of Button)(form, "applyFilterButton")
+            Dim clearFilter As Button = RequireControl(Of Button)(form, "clearFilterButton")
+            Dim emptyState As Label = RequireControl(Of Label)(form, "emptyStateLabel")
+
+            create.PerformClick()
+            name.Text = "Maxell"
+            code.Text = "mx"
+            notes.Text = "Reference stock"
+            apply.PerformClick()
+            Application.DoEvents()
+            AssertEqual("Maxell", service.Find("MX").Name, "control create")
+            AssertEqual(1, list.Items.Count, "created list row")
+            AssertEqual(True, session.IsDirty, "control create dirty state")
+
+            list.Items(0).Selected = True
+            list.Items(0).Focused = True
+            Application.DoEvents()
+            AssertEqual(True, edit.Enabled, "selected edit enabled")
+            edit.PerformClick()
+            name.Text = "Maxell Audio"
+            notes.Text = "Updated through controls"
+            apply.PerformClick()
+            Application.DoEvents()
+            AssertEqual("Maxell Audio", service.Find("MX").Name, "control edit")
+
+            AssertEqual(True, undo.Enabled, "control undo enabled")
+            undo.PerformClick()
+            Application.DoEvents()
+            AssertEqual("Maxell", service.Find("MX").Name, "control undo")
+            AssertEqual(True, redo.Enabled, "control redo enabled")
+            redo.PerformClick()
+            Application.DoEvents()
+            AssertEqual("Maxell Audio", service.Find("MX").Name, "control redo")
+
+            filter.Text = "no-match"
+            applyFilter.PerformClick()
+            Application.DoEvents()
+            AssertEqual(0, list.Items.Count, "control filter")
+            AssertEqual(True, emptyState.Visible, "filtered empty presentation")
+            clearFilter.PerformClick()
+            Application.DoEvents()
+            AssertEqual(1, list.Items.Count, "control filter clear")
+
+            form.Close()
+            Application.DoEvents()
+        End Using
     End Sub
 
     Private Sub VerifyFormContract()

@@ -45,6 +45,10 @@ Invoke-RepositoryScript 'validate-project-parity.ps1'
 Invoke-RepositoryScript 'validate-docs.ps1'
 Invoke-RepositoryScript 'test-doc-validation.ps1'
 Invoke-RepositoryScript 'test.ps1' @{ Configuration = 'Release' }
+Invoke-RepositoryScript 'measure-brand-workspace.ps1' @{
+    Configuration = 'Release'
+    SkipBuild = $true
+}
 Invoke-RepositoryScript 'build.ps1' @{
     Configuration = 'Release'
     Rebuild = [bool]$Rebuild

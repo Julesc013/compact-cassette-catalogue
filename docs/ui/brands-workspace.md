@@ -56,12 +56,23 @@ Automated evidence currently proves:
 - create/update/delete, field and duplicate rejection, reference protection,
   selection across refresh, partial multi-delete, dirty checkpoints, undo/redo,
   and exact timestamp restoration are characterized; and
+- a hidden STA control workflow performs create, edit, undo, redo, filter, and
+  clear through the real form controls; and
+- the complete 676-code legacy Brand space has a repeatable warm performance
+  command and conservative regression budgets; and
 - off-screen browse and create-state renders have been inspected on the current
   maintained development host.
 
+The current pre-freeze development measurement over 20 warm iterations reported
+maximum presenter times of 0.459 ms for an unfiltered 676-Brand refresh, 0.981 ms
+for a filtered refresh, and 0.883 ms for editor activation. These numbers are
+useful implementation evidence only; the exact candidate measurement and host
+identity will supersede them in release validation.
+
 This is implementation evidence, not yet Alpha 5 qualification. The exact frozen
 candidate still requires Visual Studio 2017 designer open/save, packaged workflow
-execution in both lanes, measured representative performance, 100/125/150/200%
-DPI, keyboard-only, high-contrast, screen-reader/accessibility, long-text,
+execution in both lanes, packaged paint/input/memory performance,
+100/125/150/200% DPI, keyboard-only, high-contrast,
+screen-reader/accessibility, long-text,
 minimum-size, and dirty-close matrices. Those results belong in the Alpha 5
 validation record and cannot be inferred from source or automated contracts.

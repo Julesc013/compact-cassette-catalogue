@@ -23,6 +23,9 @@
   Brands workspace for both runtime lanes, with DPI-aware layout, keyboard and
   accessibility contracts, stable multi-selection, draft-close protection, and
   reference-safe reversible commands.
+- Added real-control Brands workflow characterization and a repeatable
+  maximum-code-space performance measurement to detect list/filter/editor
+  regressions before candidate freeze.
 
 
 ### Version 2.0.0 Alpha 4 - Qualified, intentionally unpublished (2026-08-05)

@@ -113,6 +113,22 @@ For each lane and candidate:
 Record OS, framework, source commit, artifact hash, steps, result, and limitation
 in `release/validation/<version>.md`.
 
+## Brand workspace performance
+
+Alpha 5 includes a bounded synthetic Brand measurement because the legacy
+two-letter code space has a real maximum of 676 Brands. The normal
+characterization gate applies conservative regression ceilings; the measurement
+command reports the actual warm maxima used by candidate evidence:
+
+```powershell
+.\build\measure-brand-workspace.ps1 -Configuration Release
+```
+
+It measures 20 unfiltered refreshes, 20 filtered refreshes, and 20 editor
+activations after setup and warm-up. This headless presenter measurement catches
+algorithmic regressions but does not replace packaged paint, input-latency,
+launch, memory, or minimum-OS measurements.
+
 ## UI, accessibility, DPI, and performance
 
 Open every changed form in the authoritative Visual Studio designer. Test

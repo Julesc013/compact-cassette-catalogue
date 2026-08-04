@@ -64,6 +64,12 @@ Module Program
             "shared Brand form preserves designer DPI keyboard and accessibility contracts",
             AddressOf BrandWorkspaceFormContractTests.PreservesDesignerDpiKeyboardAndAccessibilityContracts)
         RunTest(
+            "shared Brand form executes create edit filter undo and redo through controls",
+            AddressOf BrandWorkspaceFormContractTests.ExecutesCreateEditFilterUndoAndRedoThroughControls)
+        RunTest(
+            "maximum Brand workspace remains within conservative interaction budgets",
+            AddressOf BrandWorkspacePerformanceTests.MaximumWorkspaceMeetsConservativeBudgets)
+        RunTest(
             "native catalogue graph uses stable typed references",
             AddressOf NativeCatalogueContractTests.NativeGraphUsesStableTypedReferencesAndCanonicalOrder)
         RunTest(
@@ -245,9 +251,15 @@ Module Program
     End Sub
 
     Private Sub RunCompatibilityCommand(arguments As String())
+        If arguments.Length = 1 AndAlso
+                arguments(0) = "--measure-brand-workspace" Then
+            BrandWorkspacePerformanceTests.WriteMeasurements()
+            Return
+        End If
+
         If arguments.Length <> 2 Then
             Throw New ArgumentException(
-                "Compatibility commands require an operation and one catalogue path.")
+                "The requested characterization command has an invalid argument count.")
         End If
 
         Select Case arguments(0)

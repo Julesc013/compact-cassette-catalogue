@@ -28,6 +28,8 @@ Implemented so far:
   keyboard operation, accessible names, stable multi-selection, partial
   reference-safe delete, explicit draft-close handling, and semantic undo/redo;
   and
+- added real-control STA workflow coverage plus a repeatable maximum-676-Brand
+  presenter performance measurement with conservative regression budgets; and
 - expanded the canonical portable payload to include the shared presentation
   assembly from the same manifest in both lanes.
 
