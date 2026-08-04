@@ -18,7 +18,7 @@ default expression, not a valid resolved directory.
 Do not edit these files to match a new implementation. Add a new fixture and
 provenance row for a newly discovered public variant.
 
-The fixtures are read-only inputs to the bounded importer documented in
-[`docs/architecture/preferences.md`](../../docs/architecture/preferences.md).
-They are not native C3 2 profiles; that format is specified independently under
-[`spec/preferences/v1`](../../spec/preferences/v1/README.md).
+The fixtures are read-only inputs to the guarded `My.Settings.Upgrade()` work in
+[Gate 4 of the 1.3 recovery plan](../../docs/planning/1.3.0-recovery-plan.md#gate-4--settings-continuity)
+and the [settings transition matrix](../../docs/compatibility/1x-evidence-matrix.md#settings-transitions).
+They are not rewritten or converted in place.

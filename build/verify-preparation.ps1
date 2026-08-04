@@ -10,6 +10,7 @@ $ErrorActionPreference = 'Stop'
 
 & (Join-Path $PSScriptRoot 'validate-baseline-genome.ps1')
 & (Join-Path $PSScriptRoot 'validate-compatibility-corpus.ps1')
+& (Join-Path $PSScriptRoot 'validate-docs.ps1')
 & (Join-Path $PSScriptRoot 'test.ps1') -Configuration $Configuration
 if (-not $SkipBuildOutputs) {
     & (Join-Path $PSScriptRoot 'verify-builds.ps1') -Configuration $Configuration
