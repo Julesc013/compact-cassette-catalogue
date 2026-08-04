@@ -92,3 +92,16 @@ its XML or transaction rules.
 The [native-v2 ADR](decisions/0005-native-v2-format-and-migration.md) remains at
 its candidate gate until migration, loss-aware export, CLI, recovery, both lanes,
 and exact packages pass together.
+
+## Format transitions and headless tooling
+
+`LegacyToNativeMigrator` owns deterministic, read-only interpretation and stable
+ID mapping. `LegacyToNativeConversionService` adds verified convert-copy,
+deterministic reports, and a resumable journal; recovery revalidates both source
+and destination revisions before proceeding. `NativeToLegacyExporter` owns the
+reverse preview/export and reports native identity, provenance, timestamp, and
+flattening losses before writing through the create-only legacy store.
+
+`c3.exe` is intentionally a thin command shell over those services.
+This lets tests, later WinForms workflows, and automation use one behavior owner
+instead of carrying separate parser, migration, or export implementations.

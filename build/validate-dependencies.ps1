@@ -12,6 +12,7 @@ $catalogueProject = Join-Path $catalogueRoot 'C3.Catalogue.csproj'
 $infrastructureProject = Join-Path $infrastructureRoot 'C3.Infrastructure.csproj'
 $net40Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net40.vbproj'
 $net48Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net48.vbproj'
+$toolProject = Join-Path $repositoryRoot 'src\C3.Cli\C3.Cli.csproj'
 
 $failures = New-Object Collections.Generic.List[String]
 
@@ -121,8 +122,20 @@ foreach ($appProject in @($net40Project, $net48Project)) {
     }
 }
 
+$toolProjectText = Get-Content -LiteralPath $toolProject -Raw
+if ($toolProjectText -notmatch '<LangVersion>7\.3</LangVersion>') {
+    $failures.Add('C3.Cli must compile with the explicit C# 7.3 language contract.')
+}
+if (-not $toolProjectText.Contains('..\C3.Catalogue\C3.Catalogue.csproj') -or
+        -not $toolProjectText.Contains('..\C3.Infrastructure\C3.Infrastructure.csproj')) {
+    $failures.Add('C3.Cli must compose the shared Catalogue and Infrastructure owners.')
+}
+if ([regex]::Matches($toolProjectText, '<ProjectReference\b').Count -ne 2) {
+    $failures.Add('C3.Cli may reference only C3.Catalogue and C3.Infrastructure.')
+}
+
 if ($failures.Count -gt 0) {
     throw ("Dependency validation failed:`n - " + ($failures -join "`n - "))
 }
 
-Write-Host 'Dependency direction verified: WinForms -> Infrastructure -> Catalogue/Domain; Catalogue -> Domain; Domain remains dependency-free.'
+Write-Host 'Dependency direction verified: WinForms/CLI -> Infrastructure -> Catalogue/Domain; Catalogue -> Domain; Domain remains dependency-free.'

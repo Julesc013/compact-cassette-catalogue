@@ -89,6 +89,7 @@ foreach ($packageDefinition in $packageDefinitions) {
         @{ Source = Join-Path $outputDirectory 'C3.Catalogue.dll'; Name = 'C3.Catalogue.dll' },
         @{ Source = Join-Path $outputDirectory 'C3.Domain.dll'; Name = 'C3.Domain.dll' },
         @{ Source = Join-Path $outputDirectory 'C3.Infrastructure.dll'; Name = 'C3.Infrastructure.dll' },
+        @{ Source = Join-Path $repositoryRoot 'artifacts\bin\cli\Release\c3.exe'; Name = 'c3.exe' },
         @{ Source = Join-Path $repositoryRoot 'README.md'; Name = 'README.md' },
         @{ Source = Join-Path $repositoryRoot 'RELEASE_NOTES.md'; Name = 'RELEASE_NOTES.md' }
     )

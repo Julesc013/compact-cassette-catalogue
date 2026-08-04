@@ -40,6 +40,7 @@ Each package contains only:
 - `C3.Catalogue.dll`
 - `C3.Domain.dll`
 - `C3.Infrastructure.dll`
+- `c3.exe`
 - `BUILD.txt`
 - `README.md`
 - `RELEASE_NOTES.md`

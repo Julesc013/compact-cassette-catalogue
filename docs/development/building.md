@@ -37,10 +37,17 @@ do not belong in the manifest before implementation.
 
 - `C3.Catalogue.csproj`: explicit C# 7.3/net40-compatible catalogue concepts/rules.
 - `C3.Infrastructure.csproj`: explicit C# 7.3/net40-compatible adapters and external mechanisms.
+- `C3.Cli.csproj`: headless net40-compatible validator, migrator,
+  recovery, and loss-aware export shell over the same infrastructure owners.
 - `C3.WinForms.Net40.vbproj`: x86/net40 executable and authoritative current
   WinForms designer project.
 - `C3.WinForms.Net48.vbproj`: x64/net48 executable over the same feature sources.
 - `C3.Characterization.vbproj`: dependency-light net40 compatibility runner.
+
+The build always emits `artifacts/bin/cli/<Configuration>/c3.exe`.
+The CLI is AnyCPU/net40 so the identical executable can accompany both product
+lanes; it does not contain an alternative catalogue parser or mapper. See the
+[catalogue CLI reference](catalogue-cli.md).
 
 Generated product identity under `src/Shared/Generated` is linked into each
 managed project. Do not hand-edit it; change `build/Version.props` and run the

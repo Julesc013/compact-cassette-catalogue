@@ -47,6 +47,7 @@ Invoke-RepositoryScript 'build.ps1' @{
     Configuration = 'Release'
     Rebuild = [bool]$Rebuild
 }
+Invoke-RepositoryScript 'test-catalogue-cli.ps1' @{ Configuration = 'Release' }
 Invoke-RepositoryScript 'verify-binary-metadata.ps1' @{ Configuration = 'Release' }
 Invoke-RepositoryScript 'verify-pe.ps1' @{ Configuration = 'Release' }
 

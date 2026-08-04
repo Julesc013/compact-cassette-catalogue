@@ -48,4 +48,17 @@ foreach ($lane in @($manifest.lanes)) {
     }
 }
 
+$toolPath = Join-Path $repositoryRoot "artifacts\bin\cli\$Configuration\c3.exe"
+if (-not (Test-Path -LiteralPath $toolPath -PathType Leaf)) {
+    throw "Missing catalogue CLI metadata input: $toolPath"
+}
+$toolAssemblyVersion = [Reflection.AssemblyName]::GetAssemblyName($toolPath).Version.ToString()
+$toolInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($toolPath)
+if ($toolAssemblyVersion -cne $expectedAssemblyVersion -or
+        $toolInfo.FileVersion -cne $expectedFileVersion -or
+        $toolInfo.ProductVersion -cne $expectedProductVersion) {
+    throw 'c3.exe identity does not match the canonical release identity.'
+}
+Write-Host 'Binary metadata verified: cli/c3.exe'
+
 Write-Host "All packaged binary identities match $expectedProductVersion."

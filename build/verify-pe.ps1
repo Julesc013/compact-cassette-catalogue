@@ -20,6 +20,12 @@ $expectations = @(
         Path = "artifacts\bin\win-x64-net48\$Configuration\Compact Cassette Catalogue.exe"
         Machine = 0x8664
         OptionalHeader = 0x020b
+    },
+    @{
+        Lane = 'catalogue-cli-net40-anycpu'
+        Path = "artifacts\bin\cli\$Configuration\c3.exe"
+        Machine = 0x014c
+        OptionalHeader = 0x010b
     }
 )
 
@@ -56,4 +62,3 @@ foreach ($expectation in $expectations) {
     Write-Host ("PE verified: {0} machine=0x{1:x4}, optional=0x{2:x4}" -f
         $expectation.Lane, $machine, $optionalHeader)
 }
-

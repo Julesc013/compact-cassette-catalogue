@@ -19,6 +19,7 @@ $requiredEntries = @(
     'C3.Catalogue.dll',
     'C3.Domain.dll',
     'C3.Infrastructure.dll',
+    'c3.exe',
     'Compact Cassette Catalogue.exe',
     'Compact Cassette Catalogue.exe.config',
     'README.md',

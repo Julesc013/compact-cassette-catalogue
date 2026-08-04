@@ -48,5 +48,18 @@ foreach ($buildLane in $lanes) {
     }
 }
 
-Write-Host "Built $($lanes.Count) C3 lane(s)."
+$toolProject = Join-Path $repositoryRoot 'src\C3.Cli\C3.Cli.csproj'
+Write-Host "Building C3 CLI: $Configuration|AnyCPU"
+& $msbuild `
+    $toolProject `
+    "/t:$target" `
+    "/p:Configuration=$Configuration" `
+    '/p:Platform=AnyCPU' `
+    '/m' `
+    "/v:$Verbosity" `
+    '/nologo'
+if ($LASTEXITCODE -ne 0) {
+    throw "C3 CLI build failed with exit code $LASTEXITCODE."
+}
 
+Write-Host "Built $($lanes.Count) C3 lane(s) and the shared catalogue CLI."
