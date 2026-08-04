@@ -16,6 +16,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "C3.Characterization", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C3.Cli", "src\C3.Cli\C3.Cli.csproj", "{0B7E6F59-6065-442E-AAC4-7FE26D700AD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C3.Presentation.WinForms", "src\C3.Presentation.WinForms\C3.Presentation.WinForms.csproj", "{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -76,6 +78,14 @@ Global
 		{0B7E6F59-6065-442E-AAC4-7FE26D700AD8}.Release|x64.Build.0 = Release|Any CPU
 		{0B7E6F59-6065-442E-AAC4-7FE26D700AD8}.Release|x86.ActiveCfg = Release|Any CPU
 		{0B7E6F59-6065-442E-AAC4-7FE26D700AD8}.Release|x86.Build.0 = Release|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Debug|x64.Build.0 = Debug|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Debug|x86.Build.0 = Debug|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Release|x64.ActiveCfg = Release|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Release|x64.Build.0 = Release|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

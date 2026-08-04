@@ -49,6 +49,12 @@ Module Program
             "command results separate changes from rejections",
             AddressOf DomainContractTests.CommandResultsSeparateChangesFromRejections)
         RunTest(
+            "workspace owns explicit document and interaction state",
+            AddressOf WorkspaceControllerTests.WorkspaceOwnsExplicitInteractionState)
+        RunTest(
+            "workspace command history coordinates dirty undo and redo",
+            AddressOf WorkspaceControllerTests.CommandHistoryCoordinatesDirtyUndoAndRedo)
+        RunTest(
             "native catalogue graph uses stable typed references",
             AddressOf NativeCatalogueContractTests.NativeGraphUsesStableTypedReferencesAndCanonicalOrder)
         RunTest(

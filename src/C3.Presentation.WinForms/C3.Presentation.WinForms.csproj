@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\build\C3.Common.props" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5E401BD5-DA4E-44E6-8E0C-7034B36F6A71}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>C3.Presentation.WinForms</RootNamespace>
+    <AssemblyName>C3.Presentation.WinForms</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\artifacts\bin\presentation\net40\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\artifacts\bin\presentation\net40\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.cs">
+      <Link>Properties\VersionAssemblyInfo.g.cs</Link>
+    </Compile>
+    <Compile Include="Workspace\BackgroundOperationState.cs" />
+    <Compile Include="Workspace\CommandHistory.cs" />
+    <Compile Include="Workspace\CompatibilityState.cs" />
+    <Compile Include="Workspace\DocumentState.cs" />
+    <Compile Include="Workspace\EditorDraftState.cs" />
+    <Compile Include="Workspace\IReversibleWorkspaceCommand.cs" />
+    <Compile Include="Workspace\RecoveryState.cs" />
+    <Compile Include="Workspace\SelectionState.cs" />
+    <Compile Include="Workspace\ViewState.cs" />
+    <Compile Include="Workspace\WorkspaceCommandResult.cs" />
+    <Compile Include="Workspace\WorkspaceController.cs" />
+    <Compile Include="Workspace\WorkspaceState.cs" />
+    <Compile Include="Workspace\WorkspaceStateComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C3.Domain\C3.Domain.csproj">
+      <Project>{9C51184F-1A7B-4B57-B70C-3A5400F62BA1}</Project>
+      <Name>C3.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.csproj">
+      <Project>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</Project>
+      <Name>C3.Catalogue</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
