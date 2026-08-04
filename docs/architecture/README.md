@@ -29,11 +29,11 @@ surface is frozen in [`spec/catalogue-api/v1`](../../spec/catalogue-api/v1/READM
 and checked after every characterization build; behavior remains protected by
 the executable characterization suite.
 
-The temporary `C3.Catalogue.CSharpCandidate` build compiles translated feature
-sources beside, but never into, the running product. Each admitted namespace
-must match its filtered VB oracle surface. The candidate is removed when the
-complete assembly passes characterization and becomes the single production
-project; it is not a durable module or a place for redesign.
+The complete `C3.Catalogue` production assembly is explicit C# 7.3. Its
+mechanical translation was staged in an unpackaged candidate, matched against
+all 269 frozen VB signatures, then promoted atomically through the behavior
+suite. The candidate project and superseded VB implementations were removed so
+there is one production owner.
 
 `C3.WinForms` has two project files over the same physical UI sources:
 

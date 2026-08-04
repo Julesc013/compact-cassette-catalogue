@@ -80,12 +80,13 @@ path, display name, revision, dirty state, change sequence, transition ordering,
 and change notification. The VB facade retains only the legacy revision wrapper
 projection and re-emits notifications with the compatibility facade as sender.
 
-Remaining `C3.Catalogue` language-only translations use an isolated candidate
-assembly with the same namespaces but a different assembly identity. A feature
-enters that candidate only when its compiled surface matches the corresponding
-namespace in the frozen VB baseline. It cannot be packaged or referenced by the
-application. Once complete, the project swap is tested as one exact behavioral
-change and the temporary candidate identity is removed.
+Remaining `C3.Catalogue` language-only translations used an isolated candidate
+assembly with the same namespaces but a different assembly identity. Each
+feature entered only after its compiled surface matched the corresponding VB
+baseline namespace. Once all 269 signatures matched, the C# project preserved
+the production project GUID and assembly identity, passed the behavior gate, and
+replaced the VB project. The candidate identity and every superseded VB catalogue
+implementation were removed.
 
 ## Consequences
 

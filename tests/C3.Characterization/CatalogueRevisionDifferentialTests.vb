@@ -5,9 +5,9 @@ Imports System.Reflection
 Friend Module CatalogueRevisionDifferentialTests
 
     Friend Sub NativeRevisionMatchesTheVbOracle()
-        Dim valueField As FieldInfo = GetType(LegacyRevision).GetField(
-            "_value",
-            BindingFlags.Instance Or BindingFlags.NonPublic)
+        Dim valueField As FieldInfo = Array.Find(
+            GetType(LegacyRevision).GetFields(BindingFlags.Instance Or BindingFlags.NonPublic),
+            Function(field) field.FieldType Is GetType(NativeRevision))
         AssertEqual(False, valueField Is Nothing, "compatibility facade value field")
         AssertEqual(GetType(NativeRevision), valueField.FieldType, "production behavior owner")
 

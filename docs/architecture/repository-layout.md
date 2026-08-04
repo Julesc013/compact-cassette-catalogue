@@ -28,6 +28,7 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   |   |-- Validation/
 |   |   `-- Values/
 |   |-- C3.Catalogue/
+|   |   |-- C3.Catalogue.csproj
 |   |   |-- Catalogues/
 |   |   |-- Brands/
 |   |   |-- CassetteModels/
@@ -113,10 +114,9 @@ Alpha 3 its unmigrated features remain production owners and differential
 oracles; a frozen public facade may delegate to one proven C# owner without
 retaining duplicate behavior.
 
-`C3.Catalogue.CSharpCandidate.csproj` is a temporary Alpha 3 translation harness
-over `.cs` files stored beside their VB oracles. It is never packaged or consumed
-by production. Namespace-filtered compiled API comparison gates each feature;
-the harness is deleted when the full C# project replaces the VB project.
+`C3.Catalogue` is explicit C# 7.3. Its completed Alpha 3 port preserved the
+original project GUID, assembly identity, and frozen public surface; the
+side-by-side candidate harness and superseded VB implementations no longer exist.
 
 `C3.Infrastructure` implements external mechanisms. Its versioned legacy XML
 directory is the only production code allowed to know v1.1 table/column names.

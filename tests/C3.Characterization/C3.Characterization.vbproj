@@ -86,7 +86,7 @@
       <Project>{9C51184F-1A7B-4B57-B70C-3A5400F62BA1}</Project>
       <Name>C3.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\C3.Catalogue\C3.Catalogue.vbproj">
+    <ProjectReference Include="..\..\src\C3.Catalogue\C3.Catalogue.csproj">
       <Project>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</Project>
       <Name>C3.Catalogue</Name>
     </ProjectReference>

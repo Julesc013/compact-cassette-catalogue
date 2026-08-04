@@ -7,9 +7,9 @@ Imports System.Reflection
 Friend Module CatalogueSessionDifferentialTests
 
     Friend Sub NativeSessionMatchesTheVbOracle()
-        Dim valueField As FieldInfo = GetType(LegacySession).GetField(
-            "_value",
-            BindingFlags.Instance Or BindingFlags.NonPublic)
+        Dim valueField As FieldInfo = Array.Find(
+            GetType(LegacySession).GetFields(BindingFlags.Instance Or BindingFlags.NonPublic),
+            Function(field) field.FieldType Is GetType(NativeSession))
         AssertEqual(False, valueField Is Nothing, "compatibility facade value field")
         AssertEqual(GetType(NativeSession), valueField.FieldType, "production behavior owner")
 

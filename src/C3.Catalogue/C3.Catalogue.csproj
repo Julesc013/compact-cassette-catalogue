@@ -5,10 +5,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6D9CCB3E-F290-4053-97E5-7DB9FD764411}</ProjectGuid>
+    <ProjectGuid>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>C3.Catalogue</RootNamespace>
-    <AssemblyName>C3.Catalogue.CSharpCandidate</AssemblyName>
+    <AssemblyName>C3.Catalogue</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <LangVersion>7.3</LangVersion>
@@ -18,8 +18,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\artifacts\bin\candidates\net40\Debug\</OutputPath>
-    <IntermediateOutputPath>obj\CSharpCandidate\Debug\</IntermediateOutputPath>
+    <OutputPath>..\..\artifacts\bin\libraries\net40\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
@@ -27,8 +27,8 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\artifacts\bin\candidates\net40\Release\</OutputPath>
-    <IntermediateOutputPath>obj\CSharpCandidate\Release\</IntermediateOutputPath>
+    <OutputPath>..\..\artifacts\bin\libraries\net40\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>

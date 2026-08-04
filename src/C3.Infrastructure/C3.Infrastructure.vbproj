@@ -93,7 +93,7 @@
     <Compile Include="Updates\UpdateCheckService.vb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.vbproj">
+    <ProjectReference Include="..\C3.Catalogue\C3.Catalogue.csproj">
       <Project>{2E89D5C5-31B4-4E04-881A-81597F4E962E}</Project>
       <Name>C3.Catalogue</Name>
     </ProjectReference>

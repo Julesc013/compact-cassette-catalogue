@@ -8,8 +8,7 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $catalogueRoot = Join-Path $repositoryRoot 'src\C3.Catalogue'
 $domainRoot = Join-Path $repositoryRoot 'src\C3.Domain'
 $infrastructureRoot = Join-Path $repositoryRoot 'src\C3.Infrastructure'
-$catalogueProject = Join-Path $catalogueRoot 'C3.Catalogue.vbproj'
-$catalogueCandidateProject = Join-Path $catalogueRoot 'C3.Catalogue.CSharpCandidate.csproj'
+$catalogueProject = Join-Path $catalogueRoot 'C3.Catalogue.csproj'
 $infrastructureProject = Join-Path $infrastructureRoot 'C3.Infrastructure.vbproj'
 $net40Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net40.vbproj'
 $net48Project = Join-Path $repositoryRoot 'src\C3.WinForms\C3.WinForms.Net48.vbproj'
@@ -82,6 +81,9 @@ foreach ($source in Get-ChildItem -LiteralPath $infrastructureRoot -Recurse -Fil
 }
 
 $catalogueProjectText = Get-Content -LiteralPath $catalogueProject -Raw
+if ($catalogueProjectText -notmatch '<LangVersion>7\.3</LangVersion>') {
+    $failures.Add('C3.Catalogue must compile with the explicit C# 7.3 language contract.')
+}
 if (-not $catalogueProjectText.Contains('..\C3.Domain\C3.Domain.csproj')) {
     $failures.Add('C3.Catalogue must reference the dependency-free C3.Domain substrate.')
 }
@@ -92,28 +94,14 @@ if ($catalogueProjectReferenceCount -ne 1) {
     $failures.Add('C3.Catalogue may reference only C3.Domain.')
 }
 
-$catalogueCandidateProjectText = Get-Content -LiteralPath $catalogueCandidateProject -Raw
-if ($catalogueCandidateProjectText -notmatch '<LangVersion>7\.3</LangVersion>') {
-    $failures.Add('The C3.Catalogue C# candidate must pin language version 7.3.')
-}
-if (-not $catalogueCandidateProjectText.Contains('..\C3.Domain\C3.Domain.csproj')) {
-    $failures.Add('The C3.Catalogue C# candidate must reference C3.Domain.')
-}
-$catalogueCandidateReferenceCount = [regex]::Matches(
-    $catalogueCandidateProjectText,
-    '<ProjectReference\b').Count
-if ($catalogueCandidateReferenceCount -ne 1) {
-    $failures.Add('The C3.Catalogue C# candidate may reference only C3.Domain.')
-}
-
 $infrastructureProjectText = Get-Content -LiteralPath $infrastructureProject -Raw
-if (-not $infrastructureProjectText.Contains('..\C3.Catalogue\C3.Catalogue.vbproj')) {
+if (-not $infrastructureProjectText.Contains('..\C3.Catalogue\C3.Catalogue.csproj')) {
     $failures.Add('C3.Infrastructure must reference C3.Catalogue.')
 }
 
 foreach ($appProject in @($net40Project, $net48Project)) {
     $appProjectText = Get-Content -LiteralPath $appProject -Raw
-    if (-not $appProjectText.Contains('..\C3.Catalogue\C3.Catalogue.vbproj')) {
+    if (-not $appProjectText.Contains('..\C3.Catalogue\C3.Catalogue.csproj')) {
         $failures.Add("WinForms project '$appProject' does not reference C3.Catalogue.")
     }
     if (-not $appProjectText.Contains('..\C3.Infrastructure\C3.Infrastructure.vbproj')) {
