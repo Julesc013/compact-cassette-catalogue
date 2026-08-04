@@ -138,7 +138,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0002: Compatibility build lanes](decisions/0002-compatibility-build-lanes.md)
 - [ADR 0003: C3 2.0 product boundary](decisions/0003-c3-2-product-boundary.md)
 - [ADR 0004: Managed language strategy](decisions/0004-managed-language-strategy.md)
-- [ADR 0005: Proposed native-v2 format and migration](decisions/0005-native-v2-format-and-migration.md)
+- [ADR 0005: Native-v2 format and migration](decisions/0005-native-v2-format-and-migration.md)
 - [ADR 0006: Separate update channels](decisions/0006-separate-update-channels.md)
 - [ADR 0007: C3-owned shared preferences](decisions/0007-c3-owned-shared-preferences.md)
 - [ADR 0008: Qualified checkpoint ledger](decisions/0008-qualified-checkpoint-ledger.md)
