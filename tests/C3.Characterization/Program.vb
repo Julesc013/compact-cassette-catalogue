@@ -34,6 +34,9 @@ Module Program
             "C# catalogue revision matches the VB oracle",
             AddressOf CatalogueRevisionDifferentialTests.NativeRevisionMatchesTheVbOracle)
         RunTest(
+            "C# catalogue session matches the VB oracle",
+            AddressOf CatalogueSessionDifferentialTests.NativeSessionMatchesTheVbOracle)
+        RunTest(
             "domain identifiers are opaque typed and canonical",
             AddressOf DomainContractTests.EntityIdsAreOpaqueTypedAndCanonical)
         RunTest(

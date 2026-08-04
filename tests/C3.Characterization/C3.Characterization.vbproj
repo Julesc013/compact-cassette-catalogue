@@ -68,6 +68,7 @@
     <Compile Include="LegacyPathTestSupport.vb" />
     <Compile Include="CatalogueFiles\LegacyXmlCatalogueStoreTests.vb" />
     <Compile Include="CatalogueRevisionDifferentialTests.vb" />
+    <Compile Include="CatalogueSessionDifferentialTests.vb" />
     <Compile Include="DomainContractTests.vb" />
     <Compile Include="PreferenceFormatContractTests.vb" />
     <Compile Include="LegacySettingsProfileLocatorTests.vb" />

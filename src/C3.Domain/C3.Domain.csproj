@@ -41,6 +41,7 @@
       <Link>Properties\VersionAssemblyInfo.g.cs</Link>
     </Compile>
     <Compile Include="Catalogues\CatalogueRevision.cs" />
+    <Compile Include="Catalogues\CatalogueSession.cs" />
     <Compile Include="Commands\Change.cs" />
     <Compile Include="Commands\ChangeSet.cs" />
     <Compile Include="Commands\CommandContext.cs" />
