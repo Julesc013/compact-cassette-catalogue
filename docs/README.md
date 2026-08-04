@@ -38,6 +38,7 @@ Documentation is organized by its audience and ownership.
 - [Toolchain policy](development/toolchain.md)
 - [Build environment and commands](development/building.md)
 - [Automated and manual testing](development/testing.md)
+- [Alpha 5 Brands manual qualification matrix](development/alpha5-brands-manual-matrix.md)
 - [Continuous integration](development/continuous-integration.md)
 - [Packaging](development/packaging.md)
 - [Catalogue CLI](development/catalogue-cli.md)

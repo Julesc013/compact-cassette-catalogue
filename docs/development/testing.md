@@ -174,6 +174,9 @@ guards and should cover maximum accepted text lengths. They do not replace real
 display scaling, high contrast, or screen-reader checks because those depend on
 the operating system, device context, theme, and assistive technology.
 
+The exact owner procedure for the first OEM+ production slice is the
+[Alpha 5 Brands manual qualification matrix](alpha5-brands-manual-matrix.md).
+
 Performance uses named synthetic catalogue sizes and machine profiles. Capture
 launch, open/save, list/filter, editor, bulk preview/apply, memory high-water, and
 recovery-scan baselines before accepting numeric budgets. Optimize the measured
