@@ -31,6 +31,7 @@ for the long-lived release catalogue.
 Current contracts:
 
 - [`branch-contract/v1/`](branch-contract/v1/) — permanent branch roles and identities;
+- [`compatibility-corpus/v1/`](compatibility-corpus/v1/) — historical producer, artifact, format, and fixture provenance;
 - [`catalogue/v1.1.0/`](catalogue/v1.1.0/) — accepted legacy catalogue profile;
 - [`release-catalog/v1/`](release-catalog/v1/) — checkpoint ledger;
 - [`release-train/v1/`](release-train/v1/) — resumable programme controller; and

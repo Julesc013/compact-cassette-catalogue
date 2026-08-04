@@ -47,11 +47,13 @@ adjacent. Target-state paths are not added until code actually needs them.
 |   `-- Shared/Generated/            # linked generated assembly identity
 |-- tests/C3.Characterization/
 |-- fixtures/
+|   |-- compatibility/1x/             # canonical 1.x producer/artifact corpus
 |   |-- catalogues/v1.1.0/
 |   |   |-- valid/
 |   |   |-- invalid/
 |   |   |-- security/
-|   |   `-- cultures/
+|   |   |-- cultures/
+|   |   `-- historical/                # normalized official-writer fixtures
 |   `-- settings/legacy/
 |-- spec/catalogue/
 |   |-- v1.1.0/                      # implemented public contract
@@ -120,6 +122,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Current development product/stage/channel/assembly identity | `build/Version.props` | generated BuildInfo, shared assembly attributes, unpublished alpha manifest/client endpoint, binary/package names |
 | Published legacy updater value | `release/feeds/legacy-1x/VERSION` | root `VERSION`; deliberately independent from current build |
 | Permanent branch identities | `build/branches.json` | schema, validator, release scripts, CI, generated updater allow-list, and governance prose |
+| Supported 1.x producers and historical artifact/format provenance | `fixtures/compatibility/1x/corpus.v1.json` | schema, corpus validator, exact-binary harness, normalized fixtures, and compatibility documentation |
 | Update-channel and promotion policy | `docs/governance/versioning-and-channels.md` | release scripts and feed directories |
 | Checkpoint lifecycle and artifact identity | `release/catalog.v1.json` | validation records and C/E/P promotion checks |
 | Current programme milestone and order | `release/train/2.0.0.json` | train validator and transition scripts |
@@ -128,7 +131,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |
 | Catalogue format 1.1.0 | `spec/catalogue/v1.1.0` | legacy XML adapter and fixtures |
 | Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | no production projection while draft |
-| 1.x compatibility promise | `docs/compatibility/1x-to-2x-charter.md` | corpus, tests, candidate validation |
+| 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |
 | Document path/revision/dirty state | `CatalogueSession` | forms observe session state |
 | Brand/model/deck/tape rules | matching `C3.Catalogue` feature | typed results and adapter tests |
