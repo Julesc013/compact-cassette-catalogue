@@ -1,15 +1,17 @@
 # C3 1.x to 2.x compatibility charter
 
-Status: **Contract accepted; complete compatibility evidence not yet established**
+Status: **Contract accepted; bounded 1.x legacy-format matrix established**
 
 “Fully backwards compatible with C3 1.x” means preserving the documented user
 workflows and every file format actually emitted by the supported public 1.x
 releases. It does not mean preserving internal types, form layouts, accidental
 implementation details, or known defects.
 
-The release-validation record must name the exact releases and artifacts tested.
-Until that inventory and corpus exist, C3 describes compatibility as a target,
-not a completed claim.
+The exact supported producers, public artifacts, settings/update profiles,
+format provenance, executable rows, and pending manual evidence are recorded in
+the [1.x evidence matrix](1x-evidence-matrix.md) and its machine-owned corpus.
+Native-v2 conversion/export and final packaged/minimum-OS evidence remain later
+gates, so C3 still does not make an unqualified universal compatibility claim.
 
 ## Compatibility surfaces
 

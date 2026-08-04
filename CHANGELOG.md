@@ -10,6 +10,20 @@
   inventory, provenance-bearing fixtures, supported-baseline classification,
   old/new reader-writer evidence, settings migration, and update-channel dry
   runs.
+- Added a strict compatibility-corpus schema and validator covering all 10
+  public 1.x tags, exact commits/releases/assets, settings and updater profiles,
+  supported-vs-inventory-only policy, and the pre-1.x provenance of catalogue
+  formats 1.0.0, 1.0.1, and 1.0.2.
+- Added deterministic privacy-safe fixtures generated from supported official
+  writer schemas and proved that the secure production adapter loads every
+  supported producer profile.
+- Added an opt-in hash-pinned historical-binary laboratory that proves six
+  current-writer/old-reader/old-writer/current-reader rows, including separate
+  1.2 Beta 1 x86 and x64 artifacts, without redistributing or launching the old
+  applications.
+- Defined the exact maintained 1.x producer baseline and classified required
+  behavior, tolerated identity/date quirks, corrected defects, and manual/OS
+  evidence that remains pending before public Beta.
 - Adopted the permanent `master`, `dev/2.x`, `legacy/1.x`, and `dev/1.x` branch
   contract with one schema-validated machine-readable owner and generated strict
   updater projections.

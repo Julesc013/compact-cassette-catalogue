@@ -61,10 +61,12 @@ draft until its typed model, schema, migration, legacy mode, loss-aware export,
 security limits, fixtures, and both implementations pass together.
 
 C3 2.0's full 1.x compatibility target covers catalogues, settings, update
-channels, side-by-side use, portable/setup payloads, and rollback. The current
-repository has strong v1.1 characterization but not yet a complete corpus of all
-public 1.x producers, so compatibility remains an explicit programme gate. See
-the [1.x to 2.x charter](docs/compatibility/1x-to-2x-charter.md).
+channels, side-by-side use, portable/setup payloads, and rollback. Alpha 2 now
+has a hash-pinned inventory of every public 1.x producer and an exact-binary
+legacy `1.1.0` reader/writer matrix. Packaged/minimum-OS evidence and native-v2
+migration/export remain explicit later gates. See the
+[evidence matrix](docs/compatibility/1x-evidence-matrix.md) and
+[1.x to 2.x charter](docs/compatibility/1x-to-2x-charter.md).
 
 ## First use of a published portable build
 
