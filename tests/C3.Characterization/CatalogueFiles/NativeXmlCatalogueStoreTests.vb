@@ -14,6 +14,10 @@ Friend NotInheritable Class NativeXmlCatalogueStoreTests
         Dim reader As New NativeXmlCatalogueReader()
         Dim expected As Byte() = File.ReadAllBytes(FixturePath("valid", "blank.xml"))
         Dim actual As Byte() = writer.Write(CreateBlank())
+        AssertEqual(
+            False,
+            Array.IndexOf(expected, CByte(13)) >= 0,
+            "canonical fixture contains no CR")
         AssertBytesEqual(expected, actual, "canonical blank bytes")
         AssertEqual(False, actual.Length >= 3 AndAlso actual(0) = &HEF AndAlso actual(1) = &HBB, "no BOM")
         AssertEqual(CByte(10), actual(actual.Length - 1), "final LF")

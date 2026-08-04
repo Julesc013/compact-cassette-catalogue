@@ -15,4 +15,6 @@ RELEASE_NOTES.md text eol=lf
 # catalogue fixtures use repository-canonical LF; captured .NET user.config
 # profiles retain their original Windows CRLF transport.
 fixtures/catalogues/v1.1.0/historical/** text eol=lf
+fixtures/catalogues/v2.0.0/** text eol=lf
+spec/catalogue/v2.0.0/** text eol=lf
 fixtures/settings/legacy/**/user.config text eol=crlf
