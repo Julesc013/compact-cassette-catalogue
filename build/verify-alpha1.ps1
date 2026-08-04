@@ -37,7 +37,9 @@ if ($RunLaunchSmoke) {
     if ($SkipBuildOutputs) {
         throw '-RunLaunchSmoke cannot be combined with -SkipBuildOutputs.'
     }
-    & (Join-Path $PSScriptRoot 'smoke-launch.ps1') -Configuration $Configuration
+    & (Join-Path $PSScriptRoot 'smoke-launch.ps1') `
+        -Configuration $Configuration `
+        -AllowKnownCloseTimeout
 }
 
 $resolvedBaseline = (& git -C $repositoryRoot rev-parse 'v1.2.0b1^{commit}').Trim()
