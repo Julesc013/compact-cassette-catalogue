@@ -144,6 +144,13 @@ source owns argument parsing, help text, exit-code projection, and composition.
 All catalogue reading, validation, migration, recovery, and legacy export remain
 owned by the same Infrastructure services used by other product surfaces.
 
+`C3.Presentation.WinForms` owns shared desktop workspace state, reusable
+interaction presentations, semantic UI commands, presenters, and WinForms
+controls. `Interaction` contains the deliberately small field, validation,
+list, inspector, empty-state, feedback, and progress vocabulary. Feature folders
+compose those patterns around `C3.Catalogue` services; they cannot create another
+catalogue rule or persistence path.
+
 `C3.Presentation.WinForms` is the shared C# 7.3, net40-compatible presentation
 boundary accepted in ADR 0011. It owns workspace projections, presenter-level
 state, command-history coordination, and reusable WinForms patterns for both

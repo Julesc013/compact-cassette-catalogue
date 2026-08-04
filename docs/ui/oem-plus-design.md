@@ -38,6 +38,11 @@ the same command and editor contracts.
 - Empty states explain the next valid action instead of presenting inert space.
 - Errors state what failed, what remained safe, and what the user can do next.
 
+The concrete shared presentation contracts and their ownership rules are defined
+in [interaction patterns](interaction-patterns.md). Feature surfaces bind those
+contracts to standard controls; they do not reimplement command or catalogue
+rules.
+
 ## Native visual system
 
 - Use Windows system fonts, colors, focus cues, metrics, and standard control

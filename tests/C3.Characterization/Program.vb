@@ -55,6 +55,12 @@ Module Program
             "workspace command history coordinates dirty undo and redo",
             AddressOf WorkspaceControllerTests.CommandHistoryCoordinatesDirtyUndoAndRedo)
         RunTest(
+            "brand workspace coordinates validation selection and reversible commands",
+            AddressOf BrandWorkspacePresenterTests.CoordinatesValidationSelectionAndReversibleCommands)
+        RunTest(
+            "shared interaction patterns expose empty error and progress states",
+            AddressOf BrandWorkspacePresenterTests.SharedPatternsExposeExplicitStates)
+        RunTest(
             "native catalogue graph uses stable typed references",
             AddressOf NativeCatalogueContractTests.NativeGraphUsesStableTypedReferencesAndCanonicalOrder)
         RunTest(

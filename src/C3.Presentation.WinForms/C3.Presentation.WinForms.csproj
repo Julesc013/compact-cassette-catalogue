@@ -42,6 +42,16 @@
     <Compile Include="..\Shared\Generated\VersionAssemblyInfo.g.cs">
       <Link>Properties\VersionAssemblyInfo.g.cs</Link>
     </Compile>
+    <Compile Include="Features\Brands\BrandCommands.cs" />
+    <Compile Include="Features\Brands\BrandEditorModel.cs" />
+    <Compile Include="Features\Brands\BrandWorkspacePresenter.cs" />
+    <Compile Include="Interaction\EmptyStatePresentation.cs" />
+    <Compile Include="Interaction\FeedbackPresentation.cs" />
+    <Compile Include="Interaction\FieldDefinition.cs" />
+    <Compile Include="Interaction\InspectorPresentation.cs" />
+    <Compile Include="Interaction\ListPresentation.cs" />
+    <Compile Include="Interaction\ProgressPresentation.cs" />
+    <Compile Include="Interaction\ValidationPresentation.cs" />
     <Compile Include="Workspace\BackgroundOperationState.cs" />
     <Compile Include="Workspace\CommandHistory.cs" />
     <Compile Include="Workspace\CompatibilityState.cs" />

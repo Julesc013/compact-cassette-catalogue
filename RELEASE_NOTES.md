@@ -18,7 +18,11 @@ Implemented so far:
 - introduced explicit document, selection, view, draft, compatibility, recovery,
   and background-operation state;
 - added bounded checkpoint-aware command history with safe undo/redo branching;
-  and
+- implemented the first semantic create/update/delete Brand commands and a
+  control-independent Brands presenter with stable selection, field validation,
+  reference-safe failure handling, dirty checkpoints, and exact undo/redo; and
+- introduced reusable field, validation, list, inspector, empty-state,
+  feedback, and progress presentation contracts; and
 - expanded the canonical portable payload to include the shared presentation
   assembly from the same manifest in both lanes.
 

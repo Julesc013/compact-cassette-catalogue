@@ -15,6 +15,10 @@
 - Replaced the mutable module-level document/service seam with one
   instance-owned application composition root, and made untracked legacy
   mutations invalidate unsafe undo history.
+- Added reusable field, validation, list, inspector, empty-state, feedback, and
+  progress presentations, plus a control-independent Brands workflow whose
+  create, update, and delete commands use the existing catalogue owner and
+  support checkpoint-aware undo/redo.
 
 
 ### Version 2.0.0 Alpha 4 - Qualified, intentionally unpublished (2026-08-05)
