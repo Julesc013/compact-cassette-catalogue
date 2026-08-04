@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "product": "Compact Cassette Catalogue",
+  "sourceProject": "Compact Cassette Catalogue/Compact Cassette Catalogue.vbproj",
+  "lanes": [
+    {
+      "id": "win-x86-net40",
+      "platform": "x86",
+      "platformTarget": "x86",
+      "targetFramework": "v4.0",
+      "appConfig": "Compact Cassette Catalogue/App.config",
+      "toolset": "14",
+      "status": "required",
+      "runtimeClaim": "Windows XP SP3 x86 or newer"
+    },
+    {
+      "id": "win-x64-net40",
+      "platform": "x64",
+      "platformTarget": "x64",
+      "targetFramework": "v4.0",
+      "appConfig": "Compact Cassette Catalogue/App.config",
+      "toolset": "14",
+      "status": "recommended",
+      "runtimeClaim": "Windows 7 SP1 x64 or newer; Windows XP x64 unclaimed"
+    },
+    {
+      "id": "win-x64-net48",
+      "platform": "x64",
+      "platformTarget": "x64",
+      "targetFramework": "v4.8",
+      "appConfig": "build/config/net48/App.config",
+      "toolset": "15",
+      "status": "required",
+      "runtimeClaim": "Windows 7 SP1 x64 or newer with .NET Framework 4.8"
+    },
+    {
+      "id": "win-x64-net481",
+      "platform": "x64",
+      "platformTarget": "x64",
+      "targetFramework": "v4.8.1",
+      "appConfig": "build/config/net481/App.config",
+      "toolset": "17",
+      "status": "required",
+      "runtimeClaim": "Windows 10 22H2 x64 or Windows 11 x64"
+    }
+  ]
+}

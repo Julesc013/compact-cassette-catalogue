@@ -1,0 +1,4706 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "ref": "v1.2.0b1",
+    "commit": "2413e9139a098f3321385f2f946e743012a447f5",
+    "productionRoot": "Compact Cassette Catalogue/"
+  },
+  "productionFiles": [
+    "Compact Cassette Catalogue/App.config",
+    "Compact Cassette Catalogue/ApplicationEvents.vb",
+    "Compact Cassette Catalogue/Compact Cassette Catalogue.vbproj",
+    "Compact Cassette Catalogue/frmAbout.Designer.vb",
+    "Compact Cassette Catalogue/frmAbout.resx",
+    "Compact Cassette Catalogue/frmAbout.vb",
+    "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+    "Compact Cassette Catalogue/frmBrandEdit.resx",
+    "Compact Cassette Catalogue/frmBrandEdit.vb",
+    "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+    "Compact Cassette Catalogue/frmBrandNew.resx",
+    "Compact Cassette Catalogue/frmBrandNew.vb",
+    "Compact Cassette Catalogue/frmBrands.Designer.vb",
+    "Compact Cassette Catalogue/frmBrands.resx",
+    "Compact Cassette Catalogue/frmBrands.vb",
+    "Compact Cassette Catalogue/frmConsole.Designer.vb",
+    "Compact Cassette Catalogue/frmConsole.resx",
+    "Compact Cassette Catalogue/frmConsole.vb",
+    "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+    "Compact Cassette Catalogue/frmDeckEdit.resx",
+    "Compact Cassette Catalogue/frmDeckEdit.vb",
+    "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+    "Compact Cassette Catalogue/frmDeckNew.resx",
+    "Compact Cassette Catalogue/frmDeckNew.vb",
+    "Compact Cassette Catalogue/frmDecks.Designer.vb",
+    "Compact Cassette Catalogue/frmDecks.resx",
+    "Compact Cassette Catalogue/frmDecks.vb",
+    "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+    "Compact Cassette Catalogue/frmFindResults.resx",
+    "Compact Cassette Catalogue/frmFindResults.vb",
+    "Compact Cassette Catalogue/frmMain.Designer.vb",
+    "Compact Cassette Catalogue/frmMain.resx",
+    "Compact Cassette Catalogue/frmMain.vb",
+    "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+    "Compact Cassette Catalogue/frmModelEdit.resx",
+    "Compact Cassette Catalogue/frmModelEdit.vb",
+    "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+    "Compact Cassette Catalogue/frmModelNew.resx",
+    "Compact Cassette Catalogue/frmModelNew.vb",
+    "Compact Cassette Catalogue/frmModels.Designer.vb",
+    "Compact Cassette Catalogue/frmModels.resx",
+    "Compact Cassette Catalogue/frmModels.vb",
+    "Compact Cassette Catalogue/frmSettings.Designer.vb",
+    "Compact Cassette Catalogue/frmSettings.resx",
+    "Compact Cassette Catalogue/frmSettings.vb",
+    "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+    "Compact Cassette Catalogue/frmStatistics.resx",
+    "Compact Cassette Catalogue/frmStatistics.vb",
+    "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+    "Compact Cassette Catalogue/frmTapeNew.resx",
+    "Compact Cassette Catalogue/frmTapeNew.vb",
+    "Compact Cassette Catalogue/frmTapes.Designer.vb",
+    "Compact Cassette Catalogue/frmTapes.resx",
+    "Compact Cassette Catalogue/frmTapes.vb",
+    "Compact Cassette Catalogue/icon-cassette.ico",
+    "Compact Cassette Catalogue/My Project/Application.Designer.vb",
+    "Compact Cassette Catalogue/My Project/Application.myapp",
+    "Compact Cassette Catalogue/My Project/AssemblyInfo.vb",
+    "Compact Cassette Catalogue/My Project/DataSources/Compact_Cassette_Catalogue.My.MyApplication.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/Compact_Cassette_Catalogue.My.MySettings.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmBrandNew.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmConsole.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmDeckNew.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmDecks.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmFindResults.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmMain.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmModelNew.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmModels.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmStatistics.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmTapeNew.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmTapes.datasource",
+    "Compact Cassette Catalogue/My Project/DataSources/frmViewBrands.datasource",
+    "Compact Cassette Catalogue/My Project/Resources.Designer.vb",
+    "Compact Cassette Catalogue/My Project/Resources.resx",
+    "Compact Cassette Catalogue/My Project/Settings.Designer.vb",
+    "Compact Cassette Catalogue/My Project/Settings.settings",
+    "Compact Cassette Catalogue/Resources/banner-wide.png",
+    "Compact Cassette Catalogue/Resources/cassette-icon.png",
+    "Compact Cassette Catalogue/varGlobals.vb"
+  ],
+  "typeNames": [
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "kind": "Class",
+      "name": "frmAbout"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.vb",
+      "kind": "Class",
+      "name": "frmAbout"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "kind": "Class",
+      "name": "frmBrandEdit"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.vb",
+      "kind": "Class",
+      "name": "frmBrandEdit"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "kind": "Class",
+      "name": "frmBrandNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.vb",
+      "kind": "Class",
+      "name": "frmBrandNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "kind": "Class",
+      "name": "frmBrands"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.vb",
+      "kind": "Class",
+      "name": "frmBrands"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.Designer.vb",
+      "kind": "Class",
+      "name": "frmConsole"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.vb",
+      "kind": "Class",
+      "name": "frmConsole"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "kind": "Class",
+      "name": "frmDeckEdit"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.vb",
+      "kind": "Class",
+      "name": "frmDeckEdit"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "kind": "Class",
+      "name": "frmDeckNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.vb",
+      "kind": "Class",
+      "name": "frmDeckNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "kind": "Class",
+      "name": "frmDecks"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.vb",
+      "kind": "Class",
+      "name": "frmDecks"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "kind": "Class",
+      "name": "frmFindResults"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.vb",
+      "kind": "Class",
+      "name": "frmFindResults"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "kind": "Class",
+      "name": "frmMain"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.vb",
+      "kind": "Class",
+      "name": "frmMain"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "kind": "Class",
+      "name": "frmModelEdit"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.vb",
+      "kind": "Class",
+      "name": "frmModelEdit"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "kind": "Class",
+      "name": "frmModelNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "kind": "Class",
+      "name": "frmModelNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "kind": "Class",
+      "name": "frmModels"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.vb",
+      "kind": "Class",
+      "name": "frmModels"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "kind": "Class",
+      "name": "frmSettings"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.vb",
+      "kind": "Class",
+      "name": "frmSettings"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "kind": "Class",
+      "name": "frmStatistics"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.vb",
+      "kind": "Class",
+      "name": "frmStatistics"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "kind": "Class",
+      "name": "frmTapeNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "kind": "Class",
+      "name": "frmTapeNew"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "kind": "Class",
+      "name": "frmTapes"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.vb",
+      "kind": "Class",
+      "name": "frmTapes"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Resources.Designer.vb",
+      "kind": "Module",
+      "name": "Resources"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Settings.Designer.vb",
+      "kind": "Module",
+      "name": "MySettingsProperty"
+    },
+    {
+      "path": "Compact Cassette Catalogue/varGlobals.vb",
+      "kind": "Module",
+      "name": "varGlobals"
+    }
+  ],
+  "controlNames": [
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "btnOK",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "PictureBox1",
+      "type": "PictureBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lblProgramName",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lblCopyright",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lblProgramVersion",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lblCatalogueVersion",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lblProgramDate",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "pnlInformation",
+      "type": "Panel"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lblContactEmail",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lblWebsite",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lnkWebsite",
+      "type": "LinkLabel"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "lnkContactEmail",
+      "type": "LinkLabel"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "PictureBox2",
+      "type": "PictureBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "lblCode",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "lblBrand",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "txtCode",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "txtBrand",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "lblAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "name": "btnUpdate",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "lblCode",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "lblBrand",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "txtCode",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "txtBrand",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "lblAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "btnAdd",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "lblNotes",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "btnRefresh",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "Label1",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "grpFilters",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "btnDelete",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "grpActions",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "grpModels",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "lblResults",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "txtResults",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "btnEdit",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "lstBrands",
+      "type": "ListView"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "ColumnHeader9",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "ColumnHeader10",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "ColumnHeader11",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.Designer.vb",
+      "name": "lstConsole",
+      "type": "ListBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.Designer.vb",
+      "name": "txtCommand",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.Designer.vb",
+      "name": "btnEnter",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkDBX2",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpNR",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkMPX",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkDBX1",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkHX",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblDBX",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkDolbyC",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkDolbyS",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkDolbyB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblDolby",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkType4",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkType3",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkType2",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkType1",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpTypes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkAzimuth",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpFeatures",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkSearch",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkCalibration",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkReverse",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkDubbingHalf",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkDubbingDouble",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblDubbing",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkStereo",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "numFrequencyMin",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpSpeeds",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblSpeeds",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkSpeedNormal",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkSpeedSlow",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "chkSpeedFast",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "numDistortion",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblWowFlutter",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "numWowFlutter",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblSignalRatioNR",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblSignalRatio",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "cmbSignalRatioNR",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "numSignalRatio",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblFrequencyTo",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "numFrequencyMax",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lvlFrequency",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpSpecifications",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblDistortion",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "btnUpdate",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblManufacturer",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblCondition",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "txtModel",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "txtManufacturer",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "cmbCondition",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "numYear",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblYear",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "cmbWells",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblWells",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "cmbHeads",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblHeads",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "grpTransport",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "lblAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "btnAdd",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblManufacturer",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "txtModel",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "txtManufacturer",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblCondition",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "cmbCondition",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "numYear",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblYear",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblHeads",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "cmbHeads",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblWells",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkSpeedSlow",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "cmbWells",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkSpeedFast",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblSpeeds",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkSpeedNormal",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpTransport",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblDolby",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkDolbyB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkDolbyS",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkDolbyC",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblDBX",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkHX",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkDBX1",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkDBX2",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkMPX",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpNR",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkType1",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkType2",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkType3",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkType4",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpTypes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkStereo",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblDubbing",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkDubbingDouble",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkDubbingHalf",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkReverse",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkCalibration",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkSearch",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "chkAzimuth",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpFeatures",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "numFrequencyMin",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lvlFrequency",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "numFrequencyMax",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblFrequencyTo",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "numSignalRatio",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "cmbSignalRatioNR",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblSignalRatio",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblSignalRatioNR",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "numWowFlutter",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblWowFlutter",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "numDistortion",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "lblDistortion",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpSpecifications",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "grpSpeeds",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "lblResults",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "grpTapes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "grpActions",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "btnRefresh",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "Label1",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "btnDelete",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "txtResults",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "lblFrequencyTo",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "lblFrequency",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "lblManufacturer",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "grpFilters",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "txtManufacturer",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "lstDecks",
+      "type": "ListView"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colManufacturer",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colModel",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colYear",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colTypes",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colHeads",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colSpeeds",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colNRs",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colHX",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colMPX",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colStereo",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colWells",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colDubbing",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colAutoReverse",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colProgramSearch",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colCalibration",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colAzimuth",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colFrequency",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colSignalRatio",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colWowFlutter",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colDistortion",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "colCondition",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "cmbNR",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "lblNR",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "cmbTypes",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "lblType",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "chkHX",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "chkMPX",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "chkCalibration",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "numFrequencyMax",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "btnEdit",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "lblResults",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "btnEdit",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "TextBox2",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "lstTapes",
+      "type": "ListView"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colIdentifier",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colName",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colBrand",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colModel",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colType",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colYear",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colLength",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colCondition",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colRecorded",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colContents",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colNoise",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colAlbum",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colTitle",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "colNotes",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "btnDelete",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpIdentification",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtLong",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtShort",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblLong",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblShort",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "menuStripMain",
+      "type": "MenuStrip"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "FileToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "NewToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator1",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "CloseToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "EditToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "HelpToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "AboutToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "OpenCatalogueToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "PreferencesToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator4",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "NewTapeToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "NewModelToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "NewManufactererToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolsToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "SearchTapesToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "SearchModelsToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "SearchManufacturersToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator5",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ViewStatisticsToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpData",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpFind",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtTerm",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnFind",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbField",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpActions",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnDelete",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnAdd",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnSave",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpScroll",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnNext",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnPrevious",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblRecordedA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblCondition",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbCondition",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "datRecordedA",
+      "type": "DateTimePicker"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpModel",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpContentsA",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblNRA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbNRA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtTotal",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblIndex",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpSideA",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblNameA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtNameA",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblTitleA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblArtistA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtTitleA",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtArtistA",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblContentsA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbContentsA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkTapedB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkTapedA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblLength",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblYear",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblAbout",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkPackaged",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpTaped",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblSides",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkMPXA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkHXA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numLevelA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblBiasCalA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numBiasCalA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblBiasA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbBiasA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblLevelCalA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numLevelCalA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblLevelA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbEQA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblEQA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbDeckA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblDeckA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator2",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "NewDeckToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ViewDecksToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator6",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblSpeed",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbSpeedA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkDubbedA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpConfigA",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numPeakA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblPeakA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbInputA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblInputA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblRegion",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "dlgOpen",
+      "type": "OpenFileDialog"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "dlgSaveAs",
+      "type": "SaveFileDialog"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "SaveToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "SaveAsToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblMax",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtModel",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolsToolStripMenuItem1",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ShowConsoleToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnUpdate",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "TutorialToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "FeedbackToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbRegion",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numLength",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numYear",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator3",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "UpdateTapeToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "DeleteTapeToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "OutputConsoleToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblProcessingA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpSideB",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numPeakB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblPeakB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbInputB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblInputB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpConfigB",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblProcessingB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkDubbedB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbNRB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblNRB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbSpeedB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkHXB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "chkMPXB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblSpeedB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "grpContentsB",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblTitleB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblArtistB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtTitleB",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtArtistB",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblContentsB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbContentsB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbBiasB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblBiasB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbEQB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numBiasCalB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblBiasCalB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblEQB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numLevelB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblLevelB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "numLevelCalB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblLevelCalB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblNameB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtNameB",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "datRecordedB",
+      "type": "DateTimePicker"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblRecordedB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "cmbDeckB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblDeckB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "HelpGuideToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator7",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator8",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "txtIndex",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "CheckForUpdatesToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "ToolStripSeparator9",
+      "type": "ToolStripSeparator"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "OpenDownloadsPageToolStripMenuItem",
+      "type": "ToolStripMenuItem"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "btnUpdate",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "txtModel",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "lblCode",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "txtCode",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "lblType",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "lblBrand",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "grpExtra",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "lblName",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "txtName",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "lblAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "txtBrand",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "txtType",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "txtModel",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "lblBrand",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "btnAdd",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "lblAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "cmbBrand",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "cmbType",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "lblType",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "lblCode",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "txtCode",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "grpExtra",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "lblName",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "txtName",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "chkTypeBetter",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "grpModels",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "grpActions",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "btnRefresh",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "Label1",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "btnDelete",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "grpFilters",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "lblNotes",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "cmbTypes",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "lblType",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "cmbBrand",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "lblBrand",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "txtName",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "lblName",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "lblResults",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "txtResults",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "btnEdit",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "lstModels",
+      "type": "ListView"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colIdentifier",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colBrand",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colType",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colModel",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colCode",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colName",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colNotes",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "colNumber",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "lblShowMessages",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "cmbShowMessages",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "btnSave",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "lblCheckUpdates",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "cmbCheckUpdates",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpRecords",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtTotal",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblTapes",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpTotals",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtPackaged",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblPackaged",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtBSides",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblBSides",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtASides",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblASides",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtLengthTotal",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblLengthTotal",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtModels",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblModels",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtBrands",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "Label6",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpTypes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtType4",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblType4",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtType3",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblType3",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtType2",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblType2",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtType1",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblType1",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpYears",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt10s",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl10s",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt00s",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl00s",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt90sLate",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl90sLate",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt80sEarly",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl80sEarly",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt70sEarly",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl70sEarly",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt60s",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl60s",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpSides",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpContents",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtSingles",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblSingles",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtEPs",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblEPs",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtSoundtracks",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblSoundtracks",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtCompilations",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblCompilations",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtAlbums",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblAlbums",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtMixtapes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblMixtapes",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpLengths",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtLongest",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblLongest",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtShortest",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblShortest",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpTapes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtNewestTape",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblNewestTape",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtOldestTape",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblOldestTape",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpPopular",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "grpRecordings",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtNewest",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtOldest",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblNewest",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblOldest",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtContents",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblContents",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtCondition",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblCondition",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtLength",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblLength",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtYear",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblYear",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtType",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblType",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtModel",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtBrand",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblBrand",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtDeck",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblDeck",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt30s",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl30s",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt20s",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl20s",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtRecordings",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblRecordings",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtDecks",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblDecks",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtDubbed",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblDubbed",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "btnRefresh",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "btnGraphs",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtNR",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblNR",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt90sEarly",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl90sEarly",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt80sLate",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl80sLate",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtLengthRecorded",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblLengthRecorded",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txt70sLate",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lbl70sLate",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "Label1",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "txtInput",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "lblInput",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbModel",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "btnAdd",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpSideB",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numPeakB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblPeakB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbInputB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblInputB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpConfigB",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblProcessingB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkDubbedB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbNRB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblNRB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbSpeedB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkHXB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkMPXB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblSpeedB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpContentsB",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblTitleB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblArtistB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "txtTitleB",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "txtArtistB",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblContentsB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbContentsB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbBiasB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblBiasB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbEQB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numBiasCalB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblBiasCalB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblEQB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numLevelB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblLevelB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numLevelCalB",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblLevelCalB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblNameB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "txtNameB",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "datRecordedB",
+      "type": "DateTimePicker"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblRecordedB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbDeckB",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblDeckB",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpTaped",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblSides",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkTapedB",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkTapedA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpBasic",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkPackaged",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblCondition",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbCondition",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpNotes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpSideA",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numPeakA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblPeakA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbInputA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblInputA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpConfigA",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblProcessingA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkDubbedA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbNRA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblNRA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbSpeedA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkHXA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "chkMPXA",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblSpeed",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpContentsA",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblTitleA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblArtistA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "txtTitleA",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "txtArtistA",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblContentsA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbContentsA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbBiasA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblBiasA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbEQA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numBiasCalA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblBiasCalA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblEQA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numLevelA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblLevelA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numLevelCalA",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblLevelCalA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblNameA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "txtNameA",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "datRecordedA",
+      "type": "DateTimePicker"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblRecordedA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbDeckA",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblDeckA",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpModel",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "cmbRegion",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numLength",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numYear",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblRegion",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblLength",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblYear",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "numBulkAdd",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblBulkAdd",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "lblBulkCopies",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "grpBulkAdd",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "grpFilters",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "grpTapes",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "grpContents",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "grpTape",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "grpModel",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "cmbModel",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "cmbBrand",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblLength",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblYear",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblBrand",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblModel",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblCondition",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "cmbNR",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblNR",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "datRecordedMax",
+      "type": "DateTimePicker"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblRecorded",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblTitle",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblArtist",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "txtTitle",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "txtArtist",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblContents",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "cmbContents",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblName",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "txtName",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "txtNotes",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblNotes",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "cmbTypes",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblType",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "cmbCondition",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblYearTo",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblLengthTo",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "chkTypeBetter",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "numLengthMin",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "numYearMin",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "numLengthMax",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "numYearMax",
+      "type": "NumericUpDown"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "datRecordedMin",
+      "type": "DateTimePicker"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "chkConditionBetter",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblRecordedTo",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "grpActions",
+      "type": "GroupBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "Label1",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "btnDelete",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "btnEdit",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "btnRefresh",
+      "type": "Button"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "cmbDeck",
+      "type": "ComboBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblDeck",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lblResults",
+      "type": "Label"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "txtResults",
+      "type": "TextBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "lstTapes",
+      "type": "ListView"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colFullIdentifier",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colBrand",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colModel",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colType",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colYear",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colLength",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colCondition",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colRecorded",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colContents",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colNR",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colArtist",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colTitle",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colNotes",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colIdentifier",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colRegion",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "chkPackaged",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colPackaged",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colDeck",
+      "type": "ColumnHeader"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "chkRecorded",
+      "type": "CheckBox"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "colName",
+      "type": "ColumnHeader"
+    }
+  ],
+  "resourceKeys": [
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.resx",
+      "key": "$this.Icon"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Resources.resx",
+      "key": "banner-wide"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Resources.resx",
+      "key": "cassette-icon"
+    }
+  ],
+  "designerHashes": [
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "sha256": "92698e7f63747cb22ae0082ecc7a70a7c9a475577ab615bc9f83143ff9a09874"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.Designer.vb",
+      "sha256": "8050942f08214e6f221d4be2bfcd7f9de5cad1ba7d3055beefc8cf36a9deee61"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "sha256": "9589ec50f092bd10244e6dbae80f6ba66522ee3abea1193856c50b1338a7f5fd"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "sha256": "24e20e0657fd397cfa37c01a4c9bd61dc8b0c896f8aefa0c310c562c8fecec1f"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.Designer.vb",
+      "sha256": "6b20fb12ff558e6f62ae1cd763fddc5a2b9e9e8215e2bd748299da4b339035e5"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "sha256": "618a27a7b422033690fc8a74a113c10ecc2019a07254bd268db83d2cbd3bee79"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "sha256": "d3a3f487b17c6bfcc4c36c6b4b9cddb0c8ceb38259735cc35764aacd61190227"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "sha256": "f8130910ecdf5ccf46314ff079b49f925ef547e43acbfacaee40ce9d5092bad1"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "sha256": "cb6a40931903a42656335a07fa2c593221a4ce33513ea494e0163fd9c00db643"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "sha256": "a3a9a1503861216782f8d481a6f144aa70797cf33aa9040ff3851293d5297be6"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "sha256": "9f3f8cbdd6043dd99b727ee7a40c9695c48cc6c02c57a33ea888b608b98d9654"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "sha256": "9f99984ea0c95d616adcb53d704af868d0b8954d3e31f7e403e0252631082ba1"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "sha256": "4b3f41261378ecfc354e50da2909af27468b0248d209fe89dc96a3099691bfc0"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "sha256": "8d97869156caebc0936e8859ff92e4f30641f6399d01e8618c7c06883770e0c8"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "sha256": "b7fe6132ad9a98e85d9bdf342a12efa9461bb500a726a282a23b1e5f5fd61cc0"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "sha256": "86b5597f9fa418ceab4d9e2e7c5799cf67be45434f9409406bb2d405734106aa"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "sha256": "25d9aec53c7a166b26e472877c6d6960380ce80cff3054ad36f06961e9aa6a7a"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Application.Designer.vb",
+      "sha256": "4dbfbf005975019ca645166cd62a421bcc14931a66b7116e7c111419eb6b4e77"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Resources.Designer.vb",
+      "sha256": "08cef05da2f5e875175aa0c7f50e77f1b5d03a626c0d49e60fcc8a4af37c1cac"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Settings.Designer.vb",
+      "sha256": "969f3ec69444c425db7c39784b6adbac65294881147621353f2a71987e9c7213"
+    }
+  ],
+  "resxHashes": [
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandEdit.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.resx",
+      "sha256": "9c3347660750eb733e6f3c91c2aa9792b6403033b5cedc22618ef588913b1682"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.resx",
+      "sha256": "b130ba1f64102be9dc76cb7582c50e2b2e4149689d22c96cc1d2934da00544b9"
+    },
+    {
+      "path": "Compact Cassette Catalogue/My Project/Resources.resx",
+      "sha256": "b1002b2886649d336aa032c8c30ef7b6167a2b19a6a222dec0e27b33dbcc9d08"
+    }
+  ],
+  "identity": {
+    "projectGuid": "{DD0ADBE8-82D1-4620-8073-FF8EC6392135}",
+    "rootNamespace": "Compact_Cassette_Catalogue",
+    "assemblyName": "Compact Cassette Catalogue",
+    "startupObject": "Compact_Cassette_Catalogue.My.MyApplication",
+    "targetFramework": "v4.0"
+  },
+  "frameworkReferences": [
+    "System",
+    "System.Core",
+    "System.Data",
+    "System.Data.DataSetExtensions",
+    "System.Deployment",
+    "System.Drawing",
+    "System.Windows.Forms",
+    "System.Windows.Forms.DataVisualization",
+    "System.Xml",
+    "System.Xml.Linq"
+  ],
+  "settings": [
+    {
+      "name": "showMessages",
+      "type": "System.Boolean",
+      "scope": "User",
+      "default": "True"
+    },
+    {
+      "name": "defaultDirectory",
+      "type": "System.String",
+      "scope": "User",
+      "default": "My.Computer.FileSystem.SpecialDirectories.MyDocuments"
+    },
+    {
+      "name": "checkUpdates",
+      "type": "System.String",
+      "scope": "User",
+      "default": "never"
+    },
+    {
+      "name": "lastUpdateCheck",
+      "type": "System.DateTime",
+      "scope": "User",
+      "default": ""
+    }
+  ],
+  "dataSet": {
+    "variable": "catalogue",
+    "dataSetName": "Catalogue",
+    "tables": [
+      {
+        "factory": "makeInformation",
+        "name": "Information",
+        "columns": [
+          {
+            "name": "Information",
+            "type": "String"
+          },
+          {
+            "name": "Value",
+            "type": "String"
+          }
+        ],
+        "primaryKey": "Information"
+      },
+      {
+        "factory": "makeCounters",
+        "name": "Counters",
+        "columns": [
+          {
+            "name": "Counter",
+            "type": "String"
+          },
+          {
+            "name": "Number",
+            "type": "Integer"
+          }
+        ],
+        "primaryKey": "Counter"
+      },
+      {
+        "factory": "makeDecks",
+        "name": "Decks",
+        "columns": [
+          {
+            "name": "Manufacturer",
+            "type": "String"
+          },
+          {
+            "name": "Model",
+            "type": "String"
+          },
+          {
+            "name": "Name",
+            "type": "String"
+          },
+          {
+            "name": "Year",
+            "type": "Integer"
+          },
+          {
+            "name": "Condition",
+            "type": "Integer"
+          },
+          {
+            "name": "Type1",
+            "type": "Boolean"
+          },
+          {
+            "name": "Type2",
+            "type": "Boolean"
+          },
+          {
+            "name": "Type3",
+            "type": "Boolean"
+          },
+          {
+            "name": "Type4",
+            "type": "Boolean"
+          },
+          {
+            "name": "HX",
+            "type": "Boolean"
+          },
+          {
+            "name": "MPX",
+            "type": "Boolean"
+          },
+          {
+            "name": "DolbyB",
+            "type": "Boolean"
+          },
+          {
+            "name": "DolbyC",
+            "type": "Boolean"
+          },
+          {
+            "name": "DolbyS",
+            "type": "Boolean"
+          },
+          {
+            "name": "DBX1",
+            "type": "Boolean"
+          },
+          {
+            "name": "DBX2",
+            "type": "Boolean"
+          },
+          {
+            "name": "Stereo",
+            "type": "Boolean"
+          },
+          {
+            "name": "ProgramSearch",
+            "type": "Boolean"
+          },
+          {
+            "name": "Reverse",
+            "type": "Boolean"
+          },
+          {
+            "name": "Calibration",
+            "type": "Boolean"
+          },
+          {
+            "name": "Azimuth",
+            "type": "Boolean"
+          },
+          {
+            "name": "DubbingSlow",
+            "type": "Boolean"
+          },
+          {
+            "name": "DubbingFast",
+            "type": "Boolean"
+          },
+          {
+            "name": "FrequencyLow",
+            "type": "Integer"
+          },
+          {
+            "name": "FrequencyHigh",
+            "type": "Integer"
+          },
+          {
+            "name": "SignalRatio",
+            "type": "Integer"
+          },
+          {
+            "name": "SignalRatioNR",
+            "type": "String"
+          },
+          {
+            "name": "WowFlutter",
+            "type": "Decimal"
+          },
+          {
+            "name": "Distortion",
+            "type": "Decimal"
+          },
+          {
+            "name": "Heads",
+            "type": "Integer"
+          },
+          {
+            "name": "Wells",
+            "type": "Integer"
+          },
+          {
+            "name": "SpeedSlow",
+            "type": "Boolean"
+          },
+          {
+            "name": "SpeedNorm",
+            "type": "Boolean"
+          },
+          {
+            "name": "SpeedFast",
+            "type": "Boolean"
+          },
+          {
+            "name": "Date",
+            "type": "DateTime"
+          },
+          {
+            "name": "Notes",
+            "type": "String"
+          }
+        ],
+        "primaryKey": "Name"
+      },
+      {
+        "factory": "makeBrands",
+        "name": "Brands",
+        "columns": [
+          {
+            "name": "Brand",
+            "type": "String"
+          },
+          {
+            "name": "Code",
+            "type": "String"
+          },
+          {
+            "name": "Date",
+            "type": "DateTime"
+          },
+          {
+            "name": "Notes",
+            "type": "String"
+          }
+        ],
+        "primaryKey": "Code"
+      },
+      {
+        "factory": "makeModels",
+        "name": "Models",
+        "columns": [
+          {
+            "name": "Brand",
+            "type": "String"
+          },
+          {
+            "name": "Type",
+            "type": "Integer"
+          },
+          {
+            "name": "Model",
+            "type": "String"
+          },
+          {
+            "name": "Code",
+            "type": "String"
+          },
+          {
+            "name": "Identifier",
+            "type": "String"
+          },
+          {
+            "name": "Name",
+            "type": "String"
+          },
+          {
+            "name": "Number",
+            "type": "Integer"
+          },
+          {
+            "name": "Date",
+            "type": "DateTime"
+          },
+          {
+            "name": "Notes",
+            "type": "String"
+          }
+        ],
+        "primaryKey": "Identifier"
+      },
+      {
+        "factory": "makeTapes",
+        "name": "Tapes",
+        "columns": [
+          {
+            "name": "Model",
+            "type": "String"
+          },
+          {
+            "name": "Year",
+            "type": "Integer"
+          },
+          {
+            "name": "Length",
+            "type": "Decimal"
+          },
+          {
+            "name": "Region",
+            "type": "String"
+          },
+          {
+            "name": "Number",
+            "type": "Integer"
+          },
+          {
+            "name": "Identifier",
+            "type": "String"
+          },
+          {
+            "name": "IdentifierShort",
+            "type": "String"
+          },
+          {
+            "name": "Condition",
+            "type": "Integer"
+          },
+          {
+            "name": "Packaged",
+            "type": "Boolean"
+          },
+          {
+            "name": "TapedA",
+            "type": "Boolean"
+          },
+          {
+            "name": "TapedB",
+            "type": "Boolean"
+          },
+          {
+            "name": "NameA",
+            "type": "String"
+          },
+          {
+            "name": "RecordedA",
+            "type": "Date"
+          },
+          {
+            "name": "DeckA",
+            "type": "String"
+          },
+          {
+            "name": "InputA",
+            "type": "String"
+          },
+          {
+            "name": "PeakA",
+            "type": "Integer"
+          },
+          {
+            "name": "NRA",
+            "type": "String"
+          },
+          {
+            "name": "HXA",
+            "type": "Boolean"
+          },
+          {
+            "name": "MPXA",
+            "type": "Boolean"
+          },
+          {
+            "name": "DubbedA",
+            "type": "Boolean"
+          },
+          {
+            "name": "SpeedA",
+            "type": "String"
+          },
+          {
+            "name": "BiasA",
+            "type": "Integer"
+          },
+          {
+            "name": "BiasCalA",
+            "type": "Integer"
+          },
+          {
+            "name": "EQA",
+            "type": "String"
+          },
+          {
+            "name": "LevelA",
+            "type": "Decimal"
+          },
+          {
+            "name": "LevelCalA",
+            "type": "Decimal"
+          },
+          {
+            "name": "ContentsA",
+            "type": "String"
+          },
+          {
+            "name": "ArtistA",
+            "type": "String"
+          },
+          {
+            "name": "TitleA",
+            "type": "String"
+          },
+          {
+            "name": "NameB",
+            "type": "String"
+          },
+          {
+            "name": "RecordedB",
+            "type": "Date"
+          },
+          {
+            "name": "DeckB",
+            "type": "String"
+          },
+          {
+            "name": "InputB",
+            "type": "String"
+          },
+          {
+            "name": "PeakB",
+            "type": "Integer"
+          },
+          {
+            "name": "NRB",
+            "type": "String"
+          },
+          {
+            "name": "HXB",
+            "type": "Boolean"
+          },
+          {
+            "name": "MPXB",
+            "type": "Boolean"
+          },
+          {
+            "name": "DubbedB",
+            "type": "Boolean"
+          },
+          {
+            "name": "SpeedB",
+            "type": "String"
+          },
+          {
+            "name": "BiasB",
+            "type": "Integer"
+          },
+          {
+            "name": "BiasCalB",
+            "type": "Integer"
+          },
+          {
+            "name": "EQB",
+            "type": "String"
+          },
+          {
+            "name": "LevelB",
+            "type": "Decimal"
+          },
+          {
+            "name": "LevelCalB",
+            "type": "Decimal"
+          },
+          {
+            "name": "ContentsB",
+            "type": "String"
+          },
+          {
+            "name": "ArtistB",
+            "type": "String"
+          },
+          {
+            "name": "TitleB",
+            "type": "String"
+          },
+          {
+            "name": "Date",
+            "type": "DateTime"
+          },
+          {
+            "name": "Notes",
+            "type": "String"
+          }
+        ],
+        "primaryKey": "IdentifierShort"
+      }
+    ]
+  },
+  "catalogue": {
+    "format": "1.1.0",
+    "supportedFormats": [
+      "1.1.0"
+    ],
+    "updateEndpoint": "https://raw.githubusercontent.com/Julesc013/compact-cassette-catalogue/master/VERSION",
+    "defaultUpdatePolicy": "never"
+  },
+  "principalAssets": [
+    {
+      "path": "Compact Cassette Catalogue/icon-cassette.ico",
+      "sha256": "1977b5ca60782a2c6e23d46603a15841adb7bd2fc6528f829b7b69e1dcaab059"
+    },
+    {
+      "path": "Compact Cassette Catalogue/Resources/banner-wide.png",
+      "sha256": "3869823b1dcbbcad00c16f98aaf061fa5ff9f2c220014533c53eeff3d506031c"
+    },
+    {
+      "path": "Compact Cassette Catalogue/Resources/cassette-icon.png",
+      "sha256": "08e9463ca3d140c15c0a93997009202d7494b95f88027a36ff822d48f97467b7"
+    }
+  ],
+  "sourcePolicy": {
+    "projectFiles": [
+      "Compact Cassette Catalogue/Compact Cassette Catalogue.vbproj"
+    ],
+    "csharpFiles": [],
+    "conditionalCompilation": [
+      {
+        "path": "Compact Cassette Catalogue/My Project/Settings.Designer.vb",
+        "expression": "_MyType = \"WindowsForms\""
+      },
+      {
+        "path": "Compact Cassette Catalogue/My Project/Settings.Designer.vb",
+        "expression": "_MyType = \"WindowsForms\""
+      }
+    ]
+  }
+}
