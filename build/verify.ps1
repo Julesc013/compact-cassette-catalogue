@@ -6,25 +6,44 @@ param(
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
-& (Join-Path $PSScriptRoot 'verify-metadata.ps1')
-& (Join-Path $PSScriptRoot 'test-json-validator.ps1')
-& (Join-Path $PSScriptRoot 'validate-release-train.ps1')
-& (Join-Path $PSScriptRoot 'test-release-train.ps1')
-& (Join-Path $PSScriptRoot 'validate-release-contract.ps1')
-& (Join-Path $PSScriptRoot 'test-release-contract.ps1')
-& (Join-Path $PSScriptRoot 'test-release-ref-transaction.ps1')
-& (Join-Path $PSScriptRoot 'test-trusted-release-target.ps1')
-& (Join-Path $PSScriptRoot 'test-update-feed-contract.ps1')
-& (Join-Path $PSScriptRoot 'validate-build-contract.ps1')
-& (Join-Path $PSScriptRoot 'validate-dependencies.ps1')
-& (Join-Path $PSScriptRoot 'validate-ui-boundaries.ps1')
-& (Join-Path $PSScriptRoot 'validate-project-parity.ps1')
-& (Join-Path $PSScriptRoot 'validate-docs.ps1')
-& (Join-Path $PSScriptRoot 'test-doc-validation.ps1')
-& (Join-Path $PSScriptRoot 'test.ps1') -Configuration Release
-& (Join-Path $PSScriptRoot 'build.ps1') -Configuration Release -Rebuild:$Rebuild
-& (Join-Path $PSScriptRoot 'verify-binary-metadata.ps1') -Configuration Release
-& (Join-Path $PSScriptRoot 'verify-pe.ps1') -Configuration Release
+function Invoke-RepositoryScript {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Name,
+        [hashtable]$Parameters = @{}
+    )
+
+    # Run every component with the same native-exit baseline as an independent
+    # GitHub Actions PowerShell step, then reject a leaked failure code locally.
+    $global:LASTEXITCODE = 0
+    & (Join-Path $PSScriptRoot $Name) @Parameters
+    if ($global:LASTEXITCODE -ne 0) {
+        throw "$Name completed with native exit code $global:LASTEXITCODE."
+    }
+}
+
+Invoke-RepositoryScript 'verify-metadata.ps1'
+Invoke-RepositoryScript 'test-json-validator.ps1'
+Invoke-RepositoryScript 'validate-release-train.ps1'
+Invoke-RepositoryScript 'test-release-train.ps1'
+Invoke-RepositoryScript 'validate-release-contract.ps1'
+Invoke-RepositoryScript 'test-release-contract.ps1'
+Invoke-RepositoryScript 'test-release-ref-transaction.ps1'
+Invoke-RepositoryScript 'test-trusted-release-target.ps1'
+Invoke-RepositoryScript 'test-update-feed-contract.ps1'
+Invoke-RepositoryScript 'validate-build-contract.ps1'
+Invoke-RepositoryScript 'validate-dependencies.ps1'
+Invoke-RepositoryScript 'validate-ui-boundaries.ps1'
+Invoke-RepositoryScript 'validate-project-parity.ps1'
+Invoke-RepositoryScript 'validate-docs.ps1'
+Invoke-RepositoryScript 'test-doc-validation.ps1'
+Invoke-RepositoryScript 'test.ps1' @{ Configuration = 'Release' }
+Invoke-RepositoryScript 'build.ps1' @{
+    Configuration = 'Release'
+    Rebuild = [bool]$Rebuild
+}
+Invoke-RepositoryScript 'verify-binary-metadata.ps1' @{ Configuration = 'Release' }
+Invoke-RepositoryScript 'verify-pe.ps1' @{ Configuration = 'Release' }
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $gitMetadataPath = Join-Path $repositoryRoot '.git'

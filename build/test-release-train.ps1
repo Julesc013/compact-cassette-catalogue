@@ -155,4 +155,8 @@ finally {
     }
 }
 
+# GitHub Actions appends `exit $LASTEXITCODE` to PowerShell steps. Expected
+# negative child-process cases must not leak their exit code past a successful
+# test harness.
+$global:LASTEXITCODE = 0
 Write-Host "Release-train tests passed: $passed scenarios."
