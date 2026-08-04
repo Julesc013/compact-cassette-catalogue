@@ -1,6 +1,60 @@
 # Compact Cassette Catalogue
 
 
+## C3 1.3 legacy maintenance
+
+
+### Version 1.3.0 Alpha 1 - 5 August 2026
+
+Alpha 1 is an intentionally unpublished source checkpoint for the recovered
+legacy maintenance programme. It does not contain the planned runtime repairs
+and is not advertised to existing C3 users.
+
+- Reconstructed `dev/1.x` directly from the manually qualified `v1.2.0b1`
+  lineage instead of the broad unpublished 1.2.1-era refactor.
+- Preserved the superseded refactor tip exactly under annotated archival tag
+  `archive/1x-refactor-attempt-2026-08-03`.
+- Corrected `legacy/1.x` to the documented, production-identical baseline
+  checkpoint and recorded the exceptional one-time branch recovery.
+- Defined the final 1.x maintenance constitution: original VB.NET WinForms
+  application, forms, filenames, DataSet model, settings, resources, assembly
+  identity, and catalogue format 1.1.0 remain authoritative.
+- Added a severity-classified salvage ledger for lifecycle, persistence, tape,
+  referential, counter, settings, and diagnostic repair candidates.
+- Added explicit Alpha 1, Beta 1, and stable milestone plans, including entry,
+  exit, publication, rollback, and post-1.3 freeze rules.
+- Replaced the feature-oriented TODO with a gated legacy maintenance workboard.
+- Added the catalogue 1.1.0 prose specification and XSD.
+- Added valid, invalid, culture, external-entity, and five historical catalogue
+  fixtures.
+- Added four captured historical settings profiles.
+- Added a strict compatibility corpus covering ten public 1.x releases, five
+  supported producers, four observed catalogue formats, exact source/release
+  provenance, and SHA-256 identities.
+- Added standalone .NET Framework 4.0 VB characterization tests for catalogue
+  shape, version handling, malformed XML, entity rejection, and invariant
+  decimals.
+- Added a generated baseline-genome manifest covering production paths, VB type
+  declarations, designer controls, resource keys/hashes, application identity,
+  framework references, settings, DataTables, catalogue/update constants, and
+  principal assets.
+- Added an explicit genome allow-list contract; Alpha 1 requires it to remain
+  empty.
+- Added one-project, source-identical build lanes for x86/net40, x64/net40,
+  x64/net48, and x64/net481.
+- Added lane-specific AppConfig metadata without conditional application logic.
+- Added PE architecture, target-framework, settings-parity, and no-runtime-DLL
+  checks.
+- Added reproducible download and exact verification of the official
+  `v1.2.0b1` x86 and x64 executables.
+- Kept the root three-line update feed at the actually available 1.2.0 release.
+- Recorded that VS2017 fallback builds are diagnostic only and do not replace
+  the pending authoritative VS2015/MSBuild 14 net40 gate.
+
+Known runtime data-safety and integrity defects remain assigned to Beta 1. No
+1.3 Alpha binary package is published from this checkpoint.
+
+
 
 ## Releases
 
