@@ -57,8 +57,8 @@
       "channel": "alpha",
       "predecessor": "2.0.0-alpha.1",
       "qualification": {
-        "state": "active",
-        "sourceCommit": null
+        "state": "pass",
+        "sourceCommit": "6c0a2f19ed5d4ecd949e10e83a4fd48d828fcb36"
       },
       "supersededBy": null,
       "promotion": {
@@ -77,8 +77,25 @@
         "state": "not-applicable"
       },
       "validationRecord": "release/validation/2.0.0-alpha.2.md",
-      "packages": [],
-      "checksumManifest": null
+      "packages": [
+        {
+          "lane": "win-x64-net48",
+          "file": "C3-v2.0.0-alpha.2-win-x64-net48-portable.zip",
+          "length": 944492,
+          "sha256": "327af0a43abb5344bbef371557499864904a181487e15fc0e2bdea9003fc622b"
+        },
+        {
+          "lane": "win-x86-net40",
+          "file": "C3-v2.0.0-alpha.2-win-x86-net40-portable.zip",
+          "length": 944071,
+          "sha256": "242446da3c60cb41a2ae866327b9a7a791ac8f90e730083403009baa6ab69b9a"
+        }
+      ],
+      "checksumManifest": {
+        "file": "SHA256SUMS.txt",
+        "length": 224,
+        "sha256": "f5536a1bc2a4c6be4741283c04810bd71dc7a7e906915915ae7737a014eba4f9"
+      }
     }
   ]
 }
