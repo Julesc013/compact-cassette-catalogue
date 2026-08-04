@@ -1,6 +1,6 @@
 # Catalogue 1.1 to native v2 migration design
 
-Status: **Design contract; native v2 migration is not implemented**
+Status: **Alpha 4 implementation in progress; deterministic dry run implemented**
 
 This document owns migration behavior. The
 [compatibility charter](../compatibility/1x-to-2x-charter.md) owns the user
@@ -36,6 +36,14 @@ Save As.
 - Derived counters are discarded and recomputed from accepted entities.
 - Unknown or malformed content is rejected or explicitly preserved in a declared
   extension envelope; it is never silently ignored.
+
+The implemented `v1.1-to-v2.0/1` dry run loads through the sole secure legacy
+store and derives typed IDs from the source SHA-256, stable entity kind, and
+legacy key. It separately reads original timestamp lexemes through a DTD-disabled
+reader: explicit offsets preserve their instant, while offset-free historical
+wall-clock values are labeled UTC and reported. Re-running identical source
+bytes produces identical mappings and native bytes regardless of row iteration
+order. The dry run has no destination path and performs no write.
 
 ## Migration report
 

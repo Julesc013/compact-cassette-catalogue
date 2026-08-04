@@ -62,6 +62,9 @@
     <Compile Include="Diagnostics\CrashReportWriter.cs" />
     <Compile Include="FileOperations\CompactSiblingFileName.cs" />
     <Compile Include="FileOperations\OwnedSiblingTemporaryFile.cs" />
+    <Compile Include="Migrations\V1_1ToV2_0\LegacyTimestampLexemes.cs" />
+    <Compile Include="Migrations\V1_1ToV2_0\LegacyToNativeMigrator.cs" />
+    <Compile Include="Migrations\V1_1ToV2_0\MigrationContracts.cs" />
     <Compile Include="Preferences\LegacySettingsProfileCandidate.cs" />
     <Compile Include="Preferences\LegacySettingsProfileLocator.cs" />
     <Compile Include="Preferences\LegacySettingsProfileReader.cs" />

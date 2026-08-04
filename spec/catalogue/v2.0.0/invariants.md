@@ -18,10 +18,10 @@
 - Native timestamps use UTC and the canonical `yyyy-MM-ddTHH:mm:ss.fffffffZ`
   representation. Offsets, unspecified values, leap-second text, and local time
   are rejected by the native reader.
-- Legacy `DateTime` fields lack a durable zone contract. Migration preserves
-  their wall-clock components, labels that value UTC, and records
-  `legacy-local-wall-clock-assumed-utc` for each populated field. This is
-  deterministic across machines and does not claim to recover an unknown offset.
+- A legacy timestamp with an explicit `Z` or numeric offset preserves its instant
+  and records `legacy-offset-normalized-utc`. Legacy fields without a durable
+  offset preserve their wall-clock components, label that value UTC, and record
+  `legacy-local-wall-clock-assumed-utc`. Neither rule invents an unknown zone.
 - Decimals use XML invariant lexical form without exponent notation or trailing
   insignificant zeroes. Negative tape lengths are invalid.
 - Text is preserved exactly after XML newline normalization. Required names and

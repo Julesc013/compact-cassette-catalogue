@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Program.vb" />
     <Compile Include="LegacyPathTestSupport.vb" />
+    <Compile Include="Migrations\LegacyToNativeMigratorTests.vb" />
     <Compile Include="CatalogueFiles\LegacyXmlCatalogueStoreTests.vb" />
     <Compile Include="CatalogueFiles\NativeXmlCatalogueStoreTests.vb" />
     <Compile Include="CatalogueRevisionDifferentialTests.vb" />

@@ -12,6 +12,12 @@ ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore|
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueStore|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueReader reader,C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter writer
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter|
 ctor|C3.Infrastructure.Diagnostics.CrashReportContext|
+ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrator|
+ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrator|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyXmlCatalogueStore legacyStore
+ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|
+ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity severity,System.String code,System.String path,System.String message
+ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping|System.String entityKind,System.String legacyKey,System.String nativeId
+ctor|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|System.String code,System.String path,System.String input,System.String output
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|System.String filePath,System.Version profileVersion,System.DateTime lastWriteTimeUtc
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|
 ctor|C3.Infrastructure.Preferences.LegacySettingsProfileReader|
@@ -50,6 +56,9 @@ enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|Unreso
 enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|UnsafeXml|3
 enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|UnsupportedFormat|5
 enum|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeCatalogueFileFailure|VerificationFailure|12
+enum|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|Blocking|2
+enum|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|Information|0
+enum|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|Warning|1
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|DuplicateSetting|5
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidStructure|4
 enum|C3.Infrastructure.Preferences.LegacySettingsProfileReadFailure|InvalidValue|6
@@ -145,6 +154,7 @@ method|C3.Infrastructure.Diagnostics.BufferedLogger|RecordAction|static|System.V
 method|C3.Infrastructure.Diagnostics.BufferedLogger|Tail|static|System.Collections.ObjectModel.ReadOnlyCollection<System.String>|
 method|C3.Infrastructure.Diagnostics.BufferedLogger|Warning|static|System.Void|System.String message
 method|C3.Infrastructure.Diagnostics.CrashReportWriter|TryWrite|static|System.String|System.Exception exception,C3.Infrastructure.Diagnostics.CrashReportContext context
+method|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrator|DryRun|instance|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|System.String sourcePath
 method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|
 method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|System.String localApplicationDataDirectory
 method|C3.Infrastructure.Preferences.LegacySettingsProfileReader|Read|instance|C3.Infrastructure.Preferences.LegacySettingsProfileReadResult|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate candidate
@@ -214,6 +224,36 @@ property|C3.Infrastructure.Diagnostics.CrashReportContext|OperatingSystem|System
 property|C3.Infrastructure.Diagnostics.CrashReportContext|ProcessBitness|System.String|getset
 property|C3.Infrastructure.Diagnostics.CrashReportContext|ProductVersion|System.String|getset
 property|C3.Infrastructure.Diagnostics.CrashReportContext|ReleaseStage|System.String|getset
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|Document|C3.Catalogue.Native.NativeCatalogue|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|IsSuccess|System.Boolean|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|Report|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|Brands|System.Int32|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|CassetteModels|System.Int32|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|DeckModels|System.Int32|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|DeckUnits|System.Int32|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|Recordings|System.Int32|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|Tapes|System.Int32|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue|Code|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue|Message|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue|Path|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue|Severity|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping|EntityKind|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping|LegacyKey|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping|NativeId|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|Code|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|Input|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|Output|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|Path|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|Counts|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|DestinationPath|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|DestinationRevision|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|HasBlockingIssues|System.Boolean|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|Issues|System.Collections.ObjectModel.ReadOnlyCollection<C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue>|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|Mappings|System.Collections.ObjectModel.ReadOnlyCollection<C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping>|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|Normalizations|System.Collections.ObjectModel.ReadOnlyCollection<C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization>|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|Profile|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|SourcePath|System.String|get
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|SourceRevision|System.String|get
 property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|FilePath|System.String|get
 property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|LastWriteTimeUtc|System.DateTime|get
 property|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|ProfileVersion|System.Version|get
@@ -325,6 +365,14 @@ type|C3.Infrastructure.CatalogueFiles.Xml.V2_0.NativeXmlCatalogueWriter|class|se
 type|C3.Infrastructure.Diagnostics.BufferedLogger|class|sealed
 type|C3.Infrastructure.Diagnostics.CrashReportContext|class|sealed
 type|C3.Infrastructure.Diagnostics.CrashReportWriter|class|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|class|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrator|class|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationEntityCounts|class|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssue|class|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationIssueSeverity|enum|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationMapping|class|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationNormalization|class|sealed
+type|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|class|sealed
 type|C3.Infrastructure.Preferences.LegacySettingsProfileCandidate|class|sealed
 type|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|class|sealed
 type|C3.Infrastructure.Preferences.LegacySettingsProfileReader|class|sealed

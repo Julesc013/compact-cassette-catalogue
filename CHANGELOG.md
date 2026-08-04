@@ -17,6 +17,11 @@
 - Added the native transactional store with SHA-256 revision checks, unique
   sibling temporary files, re-open/canonical-byte verification, byte-exact
   backups, external-edit protection, and typed failure results.
+- Implemented the read-only `v1.1-to-v2.0/1` dry run through the secure legacy
+  store, with source-hash/key-derived stable mappings, explicit-offset and
+  unknown-zone timestamp normalization evidence, typed counts/issues, source
+  byte preservation, repeated-migration byte identity, and blocking unresolved
+  relationship behavior.
 
 
 ### Version 2.0.0 Alpha 3 - Qualified, intentionally unpublished (2026-08-04)

@@ -3,8 +3,13 @@
   "profile": "v1.1-to-v2.0/1",
   "vectors": [
     {
-      "kind": "legacy-local-wall-clock-assumed-utc",
+      "kind": "legacy-offset-normalized-utc",
       "input": "2026-08-04T00:00:00+10:00",
+      "normalized": "2026-08-03T14:00:00.0000000Z"
+    },
+    {
+      "kind": "legacy-local-wall-clock-assumed-utc",
+      "input": "08/04/2026 00:00:00",
       "normalized": "2026-08-04T00:00:00.0000000Z"
     },
     {
