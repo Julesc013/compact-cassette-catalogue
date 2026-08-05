@@ -41,6 +41,10 @@ Module Program
         RunTest("unowned registry collision is rejected", AddressOf RegistryCollisionIsRejected)
         RunTest("altered registry registration blocks removal", AddressOf AlteredRegistryBlocksRemoval)
         RunTest("registry rollback restores prior owned values", AddressOf RegistryRollbackRestoresOwnedValues)
+        RunTest("owned shortcut plan applies and removes", AddressOf OwnedShortcutPlanAppliesAndRemoves)
+        RunTest("unowned shortcut collision is rejected", AddressOf ShortcutCollisionIsRejected)
+        RunTest("altered shortcut blocks removal", AddressOf AlteredShortcutBlocksRemoval)
+        RunTest("faulted shortcut removal restores owned links", AddressOf FaultedShortcutRemovalRestoresLinks)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -411,6 +415,94 @@ Module Program
                     End Sub)
     End Sub
 
+    Private Sub OwnedShortcutPlanAppliesAndRemoves()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim programs As String = Path.Combine(root, "Common Programs")
+                        Dim desktop As String = Path.Combine(root, "Common Desktop")
+                        Directory.CreateDirectory(programs)
+                        Directory.CreateDirectory(desktop)
+                        Dim access As New MemoryShortcutAccess(programs, desktop)
+                        Dim state As C3Setup.InstalledState = CreateInstalledStateWithShortcuts(root, manifestPath, programs, desktop, True)
+                        Dim previous As IDictionary(Of String, C3Setup.SetupShortcut) = C3Setup.SetupShortcutService.Apply(state, access)
+                        If previous.Count <> 2 Then Throw New Exception("Shortcut transaction did not cover both owned links.")
+                        C3Setup.SetupShortcutService.Remove(state, access)
+                        For Each item As C3Setup.InstalledShortcut In state.Shortcuts
+                            If access.ReadShortcut(item.Path) IsNot Nothing Then Throw New Exception("Owned shortcut survived removal.")
+                        Next
+                    End Sub)
+    End Sub
+
+    Private Sub ShortcutCollisionIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim programs As String = Path.Combine(root, "Common Programs")
+                        Dim desktop As String = Path.Combine(root, "Common Desktop")
+                        Directory.CreateDirectory(programs)
+                        Directory.CreateDirectory(desktop)
+                        Dim access As New MemoryShortcutAccess(programs, desktop)
+                        Dim state As C3Setup.InstalledState = CreateInstalledStateWithShortcuts(root, manifestPath, programs, desktop, False)
+                        Dim owned As C3Setup.InstalledShortcut = state.Shortcuts(0)
+                        access.WriteShortcut(New C3Setup.SetupShortcut(owned.Path, "C:\Unrelated.exe", "C:\", "Unrelated"))
+                        AssertContractFailure(Sub() C3Setup.SetupShortcutService.Apply(state, access))
+                        AssertEqual("C:\Unrelated.exe", access.ReadShortcut(owned.Path).Target, "unowned shortcut target")
+                    End Sub)
+    End Sub
+
+    Private Sub AlteredShortcutBlocksRemoval()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim programs As String = Path.Combine(root, "Common Programs")
+                        Dim desktop As String = Path.Combine(root, "Common Desktop")
+                        Directory.CreateDirectory(programs)
+                        Directory.CreateDirectory(desktop)
+                        Dim access As New MemoryShortcutAccess(programs, desktop)
+                        Dim state As C3Setup.InstalledState = CreateInstalledStateWithShortcuts(root, manifestPath, programs, desktop, False)
+                        C3Setup.SetupShortcutService.Apply(state, access)
+                        Dim owned As C3Setup.InstalledShortcut = state.Shortcuts(0)
+                        access.WriteShortcut(New C3Setup.SetupShortcut(owned.Path, "C:\Altered.exe", "C:\", "Altered"))
+                        AssertContractFailure(Sub() C3Setup.SetupShortcutService.Remove(state, access))
+                        If access.ReadShortcut(owned.Path) Is Nothing Then Throw New Exception("Altered shortcut was deleted.")
+                    End Sub)
+    End Sub
+
+    Private Sub FaultedShortcutRemovalRestoresLinks()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim programs As String = Path.Combine(root, "Common Programs")
+                        Dim desktop As String = Path.Combine(root, "Common Desktop")
+                        Directory.CreateDirectory(programs)
+                        Directory.CreateDirectory(desktop)
+                        Dim access As New MemoryShortcutAccess(programs, desktop)
+                        Dim state As C3Setup.InstalledState = CreateInstalledStateWithShortcuts(root, manifestPath, programs, desktop, True)
+                        C3Setup.SetupShortcutService.Apply(state, access)
+                        access.FailDeletePath = state.Shortcuts(1).Path
+                        Try
+                            C3Setup.SetupShortcutService.Remove(state, access)
+                            Throw New Exception("Expected injected shortcut removal failure.")
+                        Catch ex As InvalidOperationException
+                            If ex.Message <> "shortcut-delete-injected" Then Throw
+                        End Try
+                        For Each item As C3Setup.InstalledShortcut In state.Shortcuts
+                            If access.ReadShortcut(item.Path) Is Nothing Then Throw New Exception("Shortcut removal rollback did not restore all owned links.")
+                        Next
+                    End Sub)
+    End Sub
+
+    Private Function CreateInstalledStateWithShortcuts(root As String,
+                                                       manifestPath As String,
+                                                       programs As String,
+                                                       desktop As String,
+                                                       includeDesktop As Boolean) As C3Setup.InstalledState
+        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+        Dim installRoot As String = Path.Combine(root, "installed", "Compact Cassette Catalogue")
+        Return New C3Setup.InstalledState(manifest,
+                                          "89abcdef0123456789abcdef0123456789abcdef",
+                                          installRoot,
+                                          "install",
+                                          "0123456789abcdef0123456789abcdef",
+                                          New DateTime(2026, 8, 5, 12, 0, 0, DateTimeKind.Utc),
+                                          C3Setup.FileHash.Sha256(manifestPath),
+                                          "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+                                          C3Setup.SetupShortcutService.Plan(installRoot, programs, desktop, includeDesktop))
+    End Function
+
     Private Sub WithPayload(action As Action(Of String, String))
         Dim root As String = Path.Combine(Path.GetTempPath(), "C3SetupTests-" & Guid.NewGuid().ToString("N"))
         Dim payload As String = Path.Combine(root, "payload")
@@ -483,6 +575,39 @@ Module Program
 
         Public Sub DeleteKey(keyPath As String) Implements C3Setup.ISetupRegistryAccess.DeleteKey
             _keys.Remove(keyPath)
+        End Sub
+    End Class
+
+    Private NotInheritable Class MemoryShortcutAccess
+        Implements C3Setup.ISetupShortcutAccess
+
+        Private ReadOnly _shortcuts As New Dictionary(Of String, C3Setup.SetupShortcut)(StringComparer.OrdinalIgnoreCase)
+
+        Public Sub New(programs As String, desktop As String)
+            Me.CommonProgramsPath = programs
+            Me.CommonDesktopPath = desktop
+        End Sub
+
+        Public ReadOnly Property CommonProgramsPath As String Implements C3Setup.ISetupShortcutAccess.CommonProgramsPath
+        Public ReadOnly Property CommonDesktopPath As String Implements C3Setup.ISetupShortcutAccess.CommonDesktopPath
+        Public Property FailDeletePath As String
+
+        Public Function ReadShortcut(path As String) As C3Setup.SetupShortcut Implements C3Setup.ISetupShortcutAccess.ReadShortcut
+            If Not _shortcuts.ContainsKey(path) Then Return Nothing
+            Dim value As C3Setup.SetupShortcut = _shortcuts(path)
+            Return New C3Setup.SetupShortcut(value.Path, value.Target, value.WorkingDirectory, value.Description)
+        End Function
+
+        Public Sub WriteShortcut(value As C3Setup.SetupShortcut) Implements C3Setup.ISetupShortcutAccess.WriteShortcut
+            _shortcuts(value.Path) = New C3Setup.SetupShortcut(value.Path, value.Target, value.WorkingDirectory, value.Description)
+        End Sub
+
+        Public Sub DeleteShortcut(path As String) Implements C3Setup.ISetupShortcutAccess.DeleteShortcut
+            If String.Equals(path, FailDeletePath, StringComparison.OrdinalIgnoreCase) Then
+                FailDeletePath = Nothing
+                Throw New InvalidOperationException("shortcut-delete-injected")
+            End If
+            _shortcuts.Remove(path)
         End Sub
     End Class
 

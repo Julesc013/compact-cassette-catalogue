@@ -247,6 +247,7 @@ Namespace Global.C3Setup
             If Not Regex.IsMatch(state.TransactionId, "^[0-9a-f]{32}$", RegexOptions.CultureInvariant) Then Throw New SetupContractException("Transaction ID is invalid.")
             If Not Regex.IsMatch(state.PayloadManifestSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) OrElse
                     Not Regex.IsMatch(state.SetupBundleSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) Then Throw New SetupContractException("Installed-state hashes are invalid.")
+            SetupShortcutService.ValidateOwnedShortcuts(state)
         End Sub
 
         Public Shared Function UninstallKeyForLane(lane As String) As String
