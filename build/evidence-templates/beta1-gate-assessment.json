@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "releaseLabel": "1.3.0b1",
+  "gates": [
+    { "id": "source-controls", "status": "missing", "evidenceFile": null, "reason": "Not evaluated." },
+    { "id": "application-defects", "status": "missing", "evidenceFile": null, "reason": "APP-001 through APP-015 are not yet closed." },
+    { "id": "historical-gate1", "status": "missing", "evidenceFile": null, "reason": "Historical Gate 1 is incomplete." },
+    { "id": "candidate-build", "status": "missing", "evidenceFile": null, "reason": "Candidate builds are absent." },
+    { "id": "source-reproducibility", "status": "missing", "evidenceFile": null, "reason": "Two clean path-distinct builds are absent." },
+    { "id": "portable-packages", "status": "missing", "evidenceFile": null, "reason": "Portable Candidate packages are absent." },
+    { "id": "target-xp-runtime", "status": "missing", "evidenceFile": null, "reason": "Exact XP runtime evidence is absent." },
+    { "id": "target-win7-runtime", "status": "missing", "evidenceFile": null, "reason": "Exact Windows 7 runtime evidence is absent." },
+    { "id": "target-arm64-runtime", "status": "missing", "evidenceFile": null, "reason": "Exact native ARM64 runtime evidence is absent." },
+    { "id": "setup-durability", "status": "missing", "evidenceFile": null, "reason": "Durable setup recovery is incomplete." },
+    { "id": "setup-packages", "status": "missing", "evidenceFile": null, "reason": "Setup Candidate packages are absent." },
+    { "id": "target-xp-setup", "status": "missing", "evidenceFile": null, "reason": "Exact XP setup evidence is absent." },
+    { "id": "target-win7-setup", "status": "missing", "evidenceFile": null, "reason": "Exact Windows 7 setup evidence is absent." },
+    { "id": "target-arm64-setup", "status": "missing", "evidenceFile": null, "reason": "Exact native ARM64 setup evidence is absent." }
+  ]
+}
+
