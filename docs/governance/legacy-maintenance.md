@@ -17,8 +17,9 @@ The authority order is:
 2. the qualified behaviour and data contract at `v1.2.0b1` / `2413e913...`;
 3. the documentation-preserving development ancestry through `58a5b7d...`;
 4. the compatibility oracle supplied by `v1.1.2`;
-5. accepted reproductions and regression tests; and
-6. archived refactor discoveries as patch intent only.
+5. the ratified post-Alpha three-lane build/distribution decision;
+6. accepted reproductions and regression tests; and
+7. archived refactor discoveries as patch intent only.
 
 If an attractive change conflicts with a higher authority, it is deferred to
 2.x.
@@ -44,6 +45,16 @@ The following are not legacy maintenance:
 - a new updater protocol;
 - third-party runtime dependencies; and
 - opportunistic cleanup unrelated to a reproduced defect.
+
+## Distribution boundary
+
+C3 1.3 publishes exactly three portable classic WinForms ZIPs: x86/net40,
+x64/net48, and native ARM64/net481. MSI, MSIX, ClickOnce publication,
+bootstrapper, installer, uninstaller, background updater, self-contained
+runtime, and new application DLL graph are outside the core release. Historical
+setup projects remain evidence only. A future Universal Setup binding consumes
+already-qualified payload hashes as a separate programme and cannot block or
+redefine portable stable.
 
 ## Change discipline
 

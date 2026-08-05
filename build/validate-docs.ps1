@@ -27,6 +27,7 @@ $requiredFiles = @(
     'release/validation/1.3.0-reconstructed-baseline.md',
     'release/validation/1.3.0-alpha.1.md',
     'release/validation/1.3.0-alpha.1-post-correction.md'
+    'release/validation/1.3.0-three-lane-preparation-2026-08-05.md'
 )
 
 $failures = New-Object Collections.Generic.List[String]

@@ -14,6 +14,7 @@ C3 release line.
 - [1.2.1/refactor salvage ledger](planning/1.3.0-salvage-ledger.md)
 - [Qualification matrix](testing/1.3.0-qualification-matrix.md)
 - [Target-runtime qualification record template](testing/1.3.0-target-runtime-record.md)
+- [Three-lane preparation validation](../release/validation/1.3.0-three-lane-preparation-2026-08-05.md)
 - [Corrected reconstructed-baseline evidence](../release/validation/1.3.0-reconstructed-baseline.md)
 - [Corrected Alpha 1 qualification record](../release/validation/1.3.0-alpha.1.md)
 - [Alpha 1 post-correction attestation](../release/validation/1.3.0-alpha.1-post-correction.md)

@@ -11,6 +11,9 @@ See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](T
 > After Alpha, the owner ratified an exact three-lane stable matrix: x86/net40,
 > x64/net48, and native ARM64/net481. The Alpha tag remains immutable historical
 > evidence of its earlier four diagnostic lanes.
+> The bounded three-lane build/package preparation now passes, including native
+> ARM64 binary proof, but the toolchains are not frozen and target-machine/Beta
+> qualification remains open; no new binary release is available.
 
 ![Screenshot of C3 in use.](https://github.com/Julesc013/compact-cassette-catalogue/blob/master/Resources/demonstration-screenshot.png)
 

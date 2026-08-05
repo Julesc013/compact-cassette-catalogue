@@ -19,6 +19,20 @@
   checksum manifest; installers and Universal Setup are independent later work.
 - Made native ARM64 output and actual Windows-on-ARM qualification a
   release-blocking boundary.
+- Replaced the release manifest with the exact three package contracts and
+  added an unfrozen candidate toolchain lock.
+- Added exact VS15/VS17/VS18 family resolution, effective-tools-version
+  enforcement, forced Roslyn/reference paths, binary logs, and hashed evidence.
+- Added ARM64 project/solution configurations without application-source
+  branching and produced verified `0xaa64`/PE32+ output.
+- Extended binary proof to CLR CorFlags, versions, matching runtime config,
+  settings parity, and zero runtime DLLs.
+- Added deterministic five-file portable ZIP creation, exact checksum/payload
+  verification, and mechanical exclusion of installer/updater artifacts.
+- Split builder smoke from exact-hash target-machine proof and added a durable
+  XP/Windows 7/Windows-on-ARM qualification template.
+- Passed the post-correction preparation suite with an unchanged baseline
+  genome and recorded the remaining Beta/stable gates.
 
 
 ### Version 1.3.0 Alpha 1 - 5 August 2026

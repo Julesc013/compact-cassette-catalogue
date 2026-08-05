@@ -16,6 +16,21 @@ authoritative 1.3 x86/net40 compiler. Stable assets are portable ZIPs only; no
 installer or updater is part of C3 1.3. See the
 [ratified owner decision](docs/governance/1.3.0-three-lane-matrix-2026-08-05.md).
 
+## Three-lane preparation status
+
+The bounded correction is implemented and mechanically validated: the manifest
+contains exactly three lanes, native ARM64 compiles as `0xaa64`, compiler and
+reference inputs are recorded by hash, the genome has zero approved difference,
+and deterministic packages contain only the five portable allow-listed files.
+Builder smoke executes only compatible architectures; exact-hash target proof
+is reserved for XP x86, Windows 7 x64, and Windows 11 ARM64.
+
+This is preparation, not Beta qualification. The installed builders are one
+servicing release behind the decision-date pins, the candidate lock is
+intentionally unfrozen, historical Gate 1 and runtime repairs remain open, and
+no target-machine workflow matrix has been claimed. No new tag, binary release,
+feed change, or `legacy/1.x` promotion follows from this result.
+
 ## What Alpha 1 establishes
 
 - Direct development ancestry from safe post-release tip `58a5b7d...`.

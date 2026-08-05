@@ -52,17 +52,17 @@ binaries, or change the update feed.
 - [x] Assign VS2017, VS2022, and VS2026 compiler authority respectively.
 - [x] Restrict C3 1.3 to portable classic WinForms ZIPs and exclude every
   installer/updater path from release authority.
-- [ ] Replace the active lane manifest and package-name contract.
-- [ ] Add exact-family MSBuild resolution, effective-tools-version checks,
+- [x] Replace the active lane manifest and package-name contract.
+- [x] Add exact-family MSBuild resolution, effective-tools-version checks,
   binary logs, and hash-pinned toolchain evidence.
-- [ ] Add Debug/Release ARM64 project and solution configurations without
+- [x] Add Debug/Release ARM64 project and solution configurations without
   conditional application source.
-- [ ] Verify closed x86/x64/ARM64 PE mappings, CLR CorFlags, framework/config,
+- [x] Verify closed x86/x64/ARM64 PE mappings, CLR CorFlags, framework/config,
   version, settings parity, and zero runtime DLLs.
-- [ ] Split builder inspection from target-machine runtime qualification.
-- [ ] Mechanically reject ClickOnce, bootstrapper, installer, uninstaller, or
+- [x] Split builder inspection from target-machine runtime qualification.
+- [x] Mechanically reject ClickOnce, bootstrapper, installer, uninstaller, or
   updater output from the three ZIPs.
-- [ ] Run the genome/source gates and record that application behaviour did not
+- [x] Run the genome/source gates and record that application behaviour did not
   change during this correction.
 
 ## Beta 1 entry — finish historical baseline reconstruction
@@ -126,9 +126,9 @@ patch, genome validation, and focused commit.
 - [ ] Use short same-directory temporary filenames on classic Windows paths.
 - [ ] Freeze the latest serviced VS2017 15.9, VS2022 17.14, and VS2026 stable
   installations immediately before candidate qualification.
-- [ ] Finalize exactly three lane-specific config/manifest projections with
+- [x] Finalize exactly three lane-specific config/manifest projections with
   identical application logic and resources.
-- [ ] Add deterministic portable packaging and exact payload verification.
+- [x] Add deterministic portable packaging and exact payload verification.
 - [ ] Prove two clean, path-distinct builds produce identical ZIPs.
 - [ ] Qualify XP SP3 x86/net40, Windows 7 SP1 x64/net48, and native Windows 11
   RTM ARM64/net481 on their target machines using exact retained package hashes.
