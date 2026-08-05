@@ -52,6 +52,13 @@ function Add-ZipTextEntry {
     }
 }
 
+function Get-C3CanonicalPackageText {
+    param([Parameter(Mandatory = $true)][string]$Path)
+
+    $text = [IO.File]::ReadAllText($Path)
+    return $text.Replace("`r`n", "`n").Replace("`r", "`n")
+}
+
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 . (Join-Path $PSScriptRoot 'package-evidence-set.ps1')
@@ -167,8 +174,8 @@ foreach ($buildLane in $lanes) {
     try {
         Add-ZipFileEntry -Archive $archive -EntryName 'Compact Cassette Catalogue.exe' -SourcePath $executable -Timestamp $fixedTimestamp
         Add-ZipFileEntry -Archive $archive -EntryName 'Compact Cassette Catalogue.exe.config' -SourcePath $config -Timestamp $fixedTimestamp
-        Add-ZipFileEntry -Archive $archive -EntryName 'README.txt' -SourcePath $readmePath -Timestamp $fixedTimestamp
-        Add-ZipFileEntry -Archive $archive -EntryName 'RELEASE_NOTES.txt' -SourcePath $releaseNotesPath -Timestamp $fixedTimestamp
+        Add-ZipTextEntry -Archive $archive -EntryName 'README.txt' -Content (Get-C3CanonicalPackageText -Path $readmePath) -Timestamp $fixedTimestamp
+        Add-ZipTextEntry -Archive $archive -EntryName 'RELEASE_NOTES.txt' -Content (Get-C3CanonicalPackageText -Path $releaseNotesPath) -Timestamp $fixedTimestamp
         Add-ZipTextEntry -Archive $archive -EntryName 'BUILD.txt' -Content $buildText -Timestamp $fixedTimestamp
     }
     finally {

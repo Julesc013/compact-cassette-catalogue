@@ -33,6 +33,12 @@
            Text="FrameworkPathOverride '$(FrameworkPathOverride)' does not match required '$(C3ExpectedFrameworkPath)'." />
     <Error Condition="'$(C3ResourceGenerationCompleted)' != 'true'"
            Text="The CoreResGen authority/completion marker was not reached before compilation." />
+    <Error Condition="'$(Deterministic)' != 'true'"
+           Text="Release compilation must be deterministic." />
+    <Error Condition="'$(DebugSymbols)' != 'false' or '$(DebugType)' != 'None'"
+           Text="Release compilation must not embed path-sensitive debug information." />
+    <Error Condition="'$(C3ExpectedPathMap)' == '' or '$(PathMap)' != '$(C3ExpectedPathMap)'"
+           Text="Effective source PathMap '$(PathMap)' does not match required '$(C3ExpectedPathMap)'." />
 
     <ItemGroup>
       <_C3BuildEvidence Include="MSBuildVersion=$(MSBuildVersion)" />
@@ -53,6 +59,10 @@
       <_C3BuildEvidence Include="Platform=$(Platform)" />
       <_C3BuildEvidence Include="PlatformTarget=$(PlatformTarget)" />
       <_C3BuildEvidence Include="Configuration=$(Configuration)" />
+      <_C3BuildEvidence Include="Deterministic=$(Deterministic)" />
+      <_C3BuildEvidence Include="DebugSymbols=$(DebugSymbols)" />
+      <_C3BuildEvidence Include="DebugType=$(DebugType)" />
+      <_C3BuildEvidence Include="PathMap=$(PathMap)" />
     </ItemGroup>
     <WriteLinesToFile File="$(C3BuildEvidencePropertiesPath)"
                       Lines="@(_C3BuildEvidence)"

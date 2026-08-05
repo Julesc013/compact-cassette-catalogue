@@ -281,6 +281,8 @@ foreach ($buildLane in $lanes) {
     }
     $binaryLogPath = Join-Path $evidencePath 'msbuild.binlog'
     $propertiesPath = Join-Path $evidencePath 'msbuild-properties.txt'
+    $canonicalSourceRoot = 'C:\c3\src'
+    $pathMap = "$repositoryRoot=$canonicalSourceRoot"
 
     # Windows PowerShell 5.1 quotes native arguments containing spaces. A
     # single trailing backslash then escapes the generated closing quote in
@@ -304,12 +306,17 @@ foreach ($buildLane in $lanes) {
         '/p:VbcToolExe=vbc.exe' `
         "/p:ResGenToolPath=$([IO.Path]::GetDirectoryName($resourceToolPath))" `
         "/p:ResGenToolExe=$([IO.Path]::GetFileName($resourceToolPath))" `
+        '/p:Deterministic=true' `
+        '/p:DebugSymbols=false' `
+        '/p:DebugType=None' `
+        "/p:PathMap=$pathMap" `
         '/p:UseSharedCompilation=false' `
         "/p:CustomAfterMicrosoftCommonTargets=$evidenceTargets" `
         "/p:C3ExpectedMSBuildToolsVersion=$($buildLane.effectiveToolsVersion)" `
         "/p:C3ExpectedVbcPath=$compilerPath" `
         "/p:C3ExpectedFrameworkPath=$referencePath" `
         "/p:C3ExpectedResGenPath=$resourceToolPath" `
+        "/p:C3ExpectedPathMap=$pathMap" `
         "/p:C3BuildEvidencePropertiesPath=$propertiesPath" `
         "/binaryLogger:$binaryLogPath" `
         "/v:$Verbosity" `
@@ -334,6 +341,12 @@ foreach ($buildLane in $lanes) {
             [string]$propertyEvidence['C3ActualResGenPath'] -cne $resourceToolPath -or
             [string]$propertyEvidence['C3ResourceGenerationCompleted'] -cne 'true') {
         throw "$($buildLane.id) did not prove the forced ResGen path and CoreResGen completion in MSBuild evidence."
+    }
+    if ([string]$propertyEvidence['Deterministic'] -cne 'true' -or
+            [string]$propertyEvidence['DebugSymbols'] -cne 'false' -or
+            [string]$propertyEvidence['DebugType'] -cne 'None' -or
+            [string]$propertyEvidence['PathMap'] -cne $pathMap) {
+        throw "$($buildLane.id) did not prove deterministic, path-mapped, symbol-free Release compilation."
     }
 
     $finalReferenceEvidence = Get-ReferenceAssemblyEvidence -Path $referencePath
@@ -384,6 +397,10 @@ foreach ($buildLane in $lanes) {
             productVersion = [string]$compilerInfo.ProductVersion
             sha256 = $compilerHash
             sharedCompilation = $false
+            deterministic = $true
+            debugSymbols = $false
+            debugType = 'None'
+            pathMapTarget = $canonicalSourceRoot
         }
         referenceAssemblies = $referenceEvidence
         resourceTools = @(
