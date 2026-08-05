@@ -31,6 +31,7 @@ Module Program
         RunTest("transaction journal phase set is closed", AddressOf TransactionJournalPhaseSetIsClosed)
         RunTest("transaction journal round-trips authenticated identity", AddressOf TransactionJournalRoundTrips)
         RunTest("altered transaction journal is rejected", AddressOf AlteredTransactionJournalIsRejected)
+        RunTest("transaction journal rejects illegal phase jumps", AddressOf TransactionJournalRejectsIllegalPhaseJump)
         RunTest("clean file transaction installs exact owned bytes", AddressOf CleanTransactionInstallsOwnedBytes)
         RunTest("repair preserves unknown files", AddressOf RepairPreservesUnknownFiles)
         RunTest("faulted repair rolls back exact prior bytes", AddressOf FaultedRepairRollsBack)
@@ -156,6 +157,17 @@ Module Program
                         C3Setup.SetupTransactionJournalCodec.Write(path, journal)
                         File.WriteAllText(path, File.ReadAllText(path).Replace("phase=""prepared""", "phase=""complete"""))
                         AssertContractFailure(Sub() C3Setup.SetupTransactionJournalCodec.Read(path))
+                    End Sub)
+    End Sub
+
+    Private Sub TransactionJournalRejectsIllegalPhaseJump()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        Dim journal As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournal.CreateInstall(
+                            CoordinatedInstallRoot(root), manifest, C3Setup.FileHash.Sha256(manifestPath),
+                            "89abcdef0123456789abcdef0123456789abcdef",
+                            "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789")
+                        AssertContractFailure(Sub() journal.Advance(C3Setup.SetupTransactionPhases.Complete))
                     End Sub)
     End Sub
 
