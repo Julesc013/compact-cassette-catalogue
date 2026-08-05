@@ -74,6 +74,8 @@ if (-not $SkipBuildOutputs) {
     & (Join-Path $PSScriptRoot 'verify-packages.ps1') `
         -Configuration $Configuration `
         -RequireCandidateEvidence
+    & (Join-Path $PSScriptRoot 'verify-setup-builds.ps1') `
+        -Configuration $Configuration
 }
 
 Write-Host 'C3 1.3.0 Alpha 3 source/candidate controls passed; no Alpha 3 tag, publication, feed, or legacy movement is claimed.'
