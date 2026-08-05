@@ -21,6 +21,11 @@ $projects = @(
         Executable = Join-Path $repositoryRoot "artifacts\tests\integrity\$Configuration\C3.IntegrityCharacterization.exe"
     },
     [PSCustomObject]@{
+        Name = 'Settings characterization'
+        Project = Join-Path $repositoryRoot 'tests\C3.Settings.Characterization\C3.Settings.Characterization.vbproj'
+        Executable = Join-Path $repositoryRoot "artifacts\tests\settings\$Configuration\C3.SettingsCharacterizationTests.exe"
+    },
+    [PSCustomObject]@{
         Name = 'Setup characterization'
         Project = Join-Path $repositoryRoot 'tests\C3.Setup.Characterization\C3.Setup.Characterization.vbproj'
         Executable = Join-Path $repositoryRoot "artifacts\tests\setup\$Configuration\C3.SetupTests.exe"
