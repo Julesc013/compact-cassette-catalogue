@@ -1,16 +1,119 @@
 {
   "schemaVersion": 1,
-  "status": "template",
+  "status": "no-go",
   "releaseVersion": "1.3.0",
   "releaseStage": "Beta 1",
   "releaseLabel": "1.3.0b1",
   "releaseTag": "v1.3.0b1",
   "releaseChannel": "beta",
   "publicationStatus": "retained-unpublished",
-  "sourceCommit": null,
-  "toolchainLockSha256": null,
-  "candidate": { "present": false, "path": null, "candidateIndexSha256": null },
-  "gates": [],
+  "sourceCommit": "bbebac288f4996939124f882d0e9febcf2e5bdae",
+  "toolchainLockSha256": "e2a437a53cb8ec3eb2d025ef2e391d49c76366831de6526b40bf16678e626a15",
+  "candidate": {
+    "present": true,
+    "path": "artifacts/candidates/1.3.0b1/bbebac288f4996939124f882d0e9febcf2e5bdae",
+    "candidateIndexSha256": "ccf901da4ca7584e085728d68f3bb87209fc7bb5746167dbaaa7025ffef53b50"
+  },
+  "gates": [
+    {
+      "id": "source-controls",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/bbebac288f4996939124f882d0e9febcf2e5bdae/source-controls.log",
+      "evidenceSha256": "54e6654b86f4eb93e8b7eba72d1840b47a13c9a3f9c82379a66153227afb1f1e",
+      "reason": "The closed source gate, 120 focused regressions, genome checks, compatibility corpus, PowerShell 2 tooling, lane controls, and setup source controls passed at C-beta."
+    },
+    {
+      "id": "application-defects",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/bbebac288f4996939124f882d0e9febcf2e5bdae/source-controls.log",
+      "evidenceSha256": "54e6654b86f4eb93e8b7eba72d1840b47a13c9a3f9c82379a66153227afb1f1e",
+      "reason": "APP001 through APP015 have regression-backed source repairs; exact target-OS UI and workflow observations remain separate runtime gates."
+    },
+    {
+      "id": "historical-gate1",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "The 27 historical workflows, nine catalogue-exchange cells, representative private catalogues, and required screenshot/control evidence were not executed on the exact historical environments."
+    },
+    {
+      "id": "candidate-build",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/bbebac288f4996939124f882d0e9febcf2e5bdae/fresh-authoritative-build.log",
+      "evidenceSha256": "bfd7e4f0813b94938a09e5d763995076be56c0e8cbaff8bd0b27d18caa4517fe",
+      "reason": "All three portable lanes and all three setup lanes were rebuilt from one clean source commit with one immutable external Candidate lock and passed binary, payload, and final source closure."
+    },
+    {
+      "id": "source-reproducibility",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/source-reproducibility/1.3.0b1/source-reproducibility.json",
+      "evidenceSha256": "3b7c6a88dc6ee8c295548badd2eae3fe3879b3117b24345d5b66217735cf89a1",
+      "reason": "Two clean path-distinct checkouts reproduced the authoritative application/setup binaries, all six ZIPs, entry manifests, and assembled distribution."
+    },
+    {
+      "id": "portable-packages",
+      "status": "pass",
+      "evidenceFile": "artifacts/candidates/1.3.0b1/bbebac288f4996939124f882d0e9febcf2e5bdae/evidence/candidate.json",
+      "evidenceSha256": "ccf901da4ca7584e085728d68f3bb87209fc7bb5746167dbaaa7025ffef53b50",
+      "reason": "The closed three-package portable set is retained, authenticated, source-bound, lock-bound, and independently verified."
+    },
+    {
+      "id": "target-xp-runtime",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "No exact Windows XP SP3 x86 and .NET Framework 4 Full target was available for required workflows."
+    },
+    {
+      "id": "target-win7-runtime",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "No exact Windows 7 SP1 x64 and .NET Framework 4.8 target was available for required workflows."
+    },
+    {
+      "id": "target-arm64-runtime",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "No exact Windows 11 build 22000 native ARM64 and .NET Framework 4.8.1 target was available for required workflows."
+    },
+    {
+      "id": "setup-durability",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/bbebac288f4996939124f882d0e9febcf2e5bdae/source-controls.log",
+      "evidenceSha256": "54e6654b86f4eb93e8b7eba72d1840b47a13c9a3f9c82379a66153227afb1f1e",
+      "reason": "The authenticated ten-phase setup journal and recovery implementation passed its 85-test durability and adversarial suite."
+    },
+    {
+      "id": "setup-packages",
+      "status": "pass",
+      "evidenceFile": "artifacts/candidates/1.3.0b1/bbebac288f4996939124f882d0e9febcf2e5bdae/evidence/candidate.json",
+      "evidenceSha256": "ccf901da4ca7584e085728d68f3bb87209fc7bb5746167dbaaa7025ffef53b50",
+      "reason": "The closed three-package classic setup set is retained, authenticated, source-bound, lock-bound, and independently verified."
+    },
+    {
+      "id": "target-xp-setup",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "Classic setup install, verify, repair, rollback, and uninstall were not run on exact Windows XP SP3 x86."
+    },
+    {
+      "id": "target-win7-setup",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "Classic setup install, verify, repair, rollback, and uninstall were not run on exact Windows 7 SP1 x64."
+    },
+    {
+      "id": "target-arm64-setup",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "Classic setup install, verify, repair, rollback, and uninstall were not run on exact Windows 11 build 22000 native ARM64."
+    }
+  ],
   "portableBetaGo": false,
   "classicSetupBetaGo": false,
   "overallBetaGo": false,
@@ -19,6 +122,5 @@
   "publicReleaseAuthorized": false,
   "feedChangeAuthorized": false,
   "masterOrDev2ChangeAuthorized": false,
-  "recordedAtUtc": null
+  "recordedAtUtc": "2026-08-05T18:20:54.7244524Z"
 }
-
