@@ -3,6 +3,7 @@ param(
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
     [string]$OutputDirectory,
+    [string]$EvidenceDirectory,
     [switch]$RequireCandidateEvidence
 )
 
@@ -60,8 +61,13 @@ $lanes = @($manifest.lanes)
 if ([string]::IsNullOrWhiteSpace($OutputDirectory)) {
     $OutputDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseVersion)"
 }
+if ([string]::IsNullOrWhiteSpace($EvidenceDirectory)) {
+    $EvidenceDirectory = Join-Path $repositoryRoot "artifacts\evidence\packages\$($manifest.releaseVersion)"
+}
 $OutputDirectory = [IO.Path]::GetFullPath($OutputDirectory)
+$EvidenceDirectory = [IO.Path]::GetFullPath($EvidenceDirectory)
 New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
+New-Item -ItemType Directory -Path $EvidenceDirectory -Force | Out-Null
 
 & (Join-Path $PSScriptRoot 'verify-builds.ps1') -Configuration $Configuration
 
@@ -69,6 +75,7 @@ $readmePath = Join-Path $PSScriptRoot 'package-content\README.txt'
 $releaseNotesPath = Join-Path $repositoryRoot 'RELEASE_NOTES.md'
 $fixedTimestamp = [DateTimeOffset]::Parse('2000-01-01T00:00:00Z')
 $checksums = New-Object Collections.Generic.List[String]
+$entryManifestChecksums = New-Object Collections.Generic.List[String]
 foreach ($buildLane in $lanes) {
     $outputPath = Join-Path $repositoryRoot "artifacts\bin\$($buildLane.id)\$Configuration"
     $executable = Join-Path $outputPath 'Compact Cassette Catalogue.exe'
@@ -125,6 +132,43 @@ foreach ($buildLane in $lanes) {
 
     $packageHash = (Get-FileHash -LiteralPath $packagePath -Algorithm SHA256).Hash.ToLowerInvariant()
     $checksums.Add("$packageHash  $($buildLane.packageName)")
+
+    $archive = [IO.Compression.ZipFile]::OpenRead($packagePath)
+    try {
+        $entryRecords = @($archive.Entries | ForEach-Object {
+            $entryStream = $_.Open()
+            $algorithm = [Security.Cryptography.SHA256]::Create()
+            try {
+                $entryHash = ([BitConverter]::ToString($algorithm.ComputeHash($entryStream))).Replace('-', '').ToLowerInvariant()
+            }
+            finally {
+                $algorithm.Dispose()
+                $entryStream.Dispose()
+            }
+            [ordered]@{
+                name = $_.FullName
+                size = [int64]$_.Length
+                sha256 = $entryHash
+            }
+        })
+    }
+    finally {
+        $archive.Dispose()
+    }
+    $entryManifest = [ordered]@{
+        schemaVersion = 1
+        packageName = [string]$buildLane.packageName
+        packageSha256 = $packageHash
+        sourceCommit = [string]$evidence.source.commit
+        toolchainLockSha256 = [string]$evidence.toolchainLock.sha256
+        entries = $entryRecords
+    }
+    $entryManifestName = "$($buildLane.packageName).entries.json"
+    $entryManifestPath = Join-Path $EvidenceDirectory $entryManifestName
+    $entryManifestJson = ($entryManifest | ConvertTo-Json -Depth 6) + "`n"
+    [IO.File]::WriteAllText($entryManifestPath, $entryManifestJson, (New-Object Text.UTF8Encoding($false)))
+    $entryManifestHash = (Get-FileHash -LiteralPath $entryManifestPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    $entryManifestChecksums.Add("$entryManifestHash  $entryManifestName")
     Write-Host "Packaged $($buildLane.id): $packagePath"
 }
 
@@ -132,3 +176,7 @@ $checksumPath = Join-Path $OutputDirectory 'SHA256SUMS.txt'
 $checksumText = (($checksums.ToArray()) -join "`n") + "`n"
 [IO.File]::WriteAllText($checksumPath, $checksumText, (New-Object Text.UTF8Encoding($false)))
 Write-Host "Wrote checksum manifest: $checksumPath"
+$entryChecksumPath = Join-Path $EvidenceDirectory 'ENTRY_MANIFEST_SHA256SUMS.txt'
+$entryChecksumText = (($entryManifestChecksums.ToArray()) -join "`n") + "`n"
+[IO.File]::WriteAllText($entryChecksumPath, $entryChecksumText, (New-Object Text.UTF8Encoding($false)))
+Write-Host "Wrote retained package-entry evidence: $EvidenceDirectory"

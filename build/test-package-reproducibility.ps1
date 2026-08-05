@@ -15,7 +15,9 @@ if (-not $testRoot.StartsWith($allowedRoot, [StringComparison]::OrdinalIgnoreCas
 }
 $first = Join-Path $testRoot 'path-a'
 $second = Join-Path $testRoot 'different-absolute-path-b'
-foreach ($path in @($first, $second)) {
+$firstEvidence = Join-Path $testRoot 'evidence-a'
+$secondEvidence = Join-Path $testRoot 'different-evidence-path-b'
+foreach ($path in @($first, $second, $firstEvidence, $secondEvidence)) {
     $resolvedPath = [IO.Path]::GetFullPath($path)
     if (-not $resolvedPath.StartsWith($testRoot.TrimEnd('\') + '\', [StringComparison]::OrdinalIgnoreCase)) {
         throw "Refusing to replace package test path outside '$testRoot': $resolvedPath"
@@ -26,15 +28,28 @@ foreach ($path in @($first, $second)) {
     New-Item -ItemType Directory -Path $path -Force | Out-Null
 }
 
-& (Join-Path $PSScriptRoot 'package.ps1') -Configuration $Configuration -OutputDirectory $first
-& (Join-Path $PSScriptRoot 'package.ps1') -Configuration $Configuration -OutputDirectory $second
-& (Join-Path $PSScriptRoot 'verify-packages.ps1') -Configuration $Configuration -PackageDirectory $first
-& (Join-Path $PSScriptRoot 'verify-packages.ps1') -Configuration $Configuration -PackageDirectory $second
+& (Join-Path $PSScriptRoot 'package.ps1') -Configuration $Configuration -OutputDirectory $first -EvidenceDirectory $firstEvidence
+& (Join-Path $PSScriptRoot 'package.ps1') -Configuration $Configuration -OutputDirectory $second -EvidenceDirectory $secondEvidence
+& (Join-Path $PSScriptRoot 'verify-packages.ps1') -Configuration $Configuration -PackageDirectory $first -EvidenceDirectory $firstEvidence
+& (Join-Path $PSScriptRoot 'verify-packages.ps1') -Configuration $Configuration -PackageDirectory $second -EvidenceDirectory $secondEvidence
 
 $firstFiles = @(Get-ChildItem -LiteralPath $first -File | Sort-Object Name)
 $secondFiles = @(Get-ChildItem -LiteralPath $second -File | Sort-Object Name)
 if (($firstFiles.Name -join "`n") -cne ($secondFiles.Name -join "`n")) {
     throw 'Path-distinct package runs produced different asset names.'
+}
+
+$firstEvidenceFiles = @(Get-ChildItem -LiteralPath $firstEvidence -File | Sort-Object Name)
+$secondEvidenceFiles = @(Get-ChildItem -LiteralPath $secondEvidence -File | Sort-Object Name)
+if (($firstEvidenceFiles.Name -join "`n") -cne ($secondEvidenceFiles.Name -join "`n")) {
+    throw 'Path-distinct package runs produced different evidence names.'
+}
+for ($index = 0; $index -lt $firstEvidenceFiles.Count; $index++) {
+    $firstHash = (Get-FileHash -LiteralPath $firstEvidenceFiles[$index].FullName -Algorithm SHA256).Hash
+    $secondHash = (Get-FileHash -LiteralPath $secondEvidenceFiles[$index].FullName -Algorithm SHA256).Hash
+    if ($firstHash -cne $secondHash) {
+        throw "Path-distinct package evidence differs for '$($firstEvidenceFiles[$index].Name)': $firstHash / $secondHash"
+    }
 }
 for ($index = 0; $index -lt $firstFiles.Count; $index++) {
     $firstHash = (Get-FileHash -LiteralPath $firstFiles[$index].FullName -Algorithm SHA256).Hash
