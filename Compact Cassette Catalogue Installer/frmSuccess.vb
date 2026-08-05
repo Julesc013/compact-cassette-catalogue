@@ -1,19 +1,17 @@
-﻿Public Class frmSuccess
-    Private Sub frmSuccess_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
+Public Class frmSuccess
 
     Private Sub btnFinish_Click(sender As Object, e As EventArgs) Handles btnFinish.Click
-
-        ' If the checkbox is selected, run C3 (else dont run C3) then immediately exit this installer application.
-
-        If chkStartProgram.Checked = True Then
-
-            Process.Start(startPath) ' Start C3.
-
+        If chkStartProgram.Checked Then
+            Try
+                Process.Start(startPath)
+            Catch ex As Exception
+                MessageBox.Show("C3 was installed, but Windows could not start it." & Environment.NewLine & Environment.NewLine & ex.Message,
+                                "Could Not Start C3",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
+            End Try
         End If
-
-        Application.Exit() ' Exit the entire installer application.
-
+        Application.Exit()
     End Sub
+
 End Class
