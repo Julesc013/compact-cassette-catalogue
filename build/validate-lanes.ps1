@@ -61,8 +61,9 @@ if ([string]$lock.status -notin @('template', 'locked')) {
 }
 if ([string]$lock.status -ceq 'locked') {
     if ([string]::IsNullOrWhiteSpace([string]$lock.sourceCommit) -or
-            [string]::IsNullOrWhiteSpace([string]$lock.frozenAtUtc)) {
-        throw 'Locked toolchain policy requires sourceCommit and frozenAtUtc.'
+            [string]::IsNullOrWhiteSpace([string]$lock.frozenAtUtc) -or
+            [string]::IsNullOrWhiteSpace([string]$lock.expectedRemoteRef)) {
+        throw 'Locked toolchain policy requires sourceCommit, expectedRemoteRef, and frozenAtUtc.'
     }
     foreach ($lockedLane in @($lock.lanes)) {
         foreach ($propertyName in @('visualStudioProductVersion', 'visualStudioInstallationVersion', 'msbuildSha256', 'vbcSha256', 'referenceAssemblySetSha256')) {

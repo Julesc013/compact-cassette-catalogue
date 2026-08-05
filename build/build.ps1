@@ -105,9 +105,43 @@ $sourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
 if ($LASTEXITCODE -ne 0) {
     throw 'Could not resolve the source commit for build evidence.'
 }
-$sourceStatus = @(& git -C $repositoryRoot status --short)
+$sourceStatus = @(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all)
+if ($LASTEXITCODE -ne 0) {
+    throw 'Could not inspect candidate source worktree status.'
+}
 if ($ToolchainMode -ceq 'Candidate' -and [string]$lock.sourceCommit -cne $sourceCommit) {
     throw "External candidate lock source '$($lock.sourceCommit)' does not match frozen source HEAD '$sourceCommit'."
+}
+if ($ToolchainMode -ceq 'Candidate') {
+    if ($sourceStatus.Count -ne 0) {
+        throw "Candidate source must be clean before compilation; tracked, staged, or untracked changes were found:`n$($sourceStatus -join "`n")"
+    }
+
+    $submoduleStatus = @(& git -C $repositoryRoot submodule status --recursive)
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Could not inspect candidate submodule status.'
+    }
+    $invalidSubmodules = @($submoduleStatus | Where-Object { $_ -match '^[\-+U]' })
+    if ($invalidSubmodules.Count -ne 0) {
+        throw "Candidate source contains uninitialized, mismatched, or conflicted submodules:`n$($invalidSubmodules -join "`n")"
+    }
+
+    $expectedRemoteRef = [string]$lock.expectedRemoteRef
+    if ([string]::IsNullOrWhiteSpace($expectedRemoteRef) -or
+            -not $expectedRemoteRef.StartsWith('refs/remotes/', [StringComparison]::Ordinal)) {
+        throw 'External candidate lock must name an expected remote-tracking ref under refs/remotes/.'
+    }
+    & git -C $repositoryRoot show-ref --verify --quiet $expectedRemoteRef
+    if ($LASTEXITCODE -ne 0) {
+        throw "Expected candidate remote-tracking ref does not exist locally: $expectedRemoteRef"
+    }
+    $remoteCommit = (& git -C $repositoryRoot rev-parse $expectedRemoteRef).Trim()
+    if ($LASTEXITCODE -ne 0 -or $remoteCommit -cne $sourceCommit) {
+        throw "Frozen source '$sourceCommit' is not exactly the fetched expected remote ref '$expectedRemoteRef' ('$remoteCommit')."
+    }
+
+    & (Join-Path $PSScriptRoot 'validate-baseline-genome.ps1')
+    & (Join-Path $PSScriptRoot 'validate-lanes.ps1')
 }
 foreach ($buildLane in $lanes) {
     $lockLaneCount = @($lock.lanes | Where-Object { $_.id -ceq $buildLane.id }).Count
@@ -270,6 +304,7 @@ foreach ($buildLane in $lanes) {
         }
         source = [ordered]@{
             commit = $sourceCommit
+            expectedRemoteRef = [string]$lock.expectedRemoteRef
             worktreeStatus = @($sourceStatus)
         }
         generatedAtUtc = [DateTime]::UtcNow.ToString('o')
