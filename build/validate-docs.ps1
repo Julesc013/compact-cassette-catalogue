@@ -65,6 +65,8 @@ foreach ($relativePath in @(
         'build/test-alpha3-external-evidence.ps1',
         'build/alpha3-qualified-evidence.ps1',
         'build/new-alpha3-qualified-record.ps1',
+        'build/verify-alpha3-tagged.ps1',
+        'build/new-alpha3-post-tag-record.ps1',
         'build/evidence-templates/alpha3-historical-gate1.json',
         'build/evidence-templates/alpha3-target-qualification.json',
         'build/verify-target-setup.ps1',
@@ -84,7 +86,7 @@ foreach ($relativePath in @(
 $alpha3QualifiedTemplate = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.3-qualified.json') -Raw | ConvertFrom-Json
 $alpha3PostTagTemplate = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.3-post-tag.json') -Raw | ConvertFrom-Json
 if ([int]$alpha3QualifiedTemplate.schemaVersion -ne 1 -or
-        [string]$alpha3QualifiedTemplate.status -cne 'template' -or
+        [string]$alpha3QualifiedTemplate.status -notin @('template', 'pass') -or
         [string]$alpha3QualifiedTemplate.releaseLabel -cne '1.3.0a3' -or
         @($alpha3QualifiedTemplate.assets).Count -ne 6 -or
         @($alpha3QualifiedTemplate.applicationBuildEvidence).Count -ne 3 -or
@@ -92,7 +94,7 @@ if ([int]$alpha3QualifiedTemplate.schemaVersion -ne 1 -or
     $failures.Add('Alpha 3 qualification template does not preserve the six-asset and nine-executable evidence contract.')
 }
 if ([int]$alpha3PostTagTemplate.schemaVersion -ne 1 -or
-        [string]$alpha3PostTagTemplate.status -cne 'template' -or
+        [string]$alpha3PostTagTemplate.status -notin @('template', 'pass') -or
         [string]$alpha3PostTagTemplate.releaseLabel -cne '1.3.0a3' -or
         [string]$alpha3PostTagTemplate.tagName -cne 'v1.3.0a3' -or
         @($alpha3PostTagTemplate.assets).Count -ne 6 -or
@@ -100,7 +102,8 @@ if ([int]$alpha3PostTagTemplate.schemaVersion -ne 1 -or
         [bool]$alpha3PostTagTemplate.publicReleaseCreated -or
         [bool]$alpha3PostTagTemplate.feedChanged -or
         [bool]$alpha3PostTagTemplate.legacyMoved -or
-        [bool]$alpha3PostTagTemplate.packagesRetained -or
+        ([string]$alpha3PostTagTemplate.status -ceq 'template' -and [bool]$alpha3PostTagTemplate.packagesRetained) -or
+        ([string]$alpha3PostTagTemplate.status -ceq 'pass' -and -not [bool]$alpha3PostTagTemplate.packagesRetained) -or
         [bool]$alpha3PostTagTemplate.betaAuthorized) {
     $failures.Add('Alpha 3 post-tag template does not preserve tag, retention, publication, feed, legacy, and Beta authority boundaries.')
 }
