@@ -63,6 +63,10 @@ remain behind their focused gates.
 - Retrieved the exact official `v1.1.2` oracle and reproduced a deterministic
   three-oracle/canonical-catalogue Gate 1 runtime kit with a closed operator
   workflow and nine-cell exchange record.
+- Added a PowerShell 2-compatible target setup verifier that authenticates the
+  retained setup ZIP, all ten extracted entries, bound portable/source/lock
+  identity, and the mechanically derived lane environment before an explicit
+  wizard launch; added a closed real-machine mutation and accessibility record.
 - Kept historical Gate 1 open for target workflows, private catalogue exchange,
   screenshots, and control/resource evidence before application behaviour work.
 

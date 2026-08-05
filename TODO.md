@@ -175,6 +175,12 @@ Every Beta-labelled operation remains prohibited without explicit human approval
   deduplicate repeated artwork without redesigning it.
 - [x] Build and adversarially verify deterministic setup bundles from exact
   qualified portable payload bytes.
+- [x] Add a PowerShell 2-compatible target setup preflight that authenticates
+  the ten extracted bundle entries, derives the exact target environment, and
+  keeps real setup launch/mutation explicit.
+- [ ] Execute and retain every clean/repair/upgrade/rollback/uninstall,
+  ownership, keyboard, DPI, and high-contrast row from the target setup record
+  on all three exact native target environments.
 - [ ] Pass two clean path-distinct product/setup Candidate builds from one
   source commit and one immutable external lock.
 - [ ] Pass the full per-lane install/repair/upgrade/uninstall/fault matrix on XP,
