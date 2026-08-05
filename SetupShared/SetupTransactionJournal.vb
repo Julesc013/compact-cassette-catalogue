@@ -266,6 +266,33 @@ Namespace Global.C3Setup
             Return Path.Combine(Directory.GetParent(root).FullName, "." & New DirectoryInfo(root).Name & FileNameSuffix)
         End Function
 
+        Public Shared Function EvidenceDirectoryForInstallRoot(installRoot As String) As String
+            Dim root As String = SetupPathPolicy.ValidateInstallRoot(installRoot)
+            Return Path.Combine(Directory.GetParent(root).FullName, "." & New DirectoryInfo(root).Name & ".c3-transactions")
+        End Function
+
+        Public Shared Function RetainSettledEvidence(journal As SetupTransactionJournal) As String
+            If journal Is Nothing Then Throw New ArgumentNullException("journal")
+            If journal.Phase <> SetupTransactionPhases.Complete AndAlso journal.Phase <> SetupTransactionPhases.RollbackComplete Then
+                Throw New SetupContractException("Only settled transaction evidence can be archived.")
+            End If
+            Dim activePath As String = PathForInstallRoot(journal.InstallRoot)
+            Dim authenticated As SetupTransactionJournal = Read(activePath)
+            If authenticated.TransactionId <> journal.TransactionId OrElse authenticated.RecordSha256() <> journal.RecordSha256() Then
+                Throw New SetupContractException("Active transaction evidence changed before retention.")
+            End If
+            Dim evidenceDirectory As String = EvidenceDirectoryForInstallRoot(journal.InstallRoot)
+            If Not Directory.Exists(evidenceDirectory) Then Directory.CreateDirectory(evidenceDirectory)
+            Dim evidencePath As String = Path.Combine(evidenceDirectory, journal.TransactionId & "-" & journal.Phase & ".xml")
+            Dim bytes As Byte() = File.ReadAllBytes(activePath)
+            If File.Exists(evidencePath) Then
+                If FileHash.Sha256(evidencePath) <> FileHash.Sha256(activePath) Then Throw New SetupContractException("Retained transaction evidence collides with different bytes.")
+                Return evidencePath
+            End If
+            DurableReplace(evidencePath, bytes)
+            Return evidencePath
+        End Function
+
         Public Shared Sub Write(path As String, journal As SetupTransactionJournal)
             If journal Is Nothing Then Throw New ArgumentNullException("journal")
             journal.Validate()

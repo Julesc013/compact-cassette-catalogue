@@ -58,6 +58,7 @@ Namespace Global.C3Setup
         End Sub
 
         Friend Shared Sub CleanupOwnedWorkRoots(journal As SetupTransactionJournal)
+            SetupTransactionJournalCodec.RetainSettledEvidence(journal)
             If Directory.Exists(journal.StagingRoot) Then Directory.Delete(journal.StagingRoot, True)
             If Directory.Exists(journal.BackupRoot) Then Directory.Delete(journal.BackupRoot, True)
         End Sub
@@ -120,12 +121,14 @@ Namespace Global.C3Setup
                                              shortcutAccess As ISetupShortcutAccess,
                                              registryAccess As ISetupRegistryAccess)
             Dim recoveryStatePath As String = Path.Combine(journal.BackupRoot, InstalledStateCodec.FileName)
-            Dim state As InstalledState = ReadMatchingState(recoveryStatePath, journal, True)
+            Dim state As InstalledState = ReadAuthenticatedUninstallState(recoveryStatePath, journal)
             If state Is Nothing Then
-                state = ReadMatchingState(Path.Combine(journal.StagingRoot, InstalledStateCodec.FileName), journal, True)
+                recoveryStatePath = Path.Combine(journal.StagingRoot, InstalledStateCodec.FileName)
+                state = ReadAuthenticatedUninstallState(recoveryStatePath, journal)
             End If
             If state Is Nothing Then
-                state = ReadMatchingState(Path.Combine(journal.InstallRoot, InstalledStateCodec.FileName), journal, True)
+                recoveryStatePath = Path.Combine(journal.InstallRoot, InstalledStateCodec.FileName)
+                state = ReadAuthenticatedUninstallState(recoveryStatePath, journal)
             End If
             If state Is Nothing Then Throw New SetupContractException("Uninstall recovery has no authenticated installed-state evidence.")
 
@@ -154,6 +157,12 @@ Namespace Global.C3Setup
             PayloadVerifier.VerifyOwnedFiles(state.Manifest, journal.InstallRoot)
             InstalledStateCodec.Read(statePath)
         End Sub
+
+        Private Shared Function ReadAuthenticatedUninstallState(path As String,
+                                                                journal As SetupTransactionJournal) As InstalledState
+            If Not File.Exists(path) OrElse FileHash.Sha256(path) <> journal.IntendedStateSha256 Then Return Nothing
+            Return ReadMatchingState(path, journal, True)
+        End Function
 
         Private Shared Sub ReconcileRegistry(beforeState As InstalledState,
                                              afterState As InstalledState,
@@ -379,6 +388,7 @@ Namespace Global.C3Setup
             If Not File.Exists(statePath) Then Throw New SetupContractException("No C3 installed-state manifest exists at the selected root.")
             Dim state As InstalledState = InstalledStateCodec.Read(statePath)
             If Not String.Equals(state.InstallRoot, root, StringComparison.OrdinalIgnoreCase) Then Throw New SetupContractException("Installed-state root does not match the selected removal root.")
+            SetupBundleRuntime.RequireCurrentRelease(state.Manifest)
             PayloadVerifier.VerifyOwnedFiles(state.Manifest, root)
             SetupShortcutService.ValidateOwned(state, shortcutAccess)
             SetupRegistryRegistration.ValidateOwned(state, registryAccess)

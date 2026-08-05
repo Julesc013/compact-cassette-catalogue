@@ -1059,6 +1059,11 @@ Module Program
         Dim journal As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(journalPath)
         AssertEqual(If(completed, C3Setup.SetupTransactionPhases.Complete, C3Setup.SetupTransactionPhases.RollbackComplete), journal.Phase, "settled journal phase")
         If Directory.Exists(journal.StagingRoot) OrElse Directory.Exists(journal.BackupRoot) Then Throw New Exception("Settled journal retained a mutable work root.")
+        Dim evidencePath As String = Path.Combine(C3Setup.SetupTransactionJournalCodec.EvidenceDirectoryForInstallRoot(journal.InstallRoot),
+                                                  journal.TransactionId & "-" & journal.Phase & ".xml")
+        If Not File.Exists(evidencePath) OrElse C3Setup.FileHash.Sha256(evidencePath) <> C3Setup.FileHash.Sha256(journalPath) Then
+            Throw New Exception("Settled journal evidence was not retained byte-for-byte.")
+        End If
     End Sub
 
     Private Function ExecuteCoordinatedInstall(root As String,
