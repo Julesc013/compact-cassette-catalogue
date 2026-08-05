@@ -37,6 +37,8 @@ if ($LASTEXITCODE -eq 0) {
     throw "Alpha 3 source/candidate verification requires absent tag '$tagName'."
 }
 
+& (Join-Path $PSScriptRoot 'validate-setup-genome.ps1')
+
 if ($IdentityProjectionOnly) {
     $allowedProductionChanges = @(
         'Compact Cassette Catalogue/My Project/AssemblyInfo.vb',

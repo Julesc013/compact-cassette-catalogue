@@ -159,7 +159,7 @@ Every Beta-labelled operation remains prohibited without explicit human approval
 - [x] Specify closed payload and installed-state XML manifests.
 - [x] Add the S0–S3 application/setup defect and hazard ledger.
 - [ ] Complete historical Gate 1 before changing application runtime behaviour.
-- [ ] Freeze installer/uninstaller project, form, control, resource, and artwork
+- [x] Freeze installer/uninstaller project, form, control, resource, and artwork
   identity before remediation.
 - [ ] Add matched x86/net40, x64/net48, and ARM64/net481 setup configurations.
 - [ ] Link one shared VB.NET setup implementation into both EXEs without a DLL.

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "ref": "a566b05014c5bac472be307c4a8328657bc47a6d",
+    "commit": "a566b05014c5bac472be307c4a8328657bc47a6d",
+    "description": "Alpha 2 post-tag setup/installer genetic baseline"
+  },
+  "identity": [
+    {
+      "project": "Compact Cassette Catalogue Installer/Compact Cassette Catalogue Installer.vbproj",
+      "projectGuid": "{D48984D9-8E3B-413D-A8DA-7DF5B4B3C09B}",
+      "outputType": "WinExe",
+      "startupObject": "Compact_Cassette_Catalogue_Installer.My.MyApplication",
+      "rootNamespace": "Compact_Cassette_Catalogue_Installer",
+      "assemblyName": "Compact Cassette Catalogue Installer",
+      "applicationIcon": "cassette-icon.ico",
+      "applicationManifest": "app.manifest"
+    },
+    {
+      "project": "Compact Cassette Catalogue Uninstaller/Compact Cassette Catalogue Uninstaller.vbproj",
+      "projectGuid": "{12C86E82-C311-466C-97B1-C1E1ACC75A9F}",
+      "outputType": "WinExe",
+      "startupObject": "Compact_Cassette_Catalogue_Uninstaller.My.MyApplication",
+      "rootNamespace": "Compact_Cassette_Catalogue_Uninstaller",
+      "assemblyName": "Compact Cassette Catalogue Uninstaller",
+      "applicationIcon": "cassette-icon.ico",
+      "applicationManifest": "app.manifest"
+    }
+  ],
+  "formClasses": [
+    { "path": "Compact Cassette Catalogue Installer/frmFailure.Designer.vb", "name": "frmFailure" },
+    { "path": "Compact Cassette Catalogue Installer/frmMain.Designer.vb", "name": "frmMain" },
+    { "path": "Compact Cassette Catalogue Installer/frmSuccess.Designer.vb", "name": "frmSuccess" },
+    { "path": "Compact Cassette Catalogue Uninstaller/frmFailure.Designer.vb", "name": "frmFailure" },
+    { "path": "Compact Cassette Catalogue Uninstaller/frmMain.Designer.vb", "name": "frmMain" },
+    { "path": "Compact Cassette Catalogue Uninstaller/frmSuccess.Designer.vb", "name": "frmSuccess" }
+  ],
+  "controls": [
+    {
+      "path": "Compact Cassette Catalogue Installer/frmFailure.Designer.vb",
+      "names": ["btnBack", "btnCancel", "btnFinish", "lblFailure", "lblHeadingFailure", "picSideBanner", "pnlButtons", "pnlFailure"]
+    },
+    {
+      "path": "Compact Cassette Catalogue Installer/frmMain.Designer.vb",
+      "names": ["barInstallProgress", "btnBack", "btnCancel", "btnChangeDirectory", "btnInstall", "btnNext", "chkDesktop", "chkStartMenu", "dialogDirectory", "lblDirectory", "lblHeadingIntroduction", "lblInstall", "lblInstallInstructions", "lblIntroduction", "lblOptionsHeading", "lblReady", "lblReadyInstructions", "lblStatusHeader", "lblStatusProcess", "picSideBanner", "pnlButtons", "pnlHeaderInstall", "pnlHeaderOptions", "pnlHeaderReady", "pnlInstall", "pnlIntroduction", "pnlOptions", "pnlReady", "txtDirectory"]
+    },
+    {
+      "path": "Compact Cassette Catalogue Installer/frmSuccess.Designer.vb",
+      "names": ["btnBack", "btnCancel", "btnFinish", "chkStartProgram", "lblHeadingSuccess", "lblSuccess", "picSideBanner", "pnlButtons", "pnlSuccess"]
+    },
+    {
+      "path": "Compact Cassette Catalogue Uninstaller/frmFailure.Designer.vb",
+      "names": ["btnBack", "btnCancel", "btnFinish", "lblFailure", "lblHeadingFailure", "picSideBanner", "pnlButtons", "pnlFailure"]
+    },
+    {
+      "path": "Compact Cassette Catalogue Uninstaller/frmMain.Designer.vb",
+      "names": ["barInstallProgress", "btnBack", "btnCancel", "btnUninstall", "dialogDirectory", "lblInstall", "lblInstallInstructions", "lblReady", "lblReadyInstructions", "lblStatusHeader", "lblStatusProcess", "pnlButtons", "pnlHeaderReady", "pnlHeaderUninstall", "pnlReady", "pnlUninstall"]
+    },
+    {
+      "path": "Compact Cassette Catalogue Uninstaller/frmSuccess.Designer.vb",
+      "names": ["btnBack", "btnCancel", "btnFinish", "chkOpenFeedback", "lblHeadingSuccess", "lblSuccess", "picSideBanner", "pnlButtons", "pnlSuccess"]
+    }
+  ],
+  "resourceKeys": [
+    { "path": "Compact Cassette Catalogue Installer/frmFailure.resx", "keys": ["$this.Icon", "lblFailure.Text", "picSideBanner.Image"] },
+    { "path": "Compact Cassette Catalogue Installer/frmMain.resx", "keys": ["$this.Icon", "picSideBanner.Image"] },
+    { "path": "Compact Cassette Catalogue Installer/frmSuccess.resx", "keys": ["$this.Icon", "picSideBanner.Image"] },
+    { "path": "Compact Cassette Catalogue Installer/My Project/Resources.resx", "keys": ["cassette-tapes", "cassette-tapes-transparent.jpg"] },
+    { "path": "Compact Cassette Catalogue Uninstaller/frmFailure.resx", "keys": ["$this.Icon", "picSideBanner.Image"] },
+    { "path": "Compact Cassette Catalogue Uninstaller/frmMain.resx", "keys": ["$this.Icon"] },
+    { "path": "Compact Cassette Catalogue Uninstaller/frmSuccess.resx", "keys": ["$this.Icon", "picSideBanner.Image"] },
+    { "path": "Compact Cassette Catalogue Uninstaller/My Project/Resources.resx", "keys": ["cassette-tapes", "cassette-tapes-transparent.jpg"] }
+  ],
+  "artwork": [
+    { "path": "Compact Cassette Catalogue Installer/cassette-icon.ico", "length": 13412, "sha256": "1977b5ca60782a2c6e23d46603a15841adb7bd2fc6528f829b7b69e1dcaab059" },
+    { "path": "Compact Cassette Catalogue Installer/Resources/cassette-tapes-transparent.jpg.png", "length": 3573167, "sha256": "974f27b54c1e1a473f3597626963d4e0b965e741f29bf21f020b8d76259c74ea" },
+    { "path": "Compact Cassette Catalogue Installer/Resources/cassette-tapes-transparent.jpg1.png", "length": 3260918, "sha256": "4710ec0fef004d7a66f17378592870e07e758b09fe1cb24129c75d678c635cee" },
+    { "path": "Compact Cassette Catalogue Installer/Resources/cassette-tapes-transparent.jpg2.png", "length": 3445700, "sha256": "6ea7ebb8d5b0621a2c8cc9f6819fd3e7686382f62feeb3b84aaa301baae8f124" },
+    { "path": "Compact Cassette Catalogue Installer/Resources/cassette-tapes.jpg", "length": 169828, "sha256": "476ac1c89ded413f2ad030cc8488e3ed49ed0e30e04fdd2fdcaa9003bd4712f7" },
+    { "path": "Compact Cassette Catalogue Installer/Resources/cassette-tapes1.jpg", "length": 510574, "sha256": "aa84651091935d92360b19c002db1b0c59ca13f94e51286ccd6c1baa76acdf0e" },
+    { "path": "Compact Cassette Catalogue Installer/Resources/circuit-board.jpg", "length": 1346497, "sha256": "29df605497320289381058feea0fd1b061c01f1bd31507a1998aae772238ec79" },
+    { "path": "Compact Cassette Catalogue Uninstaller/cassette-icon.ico", "length": 13412, "sha256": "1977b5ca60782a2c6e23d46603a15841adb7bd2fc6528f829b7b69e1dcaab059" },
+    { "path": "Compact Cassette Catalogue Uninstaller/Resources/cassette-tapes-transparent.jpg.png", "length": 3573167, "sha256": "974f27b54c1e1a473f3597626963d4e0b965e741f29bf21f020b8d76259c74ea" },
+    { "path": "Compact Cassette Catalogue Uninstaller/Resources/cassette-tapes-transparent.jpg1.png", "length": 3260918, "sha256": "4710ec0fef004d7a66f17378592870e07e758b09fe1cb24129c75d678c635cee" },
+    { "path": "Compact Cassette Catalogue Uninstaller/Resources/cassette-tapes-transparent.jpg2.png", "length": 3445700, "sha256": "6ea7ebb8d5b0621a2c8cc9f6819fd3e7686382f62feeb3b84aaa301baae8f124" },
+    { "path": "Compact Cassette Catalogue Uninstaller/Resources/cassette-tapes.jpg", "length": 169828, "sha256": "476ac1c89ded413f2ad030cc8488e3ed49ed0e30e04fdd2fdcaa9003bd4712f7" },
+    { "path": "Compact Cassette Catalogue Uninstaller/Resources/cassette-tapes1.jpg", "length": 510574, "sha256": "aa84651091935d92360b19c002db1b0c59ca13f94e51286ccd6c1baa76acdf0e" },
+    { "path": "Compact Cassette Catalogue Uninstaller/Resources/circuit-board.jpg", "length": 1346497, "sha256": "29df605497320289381058feea0fd1b061c01f1bd31507a1998aae772238ec79" }
+  ]
+}

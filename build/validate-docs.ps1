@@ -37,7 +37,8 @@ $requiredFiles = @(
     'release/validation/1.3.0-release-control-hardening-2026-08-05.md',
     'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md',
     'release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md',
-    'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md'
+    'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md',
+    'release/validation/1.3.0-alpha.3-preparation-2026-08-05.md'
 )
 
 foreach ($relativePath in @(
@@ -50,6 +51,10 @@ foreach ($relativePath in @(
         'build/test-alpha2-tag-message.ps1',
         'build/test-source-reproducibility.ps1',
         'build/verify-alpha3.ps1',
+        'build/get-setup-genome.ps1',
+        'build/setup-genome.v1.json',
+        'build/setup-genome-allowlist.json',
+        'build/validate-setup-genome.ps1',
         'release/validation/1.3.0-alpha.2-qualified.json',
         'release/validation/1.3.0-alpha.2-post-tag.json')) {
     if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {
