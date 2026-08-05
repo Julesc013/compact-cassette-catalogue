@@ -888,19 +888,14 @@ Public Class frmMain
             Dim identifierShort As String = CStr(tape("IdentifierShort"))
 
 
-            'Get index for updating model-specific counter when tape deleted
-            Dim modelCode As String = CStr(tape("Model"))
-            Dim modelRowReal As DataRow = models.Rows.Find(modelCode)
-            Dim modelIndex As Integer = models.Rows.IndexOf(modelRowReal)
-
             'Remove the record for this tape
             tapes.Rows.Remove(tape)
 
-            'Update tape and model counters
-            tapeCount -= 1
-            counters.Rows(3)("Number") = tapeCount
-            Dim number As Integer = CInt(models.Rows(modelIndex)("Number"))
-            models.Rows(modelIndex)("Number") = number - 1
+            'The global counter is a row count. The per-model Number is a
+            'monotonic next-sequence high-water mark and must never decrease,
+            'or a later tape can reuse a surviving catalogue identity.
+            tapeCount = tapes.Rows.Count
+            counters.Rows.Find("Tapes")("Number") = tapeCount
 
             'Reset change detection variables
             updates = False

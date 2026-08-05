@@ -243,6 +243,8 @@ Module Program
         AssertEqual(False, source.Contains("catalogue.WriteXml(filePath)"), "direct active save")
         AssertEqual(False, source.Contains("catalogue.ReadXml(selectedPath)"), "direct active load")
         AssertEqual(False, source.Contains("Dim thisTape As Object()"), "positional tape write")
+        AssertEqual(False, Regex.IsMatch(source, "models\.Rows\([^\r\n]+\)\(""Number""\)\s*=\s*number\s*-\s*1"), "decreasing model tape sequence")
+        AssertEqual(True, source.Contains("tapeCount = tapes.Rows.Count"), "derived global tape count")
     End Sub
 
     Private Sub LifecycleStateMachineExhaustivelyFailsClosed()
