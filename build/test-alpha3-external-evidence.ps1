@@ -98,12 +98,12 @@ try {
     Assert-C3Alpha3TargetQualificationEvidence -Path $targetPath -PackageSource $target.packageSource `
         -ToolchainLockSha256 $target.toolchainLockSha256 -Manifest $manifest | Out-Null
 
-    $target.setup[0].scenarios = @($target.setup[0].scenarios | Where-Object { $_ -cne 'injected-rollback' })
+    $target.setup[0].scenarios = @($target.setup[0].scenarios | Where-Object { $_ -cne 'install-process-death-all-journal-phases' })
     [IO.File]::WriteAllText($targetPath, (($target | ConvertTo-Json -Depth 8) + "`n"), (New-Object Text.UTF8Encoding($false)))
     try {
         Assert-C3Alpha3TargetQualificationEvidence -Path $targetPath -PackageSource $target.packageSource `
             -ToolchainLockSha256 $target.toolchainLockSha256 -Manifest $manifest | Out-Null
-        throw 'External-evidence self-test accepted a setup matrix missing injected rollback.'
+        throw 'External-evidence self-test accepted a setup matrix missing the complete install process-death journal matrix.'
     }
     catch {
         if ($_.Exception.Message -notmatch 'missing, invalid, or incomplete') { throw }
