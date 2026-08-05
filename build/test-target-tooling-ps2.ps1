@@ -10,7 +10,7 @@ if (-not (Test-Path -LiteralPath $windowsPowerShell -PathType Leaf)) {
     throw "Windows PowerShell executable was not found: $windowsPowerShell"
 }
 
-foreach ($scriptName in @('smoke-launch.ps1', 'verify-target-runtime.ps1')) {
+foreach ($scriptName in @('smoke-launch.ps1', 'verify-target-runtime.ps1', 'verify-target-setup.ps1')) {
     $scriptPath = Join-Path $scriptRoot $scriptName
     $output = @(& $windowsPowerShell -Version 2 -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File $scriptPath -SelfTest 2>&1)
     if ($LASTEXITCODE -ne 0) {
