@@ -16,6 +16,11 @@ subject to their focused gates.
   native ARM64/net481.
 - Specified closed payload and installed-state XML manifests, transactional
   install/repair/upgrade/rollback, and ownership-only uninstall.
+- Added a strict offline seven-file payload verifier and a shared same-volume
+  install/repair/upgrade transaction with verified rollback.
+- Added ownership-manifest-driven removal that refuses modified owned files,
+  preserves unknown content, and restores installed state after injected
+  failures.
 - Required preservation of catalogues, settings, unknown files, and unowned
   content.
 - Added the S0–S3 defect ledger and static, differential, randomized, XML,

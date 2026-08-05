@@ -162,7 +162,8 @@ Every Beta-labelled operation remains prohibited without explicit human approval
 - [x] Freeze installer/uninstaller project, form, control, resource, and artwork
   identity before remediation.
 - [x] Add matched x86/net40, x64/net48, and ARM64/net481 setup configurations.
-- [ ] Link one shared VB.NET setup implementation into both EXEs without a DLL.
+- [x] Link the shared VB.NET setup contracts and transaction implementation
+  directly into both EXEs without a DLL.
 - [ ] Implement offline verification, path/environment/elevation preflight,
   staging, journal, install, repair, upgrade, rollback, registry, and shortcuts.
 - [ ] Implement manifest-bound discovery, self-relocation, reversible removal,
