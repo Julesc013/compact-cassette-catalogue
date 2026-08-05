@@ -8,10 +8,18 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
-$testRoot = Join-Path $repositoryRoot 'artifacts\package-reproducibility'
+$testRoot = [IO.Path]::GetFullPath((Join-Path $repositoryRoot 'artifacts\package-reproducibility'))
+$allowedRoot = [IO.Path]::GetFullPath((Join-Path $repositoryRoot 'artifacts')).TrimEnd('\') + '\'
+if (-not $testRoot.StartsWith($allowedRoot, [StringComparison]::OrdinalIgnoreCase)) {
+    throw "Package reproducibility root is outside repository artifacts: $testRoot"
+}
 $first = Join-Path $testRoot 'path-a'
 $second = Join-Path $testRoot 'different-absolute-path-b'
 foreach ($path in @($first, $second)) {
+    $resolvedPath = [IO.Path]::GetFullPath($path)
+    if (-not $resolvedPath.StartsWith($testRoot.TrimEnd('\') + '\', [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Refusing to replace package test path outside '$testRoot': $resolvedPath"
+    }
     if (Test-Path -LiteralPath $path) {
         Remove-Item -LiteralPath $path -Recurse -Force
     }

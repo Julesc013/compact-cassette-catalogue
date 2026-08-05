@@ -2,7 +2,6 @@
 param(
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
-    [string]$Lane,
     [string]$OutputDirectory,
     [switch]$RequireCandidateEvidence
 )
@@ -58,12 +57,6 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $lanes = @($manifest.lanes)
-if (-not [string]::IsNullOrWhiteSpace($Lane)) {
-    $lanes = @($lanes | Where-Object { $_.id -ceq $Lane })
-    if ($lanes.Count -ne 1) {
-        throw "Unknown package lane '$Lane'."
-    }
-}
 if ([string]::IsNullOrWhiteSpace($OutputDirectory)) {
     $OutputDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseVersion)"
 }

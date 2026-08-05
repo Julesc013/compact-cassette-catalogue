@@ -40,6 +40,18 @@ for ($index = 0; $index -lt $expected.Count; $index++) {
     }
 }
 
+$runtimeLanes = @(& (Join-Path $PSScriptRoot 'get-runtime-lanes.ps1'))
+if ($runtimeLanes.Count -ne $lanes.Count) {
+    throw 'PowerShell 2 target projection does not contain exactly the manifest lanes.'
+}
+for ($index = 0; $index -lt $lanes.Count; $index++) {
+    foreach ($propertyName in @('id', 'packageName', 'targetFramework', 'peMachine', 'runtimeEnvironmentId', 'runtimeArchitecture', 'runtimeClaim')) {
+        if ([string]$runtimeLanes[$index].$propertyName -cne [string]$lanes[$index].$propertyName) {
+            throw "Target projection $index property '$propertyName' does not match lanes.json."
+        }
+    }
+}
+
 $lockIds = @($lock.lanes | ForEach-Object { [string]$_.id })
 if (($lockIds -join "`n") -cne (($expected.id) -join "`n")) {
     throw 'Toolchain lock lane IDs do not exactly match the release manifest.'

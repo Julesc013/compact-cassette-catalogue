@@ -21,6 +21,7 @@ $requiredFiles = @(
     'docs/planning/1.3.0-beta.1.md',
     'docs/planning/1.3.0-stable.md',
     'docs/testing/1.3.0-qualification-matrix.md',
+    'docs/testing/1.3.0-target-runtime-record.md',
     'docs/compatibility/1x-evidence-matrix.md',
     'release/validation/1.3.0-preparation-2026-08-05.md',
     'release/validation/1.3.0-reconstructed-baseline.md',
