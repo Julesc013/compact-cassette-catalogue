@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="C3VerifyResourceAuthority" BeforeTargets="CoreResGen">
+    <PropertyGroup>
+      <_C3ActualResGenPath>$([System.IO.Path]::Combine('$(ResGenToolPath)', '$(ResGenToolExe)'))</_C3ActualResGenPath>
+    </PropertyGroup>
+    <Error Condition="'$(C3ExpectedResGenPath)' == '' or !Exists('$(C3ExpectedResGenPath)')"
+           Text="The required C3 resource generator is missing: $(C3ExpectedResGenPath)" />
+    <Error Condition="'$(ResGenToolPath)' == '' or '$(ResGenToolExe)' == ''"
+           Text="ResGenToolPath and ResGenToolExe must be forced by the C3 build contract." />
+    <Error Condition="'$(_C3ActualResGenPath)' != '$(C3ExpectedResGenPath)'"
+           Text="Effective resource generator '$(_C3ActualResGenPath)' does not match required '$(C3ExpectedResGenPath)'." />
+  </Target>
+
+  <Target Name="C3RecordResourceGeneration" AfterTargets="CoreResGen">
+    <PropertyGroup>
+      <C3ResourceGenerationCompleted>true</C3ResourceGenerationCompleted>
+    </PropertyGroup>
+  </Target>
+
   <Target Name="C3VerifyBuildAuthority" BeforeTargets="CoreCompile">
     <Error Condition="'$(C3ExpectedMSBuildToolsVersion)' == ''"
            Text="C3ExpectedMSBuildToolsVersion was not supplied." />
@@ -13,6 +31,8 @@
            Text="The required C3 reference-assembly path is missing: $(C3ExpectedFrameworkPath)" />
     <Error Condition="'$(FrameworkPathOverride)' != '$(C3ExpectedFrameworkPath)'"
            Text="FrameworkPathOverride '$(FrameworkPathOverride)' does not match required '$(C3ExpectedFrameworkPath)'." />
+    <Error Condition="'$(C3ResourceGenerationCompleted)' != 'true'"
+           Text="The CoreResGen authority/completion marker was not reached before compilation." />
 
     <ItemGroup>
       <_C3BuildEvidence Include="MSBuildVersion=$(MSBuildVersion)" />
@@ -27,6 +47,9 @@
       <_C3BuildEvidence Include="TargetFrameworkSDKToolsDirectory=$(TargetFrameworkSDKToolsDirectory)" />
       <_C3BuildEvidence Include="ResGenToolPath=$(ResGenToolPath)" />
       <_C3BuildEvidence Include="ResGenToolExe=$(ResGenToolExe)" />
+      <_C3BuildEvidence Include="C3ExpectedResGenPath=$(C3ExpectedResGenPath)" />
+      <_C3BuildEvidence Include="C3ActualResGenPath=$(_C3ActualResGenPath)" />
+      <_C3BuildEvidence Include="C3ResourceGenerationCompleted=$(C3ResourceGenerationCompleted)" />
       <_C3BuildEvidence Include="Platform=$(Platform)" />
       <_C3BuildEvidence Include="PlatformTarget=$(PlatformTarget)" />
       <_C3BuildEvidence Include="Configuration=$(Configuration)" />

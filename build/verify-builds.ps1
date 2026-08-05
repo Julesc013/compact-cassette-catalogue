@@ -162,7 +162,20 @@ foreach ($lane in $lanes) {
             [string]$toolchainEvidence.msbuild.effectiveToolsVersion -cne [string]$lane.effectiveToolsVersion) {
         throw "$($lane.id) toolchain evidence does not match the lane, source commit, or effective tools version."
     }
+    $resourceTools = @($toolchainEvidence.resourceTools)
+    if ($resourceTools.Count -ne 1 -or
+            [string]$resourceTools[0].name -cne 'ResGen.exe' -or
+            -not [bool]$resourceTools[0].forcedByBuild -or
+            -not [bool]$resourceTools[0].coreResGenCompleted -or
+            [string]$resourceTools[0].sha256 -notmatch '^[0-9a-f]{64}$' -or
+            -not (Test-Path -LiteralPath ([string]$resourceTools[0].path) -PathType Leaf)) {
+        throw "$($lane.id) toolchain evidence does not close the forced ResGen byte-producing tool."
+    }
+    $currentResourceToolHash = (Get-FileHash -LiteralPath ([string]$resourceTools[0].path) -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($currentResourceToolHash -cne [string]$resourceTools[0].sha256) {
+        throw "$($lane.id) retained ResGen hash no longer matches '$($resourceTools[0].path)'."
+    }
 
-    Write-Host ("Verified {0}: machine=0x{1:x4}, header=0x{2:x4}, CorFlags=0x{3:x8}, framework={4}, version={5}, settings={6}, runtime DLLs=0" -f
-        $lane.id, $pe.machine, $pe.optionalHeader, $pe.corFlags, $lane.targetFramework, $expectedVersion, $actualSettings.Count)
+    Write-Host ("Verified {0}: machine=0x{1:x4}, header=0x{2:x4}, CorFlags=0x{3:x8}, framework={4}, version={5}, settings={6}, runtime DLLs=0, ResGen={7}" -f
+        $lane.id, $pe.machine, $pe.optionalHeader, $pe.corFlags, $lane.targetFramework, $expectedVersion, $actualSettings.Count, $resourceTools[0].sha256)
 }

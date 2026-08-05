@@ -138,6 +138,8 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
                 [string]$buildData.targetFramework -cne [string]$lane.targetFramework -or
                 [string]$buildData.peMachine -cne [string]$lane.peMachine -or
                 [string]$buildData.toolchainLockSha256 -cne [string]$entryManifest.toolchainLockSha256 -or
+                [string]$buildData.resourceToolName -cne 'ResGen.exe' -or
+                [string]$buildData.resourceToolSha256 -notmatch '^[0-9a-f]{64}$' -or
                 [string]$buildData.runtimeDllCount -cne '0' -or
                 [string]$buildData.distribution -cne 'portable-classic-winforms') {
             throw "$($lane.id) BUILD.txt does not match its lane and portable payload contract."

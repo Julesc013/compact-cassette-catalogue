@@ -106,6 +106,8 @@ foreach ($buildLane in $lanes) {
         "vbcSha256=$($evidence.compiler.sha256)",
         "targetFramework=$($buildLane.targetFramework)",
         "referenceAssemblySetSha256=$($evidence.referenceAssemblies.setSha256)",
+        "resourceToolName=$($evidence.resourceTools[0].name)",
+        "resourceToolSha256=$($evidence.resourceTools[0].sha256)",
         "peMachine=$($buildLane.peMachine)",
         "peOptionalHeader=$($buildLane.peOptionalHeader)",
         "executableSha256=$executableHash",

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "purpose": "repository template only; Candidate mode requires an external source-bound copy",
   "status": "template",
   "sourceCommit": null,
@@ -12,7 +12,9 @@
       "visualStudioInstallationVersion": null,
       "msbuildSha256": null,
       "vbcSha256": null,
-      "referenceAssemblySetSha256": null
+      "referenceAssemblySetSha256": null,
+      "resourceToolPath": null,
+      "resourceToolSha256": null
     },
     {
       "id": "win-x64-net48",
@@ -20,7 +22,9 @@
       "visualStudioInstallationVersion": null,
       "msbuildSha256": null,
       "vbcSha256": null,
-      "referenceAssemblySetSha256": null
+      "referenceAssemblySetSha256": null,
+      "resourceToolPath": null,
+      "resourceToolSha256": null
     },
     {
       "id": "win-arm64-net481",
@@ -28,7 +32,9 @@
       "visualStudioInstallationVersion": null,
       "msbuildSha256": null,
       "vbcSha256": null,
-      "referenceAssemblySetSha256": null
+      "referenceAssemblySetSha256": null,
+      "resourceToolPath": null,
+      "resourceToolSha256": null
     }
   ]
 }

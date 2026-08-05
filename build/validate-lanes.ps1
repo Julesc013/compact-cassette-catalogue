@@ -8,9 +8,9 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $lock = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'toolchain-lock.json') -Raw | ConvertFrom-Json
 $expected = @(
-    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0-win-x86-net40-portable.zip' },
-    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0-win-x64-net48-portable.zip' },
-    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0-win-arm64-net481-portable.zip' }
+    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0-win-x86-net40-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0-win-x64-net48-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0-win-arm64-net481-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
 )
 $lanes = @($manifest.lanes)
 if ($lanes.Count -ne $expected.Count) {
@@ -26,6 +26,7 @@ for ($index = 0; $index -lt $expected.Count; $index++) {
             @('targetFramework', [string]$actual.targetFramework, $contract.framework),
             @('toolset', [string]$actual.toolset, $contract.toolset),
             @('effectiveToolsVersion', [string]$actual.effectiveToolsVersion, $contract.toolsVersion),
+            @('resourceToolRelativePath', [string]$actual.resourceToolRelativePath, $contract.resourceTool),
             @('peMachine', [string]$actual.peMachine, $contract.machine),
             @('peOptionalHeader', [string]$actual.peOptionalHeader, $contract.header),
             @('packageName', [string]$actual.packageName, $contract.package),
@@ -59,6 +60,9 @@ if (($lockIds -join "`n") -cne (($expected.id) -join "`n")) {
 if ([string]$lock.status -notin @('template', 'locked')) {
     throw "Unknown toolchain lock status '$($lock.status)'."
 }
+if ([int]$lock.schemaVersion -ne 2) {
+    throw "Toolchain lock schemaVersion '$($lock.schemaVersion)' is unsupported; expected 2."
+}
 if ([string]$lock.status -ceq 'locked') {
     if ([string]::IsNullOrWhiteSpace([string]$lock.sourceCommit) -or
             [string]::IsNullOrWhiteSpace([string]$lock.frozenAtUtc) -or
@@ -66,10 +70,14 @@ if ([string]$lock.status -ceq 'locked') {
         throw 'Locked toolchain policy requires sourceCommit, expectedRemoteRef, and frozenAtUtc.'
     }
     foreach ($lockedLane in @($lock.lanes)) {
-        foreach ($propertyName in @('visualStudioProductVersion', 'visualStudioInstallationVersion', 'msbuildSha256', 'vbcSha256', 'referenceAssemblySetSha256')) {
+        foreach ($propertyName in @('visualStudioProductVersion', 'visualStudioInstallationVersion', 'msbuildSha256', 'vbcSha256', 'referenceAssemblySetSha256', 'resourceToolPath', 'resourceToolSha256')) {
             if ([string]::IsNullOrWhiteSpace([string]$lockedLane.$propertyName)) {
                 throw "Locked toolchain lane '$($lockedLane.id)' is missing $propertyName."
             }
+        }
+        if (-not [IO.Path]::IsPathRooted([string]$lockedLane.resourceToolPath) -or
+                [string]$lockedLane.resourceToolSha256 -notmatch '^[0-9a-f]{64}$') {
+            throw "Locked toolchain lane '$($lockedLane.id)' has an invalid resource-tool path or SHA-256."
         }
     }
 }

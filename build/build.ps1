@@ -94,6 +94,9 @@ if ($ToolchainMode -ceq 'Candidate' -and [string]$lock.status -cne 'locked') {
 if ($PreflightOnly -and $ToolchainMode -cne 'Candidate') {
     throw '-PreflightOnly is available only in Candidate mode.'
 }
+if ($ToolchainMode -ceq 'Candidate' -and -not $PreflightOnly -and -not $Rebuild) {
+    throw 'Candidate builds require -Rebuild so every byte-producing resource step is executed from clean intermediates.'
+}
 
 $projectPath = Join-Path $repositoryRoot ([string]$manifest.sourceProject)
 if (-not (Test-Path -LiteralPath $projectPath -PathType Leaf)) {
@@ -144,9 +147,31 @@ if ($ToolchainMode -ceq 'Candidate') {
     & (Join-Path $PSScriptRoot 'validate-lanes.ps1')
 }
 foreach ($buildLane in $lanes) {
-    $lockLaneCount = @($lock.lanes | Where-Object { $_.id -ceq $buildLane.id }).Count
-    if ($lockLaneCount -ne 1) {
+    $candidateLockLane = @($lock.lanes | Where-Object { $_.id -ceq $buildLane.id })
+    if ($candidateLockLane.Count -ne 1) {
         throw "Toolchain lock does not contain exactly one entry for '$($buildLane.id)'."
+    }
+    if ($ToolchainMode -ceq 'Candidate') {
+        foreach ($requiredLockProperty in @(
+                'visualStudioProductVersion',
+                'visualStudioInstallationVersion',
+                'msbuildSha256',
+                'vbcSha256',
+                'referenceAssemblySetSha256',
+                'resourceToolPath',
+                'resourceToolSha256')) {
+            if ([string]::IsNullOrWhiteSpace([string]$candidateLockLane[0].$requiredLockProperty)) {
+                throw "External candidate lock lane '$($buildLane.id)' is missing '$requiredLockProperty'."
+            }
+        }
+        foreach ($hashProperty in @('msbuildSha256', 'vbcSha256', 'referenceAssemblySetSha256', 'resourceToolSha256')) {
+            if ([string]$candidateLockLane[0].$hashProperty -notmatch '^[0-9a-f]{64}$') {
+                throw "External candidate lock lane '$($buildLane.id)' has invalid '$hashProperty'."
+            }
+        }
+        if (-not [IO.Path]::IsPathRooted([string]$candidateLockLane[0].resourceToolPath)) {
+            throw "External candidate lock lane '$($buildLane.id)' resourceToolPath must be absolute."
+        }
     }
 }
 if ($PreflightOnly) {
@@ -194,6 +219,35 @@ foreach ($buildLane in $lanes) {
     if (-not (Test-Path -LiteralPath $referencePath -PathType Container)) {
         throw "Required reference assemblies were not found for '$($buildLane.id)': $referencePath"
     }
+    $resourceToolPath = if ($ToolchainMode -ceq 'Candidate') {
+        [IO.Path]::GetFullPath([string]$lockLane[0].resourceToolPath)
+    }
+    else {
+        if ([string]::IsNullOrWhiteSpace(${env:ProgramFiles(x86)})) {
+            throw 'ProgramFiles(x86) is unavailable; the preparation resource-tool path cannot be resolved.'
+        }
+        [IO.Path]::GetFullPath((Join-Path ${env:ProgramFiles(x86)} (([string]$buildLane.resourceToolRelativePath).Replace('/', '\'))))
+    }
+    if (-not (Test-Path -LiteralPath $resourceToolPath -PathType Leaf)) {
+        throw "Required ResGen resource tool was not found for '$($buildLane.id)': $resourceToolPath"
+    }
+
+    # Bind every currently known byte-producing input before the first compile.
+    $referenceEvidence = Get-ReferenceAssemblyEvidence -Path $referencePath
+    $msbuildHash = (Get-FileHash -LiteralPath $msbuild -Algorithm SHA256).Hash.ToLowerInvariant()
+    $compilerHash = (Get-FileHash -LiteralPath $compilerPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    $resourceToolHash = (Get-FileHash -LiteralPath $resourceToolPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($ToolchainMode -ceq 'Candidate') {
+        foreach ($comparison in @(
+                @('MSBuild SHA-256', $msbuildHash, [string]$lockLane[0].msbuildSha256),
+                @('VBC SHA-256', $compilerHash, [string]$lockLane[0].vbcSha256),
+                @('reference set SHA-256', $referenceEvidence.setSha256, [string]$lockLane[0].referenceAssemblySetSha256),
+                @('ResGen SHA-256', $resourceToolHash, [string]$lockLane[0].resourceToolSha256))) {
+            if ([string]$comparison[1] -cne [string]$comparison[2]) {
+                throw "$($buildLane.id) $($comparison[0]) '$($comparison[1])' does not match locked value '$($comparison[2])'."
+            }
+        }
+    }
 
     $outputPath = Join-Path $repositoryRoot "artifacts\bin\$($buildLane.id)\$Configuration"
     $intermediatePath = Join-Path $repositoryRoot "artifacts\obj\$($buildLane.id)\$Configuration"
@@ -224,11 +278,14 @@ foreach ($buildLane in $lanes) {
         "/p:IntermediateOutputPath=$intermediatePath\" `
         "/p:VbcToolPath=$([IO.Path]::GetDirectoryName($compilerPath))" `
         '/p:VbcToolExe=vbc.exe' `
+        "/p:ResGenToolPath=$([IO.Path]::GetDirectoryName($resourceToolPath))" `
+        "/p:ResGenToolExe=$([IO.Path]::GetFileName($resourceToolPath))" `
         '/p:UseSharedCompilation=false' `
         "/p:CustomAfterMicrosoftCommonTargets=$evidenceTargets" `
         "/p:C3ExpectedMSBuildToolsVersion=$($buildLane.effectiveToolsVersion)" `
         "/p:C3ExpectedVbcPath=$compilerPath" `
         "/p:C3ExpectedFrameworkPath=$referencePath" `
+        "/p:C3ExpectedResGenPath=$resourceToolPath" `
         "/p:C3BuildEvidencePropertiesPath=$propertiesPath" `
         "/binaryLogger:$binaryLogPath" `
         "/v:$Verbosity" `
@@ -242,21 +299,33 @@ foreach ($buildLane in $lanes) {
         throw "Build lane '$($buildLane.id)' did not produce the required binary log and property evidence."
     }
 
-    $referenceEvidence = Get-ReferenceAssemblyEvidence -Path $referencePath
-    $msbuildHash = (Get-FileHash -LiteralPath $msbuild -Algorithm SHA256).Hash.ToLowerInvariant()
-    $compilerHash = (Get-FileHash -LiteralPath $compilerPath -Algorithm SHA256).Hash.ToLowerInvariant()
-    if ($ToolchainMode -ceq 'Candidate') {
-        foreach ($comparison in @(
-                @('MSBuild SHA-256', $msbuildHash, [string]$lockLane[0].msbuildSha256),
-                @('VBC SHA-256', $compilerHash, [string]$lockLane[0].vbcSha256),
-                @('reference set SHA-256', $referenceEvidence.setSha256, [string]$lockLane[0].referenceAssemblySetSha256))) {
-            if ([string]$comparison[1] -cne [string]$comparison[2]) {
-                throw "$($buildLane.id) $($comparison[0]) '$($comparison[1])' does not match locked value '$($comparison[2])'."
-            }
+    $propertyEvidence = @{}
+    foreach ($propertyLine in @(Get-Content -LiteralPath $propertiesPath)) {
+        if ($propertyLine -notmatch '^(?<name>[^=]+)=(?<value>.*)$') {
+            throw "$($buildLane.id) contains malformed MSBuild property evidence '$propertyLine'."
         }
+        $propertyEvidence[$matches['name']] = $matches['value']
+    }
+    if ([string]$propertyEvidence['C3ExpectedResGenPath'] -cne $resourceToolPath -or
+            [string]$propertyEvidence['C3ActualResGenPath'] -cne $resourceToolPath -or
+            [string]$propertyEvidence['C3ResourceGenerationCompleted'] -cne 'true') {
+        throw "$($buildLane.id) did not prove the forced ResGen path and CoreResGen completion in MSBuild evidence."
     }
 
+    $finalReferenceEvidence = Get-ReferenceAssemblyEvidence -Path $referencePath
+    foreach ($stabilityComparison in @(
+            @('MSBuild', $msbuildHash, (Get-FileHash -LiteralPath $msbuild -Algorithm SHA256).Hash.ToLowerInvariant()),
+            @('VBC', $compilerHash, (Get-FileHash -LiteralPath $compilerPath -Algorithm SHA256).Hash.ToLowerInvariant()),
+            @('reference set', $referenceEvidence.setSha256, $finalReferenceEvidence.setSha256),
+            @('ResGen', $resourceToolHash, (Get-FileHash -LiteralPath $resourceToolPath -Algorithm SHA256).Hash.ToLowerInvariant()))) {
+        if ([string]$stabilityComparison[1] -cne [string]$stabilityComparison[2]) {
+            throw "$($buildLane.id) $($stabilityComparison[0]) changed during the build: '$($stabilityComparison[1])' -> '$($stabilityComparison[2])'."
+        }
+    }
+    $referenceEvidence = $finalReferenceEvidence
+
     $compilerInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($compilerPath)
+    $resourceToolInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($resourceToolPath)
     $evidence = [ordered]@{
         schemaVersion = 1
         lane = [string]$buildLane.id
@@ -292,9 +361,19 @@ foreach ($buildLane in $lanes) {
             sharedCompilation = $false
         }
         referenceAssemblies = $referenceEvidence
-        resourceTools = [ordered]@{
-            propertiesEvidence = $propertiesPath
-        }
+        resourceTools = @(
+            [ordered]@{
+                name = [IO.Path]::GetFileName($resourceToolPath)
+                path = $resourceToolPath
+                fileVersion = [string]$resourceToolInfo.FileVersion
+                productVersion = [string]$resourceToolInfo.ProductVersion
+                sha256 = $resourceToolHash
+                forcedByBuild = $true
+                coreResGenCompleted = $true
+                propertiesEvidence = $propertiesPath
+                binaryLog = $binaryLogPath
+            }
+        )
         buildHost = [ordered]@{
             machineName = [Environment]::MachineName
             osVersion = [Environment]::OSVersion.VersionString
