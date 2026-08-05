@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "status": "template",
   "baselineTag": "v1.2.0b1",
   "baselineSourceCommit": "2413e9139a098f3321385f2f946e743012a447f5",
@@ -12,9 +12,60 @@
   "controlResourceEvidenceFile": null,
   "controlResourceEvidenceSha256": null,
   "workflows": [
-    { "runtimeId": "v1.1.2", "result": "template", "evidenceFile": null, "evidenceSha256": null },
-    { "runtimeId": "v1.2.0b1-x86-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null },
-    { "runtimeId": "v1.2.0b1-x64-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null }
+    {
+      "runtimeId": "v1.1.2",
+      "result": "template",
+      "unexplainedDeviationCount": null,
+      "scenarios": [
+        { "id": "launch-blocked-network-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "entity-crud", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "save-reopen-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "lists-filters-settings", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "dirty-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "pending-edit-transition", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "manual-update-blocked", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "private-catalogues", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "control-resource-capture", "outcome": "template", "classification": "template", "defectIds": [], "notes": null }
+      ],
+      "evidenceFile": null,
+      "evidenceSha256": null
+    },
+    {
+      "runtimeId": "v1.2.0b1-x86-net40",
+      "result": "template",
+      "unexplainedDeviationCount": null,
+      "scenarios": [
+        { "id": "launch-blocked-network-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "entity-crud", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "save-reopen-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "lists-filters-settings", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "dirty-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "pending-edit-transition", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "manual-update-blocked", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "private-catalogues", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "control-resource-capture", "outcome": "template", "classification": "template", "defectIds": [], "notes": null }
+      ],
+      "evidenceFile": null,
+      "evidenceSha256": null
+    },
+    {
+      "runtimeId": "v1.2.0b1-x64-net40",
+      "result": "template",
+      "unexplainedDeviationCount": null,
+      "scenarios": [
+        { "id": "launch-blocked-network-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "entity-crud", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "save-reopen-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "lists-filters-settings", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "dirty-close", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "pending-edit-transition", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "manual-update-blocked", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "private-catalogues", "outcome": "template", "classification": "template", "defectIds": [], "notes": null },
+        { "id": "control-resource-capture", "outcome": "template", "classification": "template", "defectIds": [], "notes": null }
+      ],
+      "evidenceFile": null,
+      "evidenceSha256": null
+    }
   ],
   "catalogueExchange": [
     { "producer": "v1.1.2", "reader": "v1.1.2", "result": "template", "evidenceFile": null, "evidenceSha256": null },
