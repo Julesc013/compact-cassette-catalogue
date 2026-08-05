@@ -5,7 +5,7 @@
 
 Imports System.Text.RegularExpressions
 
-Module varGlobals
+Public Module varGlobals
 
     ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     ' About program information.
@@ -298,6 +298,203 @@ Module varGlobals
         Return table
 
     End Function
+
+    Public Function IsBrandReferenced(modelRows As DataTable, brandName As String) As Boolean
+        Return HasTextReference(modelRows, "Brand", brandName)
+    End Function
+
+    Public Function IsModelReferenced(tapeRows As DataTable, modelIdentifier As String) As Boolean
+        Return HasTextReference(tapeRows, "Model", modelIdentifier)
+    End Function
+
+    Public Function IsDeckReferenced(tapeRows As DataTable, deckName As String) As Boolean
+        Return HasTextReference(tapeRows, "DeckA", deckName) OrElse
+            HasTextReference(tapeRows, "DeckB", deckName)
+    End Function
+
+    Private Function HasTextReference(table As DataTable, columnName As String, value As String) As Boolean
+        If table Is Nothing Then
+            Throw New ArgumentNullException("table")
+        End If
+        If Not table.Columns.Contains(columnName) Then
+            Throw New ArgumentException("The table does not contain column '" & columnName & "'.", "columnName")
+        End If
+
+        For Each row As DataRow In table.Rows
+            If row.RowState <> DataRowState.Deleted AndAlso
+                    String.Equals(CStr(row(columnName)), value, StringComparison.OrdinalIgnoreCase) Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
+
+    Public Sub RenameBrandReferences(modelRows As DataTable, oldBrandName As String, newBrandName As String)
+        RenameTextReferences(modelRows, New String() {"Brand"}, oldBrandName, newBrandName)
+    End Sub
+
+    Public Sub RenameDeckReferences(tapeRows As DataTable, oldDeckName As String, newDeckName As String)
+        RenameTextReferences(tapeRows, New String() {"DeckA", "DeckB"}, oldDeckName, newDeckName)
+    End Sub
+
+    Private Sub RenameTextReferences(table As DataTable, columnNames As String(), oldValue As String, newValue As String)
+        If table Is Nothing Then
+            Throw New ArgumentNullException("table")
+        End If
+        For Each columnName As String In columnNames
+            If Not table.Columns.Contains(columnName) Then
+                Throw New ArgumentException("The table does not contain column '" & columnName & "'.", "columnNames")
+            End If
+        Next
+
+        Dim changedRows As New List(Of DataRow)()
+        Dim changedColumns As New List(Of String)()
+        Try
+            For Each row As DataRow In table.Rows
+                If row.RowState <> DataRowState.Deleted Then
+                    For Each columnName As String In columnNames
+                        If String.Equals(CStr(row(columnName)), oldValue, StringComparison.OrdinalIgnoreCase) Then
+                            row(columnName) = newValue
+                            changedRows.Add(row)
+                            changedColumns.Add(columnName)
+                        End If
+                    Next
+                End If
+            Next
+        Catch
+            For index As Integer = changedRows.Count - 1 To 0 Step -1
+                changedRows(index)(changedColumns(index)) = oldValue
+            Next
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SynchronizeEntityCounters(
+            counterRows As DataTable,
+            deckRows As DataTable,
+            brandRows As DataTable,
+            modelRows As DataTable,
+            tapeRows As DataTable)
+
+        SetCounterValue(counterRows, "Decks", ActiveRowCount(deckRows))
+        SetCounterValue(counterRows, "Brands", ActiveRowCount(brandRows))
+        SetCounterValue(counterRows, "Models", ActiveRowCount(modelRows))
+        SetCounterValue(counterRows, "Tapes", ActiveRowCount(tapeRows))
+    End Sub
+
+    Private Function ActiveRowCount(table As DataTable) As Integer
+        If table Is Nothing Then
+            Throw New ArgumentNullException("table")
+        End If
+
+        Dim count As Integer = 0
+        For Each row As DataRow In table.Rows
+            If row.RowState <> DataRowState.Deleted Then
+                count += 1
+            End If
+        Next
+        Return count
+    End Function
+
+    Private Function FindCounterRow(counterRows As DataTable, counterName As String) As DataRow
+        If counterRows Is Nothing Then
+            Throw New ArgumentNullException("counterRows")
+        End If
+        If Not counterRows.Columns.Contains("Counter") OrElse Not counterRows.Columns.Contains("Number") Then
+            Throw New ArgumentException("The counters table does not expose Counter and Number columns.", "counterRows")
+        End If
+
+        For Each row As DataRow In counterRows.Rows
+            If row.RowState <> DataRowState.Deleted AndAlso
+                    String.Equals(CStr(row("Counter")), counterName, StringComparison.Ordinal) Then
+                Return row
+            End If
+        Next
+        Throw New InvalidOperationException("Missing catalogue counter row '" & counterName & "'.")
+    End Function
+
+    Private Sub SetCounterValue(counterRows As DataTable, counterName As String, value As Integer)
+        FindCounterRow(counterRows, counterName)("Number") = value
+    End Sub
+
+    Public Function NextTapeSequence(tapeRows As DataTable, modelIdentifier As String, storedNextSequence As Integer) As Integer
+        If tapeRows Is Nothing Then
+            Throw New ArgumentNullException("tapeRows")
+        End If
+        If storedNextSequence < 0 Then
+            Throw New ArgumentOutOfRangeException("storedNextSequence")
+        End If
+
+        Dim nextSequence As Integer = storedNextSequence
+        For Each row As DataRow In tapeRows.Rows
+            If row.RowState <> DataRowState.Deleted AndAlso
+                    String.Equals(CStr(row("Model")), modelIdentifier, StringComparison.Ordinal) Then
+                nextSequence = Math.Max(nextSequence, checkedIncrement(CInt(row("Number"))))
+            End If
+        Next
+        Return nextSequence
+    End Function
+
+    Private Function checkedIncrement(value As Integer) As Integer
+        If value = Integer.MaxValue Then
+            Throw New OverflowException("The tape sequence is exhausted.")
+        End If
+        Return value + 1
+    End Function
+
+    Public Sub CommitTapeBatch(
+            tapeRows As DataTable,
+            modelRow As DataRow,
+            counterRows As DataTable,
+            batchRows As IEnumerable(Of DataRow),
+            nextSequenceExclusive As Integer)
+
+        If tapeRows Is Nothing Then
+            Throw New ArgumentNullException("tapeRows")
+        End If
+        If modelRow Is Nothing Then
+            Throw New ArgumentNullException("modelRow")
+        End If
+        If batchRows Is Nothing Then
+            Throw New ArgumentNullException("batchRows")
+        End If
+
+        Dim materializedRows As New List(Of DataRow)(batchRows)
+        If materializedRows.Count = 0 Then
+            Throw New ArgumentException("A tape batch cannot be empty.", "batchRows")
+        End If
+
+        Dim tapeCounterRow As DataRow = FindCounterRow(counterRows, "Tapes")
+        Dim oldTapeCounter As Integer = CInt(tapeCounterRow("Number"))
+        Dim oldModelSequence As Integer = CInt(modelRow("Number"))
+        If nextSequenceExclusive < oldModelSequence Then
+            Throw New InvalidOperationException("The tape sequence cannot move backwards.")
+        End If
+
+        For Each row As DataRow In materializedRows
+            If row.Table IsNot tapeRows OrElse row.RowState <> DataRowState.Detached Then
+                Throw New ArgumentException("Every batch row must be a detached row created by the target tape table.", "batchRows")
+            End If
+        Next
+
+        Try
+            For Each row As DataRow In materializedRows
+                tapeRows.Rows.Add(row)
+            Next
+            tapeCounterRow("Number") = ActiveRowCount(tapeRows)
+            modelRow("Number") = nextSequenceExclusive
+        Catch
+            For index As Integer = materializedRows.Count - 1 To 0 Step -1
+                Dim row As DataRow = materializedRows(index)
+                If row.Table Is tapeRows AndAlso row.RowState <> DataRowState.Detached Then
+                    tapeRows.Rows.Remove(row)
+                End If
+            Next
+            tapeCounterRow("Number") = oldTapeCounter
+            modelRow("Number") = oldModelSequence
+            Throw
+        End Try
+    End Sub
 
     Function getCondition(value As Integer) As Integer
         ' Convert selected index to condition score.

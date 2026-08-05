@@ -25,7 +25,7 @@
         modelName = CStr(models.Rows(modelIndex)("Name"))
         modelNumber = CInt(models.Rows(modelIndex)("Number"))
         modelDateTime = Convert.ToDateTime(models.Rows(modelIndex)("Date"))
-        modelNotes = CStr(brands.Rows(modelIndex)("Notes"))
+        modelNotes = CStr(models.Rows(modelIndex)("Notes"))
 
 
         ' Populate objects.
@@ -63,15 +63,9 @@
 
         ' Write new data to existing row.
 
-        Dim thisModel As Object() = {modelBrand, modelType, modelModelNew, modelCode, modelIdentifier, modelNameNew, modelNumber, modelDateTime, modelNotesNew} ' Keep existing fields except name and notes.
-
-        Dim counter As Integer = 0
-        For Each thisObject As Object In thisModel
-
-            models.Rows(modelIndex)(counter) = thisObject
-            counter += 1
-
-        Next
+        modelRow("Model") = modelModelNew
+        modelRow("Name") = modelNameNew
+        modelRow("Notes") = modelNotesNew
 
 
         changes = True
