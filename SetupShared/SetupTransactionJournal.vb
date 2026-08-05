@@ -177,10 +177,26 @@ Namespace Global.C3Setup
 
         Public Sub Advance(phase As String)
             If Not SetupTransactionPhases.Contains(phase) Then Throw New SetupContractException("Transaction journal phase is invalid.")
+            If Not IsValidTransition(_phase, phase) Then Throw New SetupContractException("Transaction journal phase transition is invalid: " & _phase & " -> " & phase)
             _phase = phase
             _updatedAtUtc = DateTime.UtcNow
             Validate()
         End Sub
+
+        Private Shared Function IsValidTransition(current As String, nextPhase As String) As Boolean
+            If nextPhase = SetupTransactionPhases.RollbackStarted Then
+                Return current <> SetupTransactionPhases.Complete AndAlso current <> SetupTransactionPhases.RollbackComplete AndAlso current <> SetupTransactionPhases.RollbackStarted
+            End If
+            If current = SetupTransactionPhases.Prepared Then Return nextPhase = SetupTransactionPhases.Staged
+            If current = SetupTransactionPhases.Staged Then Return nextPhase = SetupTransactionPhases.BackupComplete
+            If current = SetupTransactionPhases.BackupComplete Then Return nextPhase = SetupTransactionPhases.PayloadPromoted
+            If current = SetupTransactionPhases.PayloadPromoted Then Return nextPhase = SetupTransactionPhases.ShortcutsMutated
+            If current = SetupTransactionPhases.ShortcutsMutated Then Return nextPhase = SetupTransactionPhases.RegistryMutated
+            If current = SetupTransactionPhases.RegistryMutated Then Return nextPhase = SetupTransactionPhases.StateCommitted
+            If current = SetupTransactionPhases.StateCommitted Then Return nextPhase = SetupTransactionPhases.Complete
+            If current = SetupTransactionPhases.RollbackStarted Then Return nextPhase = SetupTransactionPhases.RollbackComplete
+            Return False
+        End Function
 
         Friend Function RecordSha256() As String
             Return HashText(IdentityProjection() & "|" & _phase & "|" &
