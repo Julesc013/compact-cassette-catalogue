@@ -28,6 +28,7 @@ Module Program
         RunTest("transactional save reopens bytes and retains backup", AddressOf TransactionalSaveReopensAndRetainsBackup)
         RunTest("external catalogue edits invalidate captured revision", AddressOf ExternalCatalogueEditsInvalidateRevision)
         RunTest("tape mapping is named and preserves identity", AddressOf TapeMappingIsNamedAndPreservesIdentity)
+        RunTest("main form uses one-dialog nonrecursive persistence flow", AddressOf MainFormUsesClosedPersistenceFlow)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -228,6 +229,16 @@ Module Program
 
         Dim hostile As New Dictionary(Of String, Object) From {{"IdentifierShort", "changed"}}
         AssertThrowsInvalidOperation(Sub() frmMain.AssignTapeValues(row, hostile), "immutable tape identity")
+    End Sub
+
+    Private Sub MainFormUsesClosedPersistenceFlow()
+        Dim sourcePath As String = Path.Combine(_repositoryRoot, "Compact Cassette Catalogue\frmMain.vb")
+        Dim source As String = File.ReadAllText(sourcePath)
+        AssertEqual(1, Regex.Matches(source, "dlgOpen\.ShowDialog\(\)").Count, "Open dialog count")
+        AssertEqual(False, source.Contains("Application.Exit()"), "recursive Application.Exit")
+        AssertEqual(False, source.Contains("catalogue.WriteXml(filePath)"), "direct active save")
+        AssertEqual(False, source.Contains("catalogue.ReadXml(selectedPath)"), "direct active load")
+        AssertEqual(False, source.Contains("Dim thisTape As Object()"), "positional tape write")
     End Sub
 
     Private Sub ValidateAgainstSchema(xmlPath As String)

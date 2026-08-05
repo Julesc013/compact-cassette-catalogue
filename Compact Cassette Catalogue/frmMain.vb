@@ -36,6 +36,7 @@ Public Class frmMain
     Dim thisTapedB As Boolean
 
     Private loadedFileRevision As String = Nothing
+    Private closeApproved As Boolean = False
 
     Public Shared Function TransitionCanContinue(hasPendingEdit As Boolean,
                                                   editDecision As EditChoice,
@@ -916,122 +917,121 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub saveChanges(saveAs As Boolean)
-
-        If updates = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before saving changes?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
-
-            If result = vbYes Then
-
-                updateTape()
-
-                'SAVE CHANGES
-                saveChangesActual(saveAs, False)
-
-            ElseIf result = vbNo Then
-
-                'SAVE CHANGES
-                saveChangesActual(saveAs, False)
-
-            End If
-
-        Else
-
-            'SAVE CHANGES
-            saveChangesActual(saveAs, False)
-
+    Private Function resolvePendingTapeEdit(actionDescription As String) As Boolean
+        If Not updates Then
+            Return True
         End If
 
-    End Sub
+        Dim result As MsgBoxResult = MsgBox(
+            "Changes have been made to the current tape." & vbNewLine &
+            "Update current tape before " & actionDescription & "?",
+            MsgBoxStyle.YesNoCancel,
+            "Changes Made To Tape")
 
-    Public Sub saveChangesActual(saveAs As Boolean, thenOpen As Boolean)
+        If result = vbCancel Then
+            Return False
+        End If
+        If result = vbYes Then
+            Return updateTape()
+        End If
+        Return True
+    End Function
 
-        'If there is no filepath, it is not saved
-        Dim saved As Boolean = filePath IsNot Nothing
+    Private Function resolveCatalogueChanges(actionDescription As String) As Boolean
+        If Not changes Then
+            Return True
+        End If
 
-        Dim message As String = Nothing
+        Dim result As MsgBoxResult = MsgBox(
+            "Changes have been made to the catalogue." & vbNewLine &
+            "Save changes before " & actionDescription & "?",
+            MsgBoxStyle.YesNoCancel,
+            "Changes Made To Catalogue")
 
-        If saved = False Or saveAs = True Then
-            'SAVE AS NEW FILE
+        If result = vbCancel Then
+            Return False
+        End If
+        If result = vbYes Then
+            Return saveChangesActual(False, False)
+        End If
+        Return True
+    End Function
 
+    Private Function saveChanges(saveAs As Boolean) As Boolean
+        If Not resolvePendingTapeEdit("saving changes") Then
+            Return False
+        End If
+        Return saveChangesActual(saveAs, False)
+    End Function
+
+    Public Function saveChangesActual(saveAs As Boolean, thenOpen As Boolean) As Boolean
+        Dim targetPath As String = filePath
+        Dim saveAsNewFile As Boolean = String.IsNullOrWhiteSpace(targetPath) OrElse saveAs
+
+        If saveAsNewFile Then
             Dim dlgResult As DialogResult = dlgSaveAs.ShowDialog()
-            Dim selectedPath As String = dlgSaveAs.FileName
-
-            If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
-                'If user has given a valid file path.
-
-                'Lock in selected file path
-                filePath = selectedPath
-                Dim fileTree As String() = selectedPath.Split("\"c)
-                fileName = fileTree(fileTree.Length - 1)
-
-                'Create file directory string
-                fileDirectory = Nothing
-                Dim folder As Integer
-                For folder = 0 To fileTree.Length - 2 'Every string except the final (the file name).
-                    fileDirectory += fileTree(folder) & "\"
-                Next
-
-                'Make confirmation message
-                message = "Saved catalogue successfully (as new file)."
-
-            ElseIf dlgResult <> DialogResult.Cancel Then
-                'If user DID deliberately cancel save procedure.
-
-                Exit Sub 'Exit and don't try to save.
-
-            Else
-                'If user did NOT deliberately cancel save procedure.
-
-                'Show error message
-                MsgBox("Bad file path selected. Catalogue not saved.", MsgBoxStyle.Critical, "File Path Error")
-
+            If dlgResult = DialogResult.Cancel Then
+                Return False
             End If
-
-        Else
-
-            'SAVE OVERWRITE FILE
-
-            'Make confirmation message
-            message = "Saved catalogue successfully (overwrote file)."
-
+            If dlgResult <> DialogResult.OK OrElse String.IsNullOrWhiteSpace(dlgSaveAs.FileName) Then
+                MsgBox("Bad file path selected. Catalogue not saved.", MsgBoxStyle.Critical, "File Path Error")
+                Return False
+            End If
+            targetPath = Path.GetFullPath(dlgSaveAs.FileName)
+        ElseIf Not FileRevisionMatches(targetPath, loadedFileRevision) Then
+            Dim externalResult As MsgBoxResult = MsgBox(
+                "The catalogue file has changed outside C3 since it was opened or saved." & vbNewLine &
+                "C3 will not overwrite those external changes." & vbNewLine & vbNewLine &
+                "Save your current catalogue to a different file?",
+                MsgBoxStyle.YesNo Or MsgBoxStyle.Exclamation,
+                "Catalogue Changed Outside C3")
+            If externalResult = vbYes Then
+                Return saveChangesActual(True, False)
+            End If
+            Return False
         End If
 
-        'Update file information
-        information.Rows(5)("Value") = DateTime.Now.ToString
+        Dim snapshot As DataSet = catalogue.Copy()
+        Dim modifiedRow As DataRow = snapshot.Tables("Information").Rows.Find("File Modified")
+        If modifiedRow Is Nothing Then
+            Throw New InvalidDataException("Catalogue information is missing the File Modified row.")
+        End If
+        Dim modifiedValue As String = DateTime.Now.ToString()
+        modifiedRow("Value") = modifiedValue
 
-        catalogue.WriteXml(filePath)
+        Dim newRevision As String
+        Try
+            newRevision = SaveCatalogueTransactional(snapshot, targetPath, Nothing)
+        Catch ex As Exception
+            consoleAdd("Failed to save catalogue. Error: " & ex.Message)
+            MsgBox("The catalogue was not saved. The previous destination bytes were preserved." &
+                   vbNewLine & vbNewLine & "Error: " & ex.Message,
+                   MsgBoxStyle.Critical,
+                   "Catalogue Save Error")
+            Return False
+        End Try
 
-
-        'Discard updates made to current tape and reload from saved data.
-
-        'Reset changes variable
+        information.Rows.Find("File Modified")("Value") = modifiedValue
+        filePath = targetPath
+        fileName = Path.GetFileName(targetPath)
+        fileDirectory = Path.GetDirectoryName(targetPath) & Path.DirectorySeparatorChar
+        loadedFileRevision = newRevision
         updates = False
         changes = False
-
-        'Reset buttons
         btnUpdate.Enabled = False
         UpdateTapeToolStripMenuItem.Enabled = False
-
-        'Update title bar
         Me.Text = fileName & " - C3"
-
-        'Reload from saved data
         loadData()
 
-
-        'Show confirmation message
-        'If My.Settings.showMessages = True Then
-        '    MsgBox(message, MsgBoxStyle.Question, "Successfully Saved Catalogue")
-        'End If
-        consoleAdd(message)
-
-        If thenOpen = True Then
-            openCatalogueActual()
+        Dim message As String
+        If saveAsNewFile Then
+            message = "Saved catalogue successfully (as new file)."
+        Else
+            message = "Saved catalogue successfully (transactional overwrite with backup)."
         End If
-
-    End Sub
+        consoleAdd(message)
+        Return True
+    End Function
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
 
@@ -1040,192 +1040,80 @@ Public Class frmMain
     End Sub
 
     Private Sub OpenCatalogueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenCatalogueToolStripMenuItem.Click
-        'Load/open catalogue from XML file
-
-        If updates = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before opening catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
-
-            If result = vbYes Then
-
-                updateTape()
-
-                'CHECK CHANGES
-                openCatalogueCheckChanges()
-
-            ElseIf result = vbNo Then
-
-                'CHECK CHANGES
-                openCatalogueCheckChanges()
-
-            End If
-
-        Else
-
-            'CHECK CHANGES
-            openCatalogueCheckChanges()
-
+        If resolvePendingTapeEdit("opening another catalogue") AndAlso
+                resolveCatalogueChanges("opening another catalogue") Then
+            openCatalogueActual()
         End If
-
     End Sub
 
     Sub openCatalogueCheckChanges()
-        'Check for unsaved changes to the whole catalogue
-
-        If changes = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before opening new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
-
-            If result = vbYes Then
-
-                saveChangesActual(False, True)
-
-                'OPEN CAT
-                openCatalogueActual()
-
-            ElseIf result = vbNo Then
-
-                'OPEN CAT
-                openCatalogueActual()
-
-            End If
-
-        Else
-
-            'OPEN CAT
+        If resolveCatalogueChanges("opening another catalogue") Then
             openCatalogueActual()
-
         End If
-
     End Sub
 
-    Private Function normaliseCatalogueFileVersion(rawVersion As String) As String
-
-        If rawVersion Is Nothing Then
-            Return Nothing
-        End If
-
-        Dim versionMatch As Match = Regex.Match(rawVersion.Trim(), "^(\d+)\.(\d+)\.(\d+)")
-        If versionMatch.Success Then
-            Return versionMatch.Groups(1).Value & "." & versionMatch.Groups(2).Value & "." & versionMatch.Groups(3).Value
-        End If
-
-        Return rawVersion.Trim()
-
-    End Function
-
-    Private Function getCatalogueFileVersion(cataloguePath As String) As String
-
-        Dim catalogueDocument As New XmlDocument()
-        catalogueDocument.Load(cataloguePath)
-
-        Dim fileVersionNode As XmlNode = catalogueDocument.SelectSingleNode("//Information[normalize-space(Information)='File Version']/Value")
-        If fileVersionNode IsNot Nothing Then
-            Return normaliseCatalogueFileVersion(fileVersionNode.InnerText)
-        End If
-
-        Return Nothing
-
-    End Function
-
-    Public Sub openCatalogueActual()
-
-        'Get directories
+    Public Function openCatalogueActual() As Boolean
         Dim dlgResult As DialogResult = dlgOpen.ShowDialog()
-        Dim selectedPath As String = dlgOpen.FileName
-
-        If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
-            'If user has given a valid file path.
-
-            Dim fileVersion As String = Nothing
-
-            'Check file format version
-            Try
-
-                fileVersion = getCatalogueFileVersion(selectedPath)
-
-            Catch ex As Exception
-
-                consoleAdd("Failed to read catalogue file version. Error: " & ex.Message)
-                MsgBox("Could not read the catalogue file version." & vbNewLine & vbNewLine & "Error: " & ex.Message, MsgBoxStyle.Critical, "Catalogue Load Error")
-                Exit Sub
-
-            End Try
-
-            'Only load if the file version is supported.
-            If VERSIONFILESUPPORTED.Contains(fileVersion) Then
-
-                'Lock in selected file path
-
-                filePath = selectedPath
-                Dim fileTree As String() = selectedPath.Split("\"c)
-                fileName = fileTree(fileTree.Length - 1)
-
-                'Create file directory string
-                fileDirectory = Nothing
-                Dim folder As Integer
-                For folder = 0 To fileTree.Length - 2 'Every string except the final (the file name).
-                    fileDirectory += fileTree(folder) & "\"
-                Next
-
-
-                'Temporarily Disable strict loading rules
-                catalogue.EnforceConstraints = False
-                'Clear the existing dataset
-                catalogue.Clear()
-                'Read the XML file
-                catalogue.ReadXml(selectedPath)
-
-
-                'Reset changes variable
-                updates = False
-                changes = False
-
-                'Reset buttons
-                btnUpdate.Enabled = False
-                UpdateTapeToolStripMenuItem.Enabled = False
-
-                'Update title bar
-                Me.Text = fileName & " - C3"
-
-
-                'Update file information
-                information.Rows(1)("Value") = VERSION
-                information.Rows(2)("Value") = VERSIONSTAGE
-                information.Rows(3)("Value") = VERSIONDATE.ToString
-
-                'Show confirmation message
-                Dim message As String = "Opened catalogue successfully."
-                'If My.Settings.showMessages = True Then
-                '    MsgBox(message, MsgBoxStyle.Question, "Successfully Saved Catalogue")
-                'End If
-                consoleAdd(message)
-
-                'Load data into forms
-                loadData()
-
-            Else
-                'If file is not the right version.
-
-                'Make string of list of supported versions
-                Dim versionsSupported As String = VERSIONFILESUPPORTED(0)
-                For i As Integer = 1 To VERSIONFILESUPPORTED.Length - 1
-                    versionsSupported = versionsSupported & ", " & VERSIONFILESUPPORTED(i)
-                Next
-
-                'Show error message
-                MsgBox("Format version of this file is not supported." & vbNewLine & "Selected file version: " & fileVersion & vbNewLine & "Supported file version(s): " & versionsSupported, MsgBoxStyle.Critical, "Unsupported File Version")
-
-            End If
-
-        ElseIf dlgResult <> DialogResult.Cancel Then
-            'If user did NOT deliberately cancel save procedure.
-
-            'Show error message
+        If dlgResult = DialogResult.Cancel Then
+            Return False
+        End If
+        If dlgResult <> DialogResult.OK OrElse String.IsNullOrWhiteSpace(dlgOpen.FileName) Then
             MsgBox("Bad file path selected. Catalogue not opened.", MsgBoxStyle.Critical, "File Path Error")
-
+            Return False
         End If
 
+        Dim selectedPath As String = Path.GetFullPath(dlgOpen.FileName)
+        Dim selectedRevision As String = Nothing
+        Dim temporaryCatalogue As DataSet
+        Try
+            temporaryCatalogue = LoadCatalogueSnapshot(selectedPath, catalogue, VERSIONFILESUPPORTED, selectedRevision)
+        Catch ex As Exception
+            consoleAdd("Failed to load catalogue. Active catalogue preserved. Error: " & ex.Message)
+            MsgBox("The selected catalogue could not be completely validated." & vbNewLine &
+                   "The active catalogue was not changed." & vbNewLine & vbNewLine &
+                   "Error: " & ex.Message,
+                   MsgBoxStyle.Critical,
+                   "Catalogue Load Error")
+            Return False
+        End Try
+
+        Dim previousCatalogue As DataSet = catalogue.Copy()
+        Try
+            replaceCatalogueData(catalogue, temporaryCatalogue)
+        Catch ex As Exception
+            replaceCatalogueData(catalogue, previousCatalogue)
+            consoleAdd("Failed to activate validated catalogue. Active catalogue restored. Error: " & ex.Message)
+            MsgBox("The selected catalogue was validated but could not be activated." & vbNewLine &
+                   "The active catalogue was restored." & vbNewLine & vbNewLine &
+                   "Error: " & ex.Message,
+                   MsgBoxStyle.Critical,
+                   "Catalogue Activation Error")
+            Return False
+        End Try
+
+        filePath = selectedPath
+        fileName = Path.GetFileName(selectedPath)
+        fileDirectory = Path.GetDirectoryName(selectedPath) & Path.DirectorySeparatorChar
+        loadedFileRevision = selectedRevision
+        updates = False
+        changes = False
+        btnUpdate.Enabled = False
+        UpdateTapeToolStripMenuItem.Enabled = False
+        Me.Text = fileName & " - C3"
+        information.Rows.Find("Program Version")("Value") = VERSION
+        information.Rows.Find("Program Stage")("Value") = VERSIONSTAGE
+        information.Rows.Find("Program Date")("Value") = VERSIONDATE.ToString()
+        consoleAdd("Opened and validated catalogue successfully.")
+        loadData()
+        Return True
+    End Function
+
+    Private Shared Sub replaceCatalogueData(destination As DataSet, source As DataSet)
+        destination.EnforceConstraints = False
+        destination.Clear()
+        destination.Merge(source, False, MissingSchemaAction.Error)
+        destination.EnforceConstraints = True
+        destination.AcceptChanges()
     End Sub
 
     Private Sub updateMade()
@@ -1632,32 +1520,9 @@ Public Class frmMain
     End Sub
 
     Private Sub addNewTape()
-
-        If updates = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before adding new tape?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
-
-            If result = vbYes Then
-
-                updateTape()
-
-                'ADD A NEW TAPE
-                addNewTapeActual()
-
-            ElseIf result = vbNo Then
-
-                'ADD A NEW TAPE
-                addNewTapeActual()
-
-            End If
-
-        Else
-
-            'ADD A NEW TAPE
+        If resolvePendingTapeEdit("adding a new tape") Then
             addNewTapeActual()
-
         End If
-
     End Sub
 
     Private Sub addNewTapeActual()
@@ -1677,33 +1542,7 @@ Public Class frmMain
     End Sub
 
     Public Sub closeApplication()
-        'Check for unsaved changes to the whole catalogue, offer to save, then close
-
-        If changes = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before closing?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
-
-            If result = vbYes Then
-
-                saveChanges(False)
-
-                'CLOSE
-                Application.Exit()
-
-            ElseIf result = vbNo Then
-
-                'CLOSE
-                Application.Exit()
-
-            End If
-
-        Else
-
-            'CLOSE
-            Application.Exit()
-
-        End If
-
+        Me.Close()
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -1753,28 +1592,11 @@ Public Class frmMain
     End Sub
 
     Public Sub scrollTo(change As Integer, jump As Boolean)
-
-        If updates = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before scrolling?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
-
-            If result = vbYes Then
-
-                updateTape()
-
-                scrollActual(change, jump) ' Scroll!
-
-            ElseIf result = vbNo Then
-
-                scrollActual(change, jump) ' Scroll!
-
-            End If
-
-        Else
-
-            scrollActual(change, jump) ' Scroll!
-
+        If Not resolvePendingTapeEdit("scrolling") Then
+            Return
         End If
+
+        scrollActual(change, jump)
 
         ' Reset updates variable and buttons.
         updates = False
@@ -1803,12 +1625,18 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Close(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
-        'Handle the X button
+        If closeApproved Then
+            e.Cancel = False
+            Return
+        End If
 
-        closeApplication()
+        If Not resolvePendingTapeEdit("closing") OrElse Not resolveCatalogueChanges("closing") Then
+            e.Cancel = True
+            Return
+        End If
 
-        e.Cancel = True
-
+        closeApproved = True
+        e.Cancel = False
     End Sub
 
     Private Sub ShowConsoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowConsoleToolStripMenuItem.Click
@@ -1818,64 +1646,18 @@ Public Class frmMain
     End Sub
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
-        'Make a new catalogue (check before saving first)
-
-        'Check if tape updated
-        If updates = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the current tape." & vbNewLine & "Update current tape before creating new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Tape")
-
-            If result = vbYes Then
-
-                updateTape()
-
-                'NEW CAT
-                newCatalogueCheckChanges()
-
-            ElseIf result = vbNo Then
-
-                'NEW CAT
-                newCatalogueCheckChanges()
-
-            End If
-
-        Else
-
-            'NEW CAT
+        If resolvePendingTapeEdit("creating a new catalogue") Then
             newCatalogueCheckChanges()
-
         End If
-
     End Sub
 
     Private Sub newCatalogueCheckChanges()
-        'Check for unsaved changes to the whole catalogue
-
-        If changes = True Then
-
-            Dim result As MsgBoxResult = MsgBox("Changes have been made to the catalogue." & vbNewLine & "Save changes before creating new catalogue?", MsgBoxStyle.YesNoCancel, "Changes Made To Catalogue")
-
-            If result = vbYes Then
-
-                saveChangesActual(False, False)
-
-                'NEW CAT
-                Application.Restart()
-
-            ElseIf result = vbNo Then
-
-                'NEW CAT
-                Application.Restart()
-
-            End If
-
-        Else
-
-            'NEW CAT
+        If resolveCatalogueChanges("creating a new catalogue") Then
+            closeApproved = True
+            updates = False
+            changes = False
             Application.Restart()
-
         End If
-
     End Sub
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
