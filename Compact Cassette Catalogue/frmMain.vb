@@ -486,7 +486,7 @@ Public Class frmMain
 
                 Dim boxTitle As String = "Update Check Failed"
                 Dim boxMessage As String = "Compact Cassette Catalogue could not check for updates." & vbNewLine & vbNewLine & "This can happen on old Windows systems when GitHub HTTPS/TLS support is unavailable." & vbNewLine & vbNewLine & "Error: " & ex.Message & vbNewLine & vbNewLine & "Would you like to open the releases page in your browser?"
-                Dim boxResult As DialogResult = MessageBox.Show(boxMessage, boxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+                Dim boxResult As DialogResult = showNonfatalQuestion(boxMessage, boxTitle)
 
                 If boxResult = DialogResult.Yes Then
                     openWebLink(UPDATELINKDOWNLOAD)
@@ -1833,25 +1833,46 @@ Public Class frmMain
 
         Dim outputTime As DateTime = DateTime.Now
         Dim outputName As String = "console-output_" & outputTime.ToString("yyMMdd-HHmmss") & ".txt"
-        Dim outputPath As String = fileDirectory & outputName
-        Using outputFile As New StreamWriter(outputPath)
+        Dim outputPath As String = Nothing
+        Dim message As String = Nothing
+        Dim messageDetails As String = Nothing
 
-            'Write header.
-            outputFile.WriteLine("Compact Cassette Catalogue (v" & CStr(VERSION) & ") Console Output at " & outputTime.ToString)
-            outputFile.WriteLine("--------------------------------")
+        Try
 
-            'Write each line in the current console window.
-            For Each line As String In frmConsole.lstConsole.Items
-                outputFile.WriteLine(line)
-            Next
+            Dim outputDirectory As String = resolveConsoleOutputDirectory(My.Settings.defaultDirectory)
+            outputPath = Path.Combine(outputDirectory, outputName)
 
-        End Using
+            Using outputFile As New StreamWriter(outputPath)
+
+                'Write header.
+                outputFile.WriteLine("Compact Cassette Catalogue (v" & CStr(VERSION) & ") Console Output at " & outputTime.ToString)
+                outputFile.WriteLine("--------------------------------")
+
+                'Write each line in the current console window.
+                For Each line As Object In frmConsole.lstConsole.Items
+                    outputFile.WriteLine(CStr(line))
+                Next
+
+            End Using
+
+        Catch ex As Exception
+
+            message = "Failed to output console to log file."
+            messageDetails = vbNewLine & vbNewLine & "Error: " & ex.Message
+            If Not String.IsNullOrWhiteSpace(outputPath) Then
+                messageDetails &= vbNewLine & vbNewLine & "Full directory: " & outputPath
+            End If
+            consoleAdd(message & " Error: " & ex.Message)
+            showNonfatalMessage(message & messageDetails, "Could Not Output Console Log", MsgBoxStyle.Exclamation)
+            Exit Sub
+
+        End Try
 
         'Show confirmation message
-        Dim message As String = "Successfully output console to log file."
-        Dim messageDetails As String = vbNewLine & vbNewLine & "File name: " & outputName & vbNewLine & "Full directory: " & outputPath
+        message = "Successfully output console to log file."
+        messageDetails = vbNewLine & vbNewLine & "File name: " & outputName & vbNewLine & "Full directory: " & outputPath
         If My.Settings.showMessages = True Then
-            MsgBox(message & messageDetails, MsgBoxStyle.Question, "Successfully Output Console Log")
+            showNonfatalMessage(message & messageDetails, "Successfully Output Console Log", MsgBoxStyle.Information)
         End If
         consoleAdd(message)
 
