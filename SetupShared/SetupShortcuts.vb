@@ -84,6 +84,9 @@ Namespace Global.C3Setup
                 ReleaseComObject(shortcut)
                 ReleaseComObject(shell)
             End Try
+            Using stream As New FileStream(value.Path, FileMode.Open, FileAccess.ReadWrite, FileShare.Read)
+                stream.Flush(True)
+            End Using
         End Sub
 
         Public Sub DeleteShortcut(path As String) Implements ISetupShortcutAccess.DeleteShortcut
