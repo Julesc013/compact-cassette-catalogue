@@ -38,6 +38,14 @@
             Exit Sub
         End If
 
+        For Each candidate As DataRow In brands.Rows
+            If candidate IsNot brandRow AndAlso
+                    String.Equals(CStr(candidate("Brand")), brandNameNew, StringComparison.OrdinalIgnoreCase) Then
+                MsgBox("Brand name must be unique.", MsgBoxStyle.Exclamation, "Invalid Data Entry")
+                Exit Sub
+            End If
+        Next
+
 
         ' Write new data to existing row.
 

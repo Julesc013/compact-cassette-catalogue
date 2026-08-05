@@ -55,6 +55,14 @@
                 Throw New Exception("Model name cannot be empty or include symbols.")
             End If
 
+            For Each candidate As DataRow In models.Rows
+                If candidate IsNot modelRow AndAlso
+                        String.Equals(CStr(candidate("Brand")), modelBrand, StringComparison.OrdinalIgnoreCase) AndAlso
+                        String.Equals(CStr(candidate("Model")), modelModelNew, StringComparison.OrdinalIgnoreCase) Then
+                    Throw New Exception("Model display name must be unique within its brand.")
+                End If
+            Next
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Invalid Data Entry")
             Exit Sub
