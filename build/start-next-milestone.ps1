@@ -1,7 +1,19 @@
 [CmdletBinding(SupportsShouldProcess = $true, ConfirmImpact = 'High')]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('alpha.2', 'alpha.3', 'alpha.4', 'alpha.5', 'alpha.6', 'beta.1')]
+    [ValidateSet(
+        'alpha.2',
+        'alpha.3',
+        'alpha.4',
+        'alpha.5',
+        'alpha.6',
+        'alpha.7',
+        'alpha.8',
+        'alpha.9',
+        'alpha.10',
+        'alpha.11',
+        'alpha.12',
+        'beta.1')]
     [string]$Milestone,
     [string]$ReleaseDate = (Get-Date -Format 'yyyy-MM-dd')
 )
@@ -109,7 +121,7 @@ if ($LASTEXITCODE -ne 0) {
 
 $next = $milestones[$currentIndex + 1]
 $nextLabel = [string]$next.releaseLabel
-$stage = if ($Milestone -cmatch '^alpha\.(?<sequence>[1-6])$') {
+$stage = if ($Milestone -cmatch '^alpha\.(?<sequence>[1-9]|1[0-2])$') {
     'Alpha ' + $Matches.sequence
 }
 else {

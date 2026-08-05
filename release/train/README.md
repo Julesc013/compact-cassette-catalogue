@@ -1,6 +1,6 @@
 # C3 release-train state
 
-`2.0.0.json` is the small resumable controller for the C3 2.0 programme. It owns
+`2.0.0.json` is the small v2 resumable controller for the C3 2.0 programme. It owns
 milestone order, the active pointer, and publication policy. It does not duplicate
 the release catalogue's artifact evidence or pretend that a commit can contain
 its own SHA.
@@ -22,13 +22,17 @@ SHA. Once qualification creates `E`, the release catalogue records source commit
 field may cache an already-recorded catalogue value, but the validator rejects a
 different value.
 
+Version 2 records Alpha 1 through Alpha 12 followed by Beta 1. The preserved v1
+schema remains historical evidence of the original Alpha 1-6 plan and is not
+rewritten.
+
 The transition to the next milestone happens in one ordinary commit after exact
-post-operation `P` is verified on both `master` and `dev`. That commit marks the
+post-operation `P` is verified on both `master` and `dev/2.x`. That commit marks the
 previous milestone `qualified`, advances `currentMilestone`, clears
 `candidateCommit`, updates `lastQualifiedTag`, and changes the build identity.
 
 Beta 1 ends in `awaiting-owner-manual-validation`. Its exact
-`candidate/2.0.0-beta.1` branch and `dev` must identify the same frozen commit.
+`candidate/2.0.0-beta.1` branch and `dev/2.x` must identify the same frozen commit.
 The controller never tags, publishes, or promotes the beta feed without the
 owner's explicit acceptance.
 
@@ -41,7 +45,7 @@ a second build, packaging, or release-contract implementation:
 # Continuous development gate; add -Reproduce at candidate freeze.
 .\build\verify-milestone.ps1 -ExpectedMilestone alpha.1 -Rebuild
 
-# Require clean dev and return the exact frozen source commit C.
+# Require clean dev/2.x and return the exact frozen source commit C.
 .\build\freeze-candidate.ps1 -ExpectedMilestone alpha.1 -Rebuild -Reproduce
 
 # Wrap the guarded create/promote C/E/P reference transaction for an Alpha.
@@ -50,7 +54,7 @@ a second build, packaging, or release-contract implementation:
 # Validate the immutable annotated tag against repository and package evidence.
 .\build\validate-tag.ps1 -RequireArtifacts
 
-# After verified P is on master and dev, create the next identity projections.
+# After verified P is on master and dev/2.x, create the next identity projections.
 .\build\start-next-milestone.ps1 -Milestone alpha.2 -Confirm
 
 # At feature-complete Beta 1, reproduce and create its exact candidate branch.

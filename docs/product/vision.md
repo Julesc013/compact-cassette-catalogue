@@ -62,19 +62,25 @@ C3 remains a modular monolith. It has one domain and one production behavior,
 with explicit boundaries for presentation, application commands, catalogue
 rules, persistence, operating-system integration, and release tooling.
 
-The desired direction is:
+The accepted post-Alpha-5 direction is:
 
 ```text
-Native WinForms workspace
+WinForms / CLI / optional qualified TUI
         |
-Application commands, drafts, results, undo/redo
+One Application document lifecycle and operation contract
         |
-Typed catalogue domain with stable opaque identities
+One native-superset logical catalogue and transaction owner
         |
-Ports for persistence, import/export, settings, diagnostics, and updates
+Versioned profile and external-mechanism ports
         |
-Versioned adapters and external integrations
+Legacy/native persistence, recovery, diagnostics, and integrations
 ```
+
+The complete logical catalogue converges before canonical mutation becomes
+production authority. Legacy v1.1 is a constrained profile, not the permanent
+semantic ceiling. Immutable snapshots are an external contract rather than a
+requirement to deep-copy the entire catalogue after every edit. See the
+[canonical catalogue and Application architecture](../architecture/catalogue-and-application.md).
 
 This is not a mandate to create a project for every box. A project exists only
 where a dependency boundary is worth enforcing. Feature folders keep related
@@ -146,9 +152,10 @@ against the same public contracts.
 
 ## Product horizons
 
-2.0 proves the dual portable lanes, minimal CLI, native/legacy lifecycle, OEM+
-workspace, and release evidence. Later releases may add declarative packs and
-customization, measured indexing and analytics, richer CLI automation, an
-isolated extension protocol, setup maturity, ARM64, or alternate shells in that
-dependency order. Each remains gated by a versioned contract and executable
+2.0 proves the dual portable lanes, canonical native/legacy lifecycle, complete
+OEM+ Windows workspace, bounded Application-backed CLI, and release evidence. A
+TUI ships only if independently qualified. Later releases may add declarative
+packs and customization, richer automation, automatic merge, an isolated
+extension protocol, setup maturity, ARM64, or production alternate shells in
+that dependency order. Each remains gated by a versioned contract and executable
 evidence; a roadmap name alone creates no platform or compatibility promise.

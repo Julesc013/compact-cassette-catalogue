@@ -1,6 +1,6 @@
 {
-  "$schema": "../../spec/release-train/v1/train.schema.json",
-  "schemaVersion": 1,
+  "$schema": "../../spec/release-train/v2/train.schema.json",
+  "schemaVersion": 2,
   "programme": "2.0.0",
   "currentMilestone": "alpha.5",
   "status": "active",
@@ -41,6 +41,36 @@
     {
       "id": "alpha.6",
       "releaseLabel": "2.0.0-alpha.6",
+      "state": "pending"
+    },
+    {
+      "id": "alpha.7",
+      "releaseLabel": "2.0.0-alpha.7",
+      "state": "pending"
+    },
+    {
+      "id": "alpha.8",
+      "releaseLabel": "2.0.0-alpha.8",
+      "state": "pending"
+    },
+    {
+      "id": "alpha.9",
+      "releaseLabel": "2.0.0-alpha.9",
+      "state": "pending"
+    },
+    {
+      "id": "alpha.10",
+      "releaseLabel": "2.0.0-alpha.10",
+      "state": "pending"
+    },
+    {
+      "id": "alpha.11",
+      "releaseLabel": "2.0.0-alpha.11",
+      "state": "pending"
+    },
+    {
+      "id": "alpha.12",
+      "releaseLabel": "2.0.0-alpha.12",
       "state": "pending"
     },
     {

@@ -15,7 +15,7 @@ if ([string]::IsNullOrWhiteSpace($TrainPath)) {
     $TrainPath = Join-Path $repositoryRoot 'release\train\2.0.0.json'
 }
 if ([string]::IsNullOrWhiteSpace($SchemaPath)) {
-    $SchemaPath = Join-Path $repositoryRoot 'spec\release-train\v1\train.schema.json'
+    $SchemaPath = Join-Path $repositoryRoot 'spec\release-train\v2\train.schema.json'
 }
 if ([string]::IsNullOrWhiteSpace($CatalogPath)) {
     $CatalogPath = Join-Path $repositoryRoot 'release\catalog.v1.json'
@@ -57,6 +57,12 @@ $expectedIds = @(
     'alpha.4',
     'alpha.5',
     'alpha.6',
+    'alpha.7',
+    'alpha.8',
+    'alpha.9',
+    'alpha.10',
+    'alpha.11',
+    'alpha.12',
     'beta.1')
 $milestones = @($train.milestones)
 $currentIndex = -1

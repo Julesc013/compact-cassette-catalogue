@@ -106,3 +106,35 @@ flattening losses before writing through the create-only legacy store.
 `c3.exe` is intentionally a thin command shell over those services.
 This lets tests, later WinForms workflows, and automation use one behavior owner
 instead of carrying separate parser, migration, or export implementations.
+
+## Post-Alpha-5 canonical adapter transition
+
+The two implemented stores are mechanism owners, not two editable catalogue
+truths. Under [ADR 0012](decisions/0012-canonical-catalogue-before-application-frontends.md),
+Alpha 6 must adapt the complete legacy and native documents to one logical
+catalogue in shadow/round-trip mode before canonical mutation becomes active.
+
+The permanent direction is:
+
+```text
+legacy XML <-> v1.1 DataSet adapter ---+
+                                       +-- logical CatalogueDocument
+native XML <-> native profile adapter -+
+```
+
+`DataSet` remains legal only inside the v1.1 adapter and legacy
+characterization. `Native*` types remain legal only as native profile
+DTOs/projections. Neither may cross into Application or ordinary frontends.
+
+The Alpha 4 native profile is immutable. If the canonical semantic audit needs
+different aliases, temporal values, uncertainty, provenance, units, or
+extensions, a distinct profile and explicit deterministic transition supersede
+it. Existing schema, fixtures, reader/writer evidence, and migration vectors are
+preserved.
+
+Application save policy captures a versioned logical snapshot and destination
+lease before invoking a profile store. Stores continue to own byte parsing,
+temporary output, flush, verification, backup, replacement, and exact
+`DiskRevision`; Application alone decides whether the committed snapshot is
+still the current clean state. File-dialog confirmation is not a replacement
+lease, and a failed store operation must not mutate active logical state.

@@ -11,6 +11,11 @@ is an oracle and compatibility alarm, not a new application API or a second
 owner of catalogue behavior. The production source and characterization tests
 remain authoritative for semantics.
 
+For C3 2.0 this is classified as an **internal cross-project compatibility
+oracle**, not a supported third-party binary SDK. Public longevity is promised
+through the file/process schemas, stable result codes, and language-neutral
+fixtures unless a later ADR deliberately accepts an SDK surface.
+
 The normal test gate builds the assembly and runs:
 
 ```powershell

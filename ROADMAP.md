@@ -39,16 +39,62 @@ or issue tracker.
   and loss-aware v1.1 export.
 - Add an independent minimal validator/migrator CLI and recovery evidence.
 
-## 2.0.0 Alpha 5–6 — OEM+ workspace
+## 2.0.0 Alpha 5 — shared workspace proof
 
 - Introduce explicit workspace/document state, command history, and undo/redo.
-- Build and prove reusable native WinForms patterns and a coherent C# shell.
-- Replace workflows feature by feature with keyboard, accessibility, DPI,
-  recovery, performance, and dual-lane parity gates.
+- Prove reusable C# WinForms patterns through one complete Brands workflow in
+  both runtime lanes.
+
+## 2.0.0 Alpha 6 — canonical catalogue convergence
+
+- Define one native-superset logical catalogue without mandating whole-graph
+  copying.
+- Prove every legacy and native entity through whole-document shadow projection,
+  round trips, profile capabilities, representability, and semantic equality.
+- Keep production mutation on the existing authority until the complete
+  catalogue boundary passes.
+
+## 2.0.0 Alpha 7 — Application document kernel
+
+- Introduce one document lifecycle, identity/version/state/disk model, operation
+  coordinator, savepoints, recovery, destination leases, and allowed actions.
+- Promote canonical state as the sole active document and prove Brands and Models
+  mutations through legacy and native profiles.
+
+## 2.0.0 Alpha 8–9 — permanent Windows experience
+
+- Select and build the permanent OEM+ shell from tested information-architecture
+  prototypes.
+- Replace every accepted desktop workflow feature by feature with keyboard,
+  accessibility, DPI, recovery, performance, query, and dual-lane parity gates.
+- Remove old forms only after one behavior owner is proven.
+
+## 2.0.0 Alpha 10 — Application-backed CLI
+
+- Route the bounded inspect/validate/migrate/recover/export CLI through the same
+  Application use cases.
+- Add deterministic structured output, stable codes and streams, cancellation,
+  destination safety, and terminal/log neutralization.
+
+## 2.0.0 Alpha 11 — terminal disposition
+
+- Ship a line-mode or full-screen TUI only if independently complete and
+  qualified.
+- Otherwise retain the portable Application/terminal contracts and explicitly
+  defer the incomplete executable or capability without delaying Windows 2.0.
+
+## 2.0.0 Alpha 12 — convergence and hardening
+
+- Complete cross-frontend, lifecycle, crash, conflict, security, privacy,
+  accessibility, localization, performance/capacity, minimum-OS, and
+  distribution evidence.
+- Freeze language-neutral public contracts while classifying CLR project
+  surfaces as internal unless a supported SDK is deliberately accepted.
 
 ## 2.0.0 Beta — feature and compatibility complete
 
-- Freeze accepted 2.0 scope, model, commands, formats, migrations, and terminology.
+- Freeze accepted 2.0 scope, operation/result contracts, selected profiles,
+  migrations, machine schemas, and terminology.
 - Pass the complete 1.x, security, accessibility, performance, recovery, and
   minimum-OS matrices.
 - Complete versioned user, migration, backup, rollback, and support documentation.
@@ -71,12 +117,12 @@ or issue tracker.
 
 - 2.1 candidates include declarative reference packs, custom fields, saved
   views, richer import/export profiles, and media/J-card foundations.
-- 2.2 may add measured indexing, search, and analytics improvements.
+- 2.2 may add further measured indexing, search, and analytics improvements.
 - 2.3 may expand CLI automation and introduce an isolated versioned extension
   protocol.
 - 2.4 may mature Universal Setup and evaluate ARM64 only through a separately
   accepted build-lane contract.
-- 3.x and later may add alternate shells over the same language-neutral
+- 3.x and later may add production alternate shells over the same language-neutral
   catalogue and behavior contracts.
 
 These horizons reserve direction, not present source trees or support claims.

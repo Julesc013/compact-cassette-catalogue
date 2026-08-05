@@ -16,26 +16,27 @@ settings characterization, both release builds, assembly/file/product identity f
 every shipped binary, executable architecture, and diff whitespace.
 
 The characterization build also reflects `C3.Catalogue.dll` and compares its
-269 exported type/member signatures with
+398 exported type/member signatures with
 [`spec/catalogue-api/v1/public-api.txt`](../../spec/catalogue-api/v1/public-api.txt).
 This freezes the VB migration oracle independently from behavior tests; neither
 contract can be regenerated merely to make an unexplained port difference pass.
 
 During the Alpha 3 mechanical port, an isolated C# 7.3 candidate compared every
-admitted feature namespace with the same baseline. After its complete
-269-signature surface matched, the project replaced the VB production assembly
+admitted feature namespace with the then-269-signature baseline. After it
+matched, the project replaced the VB production assembly
 atomically and the temporary harness was removed. The baseline continues to
-protect the C# assembly from unintended API drift.
+protect the C# assembly from unintended API drift and was deliberately extended
+to 398 signatures by Alpha 4's reviewed native catalogue surface.
 
-The same reflection mechanism freezes all 312 exported Infrastructure
+The same reflection mechanism freezes all 470 exported Infrastructure
 signatures under `spec/infrastructure-api/v1`. It reflects layered assemblies
 from an isolated copy of the library output directory so cross-assembly public
 types resolve without locking the real outputs before the later rebuild gate.
-The Infrastructure baseline was the independent API oracle for its Alpha 3
-language-only migration and remains an ongoing compatibility alarm. The
-complete 312-signature candidate was promoted atomically; the normal product
-graph and all 68 characterization scenarios now execute the C# production
-assembly, and the temporary candidate harness has been removed.
+The Infrastructure baseline was the independent 312-signature API oracle for its
+Alpha 3 language-only migration and remains an ongoing compatibility alarm. The
+candidate was promoted atomically, Alpha 4 deliberately extended the reviewed
+surface to 470 signatures, and all 84 current characterization scenarios execute
+the C# production graph. The temporary candidate harness has been removed.
 
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane
 are exercised. The runner is deliberately dependency-light and returns a nonzero
@@ -96,6 +97,34 @@ Migration/export tests cover dry runs, deterministic identity maps, ambiguity,
 normalization, unknown/critical extensions, interrupted writes, destination
 conflicts, reports, rollback, and old-reader verification. Fault injection must
 target an owned temporary directory and preserve the known-good source.
+
+## Canonical document and Application evidence
+
+After Alpha 5, the test architecture follows the accepted
+[canonical catalogue and Application contract](../architecture/catalogue-and-application.md).
+Suites may remain dependency-light net40 executables, but evidence is separated
+by owner rather than accumulated indefinitely in one undifferentiated harness.
+
+Required methods include:
+
+- whole-document legacy/native adapter contracts and semantic equivalence;
+- model-based legal and illegal lifecycle sequences such as New, Edit, Undo,
+  Save, Redo, ExternalModify, SaveAs, Cancel, Close, and Recover;
+- property-generated mutation sequences proving invariant preservation, atomic
+  refusal, undo/redo, and save/load equivalence;
+- metamorphic migration/export cases, including stale plans and repeated exact
+  inputs;
+- named crash points after temporary creation, write, flush, verification,
+  replacement, journal transitions, and recovery;
+- version-bound query/cursor, fingerprint recomputation, snapshot lifetime, and
+  resource-budget tests; and
+- language-neutral frontend conformance scenarios executed by every shipped
+  Desktop, CLI, or TUI projection.
+
+Compiled assembly-reference, namespace, public-surface, and forbidden-type
+checks become the primary architecture evidence where IL can prove a rule.
+Source validators remain defence in depth for designer, resource, layout, and
+other rules that compiled metadata cannot express.
 
 ## Manual workflows
 

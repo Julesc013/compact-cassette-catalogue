@@ -11,7 +11,8 @@ Documentation is organized by its audience and ownership.
 - [Machine-readable contract index](../spec/README.md)
 - [Catalogue-library public API baseline](../spec/catalogue-api/v1/README.md)
 - [Release catalogue v1 contract](../spec/release-catalog/v1/README.md)
-- [Release-train controller v1 contract](../spec/release-train/v1/README.md)
+- [Active release-train controller v2 contract](../spec/release-train/v2/README.md)
+- [Preserved release-train controller v1 contract](../spec/release-train/v1/README.md)
 - [Current C3 2.0 train state](../release/train/README.md)
 - [Update feed v1 contract](../spec/update-feed/v1/README.md)
 - [C3 1.x to 2.x compatibility charter](compatibility/1x-to-2x-charter.md)
@@ -30,6 +31,7 @@ Documentation is organized by its audience and ownership.
 
 - [System boundaries and design rules](architecture/README.md)
 - [Repository layout and source-of-truth map](architecture/repository-layout.md)
+- [Canonical catalogue and Application architecture](architecture/catalogue-and-application.md)
 - [Catalogue persistence](architecture/persistence.md)
 - [Architecture decisions](architecture/decisions/)
 

@@ -11,3 +11,9 @@ second task list.
 Individual defects and assignments belong in GitHub Issues or, after its
 integration contract is exercised, AIDE work units. This file intentionally does
 not duplicate those lists.
+
+The accepted post-Alpha-5 architecture is
+[`docs/architecture/catalogue-and-application.md`](docs/architecture/catalogue-and-application.md)
+and [ADR 0012](docs/architecture/decisions/0012-canonical-catalogue-before-application-frontends.md).
+Alpha 6 begins with complete canonical shadow/round-trip convergence; it does
+not begin Application, frontend, or partial canonical production mutation work.

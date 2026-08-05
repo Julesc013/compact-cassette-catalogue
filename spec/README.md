@@ -37,5 +37,6 @@ Current contracts:
 - [`catalogue/v2.0.0/`](catalogue/v2.0.0/) — candidate native catalogue profile and canonical/security fixtures;
 - [`distribution/v1/`](distribution/v1/) — implemented portable profile and payload contracts;
 - [`release-catalog/v1/`](release-catalog/v1/) — checkpoint ledger;
-- [`release-train/v1/`](release-train/v1/) — resumable programme controller; and
+- [`release-train/v2/`](release-train/v2/) — active Alpha 1-12 resumable programme controller;
+- [`release-train/v1/`](release-train/v1/) — preserved original Alpha 1-6 controller contract; and
 - [`update-feed/v1/`](update-feed/v1/) — update discovery and release assets.

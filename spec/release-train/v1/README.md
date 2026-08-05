@@ -1,11 +1,13 @@
 # C3 release-train controller v1
 
+Status: **Preserved historical contract; superseded for active use by v2**
+
 This schema constrains the repository's resumable C3 2.0 milestone pointer. The
 controller is intentionally smaller than the release catalogue: it decides what
 work is current; it does not restate package hashes, publication results, tag
 objects, or C/E/P topology.
 
-The semantic validator additionally requires:
+The v1 semantic validator required:
 
 - the exact sequence Alpha 1 through Alpha 6, then Beta 1;
 - exactly one current milestone;

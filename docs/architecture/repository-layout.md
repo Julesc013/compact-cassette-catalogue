@@ -78,7 +78,9 @@ adjacent. Target-state paths are not added until code actually needs them.
 |-- spec/distribution/v1/            # portable profile/payload schemas
 |-- spec/preferences/v1/             # implemented shared profile contract
 |-- spec/release-catalog/v1/          # checkpoint lifecycle/artifact schema
-|-- spec/release-train/v1/            # resumable milestone-controller schema
+|-- spec/release-train/
+|   |-- v1/                           # preserved Alpha 1-6 controller schema
+|   `-- v2/                           # active Alpha 1-12 controller schema
 |-- spec/update-feed/v1/              # bounded 2.x release-manifest contract
 |-- build/
 |-- release/
@@ -153,10 +155,18 @@ catalogue rule or persistence path.
 
 `C3.Presentation.WinForms` is the shared C# 7.3, net40-compatible presentation
 boundary accepted in ADR 0011. It owns workspace projections, presenter-level
-state, command-history coordination, and reusable WinForms patterns for both
+state, provisional Alpha 5 command-history coordination, and reusable WinForms patterns for both
 lane hosts. It may depend on Catalogue and Domain, but never on Infrastructure,
 XML, files, `DataSet`, concrete settings, or update transport. Feature folders
 are created only as workflows enter the production path.
+
+After Alpha 5, ADR 0012 first converges the complete logical catalogue inside
+`C3.Catalogue`. `src/C3.Application/` is added only when Alpha 7 needs the
+enforceable lifecycle boundary; it is not created early as an empty architecture
+placeholder. Once present, presentation and CLI project operations through
+Application, while Infrastructure implements inward ports. Presentation retains
+selection, focus, draft controls, and layout state but no longer owns semantic
+catalogue history or calls feature services directly.
 
 `C3.WinForms` owns the lane executables, startup composition, runtime-edge policy,
 and the remaining legacy forms until their replacement gates pass. Brands is
@@ -181,6 +191,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Update-channel and promotion policy | `docs/governance/versioning-and-channels.md` | release scripts and feed directories |
 | Checkpoint lifecycle and artifact identity | `release/catalog.v1.json` | validation records and C/E/P promotion checks |
 | Current programme milestone and order | `release/train/2.0.0.json` | train validator and transition scripts |
+| Active train schema | `spec/release-train/v2` | preserves v1 unchanged; validator and tests enforce Alpha 1-12 then Beta 1 |
 | 2.x update manifest syntax and publication shape | `spec/update-feed/v1` | generated candidates, promoted channel feeds, and bounded runtime reader |
 | Published 2.x beta/stable availability | matching channel `release.json`, changed only by successful public `P` | catalogue and validation evidence; release candidates use beta |
 | Active build lanes | `build/lanes.json` | projects, scripts, CI, package names |
@@ -190,6 +201,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | Current catalogue-library compiled public surface | `spec/catalogue-api/v1/public-api.txt` | reflection validator after every characterization build; semantics remain in source/tests |
 | Current infrastructure-library compiled public surface | `spec/infrastructure-api/v1/public-api.txt` | reflection validator after every characterization build; external semantics remain in source/tests |
 | Native-v2 format status | `spec/catalogue/v2.0.0/README.md` and ADR 0005 | implemented Alpha 4 candidate; qualification controls public support |
+| Post-Alpha-5 canonical catalogue and Application boundary | `docs/architecture/catalogue-and-application.md` and ADR 0012 | Alpha 6-12 execution gates and future architecture fitness checks |
 | 1.x compatibility policy | `docs/compatibility/1x-to-2x-charter.md` | machine corpus, tests, and candidate validation; prose cannot widen the corpus |
 | XML table/column mapping | `C3.Infrastructure/CatalogueFiles/Xml/V1_1` | characterization tests |
 | Persisted catalogue revision identity | `C3.Domain.Catalogues.CatalogueRevision` | frozen `C3.Catalogue` compatibility facade and differential characterization |
@@ -201,6 +213,7 @@ extract a shared abstraction only after more than one real owner needs it.
 | C3 1.x preference discovery/import | `LegacyUserSettingsImporter` | `fixtures/settings`, path/reader tests |
 | Legacy UI mutation refresh and history invalidation | `CatalogueUiCoordinator` | owning main window; removed as workflows adopt reversible commands |
 | Workspace, selection, drafts, command history, and shared interaction patterns | `C3.Presentation.WinForms` and ADR 0011 | presenter/controller tests and both-lane workflow evidence |
+| Permanent document lifecycle, history, recovery, operations, and allowed actions | future `C3.Application` after Alpha 7 gate | language-neutral lifecycle/operation fixtures and frontend conformance |
 | Runtime capability | `Runtime/RuntimeInfo.vb` | About and diagnostics |
 | Durable product doctrine/scope | product vision and 2.0 scope docs | README summary |
 | UI design contract | `docs/ui/oem-plus-design.md` and shared interaction patterns | feature forms, presenter tests, and manual evidence |

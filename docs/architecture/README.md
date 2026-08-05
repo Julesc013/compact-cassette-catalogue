@@ -14,6 +14,10 @@ The architecture optimizes for four things, in this order:
 
 ## Production modules
 
+This table describes the implemented Alpha 5 graph. It is not permission to
+preserve provisional presentation-owned history or the legacy active `DataSet`
+after their replacement gates pass.
+
 | Module | Owns | Must not own |
 | --- | --- | --- |
 | `C3.Domain` | Native-2.0 opaque identity, UTC/optional values, validation, commands, change sets, undo contracts, and migrated behavior such as persisted revision identity | Legacy keys, files, XML, `DataSet`, WinForms, settings, networking, or OS APIs |
@@ -22,6 +26,14 @@ The architecture optimizes for four things, in this order:
 | `C3.Cli` | Thin argument parsing, exit-code projection, and headless composition over Infrastructure services | A second parser, mapper, validator, migration, or export implementation |
 | `C3.Presentation.WinForms` | Shared C# workspace state, presenters, command-history coordination, and reusable WinForms interaction patterns | Infrastructure, XML, files, `DataSet`, concrete settings, update transport, or catalogue rules |
 | `C3.WinForms` | Lane executables, startup composition, manifests/configuration, runtime-edge policy, and legacy forms pending proven replacement | Shared workspace rules, persistence parsing, or duplicated domain rules |
+
+After exact Alpha 5 `P`, [ADR 0012](decisions/0012-canonical-catalogue-before-application-frontends.md)
+requires whole-document canonical convergence before a new Application layer or
+additional frontend becomes a production authority. The accepted target adds
+`C3.Application` between frontends and Catalogue, moves lifecycle/history/save
+coordination out of presentation, and confines `DataSet`/`Native*` objects to
+profile adapters. The complete contract is
+[Canonical catalogue and Application architecture](catalogue-and-application.md).
 
 During Alpha 3, named behaviors moved to `C3.Domain` without retaining a second
 implementation. Alpha 4 adds the stable-ID native catalogue graph to
@@ -52,7 +64,7 @@ external mechanism has one production owner.
 Only target-specific configuration, manifests, output paths, constants, and
 small runtime adapters may differ between those project files.
 
-## Dependency rule
+## Implemented Alpha 5 dependency rule
 
 ```text
 C3.WinForms.Net40 ----+--> C3.Presentation.WinForms --> C3.Catalogue --> C3.Domain
@@ -82,6 +94,9 @@ global counters, construct IDs, or invoke Visual Basic default form instances.
 
 ## State ownership
 
+- The following describes the Alpha 5 proof boundary; ADR 0012 deliberately
+  replaces its long-term document/history ownership after whole-document
+  convergence.
 - `CatalogueSession` owns the active catalogue, path, persisted revision,
   dirty state, and document lifecycle events.
 - Each list/editor instance owns its temporary selection and filter state. State
@@ -134,6 +149,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 
 - [Repository layout](repository-layout.md)
 - [Catalogue persistence](persistence.md)
+- [Canonical catalogue and Application architecture](catalogue-and-application.md)
 - [Preference ownership and recovery](preferences.md)
 - [ADR 0001: Modular monolith](decisions/0001-modular-monolith.md)
 - [ADR 0002: Compatibility build lanes](decisions/0002-compatibility-build-lanes.md)
@@ -146,6 +162,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0009: Typed domain identity and command contracts](decisions/0009-typed-domain-contracts.md)
 - [ADR 0010: Stable release identity](decisions/0010-stable-release-identity.md)
 - [ADR 0011: Shared C# WinForms presentation boundary](decisions/0011-shared-winforms-presentation-boundary.md)
+- [ADR 0012: Canonical catalogue before Application/frontends](decisions/0012-canonical-catalogue-before-application-frontends.md)
 - [Distribution doctrine](../development/distribution.md)
 - [Release catalogue v1 contract](../../spec/release-catalog/v1/README.md)
 - [Update release manifest v1 contract](../../spec/update-feed/v1/README.md)

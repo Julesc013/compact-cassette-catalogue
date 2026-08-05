@@ -84,5 +84,5 @@ then removed rather than retained as a second production workflow.
   production graph; the single payload manifest remains authoritative.
 - The project is not a generic `Common`, `Core`, helper, or business-service
   layer. Types are added only for demonstrated workspace or feature ownership.
-- Any retained VB bootstrap after Alpha 6 requires an explicit owner and exit
+- Any retained VB bootstrap after Alpha 9 requires an explicit owner and exit
   gate before Beta 1.

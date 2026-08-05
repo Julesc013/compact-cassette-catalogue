@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $validator = Join-Path $PSScriptRoot 'validate-release-train.ps1'
-$schemaPath = Join-Path $repositoryRoot 'spec\release-train\v1\train.schema.json'
+$schemaPath = Join-Path $repositoryRoot 'spec\release-train\v2\train.schema.json'
 $canonicalTrain = Join-Path $repositoryRoot 'release\train\2.0.0.json'
 $canonicalCatalog = Join-Path $repositoryRoot 'release\catalog.v1.json'
 $canonicalProps = Join-Path $PSScriptRoot 'Version.props'
@@ -25,8 +25,8 @@ function Reset-Fixtures {
 
     # Keep failure-path scenarios independent of the live train's current
     # milestone. The canonical validator is exercised separately before this
-    # harness; these fixtures always begin from the stable Alpha 1 controller
-    # shape so the same negative mutations remain meaningful through Beta 1.
+    # harness; these fixtures always begin from the Alpha 1 controller shape so
+    # the same negative mutations remain meaningful through Beta 1.
     $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
     $train.currentMilestone = 'alpha.1'
     $train.status = 'active'
@@ -133,9 +133,16 @@ try {
 
     Reset-Fixtures
     $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
-    $train.milestones = @($train.milestones | Select-Object -First 6)
+    $train.milestones = @($train.milestones | Select-Object -First 12)
     Write-JsonFixture $trainPath $train
     Assert-Fails 'missing Beta milestone'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.milestones[11].id = 'alpha.13'
+    $train.milestones[11].releaseLabel = '2.0.0-alpha.13'
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'unsupported Alpha 13 milestone'
 
     Reset-Fixtures
     $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json

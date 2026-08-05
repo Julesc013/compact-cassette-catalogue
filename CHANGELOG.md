@@ -6,6 +6,15 @@
 
 ### Version 2.0.0 Alpha 5 - In development
 
+- Re-baselined the post-Alpha-5 programme around whole-document canonical
+  convergence before Application and frontend multiplication, with independent
+  Alpha 6-12 qualification boundaries for catalogue semantics, document
+  lifecycle, Windows shell/workflows, CLI, optional TUI disposition, and final
+  hardening.
+- Accepted the canonical catalogue/Application architecture: native-superset
+  semantics, constrained profile capabilities, honest legacy identity,
+  transaction/snapshot/query contracts, distinct state/disk/location identities,
+  and separate history, recovery, backup, and conflict mechanisms.
 - Added an exact-archive Brands workflow driver that exercises both packaged
   Desktop lanes through real controls and proves all same-lane and cross-lane
   save/reopen combinations without adding a second implementation path.

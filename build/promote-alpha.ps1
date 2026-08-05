@@ -19,7 +19,7 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $train = Get-Content -LiteralPath (
     Join-Path $repositoryRoot 'release\train\2.0.0.json') -Raw | ConvertFrom-Json
 $identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
-if ([string]$train.currentMilestone -cnotmatch '^alpha\.[1-6]$' -or
+if ([string]$train.currentMilestone -cnotmatch '^alpha\.(?:[1-9]|1[0-2])$' -or
     [string]$identity.ReleaseChannel -cne 'alpha') {
     throw 'promote-alpha.ps1 may operate only on the active Alpha milestone.'
 }

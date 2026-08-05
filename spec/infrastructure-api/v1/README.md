@@ -15,6 +15,11 @@ types, enum values, constructors, properties, events, and ordinary methods. It
 is a compatibility oracle, not an alternative implementation or a promise that
 all current public types will remain part of the eventual native 2.0 API.
 
+For C3 2.0 it is an **internal cross-project compatibility oracle**, not a
+supported third-party binary SDK. External longevity belongs to versioned file,
+process, report, and conformance contracts unless a later ADR explicitly accepts
+a binary SDK.
+
 The normal test gate builds the assembly and compares it through the shared
 reflection validator. An intentional API change requires an architecture record,
 behavioral coverage, an explicit caller migration, and an explicitly regenerated

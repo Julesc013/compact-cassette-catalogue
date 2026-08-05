@@ -27,8 +27,16 @@ passes its own compatibility and UI gate. C11 belongs to
 Universal Setup/bootstrap work;
 C++11 is reserved for a measured isolated native boundary, never catalogue logic.
 
+After Alpha 5, C3 first converges the complete legacy-editable and native
+persistence graphs into one native-superset logical catalogue. Only after that
+whole-document boundary passes does `C3.Application` become the document,
+history, save, recovery, and operation owner for permanent WinForms and CLI
+frontends. This avoids synchronizing partial live models or multiplying frontend
+behavior before one semantic truth exists.
+
 Read the [product vision](docs/product/vision.md),
 [accepted 2.0 scope](docs/product/c3-2.0-scope.md),
+[canonical catalogue/Application architecture](docs/architecture/catalogue-and-application.md),
 [distribution doctrine](docs/development/distribution.md), and
 [execution plan](docs/planning/2.0-execution-plan.md) for the complete contract.
 
