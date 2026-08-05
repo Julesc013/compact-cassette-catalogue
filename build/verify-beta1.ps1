@@ -4,12 +4,14 @@ param(
     [switch]$SkipBuildOutputs,
     [string]$CandidateRoot,
     [string]$ToolchainLockPath,
-    [switch]$VerifyIdentityTransition
+    [switch]$VerifyIdentityTransition,
+    [string]$IdentityCommit
 )
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'beta1-contract.ps1')
+. (Join-Path $PSScriptRoot 'beta1-identity-transition.ps1')
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 [void](Assert-C3Beta1ManifestPath -Path (Join-Path $PSScriptRoot 'lanes.json'))
@@ -28,27 +30,8 @@ if ((& git -C $repositoryRoot rev-parse legacy/1.x).Trim() -cne 'c4115b82ea43fdd
 }
 
 if ($VerifyIdentityTransition) {
-    $parents = @((& git -C $repositoryRoot rev-list --parents -n 1 HEAD).Trim().Split(' '))
-    if ($parents.Count -ne 2) { throw 'C-beta identity projection must be a single-parent metadata-only commit.' }
-    $allowed = @(
-        'CHANGELOG.md', 'README.md', 'RELEASE_NOTES.md', 'TODO.md',
-        'Compact Cassette Catalogue/My Project/AssemblyInfo.vb', 'Compact Cassette Catalogue/varGlobals.vb',
-        'Compact Cassette Catalogue Installer/My Project/AssemblyInfo.vb',
-        'Compact Cassette Catalogue Uninstaller/My Project/AssemblyInfo.vb',
-        'SetupShared/SetupBundleRuntime.vb', 'build/get-runtime-lanes.ps1', 'build/lanes.json',
-        'build/package-content/README.txt', 'tests/C3.Setup.Characterization/Program.vb'
-    )
-    $required = @(
-        'Compact Cassette Catalogue/My Project/AssemblyInfo.vb', 'Compact Cassette Catalogue/varGlobals.vb',
-        'Compact Cassette Catalogue Installer/My Project/AssemblyInfo.vb',
-        'Compact Cassette Catalogue Uninstaller/My Project/AssemblyInfo.vb',
-        'SetupShared/SetupBundleRuntime.vb', 'build/get-runtime-lanes.ps1', 'build/lanes.json'
-    )
-    $changes = @(& git -C $repositoryRoot diff --name-only $parents[1] HEAD)
-    if (@($changes | Where-Object { $allowed -notcontains $_ }).Count -ne 0 -or
-            @($required | Where-Object { $changes -notcontains $_ }).Count -ne 0) {
-        throw "C-beta identity transition is not the closed metadata-only projection: $($changes -join ', ')"
-    }
+    if ([string]::IsNullOrWhiteSpace($IdentityCommit)) { throw '-VerifyIdentityTransition requires explicit -IdentityCommit.' }
+    [void](Assert-C3Beta1IdentityTransition -RepositoryRoot $repositoryRoot -IdentityCommit $IdentityCommit -HeadCommit $headCommit)
 }
 
 & (Join-Path $PSScriptRoot 'verify-preparation.ps1') -Configuration $Configuration -SkipBuildOutputs:$SkipBuildOutputs
