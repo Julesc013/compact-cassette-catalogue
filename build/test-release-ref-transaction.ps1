@@ -11,7 +11,8 @@ $workRoot = Join-Path $fixtureRoot 'work'
 $remoteRoot = Join-Path $fixtureRoot 'remote.git'
 $transactionScript = Join-Path $PSScriptRoot 'invoke-release-ref-transaction.ps1'
 $releaseLabel = '2.0.0-alpha.1'
-$tagName = 'v' + $releaseLabel
+$tagName = & (Join-Path $PSScriptRoot 'resolve-release-tag.ps1') `
+    -ReleaseLabel $releaseLabel
 $passed = 0
 
 function Invoke-FixtureGit {
@@ -138,6 +139,7 @@ try {
     $fixtureCatalogPath = Join-Path $fixtureReleaseRoot 'catalog.v1.json'
     $fixtureCatalog = Get-Content -LiteralPath $fixtureCatalogPath -Raw | ConvertFrom-Json
     $fixtureCatalog.milestones[0].promotion.state = 'unpromoted'
+    $fixtureCatalog.milestones[0].promotion.tag = $tagName
     $fixtureCatalog.milestones[0].promotion.tagObject = $null
     $fixtureCatalog.milestones[0].publication.state = 'unpublished'
     $fixtureCatalog.milestones[0].publication.releaseUrl = $null

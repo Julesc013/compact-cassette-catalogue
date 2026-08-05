@@ -115,21 +115,6 @@ else {
         [string]$train.currentMilestone -cne 'beta.1') {
         Add-Failure 'only Beta 1 may await owner manual validation in the 2.0.0 train.'
     }
-    $expectedLastTag = if ($currentIndex -eq 0) {
-        $null
-    }
-    else {
-        'v' + [string]$milestones[$currentIndex - 1].releaseLabel
-    }
-    if ($null -eq $expectedLastTag) {
-        if ($null -ne $train.lastQualifiedTag) {
-            Add-Failure 'lastQualifiedTag must be null before Alpha 1 qualification.'
-        }
-    }
-    elseif ([string]$train.lastQualifiedTag -cne $expectedLastTag) {
-        Add-Failure "lastQualifiedTag must be '$expectedLastTag'."
-    }
-
     $currentReleaseLabel = [string]$milestones[$currentIndex].releaseLabel
     if ([string]$identity.ReleaseLabel -cne $currentReleaseLabel) {
         Add-Failure "build identity '$($identity.ReleaseLabel)' does not match current train label '$currentReleaseLabel'."
@@ -148,6 +133,23 @@ foreach ($catalogMilestone in @($catalog.milestones)) {
 }
 
 if ($currentIndex -ge 0) {
+    $expectedLastTag = $null
+    if ($currentIndex -gt 0) {
+        $previousLabel = [string]$milestones[$currentIndex - 1].releaseLabel
+        if ($catalogByLabel.ContainsKey($previousLabel)) {
+            $expectedLastTag = [string]$catalogByLabel[$previousLabel].promotion.tag
+        }
+    }
+    if ($currentIndex -eq 0) {
+        if ($null -ne $train.lastQualifiedTag) {
+            Add-Failure 'lastQualifiedTag must be null before Alpha 1 qualification.'
+        }
+    }
+    elseif ([string]::IsNullOrWhiteSpace($expectedLastTag) -or
+        [string]$train.lastQualifiedTag -cne $expectedLastTag) {
+        Add-Failure "lastQualifiedTag must match the previous catalogue checkpoint tag '$expectedLastTag'."
+    }
+
     for ($index = 0; $index -le $currentIndex; $index++) {
         $trainMilestone = $milestones[$index]
         $label = [string]$trainMilestone.releaseLabel
@@ -170,7 +172,8 @@ if ($currentIndex -ge 0) {
         if ($index -lt $currentIndex) {
             if ([string]$catalogMilestone.qualification.state -cne 'pass' -or
                 [string]$catalogMilestone.promotion.state -cne 'tagged' -or
-                [string]$catalogMilestone.promotion.tag -cne ('v' + $label) -or
+                [string]::IsNullOrWhiteSpace(
+                    [string]$catalogMilestone.promotion.tag) -or
                 [string]$catalogMilestone.promotion.tagObject -cnotmatch '^[0-9a-f]{40}$') {
                 Add-Failure "qualified train milestone '$label' lacks completed catalogue/tag evidence."
             }
@@ -180,6 +183,19 @@ if ($currentIndex -ge 0) {
                     [bool]$catalogMilestone.publication.feedPromoted -or
                     [string]$catalogMilestone.postVerification.state -cne 'not-applicable')) {
                 Add-Failure "qualified Alpha milestone '$label' is not intentionally unpublished."
+            }
+        }
+        else {
+            $currentTag = [string]$catalogMilestone.promotion.tag
+            $historicalTag = if ($label -cmatch '^2\.0\.0-alpha\.[1-4]$') {
+                'v' + $label
+            }
+            else {
+                $null
+            }
+            if ($currentTag -cne [string]$identity.TagName -and
+                $currentTag -cne $historicalTag) {
+                Add-Failure "current milestone '$label' tag does not match build identity '$($identity.TagName)'."
             }
         }
     }
@@ -197,7 +213,11 @@ if ($currentIndex -ge 0) {
 $gitMetadataAvailable = Test-Path -LiteralPath (Join-Path $repositoryRoot '.git')
 if (-not $SkipGitFacts -and $gitMetadataAvailable -and $currentIndex -gt 0) {
     for ($index = 0; $index -lt $currentIndex; $index++) {
-        $tagName = 'v' + [string]$milestones[$index].releaseLabel
+        $label = [string]$milestones[$index].releaseLabel
+        if (-not $catalogByLabel.ContainsKey($label)) {
+            continue
+        }
+        $tagName = [string]$catalogByLabel[$label].promotion.tag
         $tagType = [string](& git -C $repositoryRoot cat-file -t "refs/tags/$tagName" 2>$null)
         if ($LASTEXITCODE -ne 0 -or $tagType.Trim() -cne 'tag') {
             Add-Failure "qualified train tag '$tagName' is missing or is not annotated."

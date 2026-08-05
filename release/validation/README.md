@@ -55,7 +55,7 @@ against both the local object and origin's raw/peeled tag refs:
   records `published / failed / feed false`, leaves the feed unchanged, and may
   be superseded by an immediate successor.
 
-Validate the full `P` SHA from its create-only `attest/v*-post-<P>` ref while
+Validate the full `P` SHA from its create-only `attest/<tag>-post-<P>` ref while
 both permanent refs remain at `E`, then use exact-old-object leases to atomically
 fast-forward exact `P` to both `master` and `dev/2.x` and consume the temporary ref.
 Only then may `dev/2.x` begin the

@@ -172,7 +172,7 @@ identities; automation and the strict updater projection consume that contract.
 - `dev/2.x`: active, unqualified work toward the next C3 2.x checkpoint.
 - `feature/*` and `fix/*`: short-lived contribution branches targeting the
   appropriate permanent line.
-- `attest/v*-candidate-<E>` and `attest/v*-post-<P>`: create-only, SHA-bound
+- `attest/<tag>-candidate-<E>` and `attest/<tag>-post-<P>`: create-only, SHA-bound
   transport refs consumed by the leased atomic `E`/`P` transactions after their
   self-hosted gates pass.
 

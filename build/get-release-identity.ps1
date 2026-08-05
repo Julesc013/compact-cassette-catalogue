@@ -55,6 +55,8 @@ if ($releaseChannel -cne $expectedChannel) {
 }
 
 $releaseLabel = $releaseLabelIdentity.ReleaseLabel
+$tagName = & (Join-Path $PSScriptRoot 'resolve-release-tag.ps1') `
+    -ReleaseLabel $releaseLabel
 
 [PSCustomObject]@{
     ProductVersion = $productVersion
@@ -68,6 +70,6 @@ $releaseLabel = $releaseLabelIdentity.ReleaseLabel
     FileVersion = $fileVersion
     CatalogueFormatVersion = $catalogueFormatVersion
     InformationalVersion = $releaseLabel
-    TagName = 'v' + $releaseLabel
+    TagName = $tagName
     PropsPath = [IO.Path]::GetFullPath($PropsPath)
 }

@@ -35,7 +35,8 @@ $qualifiedBranch = [string]$branchContract.CurrentQualified
 $integrationBranch = [string]$branchContract.CurrentIntegration
 $qualifiedReference = "refs/heads/$qualifiedBranch"
 $integrationReference = "refs/heads/$integrationBranch"
-$tagName = 'v' + $ReleaseLabel
+$tagName = & (Join-Path $PSScriptRoot 'resolve-release-tag.ps1') `
+    -ReleaseLabel $ReleaseLabel
 $phaseName = if ($Mode -like '*Candidate') { 'candidate' } else { 'post' }
 $attestationBranch = "attest/$tagName-$phaseName-$ExpectedCommit"
 $attestationReference = "refs/heads/$attestationBranch"

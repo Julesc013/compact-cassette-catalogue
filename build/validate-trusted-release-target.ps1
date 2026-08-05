@@ -23,7 +23,7 @@ param(
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
-$releaseLabelPattern = '(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-(?:alpha|beta|rc)\.[1-9][0-9]*)?'
+$tagNamePattern = '(?:v(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-(?:alpha|beta|rc)\.[1-9][0-9]*)?|(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:(?:a|b|rc)[1-9][0-9]*)?)'
 $fullCommitPattern = '^[0-9a-f]{40}$'
 
 function Get-NormalizedRepositoryPath {
@@ -215,14 +215,14 @@ function Get-StrictCatalog {
 function Get-CurrentMilestone {
     param(
         [object]$Catalog,
-        [string]$ReleaseLabel
+        [string]$TagName
     )
 
     $matches = @($Catalog.milestones | Where-Object {
-            [string]$_.releaseLabel -ceq $ReleaseLabel
+            [string]$_.promotion.tag -ceq $TagName
         })
     if ($matches.Count -ne 1) {
-        throw "Release catalogue must contain exactly one '$ReleaseLabel' milestone."
+        throw "Release catalogue must contain exactly one milestone for tag '$TagName'."
     }
     return $matches[0]
 }
@@ -334,11 +334,11 @@ if ([string]::IsNullOrWhiteSpace($trustedOrigin) -or
 }
 
 $modeToken = if ($Mode -ceq 'Candidate') { 'candidate' } else { 'post' }
-$transportPattern = "^attest/v(?<label>$releaseLabelPattern)-$modeToken-(?<commit>[0-9a-f]{40})$"
+$transportPattern = "^attest/(?<tag>$tagNamePattern)-$modeToken-(?<commit>[0-9a-f]{40})$"
 if ($AttestationRef -cnotmatch $transportPattern) {
     throw "Attestation ref does not have the exact SHA-bound $modeToken transport shape."
 }
-$releaseLabel = [string]$Matches['label']
+$tagName = [string]$Matches['tag']
 $transportCommit = [string]$Matches['commit']
 if ($transportCommit -cne $ExpectedCommit) {
     throw 'Attestation ref SHA does not equal the expected target commit.'
@@ -347,7 +347,8 @@ $fullTransportRef = "refs/heads/$AttestationRef"
 
 $parentCommit = Get-SingleParent $targetRoot $ExpectedCommit "$Mode target"
 $catalog = Get-StrictCatalog $trustedRoot $targetRoot
-$milestone = Get-CurrentMilestone $catalog $releaseLabel
+$milestone = Get-CurrentMilestone $catalog $tagName
+$releaseLabel = [string]$milestone.releaseLabel
 $expectedValidationPath = "release/validation/$releaseLabel.md"
 $validationPath = ([string]$milestone.validationRecord).Replace('\', '/')
 if ($validationPath -cne $expectedValidationPath) {
@@ -356,7 +357,7 @@ if ($validationPath -cne $expectedValidationPath) {
 if ([string]$milestone.qualification.state -cne 'pass') {
     throw "$Mode milestone must record qualification state 'pass'."
 }
-if ([string]$milestone.promotion.tag -cne "v$releaseLabel" -or
+if ([string]$milestone.promotion.tag -cne $tagName -or
     [string]$milestone.promotion.targetBranch -cne $qualifiedBranch) {
     throw "$Mode milestone tag or promotion target differs from its release identity."
 }
@@ -418,14 +419,14 @@ else {
         $allowedPaths 'PostPromotion E-to-P evidence diff'
 
     $tagType = (Invoke-Git -Repository $targetRoot -Arguments @(
-            'cat-file', '-t', "refs/tags/v$releaseLabel")).Text.Trim()
+            'cat-file', '-t', "refs/tags/$tagName")).Text.Trim()
     $localTagObject = (Invoke-Git -Repository $targetRoot -Arguments @(
-            'rev-parse', "refs/tags/v$releaseLabel")).Text.Trim()
+            'rev-parse', "refs/tags/$tagName")).Text.Trim()
     $tagCommit = (Invoke-Git -Repository $targetRoot -Arguments @(
-            'rev-list', '-n', '1', "v$releaseLabel")).Text.Trim()
+            'rev-list', '-n', '1', $tagName)).Text.Trim()
     if ($tagType -cne 'tag' -or $localTagObject -cne $recordedTagObject -or
         $tagCommit -cne $parentCommit) {
-        throw "PostPromotion requires its recorded annotated tag object 'v$releaseLabel' at parent E."
+        throw "PostPromotion requires its recorded annotated tag object '$tagName' at parent E."
     }
 }
 
@@ -451,19 +452,19 @@ if ([string]$remoteHeads[$integrationReference] -cne $expectedDevCommit) {
     throw "origin/$integrationBranch moved away from required $Mode baseline $expectedDevCommit."
 }
 
-$remoteTagRecords = Get-RemoteTagRecords $trustedRoot "v$releaseLabel"
-$remoteTagReference = "refs/tags/v$releaseLabel"
+$remoteTagRecords = Get-RemoteTagRecords $trustedRoot $tagName
+$remoteTagReference = "refs/tags/$tagName"
 $remotePeeledReference = "$remoteTagReference^{}"
 if ($Mode -ceq 'Candidate') {
     if ($remoteTagRecords.Count -ne 0) {
-        throw "Candidate E cannot be qualified after remote tag 'v$releaseLabel' exists."
+        throw "Candidate E cannot be qualified after remote tag '$tagName' exists."
     }
 }
 else {
     if ($remoteTagRecords.Count -ne 2 -or
         [string]$remoteTagRecords[$remoteTagReference] -cne $recordedTagObject -or
         [string]$remoteTagRecords[$remotePeeledReference] -cne $parentCommit) {
-        throw "origin tag 'v$releaseLabel' does not preserve the recorded tag object and parent E."
+        throw "origin tag '$tagName' does not preserve the recorded tag object and parent E."
     }
 }
 

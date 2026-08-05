@@ -205,7 +205,7 @@
       "promotion": {
         "state": "unpromoted",
         "targetBranch": "master",
-        "tag": "v2.0.0-alpha.5",
+        "tag": "2.0.0a5",
         "tagObject": null
       },
       "publication": {

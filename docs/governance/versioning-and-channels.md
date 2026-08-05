@@ -65,7 +65,7 @@ through its qualification gate. Applicable fixes are reproduced and
 forward-implemented through the 2.x owner on `dev/2.x` with matching regression
 evidence; divergent 1.x implementation history is not merged wholesale. A
 2.x-only change never flows backward into either 1.x line. Reserved,
-SHA-bound `attest/v*-candidate-<E>` and `attest/v*-post-<P>` refs temporarily make
+SHA-bound `attest/<tag>-candidate-<E>` and `attest/<tag>-post-<P>` refs temporarily make
 exact 2.x attestation commits reachable to private gates while permanent refs
 remain at their expected old objects. They are create-only transport, not version
 lines, and are consumed by the leased atomic promotion transactions.
@@ -105,14 +105,24 @@ Alpha 1 client behavior is a qualification gate, not a future aspiration.
 
 ## Release naming
 
-Tags and package filenames use an unambiguous SemVer-compatible label:
+Package, binary, feed, and validation identities use an unambiguous
+SemVer-compatible release label. Git tags use the shorter repository tag
+identity requested for the 2.0 train:
 
 ```text
-v2.0.0-alpha.1
-C3-v2.0.0-alpha.1-win-x86-net40-portable.zip
-C3-v2.0.0-alpha.1-win-x64-net48-portable.zip
+release label  2.0.0-alpha.5
+Git tag       2.0.0a5
+package       C3-v2.0.0-alpha.5-win-x86-net40-portable.zip
+package       C3-v2.0.0-alpha.5-win-x64-net48-portable.zip
 SHA256SUMS.txt
 ```
+
+The compact mapping is `alpha.N -> aN`, `beta.N -> bN`,
+`rc.N -> rcN`, and `Release -> x.y.z`. Thus Alpha 12 is tagged `2.0.0a12`
+and Beta 1 will be tagged `2.0.0b1` only after owner acceptance. The immutable
+Alpha 1–4 tags keep their historical `v2.0.0-alpha.N` names; no existing tag is
+renamed, replaced, or moved. The release catalogue is the authority for each
+historical tag while the central tag resolver owns new tag derivation.
 
 Display text may use `2.0.0 Alpha 1`. Only the root and legacy 1.x compatibility
 feeds retain the three-line numeric format because old code parses

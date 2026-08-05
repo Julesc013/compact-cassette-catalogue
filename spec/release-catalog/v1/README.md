@@ -18,6 +18,13 @@ backward, and a stable version is terminal until the numeric product version
 increases. Very large numeric components are compared without fixed-width
 integer conversion.
 
+Release labels and Git tags are deliberately separate identities. Package,
+binary, feed, and validation labels retain the readable SemVer form such as
+`2.0.0-alpha.5`; Git tags from Alpha 5 onward use the compact form `2.0.0a5`.
+The catalogue schema also accepts the immutable historical Alpha 1–4 tags in
+their original `v2.0.0-alpha.N` form. A recorded tag is never derived again for
+a historical row and is never renamed or moved.
+
 ## Transaction
 
 ```text

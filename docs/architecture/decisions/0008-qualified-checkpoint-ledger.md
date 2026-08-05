@@ -68,7 +68,7 @@ observed stage facts:
   and may be superseded by an immediate successor.
 
 `P` is validated by full SHA through a create-only, SHA-bound
-`attest/v*-post-<P>` transport ref while both permanent branches remain at `E`.
+`attest/<tag>-post-<P>` transport ref while both permanent branches remain at `E`.
 Exact-old-object leases then atomically fast-forward both to `P` and consume the
 transport. It is not a fourth product line, and its moving name is never the
 promotion input.

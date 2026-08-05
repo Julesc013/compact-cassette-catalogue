@@ -26,7 +26,7 @@ automation consumes it rather than repeating ref names.
 - `master` is the append-only ledger of verified C3 2.x checkpoints.
 - `dev/2.x` owns the next unqualified C3 2.x milestone.
 - topic branches are short-lived.
-- `attest/v*-candidate-<E>` and `attest/v*-post-<P>` are reserved, short-lived,
+- `attest/<tag>-candidate-<E>` and `attest/<tag>-post-<P>` are reserved, short-lived,
   SHA-bound transports for one exact attestation commit. They are never product
   lines or substitutes for either permanent 2.x branch.
 
@@ -161,7 +161,7 @@ Only after the complete pre-tag gate passes, create the annotated tag locally at
 exact `E`, then use the guarded ref transaction:
 
 ```powershell
-$tag = 'v2.0.0-alpha.N'
+$tag = '2.0.0aN'
 git tag -a $tag $e -m "C3 2.0.0 Alpha N qualified checkpoint"
 .\build\invoke-release-ref-transaction.ps1 `
     -Mode PromoteCandidate `
@@ -274,7 +274,8 @@ $e = '<full tagged E SHA>'
     -ExpectedMasterCommit $e `
     -ExpectedDevCommit $e `
     -Confirm
-$attestBranch = "attest/v${label}-post-${p}"
+$tag = .\build\resolve-release-tag.ps1 -ReleaseLabel $label
+$attestBranch = "attest/${tag}-post-${p}"
 ```
 
 Dispatch `post-promotion-attestation.yml` from trusted `master` workflow control

@@ -91,7 +91,6 @@ if ($currentIndex -lt 0 -or $currentIndex + 1 -ge $milestones.Count -or
 }
 
 $previousLabel = [string]$milestones[$currentIndex].releaseLabel
-$previousTag = 'v' + $previousLabel
 $previousCatalog = @($catalog.milestones | Where-Object {
         [string]$_.releaseLabel -ceq $previousLabel
     })
@@ -99,6 +98,10 @@ if ($previousCatalog.Count -ne 1 -or
     [string]$previousCatalog[0].qualification.state -cne 'pass' -or
     [string]$previousCatalog[0].promotion.state -cne 'tagged') {
     throw "Previous milestone '$previousLabel' is not qualified and tagged in the release catalogue."
+}
+$previousTag = [string]$previousCatalog[0].promotion.tag
+if ([string]::IsNullOrWhiteSpace($previousTag)) {
+    throw "Previous milestone '$previousLabel' does not record its immutable tag."
 }
 $tagType = ([string](& git -C $repositoryRoot cat-file -t (
             'refs/tags/' + $previousTag))).Trim()
@@ -121,6 +124,8 @@ if ($LASTEXITCODE -ne 0) {
 
 $next = $milestones[$currentIndex + 1]
 $nextLabel = [string]$next.releaseLabel
+$nextTag = & (Join-Path $PSScriptRoot 'resolve-release-tag.ps1') `
+    -ReleaseLabel $nextLabel
 $stage = if ($Milestone -cmatch '^alpha\.(?<sequence>[1-9]|1[0-2])$') {
     'Alpha ' + $Matches.sequence
 }
@@ -160,7 +165,7 @@ $nextCatalog = [PSCustomObject][ordered]@{
     promotion = [PSCustomObject][ordered]@{
         state = 'unpromoted'
         targetBranch = $qualifiedBranch
-        tag = 'v' + $nextLabel
+        tag = $nextTag
         tagObject = $null
     }
     publication = [PSCustomObject][ordered]@{

@@ -36,6 +36,7 @@ $qualifiedLocalReference = "refs/heads/$qualifiedBranch"
 $qualifiedRemoteReference = "refs/remotes/origin/$qualifiedBranch"
 $integrationRemoteReference = "refs/remotes/origin/$integrationBranch"
 $identity = & (Join-Path $PSScriptRoot 'get-release-identity.ps1')
+$tagResolver = Join-Path $PSScriptRoot 'resolve-release-tag.ps1'
 $packageDefinitions = @(& (Join-Path $PSScriptRoot 'get-release-packages.ps1') -Identity $identity)
 $failures = New-Object Collections.Generic.List[String]
 
@@ -1113,8 +1114,15 @@ foreach ($milestone in $milestones) {
     Test-AllowedValue $postState @('not-applicable', 'pending', 'passed', 'failed') "$context post-verification state" | Out-Null
 
     $tag = [string]$milestone.promotion.tag
-    if ($tag -cne ('v' + $label)) {
-        Add-Failure "$context tag must be 'v$label'."
+    $expectedTag = [string](& $tagResolver -ReleaseLabel $label)
+    $historicalTag = if ($label -cmatch '^2\.0\.0-alpha\.[1-4]$') {
+        'v' + $label
+    }
+    else {
+        $null
+    }
+    if ($tag -cne $expectedTag -and $tag -cne $historicalTag) {
+        Add-Failure "$context tag must be '$expectedTag'."
     }
     if ($tags.ContainsKey($tag)) {
         Add-Failure "duplicate milestone tag '$tag'."
@@ -1386,7 +1394,7 @@ foreach ($milestone in $milestones) {
         if ([string]$milestone.productVersion -cne $identity.ProductVersion -or
             [string]$milestone.stage -cne $identity.ReleaseStage -or
             [string]$milestone.channel -cne $identity.ReleaseChannel -or
-            $tag -cne $identity.TagName) {
+            ($tag -cne $identity.TagName -and $tag -cne $historicalTag)) {
             Add-Failure "$context does not match build/Version.props."
         }
     }

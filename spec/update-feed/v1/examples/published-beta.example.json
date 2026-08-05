@@ -9,12 +9,12 @@
   "releaseDate": "2026-08-04",
   "catalogueWriteFormat": "1.1.0",
   "published": true,
-  "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v2.0.0-beta.1",
+  "releaseUrl": "https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/2.0.0b1",
   "checksumManifest": {
     "file": "SHA256SUMS.txt",
     "length": 256,
     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v2.0.0-beta.1/SHA256SUMS.txt"
+    "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/2.0.0b1/SHA256SUMS.txt"
   },
   "packages": [
     {
@@ -23,7 +23,7 @@
       "file": "C3-v2.0.0-beta.1-win-x86-net40-portable.zip",
       "length": 123456,
       "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v2.0.0-beta.1/C3-v2.0.0-beta.1-win-x86-net40-portable.zip"
+      "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/2.0.0b1/C3-v2.0.0-beta.1-win-x86-net40-portable.zip"
     },
     {
       "lane": "win-x64-net48",
@@ -31,7 +31,7 @@
       "file": "C3-v2.0.0-beta.1-win-x64-net48-portable.zip",
       "length": 234567,
       "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v2.0.0-beta.1/C3-v2.0.0-beta.1-win-x64-net48-portable.zip"
+      "url": "https://github.com/Julesc013/compact-cassette-catalogue/releases/download/2.0.0b1/C3-v2.0.0-beta.1-win-x64-net48-portable.zip"
     }
   ]
 }

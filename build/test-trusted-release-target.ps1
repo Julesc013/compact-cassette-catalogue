@@ -9,7 +9,8 @@ $testRoot = [IO.Path]::GetFullPath((Join-Path $artifactsRoot `
             "trusted-release-target-tests-$PID"))
 $utf8WithoutBom = New-Object Text.UTF8Encoding($false)
 $releaseLabel = '2.0.0-alpha.1'
-$tagName = "v$releaseLabel"
+$tagName = & (Join-Path $PSScriptRoot 'resolve-release-tag.ps1') `
+    -ReleaseLabel $releaseLabel
 $passed = 0
 
 function Assert-SafeTestPath {
@@ -214,7 +215,7 @@ try {
     Invoke-FixtureGit $seed @('add', '--all') | Out-Null
     Invoke-FixtureGit $seed @('commit', '-m', 'test(release): attest E') | Out-Null
     $candidateCommit = Invoke-FixtureGit $seed @('rev-parse', 'HEAD')
-    $candidateRef = "attest/v$releaseLabel-candidate-$candidateCommit"
+    $candidateRef = "attest/$tagName-candidate-$candidateCommit"
     Invoke-FixtureGit $seed @('push', 'origin',
         "HEAD:refs/heads/$candidateRef") | Out-Null
     Invoke-FixtureGit $target @('fetch', '--tags', 'origin',
@@ -237,7 +238,7 @@ try {
         'test(release): invalid E tag object') | Out-Null
     $invalidCandidateCommit = Invoke-FixtureGit $seed @('rev-parse', 'HEAD')
     $invalidCandidateRef =
-        "attest/v$releaseLabel-candidate-$invalidCandidateCommit"
+        "attest/$tagName-candidate-$invalidCandidateCommit"
     Invoke-FixtureGit $seed @('push', 'origin',
         "HEAD:refs/heads/$invalidCandidateRef") | Out-Null
     Invoke-FixtureGit $target @('fetch', 'origin',
@@ -291,7 +292,7 @@ try {
     Invoke-FixtureGit $seed @('add', '--all') | Out-Null
     Invoke-FixtureGit $seed @('commit', '-m', 'test(release): attest P') | Out-Null
     $postCommit = Invoke-FixtureGit $seed @('rev-parse', 'HEAD')
-    $postRef = "attest/v$releaseLabel-post-$postCommit"
+    $postRef = "attest/$tagName-post-$postCommit"
     Invoke-FixtureGit $seed @('push', 'origin',
         "HEAD:refs/heads/$postRef") | Out-Null
     Invoke-FixtureGit $target @('fetch', '--tags', 'origin',
@@ -329,7 +330,7 @@ try {
     Invoke-FixtureGit $seed @('commit', '-m', 'test(release): invalid P paths') |
         Out-Null
     $invalidPostCommit = Invoke-FixtureGit $seed @('rev-parse', 'HEAD')
-    $invalidPostRef = "attest/v$releaseLabel-post-$invalidPostCommit"
+    $invalidPostRef = "attest/$tagName-post-$invalidPostCommit"
     Invoke-FixtureGit $seed @('push', 'origin',
         "HEAD:refs/heads/$invalidPostRef") | Out-Null
     Invoke-FixtureGit $target @('fetch', '--tags', 'origin',

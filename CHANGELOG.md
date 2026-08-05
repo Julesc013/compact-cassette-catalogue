@@ -6,6 +6,13 @@
 
 ### Version 2.0.0 Alpha 5 - In development
 
+- Adopted compact Git checkpoint tags from Alpha 5 onward (`2.0.0a5`,
+  `2.0.0b1`, and `2.0.0rc1`) while preserving readable SemVer release labels
+  for binaries, packages, feeds, and evidence and retaining all immutable
+  historical Alpha 1-4 tags unchanged.
+- Centralized release-tag derivation and updated catalogue validation,
+  SHA-bound attestation refs, trusted-runner guards, workflows, examples, and
+  release tests so tag identity cannot drift between release subsystems.
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.

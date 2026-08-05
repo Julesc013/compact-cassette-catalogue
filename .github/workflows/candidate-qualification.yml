@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       attestation_ref:
-        description: One-use branch attest/v<release-label>-candidate-<full E SHA>
+        description: One-use branch attest/<tag>-candidate-<full E SHA>
         required: true
         type: string
 
@@ -56,7 +56,8 @@ jobs:
           if ($env:EXPECTED_COMMIT -cnotmatch '^[0-9a-f]{40}$') {
             throw 'Candidate qualification requires a full lowercase 40-character E SHA.'
           }
-          $candidatePattern = '^attest/v(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-(?:alpha|beta|rc)\.[1-9][0-9]*)?-candidate-' + [regex]::Escape($env:EXPECTED_COMMIT) + '$'
+          $tagPattern = '(?:v(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-(?:alpha|beta|rc)\.[1-9][0-9]*)?|(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:(?:a|b|rc)[1-9][0-9]*)?)'
+          $candidatePattern = '^attest/' + $tagPattern + '-candidate-' + [regex]::Escape($env:EXPECTED_COMMIT) + '$'
           if ($env:ATTESTATION_REF -cnotmatch $candidatePattern) {
             throw 'Candidate qualification requires its exact one-use, SHA-bound candidate attestation ref.'
           }

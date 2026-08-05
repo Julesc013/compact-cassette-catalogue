@@ -87,9 +87,9 @@ capabilities rather than hardcoding one provider-specific runner-group name.
 | Workflow | Trigger and authority |
 | --- | --- |
 | `full-compatibility.yml` | Manually exercises the moving `dev/2.x` branch as development evidence only. |
-| `candidate-qualification.yml` | Dispatched from trusted `master`; independently guards and qualifies full `E` from exact `attest/v*-candidate-<E>` while `origin/dev/2.x` remains at `C`. |
+| `candidate-qualification.yml` | Dispatched from trusted `master`; independently guards and qualifies full `E` from exact `attest/<tag>-candidate-<E>` while `origin/dev/2.x` remains at `C`. |
 | `tagged-checkpoint-verification.yml` | Automatically re-verifies each pushed `v2.*` annotated tag at exact `E`. |
-| `post-promotion-attestation.yml` | Dispatched from trusted `master`; independently guards and qualifies full `P` from exact `attest/v*-post-<P>` while both ledger refs still identify `E`. |
+| `post-promotion-attestation.yml` | Dispatched from trusted `master`; independently guards and qualifies full `P` from exact `attest/<tag>-post-<P>` while both ledger refs still identify `E`. |
 
 Each gate runs the complete repository contract, compiles both release lanes,
 runs characterization, verifies binary identities and PE architecture, and
@@ -140,10 +140,10 @@ replacement of qualified tags. `legacy/1.x` advances only by fast-forward from a
 qualified `dev/1.x` checkpoint. `master` advances only through the
 documented exact-SHA transaction:
 
-1. expose `E` through create-only `attest/v*-candidate-<E>` while `dev/2.x` remains
+1. expose `E` through create-only `attest/<tag>-candidate-<E>` while `dev/2.x` remains
    at `C`, then use exact-old-object leases to atomically advance both permanent
    refs to verified `E`, create its absent annotated tag, and consume the ref;
-2. expose direct child `P` on create-only `attest/v*-post-<P>`, pass the exact-P
+2. expose direct child `P` on create-only `attest/<tag>-post-<P>`, pass the exact-P
    self-hosted gate while both permanent refs remain at `E`, then use exact-old
    leases to atomically advance both permanent refs and consume the temporary
    ref.

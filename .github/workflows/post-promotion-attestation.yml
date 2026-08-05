@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       attestation_ref:
-        description: One-use branch attest/v<release-label>-post-<full P SHA>
+        description: One-use branch attest/<tag>-post-<full P SHA>
         required: true
         type: string
 
@@ -56,7 +56,8 @@ jobs:
           if ($env:EXPECTED_COMMIT -cnotmatch '^[0-9a-f]{40}$') {
             throw 'Post-promotion attestation requires a full lowercase 40-character P SHA.'
           }
-          $postPattern = '^attest/v(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-(?:alpha|beta|rc)\.[1-9][0-9]*)?-post-' + [regex]::Escape($env:EXPECTED_COMMIT) + '$'
+          $tagPattern = '(?:v(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-(?:alpha|beta|rc)\.[1-9][0-9]*)?|(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:(?:a|b|rc)[1-9][0-9]*)?)'
+          $postPattern = '^attest/' + $tagPattern + '-post-' + [regex]::Escape($env:EXPECTED_COMMIT) + '$'
           if ($env:ATTESTATION_REF -cnotmatch $postPattern) {
             throw 'Post-promotion attestation requires its exact one-use, SHA-bound post attestation ref.'
           }

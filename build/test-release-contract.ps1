@@ -12,6 +12,7 @@ $schemaPath = Join-Path $repositoryRoot 'spec\release-catalog\v1\catalog.schema.
 $schemaValidator = Join-Path $PSScriptRoot 'validate-json-document.ps1'
 $releaseValidator = Join-Path $PSScriptRoot 'validate-release-contract.ps1'
 $labelResolver = Join-Path $PSScriptRoot 'resolve-release-label.ps1'
+$tagResolver = Join-Path $PSScriptRoot 'resolve-release-tag.ps1'
 $utf8WithoutBom = New-Object Text.UTF8Encoding($false)
 $passed = 0
 
@@ -75,7 +76,8 @@ function New-PlannedMilestone {
     $milestone.qualification.state = 'blocked'
     $milestone.qualification.sourceCommit = $null
     $milestone.promotion.state = 'unpromoted'
-    $milestone.promotion.tag = 'v' + $resolved.ReleaseLabel
+    $milestone.promotion.tag = & $tagResolver `
+        -ReleaseLabel $resolved.ReleaseLabel
     $milestone.promotion.tagObject = $null
     $milestone.publication.policy = if ($resolved.ReleaseChannel -ceq 'alpha') {
         'intentionally-unpublished'
@@ -375,6 +377,7 @@ try {
             'get-release-packages.ps1',
             'get-branch-contract.ps1',
             'resolve-release-label.ps1',
+            'resolve-release-tag.ps1',
             'validate-json-document.ps1',
             'validate-release-contract.ps1')) {
         Copy-Item `
@@ -629,7 +632,7 @@ try {
         promotion = [PSCustomObject][ordered]@{
             state = 'unpromoted'
             targetBranch = 'master'
-            tag = 'v2.0.0-beta.1'
+            tag = '2.0.0b1'
             tagObject = $null
         }
         publication = [PSCustomObject][ordered]@{
@@ -705,16 +708,16 @@ try {
     Invoke-FixtureGit $historyRoot @(
         'tag',
         '-a',
-        'v2.0.0-beta.1',
+        '2.0.0b1',
         '-m',
         'Fixture qualified beta checkpoint')
-    $betaTagObject = ([string](& git -C $historyRoot rev-parse refs/tags/v2.0.0-beta.1)).Trim()
+    $betaTagObject = ([string](& git -C $historyRoot rev-parse refs/tags/2.0.0b1)).Trim()
     if ($LASTEXITCODE -ne 0 -or $betaTagObject -cnotmatch '^[0-9a-f]{40}$') {
         throw 'Could not resolve fixture beta annotated-tag object.'
     }
 
-    $betaReleaseUrl = 'https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/v2.0.0-beta.1'
-    $assetBaseUrl = 'https://github.com/Julesc013/compact-cassette-catalogue/releases/download/v2.0.0-beta.1/'
+    $betaReleaseUrl = 'https://github.com/Julesc013/compact-cassette-catalogue/releases/tag/2.0.0b1'
+    $assetBaseUrl = 'https://github.com/Julesc013/compact-cassette-catalogue/releases/download/2.0.0b1/'
     $historyCatalog.milestones[1].promotion.state = 'tagged'
     $historyCatalog.milestones[1].promotion.tagObject = $betaTagObject
     $historyCatalog.milestones[1].publication.state = 'published'
@@ -784,15 +787,15 @@ try {
 
     $tagCheckoutRoot = Join-Path $testRoot 'tag-checkout'
     Invoke-FixtureGit $historyRoot @('clone', '--quiet', '--no-local', '.', $tagCheckoutRoot)
-    Invoke-FixtureGit $tagCheckoutRoot @('checkout', '--quiet', 'v2.0.0-beta.1')
+    Invoke-FixtureGit $tagCheckoutRoot @('checkout', '--quiet', '2.0.0b1')
     & (Join-Path $tagCheckoutRoot 'build\validate-release-contract.ps1') `
         -Mode Tag `
-        -TagName 'v2.0.0-beta.1' | Out-Null
+        -TagName '2.0.0b1' | Out-Null
     $passed++
 
     $supersessionRoot = Join-Path $testRoot 'supersession-checkout'
     Invoke-FixtureGit $historyRoot @('clone', '--quiet', '--no-local', '.', $supersessionRoot)
-    Invoke-FixtureGit $supersessionRoot @('checkout', '--quiet', '-b', 'supersession-fixture', 'v2.0.0-beta.1')
+    Invoke-FixtureGit $supersessionRoot @('checkout', '--quiet', '-b', 'supersession-fixture', '2.0.0b1')
     Invoke-FixtureGit $supersessionRoot @('config', 'user.name', 'C3 Release Contract Tests')
     Invoke-FixtureGit $supersessionRoot @('config', 'user.email', 'release-contract-tests@invalid.example')
     $supersessionCatalogPath = Join-Path $supersessionRoot 'release\catalog.v1.json'
@@ -836,7 +839,7 @@ try {
         promotion = [PSCustomObject][ordered]@{
             state = 'unpromoted'
             targetBranch = 'master'
-            tag = 'v2.0.0-beta.2'
+            tag = '2.0.0b2'
             tagObject = $null
         }
         publication = [PSCustomObject][ordered]@{

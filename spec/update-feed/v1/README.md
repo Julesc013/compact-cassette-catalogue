@@ -57,6 +57,12 @@ informational version but does not enter tag names or SemVer precedence. Each
 build identifier is a nonempty, dot-separated sequence of ASCII letters,
 digits, or hyphens, matching the runtime parser.
 
+From Alpha 5 onward, the GitHub release URL uses the compact Git tag identity
+(`2.0.0aN`, `2.0.0bN`, `2.0.0rcN`, or `2.0.0`) while package filenames retain
+the readable SemVer release label (`C3-v2.0.0-beta.1-...zip`). The schema also
+accepts immutable historical release URLs that use the earlier `v`-prefixed
+SemVer tag form.
+
 ## Promotion transaction
 
 1. Generate an unpublished candidate manifest from `build/Version.props`.
