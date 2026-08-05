@@ -1,4 +1,15 @@
 {
   "schemaVersion": 1,
-  "entries": []
+  "entries": [
+    {
+      "surface": "applicationManifests:Compact Cassette Catalogue Installer/app.manifest",
+      "reason": "The offline all-users setup writes Program Files, common shortcuts, and HKLM uninstall state, so it must request an administrator token explicitly.",
+      "regression": "build/validate-setup-manifests.ps1 requires exactly one requireAdministrator execution level with uiAccess disabled."
+    },
+    {
+      "surface": "applicationManifests:Compact Cassette Catalogue Uninstaller/app.manifest",
+      "reason": "Ownership-only uninstall reverses the same all-users Program Files, common-shortcut, and HKLM surfaces and must request an administrator token explicitly.",
+      "regression": "build/validate-setup-manifests.ps1 requires exactly one requireAdministrator execution level with uiAccess disabled."
+    }
+  ]
 }
