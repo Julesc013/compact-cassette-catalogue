@@ -103,6 +103,11 @@ Namespace Global.C3Setup
             RemoveWithSnapshot(state, access)
         End Sub
 
+        Public Shared Sub ValidateOwned(state As InstalledState, access As ISetupRegistryAccess)
+            RequireArguments(state, access)
+            RequireExactValues(access.ReadValues(InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)), ExpectedValues(state))
+        End Sub
+
         Public Shared Function RemoveWithSnapshot(state As InstalledState,
                                                   access As ISetupRegistryAccess) As IDictionary(Of String, Object)
             RequireArguments(state, access)

@@ -27,33 +27,15 @@ Namespace Global.C3Setup
                                                                                      shortcutAccess.CommonDesktopPath,
                                                                                      includeDesktopShortcut)
 
-            Dim integration As Func(Of InstalledState, InstalledState, Action) =
-                Function(previousState As InstalledState, state As InstalledState) As Action
-                    Dim shortcutTransition As SetupShortcutTransition = Nothing
-                    Dim priorRegistry As IDictionary(Of String, Object) = Nothing
-                    Try
-                        shortcutTransition = SetupShortcutService.Transition(previousState, state, shortcutAccess)
-                        priorRegistry = SetupRegistryRegistration.Apply(state, registryAccess)
-                        Return Sub()
-                                   SetupRegistryRegistration.Restore(state, priorRegistry, registryAccess)
-                                   SetupShortcutService.RestoreTransition(shortcutTransition, shortcutAccess)
-                               End Sub
-                    Catch
-                        If shortcutTransition IsNot Nothing Then
-                            SetupShortcutService.RestoreTransition(shortcutTransition, shortcutAccess)
-                        End If
-                        Throw
-                    End Try
-                End Function
-
-            Return SetupFileTransaction.Apply(manifestPath,
-                                              payloadDirectory,
-                                              canonicalRoot,
-                                              setupSourceCommit,
-                                              setupExecutableSha256,
-                                              shortcuts,
-                                              integration,
-                                              faultInjector)
+            Return SetupDurableTransaction.Install(manifestPath,
+                                                   payloadDirectory,
+                                                   canonicalRoot,
+                                                   setupSourceCommit,
+                                                   setupExecutableSha256,
+                                                   shortcuts,
+                                                   shortcutAccess,
+                                                   registryAccess,
+                                                   faultInjector)
         End Function
 
         Private Shared Function PayloadBytes(manifest As PayloadManifest) As Long
