@@ -67,6 +67,9 @@
 - Recorded the owner authorization allowing deliberate Alpha tags and retained
   Alpha distributions while requiring explicit human approval for every Beta
   tag, Beta-labelled distribution, or Beta publication.
+- Corrected the VS2022 decision-date servicing floor to 17.14.37 after official
+  release history confirmed its 22 July 2026 release; no lock or Candidate build
+  had been accepted under the earlier 17.14.36 floor.
 
 
 ### Version 1.3.0 Alpha 1 - 5 August 2026

@@ -102,6 +102,9 @@ foreach ($laneId in @('win-x86-net40', 'win-x64-net48', 'win-arm64-net481')) {
 }
 foreach ($statement in @(
         'exactly three public release lanes',
+        'VS2017 15.9.81',
+        'VS2022 17.14.37',
+        'VS2026 18.8.2',
         'VS2015/MSBuild 14 = historical 1.2 reconstruction oracle',
         'portable classic executable packages',
         '0xaa64',

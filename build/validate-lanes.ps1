@@ -8,9 +8,9 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $lock = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'toolchain-lock.json') -Raw | ConvertFrom-Json
 $expected = @(
-    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0-win-x86-net40-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0-win-x64-net48-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0-win-arm64-net481-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
+    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; servicingPin = '15.9.81'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0-win-x86-net40-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; servicingPin = '17.14.37'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0-win-x64-net48-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; servicingPin = '18.8.2'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0-win-arm64-net481-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
 )
 $lanes = @($manifest.lanes)
 if ($lanes.Count -ne $expected.Count) {
@@ -25,6 +25,7 @@ for ($index = 0; $index -lt $expected.Count; $index++) {
             @('platformTarget', [string]$actual.platformTarget, $contract.platform),
             @('targetFramework', [string]$actual.targetFramework, $contract.framework),
             @('toolset', [string]$actual.toolset, $contract.toolset),
+            @('initialServicingPin', [string]$actual.initialServicingPin, $contract.servicingPin),
             @('effectiveToolsVersion', [string]$actual.effectiveToolsVersion, $contract.toolsVersion),
             @('resourceToolRelativePath', [string]$actual.resourceToolRelativePath, $contract.resourceTool),
             @('peMachine', [string]$actual.peMachine, $contract.machine),

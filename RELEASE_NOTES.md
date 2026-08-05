@@ -39,6 +39,9 @@ before offline builds, and repeats source/ref/submodule/genome/lock closure afte
 the last lane. These controls have passed Preparation and adversarial validation;
 their live Candidate proof awaits serviced builders.
 
+Official release history review corrected the current VS2022 starting pin from
+17.14.36 to 17.14.37 before any lock or Candidate build was accepted.
+
 This is preparation, not Beta qualification. The installed builders are one
 or more servicing steps behind the decision-date floors, no acceptable external
 candidate lock is frozen, historical Gate 1 and runtime repairs remain open, and

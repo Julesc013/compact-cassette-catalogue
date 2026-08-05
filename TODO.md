@@ -104,7 +104,7 @@ a specific governance amendment.
   keep the actual Candidate builds offline.
 - [x] Repeat source/ref/submodule/genome/lock closure after all Candidate lanes
   and require the retained result before Candidate packaging.
-- [ ] Update VS2017 to at least 15.9.81, VS2022 to at least 17.14.36, and VS2026
+- [ ] Update VS2017 to at least 15.9.81, VS2022 to at least 17.14.37, and VS2026
   to at least 18.8.2 (or later stable servicing available at freeze), rebuild
   Preparation evidence, and create the first acceptable external candidate lock.
 

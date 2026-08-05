@@ -33,7 +33,7 @@
       "appConfig": "build/config/net48/App.config",
       "toolset": "17",
       "visualStudioRange": "[17.0,18.0)",
-      "initialServicingPin": "17.14.36",
+      "initialServicingPin": "17.14.37",
       "effectiveToolsVersion": "Current",
       "compilerRelativePath": "MSBuild/Current/Bin/Roslyn/vbc.exe",
       "resourceToolRelativePath": "Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe",
