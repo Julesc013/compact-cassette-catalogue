@@ -223,6 +223,9 @@ Public Class frmMain
             If input.Length > MaximumCatalogueBytes Then
                 Throw New InvalidDataException("Catalogue exceeds the 16 MiB safety limit.")
             End If
+            If input.Length = 0 Then
+                Throw New InvalidDataException("Catalogue file is empty.")
+            End If
             Dim bytes(CInt(input.Length) - 1) As Byte
             Dim offset As Integer = 0
             While offset < bytes.Length

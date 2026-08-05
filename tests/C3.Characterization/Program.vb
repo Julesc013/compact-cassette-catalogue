@@ -1,4 +1,5 @@
 Imports System.Data
+Imports System.Reflection
 Imports System.Text
 Imports System.Threading
 Imports Compact_Cassette_Catalogue
@@ -29,6 +30,9 @@ Module Program
         RunTest("external catalogue edits invalidate captured revision", AddressOf ExternalCatalogueEditsInvalidateRevision)
         RunTest("tape mapping is named and preserves identity", AddressOf TapeMappingIsNamedAndPreservesIdentity)
         RunTest("main form uses one-dialog nonrecursive persistence flow", AddressOf MainFormUsesClosedPersistenceFlow)
+        RunTest("lifecycle state machine exhaustively fails closed", AddressOf LifecycleStateMachineExhaustivelyFailsClosed)
+        RunTest("production schema loads every catalogue table", AddressOf ProductionSchemaLoadsEveryCatalogueTable)
+        RunTest("typed loader rejects invalid field values", AddressOf TypedLoaderRejectsInvalidFieldValues)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -241,6 +245,64 @@ Module Program
         AssertEqual(False, source.Contains("Dim thisTape As Object()"), "positional tape write")
     End Sub
 
+    Private Sub LifecycleStateMachineExhaustivelyFailsClosed()
+        Dim editChoices As frmMain.EditChoice() = {
+            frmMain.EditChoice.Apply, frmMain.EditChoice.Discard, frmMain.EditChoice.Cancel}
+        Dim documentChoices As frmMain.DocumentChoice() = {
+            frmMain.DocumentChoice.Save, frmMain.DocumentChoice.Discard, frmMain.DocumentChoice.Cancel}
+        For Each pending As Boolean In New Boolean() {False, True}
+            For Each editChoice As frmMain.EditChoice In editChoices
+                For Each editSucceeded As Boolean In New Boolean() {False, True}
+                    For Each dirty As Boolean In New Boolean() {False, True}
+                        For Each documentChoice As frmMain.DocumentChoice In documentChoices
+                            For Each saveSucceeded As Boolean In New Boolean() {False, True}
+                                Dim expected As Boolean =
+                                    (Not pending OrElse
+                                     (editChoice <> frmMain.EditChoice.Cancel AndAlso
+                                      (editChoice <> frmMain.EditChoice.Apply OrElse editSucceeded))) AndAlso
+                                    (Not dirty OrElse
+                                     (documentChoice <> frmMain.DocumentChoice.Cancel AndAlso
+                                      (documentChoice <> frmMain.DocumentChoice.Save OrElse saveSucceeded)))
+                                Dim actual As Boolean = frmMain.TransitionCanContinue(
+                                    pending, editChoice, editSucceeded, dirty, documentChoice, saveSucceeded)
+                                AssertEqual(expected, actual, "lifecycle combination")
+                            Next
+                        Next
+                    Next
+                Next
+            Next
+        Next
+    End Sub
+
+    Private Sub ProductionSchemaLoadsEveryCatalogueTable()
+        Dim schema As DataSet = CreateProductionCatalogueSchema()
+        Dim revision As String = Nothing
+        Dim loaded As DataSet = frmMain.LoadCatalogueSnapshot(
+            FixturePath("valid", "populated.xml"), schema, New String() {"1.1.0"}, revision)
+        AssertEqual(6, loaded.Tables.Count, "production table count")
+        AssertEqual(1, loaded.Tables("Decks").Rows.Count, "production deck count")
+        AssertEqual(1, loaded.Tables("Brands").Rows.Count, "production brand count")
+        AssertEqual(1, loaded.Tables("Models").Rows.Count, "production model count")
+        AssertEqual(1, loaded.Tables("Tapes").Rows.Count, "production tape count")
+        AssertEqual(GetType(Decimal), loaded.Tables("Tapes").Columns("LevelCalA").DataType, "level calibration type")
+        AssertEqual(True, revision.Length = 64, "loaded revision shape")
+    End Sub
+
+    Private Sub TypedLoaderRejectsInvalidFieldValues()
+        Dim schema As DataSet = CreateProductionCatalogueSchema()
+        Dim invalidPath As String = TemporaryPath("invalid-type.xml")
+        Try
+            Dim xml As String = File.ReadAllText(FixturePath("valid", "populated.xml"))
+            xml = xml.Replace("<Year>1990</Year>", "<Year>not-a-year</Year>")
+            File.WriteAllText(invalidPath, xml, New UTF8Encoding(False))
+            AssertThrowsAny(
+                Sub() frmMain.LoadCatalogueSnapshot(invalidPath, schema, New String() {"1.1.0"}),
+                "typed invalid value")
+        Finally
+            DeleteIfPresent(invalidPath)
+        End Try
+    End Sub
+
     Private Sub ValidateAgainstSchema(xmlPath As String)
         Dim validationMessages As New List(Of String)()
         Dim settings As XmlReaderSettings = CreateSecureReaderSettings()
@@ -332,6 +394,19 @@ Module Program
         result.Tables.Add(information)
         result.Tables.Add(counters)
         result.ReadXml(FixturePath("valid", "blank.xml"), XmlReadMode.IgnoreSchema)
+        Return result
+    End Function
+
+    Private Function CreateProductionCatalogueSchema() As DataSet
+        Dim result As New DataSet("Catalogue")
+        Dim globalsType As Type = GetType(frmMain).Assembly.GetType("Compact_Cassette_Catalogue.varGlobals", True)
+        For Each fieldName As String In New String() {"information", "counters", "decks", "brands", "models", "tapes"}
+            Dim field As FieldInfo = globalsType.GetField(fieldName, BindingFlags.Public Or BindingFlags.NonPublic Or BindingFlags.Static)
+            If field Is Nothing Then
+                Throw New InvalidOperationException("Missing production table field: " & fieldName)
+            End If
+            result.Tables.Add(DirectCast(field.GetValue(Nothing), DataTable).Clone())
+        Next
         Return result
     End Function
 
