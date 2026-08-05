@@ -212,6 +212,12 @@ cursors. Numeric budgets are required inputs rather than premature product
 defaults. This remains a non-production shell until the complete graph and
 adapter evidence permit the one-time authority transition.
 
+The same contract defines ordinal typed entity keys, per-entity SHA-256 digest
+entries, a versioned aggregate-root encoding, immutable delta application, and
+full recomputation verification. Delta and full paths must yield identical
+`StateFingerprint` values; future measured tree/index optimizations may not
+change those bytes.
+
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,
 entity ordering, and included metadata. Per-entity digests and ordered aggregate

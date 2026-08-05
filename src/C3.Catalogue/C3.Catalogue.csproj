@@ -53,7 +53,12 @@
     <Compile Include="Canonical\CatalogueChangeSet.cs" />
     <Compile Include="Canonical\CatalogueDocument.cs" />
     <Compile Include="Canonical\CatalogueEntityCount.cs" />
+    <Compile Include="Canonical\CatalogueEntityKey.cs" />
     <Compile Include="Canonical\CatalogueEntityKind.cs" />
+    <Compile Include="Canonical\CatalogueFingerprintDelta.cs" />
+    <Compile Include="Canonical\CatalogueFingerprintEngine.cs" />
+    <Compile Include="Canonical\CatalogueFingerprintEntry.cs" />
+    <Compile Include="Canonical\CatalogueFingerprintIndex.cs" />
     <Compile Include="Canonical\CatalogueMutationIntent.cs" />
     <Compile Include="Canonical\CatalogueResourceBudget.cs" />
     <Compile Include="Canonical\CatalogueSnapshot.cs" />

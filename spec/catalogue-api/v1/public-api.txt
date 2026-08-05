@@ -4,6 +4,11 @@ ctor|C3.Catalogue.Brands.BrandService|C3.Catalogue.Brands.IBrandRepository repos
 ctor|C3.Catalogue.Canonical.CatalogueChangeSet|C3.Domain.Catalogues.ContentVersion versionBefore,C3.Domain.Catalogues.ContentVersion versionAfter,C3.Domain.Catalogues.StateFingerprint fingerprintBefore,C3.Domain.Catalogues.StateFingerprint fingerprintAfter,System.Collections.Generic.IEnumerable<C3.Domain.Commands.Change> changes
 ctor|C3.Catalogue.Canonical.CatalogueDocument|C3.Catalogue.Canonical.CatalogueSnapshot initialSnapshot,C3.Catalogue.Canonical.CatalogueResourceBudget budget
 ctor|C3.Catalogue.Canonical.CatalogueEntityCount|C3.Catalogue.Canonical.CatalogueEntityKind kind,System.Int32 count
+ctor|C3.Catalogue.Canonical.CatalogueEntityKey|C3.Catalogue.Canonical.CatalogueEntityKind kind,System.String entityId
+ctor|C3.Catalogue.Canonical.CatalogueFingerprintDelta|System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueFingerprintEntry> upserts,System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueEntityKey> removals
+ctor|C3.Catalogue.Canonical.CatalogueFingerprintEngine|
+ctor|C3.Catalogue.Canonical.CatalogueFingerprintEntry|C3.Catalogue.Canonical.CatalogueEntityKey key,System.String digest
+ctor|C3.Catalogue.Canonical.CatalogueFingerprintIndex|System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueFingerprintEntry> entries,C3.Domain.Catalogues.StateFingerprint root
 ctor|C3.Catalogue.Canonical.CatalogueMutationIntent|System.String operationCode,C3.Catalogue.Canonical.CatalogueEntityKind entityKind,System.String entityId
 ctor|C3.Catalogue.Canonical.CatalogueResourceBudget|System.Int32 maximumEntities,System.Int32 maximumTransactionOperations,System.Int32 maximumQueryDepth,System.Int32 maximumQueryTerms,System.Int32 maximumPageSize,System.Int32 maximumOpenSnapshots
 ctor|C3.Catalogue.Canonical.CatalogueSnapshot|C3.Domain.Catalogues.DocumentSessionId sessionId,C3.Domain.Catalogues.ContentVersion contentVersion,C3.Domain.Catalogues.StateFingerprint fingerprint,System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueEntityCount> entityCounts
@@ -104,6 +109,14 @@ method|C3.Catalogue.Brands.IBrandRepository|IsCodeInUse|instance|System.Boolean|
 method|C3.Catalogue.Brands.IBrandRepository|IsReferencedByModel|instance|System.Boolean|System.String code
 method|C3.Catalogue.Brands.IBrandRepository|Update|instance|System.Void|C3.Catalogue.Brands.Brand value
 method|C3.Catalogue.Canonical.CatalogueDocument|BeginTransaction|instance|C3.Catalogue.Canonical.CatalogueTransaction|C3.Domain.Catalogues.ContentVersion expectedVersion,System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueMutationIntent> intents
+method|C3.Catalogue.Canonical.CatalogueEntityKey|CompareTo|instance|System.Int32|C3.Catalogue.Canonical.CatalogueEntityKey other
+method|C3.Catalogue.Canonical.CatalogueEntityKey|Equals|instance|System.Boolean|C3.Catalogue.Canonical.CatalogueEntityKey other
+method|C3.Catalogue.Canonical.CatalogueEntityKey|Equals|instance|System.Boolean|System.Object other
+method|C3.Catalogue.Canonical.CatalogueEntityKey|GetHashCode|instance|System.Int32|
+method|C3.Catalogue.Canonical.CatalogueEntityKey|ToString|instance|System.String|
+method|C3.Catalogue.Canonical.CatalogueFingerprintEngine|ApplyDelta|instance|C3.Catalogue.Canonical.CatalogueFingerprintIndex|C3.Catalogue.Canonical.CatalogueFingerprintIndex current,C3.Catalogue.Canonical.CatalogueFingerprintDelta delta
+method|C3.Catalogue.Canonical.CatalogueFingerprintEngine|ComputeFull|instance|C3.Catalogue.Canonical.CatalogueFingerprintIndex|System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueFingerprintEntry> entries
+method|C3.Catalogue.Canonical.CatalogueFingerprintEngine|Verify|instance|System.Boolean|C3.Catalogue.Canonical.CatalogueFingerprintIndex expected,System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueFingerprintEntry> currentEntries
 method|C3.Catalogue.CassetteModels.CassetteModelOperationResult|Failed|static|C3.Catalogue.CassetteModels.CassetteModelOperationResult|C3.Catalogue.CassetteModels.CassetteModelFailure failure,System.String message
 method|C3.Catalogue.CassetteModels.CassetteModelOperationResult|Success|static|C3.Catalogue.CassetteModels.CassetteModelOperationResult|C3.Catalogue.CassetteModels.CassetteModel value
 method|C3.Catalogue.CassetteModels.CassetteModelService|Create|instance|C3.Catalogue.CassetteModels.CassetteModelOperationResult|C3.Catalogue.CassetteModels.CassetteModelDraft draft,System.DateTime addedAt
@@ -189,6 +202,14 @@ property|C3.Catalogue.Canonical.CatalogueDocument|Budget|C3.Catalogue.Canonical.
 property|C3.Catalogue.Canonical.CatalogueDocument|CurrentSnapshot|C3.Catalogue.Canonical.CatalogueSnapshot|get
 property|C3.Catalogue.Canonical.CatalogueEntityCount|Count|System.Int32|get
 property|C3.Catalogue.Canonical.CatalogueEntityCount|Kind|C3.Catalogue.Canonical.CatalogueEntityKind|get
+property|C3.Catalogue.Canonical.CatalogueEntityKey|EntityId|System.String|get
+property|C3.Catalogue.Canonical.CatalogueEntityKey|Kind|C3.Catalogue.Canonical.CatalogueEntityKind|get
+property|C3.Catalogue.Canonical.CatalogueFingerprintDelta|Removals|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Canonical.CatalogueEntityKey>|get
+property|C3.Catalogue.Canonical.CatalogueFingerprintDelta|Upserts|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Canonical.CatalogueFingerprintEntry>|get
+property|C3.Catalogue.Canonical.CatalogueFingerprintEntry|Digest|System.String|get
+property|C3.Catalogue.Canonical.CatalogueFingerprintEntry|Key|C3.Catalogue.Canonical.CatalogueEntityKey|get
+property|C3.Catalogue.Canonical.CatalogueFingerprintIndex|Entries|System.Collections.ObjectModel.ReadOnlyCollection<C3.Catalogue.Canonical.CatalogueFingerprintEntry>|get
+property|C3.Catalogue.Canonical.CatalogueFingerprintIndex|Root|C3.Domain.Catalogues.StateFingerprint|get
 property|C3.Catalogue.Canonical.CatalogueMutationIntent|EntityId|System.String|get
 property|C3.Catalogue.Canonical.CatalogueMutationIntent|EntityKind|C3.Catalogue.Canonical.CatalogueEntityKind|get
 property|C3.Catalogue.Canonical.CatalogueMutationIntent|OperationCode|System.String|get
@@ -451,7 +472,12 @@ type|C3.Catalogue.Brands.IBrandRepository|interface|abstract
 type|C3.Catalogue.Canonical.CatalogueChangeSet|class|sealed
 type|C3.Catalogue.Canonical.CatalogueDocument|class|sealed
 type|C3.Catalogue.Canonical.CatalogueEntityCount|class|sealed
+type|C3.Catalogue.Canonical.CatalogueEntityKey|class|sealed
 type|C3.Catalogue.Canonical.CatalogueEntityKind|enum|sealed
+type|C3.Catalogue.Canonical.CatalogueFingerprintDelta|class|sealed
+type|C3.Catalogue.Canonical.CatalogueFingerprintEngine|class|sealed
+type|C3.Catalogue.Canonical.CatalogueFingerprintEntry|class|sealed
+type|C3.Catalogue.Canonical.CatalogueFingerprintIndex|class|sealed
 type|C3.Catalogue.Canonical.CatalogueMutationIntent|class|sealed
 type|C3.Catalogue.Canonical.CatalogueResourceBudget|class|sealed
 type|C3.Catalogue.Canonical.CatalogueSnapshot|class|sealed

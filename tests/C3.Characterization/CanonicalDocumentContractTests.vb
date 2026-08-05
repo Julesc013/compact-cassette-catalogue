@@ -140,6 +140,34 @@ Friend Module CanonicalDocumentContractTests
             "fingerprint advance")
     End Sub
 
+    Friend Sub FingerprintRootsAreDeterministicIncrementalAndVerifiable()
+        Dim engine As New CatalogueFingerprintEngine()
+        Dim brandKey As New CatalogueEntityKey(
+            CatalogueEntityKind.Brand,
+            "11111111111111111111111111111111")
+        Dim tapeKey As New CatalogueEntityKey(
+            CatalogueEntityKind.Tape,
+            "22222222222222222222222222222222")
+        Dim brandV1 As New CatalogueFingerprintEntry(brandKey, New String("a"c, 64))
+        Dim brandV2 As New CatalogueFingerprintEntry(brandKey, New String("b"c, 64))
+        Dim tape As New CatalogueFingerprintEntry(tapeKey, New String("c"c, 64))
+
+        Dim first As CatalogueFingerprintIndex = engine.ComputeFull({tape, brandV1})
+        Dim reordered As CatalogueFingerprintIndex = engine.ComputeFull({brandV1, tape})
+        Dim changed As CatalogueFingerprintIndex = engine.ApplyDelta(
+            first,
+            New CatalogueFingerprintDelta(
+                {brandV2},
+                New CatalogueEntityKey() {}))
+        Dim recomputed As CatalogueFingerprintIndex = engine.ComputeFull({brandV2, tape})
+
+        AssertEqual(first.Root, reordered.Root, "order-independent root")
+        AssertEqual(recomputed.Root, changed.Root, "delta/full root parity")
+        AssertEqual(True, engine.Verify(changed, {tape, brandV2}), "full verification")
+        AssertEqual(False, engine.Verify(changed, {tape, brandV1}), "tamper detection")
+        AssertEqual(New String("a"c, 64), first.Entries(0).Digest, "source index immutable")
+    End Sub
+
     Private Function Fingerprint(character As Char) As StateFingerprint
         Return StateFingerprint.Sha256V1(New String(character, 64))
     End Function

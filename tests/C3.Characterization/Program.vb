@@ -82,6 +82,9 @@ Module Program
             "canonical change sets advance version and fingerprint",
             AddressOf CanonicalDocumentContractTests.CanonicalChangeSetsAdvanceVersionAndFingerprint)
         RunTest(
+            "canonical fingerprints are deterministic incremental and verifiable",
+            AddressOf CanonicalDocumentContractTests.FingerprintRootsAreDeterministicIncrementalAndVerifiable)
+        RunTest(
             "workspace owns explicit document and interaction state",
             AddressOf WorkspaceControllerTests.WorkspaceOwnsExplicitInteractionState)
         RunTest(

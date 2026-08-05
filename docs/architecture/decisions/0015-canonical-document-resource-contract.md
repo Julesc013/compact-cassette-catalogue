@@ -31,6 +31,14 @@ The initial contract introduces:
 - a supplied `CatalogueResourceBudget` for entity, transaction, query, page,
   and snapshot ceilings.
 
+Fingerprint state uses sorted typed entity keys and SHA-256 entity digests. The
+aggregate root hashes a versioned, UTF-8, ordinal entry stream. The engine
+supports immutable delta application and independent full recomputation; both
+paths must produce the same scheme-bound `StateFingerprint`. This reference
+implementation favors obvious verifiability. A measured tree/index
+implementation may later reduce aggregate-update cost without changing the
+root contract.
+
 The contract deliberately supplies no universal numeric defaults. Alpha 12 must
 choose supported/recommended/stress values from measured hosts; callers cannot
 mistake a defensive schema ceiling for a performance promise.
@@ -57,7 +65,8 @@ creating a second production behavior owner.
 - Snapshot and query results always name their semantic state.
 - Cursor tokens cannot be reused across document versions.
 - Presentation and CLI code need not invent pagination or staleness policy.
-- Fingerprint computation remains a later independently tested algorithm.
+- Per-entity fingerprint production remains with feature projections; aggregate
+  root computation, delta application, and full verification are deterministic.
 - Snapshot lease enforcement and transaction commit remain later work; their
   resource concepts are fixed here.
 

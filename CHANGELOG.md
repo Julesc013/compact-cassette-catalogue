@@ -27,6 +27,9 @@
 - Added the first canonical document resource contract with version-bound
   snapshots and transactions, semantic change sets, bounded typed queries,
   stable cursors, immutable projections, and caller-supplied resource budgets.
+- Added deterministic per-entity fingerprint indexes, immutable delta
+  application, and full aggregate-root verification under a versioned ordinal
+  SHA-256 contract.
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.
