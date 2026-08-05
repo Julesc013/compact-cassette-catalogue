@@ -10,6 +10,8 @@ Module Program
         RunTest("startup migration is guarded and retryable", AddressOf StartupMigrationIsGuardedAndRetryable)
         RunTest("known historical update policies have explicit normalization", AddressOf HistoricalUpdatePoliciesAreNormalized)
         RunTest("migration leaves message and directory preferences intact", AddressOf MigrationPreservesUnrelatedPreferences)
+        RunTest("console export resolves a safe configured path", AddressOf ConsoleExportResolvesSafePath)
+        RunTest("diagnostic and update failure paths are nonfatal", AddressOf DiagnosticFailuresAreNonfatal)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} settings characterization test(s) failed.", _failures)
@@ -83,6 +85,41 @@ Module Program
         AssertDoesNotContain(source, "My.Settings.showMessages =", "showMessages migration assignment")
         AssertDoesNotContain(source, "My.Settings.lastUpdateCheck =", "lastUpdateCheck migration assignment")
         AssertContains(source, "normaliseMigratedDirectory(My.Settings.defaultDirectory)", "directory sentinel normalization")
+    End Sub
+
+    Private Sub ConsoleExportResolvesSafePath()
+        Dim mainSource As String = File.ReadAllText(RepositoryPath("Compact Cassette Catalogue", "frmMain.vb"))
+        Dim globalSource As String = File.ReadAllText(RepositoryPath("Compact Cassette Catalogue", "varGlobals.vb"))
+
+        AssertContains(globalSource,
+            "Function resolveConsoleOutputDirectory(configuredDirectory As String) As String",
+            "console output directory resolver")
+        AssertContains(globalSource, "Directory.Exists(configuredDirectory)", "configured directory validation")
+        AssertContains(globalSource,
+            "My.Computer.FileSystem.SpecialDirectories.MyDocuments",
+            "Documents fallback")
+        AssertContains(mainSource,
+            "resolveConsoleOutputDirectory(My.Settings.defaultDirectory)",
+            "configured export directory")
+        AssertContains(mainSource,
+            "Path.Combine(outputDirectory, outputName)",
+            "path-safe export filename")
+        AssertDoesNotContain(mainSource, "fileDirectory & outputName", "catalogue-relative export path")
+    End Sub
+
+    Private Sub DiagnosticFailuresAreNonfatal()
+        Dim mainSource As String = File.ReadAllText(RepositoryPath("Compact Cassette Catalogue", "frmMain.vb"))
+        Dim globalSource As String = File.ReadAllText(RepositoryPath("Compact Cassette Catalogue", "varGlobals.vb"))
+        Dim consoleSource As String = File.ReadAllText(RepositoryPath("Compact Cassette Catalogue", "frmConsole.vb"))
+
+        AssertContains(globalSource, "Sub showNonfatalMessage(", "nonfatal message helper")
+        AssertContains(globalSource, "Function showNonfatalQuestion(", "nonfatal question helper")
+        AssertContains(globalSource, "Debug.WriteLine", "headless diagnostic fallback")
+        AssertContains(globalSource, "showNonfatalMessage(", "browser failure notice")
+        AssertContains(mainSource, "showNonfatalQuestion(boxMessage, boxTitle)", "update-check failure question")
+        AssertContains(mainSource, "Failed to output console to log file.", "console write failure")
+        AssertContains(mainSource, "showNonfatalMessage(message & messageDetails", "nonfatal console result notice")
+        AssertContains(consoleSource, "CStr(folderpath)", "reported configured directory")
     End Sub
 
     Private Function ReadFixtureValue(version As String, settingName As String) As String
