@@ -69,6 +69,7 @@ if ($IdentityProjectionOnly) {
     -VerifyBuildOutputs:(-not $SkipBuildOutputs)
 & (Join-Path $PSScriptRoot 'test-package-evidence-set.ps1')
 & (Join-Path $PSScriptRoot 'test-alpha3-tag-message.ps1')
+& (Join-Path $PSScriptRoot 'test-alpha3-external-evidence.ps1')
 & (Join-Path $PSScriptRoot 'test-source-reproducibility.ps1') -SelfTest
 & (Join-Path $PSScriptRoot 'test-target-tooling-ps2.ps1')
 

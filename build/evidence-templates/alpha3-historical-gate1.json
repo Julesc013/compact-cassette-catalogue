@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "baselineTag": "v1.2.0b1",
+  "baselineSourceCommit": "2413e9139a098f3321385f2f946e743012a447f5",
+  "runtimeKitSha256": "74f059a7029ac44cc38bfae503a6ede43b2a28552e138dd8f734b9c0dde39338",
+  "v112Sha256": "50183c989956f85364dd1cda55a1397209a646b58f7df6cda0604540e3382f9e",
+  "v120b1X86Sha256": "205ba251175d5a6fa20a3ace6127a00e5d10d73ad30581032c8f09b20ceb7222",
+  "v120b1X64Sha256": "257ec9d0ea86f268d8328d71041e63eb379fc1809c91593db29d883359db747c",
+  "privateCatalogueEvidenceFile": null,
+  "privateCatalogueSetSha256": null,
+  "controlResourceEvidenceFile": null,
+  "controlResourceEvidenceSha256": null,
+  "workflows": [
+    { "runtimeId": "v1.1.2", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "runtimeId": "v1.2.0b1-x86-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "runtimeId": "v1.2.0b1-x64-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null }
+  ],
+  "catalogueExchange": [
+    { "producer": "v1.1.2", "reader": "v1.1.2", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.1.2", "reader": "v1.2.0b1-x86-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.1.2", "reader": "v1.2.0b1-x64-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.2.0b1-x86-net40", "reader": "v1.1.2", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.2.0b1-x86-net40", "reader": "v1.2.0b1-x86-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.2.0b1-x86-net40", "reader": "v1.2.0b1-x64-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.2.0b1-x64-net40", "reader": "v1.1.2", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.2.0b1-x64-net40", "reader": "v1.2.0b1-x86-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "producer": "v1.2.0b1-x64-net40", "reader": "v1.2.0b1-x64-net40", "result": "template", "evidenceFile": null, "evidenceSha256": null }
+  ],
+  "recordedAtUtc": null
+}

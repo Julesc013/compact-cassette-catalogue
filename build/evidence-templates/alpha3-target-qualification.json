@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "releaseLabel": "1.3.0a3",
+  "packageSource": null,
+  "toolchainLockSha256": null,
+  "runtime": [
+    { "lane": "win-x86-net40", "environmentId": "xp-sp3-x86-net40", "packageName": "C3-v1.3.0a3-win-x86-net40-portable.zip", "packageSha256": null, "entryManifestSha256": null, "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "lane": "win-x64-net48", "environmentId": "windows-7-sp1-x64-net48", "packageName": "C3-v1.3.0a3-win-x64-net48-portable.zip", "packageSha256": null, "entryManifestSha256": null, "result": "template", "evidenceFile": null, "evidenceSha256": null },
+    { "lane": "win-arm64-net481", "environmentId": "windows-11-21h2-arm64-net481", "packageName": "C3-v1.3.0a3-win-arm64-net481-portable.zip", "packageSha256": null, "entryManifestSha256": null, "result": "template", "evidenceFile": null, "evidenceSha256": null }
+  ],
+  "setup": [
+    { "lane": "win-x86-net40", "environmentId": "xp-sp3-x86-net40", "packageName": "C3-v1.3.0a3-win-x86-net40-setup.zip", "packageSha256": null, "entryManifestSha256": null, "result": "template", "evidenceFile": null, "evidenceSha256": null, "scenarios": ["cancel-no-mutation", "clean-install", "same-byte-reinstall", "repair", "same-lane-upgrade", "downgrade-rejection", "lane-change-rejection", "injected-rollback", "running-c3-refusal", "altered-owned-state-refusal", "ownership-only-uninstall", "repeated-uninstall", "locked-self-cleanup", "unknown-user-data-preservation", "keyboard-screen-reader", "dpi-high-contrast"] },
+    { "lane": "win-x64-net48", "environmentId": "windows-7-sp1-x64-net48", "packageName": "C3-v1.3.0a3-win-x64-net48-setup.zip", "packageSha256": null, "entryManifestSha256": null, "result": "template", "evidenceFile": null, "evidenceSha256": null, "scenarios": ["cancel-no-mutation", "clean-install", "same-byte-reinstall", "repair", "same-lane-upgrade", "downgrade-rejection", "lane-change-rejection", "injected-rollback", "running-c3-refusal", "altered-owned-state-refusal", "ownership-only-uninstall", "repeated-uninstall", "locked-self-cleanup", "unknown-user-data-preservation", "keyboard-screen-reader", "dpi-high-contrast"] },
+    { "lane": "win-arm64-net481", "environmentId": "windows-11-21h2-arm64-net481", "packageName": "C3-v1.3.0a3-win-arm64-net481-setup.zip", "packageSha256": null, "entryManifestSha256": null, "result": "template", "evidenceFile": null, "evidenceSha256": null, "scenarios": ["cancel-no-mutation", "clean-install", "same-byte-reinstall", "repair", "same-lane-upgrade", "downgrade-rejection", "lane-change-rejection", "injected-rollback", "running-c3-refusal", "altered-owned-state-refusal", "ownership-only-uninstall", "repeated-uninstall", "locked-self-cleanup", "unknown-user-data-preservation", "keyboard-screen-reader", "dpi-high-contrast"] }
+  ],
+  "recordedAtUtc": null
+}
