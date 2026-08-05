@@ -10,6 +10,7 @@ Public Class frmMain
     Private _allowClose As Boolean
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ConfigureAccessibility()
         Try
             _bundle = C3Setup.SetupBundleRuntime.Load(AppDomain.CurrentDomain.BaseDirectory,
                                                        System.Windows.Forms.Application.ExecutablePath)
@@ -111,6 +112,7 @@ Public Class frmMain
 
     Private Sub SetStatus(message As String, progress As Integer)
         lblStatusProcess.Text = message
+        lblStatusProcess.AccessibleDescription = message
         lblStatusProcess.Update()
         barInstallProgress.Value = progress
         barInstallProgress.Update()
@@ -140,11 +142,43 @@ Public Class frmMain
         btnInstall.Enabled = _pageIndex = 2 AndAlso Not _operationInProgress
         btnCancel.Enabled = Not _operationInProgress
 
+        If _pageIndex = 2 Then
+            Me.AcceptButton = btnInstall
+        ElseIf _pageIndex < 2 Then
+            Me.AcceptButton = btnNext
+        Else
+            Me.AcceptButton = Nothing
+        End If
+
         If _pageIndex = 0 OrElse _pageIndex = 1 Then
             btnNext.Select()
         ElseIf _pageIndex = 2 Then
             btnInstall.Select()
         End If
+    End Sub
+
+    Private Sub ConfigureAccessibility()
+        Me.AccessibleName = "Compact Cassette Catalogue Setup Wizard"
+        btnNext.Text = "&Next"
+        btnNext.AccessibleDescription = "Continue to the next setup page."
+        btnBack.Text = "&Back"
+        btnBack.AccessibleDescription = "Return to the previous setup page."
+        btnCancel.Text = "&Cancel"
+        btnCancel.AccessibleDescription = "Cancel setup without completing the installation."
+        btnInstall.Text = "&Install"
+        btnInstall.AccessibleDescription = "Install the verified offline Compact Cassette Catalogue payload."
+        lblDirectory.Text = "&Install Compact Cassette Catalogue to:"
+        txtDirectory.AccessibleName = "Installation directory"
+        txtDirectory.AccessibleDescription = "Absolute Program Files directory where C3 will be installed."
+        btnChangeDirectory.Text = "&Change..."
+        btnChangeDirectory.AccessibleName = "Change installation directory"
+        chkStartMenu.Text = "Create &Start Menu shortcut (required)"
+        chkStartMenu.AccessibleDescription = "The all-users Start Menu shortcut is required by this setup."
+        chkDesktop.Text = "Create &Desktop shortcut"
+        chkDesktop.AccessibleDescription = "Optionally create an all-users desktop shortcut."
+        barInstallProgress.AccessibleName = "Installation progress"
+        barInstallProgress.AccessibleDescription = "Progress of the current verified setup transaction."
+        lblStatusProcess.AccessibleName = "Installation status"
     End Sub
 
 End Class

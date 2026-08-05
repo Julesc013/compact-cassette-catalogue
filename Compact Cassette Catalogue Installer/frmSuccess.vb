@@ -1,5 +1,16 @@
 Public Class frmSuccess
 
+    Private Sub frmSuccess_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.AccessibleName = "Compact Cassette Catalogue setup complete"
+        chkStartProgram.Text = "&Start Compact Cassette Catalogue after closing setup."
+        chkStartProgram.AccessibleDescription = "Start the newly installed C3 program when Finish is selected."
+        btnFinish.Text = "&Finish"
+        btnFinish.AccessibleDescription = "Close setup and optionally start C3."
+        btnBack.Visible = False
+        btnCancel.Visible = False
+        btnFinish.Select()
+    End Sub
+
     Private Sub btnFinish_Click(sender As Object, e As EventArgs) Handles btnFinish.Click
         If chkStartProgram.Checked Then
             Try

@@ -16,6 +16,7 @@ $ErrorActionPreference = 'Stop'
 & (Join-Path $PSScriptRoot 'validate-setup-manifests.ps1')
 & (Join-Path $PSScriptRoot 'validate-setup-offline.ps1')
 & (Join-Path $PSScriptRoot 'validate-setup-artwork.ps1')
+& (Join-Path $PSScriptRoot 'validate-setup-accessibility.ps1')
 & (Join-Path $PSScriptRoot 'test.ps1') -Configuration $Configuration
 if (-not $SkipBuildOutputs) {
     & (Join-Path $PSScriptRoot 'verify-builds.ps1') `

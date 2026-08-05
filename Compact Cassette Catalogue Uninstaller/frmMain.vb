@@ -6,6 +6,7 @@ Public Class frmMain
     Private _allowClose As Boolean
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ConfigureAccessibility()
         Try
             If String.IsNullOrWhiteSpace(uninstallStatePath) Then
                 Throw New C3Setup.SetupContractException("The relocated uninstaller has no authenticated installed-state path.")
@@ -37,6 +38,7 @@ Public Class frmMain
         pnlUninstall.Enabled = True
         btnUninstall.Enabled = False
         btnCancel.Enabled = False
+        Me.AcceptButton = Nothing
         barInstallProgress.Minimum = 0
         barInstallProgress.Maximum = 4
         barInstallProgress.Value = 0
@@ -81,6 +83,7 @@ Public Class frmMain
 
     Private Sub SetStatus(message As String, progress As Integer)
         lblStatusProcess.Text = message
+        lblStatusProcess.AccessibleDescription = message
         lblStatusProcess.Update()
         barInstallProgress.Value = progress
         barInstallProgress.Update()
@@ -91,6 +94,19 @@ Public Class frmMain
         _allowClose = True
         frmFailure.Show()
         Me.Close()
+    End Sub
+
+    Private Sub ConfigureAccessibility()
+        Me.AccessibleName = "Compact Cassette Catalogue Uninstaller"
+        btnUninstall.Text = "&Uninstall"
+        btnUninstall.AccessibleDescription = "Remove only files and system entries authenticated by installed ownership."
+        btnCancel.Text = "&Cancel"
+        btnCancel.AccessibleDescription = "Cancel without removing Compact Cassette Catalogue."
+        btnBack.Visible = False
+        barInstallProgress.AccessibleName = "Uninstallation progress"
+        barInstallProgress.AccessibleDescription = "Progress of the current reversible removal transaction."
+        lblStatusProcess.AccessibleName = "Uninstallation status"
+        Me.AcceptButton = btnUninstall
     End Sub
 
 End Class
