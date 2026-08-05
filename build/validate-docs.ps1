@@ -63,6 +63,8 @@ foreach ($relativePath in @(
         'build/test-alpha3-tag-message.ps1',
         'build/alpha3-external-evidence.ps1',
         'build/test-alpha3-external-evidence.ps1',
+        'build/alpha3-qualified-evidence.ps1',
+        'build/new-alpha3-qualified-record.ps1',
         'build/evidence-templates/alpha3-historical-gate1.json',
         'build/evidence-templates/alpha3-target-qualification.json',
         'build/verify-target-setup.ps1',

@@ -273,6 +273,10 @@ try {
         pathDistinct = ([string]$runs[0].path -cne [string]$runs[1].path)
         authoritativePackages = $authoritativeAssetMap
         authoritativeEntryEvidence = $authoritativeEntryMap
+        authoritativeSetupPackages = $authoritativeSetupAssetMap
+        authoritativeSetupEntryEvidence = $authoritativeSetupEntryMap
+        authoritativeDistribution = $authoritativeDistributionMap
+        authoritativeReleaseAssetEvidence = $authoritativeReleaseAssetEvidenceMap
         runs = @($runSummaries.ToArray())
         recordedAtUtc = [DateTime]::UtcNow.ToString('o')
     }
