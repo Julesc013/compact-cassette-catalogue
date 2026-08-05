@@ -25,9 +25,9 @@ foreach ($propertyName in $expectedReleaseIdentity.Keys) {
     }
 }
 $expected = @(
-    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; servicingPin = '15.9.81'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0a3-win-x86-net40-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; servicingPin = '17.14.37'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0a3-win-x64-net48-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; servicingPin = '18.8.2'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0a3-win-arm64-net481-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
+    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; servicingPin = '15.9.81'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0a3-win-x86-net40-portable.zip'; setupPackage = 'C3-v1.3.0a3-win-x86-net40-setup.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; servicingPin = '17.14.37'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0a3-win-x64-net48-portable.zip'; setupPackage = 'C3-v1.3.0a3-win-x64-net48-setup.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; servicingPin = '18.8.2'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0a3-win-arm64-net481-portable.zip'; setupPackage = 'C3-v1.3.0a3-win-arm64-net481-setup.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
 )
 $lanes = @($manifest.lanes)
 if ($lanes.Count -ne $expected.Count) {
@@ -48,6 +48,7 @@ for ($index = 0; $index -lt $expected.Count; $index++) {
             @('peMachine', [string]$actual.peMachine, $contract.machine),
             @('peOptionalHeader', [string]$actual.peOptionalHeader, $contract.header),
             @('packageName', [string]$actual.packageName, $contract.package),
+            @('setupPackageName', [string]$actual.setupPackageName, $contract.setupPackage),
             @('status', [string]$actual.status, 'required'))) {
         if ([string]$comparison[1] -cne [string]$comparison[2]) {
             throw "Lane $index $($comparison[0]) '$($comparison[1])' does not match '$($comparison[2])'."
