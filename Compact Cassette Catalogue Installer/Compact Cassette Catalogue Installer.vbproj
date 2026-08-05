@@ -183,6 +183,9 @@
     <Compile Include="..\SetupShared\SetupEnvironment.vb">
       <Link>Shared\SetupEnvironment.vb</Link>
     </Compile>
+    <Compile Include="..\SetupShared\SetupRegistry.vb">
+      <Link>Shared\SetupRegistry.vb</Link>
+    </Compile>
     <Compile Include="frmFailure.Designer.vb">
       <DependentUpon>frmFailure.vb</DependentUpon>
     </Compile>

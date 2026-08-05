@@ -37,6 +37,10 @@ Module Program
         RunTest("running application setup environment is rejected", AddressOf RunningApplicationIsRejected)
         RunTest("insufficient setup transaction space is rejected", AddressOf InsufficientSpaceIsRejected)
         RunTest("default install root uses operating-system Program Files", AddressOf DefaultRootUsesProgramFiles)
+        RunTest("registry registration uses lane-owned closed values", AddressOf RegistryRegistrationUsesClosedValues)
+        RunTest("unowned registry collision is rejected", AddressOf RegistryCollisionIsRejected)
+        RunTest("altered registry registration blocks removal", AddressOf AlteredRegistryBlocksRemoval)
+        RunTest("registry rollback restores prior owned values", AddressOf RegistryRollbackRestoresOwnedValues)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -351,6 +355,62 @@ Module Program
                                                   frameworkRelease, programFiles, applicationRunning, availableBytes)
     End Function
 
+    Private Sub RegistryRegistrationUsesClosedValues()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim state As C3Setup.InstalledState = CreateInstalledState(root, manifestPath)
+                        Dim access As New MemoryRegistryAccess()
+                        Dim prior As IDictionary(Of String, Object) = C3Setup.SetupRegistryRegistration.Apply(state, access)
+                        If prior IsNot Nothing Then Throw New Exception("Clean registration unexpectedly returned prior state.")
+                        Dim key As String = C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
+                        AssertEqual("Software\Microsoft\Windows\CurrentVersion\Uninstall\CompactCassetteCatalogue-1x-x86", key, "lane uninstall key")
+                        Dim values As IDictionary(Of String, Object) = access.ReadValues(key)
+                        AssertEqual("1.3.0a3", DirectCast(values("DisplayVersion"), String), "registered display version")
+                        If values.ContainsKey("QuietUninstallString") Then Throw New Exception("Untested quiet uninstall was registered.")
+                        C3Setup.SetupRegistryRegistration.Remove(state, access)
+                        If access.ReadValues(key) IsNot Nothing Then Throw New Exception("Owned registration survived removal.")
+                    End Sub)
+    End Sub
+
+    Private Sub RegistryCollisionIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim state As C3Setup.InstalledState = CreateInstalledState(root, manifestPath)
+                        Dim access As New MemoryRegistryAccess()
+                        Dim collision As New Dictionary(Of String, Object)(StringComparer.Ordinal)
+                        collision.Add("DisplayName", "Unrelated product")
+                        access.WriteValues(C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane), collision)
+                        AssertContractFailure(Sub() C3Setup.SetupRegistryRegistration.Apply(state, access))
+                        AssertEqual("Unrelated product", DirectCast(access.ReadValues(C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane))("DisplayName"), String), "unowned registry collision")
+                    End Sub)
+    End Sub
+
+    Private Sub AlteredRegistryBlocksRemoval()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim state As C3Setup.InstalledState = CreateInstalledState(root, manifestPath)
+                        Dim access As New MemoryRegistryAccess()
+                        C3Setup.SetupRegistryRegistration.Apply(state, access)
+                        Dim key As String = C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
+                        Dim altered As IDictionary(Of String, Object) = access.ReadValues(key)
+                        altered("UninstallString") = "unexpected.exe"
+                        access.WriteValues(key, altered)
+                        AssertContractFailure(Sub() C3Setup.SetupRegistryRegistration.Remove(state, access))
+                        If access.ReadValues(key) Is Nothing Then Throw New Exception("Altered registration was deleted.")
+                    End Sub)
+    End Sub
+
+    Private Sub RegistryRollbackRestoresOwnedValues()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim state As C3Setup.InstalledState = CreateInstalledState(root, manifestPath)
+                        Dim access As New MemoryRegistryAccess()
+                        Dim key As String = C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
+                        Dim prior As IDictionary(Of String, Object) = C3Setup.SetupRegistryRegistration.ExpectedValues(state)
+                        prior("DisplayVersion") = "prior-owned-version"
+                        access.WriteValues(key, prior)
+                        Dim snapshot As IDictionary(Of String, Object) = C3Setup.SetupRegistryRegistration.Apply(state, access)
+                        C3Setup.SetupRegistryRegistration.Restore(state, snapshot, access)
+                        AssertEqual("prior-owned-version", DirectCast(access.ReadValues(key)("DisplayVersion"), String), "restored registry value")
+                    End Sub)
+    End Sub
+
     Private Sub WithPayload(action As Action(Of String, String))
         Dim root As String = Path.Combine(Path.GetTempPath(), "C3SetupTests-" & Guid.NewGuid().ToString("N"))
         Dim payload As String = Path.Combine(root, "payload")
@@ -406,5 +466,24 @@ Module Program
                                               actual))
         End If
     End Sub
+
+    Private NotInheritable Class MemoryRegistryAccess
+        Implements C3Setup.ISetupRegistryAccess
+
+        Private ReadOnly _keys As New Dictionary(Of String, IDictionary(Of String, Object))(StringComparer.Ordinal)
+
+        Public Function ReadValues(keyPath As String) As IDictionary(Of String, Object) Implements C3Setup.ISetupRegistryAccess.ReadValues
+            If Not _keys.ContainsKey(keyPath) Then Return Nothing
+            Return New Dictionary(Of String, Object)(_keys(keyPath), StringComparer.Ordinal)
+        End Function
+
+        Public Sub WriteValues(keyPath As String, values As IDictionary(Of String, Object)) Implements C3Setup.ISetupRegistryAccess.WriteValues
+            _keys(keyPath) = New Dictionary(Of String, Object)(values, StringComparer.Ordinal)
+        End Sub
+
+        Public Sub DeleteKey(keyPath As String) Implements C3Setup.ISetupRegistryAccess.DeleteKey
+            _keys.Remove(keyPath)
+        End Sub
+    End Class
 
 End Module

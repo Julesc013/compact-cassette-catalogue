@@ -63,6 +63,9 @@
     <Compile Include="..\..\SetupShared\SetupEnvironment.vb">
       <Link>Shared\SetupEnvironment.vb</Link>
     </Compile>
+    <Compile Include="..\..\SetupShared\SetupRegistry.vb">
+      <Link>Shared\SetupRegistry.vb</Link>
+    </Compile>
     <Compile Include="Program.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

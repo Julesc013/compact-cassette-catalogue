@@ -55,7 +55,7 @@ Namespace Global.C3Setup
     Public NotInheritable Class InstalledStateCodec
 
         Public Const FileName As String = "C3.installed.xml"
-        Public Const UninstallKey As String = "Software\Microsoft\Windows\CurrentVersion\Uninstall\Compact Cassette Catalogue"
+        Private Const UninstallKeyPrefix As String = "Software\Microsoft\Windows\CurrentVersion\Uninstall\CompactCassetteCatalogue-1x-"
 
         Private Sub New()
         End Sub
@@ -107,7 +107,7 @@ Namespace Global.C3Setup
                 writer.WriteStartElement("Registry")
                 writer.WriteAttributeString("hive", "HKLM")
                 writer.WriteAttributeString("view", "native")
-                writer.WriteAttributeString("uninstallKey", UninstallKey)
+                writer.WriteAttributeString("uninstallKey", UninstallKeyForLane(state.Manifest.Lane))
                 writer.WriteEndElement()
 
                 writer.WriteStartElement("Shortcuts")
@@ -211,7 +211,7 @@ Namespace Global.C3Setup
             RequireAttributes(registry, New String() {"hive", "uninstallKey", "view"})
             RequireEmpty(registry)
             If registry.GetAttribute("hive") <> "HKLM" OrElse registry.GetAttribute("view") <> "native" OrElse
-                    registry.GetAttribute("uninstallKey") <> UninstallKey Then
+                    registry.GetAttribute("uninstallKey") <> UninstallKeyForLane(RequiredValue(product, "lane")) Then
                 Throw New SetupContractException("Installed-state registry ownership is invalid.")
             End If
 
@@ -248,6 +248,19 @@ Namespace Global.C3Setup
             If Not Regex.IsMatch(state.PayloadManifestSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) OrElse
                     Not Regex.IsMatch(state.SetupBundleSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) Then Throw New SetupContractException("Installed-state hashes are invalid.")
         End Sub
+
+        Public Shared Function UninstallKeyForLane(lane As String) As String
+            Select Case lane
+                Case "win-x86-net40"
+                    Return UninstallKeyPrefix & "x86"
+                Case "win-x64-net48"
+                    Return UninstallKeyPrefix & "x64"
+                Case "win-arm64-net481"
+                    Return UninstallKeyPrefix & "arm64"
+                Case Else
+                    Throw New SetupContractException("Installed state has no governed uninstall key for its lane.")
+            End Select
+        End Function
 
         Private Shared Function ElementChildren(parent As XmlElement) As IList(Of XmlElement)
             Dim result As New List(Of XmlElement)()
