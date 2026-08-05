@@ -23,6 +23,10 @@ subject to their focused gates.
   failures.
 - Added native architecture, framework, elevation, running-process, Program
   Files, and rollback-space preflight shared by setup and uninstall.
+- Added closed architecture-specific uninstall registration with collision,
+  exact-ownership, removal, and rollback checks.
+- Added transactional common Start Menu and optional desktop shortcut ownership
+  with altered-link refusal and faulted-removal restoration.
 - Required preservation of catalogues, settings, unknown files, and unowned
   content.
 - Added the S0–S3 defect ledger and static, differential, randomized, XML,
