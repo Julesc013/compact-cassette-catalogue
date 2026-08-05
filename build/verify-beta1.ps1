@@ -58,6 +58,7 @@ if ($VerifyIdentityTransition) {
 & (Join-Path $PSScriptRoot 'test-beta1-assets.ps1')
 & (Join-Path $PSScriptRoot 'test-beta1-verdict.ps1')
 & (Join-Path $PSScriptRoot 'test-beta1-tag-message.ps1')
+& (Join-Path $PSScriptRoot 'test-beta1-topology.ps1')
 
 if (-not $SkipBuildOutputs) {
     if ([string]::IsNullOrWhiteSpace($CandidateRoot) -or [string]::IsNullOrWhiteSpace($ToolchainLockPath)) {
@@ -73,4 +74,3 @@ if (-not $SkipBuildOutputs) {
 }
 
 Write-Host 'C3 1.3.0 Beta 1 source/Candidate controls passed; this does not itself authorize a tag, ledger movement, or publication.'
-

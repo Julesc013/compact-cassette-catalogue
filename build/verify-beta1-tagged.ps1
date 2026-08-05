@@ -11,6 +11,7 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'beta1-verdict.ps1')
 . (Join-Path $PSScriptRoot 'beta1-contract.ps1')
 . (Join-Path $PSScriptRoot 'beta1-publication.ps1')
+. (Join-Path $PSScriptRoot 'beta1-topology.ps1')
 
 function Get-C3RemoteSha {
     param([string]$Remote, [string]$Ref)
@@ -42,6 +43,8 @@ $evidenceChanges = @(& git -C $repositoryRoot diff --name-only $verdict.sourceCo
 $expectedEvidenceChanges = @('release/validation/1.3.0-beta.1-verdict.json', 'release/validation/1.3.0-beta.1-verdict.md')
 if ((($evidenceChanges | Sort-Object) -join "`n") -cne (($expectedEvidenceChanges | Sort-Object) -join "`n")) { throw 'E-beta must change exactly the machine and human Beta verdict records.' }
 if ((@(Get-Content -LiteralPath (Join-Path $repositoryRoot 'VERSION')) -join "`n") -cne (@('1.2.0', 'Release', '14/05/2026') -join "`n")) { throw 'Public VERSION feed changed during Beta.' }
+Assert-C3Beta1CommitTopology -RepositoryRoot $repositoryRoot -SourceCommit ([string]$verdict.sourceCommit) `
+    -EvidenceCommit $evidenceCommit -PostTagCommit $(if ($TagState -ceq 'PostTag') { $headCommit } else { $null })
 if (@(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all).Count -ne 0) { throw "$TagState Beta verification requires a clean tree." }
 
 $legacyCheckpoint = 'c4115b82ea43fdd763685d862a08fe5c61db6dff'
