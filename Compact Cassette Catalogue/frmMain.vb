@@ -145,7 +145,13 @@ Public Class frmMain
 
             InjectSaveFault(faultStage, "reopen")
             Dim version As String = GetCatalogueVersion(snapshot)
-            LoadCatalogueSnapshot(temporaryPath, snapshot, New String() {version})
+            If String.IsNullOrWhiteSpace(version) Then
+                Throw New InvalidDataException("Catalogue snapshot is missing a supported file version.")
+            End If
+            Dim reopened As DataSet = LoadCatalogueSnapshot(temporaryPath, snapshot, New String() {version})
+            If Not String.Equals(snapshot.GetXml(), reopened.GetXml(), StringComparison.Ordinal) Then
+                Throw New InvalidDataException("Catalogue did not round-trip exactly when the temporary save was reopened.")
+            End If
 
             InjectSaveFault(faultStage, "cleanup")
             InjectSaveFault(faultStage, "backup")
