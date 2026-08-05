@@ -92,7 +92,44 @@
         Dim heads As Integer = cmbHeads.SelectedIndex + 1
         Dim wells As Integer = cmbWells.SelectedIndex + 1
 
-        decks.Rows.Add(New Object() {manufacturer, model, name, numYear.Value, condition, type1, type2, type3, type4, chkHX.Checked, chkMPX.Checked, chkDolbyB.Checked, chkDolbyC.Checked, chkDolbyS.Checked, chkDBX1.Checked, chkDBX2.Checked, chkStereo.Checked, chkSearch.Checked, chkReverse.Checked, chkCalibration.Checked, chkAzimuth.Checked, chkDubbingHalf.Checked, chkDubbingDouble.Checked, numFrequencyMin.Value, frequencyMax, numSignalRatio.Value, cmbSignalRatioNR.Text, numWowFlutter.Value, numDistortion.Value, heads, wells, speedSlow, speedNormal, speedFast, DateTime.Now, txtNotes.Text})
+        Dim deckRow As DataRow = decks.NewRow()
+        deckRow("Manufacturer") = manufacturer
+        deckRow("Model") = model
+        deckRow("Name") = name
+        deckRow("Year") = numYear.Value
+        deckRow("Condition") = condition
+        deckRow("Type1") = type1
+        deckRow("Type2") = type2
+        deckRow("Type3") = type3
+        deckRow("Type4") = type4
+        deckRow("HX") = chkHX.Checked
+        deckRow("MPX") = chkMPX.Checked
+        deckRow("DolbyB") = chkDolbyB.Checked
+        deckRow("DolbyC") = chkDolbyC.Checked
+        deckRow("DolbyS") = chkDolbyS.Checked
+        deckRow("DBX1") = chkDBX1.Checked
+        deckRow("DBX2") = chkDBX2.Checked
+        deckRow("Stereo") = chkStereo.Checked
+        deckRow("ProgramSearch") = chkSearch.Checked
+        deckRow("Reverse") = chkReverse.Checked
+        deckRow("Calibration") = chkCalibration.Checked
+        deckRow("Azimuth") = chkAzimuth.Checked
+        deckRow("DubbingSlow") = chkDubbingHalf.Checked
+        deckRow("DubbingFast") = chkDubbingDouble.Checked
+        deckRow("FrequencyLow") = numFrequencyMin.Value
+        deckRow("FrequencyHigh") = frequencyMax
+        deckRow("SignalRatio") = numSignalRatio.Value
+        deckRow("SignalRatioNR") = cmbSignalRatioNR.Text
+        deckRow("WowFlutter") = numWowFlutter.Value
+        deckRow("Distortion") = numDistortion.Value
+        deckRow("Heads") = heads
+        deckRow("Wells") = wells
+        deckRow("SpeedSlow") = speedSlow
+        deckRow("SpeedNorm") = speedNormal
+        deckRow("SpeedFast") = speedFast
+        deckRow("Date") = DateTime.Now
+        deckRow("Notes") = txtNotes.Text
+        decks.Rows.Add(deckRow)
 
         'Update deck counter
         SynchronizeEntityCounters(counters, decks, brands, models, tapes)

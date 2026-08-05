@@ -4,6 +4,7 @@
 
         'Load brands into combination box
         Dim brandCount As Integer = brands.Rows.Count
+        cmbBrand.Items.Clear()
 
         For i As Integer = 0 To brandCount - 1
 
@@ -22,13 +23,10 @@
 
         Dim modelCount As Integer = models.Rows.Count
 
-        'Find the code for the selected brand
         Dim brand As String = cmbBrand.Text
-        Dim brandRow As DataRow = brands.Select("Brand='" & brand & "'")(0)
-        Dim brandCode As String = CStr(brandRow("Code"))
-
         Dim type As Integer = cmbType.SelectedIndex + 1
-        Dim identifier As String = brandCode & CStr(type) & code
+        Dim brandRow As DataRow = Nothing
+        Dim identifier As String = Nothing
 
         'Check entered data is correct
         Try
@@ -41,6 +39,19 @@
             If cmbType.Text = Nothing Then
                 Throw New Exception("Must select a type.")
             End If
+
+            For Each candidate As DataRow In brands.Rows
+                If String.Equals(CStr(candidate("Brand")), brand, StringComparison.Ordinal) Then
+                    brandRow = candidate
+                    Exit For
+                End If
+            Next
+            If brandRow Is Nothing Then
+                Throw New Exception("The selected brand no longer exists.")
+            End If
+
+            Dim brandCode As String = CStr(brandRow("Code"))
+            identifier = brandCode & CStr(type) & code
 
             If model = Nothing Then ''Or Not regexAlphanumeric.IsMatch(model) Then
                 'If nothing or not alphanumeric
@@ -63,6 +74,11 @@
                     Throw New Exception("Code must be unique." & vbNewLine & thisIdentifier & " already exists.")
                 End If
 
+                If String.Equals(CStr(row("Brand")), brand, StringComparison.OrdinalIgnoreCase) AndAlso
+                        String.Equals(CStr(row("Model")), model, StringComparison.OrdinalIgnoreCase) Then
+                    Throw New Exception("Model display name must be unique within its brand.")
+                End If
+
             Next
 
         Catch ex As Exception
@@ -73,7 +89,17 @@
         ''Find next index and save data to record
         ''Dim thisIndex As Integer = CInt(counters.Rows(2)("Number")) '2 = Models row
 
-        models.Rows.Add(New Object() {brand, type, model, code, identifier, txtName.Text, 0, DateTime.Now, txtNotes.Text})
+        Dim modelRow As DataRow = models.NewRow()
+        modelRow("Brand") = brand
+        modelRow("Type") = type
+        modelRow("Model") = model
+        modelRow("Code") = code
+        modelRow("Identifier") = identifier
+        modelRow("Name") = txtName.Text
+        modelRow("Number") = 0
+        modelRow("Date") = DateTime.Now
+        modelRow("Notes") = txtNotes.Text
+        models.Rows.Add(modelRow)
 
         'Update model counter
         SynchronizeEntityCounters(counters, decks, brands, models, tapes)

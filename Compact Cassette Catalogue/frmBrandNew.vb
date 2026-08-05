@@ -5,7 +5,7 @@
         Dim brand As String = txtBrand.Text
         Dim code As String = txtCode.Text.ToUpper
 
-        Dim brandCount As Integer = CInt(counters.Rows(1)("Number"))
+        Dim brandCount As Integer = brands.Rows.Count
 
         'Check entered data is correct
         Try
@@ -29,6 +29,10 @@
                     Throw New Exception("Code must be unique." & vbNewLine & code & " already exists.")
                 End If
 
+                If String.Equals(CStr(row("Brand")), brand, StringComparison.OrdinalIgnoreCase) Then
+                    Throw New Exception("Brand name must be unique." & vbNewLine & brand & " already exists.")
+                End If
+
             Next
 
         Catch ex As Exception
@@ -39,10 +43,16 @@
         ''Find next index and save data to record
         ''Dim thisIndex As Integer = CInt(counters.Rows(1)("Number")) '1 = Brands row
 
-        brands.Rows.Add(New Object() {brand, code, DateTime.Now, txtNotes.Text})
+        Dim brandRow As DataRow = brands.NewRow()
+        brandRow("Brand") = brand
+        brandRow("Code") = code
+        brandRow("Date") = DateTime.Now
+        brandRow("Notes") = txtNotes.Text
+        brands.Rows.Add(brandRow)
 
         'Update brand counter
-        counters.Rows(1)("Number") = brandCount + 1
+        SynchronizeEntityCounters(counters, decks, brands, models, tapes)
+        brandCount = brands.Rows.Count
 
         changes = True
         'Update title bar
