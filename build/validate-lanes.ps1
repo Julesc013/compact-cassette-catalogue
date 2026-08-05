@@ -57,6 +57,16 @@ for ($index = 0; $index -lt $expected.Count; $index++) {
     if (-not (Test-Path -LiteralPath $appConfig -PathType Leaf)) {
         throw "$($actual.id) AppConfig is missing: $appConfig"
     }
+    $setupAppConfig = Join-Path $repositoryRoot ([string]$actual.setupAppConfig)
+    if (-not (Test-Path -LiteralPath $setupAppConfig -PathType Leaf)) {
+        throw "$($actual.id) setup AppConfig is missing: $setupAppConfig"
+    }
+    [xml]$setupConfiguration = Get-Content -LiteralPath $setupAppConfig -Raw
+    $runtime = $setupConfiguration.configuration.startup.supportedRuntime
+    if ([string]$runtime.version -cne 'v4.0' -or
+            [string]$runtime.sku -cne ".NETFramework,Version=$($contract.framework)") {
+        throw "$($actual.id) setup AppConfig does not project its exact framework contract."
+    }
 }
 
 $runtimeLanes = @(& (Join-Path $PSScriptRoot 'get-runtime-lanes.ps1'))
