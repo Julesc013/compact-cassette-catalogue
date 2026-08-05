@@ -21,6 +21,8 @@ subject to their focused gates.
 - Added ownership-manifest-driven removal that refuses modified owned files,
   preserves unknown content, and restores installed state after injected
   failures.
+- Added native architecture, framework, elevation, running-process, Program
+  Files, and rollback-space preflight shared by setup and uninstall.
 - Required preservation of catalogues, settings, unknown files, and unowned
   content.
 - Added the S0–S3 defect ledger and static, differential, randomized, XML,
