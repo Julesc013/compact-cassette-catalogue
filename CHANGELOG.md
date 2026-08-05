@@ -9,6 +9,10 @@
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.
+- Added nominal document-session and durable-catalogue identities, monotonic
+  content versions, scheme-bound semantic fingerprints, explicit entity-ID
+  durability, and a disk-revision primitive without changing the active
+  catalogue mutation path.
 - Re-baselined the post-Alpha-5 programme around whole-document canonical
   convergence before Application and frontend multiplication, with independent
   Alpha 6-12 qualification boundaries for catalogue semantics, document

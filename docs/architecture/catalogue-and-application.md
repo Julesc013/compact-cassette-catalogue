@@ -181,6 +181,12 @@ These concepts are separate and must not be collapsed into a dirty Boolean:
 logical equality. Entity projections also declare whether identity is durable,
 session-scoped, or an imported alias.
 
+The first foundation slice implements the nominal session/catalogue IDs,
+monotonic content-version value, scheme-bound fingerprint value, opaque disk
+revision, and entity-ID durability classification in `C3.Domain`. Fingerprint
+calculation, destination leases, history positions, and the complete document
+owner remain later dependency-ordered work.
+
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,
 entity ordering, and included metadata. Per-entity digests and ordered aggregate

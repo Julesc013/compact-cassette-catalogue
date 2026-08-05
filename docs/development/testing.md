@@ -35,7 +35,7 @@ types resolve without locking the real outputs before the later rebuild gate.
 The Infrastructure baseline was the independent 312-signature API oracle for its
 Alpha 3 language-only migration and remains an ongoing compatibility alarm. The
 candidate was promoted atomically, Alpha 4 deliberately extended the reviewed
-surface to 470 signatures, and all 84 current characterization scenarios execute
+surface to 470 signatures, and all 88 current characterization scenarios execute
 the C# production graph. The temporary candidate harness has been removed.
 
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane

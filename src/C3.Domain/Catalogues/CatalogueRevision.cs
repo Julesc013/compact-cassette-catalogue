@@ -9,26 +9,20 @@ namespace C3.Domain.Catalogues
     /// </summary>
     public sealed class CatalogueRevision : IEquatable<CatalogueRevision>
     {
-        private readonly string token;
+        private readonly DiskRevision value;
 
         public CatalogueRevision(string token)
         {
-            if (string.IsNullOrWhiteSpace(token))
-            {
-                throw new ArgumentException(
-                    "A catalogue revision token is required.",
-                    nameof(token));
-            }
-
-            this.token = token;
+            value = new DiskRevision(token);
         }
 
-        public string Token => token;
+        public string Token => value.Token;
+
+        internal DiskRevision Value => value;
 
         public bool Equals(CatalogueRevision other)
         {
-            return other != null &&
-                string.Equals(token, other.token, StringComparison.Ordinal);
+            return other != null && value.Equals(other.value);
         }
 
         public override bool Equals(object value)
@@ -38,12 +32,12 @@ namespace C3.Domain.Catalogues
 
         public override int GetHashCode()
         {
-            return StringComparer.Ordinal.GetHashCode(token);
+            return value.GetHashCode();
         }
 
         public override string ToString()
         {
-            return token;
+            return value.ToString();
         }
     }
 }

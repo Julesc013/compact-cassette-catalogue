@@ -49,6 +49,18 @@ Module Program
             "command results separate changes from rejections",
             AddressOf DomainContractTests.CommandResultsSeparateChangesFromRejections)
         RunTest(
+            "document and catalogue identities are nominal and canonical",
+            AddressOf DocumentIdentityContractTests.SessionAndCatalogueIdentitiesAreNominalAndCanonical)
+        RunTest(
+            "content versions advance monotonically",
+            AddressOf DocumentIdentityContractTests.ContentVersionsAdvanceMonotonically)
+        RunTest(
+            "state fingerprints are scheme bound and strict",
+            AddressOf DocumentIdentityContractTests.StateFingerprintsAreSchemeBoundAndStrict)
+        RunTest(
+            "disk revisions remain opaque and case sensitive",
+            AddressOf DocumentIdentityContractTests.DiskRevisionsRemainOpaqueAndCaseSensitive)
+        RunTest(
             "workspace owns explicit document and interaction state",
             AddressOf WorkspaceControllerTests.WorkspaceOwnsExplicitInteractionState)
         RunTest(

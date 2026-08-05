@@ -42,6 +42,11 @@
     </Compile>
     <Compile Include="Catalogues\CatalogueRevision.cs" />
     <Compile Include="Catalogues\CatalogueSession.cs" />
+    <Compile Include="Catalogues\CatalogueId.cs" />
+    <Compile Include="Catalogues\ContentVersion.cs" />
+    <Compile Include="Catalogues\DiskRevision.cs" />
+    <Compile Include="Catalogues\DocumentSessionId.cs" />
+    <Compile Include="Catalogues\StateFingerprint.cs" />
     <Compile Include="Commands\Change.cs" />
     <Compile Include="Commands\ChangeSet.cs" />
     <Compile Include="Commands\CommandContext.cs" />
@@ -49,7 +54,9 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Identity\DeterministicEntityIdGenerator.cs" />
     <Compile Include="Identity\DeterministicEntityId.cs" />
+    <Compile Include="Identity\CanonicalGuidText.cs" />
     <Compile Include="Identity\EntityId.cs" />
+    <Compile Include="Identity\EntityIdentityDurability.cs" />
     <Compile Include="Identity\IEntityIdGenerator.cs" />
     <Compile Include="Identity\RandomEntityIdGenerator.cs" />
     <Compile Include="Time\UtcTimestamp.cs" />
