@@ -168,6 +168,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SetupShared\SetupContracts.vb">
+      <Link>Shared\SetupContracts.vb</Link>
+    </Compile>
     <Compile Include="frmFailure.Designer.vb">
       <DependentUpon>frmFailure.vb</DependentUpon>
     </Compile>
