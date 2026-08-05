@@ -27,6 +27,11 @@ subject to their focused gates.
   exact-ownership, removal, and rollback checks.
 - Added transactional common Start Menu and optional desktop shortcut ownership
   with altered-link refusal and faulted-removal restoration.
+- Composed payload files, installed state, registry, and shortcuts into one
+  atomic clean-install/repair operation with cross-surface rollback.
+- Composed manifest discovery, quarantine, exact system-state removal, unknown
+  file preservation, and fault restoration into one reversible uninstall
+  operation.
 - Required preservation of catalogues, settings, unknown files, and unowned
   content.
 - Added the S0–S3 defect ledger and static, differential, randomized, XML,
