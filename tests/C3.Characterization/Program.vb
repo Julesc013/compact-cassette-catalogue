@@ -120,20 +120,19 @@ Module Program
     End Sub
 
     Private Sub CatalogueTransitionsRequireCompletedSave()
-        AssertEqual(False, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, True, frmMain.DocumentChoice.Cancel, False), "catalogue cancel")
-        AssertEqual(False, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, True, frmMain.DocumentChoice.Save, False), "failed catalogue save")
-        AssertEqual(True, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, True, frmMain.DocumentChoice.Save, True), "completed catalogue save")
+        AssertEqual(False, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, False, True, frmMain.DocumentChoice.Cancel, False), "catalogue cancel")
+        AssertEqual(False, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, False, True, frmMain.DocumentChoice.Save, False), "failed catalogue save")
+        AssertEqual(True, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, False, True, frmMain.DocumentChoice.Save, True), "completed catalogue save")
     End Sub
 
     Private Sub RepeatedCleanCloseRemainsNonrecursive()
         For iteration As Integer = 1 To 1000
-            AssertEqual(True, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, False, frmMain.DocumentChoice.Discard, True), "clean close " & iteration.ToString(CultureInfo.InvariantCulture))
+            AssertEqual(True, frmMain.TransitionCanContinue(False, frmMain.EditChoice.Discard, False, False, frmMain.DocumentChoice.Discard, True), "clean close " & iteration.ToString(CultureInfo.InvariantCulture))
         Next
     End Sub
 
     Private Sub FailedTemporaryLoadPreservesActiveCatalogue()
-        Dim active As New DataSet("Catalogue")
-        active.ReadXml(FixturePath("valid", "populated.xml"), XmlReadMode.InferSchema)
+        Dim active As DataSet = CreateBlankCatalogue()
         Dim before As String = active.GetXml()
         Dim invalidPath As String = TemporaryPath("truncated.xml")
         File.WriteAllText(invalidPath, "<Catalogue><Information>")
@@ -146,8 +145,7 @@ Module Program
     End Sub
 
     Private Sub BoundedLoaderRejectsHostileAndOversizedXml()
-        Dim schema As New DataSet("Catalogue")
-        schema.ReadXml(FixturePath("valid", "blank.xml"), XmlReadMode.InferSchema)
+        Dim schema As DataSet = CreateBlankCatalogue()
         AssertThrowsAny(Sub() frmMain.LoadCatalogueSnapshot(FixturePath("security", "external-entity.xml"), schema, New String() {"1.1.0"}), "external entity through production loader")
 
         Dim oversizedPath As String = TemporaryPath("oversized.xml")
@@ -162,8 +160,7 @@ Module Program
     End Sub
 
     Private Sub TransactionalSavePreservesDestinationOnFaults()
-        Dim active As New DataSet("Catalogue")
-        active.ReadXml(FixturePath("valid", "populated.xml"), XmlReadMode.InferSchema)
+        Dim active As DataSet = CreateBlankCatalogue()
         Dim workingDirectory As String = TemporaryDirectory()
         Try
             Dim destination As String = Path.Combine(workingDirectory, "catalogue.xml")
@@ -181,8 +178,7 @@ Module Program
     End Sub
 
     Private Sub TransactionalSaveReopensAndRetainsBackup()
-        Dim active As New DataSet("Catalogue")
-        active.ReadXml(FixturePath("valid", "populated.xml"), XmlReadMode.InferSchema)
+        Dim active As DataSet = CreateBlankCatalogue()
         Dim workingDirectory As String = TemporaryDirectory()
         Try
             Dim destination As String = Path.Combine(workingDirectory, "catalogue.xml")
@@ -191,7 +187,7 @@ Module Program
             AssertEqual(True, revision.Length > 0, "saved revision")
             AssertEqual("old catalogue", File.ReadAllText(destination & ".bak"), "backup bytes")
             Dim reopened As DataSet = frmMain.LoadCatalogueSnapshot(destination, active, New String() {"1.1.0"})
-            AssertEqual(active.Tables("Tapes").Rows.Count, reopened.Tables("Tapes").Rows.Count, "reopened tape count")
+            AssertEqual(active.Tables("Information").Rows.Count, reopened.Tables("Information").Rows.Count, "reopened information count")
         Finally
             Directory.Delete(workingDirectory, True)
         End Try
@@ -310,6 +306,22 @@ Module Program
         Dim temporaryDirectoryPath As String = Path.Combine(Path.GetTempPath(), "c3-characterization-" & Guid.NewGuid().ToString("N"))
         Directory.CreateDirectory(temporaryDirectoryPath)
         Return temporaryDirectoryPath
+    End Function
+
+    Private Function CreateBlankCatalogue() As DataSet
+        Dim result As New DataSet("Catalogue")
+        Dim information As New DataTable("Information")
+        information.Columns.Add("Information", GetType(String))
+        information.Columns.Add("Value", GetType(String))
+        information.PrimaryKey = New DataColumn() {information.Columns("Information")}
+        Dim counters As New DataTable("Counters")
+        counters.Columns.Add("Counter", GetType(String))
+        counters.Columns.Add("Number", GetType(Integer))
+        counters.PrimaryKey = New DataColumn() {counters.Columns("Counter")}
+        result.Tables.Add(information)
+        result.Tables.Add(counters)
+        result.ReadXml(FixturePath("valid", "blank.xml"), XmlReadMode.IgnoreSchema)
+        Return result
     End Function
 
     Private Function TemporaryPath(fileName As String) As String
