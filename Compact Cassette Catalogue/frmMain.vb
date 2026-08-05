@@ -569,6 +569,7 @@ Public Class frmMain
             'If no decks, catch don't crash
 
             cmbDeckA.Items.Clear()
+            cmbDeckB.Items.Clear()
 
             For i As Integer = 0 To deckCount - 1
                 Dim row As DataRow = decks.Rows(i)
@@ -618,7 +619,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub updateTape()
+    Private Function updateTape() As Boolean
 
         If updates = True Then
 
@@ -690,50 +691,50 @@ Public Class frmMain
                 'Get values for recorded sides
 
                 'A side values
-                Dim peakA As Integer = Nothing
-                Dim biasCalA As Integer = Nothing
+                Dim peakA As Object = DBNull.Value
+                Dim biasCalA As Object = DBNull.Value
 
-                Dim nameA As String = Nothing
-                Dim recordedA As Date = Nothing
-                Dim deckA As String = Nothing
-                Dim inputA As String = Nothing
-                Dim speedA As String = Nothing
+                Dim nameA As Object = DBNull.Value
+                Dim recordedA As Object = DBNull.Value
+                Dim deckA As Object = DBNull.Value
+                Dim inputA As Object = DBNull.Value
+                Dim speedA As Object = DBNull.Value
 
-                Dim NRA As String = Nothing
-                Dim HXA As Boolean = Nothing
-                Dim MPXA As Boolean = Nothing
-                Dim dubbedA As Boolean = Nothing
+                Dim NRA As Object = DBNull.Value
+                Dim HXA As Object = DBNull.Value
+                Dim MPXA As Object = DBNull.Value
+                Dim dubbedA As Object = DBNull.Value
 
-                Dim EQA As String = Nothing
-                Dim levelA As Decimal = Nothing
-                Dim levelCalA As Decimal = Nothing
+                Dim EQA As Object = DBNull.Value
+                Dim levelA As Object = DBNull.Value
+                Dim levelCalA As Object = DBNull.Value
 
-                Dim contentsA As String = Nothing
-                Dim artistA As String = Nothing
-                Dim titleA As String = Nothing
+                Dim contentsA As Object = DBNull.Value
+                Dim artistA As Object = DBNull.Value
+                Dim titleA As Object = DBNull.Value
 
                 'B side values
-                Dim peakB As Integer = Nothing
-                Dim biasCalB As Integer = Nothing
+                Dim peakB As Object = DBNull.Value
+                Dim biasCalB As Object = DBNull.Value
 
-                Dim nameB As String = Nothing
-                Dim recordedB As Date = Nothing
-                Dim deckB As String = Nothing
-                Dim inputB As String = Nothing
-                Dim speedB As String = Nothing
+                Dim nameB As Object = DBNull.Value
+                Dim recordedB As Object = DBNull.Value
+                Dim deckB As Object = DBNull.Value
+                Dim inputB As Object = DBNull.Value
+                Dim speedB As Object = DBNull.Value
 
-                Dim NRB As String = Nothing
-                Dim HXB As Boolean = Nothing
-                Dim MPXB As Boolean = Nothing
-                Dim dubbedB As Boolean = Nothing
+                Dim NRB As Object = DBNull.Value
+                Dim HXB As Object = DBNull.Value
+                Dim MPXB As Object = DBNull.Value
+                Dim dubbedB As Object = DBNull.Value
 
-                Dim EQB As String = Nothing
-                Dim levelB As Decimal = Nothing
-                Dim levelCalB As Decimal = Nothing
+                Dim EQB As Object = DBNull.Value
+                Dim levelB As Object = DBNull.Value
+                Dim levelCalB As Object = DBNull.Value
 
-                Dim contentsB As String = Nothing
-                Dim artistB As String = Nothing
-                Dim titleB As String = Nothing
+                Dim contentsB As Object = DBNull.Value
+                Dim artistB As Object = DBNull.Value
+                Dim titleB As Object = DBNull.Value
 
                 'Only save real values if that side has been marked as recorded
                 If packaged = False Then
@@ -744,6 +745,7 @@ Public Class frmMain
                         recordedA = datRecordedA.Value
                         deckA = cmbDeckA.Text
                         inputA = cmbInputA.Text
+                        peakA = CInt(numPeakA.Value)
                         speedA = cmbSpeedA.Text
 
                         NRA = cmbNRA.Text
@@ -752,6 +754,7 @@ Public Class frmMain
                         dubbedA = chkDubbedA.Checked
 
                         EQA = cmbEQA.Text
+                        biasCalA = CInt(numBiasCalA.Value)
                         levelA = numLevelA.Value
                         levelCalA = numLevelCalA.Value
 
@@ -767,6 +770,7 @@ Public Class frmMain
                         recordedB = datRecordedB.Value
                         deckB = cmbDeckB.Text
                         inputB = cmbInputB.Text
+                        peakB = CInt(numPeakB.Value)
                         speedB = cmbSpeedB.Text
 
                         NRB = cmbNRB.Text
@@ -775,6 +779,7 @@ Public Class frmMain
                         dubbedB = chkDubbedB.Checked
 
                         EQB = cmbEQB.Text
+                        biasCalB = CInt(numBiasCalB.Value)
                         levelB = numLevelB.Value
                         levelCalB = numLevelCalB.Value
 
@@ -789,17 +794,25 @@ Public Class frmMain
 
                 'Write data to record
 
-                Dim thisTape As Object() = {modelCode, year, length, cmbRegion.Text, Number, identifier, identifierShort, condition, packaged, tapedA, tapedB, nameA, recordedA, deckA, inputA, peakA, NRA, HXA, MPXA, dubbedA, speedA, biasCodeA, biasCalA, EQA, levelA, levelCalA, contentsA, artistA, titleA, nameB, recordedB, deckB, inputB, peakB, NRB, HXB, MPXB, dubbedB, speedB, biasCodeB, biasCalB, EQB, levelB, levelCalB, contentsB, artistB, titleB, DateTime.Now, txtNotes.Text} 'The data to be written for this tape entry
-
-                'Write new data to existing row
-                Dim counter As Integer = 0
-
-                For Each thisObject As Object In thisTape
-
-                    tapes.Rows(thisTapeIndex)(counter) = thisObject
-                    counter += 1
-
-                Next
+                Dim tapeValues As New Dictionary(Of String, Object) From {
+                    {"Model", modelCode}, {"Year", year}, {"Length", length},
+                    {"Region", cmbRegion.Text}, {"Identifier", identifier},
+                    {"Condition", condition}, {"Packaged", packaged},
+                    {"TapedA", tapedA}, {"TapedB", tapedB},
+                    {"NameA", nameA}, {"RecordedA", recordedA}, {"DeckA", deckA},
+                    {"InputA", inputA}, {"PeakA", peakA}, {"NRA", NRA},
+                    {"HXA", HXA}, {"MPXA", MPXA}, {"DubbedA", dubbedA},
+                    {"SpeedA", speedA}, {"BiasA", biasCodeA}, {"BiasCalA", biasCalA},
+                    {"EQA", EQA}, {"LevelA", levelA}, {"LevelCalA", levelCalA},
+                    {"ContentsA", contentsA}, {"ArtistA", artistA}, {"TitleA", titleA},
+                    {"NameB", nameB}, {"RecordedB", recordedB}, {"DeckB", deckB},
+                    {"InputB", inputB}, {"PeakB", peakB}, {"NRB", NRB},
+                    {"HXB", HXB}, {"MPXB", MPXB}, {"DubbedB", dubbedB},
+                    {"SpeedB", speedB}, {"BiasB", biasCodeB}, {"BiasCalB", biasCalB},
+                    {"EQB", EQB}, {"LevelB", levelB}, {"LevelCalB", levelCalB},
+                    {"ContentsB", contentsB}, {"ArtistB", artistB}, {"TitleB", titleB},
+                    {"Notes", txtNotes.Text}}
+                AssignTapeValues(tape, tapeValues)
 
                 updates = False
                 changes = True
@@ -818,10 +831,12 @@ Public Class frmMain
                 End If
                 consoleAdd(message)
 
+                Return True
+
 
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Cannot Save Incomplete Tape")
-                Exit Sub
+                Return False
 
             End Try
 
@@ -836,7 +851,9 @@ Public Class frmMain
 
         End If
 
-    End Sub
+        Return True
+
+    End Function
 
     Public Sub deleteTape(subTapeIndex As Integer, ignoreWarning As Boolean)
 
