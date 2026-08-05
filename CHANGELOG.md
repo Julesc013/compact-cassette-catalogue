@@ -21,6 +21,9 @@
   partial historical dates so absence, unknown, not-applicable, known zero,
   estimated, inferred, and date precision cannot collapse into legacy scalar
   sentinels during whole-document convergence.
+- Separated logical catalogue validation from profile capability and
+  representability results, including explicit normalization, information-loss,
+  and unsupported classifications for direct-save and export decisions.
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.

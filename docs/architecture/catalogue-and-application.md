@@ -173,6 +173,14 @@ archival text remains distinct from derived comparison keys, and material
 normalization/inference carries bounded provenance. Profile adapters report any
 representation loss rather than weakening the logical model.
 
+[ADR 0014](decisions/0014-profile-capability-and-representability.md) makes the
+three questions executable. Logical `ValidationResult`, published
+`CatalogueProfileCapabilities`, and purpose-bound `RepresentabilityResult` are
+separate contracts. Normalization, information loss, and unsupported content
+remain distinct; an unsupported result can never authorize a destination write.
+The frozen native-v2 capability projection intentionally does not claim the
+qualified-value or partial-date semantics that require a successor profile.
+
 ## Document and content identities
 
 These concepts are separate and must not be collapsed into a dirty Boolean:

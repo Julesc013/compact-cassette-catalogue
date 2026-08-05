@@ -76,6 +76,7 @@
     <Compile Include="DomainContractTests.vb" />
     <Compile Include="DocumentIdentityContractTests.vb" />
     <Compile Include="SemanticValueContractTests.vb" />
+    <Compile Include="ProfileRepresentabilityContractTests.vb" />
     <Compile Include="NativeCatalogueContractTests.vb" />
     <Compile Include="PreferenceFormatContractTests.vb" />
     <Compile Include="LegacySettingsProfileLocatorTests.vb" />

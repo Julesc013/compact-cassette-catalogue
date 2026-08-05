@@ -59,6 +59,13 @@
     <Compile Include="Identity\EntityIdentityDurability.cs" />
     <Compile Include="Identity\IEntityIdGenerator.cs" />
     <Compile Include="Identity\RandomEntityIdGenerator.cs" />
+    <Compile Include="Profiles\CatalogueProfileCapability.cs" />
+    <Compile Include="Profiles\CatalogueProfileCapabilities.cs" />
+    <Compile Include="Profiles\KnownCatalogueProfiles.cs" />
+    <Compile Include="Profiles\RepresentationEffect.cs" />
+    <Compile Include="Profiles\RepresentationIssue.cs" />
+    <Compile Include="Profiles\RepresentationPurpose.cs" />
+    <Compile Include="Profiles\RepresentabilityResult.cs" />
     <Compile Include="Time\UtcTimestamp.cs" />
     <Compile Include="Time\HistoricalDate.cs" />
     <Compile Include="Validation\ValidationIssue.cs" />

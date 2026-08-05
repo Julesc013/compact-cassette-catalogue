@@ -67,6 +67,12 @@ Module Program
             "historical dates preserve partial precision",
             AddressOf SemanticValueContractTests.HistoricalDatesPreservePartialPrecision)
         RunTest(
+            "logical validity profile capability and export loss stay separate",
+            AddressOf ProfileRepresentabilityContractTests.LogicalValidityProfileCapabilityAndExportLossStaySeparate)
+        RunTest(
+            "published profiles expose only proven capabilities",
+            AddressOf ProfileRepresentabilityContractTests.PublishedProfilesExposeOnlyProvenCapabilities)
+        RunTest(
             "workspace owns explicit document and interaction state",
             AddressOf WorkspaceControllerTests.WorkspaceOwnsExplicitInteractionState)
         RunTest(
