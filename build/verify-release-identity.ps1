@@ -10,6 +10,9 @@ param(
     [string]$ExpectedTag,
     [Parameter(Mandatory = $true)]
     [datetime]$ExpectedDate,
+    [ValidateSet('alpha', 'beta', 'stable')]
+    [string]$ExpectedChannel = 'alpha',
+    [string]$ExpectedPublicationStatus = 'retained-unpublished',
     [string]$ExpectedCatalogueFormat = '1.1.0',
     [string]$ExpectedFeedVersion = '1.2.0',
     [string]$ExpectedFeedStage = 'Release',
@@ -58,8 +61,8 @@ foreach ($manifestAssertion in @(
         @('releaseStage', [string]$manifest.releaseStage, $ExpectedStage),
         @('releaseLabel', [string]$manifest.releaseLabel, $ExpectedReleaseLabel),
         @('releaseTag', [string]$manifest.releaseTag, $ExpectedTag),
-        @('releaseChannel', [string]$manifest.releaseChannel, 'alpha'),
-        @('publicationStatus', [string]$manifest.publicationStatus, 'retained-unpublished'),
+        @('releaseChannel', [string]$manifest.releaseChannel, $ExpectedChannel),
+        @('publicationStatus', [string]$manifest.publicationStatus, $ExpectedPublicationStatus),
         @('assemblyVersion', [string]$manifest.assemblyVersion, $numericVersion),
         @('fileVersion', [string]$manifest.fileVersion, $numericVersion),
         @('assemblyProductVersion', [string]$manifest.assemblyProductVersion, $ExpectedReleaseLabel))) {

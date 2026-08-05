@@ -83,4 +83,4 @@ $recordPath = Join-Path $EvidenceDirectory 'release-assets.json'
 [IO.File]::WriteAllText($recordPath, (($releaseRecord | ConvertTo-Json -Depth 8) + "`n"), $utf8)
 $recordHash = (Get-FileHash -LiteralPath $recordPath -Algorithm SHA256).Hash.ToLowerInvariant()
 [IO.File]::WriteAllText((Join-Path $EvidenceDirectory 'RELEASE_ASSETS_SHA256.txt'), "$recordHash  release-assets.json`n", $utf8)
-Write-Host "Assembled the exact six-archive Alpha 3 asset set and checksum manifest: $OutputDirectory"
+Write-Host "Assembled the exact six-archive $($manifest.releaseLabel) asset set and checksum manifest: $OutputDirectory"

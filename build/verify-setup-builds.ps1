@@ -96,9 +96,10 @@ foreach ($lane in @($manifest.lanes)) {
         $framework = ".NETFramework,Version=$($lane.targetFramework)"
         if (-not $binaryText.Contains($framework)) { throw "$($lane.id) $projectId lacks TargetFrameworkAttribute '$framework'." }
         $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($executable)
-        if ([Reflection.AssemblyName]::GetAssemblyName($executable).Version.ToString() -cne '1.3.0.0' -or
-                [string]$version.FileVersion -cne '1.3.0.0' -or [string]$version.ProductVersion -cne '1.3.0a3') {
-            throw "$($lane.id) $projectId Alpha 3 version metadata is incorrect."
+        if ([Reflection.AssemblyName]::GetAssemblyName($executable).Version.ToString() -cne [string]$manifest.assemblyVersion -or
+                [string]$version.FileVersion -cne [string]$manifest.fileVersion -or
+                [string]$version.ProductVersion -cne [string]$manifest.assemblyProductVersion) {
+            throw "$($lane.id) $projectId $($manifest.releaseLabel) version metadata is incorrect."
         }
         [xml]$configDocument = Get-Content -LiteralPath $config -Raw
         if ([string]$configDocument.configuration.startup.supportedRuntime.version -cne 'v4.0' -or
@@ -111,4 +112,4 @@ foreach ($lane in @($manifest.lanes)) {
     }
 }
 
-Write-Host 'All six Alpha 3 setup executables passed closed PE/framework/config/evidence verification.'
+Write-Host "All six $($manifest.releaseLabel) setup executables passed closed PE/framework/config/evidence verification."

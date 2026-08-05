@@ -137,8 +137,9 @@ foreach ($buildLane in $lanes) {
         $unexpected = @(Get-ChildItem -LiteralPath $outputPath -File | Where-Object { $_.FullName -notin @($executable, $config) })
         if ($unexpected.Count -ne 0) { throw "$($buildLane.id) $($project.id) emitted an unexpected runtime file: $($unexpected.Name -join ', ')" }
         $version = (Get-Item -LiteralPath $executable).VersionInfo
-        if ([string]$version.FileVersion -cne '1.3.0.0' -or [string]$version.ProductVersion -cne '1.3.0a3') {
-            throw "$($buildLane.id) $($project.id) has incorrect Alpha 3 binary version metadata."
+        if ([string]$version.FileVersion -cne [string]$manifest.fileVersion -or
+                [string]$version.ProductVersion -cne [string]$manifest.assemblyProductVersion) {
+            throw "$($buildLane.id) $($project.id) has incorrect $($manifest.releaseLabel) binary version metadata."
         }
         $outputs.Add([ordered]@{
                 id = [string]$project.id

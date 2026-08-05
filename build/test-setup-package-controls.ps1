@@ -35,8 +35,9 @@ function Rewrite-SetupPackage {
                 if ($Mutation -ceq 'append') { $bytes = [byte[]]($bytes + [byte]0x21) }
                 elseif ($Mutation -ceq 'identity') {
                     $text = [Text.Encoding]::UTF8.GetString($bytes)
-                    if (-not $text.Contains('stage="Alpha 3"')) { throw 'Synthetic payload identity target was not found.' }
-                    $bytes = [Text.Encoding]::UTF8.GetBytes($text.Replace('stage="Alpha 3"', 'stage="Alpha 4"'))
+                    $expectedStage = 'stage="' + [string]$manifest.releaseStage + '"'
+                    if (-not $text.Contains($expectedStage)) { throw 'Synthetic payload identity target was not found.' }
+                    $bytes = [Text.Encoding]::UTF8.GetBytes($text.Replace($expectedStage, 'stage="Invalid Stage"'))
                 }
             }
             $records.Add([PSCustomObject]@{ name = $entry.FullName; bytes = $bytes; timestamp = $entry.LastWriteTime })
