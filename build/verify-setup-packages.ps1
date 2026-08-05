@@ -121,7 +121,10 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
 
         $xmlEntry = $archive.GetEntry('payload.xml')
         $reader = New-Object IO.StreamReader($xmlEntry.Open(), (New-Object Text.UTF8Encoding($false)), $true)
-        try { [xml]$payloadDocument = $reader.ReadToEnd() }
+        try {
+            $payloadXmlText = $reader.ReadToEnd()
+            [xml]$payloadDocument = $payloadXmlText
+        }
         finally { $reader.Dispose() }
         $root = $payloadDocument.DocumentElement
         $product = $root.Product
@@ -141,6 +144,23 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
                     [string]$fileNode.sha256 -cne (Get-EntrySha256 -Entry $payloadEntry)) {
                 throw "$($lane.id) payload.xml does not authenticate '$($payloadNames[$fileIndex])'."
             }
+        }
+        $escape = { param([string]$value) [Security.SecurityElement]::Escape($value) }
+        $expectedXml = New-Object Collections.Generic.List[String]
+        $expectedXml.Add('<?xml version="1.0" encoding="utf-8"?>')
+        $expectedXml.Add('<C3SetupPayload schemaVersion="1">')
+        $expectedXml.Add(('  <Product version="{0}" stage="{1}" label="{2}" lane="{3}" architecture="{4}" framework="{5}" sourceCommit="{6}" />' -f `
+                    (& $escape ([string]$manifest.releaseVersion)), (& $escape ([string]$manifest.releaseStage)), (& $escape ([string]$manifest.releaseLabel)),
+                    (& $escape ([string]$lane.id)), (& $escape ([string]$lane.platformTarget)), (& $escape ([string]$lane.targetFramework)), [string]$entryManifest.sourceCommit))
+        $expectedXml.Add('  <Files>')
+        foreach ($payloadName in $payloadNames) {
+            $payloadEntry = $archive.GetEntry("payload/$payloadName")
+            $expectedXml.Add(('    <File path="{0}" size="{1}" sha256="{2}" />' -f (& $escape $payloadName), $payloadEntry.Length, (Get-EntrySha256 -Entry $payloadEntry)))
+        }
+        $expectedXml.Add('  </Files>')
+        $expectedXml.Add('</C3SetupPayload>')
+        if ($payloadXmlText -cne (($expectedXml -join "`n") + "`n")) {
+            throw "$($lane.id) payload.xml is not the exact canonical manifest byte projection."
         }
     }
     finally { $portableArchive.Dispose(); $archive.Dispose() }
