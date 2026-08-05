@@ -83,6 +83,43 @@ Namespace Global.C3Setup
             End Try
         End Function
 
+        Public Shared Sub ValidateTransition(previousState As InstalledState,
+                                             state As InstalledState,
+                                             access As ISetupRegistryAccess)
+            RequireArguments(state, access)
+            If previousState IsNot Nothing AndAlso previousState.Manifest.Lane <> state.Manifest.Lane Then
+                Throw New SetupContractException("Registry transition cannot change the owned lane.")
+            End If
+            Dim keyPath As String = InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
+            Dim actual As IDictionary(Of String, Object) = access.ReadValues(keyPath)
+            If previousState Is Nothing Then
+                If actual IsNot Nothing Then Throw New SetupContractException("Setup refuses to adopt an existing uninstall key.")
+            Else
+                RequireExactValues(actual, ExpectedValues(previousState))
+            End If
+        End Sub
+
+        Public Shared Function ApplyTransition(previousState As InstalledState,
+                                               state As InstalledState,
+                                               access As ISetupRegistryAccess) As IDictionary(Of String, Object)
+            ValidateTransition(previousState, state, access)
+            Dim keyPath As String = InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
+            Dim previous As IDictionary(Of String, Object) = access.ReadValues(keyPath)
+            Dim expected As IDictionary(Of String, Object) = ExpectedValues(state)
+            Try
+                access.WriteValues(keyPath, expected)
+                RequireExactValues(access.ReadValues(keyPath), expected)
+                Return CloneValues(previous)
+            Catch
+                If previous Is Nothing Then
+                    access.DeleteKey(keyPath)
+                Else
+                    access.WriteValues(keyPath, previous)
+                End If
+                Throw
+            End Try
+        End Function
+
         Public Shared Sub Restore(state As InstalledState,
                                   previous As IDictionary(Of String, Object),
                                   access As ISetupRegistryAccess)

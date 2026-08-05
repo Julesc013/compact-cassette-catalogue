@@ -56,6 +56,8 @@ Module Program
         RunTest("faulted shortcut removal restores owned links", AddressOf FaultedShortcutRemovalRestoresLinks)
         RunTest("coordinated clean install commits files registry and shortcuts", AddressOf CoordinatedInstallCommitsAllSurfaces)
         RunTest("faulted coordinated install rolls back every surface", AddressOf FaultedCoordinatedInstallRollsBack)
+        RunTest("coordinated install rejects registry collision before mutation", AddressOf CoordinatedRegistryCollisionIsRejectedBeforeMutation)
+        RunTest("coordinated install rejects shortcut collision before mutation", AddressOf CoordinatedShortcutCollisionIsRejectedBeforeMutation)
         RunTest("coordinated repair changes owned shortcut selection", AddressOf CoordinatedRepairChangesShortcutSelection)
         RunTest("post-integration fault rolls back every surface", AddressOf PostIntegrationFaultRollsBack)
         RunTest("coordinated uninstall removes only owned surfaces", AddressOf CoordinatedUninstallRemovesOwnedSurfaces)
@@ -849,6 +851,45 @@ Module Program
                         File.WriteAllText(manifestPath, File.ReadAllText(manifestPath).Replace("label=""1.3.0a3""", "label=""1.3.0"""))
                         AssertContractFailure(Sub() C3Setup.SetupBundleRuntime.Load(root, setupPath))
                     End Sub)
+    End Sub
+
+    Private Sub CoordinatedRegistryCollisionIsRejectedBeforeMutation()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim collision As New Dictionary(Of String, Object)(StringComparer.Ordinal)
+                        collision.Add("DisplayName", "Unrelated product")
+                        registry.WriteValues(C3Setup.InstalledStateCodec.UninstallKeyForLane("win-x86-net40"), collision)
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        AssertContractFailure(Sub() ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing))
+                        AssertInstallPreflightLeftNoMutation(root, registry, shortcuts, True)
+                    End Sub)
+    End Sub
+
+    Private Sub CoordinatedShortcutCollisionIsRejectedBeforeMutation()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Dim installRoot As String = CoordinatedInstallRoot(root)
+                        Dim collision As C3Setup.InstalledShortcut = C3Setup.SetupShortcutService.Plan(installRoot, shortcuts.CommonProgramsPath, shortcuts.CommonDesktopPath, True)(0)
+                        shortcuts.WriteShortcut(New C3Setup.SetupShortcut(collision.Path, "C:\Unrelated.exe", "C:\", "Unrelated"))
+                        AssertContractFailure(Sub() ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing))
+                        If Directory.Exists(installRoot) Then Throw New Exception("Shortcut preflight collision created the product root.")
+                        If File.Exists(C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot)) Then Throw New Exception("Shortcut preflight collision created a transaction journal.")
+                        AssertEqual("C:\Unrelated.exe", shortcuts.ReadShortcut(collision.Path).Target, "unowned shortcut after rejection")
+                    End Sub)
+    End Sub
+
+    Private Sub AssertInstallPreflightLeftNoMutation(root As String,
+                                                     registry As MemoryRegistryAccess,
+                                                     shortcuts As MemoryShortcutAccess,
+                                                     includeDesktop As Boolean)
+        Dim installRoot As String = CoordinatedInstallRoot(root)
+        If Directory.Exists(installRoot) Then Throw New Exception("Install preflight rejection created the product root.")
+        If File.Exists(C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot)) Then Throw New Exception("Install preflight rejection created a transaction journal.")
+        Dim expected As IList(Of C3Setup.InstalledShortcut) = C3Setup.SetupShortcutService.Plan(installRoot, shortcuts.CommonProgramsPath, shortcuts.CommonDesktopPath, includeDesktop)
+        For Each item As C3Setup.InstalledShortcut In expected
+            If shortcuts.ReadShortcut(item.Path) IsNot Nothing Then Throw New Exception("Install preflight rejection created a shortcut.")
+        Next
     End Sub
 
     Private Sub InstallProcessDeathRecovers(phase As String)

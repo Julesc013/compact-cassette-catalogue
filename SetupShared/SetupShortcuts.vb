@@ -168,8 +168,7 @@ Namespace Global.C3Setup
                                           state As InstalledState,
                                           access As ISetupShortcutAccess) As SetupShortcutTransition
             RequireArguments(state, access)
-            If previousState IsNot Nothing Then ValidateAgainstLocations(previousState, access)
-            ValidateAgainstLocations(state, access)
+            ValidateTransition(previousState, state, access)
 
             Dim beforeExpected As IDictionary(Of String, SetupShortcut) = ExpectedMap(previousState)
             Dim afterExpected As IDictionary(Of String, SetupShortcut) = ExpectedMap(state)
@@ -184,9 +183,6 @@ Namespace Global.C3Setup
             Dim beforeActual As New Dictionary(Of String, SetupShortcut)(StringComparer.OrdinalIgnoreCase)
             For Each path As String In allPaths.Keys
                 Dim existing As SetupShortcut = access.ReadShortcut(path)
-                If Not beforeExpected.ContainsKey(path) AndAlso existing IsNot Nothing Then
-                    Throw New SetupContractException("Setup refuses to adopt an unowned shortcut: " & path)
-                End If
                 beforeActual.Add(path, existing)
             Next
 
@@ -208,6 +204,31 @@ Namespace Global.C3Setup
                 Throw
             End Try
         End Function
+
+        Public Shared Sub ValidateTransition(previousState As InstalledState,
+                                             state As InstalledState,
+                                             access As ISetupShortcutAccess)
+            RequireArguments(state, access)
+            If previousState IsNot Nothing Then ValidateAgainstLocations(previousState, access)
+            ValidateAgainstLocations(state, access)
+            Dim beforeExpected As IDictionary(Of String, SetupShortcut) = ExpectedMap(previousState)
+            Dim afterExpected As IDictionary(Of String, SetupShortcut) = ExpectedMap(state)
+            Dim paths As New Dictionary(Of String, Boolean)(StringComparer.OrdinalIgnoreCase)
+            For Each path As String In beforeExpected.Keys
+                paths(path) = True
+            Next
+            For Each path As String In afterExpected.Keys
+                paths(path) = True
+            Next
+            For Each path As String In paths.Keys
+                Dim existing As SetupShortcut = access.ReadShortcut(path)
+                If beforeExpected.ContainsKey(path) Then
+                    RequireEqual(existing, beforeExpected(path))
+                ElseIf existing IsNot Nothing Then
+                    Throw New SetupContractException("Setup refuses to adopt an unowned shortcut: " & path)
+                End If
+            Next
+        End Sub
 
         Public Shared Sub RestoreTransition(transition As SetupShortcutTransition,
                                             access As ISetupShortcutAccess)
