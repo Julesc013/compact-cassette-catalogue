@@ -172,6 +172,11 @@ foreach ($buildLane in $lanes) {
         if (-not [IO.Path]::IsPathRooted([string]$candidateLockLane[0].resourceToolPath)) {
             throw "External candidate lock lane '$($buildLane.id)' resourceToolPath must be absolute."
         }
+        $lockedProductMatch = [regex]::Match([string]$candidateLockLane[0].visualStudioProductVersion, '^\d+(?:\.\d+)+')
+        if (-not $lockedProductMatch.Success -or
+                [version]$lockedProductMatch.Value -lt [version]([string]$buildLane.initialServicingPin)) {
+            throw "External candidate lock lane '$($buildLane.id)' Visual Studio '$($candidateLockLane[0].visualStudioProductVersion)' is older than decision-date servicing floor '$($buildLane.initialServicingPin)'."
+        }
     }
 }
 if ($PreflightOnly) {

@@ -59,6 +59,11 @@ $lockedLanes = @($manifest.lanes | ForEach-Object {
             [string]$resourceTools[0].sha256 -notmatch '^[0-9a-f]{64}$') {
         throw "$($_.id) preparation evidence is not clean, source-current, or resource-tool closed."
     }
+    $installedProductMatch = [regex]::Match([string]$evidence.visualStudio.productVersion, '^\d+(?:\.\d+)+')
+    if (-not $installedProductMatch.Success -or
+            [version]$installedProductMatch.Value -lt [version]([string]$_.initialServicingPin)) {
+        throw "$($_.id) Visual Studio '$($evidence.visualStudio.productVersion)' is older than decision-date servicing floor '$($_.initialServicingPin)'; update, rebuild Preparation evidence, and retry candidate freeze."
+    }
     [ordered]@{
         id = [string]$_.id
         visualStudioProductVersion = [string]$evidence.visualStudio.productVersion
