@@ -17,6 +17,7 @@ Namespace Global.C3Setup
             Dim statePath As String = Path.Combine(canonicalRoot, InstalledStateCodec.FileName)
             If Not File.Exists(statePath) Then Throw New SetupContractException("No C3 installed-state manifest exists at the selected root.")
             Dim discovered As InstalledState = InstalledStateCodec.Read(statePath)
+            SetupBundleRuntime.RequireCurrentRelease(discovered.Manifest)
             If Not String.Equals(discovered.InstallRoot, canonicalRoot, StringComparison.OrdinalIgnoreCase) Then
                 Throw New SetupContractException("Installed-state root does not match the selected removal root.")
             End If

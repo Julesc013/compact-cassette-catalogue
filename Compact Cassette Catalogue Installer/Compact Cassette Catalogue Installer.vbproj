@@ -198,6 +198,9 @@
     <Compile Include="..\SetupShared\SetupSelfRelocation.vb">
       <Link>Shared\SetupSelfRelocation.vb</Link>
     </Compile>
+    <Compile Include="..\SetupShared\SetupBundleRuntime.vb">
+      <Link>Shared\SetupBundleRuntime.vb</Link>
+    </Compile>
     <Compile Include="frmFailure.Designer.vb">
       <DependentUpon>frmFailure.vb</DependentUpon>
     </Compile>

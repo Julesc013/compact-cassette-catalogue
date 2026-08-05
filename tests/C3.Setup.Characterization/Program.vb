@@ -56,6 +56,8 @@ Module Program
         RunTest("altered relocated uninstaller is rejected", AddressOf AlteredRelocatedUninstallerIsRejected)
         RunTest("matching native uninstall environment passes", AddressOf MatchingUninstallEnvironmentPasses)
         RunTest("running application blocks uninstall", AddressOf RunningApplicationBlocksUninstall)
+        RunTest("adjacent Alpha 3 setup bundle loads exact bytes", AddressOf AdjacentBundleLoadsExactBytes)
+        RunTest("wrong setup release identity is rejected", AddressOf WrongSetupReleaseIdentityIsRejected)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -734,6 +736,26 @@ Module Program
                                           "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
                                           New List(Of C3Setup.InstalledShortcut)())
     End Function
+
+    Private Sub AdjacentBundleLoadsExactBytes()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim setupPath As String = Path.Combine(root, "SETUP.exe")
+                        File.WriteAllText(setupPath, "setup-executable")
+                        Dim context As C3Setup.SetupBundleContext = C3Setup.SetupBundleRuntime.Load(root, setupPath)
+                        AssertEqual("1.3.0a3", context.Manifest.Label, "bundle release label")
+                        AssertEqual(C3Setup.FileHash.Sha256(setupPath), context.SetupExecutableSha256, "setup executable hash")
+                        If context.PayloadBytes <= 0 Then Throw New Exception("Bundle payload byte total was not retained.")
+                    End Sub)
+    End Sub
+
+    Private Sub WrongSetupReleaseIdentityIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim setupPath As String = Path.Combine(root, "SETUP.exe")
+                        File.WriteAllText(setupPath, "setup-executable")
+                        File.WriteAllText(manifestPath, File.ReadAllText(manifestPath).Replace("label=""1.3.0a3""", "label=""1.3.0"""))
+                        AssertContractFailure(Sub() C3Setup.SetupBundleRuntime.Load(root, setupPath))
+                    End Sub)
+    End Sub
 
     Private Function ExecuteCoordinatedInstall(root As String,
                                                manifestPath As String,

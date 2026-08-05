@@ -18,6 +18,7 @@ Namespace Global.C3Setup
             If shortcutAccess Is Nothing Then Throw New ArgumentNullException("shortcutAccess")
             If registryAccess Is Nothing Then Throw New ArgumentNullException("registryAccess")
             Dim manifest As PayloadManifest = PayloadManifestReader.Read(manifestPath)
+            SetupBundleRuntime.RequireCurrentRelease(manifest)
             PayloadVerifier.Verify(manifest, payloadDirectory)
             SetupEnvironment.Validate(manifest, facts, PayloadBytes(manifest))
             Dim canonicalRoot As String = SetupEnvironment.ValidateInstallRoot(facts, installRoot)
