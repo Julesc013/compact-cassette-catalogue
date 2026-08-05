@@ -1,49 +1,49 @@
 {
-  "schemaVersion": 1,
-  "status": "template",
-  "releaseLabel": "1.3.0a2",
-  "packageSource": null,
-  "toolchainLockSha256": null,
-  "candidateSourceClosureSha256": null,
-  "sourceReproducibilityRecordSha256": null,
-  "packageChecksumManifestSha256": null,
-  "entryChecksumManifestSha256": null,
-  "packages": [
-    {
-      "name": "C3-v1.3.0a2-win-x86-net40-portable.zip",
-      "sha256": null,
-      "entryManifestName": "C3-v1.3.0a2-win-x86-net40-portable.zip.entries.json",
-      "entryManifestSha256": null
-    },
-    {
-      "name": "C3-v1.3.0a2-win-x64-net48-portable.zip",
-      "sha256": null,
-      "entryManifestName": "C3-v1.3.0a2-win-x64-net48-portable.zip.entries.json",
-      "entryManifestSha256": null
-    },
-    {
-      "name": "C3-v1.3.0a2-win-arm64-net481-portable.zip",
-      "sha256": null,
-      "entryManifestName": "C3-v1.3.0a2-win-arm64-net481-portable.zip.entries.json",
-      "entryManifestSha256": null
-    }
-  ],
-  "buildEvidence": [
-    {
-      "lane": "win-x86-net40",
-      "toolchainEvidenceSha256": null,
-      "binaryLogSha256": null
-    },
-    {
-      "lane": "win-x64-net48",
-      "toolchainEvidenceSha256": null,
-      "binaryLogSha256": null
-    },
-    {
-      "lane": "win-arm64-net481",
-      "toolchainEvidenceSha256": null,
-      "binaryLogSha256": null
-    }
-  ],
-  "recordedAtUtc": null
+    "schemaVersion":  1,
+    "status":  "pass",
+    "releaseLabel":  "1.3.0a2",
+    "packageSource":  "0c740ec11865a4df6364b2f430ce2feece58d9d6",
+    "toolchainLockSha256":  "f741b6777206d3531dd89b3f2e579ec9ef8ba3b45af7285a342fa98cd0d0107a",
+    "candidateSourceClosureSha256":  "8a25fe53b1294a7464b43a4bee770c4ee221e92b13e6134dd9b8cbe8ff3e7a2a",
+    "sourceReproducibilityRecordSha256":  "4133a418408f0f4b3896007842011a9d82ba102e0d222f0680226f5a8a1fa8ad",
+    "packageChecksumManifestSha256":  "f8aba6da3a1aedc1e4c3a8a7dd09fec81dff1da1d3e43f46432b71712da3485b",
+    "entryChecksumManifestSha256":  "f51dbcf3c9d7041a87d3a577fc0af45dafada6dd9ee4ebf121ac3105a15b8718",
+    "packages":  [
+                     {
+                         "name":  "C3-v1.3.0a2-win-x86-net40-portable.zip",
+                         "sha256":  "1ed41a2026d3b566458e1a010dd6c7f4e459d310d6316e50e50ff822424eca35",
+                         "entryManifestName":  "C3-v1.3.0a2-win-x86-net40-portable.zip.entries.json",
+                         "entryManifestSha256":  "5492a391ecaeec23e42eb4efcc72da1b418056af3f06189173ac6a6e6bd9d90c"
+                     },
+                     {
+                         "name":  "C3-v1.3.0a2-win-x64-net48-portable.zip",
+                         "sha256":  "a65e59cef02a20559c0e787d8cdf332a52500f6e577bf6a585896370cf139fda",
+                         "entryManifestName":  "C3-v1.3.0a2-win-x64-net48-portable.zip.entries.json",
+                         "entryManifestSha256":  "9ca80dce794434367d05ffb53ff08e4628d880291871d9291c5906fe010f1a40"
+                     },
+                     {
+                         "name":  "C3-v1.3.0a2-win-arm64-net481-portable.zip",
+                         "sha256":  "9cbaaa237204b285d94887162ecb5f5e86560ba53776e4d3f90611e98661a39c",
+                         "entryManifestName":  "C3-v1.3.0a2-win-arm64-net481-portable.zip.entries.json",
+                         "entryManifestSha256":  "65ac53cfebc1ef711abae2465bbcad9063e73e97a1446fcdbf1a102068c6d78e"
+                     }
+                 ],
+    "buildEvidence":  [
+                          {
+                              "lane":  "win-x86-net40",
+                              "toolchainEvidenceSha256":  "e381f99ca12651719e154bacb9b2cdf4ca6fa037ac1bcdc49af9ad742e1051fe",
+                              "binaryLogSha256":  "7ed26127fbebe91dd608a165c060200d5330c241d14911f1e63a2fe216ee0683"
+                          },
+                          {
+                              "lane":  "win-x64-net48",
+                              "toolchainEvidenceSha256":  "1a5e89afe90403383953390bdac46404dd1ed64aed1ae1c70a8e8aa9ad31887e",
+                              "binaryLogSha256":  "bdc238d389094ca542fd1bb4a7c65e8edc87acbf196ec2bd4e1f54300ac67e07"
+                          },
+                          {
+                              "lane":  "win-arm64-net481",
+                              "toolchainEvidenceSha256":  "b5058b0e125e3851d6098ba1fb54c8260319f690094b174978692b98fb4c9450",
+                              "binaryLogSha256":  "145c3a0385a093374e31086d91aa41be6325ac09bfe67660d5a660678c6182de"
+                          }
+                      ],
+    "recordedAtUtc":  "2026-08-05T13:50:10.2067441Z"
 }
