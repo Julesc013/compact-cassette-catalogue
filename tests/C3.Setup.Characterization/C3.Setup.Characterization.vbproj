@@ -75,6 +75,9 @@
     <Compile Include="..\..\SetupShared\SetupUninstallOperation.vb">
       <Link>Shared\SetupUninstallOperation.vb</Link>
     </Compile>
+    <Compile Include="..\..\SetupShared\SetupSelfRelocation.vb">
+      <Link>Shared\SetupSelfRelocation.vb</Link>
+    </Compile>
     <Compile Include="Program.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

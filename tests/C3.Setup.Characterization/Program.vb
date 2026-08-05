@@ -52,6 +52,8 @@ Module Program
         RunTest("coordinated uninstall removes only owned surfaces", AddressOf CoordinatedUninstallRemovesOwnedSurfaces)
         RunTest("post-system uninstall fault restores every surface", AddressOf PostSystemUninstallFaultRestores)
         RunTest("altered registry blocks coordinated uninstall", AddressOf AlteredRegistryBlocksCoordinatedUninstall)
+        RunTest("uninstaller relocation copies exact owned bytes", AddressOf RelocationCopiesExactOwnedBytes)
+        RunTest("altered relocated uninstaller is rejected", AddressOf AlteredRelocatedUninstallerIsRejected)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -653,6 +655,51 @@ Module Program
         Next
     End Sub
 
+    Private Sub RelocationCopiesExactOwnedBytes()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim installedRoot As String = Path.Combine(root, "installed", "Compact Cassette Catalogue")
+                        Directory.CreateDirectory(installedRoot)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        For Each item As C3Setup.PayloadFile In manifest.Files
+                            File.Copy(Path.Combine(root, "payload", item.Path), Path.Combine(installedRoot, item.Path))
+                        Next
+                        Dim state As C3Setup.InstalledState = CreateInstalledState(root, manifestPath)
+                        Dim statePath As String = Path.Combine(installedRoot, C3Setup.InstalledStateCodec.FileName)
+                        C3Setup.InstalledStateCodec.Write(statePath, state)
+                        Dim temporaryBase As String = Path.Combine(root, "temp")
+                        Directory.CreateDirectory(temporaryBase)
+                        Dim launcher As New MemoryProcessLauncher()
+                        Dim context As C3Setup.SetupRelocationContext = C3Setup.SetupSelfRelocation.PrepareAndLaunch(
+                            Path.Combine(installedRoot, "UNINSTALL.exe"), statePath, temporaryBase, launcher)
+                        AssertEqual(context.ExecutablePath, launcher.ExecutablePath, "relocated launch executable")
+                        Dim validated As C3Setup.SetupRelocationContext = C3Setup.SetupSelfRelocation.ValidateRelocatedInvocation(
+                            New String() {"--state", statePath, "--relocation-root", context.RelocationRoot},
+                            context.ExecutablePath)
+                        AssertEqual(installedRoot, validated.InstallRoot, "relocated install root")
+                    End Sub)
+    End Sub
+
+    Private Sub AlteredRelocatedUninstallerIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim installedRoot As String = Path.Combine(root, "installed", "Compact Cassette Catalogue")
+                        Directory.CreateDirectory(installedRoot)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        For Each item As C3Setup.PayloadFile In manifest.Files
+                            File.Copy(Path.Combine(root, "payload", item.Path), Path.Combine(installedRoot, item.Path))
+                        Next
+                        Dim statePath As String = Path.Combine(installedRoot, C3Setup.InstalledStateCodec.FileName)
+                        C3Setup.InstalledStateCodec.Write(statePath, CreateInstalledState(root, manifestPath))
+                        Dim temporaryBase As String = Path.Combine(root, "temp")
+                        Directory.CreateDirectory(temporaryBase)
+                        Dim context As C3Setup.SetupRelocationContext = C3Setup.SetupSelfRelocation.PrepareAndLaunch(
+                            Path.Combine(installedRoot, "UNINSTALL.exe"), statePath, temporaryBase, New MemoryProcessLauncher())
+                        File.AppendAllText(context.ExecutablePath, "altered")
+                        AssertContractFailure(Sub() C3Setup.SetupSelfRelocation.ValidateRelocatedInvocation(
+                                                  New String() {"--state", statePath, "--relocation-root", context.RelocationRoot},
+                                                  context.ExecutablePath))
+                    End Sub)
+    End Sub
+
     Private Function ExecuteCoordinatedInstall(root As String,
                                                manifestPath As String,
                                                registry As MemoryRegistryAccess,
@@ -796,6 +843,20 @@ Module Program
                 Throw New InvalidOperationException("shortcut-delete-injected")
             End If
             _shortcuts.Remove(path)
+        End Sub
+    End Class
+
+    Private NotInheritable Class MemoryProcessLauncher
+        Implements C3Setup.ISetupProcessLauncher
+
+        Public Property ExecutablePath As String
+        Public Property Arguments As String
+        Public Property WorkingDirectory As String
+
+        Public Sub Start(executablePath As String, arguments As String, workingDirectory As String) Implements C3Setup.ISetupProcessLauncher.Start
+            Me.ExecutablePath = executablePath
+            Me.Arguments = arguments
+            Me.WorkingDirectory = workingDirectory
         End Sub
     End Class
 
