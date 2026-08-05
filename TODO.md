@@ -96,6 +96,8 @@ a specific governance amendment.
 - [x] Force, hash, and freeze the actual `ResGen.exe` used to produce packaged
   bytes, with binary-log and MSBuild-property evidence.
 - [x] Pass the consolidated adversarial failure suite and restore a clean tree.
+- [x] Classify hosted status checks as supplemental/non-authoritative unless a
+  later owner decision adopts a specific hosted qualification environment.
 - [ ] Update VS2017 to at least 15.9.81, VS2022 to at least 17.14.36, and VS2026
   to at least 18.8.2 (or later stable servicing available at freeze), rebuild
   Preparation evidence, and create the first acceptable external candidate lock.
