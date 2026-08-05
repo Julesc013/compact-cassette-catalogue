@@ -180,6 +180,9 @@
     <Compile Include="..\SetupShared\SetupRemovalTransaction.vb">
       <Link>Shared\SetupRemovalTransaction.vb</Link>
     </Compile>
+    <Compile Include="..\SetupShared\SetupEnvironment.vb">
+      <Link>Shared\SetupEnvironment.vb</Link>
+    </Compile>
     <Compile Include="frmFailure.Designer.vb">
       <DependentUpon>frmFailure.vb</DependentUpon>
     </Compile>

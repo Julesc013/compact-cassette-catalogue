@@ -30,6 +30,13 @@ Module Program
         RunTest("removal deletes only owned files", AddressOf RemovalDeletesOnlyOwnedFiles)
         RunTest("modified owned file blocks removal", AddressOf ModifiedOwnedFileBlocksRemoval)
         RunTest("faulted removal restores exact installed state", AddressOf FaultedRemovalRestoresState)
+        RunTest("matching native setup environment passes", AddressOf MatchingEnvironmentPasses)
+        RunTest("emulated setup environment is rejected", AddressOf EmulatedEnvironmentIsRejected)
+        RunTest("non-elevated setup environment is rejected", AddressOf NonElevatedEnvironmentIsRejected)
+        RunTest("wrong framework setup environment is rejected", AddressOf WrongFrameworkEnvironmentIsRejected)
+        RunTest("running application setup environment is rejected", AddressOf RunningApplicationIsRejected)
+        RunTest("insufficient setup transaction space is rejected", AddressOf InsufficientSpaceIsRejected)
+        RunTest("default install root uses operating-system Program Files", AddressOf DefaultRootUsesProgramFiles)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -278,6 +285,71 @@ Module Program
                         C3Setup.PayloadVerifier.VerifyOwnedFiles(state.Manifest, installRoot)
                     End Sub)
     End Sub
+
+    Private Sub MatchingEnvironmentPasses()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        C3Setup.SetupEnvironment.Validate(manifest, EnvironmentFacts(root, "x86", "x86", True, True, 0, False, 3000), 1000)
+                    End Sub)
+    End Sub
+
+    Private Sub EmulatedEnvironmentIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        AssertContractFailure(Sub() C3Setup.SetupEnvironment.Validate(manifest, EnvironmentFacts(root, "x86", "x64", True, True, 0, False, 3000), 1000))
+                    End Sub)
+    End Sub
+
+    Private Sub NonElevatedEnvironmentIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        AssertContractFailure(Sub() C3Setup.SetupEnvironment.Validate(manifest, EnvironmentFacts(root, "x86", "x86", False, True, 0, False, 3000), 1000))
+                    End Sub)
+    End Sub
+
+    Private Sub WrongFrameworkEnvironmentIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        AssertContractFailure(Sub() C3Setup.SetupEnvironment.Validate(manifest, EnvironmentFacts(root, "x86", "x86", True, False, 0, False, 3000), 1000))
+                    End Sub)
+    End Sub
+
+    Private Sub RunningApplicationIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        AssertContractFailure(Sub() C3Setup.SetupEnvironment.Validate(manifest, EnvironmentFacts(root, "x86", "x86", True, True, 0, True, 3000), 1000))
+                    End Sub)
+    End Sub
+
+    Private Sub InsufficientSpaceIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        AssertContractFailure(Sub() C3Setup.SetupEnvironment.Validate(manifest, EnvironmentFacts(root, "x86", "x86", True, True, 0, False, 2999), 1000))
+                    End Sub)
+    End Sub
+
+    Private Sub DefaultRootUsesProgramFiles()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim programFiles As String = Path.Combine(root, "Program Files")
+                        Directory.CreateDirectory(programFiles)
+                        Dim facts As C3Setup.SetupEnvironmentFacts = New C3Setup.SetupEnvironmentFacts("x86", "x86", True, True, 0, programFiles, False, 3000)
+                        AssertEqual(Path.Combine(programFiles, "Compact Cassette Catalogue"), C3Setup.SetupEnvironment.DefaultInstallRoot(facts), "default install root")
+                    End Sub)
+    End Sub
+
+    Private Function EnvironmentFacts(root As String,
+                                      processArchitecture As String,
+                                      nativeArchitecture As String,
+                                      elevated As Boolean,
+                                      frameworkInstalled As Boolean,
+                                      frameworkRelease As Long,
+                                      applicationRunning As Boolean,
+                                      availableBytes As Long) As C3Setup.SetupEnvironmentFacts
+        Dim programFiles As String = Path.Combine(root, "Program Files")
+        Directory.CreateDirectory(programFiles)
+        Return New C3Setup.SetupEnvironmentFacts(processArchitecture, nativeArchitecture, elevated, frameworkInstalled,
+                                                  frameworkRelease, programFiles, applicationRunning, availableBytes)
+    End Function
 
     Private Sub WithPayload(action As Action(Of String, String))
         Dim root As String = Path.Combine(Path.GetTempPath(), "C3SetupTests-" & Guid.NewGuid().ToString("N"))
