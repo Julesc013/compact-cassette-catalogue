@@ -5,6 +5,7 @@ C3 release line.
 
 - [1.x branch recovery record](governance/1x-branch-recovery-2026-08-05.md)
 - [Legacy maintenance policy](governance/legacy-maintenance.md)
+- [Ratified three-lane stable matrix](governance/1.3.0-three-lane-matrix-2026-08-05.md)
 - [C3 1.3.0 recovery and qualification plan](planning/1.3.0-recovery-plan.md)
 - [C3 1.3.0 milestone ladder](planning/1.3.0-milestones.md)
 - [C3 1.3.0 Alpha 1 checkpoint](planning/1.3.0-alpha.1.md)
@@ -18,4 +19,6 @@ C3 release line.
 
 The controlling rule is: preserve the C3 1.2.0 Beta 1 program and repair it.
 The archived 1.2.1-era refactor is evidence and possible 2.x material, not the
-production ancestry of C3 1.3.0.
+production ancestry of C3 1.3.0. The Alpha checkpoint's four diagnostic lanes
+remain historical evidence; Beta and stable are controlled by the subsequent
+owner decision defining exactly three portable release lanes.

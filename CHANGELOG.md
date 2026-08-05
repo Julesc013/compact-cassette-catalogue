@@ -4,6 +4,23 @@
 ## C3 1.3 legacy maintenance
 
 
+### Post-Alpha stable-matrix decision - 5 August 2026
+
+- Ratified exactly three C3 1.3 Beta/stable release lanes:
+  `win-x86-net40`, `win-x64-net48`, and native `win-arm64-net481`.
+- Retained the immutable Alpha tag and its four-lane diagnostic result as
+  truthful historical evidence while superseding that matrix for future
+  candidates.
+- Assigned VS2017/MSBuild 15 to the 1.3 x86/net40 lane, VS2022/MSBuild 17 to
+  x64/net48, and VS2026/MSBuild 18 to native ARM64/net481.
+- Kept VS2015/MSBuild 14 solely as the 1.2 historical reconstruction oracle.
+- Removed new x64/net40 and x64/net481 packages from the 1.3 publication plan.
+- Restricted C3 1.3 publication to three portable classic WinForms ZIPs and a
+  checksum manifest; installers and Universal Setup are independent later work.
+- Made native ARM64 output and actual Windows-on-ARM qualification a
+  release-blocking boundary.
+
+
 ### Version 1.3.0 Alpha 1 - 5 August 2026
 
 Alpha 1 is an intentionally unpublished source checkpoint for the recovered

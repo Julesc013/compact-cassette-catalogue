@@ -8,6 +8,9 @@ See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](T
 > `dev/1.x` contains the intentionally unpublished C3 1.3.0 Alpha 1 maintenance
 > foundation. Alpha 1 has no binary release and does not yet contain the planned
 > runtime repairs. See the [legacy maintenance documentation](docs/README.md).
+> After Alpha, the owner ratified an exact three-lane stable matrix: x86/net40,
+> x64/net48, and native ARM64/net481. The Alpha tag remains immutable historical
+> evidence of its earlier four diagnostic lanes.
 
 ![Screenshot of C3 in use.](https://github.com/Julesc013/compact-cassette-catalogue/blob/master/Resources/demonstration-screenshot.png)
 
@@ -76,12 +79,21 @@ It develops from safe post-release tip `58a5b7d...`; its exact production genome
 is frozen to package source `509c9ec...`, with `v1.2.0b1` as the qualified
 release oracle. The later project-splitting refactor is not production ancestry.
 
-- Alpha 1 freezes the recovery doctrine, compatibility evidence, genome gate,
-  and four-lane build scaffolding. It is source-only and unpublished.
+- Alpha 1 froze the recovery doctrine, compatibility evidence, genome gate, and
+  its then-current four-lane diagnostic scaffolding. It is source-only and
+  unpublished.
 - Beta 1 will contain the complete bounded runtime repair set and qualification
-  evidence.
+  evidence under the ratified three-lane matrix.
 - Stable will publish only already-qualified portable packages and will update
   the legacy feed after downloaded assets pass verification.
+
+The final stable original WinForms release is built from one source-identical
+project as `win-x86-net40` (VS2017, XP SP3 minimum), `win-x64-net48` (VS2022,
+Windows 7 SP1 minimum), and native `win-arm64-net481` (VS2026, Windows 11 RTM
+ARM64 minimum with .NET Framework 4.8.1 installed). C3 1.3 is portable ZIP only:
+no MSI, MSIX, ClickOnce publication, bootstrapper, updater, or new runtime-DLL
+graph is part of the core release. See the
+[ratified matrix](docs/governance/1.3.0-three-lane-matrix-2026-08-05.md).
 
 The existing DataSet catalogue format remains 1.1.0. No 1.3 milestone introduces
 a new runtime dependency, production assembly, C# source, project split, or UI

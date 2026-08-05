@@ -5,6 +5,17 @@ the recovered maintenance foundation for the final original C3 release line.
 It is not a user release and does not yet contain the planned data-safety and
 integrity repairs.
 
+## Subsequent stable-matrix decision
+
+After the immutable Alpha 1 checkpoint, the owner ratified exactly three Beta
+and stable release lanes: `win-x86-net40`, `win-x64-net48`, and native
+`win-arm64-net481`. The earlier four-lane Alpha build remains truthful
+historical evidence; it is not the stable publication matrix. VS2015/MSBuild 14
+remains the historical 1.2 reconstruction oracle, while VS2017/MSBuild 15 is the
+authoritative 1.3 x86/net40 compiler. Stable assets are portable ZIPs only; no
+installer or updater is part of C3 1.3. See the
+[ratified owner decision](docs/governance/1.3.0-three-lane-matrix-2026-08-05.md).
+
 ## What Alpha 1 establishes
 
 - Direct development ancestry from safe post-release tip `58a5b7d...`.

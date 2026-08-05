@@ -13,6 +13,7 @@ $requiredFiles = @(
     'docs/README.md',
     'docs/governance/1x-branch-recovery-2026-08-05.md',
     'docs/governance/legacy-maintenance.md',
+    'docs/governance/1.3.0-three-lane-matrix-2026-08-05.md',
     'docs/planning/1.3.0-recovery-plan.md',
     'docs/planning/1.3.0-salvage-ledger.md',
     'docs/planning/1.3.0-milestones.md',
@@ -65,7 +66,8 @@ foreach ($relativePath in $trackedMarkdown) {
 $todo = Get-Content -LiteralPath (Join-Path $repositoryRoot 'TODO.md') -Raw
 foreach ($heading in @(
         '## Alpha 1 — maintenance foundation',
-        '## Beta 1 entry — finish baseline reconstruction',
+        '## Post-Alpha three-lane correction',
+        '## Beta 1 entry — finish historical baseline reconstruction',
         '## Beta 1 — lifecycle and data safety',
         '## Beta 1 — referential and counter integrity',
         '## Beta 1 — settings, diagnostics, lanes, and packages',
@@ -83,6 +85,38 @@ foreach ($staleHeading in @('## 1.2.x Maintenance', '## 1.3 Usability', '## 3.0 
 foreach ($baselineStatement in @('58a5b7d', '509c9ec', '2413e913', 'archive/1.2-postrelease-tip')) {
     if (-not $todo.Contains($baselineStatement)) {
         $failures.Add("TODO is missing corrected baseline identity: $baselineStatement")
+    }
+}
+
+$matrixDecision = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/governance/1.3.0-three-lane-matrix-2026-08-05.md') -Raw
+foreach ($laneId in @('win-x86-net40', 'win-x64-net48', 'win-arm64-net481')) {
+    if (-not $matrixDecision.Contains($laneId)) {
+        $failures.Add("Three-lane decision is missing release lane: $laneId")
+    }
+}
+foreach ($statement in @(
+        'exactly three public release lanes',
+        'VS2015/MSBuild 14 = historical 1.2 reconstruction oracle',
+        'portable classic executable packages',
+        '0xaa64',
+        'Universal Setup')) {
+    if (-not $matrixDecision.Contains($statement)) {
+        $failures.Add("Three-lane decision is missing required authority: $statement")
+    }
+}
+
+$activePlanPaths = @(
+    'docs/planning/1.3.0-recovery-plan.md',
+    'docs/planning/1.3.0-beta.1.md',
+    'docs/planning/1.3.0-stable.md',
+    'docs/testing/1.3.0-qualification-matrix.md'
+)
+foreach ($relativePath in $activePlanPaths) {
+    $activeContent = Get-Content -LiteralPath (Join-Path $repositoryRoot $relativePath) -Raw
+    foreach ($laneId in @('win-x86-net40', 'win-x64-net48', 'win-arm64-net481')) {
+        if (-not $activeContent.Contains($laneId)) {
+            $failures.Add("Active authority $relativePath is missing release lane: $laneId")
+        }
     }
 }
 

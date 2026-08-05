@@ -43,10 +43,34 @@ off only when its committed evidence passes; implementation alone is not done.
 Alpha 1 is intentionally unpublished. It does not advance `legacy/1.x`, publish
 binaries, or change the update feed.
 
-## Beta 1 entry — finish baseline reconstruction
+## Post-Alpha three-lane correction
 
-- [ ] Install or reconstruct VS2015/MSBuild `14.0.25420.1`.
-- [ ] Rebuild `v1.2.0b1` x86/net40 and x64/net40 with the authoritative toolchain.
+- [x] Ratify the owner decision superseding the Alpha four-lane release plan.
+- [x] Preserve the immutable Alpha tag and its diagnostic result unchanged.
+- [x] Define exactly `win-x86-net40`, `win-x64-net48`, and
+  `win-arm64-net481` as Beta/stable release lanes.
+- [x] Assign VS2017, VS2022, and VS2026 compiler authority respectively.
+- [x] Restrict C3 1.3 to portable classic WinForms ZIPs and exclude every
+  installer/updater path from release authority.
+- [ ] Replace the active lane manifest and package-name contract.
+- [ ] Add exact-family MSBuild resolution, effective-tools-version checks,
+  binary logs, and hash-pinned toolchain evidence.
+- [ ] Add Debug/Release ARM64 project and solution configurations without
+  conditional application source.
+- [ ] Verify closed x86/x64/ARM64 PE mappings, CLR CorFlags, framework/config,
+  version, settings parity, and zero runtime DLLs.
+- [ ] Split builder inspection from target-machine runtime qualification.
+- [ ] Mechanically reject ClickOnce, bootstrapper, installer, uninstaller, or
+  updater output from the three ZIPs.
+- [ ] Run the genome/source gates and record that application behaviour did not
+  change during this correction.
+
+## Beta 1 entry — finish historical baseline reconstruction
+
+- [ ] Install or reconstruct historical VS2015/MSBuild `14.0.25420.1` in the
+  compatibility laboratory.
+- [ ] Rebuild `v1.2.0b1` x86/net40 and x64/net40 with that historical 1.2
+  compiler oracle; do not use it for C3 1.3 release builds.
 - [ ] Repeat launch, catalogue, list/filter/edit/delete, settings, and blocked-
   network workflows in disposable environments.
 - [ ] Retain representative real catalogues as private test copies outside Git.
@@ -100,10 +124,14 @@ patch, genome validation, and focused commit.
   `Path.Combine`.
 - [ ] Keep console write failures nonfatal.
 - [ ] Use short same-directory temporary filenames on classic Windows paths.
-- [ ] Finalize lane-specific config/manifest metadata with identical application
-  logic and resources.
+- [ ] Freeze the latest serviced VS2017 15.9, VS2022 17.14, and VS2026 stable
+  installations immediately before candidate qualification.
+- [ ] Finalize exactly three lane-specific config/manifest projections with
+  identical application logic and resources.
 - [ ] Add deterministic portable packaging and exact payload verification.
 - [ ] Prove two clean, path-distinct builds produce identical ZIPs.
+- [ ] Qualify XP SP3 x86/net40, Windows 7 SP1 x64/net48, and native Windows 11
+  RTM ARM64/net481 on their target machines using exact retained package hashes.
 - [ ] Complete all automated, manual, compatibility, and OS Beta gates.
 - [ ] Resolve or reject every S0–S2 salvage-ledger entry with evidence.
 - [ ] Freeze, qualify, tag, and optionally publish `v1.3.0b1` without changing the
@@ -115,7 +143,8 @@ patch, genome validation, and focused commit.
 - [ ] Record the licence decision for redistributed package contents.
 - [ ] Make a direct metadata-only transition to `1.3.0 / Release`.
 - [ ] Audit the transition for zero functional/dependency/format/payload change.
-- [ ] Build twice from clean, different absolute paths with authoritative tools.
+- [ ] Build exactly the three ratified lanes twice from clean, different
+  absolute paths with locked authoritative tools.
 - [ ] Run the complete automated, manual, compatibility, settings, and OS matrix.
 - [ ] Create the evidence-only qualification commit and annotated `v1.3.0` tag.
 - [ ] Fast-forward `legacy/1.x` to the qualified checkpoint.
@@ -132,6 +161,9 @@ patch, genome validation, and focused commit.
 - modular-monolith/service/repository architecture;
 - C# translation or production source relocation;
 - broad UI/DPI/localization redesign; and
+- MSI, MSIX, ClickOnce publication, bootstrapper, installer, uninstaller,
+  background updater, or self-contained runtime;
+- a separately qualified Universal Setup product binding; and
 - ordinary feature requests formerly listed as 1.3 usability work.
 
 Those belong to 2.x planning. After stable, 1.3.1 is reserved for a critical
