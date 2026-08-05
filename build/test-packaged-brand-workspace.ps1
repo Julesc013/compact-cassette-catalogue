@@ -495,7 +495,7 @@ function Send-C3Shortcut {
         -AutomationId 'btnAdd' `
         -Name '' `
         -Within $mainWindow `
-        -TimeoutSeconds 10
+        -TimeoutSeconds 30
     $focusAnchor.SetFocus()
     Start-Sleep -Milliseconds 100
     [System.Windows.Forms.SendKeys]::SendWait($Keys)
@@ -521,8 +521,8 @@ function Open-C3BrandWindow {
 
     $lastFailure = $null
     for ($attempt = 1; $attempt -le 5; $attempt++) {
-        Send-C3Shortcut -Process $Process -Keys '{F6}'
         try {
+            Send-C3Shortcut -Process $Process -Keys '{F6}'
             return Wait-C3Element `
                 -AutomationId 'BrandWorkspaceForm' `
                 -Name 'Brands - C3' `

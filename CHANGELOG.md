@@ -13,6 +13,10 @@
 - Centralized release-tag derivation and updated catalogue validation,
   SHA-bound attestation refs, trusted-runner guards, workflows, examples, and
   release tests so tag identity cannot drift between release subsystems.
+- Hardened the exact-package Brands driver against a cold-start accessibility-
+  tree readiness race by placing main-window focus acquisition inside its
+  bounded retry policy and allowing the real main form to finish exposing its
+  controls under post-build load.
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.
