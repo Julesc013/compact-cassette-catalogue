@@ -227,13 +227,15 @@ patch, genome validation, and focused commit.
 
 ## Alpha 3 — settings, diagnostics, lanes, and packages
 
-- [ ] Add `settingsUpgradeRequired=True` and guarded `My.Settings.Upgrade()`.
-- [ ] Keep migration failures nonfatal and retryable; never alter old profiles.
-- [ ] Normalize only known values and preserve directory/message/update settings.
+- [x] Add `settingsUpgradeRequired=True` and guarded `My.Settings.Upgrade()`.
+- [x] Keep migration failures nonfatal and retryable; never alter old profiles.
+- [x] Normalize only known values and preserve directory/message/update settings.
 - [ ] Execute every real-profile and cross-lane settings transition.
-- [ ] Resolve console export through configured directory/Documents using
+- [x] Resolve console export through configured directory/Documents using
   `Path.Combine`.
-- [ ] Keep console write failures nonfatal.
+- [x] Keep console write failures nonfatal.
+- [x] Keep console logging, browser launch, and update-failure reporting
+  nonfatal when diagnostic UI is unavailable.
 - [ ] Use short same-directory temporary filenames on classic Windows paths.
 - [ ] Freeze the latest serviced VS2017 15.9, VS2022 17.14, and VS2026 stable
   installations in an immutable external source-bound lock immediately before
