@@ -298,7 +298,7 @@ foreach ($statement in @(
 
 $alpha3Plan = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/planning/1.3.0-alpha.3.md') -Raw
 foreach ($statement in @(
-        'Planned tag: `v1.3.0a3`',
+        'Original planned tag: `v1.3.0a3` — deliberately not created.',
         'C3-v1.3.0a3-win-x86-net40-portable.zip',
         'C3-v1.3.0a3-win-x64-net48-setup.zip',
         'Historical Gate 1 remains mandatory',
