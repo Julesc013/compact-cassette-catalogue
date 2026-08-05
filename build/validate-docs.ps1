@@ -44,6 +44,7 @@ $requiredFiles = @(
 foreach ($relativePath in @(
         'build/historical-toolchain.json',
         'build/prepare-historical-toolchain.ps1',
+        'build/run-historical-gate1-builds.ps1',
         'build/alpha2-tag-message.ps1',
         'build/alpha2-qualified-evidence.ps1',
         'build/new-alpha2-qualified-record.ps1',
