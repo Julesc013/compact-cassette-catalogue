@@ -241,8 +241,14 @@ Namespace Global.C3Setup
         End Sub
 
         Public Shared Sub Remove(state As InstalledState, access As ISetupShortcutAccess)
+            RemoveTransition(state, access)
+        End Sub
+
+        Public Shared Function RemoveTransition(state As InstalledState,
+                                                access As ISetupShortcutAccess) As SetupShortcutTransition
             RequireArguments(state, access)
             ValidateAgainstLocations(state, access)
+            Dim beforeMap As IDictionary(Of String, SetupShortcut) = ExpectedMap(state)
             For Each item As InstalledShortcut In state.Shortcuts
                 RequireEqual(access.ReadShortcut(item.Path), ExpectedShortcut(item, state.InstallRoot))
             Next
@@ -256,6 +262,7 @@ Namespace Global.C3Setup
                     End If
                     removed.Add(expected)
                 Next
+                Return New SetupShortcutTransition(beforeMap, New Dictionary(Of String, SetupShortcut)(StringComparer.OrdinalIgnoreCase))
             Catch
                 For index As Integer = removed.Count - 1 To 0 Step -1
                     access.WriteShortcut(removed(index))
@@ -263,7 +270,7 @@ Namespace Global.C3Setup
                 Next
                 Throw
             End Try
-        End Sub
+        End Function
 
         Public Shared Sub ValidateOwnedShortcuts(state As InstalledState)
             If state.Shortcuts.Count > 2 Then Throw New SetupContractException("Installed state owns too many shortcuts.")

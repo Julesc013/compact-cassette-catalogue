@@ -100,11 +100,29 @@ Namespace Global.C3Setup
         End Sub
 
         Public Shared Sub Remove(state As InstalledState, access As ISetupRegistryAccess)
+            RemoveWithSnapshot(state, access)
+        End Sub
+
+        Public Shared Function RemoveWithSnapshot(state As InstalledState,
+                                                  access As ISetupRegistryAccess) As IDictionary(Of String, Object)
             RequireArguments(state, access)
             Dim keyPath As String = InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
-            RequireExactValues(access.ReadValues(keyPath), ExpectedValues(state))
+            Dim previous As IDictionary(Of String, Object) = access.ReadValues(keyPath)
+            RequireExactValues(previous, ExpectedValues(state))
             access.DeleteKey(keyPath)
             If access.ReadValues(keyPath) IsNot Nothing Then Throw New SetupContractException("The owned uninstall registration remains after removal.")
+            Return CloneValues(previous)
+        End Function
+
+        Public Shared Sub RestoreRemoved(state As InstalledState,
+                                         previous As IDictionary(Of String, Object),
+                                         access As ISetupRegistryAccess)
+            RequireArguments(state, access)
+            If previous Is Nothing Then Throw New SetupContractException("Removed registry rollback state is missing.")
+            Dim keyPath As String = InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
+            If access.ReadValues(keyPath) IsNot Nothing Then Throw New SetupContractException("Registry rollback refuses to overwrite a new uninstall key.")
+            access.WriteValues(keyPath, previous)
+            RequireExactValues(access.ReadValues(keyPath), previous)
         End Sub
 
         Public Shared Function ExpectedValues(state As InstalledState) As IDictionary(Of String, Object)

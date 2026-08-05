@@ -49,6 +49,9 @@ Module Program
         RunTest("faulted coordinated install rolls back every surface", AddressOf FaultedCoordinatedInstallRollsBack)
         RunTest("coordinated repair changes owned shortcut selection", AddressOf CoordinatedRepairChangesShortcutSelection)
         RunTest("post-integration fault rolls back every surface", AddressOf PostIntegrationFaultRollsBack)
+        RunTest("coordinated uninstall removes only owned surfaces", AddressOf CoordinatedUninstallRemovesOwnedSurfaces)
+        RunTest("post-system uninstall fault restores every surface", AddressOf PostSystemUninstallFaultRestores)
+        RunTest("altered registry blocks coordinated uninstall", AddressOf AlteredRegistryBlocksCoordinatedUninstall)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -581,6 +584,73 @@ Module Program
                             If shortcuts.ReadShortcut(item.Path) IsNot Nothing Then Throw New Exception("Post-integration failure left a shortcut.")
                         Next
                     End Sub)
+    End Sub
+
+    Private Sub CoordinatedUninstallRemovesOwnedSurfaces()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Dim state As C3Setup.InstalledState = ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing)
+                        Dim unknownPath As String = Path.Combine(state.InstallRoot, "catalogue.xml")
+                        File.WriteAllText(unknownPath, "preserve")
+                        C3Setup.SetupUninstallOperation.Execute(state.InstallRoot, shortcuts, registry, Nothing)
+                        AssertEqual("preserve", File.ReadAllText(unknownPath), "coordinated uninstall unknown file")
+                        AssertCoordinatedSurfacesRemoved(state, registry, shortcuts)
+                    End Sub)
+    End Sub
+
+    Private Sub PostSystemUninstallFaultRestores()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Dim state As C3Setup.InstalledState = ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing)
+                        Try
+                            C3Setup.SetupUninstallOperation.Execute(state.InstallRoot,
+                                                                   shortcuts,
+                                                                   registry,
+                                                                   Sub(point As String)
+                                                                       If point = "after-system-removal" Then Throw New InvalidOperationException("uninstall-post-system-injected")
+                                                                   End Sub)
+                            Throw New Exception("Expected post-system uninstall failure.")
+                        Catch ex As InvalidOperationException
+                            If ex.Message <> "uninstall-post-system-injected" Then Throw
+                        End Try
+                        C3Setup.PayloadVerifier.VerifyOwnedFiles(state.Manifest, state.InstallRoot)
+                        If registry.ReadValues(C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)) Is Nothing Then Throw New Exception("Uninstall rollback did not restore registry state.")
+                        For Each item As C3Setup.InstalledShortcut In state.Shortcuts
+                            If shortcuts.ReadShortcut(item.Path) Is Nothing Then Throw New Exception("Uninstall rollback did not restore a shortcut.")
+                        Next
+                    End Sub)
+    End Sub
+
+    Private Sub AlteredRegistryBlocksCoordinatedUninstall()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Dim state As C3Setup.InstalledState = ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing)
+                        Dim key As String = C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
+                        Dim altered As IDictionary(Of String, Object) = registry.ReadValues(key)
+                        altered("DisplayName") = "Altered registration"
+                        registry.WriteValues(key, altered)
+                        AssertContractFailure(Sub() C3Setup.SetupUninstallOperation.Execute(state.InstallRoot, shortcuts, registry, Nothing))
+                        C3Setup.PayloadVerifier.VerifyOwnedFiles(state.Manifest, state.InstallRoot)
+                        For Each item As C3Setup.InstalledShortcut In state.Shortcuts
+                            If shortcuts.ReadShortcut(item.Path) Is Nothing Then Throw New Exception("Blocked uninstall did not restore shortcuts.")
+                        Next
+                    End Sub)
+    End Sub
+
+    Private Sub AssertCoordinatedSurfacesRemoved(state As C3Setup.InstalledState,
+                                                 registry As MemoryRegistryAccess,
+                                                 shortcuts As MemoryShortcutAccess)
+        For Each item As C3Setup.PayloadFile In state.Manifest.Files
+            If File.Exists(Path.Combine(state.InstallRoot, item.Path)) Then Throw New Exception("Owned file survived coordinated uninstall: " & item.Path)
+        Next
+        If File.Exists(Path.Combine(state.InstallRoot, C3Setup.InstalledStateCodec.FileName)) Then Throw New Exception("Installed state survived coordinated uninstall.")
+        If registry.ReadValues(C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)) IsNot Nothing Then Throw New Exception("Registry state survived coordinated uninstall.")
+        For Each item As C3Setup.InstalledShortcut In state.Shortcuts
+            If shortcuts.ReadShortcut(item.Path) IsNot Nothing Then Throw New Exception("Owned shortcut survived coordinated uninstall.")
+        Next
     End Sub
 
     Private Function ExecuteCoordinatedInstall(root As String,

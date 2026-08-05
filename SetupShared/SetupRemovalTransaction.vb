@@ -8,6 +8,12 @@ Namespace Global.C3Setup
         End Sub
 
         Public Shared Sub Remove(installRoot As String, faultInjector As Action(Of String))
+            Remove(installRoot, Nothing, faultInjector)
+        End Sub
+
+        Public Shared Sub Remove(installRoot As String,
+                                 systemRemoval As Func(Of InstalledState, Action),
+                                 faultInjector As Action(Of String))
             Dim canonicalRoot As String = SetupPathPolicy.ValidateInstallRoot(installRoot)
             Dim statePath As String = Path.Combine(canonicalRoot, InstalledStateCodec.FileName)
             If Not File.Exists(statePath) Then
@@ -25,6 +31,7 @@ Namespace Global.C3Setup
             If Directory.Exists(removalRoot) Then Throw New SetupContractException("Removal staging path already exists.")
 
             Dim moved As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
+            Dim rollbackSystemRemoval As Action = Nothing
             Try
                 Directory.CreateDirectory(removalRoot)
                 Dim count As Integer = 0
@@ -41,22 +48,51 @@ Namespace Global.C3Setup
                 moved.Add(statePath, stagedState)
                 Inject(faultInjector, "after-state")
 
+                If systemRemoval IsNot Nothing Then
+                    rollbackSystemRemoval = systemRemoval(state)
+                    If rollbackSystemRemoval Is Nothing Then Throw New SetupContractException("System removal did not provide a rollback operation.")
+                    Inject(faultInjector, "after-system-removal")
+                End If
+
                 Directory.Delete(removalRoot, True)
                 If Directory.Exists(canonicalRoot) AndAlso New DirectoryInfo(canonicalRoot).GetFileSystemInfos().Length = 0 Then
                     Directory.Delete(canonicalRoot, False)
                 End If
-            Catch
+            Catch failure As Exception
+                Dim rollbackFailures As New List(Of Exception)()
                 For Each original As String In moved.Keys
-                    Dim staged As String = moved(original)
-                    If File.Exists(staged) Then File.Move(staged, original)
+                    Dim originalPath As String = original
+                    Dim stagedPath As String = moved(original)
+                    TryRollback(Sub()
+                                    If File.Exists(stagedPath) Then File.Move(stagedPath, originalPath)
+                                End Sub,
+                                rollbackFailures)
                 Next
-                If Directory.Exists(removalRoot) Then Directory.Delete(removalRoot, True)
+                If rollbackSystemRemoval IsNot Nothing Then TryRollback(rollbackSystemRemoval, rollbackFailures)
+                TryRollback(Sub()
+                                If Directory.Exists(removalRoot) Then Directory.Delete(removalRoot, True)
+                            End Sub,
+                            rollbackFailures)
+                If rollbackFailures.Count <> 0 Then
+                    Dim allFailures As New List(Of Exception)()
+                    allFailures.Add(failure)
+                    allFailures.AddRange(rollbackFailures)
+                    Throw New AggregateException("Removal failed and one or more rollback actions also failed.", allFailures)
+                End If
                 Throw
             End Try
         End Sub
 
         Private Shared Sub Inject(faultInjector As Action(Of String), point As String)
             If faultInjector IsNot Nothing Then faultInjector(point)
+        End Sub
+
+        Private Shared Sub TryRollback(action As Action, failures As IList(Of Exception))
+            Try
+                action()
+            Catch ex As Exception
+                failures.Add(ex)
+            End Try
         End Sub
 
     End Class
