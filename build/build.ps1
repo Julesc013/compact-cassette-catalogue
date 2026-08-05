@@ -51,6 +51,7 @@ function Get-ReferenceAssemblyEvidence {
 }
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot 'servicing-version.ps1')
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $repositoryLockTemplate = Join-Path $PSScriptRoot 'toolchain-lock.json'
 if ($ToolchainMode -ceq 'Candidate') {
@@ -185,11 +186,10 @@ foreach ($buildLane in $lanes) {
         if (-not [IO.Path]::IsPathRooted([string]$candidateLockLane[0].resourceToolPath)) {
             throw "External candidate lock lane '$($buildLane.id)' resourceToolPath must be absolute."
         }
-        $lockedProductMatch = [regex]::Match([string]$candidateLockLane[0].visualStudioProductVersion, '^\d+(?:\.\d+)+')
-        if (-not $lockedProductMatch.Success -or
-                [version]$lockedProductMatch.Value -lt [version]([string]$buildLane.initialServicingPin)) {
-            throw "External candidate lock lane '$($buildLane.id)' Visual Studio '$($candidateLockLane[0].visualStudioProductVersion)' is older than decision-date servicing floor '$($buildLane.initialServicingPin)'."
-        }
+        [void](Assert-C3VisualStudioServicingFloor `
+                -ProductVersion ([string]$candidateLockLane[0].visualStudioProductVersion) `
+                -MinimumVersion ([string]$buildLane.initialServicingPin) `
+                -Context "External candidate lock lane '$($buildLane.id)'")
     }
 }
 if ($PreflightOnly) {
@@ -219,9 +219,11 @@ foreach ($buildLane in $lanes) {
     $msbuild = [string]$resolvedToolchain.msbuildPath
 
     $installedProductVersion = [string]$resolvedToolchain.visualStudioProductVersion
-    $installedVersionMatch = [regex]::Match($installedProductVersion, '^\d+(?:\.\d+)+')
+    $installedVersion = Get-C3VisualStudioServicingVersion `
+        -ProductVersion $installedProductVersion `
+        -Context "Resolved lane '$($buildLane.id)'"
     if ($ToolchainMode -ceq 'Preparation' -and
-            (-not $installedVersionMatch.Success -or $installedVersionMatch.Value -cne [string]$buildLane.initialServicingPin)) {
+            $installedVersion -ne [version]([string]$buildLane.initialServicingPin)) {
         Write-Warning "$($buildLane.id) resolved Visual Studio '$installedProductVersion'; the decision-date starting pin is '$($buildLane.initialServicingPin)'. This build is preparation evidence only."
     }
 

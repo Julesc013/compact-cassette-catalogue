@@ -35,6 +35,7 @@ function Write-JsonFile {
 }
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot 'servicing-version.ps1')
 $sourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
 $remoteCommit = (& git -C $repositoryRoot rev-parse refs/remotes/origin/dev/1.x).Trim()
 if ($LASTEXITCODE -ne 0 -or $sourceCommit -cne $remoteCommit) {
@@ -170,10 +171,26 @@ try {
 
     & (Join-Path $PSScriptRoot 'test-target-tooling-ps2.ps1')
 
-    $staleLockPath = Join-Path $testRoot 'stale-toolchain-lock.json'
     Assert-Failure 'stale servicing baseline rejected before freeze' {
-        & (Join-Path $PSScriptRoot 'new-toolchain-lock.ps1') -OutputPath $staleLockPath -RemoteName origin -ProviderRef refs/heads/dev/1.x -Configuration $Configuration
+        [void](Assert-C3VisualStudioServicingFloor `
+                -ProductVersion '17.14.36' `
+                -MinimumVersion '17.14.37' `
+                -Context 'synthetic VS2022 fixture')
     } 'older than decision-date servicing floor'
+    [void](Assert-C3VisualStudioServicingFloor `
+            -ProductVersion '17.14.37' `
+            -MinimumVersion '17.14.37' `
+            -Context 'synthetic exact-floor fixture')
+    [void](Assert-C3VisualStudioServicingFloor `
+            -ProductVersion '17.14.38+build.1' `
+            -MinimumVersion '17.14.37' `
+            -Context 'synthetic later-servicing fixture')
+    Assert-Failure 'malformed servicing version rejected before freeze' {
+        [void](Assert-C3VisualStudioServicingFloor `
+                -ProductVersion 'evergreen' `
+                -MinimumVersion '17.14.37' `
+                -Context 'synthetic malformed fixture')
+    } 'not a parseable servicing version'
 
     if (@(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all).Count -ne 0) {
         throw 'Adversarial tests did not restore the clean source tree.'
