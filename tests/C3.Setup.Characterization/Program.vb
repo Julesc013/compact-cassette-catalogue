@@ -27,6 +27,9 @@ Module Program
         RunTest("repair preserves unknown files", AddressOf RepairPreservesUnknownFiles)
         RunTest("faulted repair rolls back exact prior bytes", AddressOf FaultedRepairRollsBack)
         RunTest("unowned collision is rejected without mutation", AddressOf UnownedCollisionIsRejected)
+        RunTest("removal deletes only owned files", AddressOf RemovalDeletesOnlyOwnedFiles)
+        RunTest("modified owned file blocks removal", AddressOf ModifiedOwnedFileBlocksRemoval)
+        RunTest("faulted removal restores exact installed state", AddressOf FaultedRemovalRestoresState)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -231,6 +234,50 @@ Module Program
     Private Function GetInstallRoot(root As String) As String
         Return Path.Combine(root, "installed", "Compact Cassette Catalogue")
     End Function
+
+    Private Sub RemovalDeletesOnlyOwnedFiles()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        ApplyTransaction(root, manifestPath, Nothing)
+                        Dim installRoot As String = GetInstallRoot(root)
+                        Dim unknownPath As String = Path.Combine(installRoot, "catalogue.xml")
+                        File.WriteAllText(unknownPath, "preserve")
+                        C3Setup.SetupRemovalTransaction.Remove(installRoot, Nothing)
+                        AssertEqual("preserve", File.ReadAllText(unknownPath), "preserved unknown catalogue")
+                        For Each name As String In PayloadNames
+                            If File.Exists(Path.Combine(installRoot, name)) Then Throw New Exception("Owned file survived removal: " & name)
+                        Next
+                        If File.Exists(Path.Combine(installRoot, C3Setup.InstalledStateCodec.FileName)) Then Throw New Exception("Installed-state file survived removal.")
+                    End Sub)
+    End Sub
+
+    Private Sub ModifiedOwnedFileBlocksRemoval()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        ApplyTransaction(root, manifestPath, Nothing)
+                        Dim installRoot As String = GetInstallRoot(root)
+                        Dim readme As String = Path.Combine(installRoot, "README.txt")
+                        File.AppendAllText(readme, "modified")
+                        AssertContractFailure(Sub() C3Setup.SetupRemovalTransaction.Remove(installRoot, Nothing))
+                        If Not File.Exists(Path.Combine(installRoot, "Compact Cassette Catalogue.exe")) Then Throw New Exception("Removal mutated files before rejecting modified ownership.")
+                    End Sub)
+    End Sub
+
+    Private Sub FaultedRemovalRestoresState()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        ApplyTransaction(root, manifestPath, Nothing)
+                        Dim installRoot As String = GetInstallRoot(root)
+                        Try
+                            C3Setup.SetupRemovalTransaction.Remove(installRoot,
+                                                                  Sub(point As String)
+                                                                      If point = "after-first-file" Then Throw New InvalidOperationException("remove-injected")
+                                                                  End Sub)
+                            Throw New Exception("Expected injected removal failure.")
+                        Catch ex As InvalidOperationException
+                            If ex.Message <> "remove-injected" Then Throw
+                        End Try
+                        Dim state As C3Setup.InstalledState = C3Setup.InstalledStateCodec.Read(Path.Combine(installRoot, C3Setup.InstalledStateCodec.FileName))
+                        C3Setup.PayloadVerifier.VerifyOwnedFiles(state.Manifest, installRoot)
+                    End Sub)
+    End Sub
 
     Private Sub WithPayload(action As Action(Of String, String))
         Dim root As String = Path.Combine(Path.GetTempPath(), "C3SetupTests-" & Guid.NewGuid().ToString("N"))

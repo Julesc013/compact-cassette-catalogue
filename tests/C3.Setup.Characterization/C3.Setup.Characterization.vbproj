@@ -57,6 +57,9 @@
     <Compile Include="..\..\SetupShared\SetupFileTransaction.vb">
       <Link>Shared\SetupFileTransaction.vb</Link>
     </Compile>
+    <Compile Include="..\..\SetupShared\SetupRemovalTransaction.vb">
+      <Link>Shared\SetupRemovalTransaction.vb</Link>
+    </Compile>
     <Compile Include="Program.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
