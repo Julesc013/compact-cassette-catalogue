@@ -85,7 +85,24 @@ $evidenceRecords = @($lanes | ForEach-Object {
         toolchainLockSha256 = [string]$laneEvidence.toolchainLock.sha256
     }
 })
-[void](Assert-C3PackageEvidenceSet -Records $evidenceRecords -RequireCandidate:$RequireCandidateEvidence)
+$packageSetIdentity = Assert-C3PackageEvidenceSet -Records $evidenceRecords -RequireCandidate:$RequireCandidateEvidence
+if ($RequireCandidateEvidence) {
+    $closurePath = Join-Path $repositoryRoot 'artifacts\evidence\build\candidate-source-closure.json'
+    if (-not (Test-Path -LiteralPath $closurePath -PathType Leaf)) {
+        throw "Candidate packaging requires retained post-build source closure: $closurePath"
+    }
+    $closure = Get-Content -LiteralPath $closurePath -Raw | ConvertFrom-Json
+    if ([string]$closure.status -cne 'pass' -or
+            [string]$closure.sourceCommit -cne [string]$packageSetIdentity.sourceCommit -or
+            [string]$closure.toolchainLockSha256 -cne [string]$packageSetIdentity.toolchainLockSha256 -or
+            -not [bool]$closure.worktreeClean -or
+            -not [bool]$closure.submodulesExact -or
+            [string]$closure.remoteSnapshotCommit -cne [string]$packageSetIdentity.sourceCommit -or
+            [string]$closure.genome -cne 'pass' -or
+            [string]$closure.laneProjection -cne 'pass') {
+        throw 'Candidate package evidence does not match the retained post-build source/ref/genome/lock closure.'
+    }
+}
 
 $readmePath = Join-Path $PSScriptRoot 'package-content\README.txt'
 $releaseNotesPath = Join-Path $repositoryRoot 'RELEASE_NOTES.md'

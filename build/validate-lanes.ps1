@@ -60,14 +60,22 @@ if (($lockIds -join "`n") -cne (($expected.id) -join "`n")) {
 if ([string]$lock.status -notin @('template', 'locked')) {
     throw "Unknown toolchain lock status '$($lock.status)'."
 }
-if ([int]$lock.schemaVersion -ne 2) {
-    throw "Toolchain lock schemaVersion '$($lock.schemaVersion)' is unsupported; expected 2."
+if ([int]$lock.schemaVersion -ne 3) {
+    throw "Toolchain lock schemaVersion '$($lock.schemaVersion)' is unsupported; expected 3."
 }
 if ([string]$lock.status -ceq 'locked') {
     if ([string]::IsNullOrWhiteSpace([string]$lock.sourceCommit) -or
             [string]::IsNullOrWhiteSpace([string]$lock.frozenAtUtc) -or
             [string]::IsNullOrWhiteSpace([string]$lock.expectedRemoteRef)) {
         throw 'Locked toolchain policy requires sourceCommit, expectedRemoteRef, and frozenAtUtc.'
+    }
+    if ([string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.remoteName) -or
+            [string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.remoteUrl) -or
+            [string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.providerRef) -or
+            [string]$lock.providerRefReceipt.remoteTrackingRef -cne [string]$lock.expectedRemoteRef -or
+            [string]$lock.providerRefReceipt.fetchedCommit -cne [string]$lock.sourceCommit -or
+            [string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.fetchedAtUtc)) {
+        throw 'Locked toolchain policy requires a provider-ref receipt bound to its source and expected remote ref.'
     }
     foreach ($lockedLane in @($lock.lanes)) {
         foreach ($propertyName in @('visualStudioProductVersion', 'visualStudioInstallationVersion', 'msbuildSha256', 'vbcSha256', 'referenceAssemblySetSha256', 'resourceToolPath', 'resourceToolSha256')) {

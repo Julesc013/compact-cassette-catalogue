@@ -91,6 +91,19 @@ if ($AllowCompatibleFallback) {
 if ($ToolchainMode -ceq 'Candidate' -and [string]$lock.status -cne 'locked') {
     throw 'Candidate builds require an external toolchain lock with status "locked".'
 }
+if ($ToolchainMode -ceq 'Candidate') {
+    if ([int]$lock.schemaVersion -ne 3) {
+        throw "Candidate builds require external toolchain lock schemaVersion 3; found '$($lock.schemaVersion)'."
+    }
+    if ([string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.remoteName) -or
+            [string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.remoteUrl) -or
+            [string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.providerRef) -or
+            [string]$lock.providerRefReceipt.remoteTrackingRef -cne [string]$lock.expectedRemoteRef -or
+            [string]$lock.providerRefReceipt.fetchedCommit -cne [string]$lock.sourceCommit -or
+            [string]::IsNullOrWhiteSpace([string]$lock.providerRefReceipt.fetchedAtUtc)) {
+        throw 'Candidate builds require a provider-ref receipt bound to the lock source and expected remote snapshot.'
+    }
+}
 if ($PreflightOnly -and $ToolchainMode -cne 'Candidate') {
     throw '-PreflightOnly is available only in Candidate mode.'
 }
@@ -342,6 +355,7 @@ foreach ($buildLane in $lanes) {
             sha256 = $toolchainLockSha256
             status = [string]$lock.status
             sourceCommit = [string]$lock.sourceCommit
+            providerRefReceipt = $lock.providerRefReceipt
         }
         visualStudio = [ordered]@{
             displayName = [string]$resolvedToolchain.visualStudioDisplayName
@@ -398,9 +412,55 @@ foreach ($buildLane in $lanes) {
     Write-Host "Recorded toolchain evidence: $evidenceJsonPath"
 }
 
+if ($ToolchainMode -ceq 'Candidate') {
+    $finalSourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
+    if ($LASTEXITCODE -ne 0 -or $finalSourceCommit -cne $sourceCommit) {
+        throw "Candidate source HEAD changed during the build: '$sourceCommit' -> '$finalSourceCommit'."
+    }
+    $finalSourceStatus = @(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all)
+    if ($LASTEXITCODE -ne 0 -or $finalSourceStatus.Count -ne 0) {
+        throw "Candidate source became dirty during the build:`n$($finalSourceStatus -join "`n")"
+    }
+    $finalSubmoduleStatus = @(& git -C $repositoryRoot submodule status --recursive)
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Could not repeat candidate submodule closure after the build.'
+    }
+    $finalInvalidSubmodules = @($finalSubmoduleStatus | Where-Object { $_ -match '^[\-+U]' })
+    if ($finalInvalidSubmodules.Count -ne 0) {
+        throw "Candidate submodules changed during the build:`n$($finalInvalidSubmodules -join "`n")"
+    }
+    $finalRemoteCommit = (& git -C $repositoryRoot rev-parse ([string]$lock.expectedRemoteRef)).Trim()
+    if ($LASTEXITCODE -ne 0 -or $finalRemoteCommit -cne $sourceCommit -or
+            $finalRemoteCommit -cne [string]$lock.providerRefReceipt.fetchedCommit) {
+        throw "Candidate remote snapshot changed during the build: expected '$sourceCommit', found '$finalRemoteCommit'."
+    }
+    & (Join-Path $PSScriptRoot 'validate-baseline-genome.ps1')
+    & (Join-Path $PSScriptRoot 'validate-lanes.ps1')
+}
+
 $finalToolchainLockSha256 = (Get-FileHash -LiteralPath $resolvedLockPath -Algorithm SHA256).Hash.ToLowerInvariant()
 if ($finalToolchainLockSha256 -cne $toolchainLockSha256) {
     throw "Toolchain lock changed during the build: $toolchainLockSha256 -> $finalToolchainLockSha256."
+}
+
+if ($ToolchainMode -ceq 'Candidate') {
+    $closurePath = Join-Path $repositoryRoot 'artifacts\evidence\build\candidate-source-closure.json'
+    $closure = [ordered]@{
+        schemaVersion = 1
+        status = 'pass'
+        sourceCommit = $sourceCommit
+        worktreeClean = $true
+        submodulesExact = $true
+        expectedRemoteRef = [string]$lock.expectedRemoteRef
+        remoteSnapshotCommit = [string]$lock.providerRefReceipt.fetchedCommit
+        providerRefReceipt = $lock.providerRefReceipt
+        toolchainLockSha256 = $toolchainLockSha256
+        genome = 'pass'
+        laneProjection = 'pass'
+        completedAtUtc = [DateTime]::UtcNow.ToString('o')
+    }
+    $closure | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $closurePath -Encoding UTF8
+    Write-Host "Recorded post-build candidate source closure: $closurePath"
 }
 
 Write-Host "Built $($lanes.Count) source-identical C3 lane(s) in $ToolchainMode mode."

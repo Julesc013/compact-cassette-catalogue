@@ -2,7 +2,8 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$OutputPath,
-    [string]$ExpectedRemoteRef = 'refs/remotes/origin/dev/1.x',
+    [string]$RemoteName = 'origin',
+    [string]$ProviderRef = 'refs/heads/dev/1.x',
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release'
 )
@@ -22,9 +23,15 @@ if ($OutputPath.StartsWith($repositoryPrefix, [StringComparison]::OrdinalIgnoreC
 if (Test-Path -LiteralPath $OutputPath) {
     throw "Refusing to overwrite immutable candidate lock '$OutputPath'."
 }
-if (-not $ExpectedRemoteRef.StartsWith('refs/remotes/', [StringComparison]::Ordinal)) {
-    throw '-ExpectedRemoteRef must name a remote-tracking ref under refs/remotes/.'
+if ($RemoteName -notmatch '^[A-Za-z0-9._-]+$') {
+    throw "Remote name '$RemoteName' contains unsupported characters."
 }
+if ($ProviderRef -notmatch '^refs/heads/[A-Za-z0-9._/-]+$' -or
+        $ProviderRef -match '(?:\.\.|[~^:?*\[\\])') {
+    throw "Provider ref '$ProviderRef' must be a closed refs/heads/... name."
+}
+$providerBranch = $ProviderRef.Substring('refs/heads/'.Length)
+$ExpectedRemoteRef = "refs/remotes/$RemoteName/$providerBranch"
 
 $sourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
 if ($LASTEXITCODE -ne 0 -or $sourceCommit -notmatch '^[0-9a-f]{40}$') {
@@ -34,15 +41,6 @@ $sourceStatus = @(& git -C $repositoryRoot status --porcelain=v1 --untracked-fil
 if ($LASTEXITCODE -ne 0 -or $sourceStatus.Count -ne 0) {
     throw "Candidate-lock capture requires a clean source tree:`n$($sourceStatus -join "`n")"
 }
-& git -C $repositoryRoot show-ref --verify --quiet $ExpectedRemoteRef
-if ($LASTEXITCODE -ne 0) {
-    throw "Expected remote-tracking ref does not exist locally: $ExpectedRemoteRef"
-}
-$remoteCommit = (& git -C $repositoryRoot rev-parse $ExpectedRemoteRef).Trim()
-if ($LASTEXITCODE -ne 0 -or $remoteCommit -cne $sourceCommit) {
-    throw "Candidate-lock source '$sourceCommit' is not exactly '$ExpectedRemoteRef' ('$remoteCommit')."
-}
-
 & (Join-Path $PSScriptRoot 'validate-baseline-genome.ps1')
 & (Join-Path $PSScriptRoot 'validate-lanes.ps1')
 & (Join-Path $PSScriptRoot 'verify-builds.ps1') -Configuration $Configuration
@@ -76,12 +74,37 @@ $lockedLanes = @($manifest.lanes | ForEach-Object {
     }
 })
 
+# Fetch only during the freeze transaction. Candidate builds consume this
+# retained snapshot offline and never refresh provider state themselves.
+$remoteUrl = (& git -C $repositoryRoot remote get-url $RemoteName).Trim()
+if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($remoteUrl)) {
+    throw "Could not resolve URL for candidate source remote '$RemoteName'."
+}
+$refspec = "+${ProviderRef}:${ExpectedRemoteRef}"
+& git -C $repositoryRoot fetch --no-tags $RemoteName $refspec
+if ($LASTEXITCODE -ne 0) {
+    throw "Could not fetch provider ref '$ProviderRef' from '$RemoteName'."
+}
+$fetchedAtUtc = [DateTime]::UtcNow.ToString('o')
+$remoteCommit = (& git -C $repositoryRoot rev-parse $ExpectedRemoteRef).Trim()
+if ($LASTEXITCODE -ne 0 -or $remoteCommit -cne $sourceCommit) {
+    throw "Candidate-lock source '$sourceCommit' is not exactly fetched '$RemoteName/$ProviderRef' ('$remoteCommit')."
+}
+
 $lock = [ordered]@{
-    schemaVersion = 2
+    schemaVersion = 3
     purpose = 'external immutable source-bound candidate toolchain lock'
     status = 'locked'
     sourceCommit = $sourceCommit
     expectedRemoteRef = $ExpectedRemoteRef
+    providerRefReceipt = [ordered]@{
+        remoteName = $RemoteName
+        remoteUrl = $remoteUrl
+        providerRef = $ProviderRef
+        remoteTrackingRef = $ExpectedRemoteRef
+        fetchedCommit = $remoteCommit
+        fetchedAtUtc = $fetchedAtUtc
+    }
     frozenAtUtc = [DateTime]::UtcNow.ToString('o')
     lanes = $lockedLanes
 }

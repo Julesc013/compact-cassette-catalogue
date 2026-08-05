@@ -71,11 +71,19 @@ try {
         }
     })
     $fixtureLock = [ordered]@{
-        schemaVersion = 2
+        schemaVersion = 3
         purpose = 'synthetic adversarial preflight fixture; not candidate authority'
         status = 'locked'
         sourceCommit = $sourceCommit
         expectedRemoteRef = 'refs/remotes/origin/dev/1.x'
+        providerRefReceipt = [ordered]@{
+            remoteName = 'origin'
+            remoteUrl = 'https://github.com/Julesc013/compact-cassette-catalogue.git'
+            providerRef = 'refs/heads/dev/1.x'
+            remoteTrackingRef = 'refs/remotes/origin/dev/1.x'
+            fetchedCommit = $sourceCommit
+            fetchedAtUtc = [DateTime]::UtcNow.ToString('o')
+        }
         frozenAtUtc = [DateTime]::UtcNow.ToString('o')
         lanes = $fixtureLanes
     }
@@ -88,6 +96,7 @@ try {
 
     $wrongSourceLock = Get-Content -LiteralPath $fixtureLockPath -Raw | ConvertFrom-Json
     $wrongSourceLock.sourceCommit = '0000000000000000000000000000000000000000'
+    $wrongSourceLock.providerRefReceipt.fetchedCommit = '0000000000000000000000000000000000000000'
     $wrongSourceLockPath = Join-Path $testRoot 'wrong-source.json'
     Write-JsonFile $wrongSourceLock $wrongSourceLockPath
     Assert-Failure 'external lock bound to wrong source rejected' {
@@ -161,7 +170,7 @@ try {
 
     $staleLockPath = Join-Path $testRoot 'stale-toolchain-lock.json'
     Assert-Failure 'stale servicing baseline rejected before freeze' {
-        & (Join-Path $PSScriptRoot 'new-toolchain-lock.ps1') -OutputPath $staleLockPath -ExpectedRemoteRef refs/remotes/origin/dev/1.x -Configuration $Configuration
+        & (Join-Path $PSScriptRoot 'new-toolchain-lock.ps1') -OutputPath $staleLockPath -RemoteName origin -ProviderRef refs/heads/dev/1.x -Configuration $Configuration
     } 'older than decision-date servicing floor'
 
     if (@(& git -C $repositoryRoot status --porcelain=v1 --untracked-files=all).Count -ne 0) {
