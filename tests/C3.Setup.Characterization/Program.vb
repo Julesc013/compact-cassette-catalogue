@@ -12,6 +12,11 @@ Module Program
     }
 
     Sub Main()
+        Dim commandLine As String() = Environment.GetCommandLineArgs()
+        If commandLine.Length > 1 AndAlso commandLine(1) = "--journal-crash-child" Then
+            RunJournalCrashChild(commandLine)
+            Return
+        End If
         RunTest("valid closed payload passes", AddressOf ValidClosedPayloadPasses)
         RunTest("altered payload file is rejected", AddressOf AlteredPayloadIsRejected)
         RunTest("unexpected payload file is rejected", AddressOf UnexpectedPayloadIsRejected)
@@ -61,6 +66,21 @@ Module Program
         RunTest("running application blocks uninstall", AddressOf RunningApplicationBlocksUninstall)
         RunTest("adjacent Alpha 3 setup bundle loads exact bytes", AddressOf AdjacentBundleLoadsExactBytes)
         RunTest("wrong setup release identity is rejected", AddressOf WrongSetupReleaseIdentityIsRejected)
+        For Each phase As String In C3Setup.SetupTransactionPhases.All()
+            Dim crashPhase As String = phase
+            RunTest("process death during install " & crashPhase & " recovers", Sub() InstallProcessDeathRecovers(crashPhase))
+        Next
+        For Each phase As String In C3Setup.SetupTransactionPhases.All()
+            Dim crashPhase As String = phase
+            RunTest("process death during repair " & crashPhase & " preserves user files", Sub() RepairProcessDeathRecovers(crashPhase))
+        Next
+        For Each phase As String In C3Setup.SetupTransactionPhases.All()
+            Dim crashPhase As String = phase
+            RunTest("process death during uninstall " & crashPhase & " recovers", Sub() UninstallProcessDeathRecovers(crashPhase))
+        Next
+        RunTest("new setup invocation recovers an interrupted predecessor", AddressOf SetupStartupRecoversInterruptedPredecessor)
+        RunTest("recovery fails closed on altered promoted bytes", AddressOf RecoveryRejectsAlteredPromotedBytes)
+        RunTest("installed state remains hidden until external surfaces are durable", AddressOf InstalledStateIsCommittedLast)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -819,6 +839,228 @@ Module Program
                     End Sub)
     End Sub
 
+    Private Sub InstallProcessDeathRecovers(phase As String)
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New DirectoryRegistryAccess(Path.Combine(root, "registry"))
+                        Dim shortcuts As DirectoryShortcutAccess = CreateDirectoryShortcutAccess(root)
+                        RunCrashChild("install", phase, root, manifestPath)
+                        Dim installRoot As String = CoordinatedInstallRoot(root)
+                        Dim journalPath As String = C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot)
+                        Dim interrupted As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(journalPath)
+                        AssertEqual(phase, interrupted.Phase, "interrupted install phase")
+                        Dim result As String = C3Setup.SetupTransactionRecovery.RecoverIncomplete(installRoot, shortcuts, registry)
+                        If phase = C3Setup.SetupTransactionPhases.Complete Then
+                            AssertEqual(C3Setup.SetupTransactionPhases.Complete, result, "completed install recovery result")
+                            AssertInstalledSurfaces(installRoot, registry, shortcuts)
+                        Else
+                            AssertEqual(C3Setup.SetupTransactionPhases.RollbackComplete, result, "interrupted install recovery result")
+                            AssertAbsentSurfaces(installRoot, registry, shortcuts)
+                        End If
+                        AssertJournalSettled(journalPath, phase = C3Setup.SetupTransactionPhases.Complete)
+                    End Sub)
+    End Sub
+
+    Private Sub UninstallProcessDeathRecovers(phase As String)
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New DirectoryRegistryAccess(Path.Combine(root, "registry"))
+                        Dim shortcuts As DirectoryShortcutAccess = CreateDirectoryShortcutAccess(root)
+                        ExecutePersistentInstall(root, manifestPath, registry, shortcuts)
+                        Dim installRoot As String = CoordinatedInstallRoot(root)
+                        Dim unknownPath As String = Path.Combine(installRoot, "catalogue.xml")
+                        File.WriteAllText(unknownPath, "preserve")
+                        RunCrashChild("uninstall", phase, root, manifestPath)
+                        Dim journalPath As String = C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot)
+                        Dim interrupted As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(journalPath)
+                        AssertEqual(phase, interrupted.Phase, "interrupted uninstall phase")
+                        Dim result As String = C3Setup.SetupTransactionRecovery.RecoverIncomplete(installRoot, shortcuts, registry)
+                        If phase = C3Setup.SetupTransactionPhases.Complete Then
+                            AssertEqual(C3Setup.SetupTransactionPhases.Complete, result, "completed uninstall recovery result")
+                            AssertAbsentSurfaces(installRoot, registry, shortcuts)
+                        Else
+                            AssertEqual(C3Setup.SetupTransactionPhases.RollbackComplete, result, "interrupted uninstall recovery result")
+                            AssertInstalledSurfaces(installRoot, registry, shortcuts)
+                        End If
+                        AssertEqual("preserve", File.ReadAllText(unknownPath), "unknown catalogue after uninstall recovery")
+                        AssertJournalSettled(journalPath, phase = C3Setup.SetupTransactionPhases.Complete)
+                    End Sub)
+    End Sub
+
+    Private Sub RepairProcessDeathRecovers(phase As String)
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New DirectoryRegistryAccess(Path.Combine(root, "registry"))
+                        Dim shortcuts As DirectoryShortcutAccess = CreateDirectoryShortcutAccess(root)
+                        Dim original As C3Setup.InstalledState = ExecutePersistentInstall(root, manifestPath, registry, shortcuts)
+                        Dim cataloguePath As String = Path.Combine(original.InstallRoot, "catalogue.xml")
+                        Dim settingsPath As String = Path.Combine(original.InstallRoot, "user.settings")
+                        File.WriteAllText(cataloguePath, "catalogue-preserve")
+                        File.WriteAllText(settingsPath, "settings-preserve")
+                        RunCrashChild("install", phase, root, manifestPath)
+                        Dim journalPath As String = C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(original.InstallRoot)
+                        Dim interrupted As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(journalPath)
+                        AssertEqual(phase, interrupted.Phase, "interrupted repair phase")
+                        C3Setup.SetupTransactionRecovery.RecoverIncomplete(original.InstallRoot, shortcuts, registry)
+                        AssertInstalledSurfaces(original.InstallRoot, registry, shortcuts)
+                        Dim recovered As C3Setup.InstalledState = C3Setup.InstalledStateCodec.Read(Path.Combine(original.InstallRoot, C3Setup.InstalledStateCodec.FileName))
+                        If phase = C3Setup.SetupTransactionPhases.Complete Then
+                            AssertEqual(interrupted.TransactionId, recovered.TransactionId, "completed repair transaction")
+                        Else
+                            AssertEqual(original.TransactionId, recovered.TransactionId, "rolled-back repair transaction")
+                        End If
+                        AssertEqual("catalogue-preserve", File.ReadAllText(cataloguePath), "catalogue preserved across repair crash")
+                        AssertEqual("settings-preserve", File.ReadAllText(settingsPath), "settings preserved across repair crash")
+                    End Sub)
+    End Sub
+
+    Private Sub SetupStartupRecoversInterruptedPredecessor()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New DirectoryRegistryAccess(Path.Combine(root, "registry"))
+                        Dim shortcuts As DirectoryShortcutAccess = CreateDirectoryShortcutAccess(root)
+                        RunCrashChild("install", C3Setup.SetupTransactionPhases.PayloadPromoted, root, manifestPath)
+                        Dim state As C3Setup.InstalledState = ExecutePersistentInstall(root, manifestPath, registry, shortcuts)
+                        AssertInstalledSurfaces(state.InstallRoot, registry, shortcuts)
+                        Dim journal As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(state.InstallRoot))
+                        AssertEqual(C3Setup.SetupTransactionPhases.Complete, journal.Phase, "successor setup journal phase")
+                    End Sub)
+    End Sub
+
+    Private Sub RecoveryRejectsAlteredPromotedBytes()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New DirectoryRegistryAccess(Path.Combine(root, "registry"))
+                        Dim shortcuts As DirectoryShortcutAccess = CreateDirectoryShortcutAccess(root)
+                        RunCrashChild("install", C3Setup.SetupTransactionPhases.PayloadPromoted, root, manifestPath)
+                        Dim installRoot As String = CoordinatedInstallRoot(root)
+                        File.AppendAllText(Path.Combine(installRoot, "Compact Cassette Catalogue.exe"), "altered")
+                        AssertContractFailure(Sub() C3Setup.SetupTransactionRecovery.RecoverIncomplete(installRoot, shortcuts, registry))
+                        Dim journal As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot))
+                        AssertEqual(C3Setup.SetupTransactionPhases.RollbackStarted, journal.Phase, "failed-closed retained journal")
+                    End Sub)
+    End Sub
+
+    Private Sub InstalledStateIsCommittedLast()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Dim statePath As String = Path.Combine(CoordinatedInstallRoot(root), C3Setup.InstalledStateCodec.FileName)
+                        Dim assertHidden As Action = Sub()
+                                                           If File.Exists(statePath) Then Throw New Exception("Complete installed state was exposed before external surfaces were durable.")
+                                                       End Sub
+                        registry.BeforeWrite = assertHidden
+                        shortcuts.BeforeWrite = assertHidden
+                        Dim state As C3Setup.InstalledState = ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing)
+                        If Not File.Exists(statePath) Then Throw New Exception("Complete installed state was not exposed after durable integration.")
+                        AssertInstalledSurfaces(state.InstallRoot, registry, shortcuts)
+                    End Sub)
+    End Sub
+
+    Private Sub RunJournalCrashChild(arguments As String())
+        If arguments.Length <> 6 Then Environment.Exit(98)
+        Dim operation As String = arguments(2)
+        Dim phase As String = arguments(3)
+        Dim root As String = arguments(4)
+        Dim manifestPath As String = arguments(5)
+        Dim registry As New DirectoryRegistryAccess(Path.Combine(root, "registry"))
+        Dim shortcuts As DirectoryShortcutAccess = CreateDirectoryShortcutAccess(root)
+        Dim injector As Action(Of String) =
+            Sub(point As String)
+                If (phase = C3Setup.SetupTransactionPhases.RollbackStarted OrElse phase = C3Setup.SetupTransactionPhases.RollbackComplete) AndAlso
+                        point = "after-first-file" Then Throw New InvalidOperationException("force-durable-rollback")
+                If point = "journal:" & phase Then Environment.Exit(97)
+            End Sub
+        If operation = "install" Then
+            ExecutePersistentInstall(root, manifestPath, registry, shortcuts, injector)
+        ElseIf operation = "uninstall" Then
+            C3Setup.SetupUninstallOperation.Execute(CoordinatedInstallRoot(root), shortcuts, registry, injector)
+        Else
+            Environment.Exit(98)
+        End If
+        Environment.Exit(99)
+    End Sub
+
+    Private Sub RunCrashChild(operation As String, phase As String, root As String, manifestPath As String)
+        Dim executable As String = System.Reflection.Assembly.GetExecutingAssembly().Location
+        Dim arguments As String = String.Join(" ", New String() {
+            "--journal-crash-child",
+            QuoteArgument(operation),
+            QuoteArgument(phase),
+            QuoteArgument(root),
+            QuoteArgument(manifestPath)
+        })
+        Dim info As New System.Diagnostics.ProcessStartInfo(executable, arguments)
+        info.UseShellExecute = False
+        info.CreateNoWindow = True
+        Dim child As System.Diagnostics.Process = System.Diagnostics.Process.Start(info)
+        If Not child.WaitForExit(30000) Then
+            child.Kill()
+            Throw New Exception("Journal crash child timed out at " & operation & " " & phase & ".")
+        End If
+        If child.ExitCode <> 97 Then Throw New Exception("Journal crash child exited " & child.ExitCode.ToString(CultureInfo.InvariantCulture) & " at " & operation & " " & phase & ".")
+    End Sub
+
+    Private Function QuoteArgument(value As String) As String
+        If value.Contains("""") Then Throw New Exception("Test argument contains a quote.")
+        Return """" & value & """"
+    End Function
+
+    Private Function ExecutePersistentInstall(root As String,
+                                              manifestPath As String,
+                                              registry As DirectoryRegistryAccess,
+                                              shortcuts As DirectoryShortcutAccess,
+                                              Optional injector As Action(Of String) = Nothing) As C3Setup.InstalledState
+        Dim programFiles As String = Path.Combine(root, "Program Files")
+        Directory.CreateDirectory(programFiles)
+        Dim facts As New C3Setup.SetupEnvironmentFacts("x86", "x86", True, True, 0, programFiles, False, 1048576)
+        Return C3Setup.SetupInstallOperation.Execute(manifestPath,
+                                                     Path.Combine(root, "payload"),
+                                                     CoordinatedInstallRoot(root),
+                                                     "89abcdef0123456789abcdef0123456789abcdef",
+                                                     "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+                                                     True,
+                                                     facts,
+                                                     shortcuts,
+                                                     registry,
+                                                     injector)
+    End Function
+
+    Private Function CreateDirectoryShortcutAccess(root As String) As DirectoryShortcutAccess
+        Dim programs As String = Path.Combine(root, "Common Programs")
+        Dim desktop As String = Path.Combine(root, "Common Desktop")
+        Directory.CreateDirectory(programs)
+        Directory.CreateDirectory(desktop)
+        Return New DirectoryShortcutAccess(programs, desktop)
+    End Function
+
+    Private Sub AssertInstalledSurfaces(installRoot As String,
+                                        registry As C3Setup.ISetupRegistryAccess,
+                                        shortcuts As C3Setup.ISetupShortcutAccess)
+        Dim statePath As String = Path.Combine(installRoot, C3Setup.InstalledStateCodec.FileName)
+        If Not File.Exists(statePath) Then Throw New Exception("Recovered install has no complete installed state.")
+        Dim state As C3Setup.InstalledState = C3Setup.InstalledStateCodec.Read(statePath)
+        C3Setup.PayloadVerifier.VerifyOwnedFiles(state.Manifest, installRoot)
+        C3Setup.SetupRegistryRegistration.ValidateOwned(state, registry)
+        C3Setup.SetupShortcutService.ValidateOwned(state, shortcuts)
+    End Sub
+
+    Private Sub AssertAbsentSurfaces(installRoot As String,
+                                     registry As C3Setup.ISetupRegistryAccess,
+                                     shortcuts As C3Setup.ISetupShortcutAccess)
+        Dim statePath As String = Path.Combine(installRoot, C3Setup.InstalledStateCodec.FileName)
+        If File.Exists(statePath) Then Throw New Exception("Rolled-back transaction exposed installed state.")
+        If registry.ReadValues(C3Setup.InstalledStateCodec.UninstallKeyForLane("win-x86-net40")) IsNot Nothing Then Throw New Exception("Rolled-back transaction left HKLM registration state.")
+        Dim expected As IList(Of C3Setup.InstalledShortcut) = C3Setup.SetupShortcutService.Plan(installRoot, shortcuts.CommonProgramsPath, shortcuts.CommonDesktopPath, True)
+        For Each item As C3Setup.InstalledShortcut In expected
+            If shortcuts.ReadShortcut(item.Path) IsNot Nothing Then Throw New Exception("Rolled-back transaction left a common shortcut.")
+        Next
+        For Each name As String In PayloadNames
+            If File.Exists(Path.Combine(installRoot, name)) Then Throw New Exception("Rolled-back transaction left owned payload: " & name)
+        Next
+    End Sub
+
+    Private Sub AssertJournalSettled(journalPath As String, completed As Boolean)
+        Dim journal As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(journalPath)
+        AssertEqual(If(completed, C3Setup.SetupTransactionPhases.Complete, C3Setup.SetupTransactionPhases.RollbackComplete), journal.Phase, "settled journal phase")
+        If Directory.Exists(journal.StagingRoot) OrElse Directory.Exists(journal.BackupRoot) Then Throw New Exception("Settled journal retained a mutable work root.")
+    End Sub
+
     Private Function ExecuteCoordinatedInstall(root As String,
                                                manifestPath As String,
                                                registry As MemoryRegistryAccess,
@@ -913,6 +1155,7 @@ Module Program
 
         Private ReadOnly _keys As New Dictionary(Of String, IDictionary(Of String, Object))(StringComparer.Ordinal)
         Public Property FailNextWrite As Boolean
+        Public Property BeforeWrite As Action
 
         Public Function ReadValues(keyPath As String) As IDictionary(Of String, Object) Implements C3Setup.ISetupRegistryAccess.ReadValues
             If Not _keys.ContainsKey(keyPath) Then Return Nothing
@@ -920,6 +1163,7 @@ Module Program
         End Function
 
         Public Sub WriteValues(keyPath As String, values As IDictionary(Of String, Object)) Implements C3Setup.ISetupRegistryAccess.WriteValues
+            If BeforeWrite IsNot Nothing Then BeforeWrite.Invoke()
             If FailNextWrite Then
                 FailNextWrite = False
                 Throw New InvalidOperationException("registry-write-injected")
@@ -929,6 +1173,98 @@ Module Program
 
         Public Sub DeleteKey(keyPath As String) Implements C3Setup.ISetupRegistryAccess.DeleteKey
             _keys.Remove(keyPath)
+        End Sub
+    End Class
+
+    Private NotInheritable Class DirectoryRegistryAccess
+        Implements C3Setup.ISetupRegistryAccess
+
+        Private ReadOnly _root As String
+
+        Public Sub New(root As String)
+            _root = root
+            If Not Directory.Exists(_root) Then Directory.CreateDirectory(_root)
+        End Sub
+
+        Public Function ReadValues(keyPath As String) As IDictionary(Of String, Object) Implements C3Setup.ISetupRegistryAccess.ReadValues
+            Dim path As String = PathForKey(keyPath)
+            If Not File.Exists(path) Then Return Nothing
+            Dim result As New Dictionary(Of String, Object)(StringComparer.Ordinal)
+            For Each line As String In File.ReadAllLines(path)
+                Dim parts As String() = line.Split(New Char() {"|"c}, 3)
+                If parts.Length <> 3 Then Throw New Exception("Persistent registry fixture is malformed.")
+                Dim name As String = Encoding.UTF8.GetString(Convert.FromBase64String(parts(0)))
+                If parts(1) = "I" Then
+                    result.Add(name, Integer.Parse(parts(2), CultureInfo.InvariantCulture))
+                ElseIf parts(1) = "S" Then
+                    result.Add(name, Encoding.UTF8.GetString(Convert.FromBase64String(parts(2))))
+                Else
+                    Throw New Exception("Persistent registry fixture type is malformed.")
+                End If
+            Next
+            Return result
+        End Function
+
+        Public Sub WriteValues(keyPath As String, values As IDictionary(Of String, Object)) Implements C3Setup.ISetupRegistryAccess.WriteValues
+            Dim names As New List(Of String)(values.Keys)
+            names.Sort(StringComparer.Ordinal)
+            Dim lines As New List(Of String)()
+            For Each name As String In names
+                Dim encodedName As String = Convert.ToBase64String(Encoding.UTF8.GetBytes(name))
+                If TypeOf values(name) Is Integer Then
+                    lines.Add(encodedName & "|I|" & DirectCast(values(name), Integer).ToString(CultureInfo.InvariantCulture))
+                ElseIf TypeOf values(name) Is String Then
+                    lines.Add(encodedName & "|S|" & Convert.ToBase64String(Encoding.UTF8.GetBytes(DirectCast(values(name), String))))
+                Else
+                    Throw New Exception("Persistent registry fixture received an unsupported type.")
+                End If
+            Next
+            File.WriteAllLines(PathForKey(keyPath), lines.ToArray())
+        End Sub
+
+        Public Sub DeleteKey(keyPath As String) Implements C3Setup.ISetupRegistryAccess.DeleteKey
+            Dim path As String = PathForKey(keyPath)
+            If File.Exists(path) Then File.Delete(path)
+        End Sub
+
+        Private Function PathForKey(keyPath As String) As String
+            Return Path.Combine(_root, keyPath.Replace("\", "_") & ".txt")
+        End Function
+    End Class
+
+    Private NotInheritable Class DirectoryShortcutAccess
+        Implements C3Setup.ISetupShortcutAccess
+
+        Public Sub New(programs As String, desktop As String)
+            Me.CommonProgramsPath = programs
+            Me.CommonDesktopPath = desktop
+        End Sub
+
+        Public ReadOnly Property CommonProgramsPath As String Implements C3Setup.ISetupShortcutAccess.CommonProgramsPath
+        Public ReadOnly Property CommonDesktopPath As String Implements C3Setup.ISetupShortcutAccess.CommonDesktopPath
+
+        Public Function ReadShortcut(path As String) As C3Setup.SetupShortcut Implements C3Setup.ISetupShortcutAccess.ReadShortcut
+            If Not File.Exists(path) Then Return Nothing
+            Dim lines As String() = File.ReadAllLines(path)
+            If lines.Length <> 3 Then Throw New Exception("Persistent shortcut fixture is malformed.")
+            Return New C3Setup.SetupShortcut(path,
+                                             Encoding.UTF8.GetString(Convert.FromBase64String(lines(0))),
+                                             Encoding.UTF8.GetString(Convert.FromBase64String(lines(1))),
+                                             Encoding.UTF8.GetString(Convert.FromBase64String(lines(2))))
+        End Function
+
+        Public Sub WriteShortcut(value As C3Setup.SetupShortcut) Implements C3Setup.ISetupShortcutAccess.WriteShortcut
+            Dim parent As String = Directory.GetParent(value.Path).FullName
+            If Not Directory.Exists(parent) Then Directory.CreateDirectory(parent)
+            File.WriteAllLines(value.Path, New String() {
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(value.Target)),
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(value.WorkingDirectory)),
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(value.Description))
+            })
+        End Sub
+
+        Public Sub DeleteShortcut(path As String) Implements C3Setup.ISetupShortcutAccess.DeleteShortcut
+            If File.Exists(path) Then File.Delete(path)
         End Sub
     End Class
 
@@ -945,6 +1281,7 @@ Module Program
         Public ReadOnly Property CommonProgramsPath As String Implements C3Setup.ISetupShortcutAccess.CommonProgramsPath
         Public ReadOnly Property CommonDesktopPath As String Implements C3Setup.ISetupShortcutAccess.CommonDesktopPath
         Public Property FailDeletePath As String
+        Public Property BeforeWrite As Action
 
         Public Function ReadShortcut(path As String) As C3Setup.SetupShortcut Implements C3Setup.ISetupShortcutAccess.ReadShortcut
             If Not _shortcuts.ContainsKey(path) Then Return Nothing
@@ -953,6 +1290,7 @@ Module Program
         End Function
 
         Public Sub WriteShortcut(value As C3Setup.SetupShortcut) Implements C3Setup.ISetupShortcutAccess.WriteShortcut
+            If BeforeWrite IsNot Nothing Then BeforeWrite.Invoke()
             _shortcuts(value.Path) = New C3Setup.SetupShortcut(value.Path, value.Target, value.WorkingDirectory, value.Description)
         End Sub
 
