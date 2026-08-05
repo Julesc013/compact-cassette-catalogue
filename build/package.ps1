@@ -54,6 +54,7 @@ function Add-ZipTextEntry {
 
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
+. (Join-Path $PSScriptRoot 'package-evidence-set.ps1')
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
@@ -71,6 +72,21 @@ New-Item -ItemType Directory -Path $EvidenceDirectory -Force | Out-Null
 
 & (Join-Path $PSScriptRoot 'verify-builds.ps1') -Configuration $Configuration
 
+$evidenceByLane = @{}
+$evidenceRecords = @($lanes | ForEach-Object {
+    $evidencePath = Join-Path $repositoryRoot "artifacts\evidence\build\$($_.id)\$Configuration\toolchain.json"
+    $laneEvidence = Get-Content -LiteralPath $evidencePath -Raw | ConvertFrom-Json
+    $evidenceByLane[[string]$_.id] = $laneEvidence
+    New-Object PSObject -Property @{
+        lane = [string]$_.id
+        sourceCommit = [string]$laneEvidence.source.commit
+        toolchainMode = [string]$laneEvidence.toolchainMode
+        toolchainLockStatus = [string]$laneEvidence.toolchainLock.status
+        toolchainLockSha256 = [string]$laneEvidence.toolchainLock.sha256
+    }
+})
+[void](Assert-C3PackageEvidenceSet -Records $evidenceRecords -RequireCandidate:$RequireCandidateEvidence)
+
 $readmePath = Join-Path $PSScriptRoot 'package-content\README.txt'
 $releaseNotesPath = Join-Path $repositoryRoot 'RELEASE_NOTES.md'
 $fixedTimestamp = [DateTimeOffset]::Parse('2000-01-01T00:00:00Z')
@@ -80,11 +96,7 @@ foreach ($buildLane in $lanes) {
     $outputPath = Join-Path $repositoryRoot "artifacts\bin\$($buildLane.id)\$Configuration"
     $executable = Join-Path $outputPath 'Compact Cassette Catalogue.exe'
     $config = $executable + '.config'
-    $evidencePath = Join-Path $repositoryRoot "artifacts\evidence\build\$($buildLane.id)\$Configuration\toolchain.json"
-    $evidence = Get-Content -LiteralPath $evidencePath -Raw | ConvertFrom-Json
-    if ($RequireCandidateEvidence -and [string]$evidence.toolchainMode -cne 'Candidate') {
-        throw "$($buildLane.id) package requires Candidate toolchain evidence, found '$($evidence.toolchainMode)'."
-    }
+    $evidence = $evidenceByLane[[string]$buildLane.id]
 
     $executableHash = (Get-FileHash -LiteralPath $executable -Algorithm SHA256).Hash.ToLowerInvariant()
     $configHash = (Get-FileHash -LiteralPath $config -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -96,6 +108,7 @@ foreach ($buildLane in $lanes) {
         "configuration=$Configuration",
         "sourceCommit=$($evidence.source.commit)",
         "toolchainMode=$($evidence.toolchainMode)",
+        "toolchainLockStatus=$($evidence.toolchainLock.status)",
         "toolchainLockSha256=$($evidence.toolchainLock.sha256)",
         "visualStudioProductVersion=$($evidence.visualStudio.productVersion)",
         "visualStudioInstallationVersion=$($evidence.visualStudio.installationVersion)",

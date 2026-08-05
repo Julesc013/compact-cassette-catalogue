@@ -201,6 +201,8 @@ if ([string]$buildData.lane -cne $Lane -or
         [string]$buildData.peMachine -cne [string]$laneContract.peMachine -or
         [string]$buildData.sourceCommit -cne [string]$entryManifest.sourceCommit -or
         [string]$buildData.toolchainLockSha256 -cne [string]$entryManifest.toolchainLockSha256 -or
+        ([string]$buildData.toolchainMode -ceq 'Candidate' -and [string]$buildData.toolchainLockStatus -cne 'locked') -or
+        ([string]$buildData.toolchainMode -ceq 'Preparation' -and [string]$buildData.toolchainLockStatus -cne 'template') -or
         [string]$buildData.executableSha256 -cne $executableHash -or
         [string]$buildData.configSha256 -cne $configHash) {
     throw 'Extracted EXE/config bytes or BUILD.txt do not match the selected release-lane contract.'

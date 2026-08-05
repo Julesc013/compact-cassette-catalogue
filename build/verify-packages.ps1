@@ -10,6 +10,7 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
+. (Join-Path $PSScriptRoot 'package-evidence-set.ps1')
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
@@ -48,6 +49,7 @@ $expectedEntries = @(
     'RELEASE_NOTES.txt',
     'BUILD.txt'
 )
+$packageEvidenceRecords = New-Object Collections.Generic.List[Object]
 
 for ($index = 0; $index -lt $lanes.Count; $index++) {
     $lane = $lanes[$index]
@@ -135,6 +137,7 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
             $reader.Dispose()
         }
         if ([string]$buildData.lane -cne [string]$lane.id -or
+                [string]$buildData.sourceCommit -cne [string]$entryManifest.sourceCommit -or
                 [string]$buildData.targetFramework -cne [string]$lane.targetFramework -or
                 [string]$buildData.peMachine -cne [string]$lane.peMachine -or
                 [string]$buildData.toolchainLockSha256 -cne [string]$entryManifest.toolchainLockSha256 -or
@@ -144,6 +147,13 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
                 [string]$buildData.distribution -cne 'portable-classic-winforms') {
             throw "$($lane.id) BUILD.txt does not match its lane and portable payload contract."
         }
+        $packageEvidenceRecords.Add((New-Object PSObject -Property @{
+            lane = [string]$lane.id
+            sourceCommit = [string]$buildData.sourceCommit
+            toolchainMode = [string]$buildData.toolchainMode
+            toolchainLockStatus = [string]$buildData.toolchainLockStatus
+            toolchainLockSha256 = [string]$buildData.toolchainLockSha256
+        }))
     }
     finally {
         $archive.Dispose()
@@ -151,4 +161,6 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
     Write-Host "Verified portable package: $($lane.packageName) ($packageHash)"
 }
 
-Write-Host 'Verified exactly three deterministic portable ZIPs, checksums, external entry manifests, matching bytes, and prohibited-output exclusion.'
+[void](Assert-C3PackageEvidenceSet -Records @($packageEvidenceRecords.ToArray()))
+
+Write-Host 'Verified exactly three deterministic portable ZIPs from one source/lock evidence set, checksums, external entry manifests, matching bytes, and prohibited-output exclusion.'
