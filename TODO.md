@@ -2,6 +2,9 @@
 
 The canonical C3 2.0 dependency-ordered checklist is
 [`docs/planning/2.0-execution-plan.md`](docs/planning/2.0-execution-plan.md).
+The concise cross-workstream map is
+[`docs/planning/2.0-grand-programme.md`](docs/planning/2.0-grand-programme.md);
+detailed rules remain in their concern-specific owner documents.
 Public milestone outcomes are summarized in [`ROADMAP.md`](ROADMAP.md).
 Durable automation progress and the current milestone pointer live in
 [`release/train/2.0.0.json`](release/train/2.0.0.json); C/E/P and package facts

@@ -19,6 +19,7 @@ Documentation is organized by its audience and ownership.
 
 ## Design, migration, and planning
 
+- [C3 2.0 grand programme](planning/2.0-grand-programme.md)
 - [C3 2.0 execution plan](planning/2.0-execution-plan.md)
 - [Catalogue 1.1 to native v2 migration design](migration/catalogue-1.1-to-2.0.md)
 - [OEM+ desktop experience contract](ui/oem-plus-design.md)

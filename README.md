@@ -39,6 +39,9 @@ Read the [product vision](docs/product/vision.md),
 [canonical catalogue/Application architecture](docs/architecture/catalogue-and-application.md),
 [distribution doctrine](docs/development/distribution.md), and
 [execution plan](docs/planning/2.0-execution-plan.md) for the complete contract.
+Start with the [C3 2.0 grand programme](docs/planning/2.0-grand-programme.md)
+for the concise map across product, architecture, compatibility, interface,
+testing, and release workstreams.
 
 ## Downloads and build lanes
 

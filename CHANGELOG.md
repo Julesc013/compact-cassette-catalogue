@@ -6,6 +6,9 @@
 
 ### Version 2.0.0 Alpha 5 - In development
 
+- Added the authoritative C3 2.0 grand-programme map and began the first
+  non-production canonical-foundation slice under the accepted whole-document
+  convergence architecture.
 - Re-baselined the post-Alpha-5 programme around whole-document canonical
   convergence before Application and frontend multiplication, with independent
   Alpha 6-12 qualification boundaries for catalogue semantics, document

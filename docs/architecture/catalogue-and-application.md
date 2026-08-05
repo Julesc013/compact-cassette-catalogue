@@ -1,6 +1,6 @@
 # Canonical catalogue and Application architecture
 
-Status: **Accepted direction; implementation begins only after Alpha 5 C/E/P**
+Status: **Accepted direction; non-production foundation implementation underway**
 
 This document owns the post-Alpha-5 in-memory catalogue, document-lifecycle, and
 frontend boundary. The [execution plan](../planning/2.0-execution-plan.md) owns
@@ -355,3 +355,9 @@ The build will progressively enforce that:
 Implementation may revise type names when tests reveal a better boundary. It may
 not weaken the ownership, transition, identity, data-safety, or evidence rules
 without a superseding ADR.
+
+Foundation value types, fixtures, and read-only shadow infrastructure may land
+on `dev/2.x` before Alpha 5 promotion when explicitly directed by the owner,
+provided they do not change the production mutation authority or claim Alpha 6
+qualification. Any such tracked change supersedes the current Alpha 5 candidate
+and requires its complete automated and owner qualification to restart.
