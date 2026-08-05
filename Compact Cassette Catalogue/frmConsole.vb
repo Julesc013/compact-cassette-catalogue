@@ -182,7 +182,7 @@ Public Class frmConsole
                             'Build message.
                             Dim now As DateTime = DateTime.Now
                             Dim stamp As String = "[" & consoleStamp(now) & "]"
-                            message = stamp & " Set defaultDirectory to " & CStr(filePath)
+                            message = stamp & " Set defaultDirectory to " & CStr(folderpath)
 
                         End If
 

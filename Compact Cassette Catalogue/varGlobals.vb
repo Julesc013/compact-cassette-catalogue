@@ -4,6 +4,8 @@
 ' Date Created: 5 Sep 2019
 
 Imports System.Text.RegularExpressions
+Imports System.Diagnostics
+Imports System.IO
 
 Public Module varGlobals
 
@@ -541,10 +543,18 @@ Public Module varGlobals
 
     Sub consoleAdd(message As String)
 
-        'Add line to console.
-        Dim now As DateTime = DateTime.Now
-        Dim stamp As String = "[" & consoleStamp(now) & "]"
-        frmConsole.lstConsole.Items.Add(stamp & " " & message)
+        Try
+
+            'Add line to console.
+            Dim now As DateTime = DateTime.Now
+            Dim stamp As String = "[" & consoleStamp(now) & "]"
+            frmConsole.lstConsole.Items.Add(stamp & " " & message)
+
+        Catch ex As Exception
+
+            Debug.WriteLine("Failed to add a console message: " & ex.Message)
+
+        End Try
 
     End Sub
 
@@ -552,6 +562,58 @@ Public Module varGlobals
 
         'Turn the provided time into a console-formatted time stamp.
         Return dateTime.ToString("dd/MM/yy HH:mm:ss")
+
+    End Function
+
+    Function resolveConsoleOutputDirectory(configuredDirectory As String) As String
+
+        Try
+
+            If Not String.IsNullOrWhiteSpace(configuredDirectory) AndAlso
+                    Directory.Exists(configuredDirectory) Then
+                Return Path.GetFullPath(configuredDirectory)
+            End If
+
+        Catch ex As Exception
+
+            Debug.WriteLine("Failed to resolve the configured console output directory: " & ex.Message)
+
+        End Try
+
+        Return My.Computer.FileSystem.SpecialDirectories.MyDocuments
+
+    End Function
+
+    Sub showNonfatalMessage(message As String, title As String, style As MsgBoxStyle)
+
+        Try
+
+            MsgBox(message, style, title)
+
+        Catch ex As Exception
+
+            Debug.WriteLine("Failed to show a diagnostic message: " & ex.Message)
+
+        End Try
+
+    End Sub
+
+    Function showNonfatalQuestion(message As String, title As String) As DialogResult
+
+        Try
+
+            Return MessageBox.Show(
+                message,
+                title,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Exclamation)
+
+        Catch ex As Exception
+
+            Debug.WriteLine("Failed to show a diagnostic question: " & ex.Message)
+            Return DialogResult.No
+
+        End Try
 
     End Function
 
@@ -565,7 +627,10 @@ Public Module varGlobals
 
             Dim message As String = "Failed to open link."
             consoleAdd(message & " " & link & " Error: " & ex.Message)
-            MsgBox(message & vbNewLine & vbNewLine & link & vbNewLine & vbNewLine & "Error: " & ex.Message, MsgBoxStyle.Exclamation, "Could Not Open Link")
+            showNonfatalMessage(
+                message & vbNewLine & vbNewLine & link & vbNewLine & vbNewLine & "Error: " & ex.Message,
+                "Could Not Open Link",
+                MsgBoxStyle.Exclamation)
 
         End Try
 
