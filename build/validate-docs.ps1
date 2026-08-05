@@ -19,6 +19,7 @@ $requiredFiles = @(
     'docs/planning/1.3.0-salvage-ledger.md',
     'docs/planning/1.3.0-milestones.md',
     'docs/planning/1.3.0-alpha.1.md',
+    'docs/planning/1.3.0-alpha.2.md',
     'docs/planning/1.3.0-beta.1.md',
     'docs/planning/1.3.0-stable.md',
     'docs/testing/1.3.0-qualification-matrix.md',
@@ -32,6 +33,7 @@ $requiredFiles = @(
     'release/validation/1.3.0-release-control-hardening-2026-08-05.md',
     'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md',
     'release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md'
+    'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md'
 )
 
 foreach ($relativePath in @(
@@ -83,6 +85,7 @@ foreach ($heading in @(
         '## Post-Alpha three-lane correction',
         '## Beta 1 entry — finish historical baseline reconstruction',
         '## Release-control hardening before Gate 1',
+        '## Alpha 2 — three-lane control checkpoint',
         '## Beta 1 — lifecycle and data safety',
         '## Beta 1 — referential and counter integrity',
         '## Beta 1 — settings, diagnostics, lanes, and packages',
@@ -166,13 +169,40 @@ foreach ($relativePath in $activePlanPaths) {
 
 $releaseNotes = Get-Content -LiteralPath (Join-Path $repositoryRoot 'RELEASE_NOTES.md') -Raw
 foreach ($statement in @(
-        '# Compact Cassette Catalogue 1.3.0 Alpha 1',
+        '# Compact Cassette Catalogue 1.3.0 Alpha 2',
+        '1.3.0a2 / Alpha 2 / v1.3.0a2',
         'intentionally unpublished',
-        'No runtime lifecycle',
+        'not yet tagged or distributed',
+        'recursive close/cancellation defect',
         'v1.3.0b1',
         'v1.3.0')) {
     if (-not $releaseNotes.Contains($statement)) {
         $failures.Add("Release notes are missing required Alpha disclosure: $statement")
+    }
+}
+
+$alpha2Plan = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/planning/1.3.0-alpha.2.md') -Raw
+foreach ($statement in @(
+        'Planned tag: `v1.3.0a2`',
+        'C3-v1.3.0a2-win-x86-net40-portable.zip',
+        'C3-v1.3.0a2-win-x64-net48-portable.zip',
+        'C3-v1.3.0a2-win-arm64-net481-portable.zip',
+        'one external immutable lock bound to C',
+        'Explicit human approval is required before even retaining a package whose name',
+        'minimum operating system')) {
+    if (-not $alpha2Plan.Contains($statement)) {
+        $failures.Add("Alpha 2 plan is missing required gate or boundary: $statement")
+    }
+}
+
+$alpha2Record = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md') -Raw
+foreach ($statement in @(
+        'repository identity preparation in progress',
+        'releaseLabel=1.3.0a2',
+        'does not claim that the three packages',
+        'Administrator action is required')) {
+    if (-not $alpha2Record.Contains($statement)) {
+        $failures.Add("Alpha 2 preparation record is missing required evidence boundary: $statement")
     }
 }
 

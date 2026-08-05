@@ -5,9 +5,11 @@
 See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](TODO.md "C3 1.3 Workboard"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
 > **Repository status:** the available user release remains C3 1.2.0 Beta 1.
-> `dev/1.x` contains the intentionally unpublished C3 1.3.0 Alpha 1 maintenance
-> foundation. Alpha 1 has no binary release and does not yet contain the planned
-> runtime repairs. See the [legacy maintenance documentation](docs/README.md).
+> `dev/1.x` projects the intentionally unpublished C3 1.3.0 Alpha 2 engineering
+> checkpoint. Its tag and three retained distributions do not exist until the
+> serviced-builder, Candidate, reproducibility, and smoke gates pass. It does
+> not yet contain the planned runtime repairs. See the
+> [legacy maintenance documentation](docs/README.md).
 > After Alpha, the owner ratified an exact three-lane stable matrix: x86/net40,
 > x64/net48, and native ARM64/net481. The Alpha tag remains immutable historical
 > evidence of its earlier four diagnostic lanes.
@@ -85,6 +87,9 @@ release oracle. The later project-splitting refactor is not production ancestry.
 - Alpha 1 froze the recovery doctrine, compatibility evidence, genome gate, and
   its then-current four-lane diagnostic scaffolding. It is source-only and
   unpublished.
+- Alpha 2 is the planned retained three-lane build/release-control checkpoint.
+  Its `1.3.0a2` identity is projected, but builder servicing and production of
+  the tag and ZIPs remain open.
 - Beta 1 will contain the complete bounded runtime repair set and qualification
   evidence under the ratified three-lane matrix.
 - Stable will publish only already-qualified portable packages and will update

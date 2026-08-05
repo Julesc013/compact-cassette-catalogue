@@ -116,6 +116,31 @@ the Codex session. The exact commands and unchanged installed versions are
 retained in the builder/Gate 1 preparation record; this is an environment block,
 not a passed or waived gate.
 
+## Alpha 2 — three-lane control checkpoint
+
+- [x] Define exact `1.3.0a2 / Alpha 2 / v1.3.0a2` source and manifest identity.
+- [x] Project `1.3.0a2` into source display constants, assembly informational/
+  product metadata, package names, `BUILD.txt`, entry manifests, target evidence,
+  checksums, release notes, plans, and validation controls.
+- [x] Reject mixed-label package sets and stable-looking Alpha package names.
+- [ ] Service all three maintained builders to the declared floors or later
+  stable releases and discard stale outputs under the validated artifact roots.
+- [ ] Push clean Alpha source commit `C` and pass the complete source-only suite.
+- [ ] Rebuild all three lanes in Preparation mode and retain exact tool evidence.
+- [ ] Fetch `origin/dev/1.x`, capture one external immutable lock bound to `C`,
+  and rebuild all three lanes in offline Candidate mode.
+- [ ] Pass final source/ref/submodule/genome/lane/lock closure.
+- [ ] Produce exactly the three `C3-v1.3.0a2-...-portable.zip` assets and
+  `SHA256SUMS.txt`, with authenticated entry manifests.
+- [ ] Prove clean path-distinct reproduction of every retained byte.
+- [ ] Run x86/x64 builder smoke and record ARM64 runtime as deferred.
+- [ ] Retain the completed Alpha record, create and verify annotated
+  `v1.3.0a2`, and retain the exact lock/packages/evidence without public release.
+
+Alpha 2 does not close historical Gate 1, repair the inherited recursive-close
+defect, qualify a minimum OS, move `legacy/1.x`, or change the public feed.
+Every Beta-labelled operation remains prohibited without explicit human approval.
+
 ## Beta 1 — lifecycle and data safety
 
 - [ ] S1: resolve pending tape edits before close/open/new/scroll transitions.
