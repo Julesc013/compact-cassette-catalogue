@@ -27,6 +27,7 @@ mono_crash.*
 !/release/
 !/release/validation/
 !/release/validation/*.md
+!/release/validation/*.json
 x64/
 x86/
 [Aa][Rr][Mm]/

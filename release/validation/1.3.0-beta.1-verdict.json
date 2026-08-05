@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "releaseVersion": "1.3.0",
+  "releaseStage": "Beta 1",
+  "releaseLabel": "1.3.0b1",
+  "releaseTag": "v1.3.0b1",
+  "releaseChannel": "beta",
+  "publicationStatus": "retained-unpublished",
+  "sourceCommit": null,
+  "toolchainLockSha256": null,
+  "candidate": { "present": false, "path": null, "candidateIndexSha256": null },
+  "gates": [],
+  "portableBetaGo": false,
+  "classicSetupBetaGo": false,
+  "overallBetaGo": false,
+  "tagAuthorized": false,
+  "legacyPromotionAuthorized": false,
+  "publicReleaseAuthorized": false,
+  "feedChangeAuthorized": false,
+  "masterOrDev2ChangeAuthorized": false,
+  "recordedAtUtc": null
+}
+
