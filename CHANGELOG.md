@@ -17,6 +17,15 @@ remain behind their focused gates.
   `dev/2.x`, `VERSION`, and stable operations remain prohibited.
 - Superseded the uncreated redundant Alpha 3 package/tag wave with one final
   Beta identity/build/qualification wave after the functional scope closes.
+- Added a durable one-time settings-upgrade marker: failed migrations remain
+  visible and retryable, known legacy update values normalize safely, and old
+  profiles plus unrelated preferences remain untouched.
+- Routed console exports through the configured directory with a Documents
+  fallback and `Path.Combine`; write, console, message, browser-launch, and
+  update-failure paths now remain nonfatal.
+- Added net40 settings/diagnostics characterization covering the migration
+  schema and fixtures, retry contract, export path, and guarded failure paths;
+  real-profile and native target execution remain qualification work.
 
 - Ratified the owner decision making the repaired classic VB.NET setup an
   optional secondary distribution while portable ZIPs remain authoritative.
