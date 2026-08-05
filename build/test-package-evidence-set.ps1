@@ -58,13 +58,24 @@ $mixedMode[0].toolchainMode = 'Preparation'
 $mixedMode[0].toolchainLockStatus = 'template'
 Assert-Rejected 'cross-lane mode/status mismatch' $mixedMode 'exactly one release identity.*external-lock SHA-256'
 $differentLabel = @(New-Records)
+$differentLabel[1].releaseStage = 'Alpha 3'
 $differentLabel[1].releaseLabel = '1.3.0a3'
 $differentLabel[1].releaseTag = 'v1.3.0a3'
 Assert-Rejected 'cross-lane release-label mismatch' $differentLabel 'exactly one release identity.*external-lock SHA-256'
 $stableLookingAlpha = @(New-Records)
-$stableLookingAlpha[0].releaseLabel = '1.3.0'
-$stableLookingAlpha[0].releaseTag = 'v1.3.0'
-Assert-Rejected 'stable-looking Alpha identity' $stableLookingAlpha 'Alpha package evidence must be alpha-channel and retained-unpublished|exactly one release identity'
+foreach ($record in $stableLookingAlpha) {
+    $record.releaseLabel = '1.3.0'
+    $record.releaseTag = 'v1.3.0'
+}
+Assert-Rejected 'internally consistent stable-looking Alpha identity' $stableLookingAlpha 'Alpha package evidence.*requires version\+aN label'
+$mismatchedBeta = @(New-Records)
+foreach ($record in $mismatchedBeta) {
+    $record.releaseStage = 'Beta 2'
+    $record.releaseLabel = '1.3.0b1'
+    $record.releaseTag = 'v1.3.0b1'
+    $record.releaseChannel = 'beta'
+}
+Assert-Rejected 'mismatched Beta ordinal' $mismatchedBeta 'Beta package evidence.*matching Beta N stage'
 $unlockedCandidate = @(New-Records -Status template)
 Assert-Rejected 'unlocked Candidate set' $unlockedCandidate 'Candidate package evidence requires lock status locked'
 

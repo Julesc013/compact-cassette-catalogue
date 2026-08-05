@@ -12,7 +12,7 @@ function Assert-C3PackageEvidenceSet {
     }
 
     foreach ($record in $Records) {
-        if ([string]::IsNullOrWhiteSpace([string]$record.releaseVersion) -or
+        if ([string]$record.releaseVersion -notmatch '^\d+\.\d+\.\d+$' -or
                 [string]::IsNullOrWhiteSpace([string]$record.releaseStage) -or
                 [string]$record.releaseLabel -notmatch '^\d+\.\d+\.\d+(?:a\d+|b\d+)?$' -or
                 [string]$record.releaseTag -cne "v$($record.releaseLabel)" -or
@@ -23,6 +23,30 @@ function Assert-C3PackageEvidenceSet {
                 [string]$record.toolchainMode -notin @('Preparation', 'Candidate') -or
                 [string]$record.toolchainLockStatus -notin @('template', 'locked')) {
             throw "Package evidence for '$($record.lane)' has invalid release/source/mode/lock identity."
+        }
+        $versionPattern = '^' + [regex]::Escape([string]$record.releaseVersion)
+        switch ([string]$record.releaseChannel) {
+            'alpha' {
+                $alphaMatch = [regex]::Match([string]$record.releaseLabel, $versionPattern + 'a(?<ordinal>[1-9][0-9]*)$')
+                if (-not $alphaMatch.Success -or
+                        [string]$record.releaseStage -cne "Alpha $($alphaMatch.Groups['ordinal'].Value)" -or
+                        [string]$record.publicationStatus -cne 'retained-unpublished') {
+                    throw "Alpha package evidence for '$($record.lane)' requires version+aN label, matching Alpha N stage, and retained-unpublished status."
+                }
+            }
+            'beta' {
+                $betaMatch = [regex]::Match([string]$record.releaseLabel, $versionPattern + 'b(?<ordinal>[1-9][0-9]*)$')
+                if (-not $betaMatch.Success -or
+                        [string]$record.releaseStage -cne "Beta $($betaMatch.Groups['ordinal'].Value)") {
+                    throw "Beta package evidence for '$($record.lane)' requires version+bN label and matching Beta N stage."
+                }
+            }
+            'stable' {
+                if ([string]$record.releaseLabel -cne [string]$record.releaseVersion -or
+                        [string]$record.releaseStage -cne 'Release') {
+                    throw "Stable package evidence for '$($record.lane)' requires releaseVersion label and Release stage."
+                }
+            }
         }
     }
 
@@ -43,11 +67,6 @@ function Assert-C3PackageEvidenceSet {
             $uniqueLockStatuses.Count -ne 1 -or $uniqueLockHashes.Count -ne 1) {
         throw 'The three-package set must use exactly one release identity, source commit, toolchain mode, lock status, and external-lock SHA-256.'
     }
-    if ($uniqueLabels[0] -match 'a\d+$' -and
-            ($uniqueChannels[0] -cne 'alpha' -or $uniquePublicationStatuses[0] -cne 'retained-unpublished')) {
-        throw 'Alpha package evidence must be alpha-channel and retained-unpublished.'
-    }
-
     if ($uniqueModes[0] -ceq 'Candidate' -and $uniqueLockStatuses[0] -cne 'locked') {
         throw 'Candidate package evidence requires lock status locked.'
     }

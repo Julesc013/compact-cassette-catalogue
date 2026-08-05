@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "releaseLabel": "1.3.0a2",
+  "packageSource": null,
+  "toolchainLockSha256": null,
+  "candidateSourceClosureSha256": null,
+  "sourceReproducibilityRecordSha256": null,
+  "packageChecksumManifestSha256": null,
+  "entryChecksumManifestSha256": null,
+  "packages": [
+    {
+      "name": "C3-v1.3.0a2-win-x86-net40-portable.zip",
+      "sha256": null,
+      "entryManifestName": "C3-v1.3.0a2-win-x86-net40-portable.zip.entries.json",
+      "entryManifestSha256": null
+    },
+    {
+      "name": "C3-v1.3.0a2-win-x64-net48-portable.zip",
+      "sha256": null,
+      "entryManifestName": "C3-v1.3.0a2-win-x64-net48-portable.zip.entries.json",
+      "entryManifestSha256": null
+    },
+    {
+      "name": "C3-v1.3.0a2-win-arm64-net481-portable.zip",
+      "sha256": null,
+      "entryManifestName": "C3-v1.3.0a2-win-arm64-net481-portable.zip.entries.json",
+      "entryManifestSha256": null
+    }
+  ],
+  "buildEvidence": [
+    {
+      "lane": "win-x86-net40",
+      "toolchainEvidenceSha256": null,
+      "binaryLogSha256": null
+    },
+    {
+      "lane": "win-x64-net48",
+      "toolchainEvidenceSha256": null,
+      "binaryLogSha256": null
+    },
+    {
+      "lane": "win-arm64-net481",
+      "toolchainEvidenceSha256": null,
+      "binaryLogSha256": null
+    }
+  ],
+  "recordedAtUtc": null
+}

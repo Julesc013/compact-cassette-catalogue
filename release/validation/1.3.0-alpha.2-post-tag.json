@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "releaseLabel": "1.3.0a2",
+  "tagName": "v1.3.0a2",
+  "tagObject": null,
+  "tagTarget": null,
+  "remoteName": "origin",
+  "remoteUrl": null,
+  "remoteTagObject": null,
+  "remoteTagTarget": null,
+  "packageSource": null,
+  "toolchainLockSha256": null,
+  "packageChecksumManifestSha256": null,
+  "entryChecksumManifestSha256": null,
+  "packages": [
+    {
+      "name": "C3-v1.3.0a2-win-x86-net40-portable.zip",
+      "sha256": null,
+      "entryManifestName": "C3-v1.3.0a2-win-x86-net40-portable.zip.entries.json",
+      "entryManifestSha256": null
+    },
+    {
+      "name": "C3-v1.3.0a2-win-x64-net48-portable.zip",
+      "sha256": null,
+      "entryManifestName": "C3-v1.3.0a2-win-x64-net48-portable.zip.entries.json",
+      "entryManifestSha256": null
+    },
+    {
+      "name": "C3-v1.3.0a2-win-arm64-net481-portable.zip",
+      "sha256": null,
+      "entryManifestName": "C3-v1.3.0a2-win-arm64-net481-portable.zip.entries.json",
+      "entryManifestSha256": null
+    }
+  ],
+  "publicationStatus": "retained-unpublished",
+  "publicReleaseCreated": false,
+  "feedChanged": false,
+  "publicFeed": [
+    "1.2.0",
+    "Release",
+    "14/05/2026"
+  ],
+  "legacyMoved": false,
+  "legacyCommit": "c4115b82ea43fdd763685d862a08fe5c61db6dff",
+  "packagesRetained": false,
+  "recordedAtUtc": null
+}
