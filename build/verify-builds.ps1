@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [ValidateSet('Debug', 'Release')]
-    [string]$Configuration = 'Release'
+    [string]$Configuration = 'Release',
+    [string]$ExpectedSourceCommit
 )
 
 Set-StrictMode -Version 2.0
@@ -89,7 +90,12 @@ $expectedSettings = @($genome.settings | ForEach-Object { [string]$_.name })
 $expectedAssemblyVersion = [string]$manifest.assemblyVersion
 $expectedFileVersion = [string]$manifest.fileVersion
 $expectedProductVersion = [string]$manifest.assemblyProductVersion
-$sourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
+if ([string]::IsNullOrWhiteSpace($ExpectedSourceCommit)) {
+    $ExpectedSourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
+}
+if ($ExpectedSourceCommit -notmatch '^[0-9a-f]{40}$') {
+    throw "Expected build source commit '$ExpectedSourceCommit' is not a full Git SHA."
+}
 
 foreach ($lane in $lanes) {
     $outputDirectory = Join-Path $repositoryRoot "artifacts\bin\$($lane.id)\$Configuration"
@@ -160,7 +166,7 @@ foreach ($lane in $lanes) {
     }
     $toolchainEvidence = Get-Content -LiteralPath $toolchainEvidencePath -Raw | ConvertFrom-Json
     if ([string]$toolchainEvidence.lane -cne [string]$lane.id -or
-            [string]$toolchainEvidence.source.commit -cne $sourceCommit -or
+            [string]$toolchainEvidence.source.commit -cne $ExpectedSourceCommit -or
             [string]$toolchainEvidence.msbuild.effectiveToolsVersion -cne [string]$lane.effectiveToolsVersion) {
         throw "$($lane.id) toolchain evidence does not match the lane, source commit, or effective tools version."
     }
@@ -179,5 +185,5 @@ foreach ($lane in $lanes) {
     }
 
     Write-Host ("Verified {0}: machine=0x{1:x4}, header=0x{2:x4}, CorFlags=0x{3:x8}, framework={4}, version={5}, settings={6}, runtime DLLs=0, ResGen={7}" -f
-        $lane.id, $pe.machine, $pe.optionalHeader, $pe.corFlags, $lane.targetFramework, $expectedVersion, $actualSettings.Count, $resourceTools[0].sha256)
+        $lane.id, $pe.machine, $pe.optionalHeader, $pe.corFlags, $lane.targetFramework, $expectedProductVersion, $actualSettings.Count, $resourceTools[0].sha256)
 }

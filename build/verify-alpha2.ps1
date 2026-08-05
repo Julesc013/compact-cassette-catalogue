@@ -20,10 +20,28 @@ $legacyCheckpoint = 'c4115b82ea43fdd763685d862a08fe5c61db6dff'
 $alpha1TagObject = '95b530f4f726fb67b3b002b47bf1d4061e71ce3c'
 $alpha1TagCommit = '8caa155103879cf41dc6ada753c0927180929059'
 $alpha2Record = 'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md'
+$headCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
+$expectedBuildSource = $headCommit
+$packageSource = $null
+if ($TagState -ceq 'Tagged' -and $SkipBuildOutputs) {
+    throw 'Tagged Alpha 2 verification requires the retained Candidate build and package evidence.'
+}
+if ($TagState -ceq 'Tagged') {
+    $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
+    $firstEntryManifest = Join-Path $repositoryRoot (
+        "artifacts\evidence\packages\{0}\{1}.entries.json" -f
+        $manifest.releaseLabel, $manifest.lanes[0].packageName)
+    if (-not (Test-Path -LiteralPath $firstEntryManifest -PathType Leaf)) {
+        throw "Tagged Alpha 2 verification requires retained package evidence: $firstEntryManifest"
+    }
+    $packageSource = [string](Get-Content -LiteralPath $firstEntryManifest -Raw | ConvertFrom-Json).sourceCommit
+    $expectedBuildSource = $packageSource
+}
 
 & (Join-Path $PSScriptRoot 'verify-preparation.ps1') `
     -Configuration $Configuration `
-    -SkipBuildOutputs:$SkipBuildOutputs
+    -SkipBuildOutputs:$SkipBuildOutputs `
+    -ExpectedBuildSourceCommit $expectedBuildSource
 & (Join-Path $PSScriptRoot 'verify-release-identity.ps1') `
     -ExpectedProductVersion '1.3.0' `
     -ExpectedStage 'Alpha 2' `
@@ -91,17 +109,19 @@ if (-not $SkipBuildOutputs) {
     & (Join-Path $PSScriptRoot 'verify-packages.ps1') `
         -Configuration $Configuration `
         -RequireCandidateEvidence
-    & (Join-Path $PSScriptRoot 'test-package-reproducibility.ps1') `
-        -Configuration $Configuration
-    & (Join-Path $PSScriptRoot 'test-release-controls.ps1') `
-        -Configuration $Configuration
-
-    $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
-    $firstEntryManifest = Join-Path $repositoryRoot (
-        "artifacts\evidence\packages\{0}\{1}.entries.json" -f
-        $manifest.releaseLabel, $manifest.lanes[0].packageName)
-    $packageSource = [string](Get-Content -LiteralPath $firstEntryManifest -Raw | ConvertFrom-Json).sourceCommit
-    $headCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
+    if ($TagState -ceq 'Candidate') {
+        & (Join-Path $PSScriptRoot 'test-package-reproducibility.ps1') `
+            -Configuration $Configuration
+        & (Join-Path $PSScriptRoot 'test-release-controls.ps1') `
+            -Configuration $Configuration
+    }
+    if ([string]::IsNullOrWhiteSpace($packageSource)) {
+        $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
+        $firstEntryManifest = Join-Path $repositoryRoot (
+            "artifacts\evidence\packages\{0}\{1}.entries.json" -f
+            $manifest.releaseLabel, $manifest.lanes[0].packageName)
+        $packageSource = [string](Get-Content -LiteralPath $firstEntryManifest -Raw | ConvertFrom-Json).sourceCommit
+    }
     & git -C $repositoryRoot merge-base --is-ancestor $packageSource $headCommit
     if ($LASTEXITCODE -ne 0) {
         throw "Alpha 2 package source '$packageSource' is not an ancestor of HEAD '$headCommit'."
