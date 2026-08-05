@@ -134,7 +134,7 @@ Module Program
                             "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789")
                         Dim path As String = C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot)
                         C3Setup.SetupTransactionJournalCodec.Write(path, journal)
-                        File.WriteAllText(path, File.ReadAllText(path).Replace("phase=\"prepared\"", "phase=\"complete\""))
+                        File.WriteAllText(path, File.ReadAllText(path).Replace("phase=""prepared""", "phase=""complete"""))
                         AssertContractFailure(Sub() C3Setup.SetupTransactionJournalCodec.Read(path))
                     End Sub)
     End Sub
