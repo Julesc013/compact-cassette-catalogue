@@ -81,6 +81,25 @@ binaries, or change the update feed.
 No Beta runtime repair starts until this entry gate passes or the owner records
 a specific governance amendment.
 
+## Release-control hardening before Gate 1
+
+- [x] Replace the tracked self-referential lock with an immutable external,
+  source-bound candidate lock and retain its SHA-256.
+- [x] Reject dirty tracked, staged, untracked, submodule-drifted, or
+  remote-mismatched candidate source before compilation.
+- [x] Make the actual target scripts parse and execute under Windows PowerShell
+  2 without `$PSScriptRoot` or modern JSON dependencies.
+- [x] Bind exact extracted file names, lengths, and SHA-256 values to a retained
+  package-entry manifest rather than trusting extracted `BUILD.txt`.
+- [x] Derive and enforce target OS build, service pack, native architecture,
+  and installed Full Framework; prohibit caller-supplied environment labels.
+- [x] Force, hash, and freeze the actual `ResGen.exe` used to produce packaged
+  bytes, with binary-log and MSBuild-property evidence.
+- [x] Pass the consolidated adversarial failure suite and restore a clean tree.
+- [ ] Update VS2017 to at least 15.9.81, VS2022 to at least 17.14.36, and VS2026
+  to at least 18.8.2 (or later stable servicing available at freeze), rebuild
+  Preparation evidence, and create the first acceptable external candidate lock.
+
 ## Beta 1 — lifecycle and data safety
 
 - [ ] S1: resolve pending tape edits before close/open/new/scroll transitions.
@@ -125,7 +144,8 @@ patch, genome validation, and focused commit.
 - [ ] Keep console write failures nonfatal.
 - [ ] Use short same-directory temporary filenames on classic Windows paths.
 - [ ] Freeze the latest serviced VS2017 15.9, VS2022 17.14, and VS2026 stable
-  installations immediately before candidate qualification.
+  installations in an immutable external source-bound lock immediately before
+  candidate qualification; retain its SHA-256 in packages and evidence.
 - [x] Finalize exactly three lane-specific config/manifest projections with
   identical application logic and resources.
 - [x] Add deterministic portable packaging and exact payload verification.

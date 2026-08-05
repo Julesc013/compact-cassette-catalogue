@@ -35,6 +35,31 @@
   genome and recorded the remaining Beta/stable gates.
 
 
+### Post-Alpha release-control hardening - 5 August 2026
+
+- Replaced the structurally self-referential tracked candidate-lock design with
+  an immutable external lock bound to a clean source commit and exact remote ref.
+- Made Candidate mode reject tracked, staged, untracked, submodule-drifted, or
+  remote-mismatched source before compilation, and require clean-intermediate
+  rebuilds.
+- Added a lock-capture command that refuses stale servicing baselines,
+  repository-local output, overwrite, stale build evidence, and unpushed source.
+- Forced and hash-froze the actual `ResGen.exe` used by every lane, with MSBuild
+  property proof, binary logs, before/after stability checks, and package
+  provenance.
+- Added retained SHA-256 package-entry manifests and made target verification
+  authenticate every extracted file independently of extracted `BUILD.txt`.
+- Made all target-side verification execute under actual Windows PowerShell 2
+  and removed ordinary-script reliance on `$PSScriptRoot` or modern JSON APIs.
+- Replaced caller-asserted target labels with mechanically derived OS build,
+  service pack, native architecture, and installed Full Framework checks.
+- Added adversarial regression coverage for wrong locks, dirty source, altered
+  extraction, environment spoofing, wrong target facts, and stale builders.
+- Kept this work classified as preparation: current local Visual Studio
+  installations remain below the decision-date floors and cannot be frozen as
+  candidate authority.
+
+
 ### Version 1.3.0 Alpha 1 - 5 August 2026
 
 Alpha 1 is an intentionally unpublished source checkpoint for the recovered

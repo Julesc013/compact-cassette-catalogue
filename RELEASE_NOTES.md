@@ -25,9 +25,17 @@ and deterministic packages contain only the five portable allow-listed files.
 Builder smoke executes only compatible architectures; exact-hash target proof
 is reserved for XP x86, Windows 7 x64, and Windows 11 ARM64.
 
+Release-control hardening now requires a clean remote-bound source commit plus
+an immutable external toolchain lock, forces and freezes the invoked resource
+generator, binds every extracted byte to a retained package-entry manifest, and
+derives target identity from OS/service-pack/architecture/framework facts. The
+actual target scripts parse and run under Windows PowerShell 2. Adversarial
+tests prove that wrong-source locks, dirty files, altered extraction, spoofed
+labels, wrong target facts, and stale servicing baselines fail closed.
+
 This is preparation, not Beta qualification. The installed builders are one
-servicing release behind the decision-date pins, the candidate lock is
-intentionally unfrozen, historical Gate 1 and runtime repairs remain open, and
+or more servicing steps behind the decision-date floors, no acceptable external
+candidate lock is frozen, historical Gate 1 and runtime repairs remain open, and
 no target-machine workflow matrix has been claimed. No new tag, binary release,
 feed change, or `legacy/1.x` promotion follows from this result.
 
