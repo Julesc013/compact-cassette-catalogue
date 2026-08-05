@@ -204,6 +204,14 @@ revision, and entity-ID durability classification in `C3.Domain`. Fingerprint
 calculation, destination leases, history positions, and the complete document
 owner remain later dependency-ordered work.
 
+[ADR 0015](decisions/0015-canonical-document-resource-contract.md) establishes
+the first executable document resource contract: immutable session/version/
+fingerprint snapshots, expected-version bounded transactions, semantic change
+sets, typed bounded filters, version-bound projections, and stable continuation
+cursors. Numeric budgets are required inputs rather than premature product
+defaults. This remains a non-production shell until the complete graph and
+adapter evidence permit the one-time authority transition.
+
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,
 entity ordering, and included metadata. Per-entity digests and ordered aggregate

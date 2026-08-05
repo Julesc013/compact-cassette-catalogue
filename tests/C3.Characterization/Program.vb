@@ -73,6 +73,15 @@ Module Program
             "published profiles expose only proven capabilities",
             AddressOf ProfileRepresentabilityContractTests.PublishedProfilesExposeOnlyProvenCapabilities)
         RunTest(
+            "canonical snapshots and transactions are version bound and budgeted",
+            AddressOf CanonicalDocumentContractTests.DocumentSnapshotsAndTransactionsAreVersionBoundAndBudgeted)
+        RunTest(
+            "canonical queries and cursors cannot mix document versions",
+            AddressOf CanonicalDocumentContractTests.QueriesAndCursorsCannotMixDocumentVersions)
+        RunTest(
+            "canonical change sets advance version and fingerprint",
+            AddressOf CanonicalDocumentContractTests.CanonicalChangeSetsAdvanceVersionAndFingerprint)
+        RunTest(
             "workspace owns explicit document and interaction state",
             AddressOf WorkspaceControllerTests.WorkspaceOwnsExplicitInteractionState)
         RunTest(

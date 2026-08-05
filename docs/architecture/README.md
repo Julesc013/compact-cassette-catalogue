@@ -165,6 +165,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0012: Canonical catalogue before Application/frontends](decisions/0012-canonical-catalogue-before-application-frontends.md)
 - [ADR 0013: Canonical value and evidence semantics](decisions/0013-canonical-value-semantics.md)
 - [ADR 0014: Profile capability and representability](decisions/0014-profile-capability-and-representability.md)
+- [ADR 0015: Canonical document resource contract](decisions/0015-canonical-document-resource-contract.md)
 - [Distribution doctrine](../development/distribution.md)
 - [Release catalogue v1 contract](../../spec/release-catalog/v1/README.md)
 - [Update release manifest v1 contract](../../spec/update-feed/v1/README.md)

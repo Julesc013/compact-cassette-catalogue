@@ -24,6 +24,9 @@
 - Separated logical catalogue validation from profile capability and
   representability results, including explicit normalization, information-loss,
   and unsupported classifications for direct-save and export decisions.
+- Added the first canonical document resource contract with version-bound
+  snapshots and transactions, semantic change sets, bounded typed queries,
+  stable cursors, immutable projections, and caller-supplied resource budgets.
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.
