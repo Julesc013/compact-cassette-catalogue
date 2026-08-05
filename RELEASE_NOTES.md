@@ -1,112 +1,99 @@
-# Compact Cassette Catalogue 1.3.0 Alpha 1
+# Compact Cassette Catalogue 1.3.0 Alpha 2
 
-C3 1.3.0 Alpha 1 is an intentionally unpublished source checkpoint. It freezes
-the recovered maintenance foundation for the final original C3 release line.
-It is not a user release and does not yet contain the planned data-safety and
-integrity repairs.
+C3 1.3.0 Alpha 2 is the planned, intentionally unpublished three-lane build and
+release-control checkpoint for the final original C3 line. The source now
+projects the exact `1.3.0a2 / Alpha 2 / v1.3.0a2` identity, but this document is
+not evidence that the tag or distributions already exist.
 
-## Subsequent stable-matrix decision
+Alpha 2 becomes complete only after the maintained builders are serviced, the
+full Preparation and Candidate paths pass from one clean pushed source and one
+immutable external lock, the three retained packages reproduce, and the
+annotated tag is created and verified.
 
-After the immutable Alpha 1 checkpoint, the owner ratified exactly three Beta
-and stable release lanes: `win-x86-net40`, `win-x64-net48`, and native
-`win-arm64-net481`. The earlier four-lane Alpha build remains truthful
-historical evidence; it is not the stable publication matrix. VS2015/MSBuild 14
-remains the historical 1.2 reconstruction oracle, while VS2017/MSBuild 15 is the
-authoritative 1.3 x86/net40 compiler. Stable assets are portable ZIPs only; no
-installer or updater is part of C3 1.3. See the
-[ratified owner decision](docs/governance/1.3.0-three-lane-matrix-2026-08-05.md).
+## Intended retained assets
 
-## Three-lane preparation status
+```text
+C3-v1.3.0a2-win-x86-net40-portable.zip
+C3-v1.3.0a2-win-x64-net48-portable.zip
+C3-v1.3.0a2-win-arm64-net481-portable.zip
+SHA256SUMS.txt
+```
 
-The bounded correction is implemented and mechanically validated: the manifest
-contains exactly three lanes, native ARM64 compiles as `0xaa64`, compiler and
-reference inputs are recorded by hash, the genome has zero approved difference,
-and deterministic packages contain only the five portable allow-listed files.
-Builder smoke executes only compatible architectures; exact-hash target proof
-is reserved for XP x86, Windows 7 x64, and Windows 11 ARM64.
+Every ZIP is restricted to the classic WinForms EXE, its matching config,
+`README.txt`, `RELEASE_NOTES.txt`, and `BUILD.txt`. The release label and stage
+are bound through source constants, assembly informational/product metadata,
+the lane manifest, filenames, `BUILD.txt`, entry manifests, checksums, and the
+eventual annotated tag.
 
-Release-control hardening now requires a clean remote-bound source commit plus
-an immutable external toolchain lock, forces and freezes the invoked resource
-generator, binds every extracted byte to a retained package-entry manifest, and
-derives target identity from OS/service-pack/architecture/framework facts. The
-actual target scripts parse and run under Windows PowerShell 2. Adversarial
-tests prove that wrong-source locks, dirty files, altered extraction, spoofed
-labels, wrong target facts, and stale servicing baselines fail closed.
+## What Alpha 2 is intended to prove
 
-Candidate-set hardening additionally requires one source and immutable lock
-across all three packages, captures a freshly fetched provider-ref receipt
-before offline builds, and repeats source/ref/submodule/genome/lock closure after
-the last lane. These controls have passed Preparation and adversarial validation;
-their live Candidate proof awaits serviced builders.
+- Exactly three source-identical lanes: `win-x86-net40`, `win-x64-net48`, and
+  native `win-arm64-net481`.
+- Exact serviced Visual Studio, MSBuild, VB compiler, reference-assembly, and
+  resource-tool authority captured in one external source-bound lock.
+- Genuine x86, x64, and `0xaa64` ARM64 binaries with their exact framework and
+  CorFlags contracts.
+- One clean pushed source, one immutable lock, and final
+  source/ref/submodule/genome/lock closure across the complete package set.
+- Deterministic five-entry portable ZIPs reproduced from clean path-distinct
+  builds and authenticated by retained entry manifests.
+- Builder launch smoke for x86 and x64. ARM64 execution remains deferred until
+  the exact native Windows-on-ARM qualification environment is available.
 
-Official release history review corrected the current VS2022 starting pin from
-17.14.36 to 17.14.37 before any lock or Candidate build was accepted.
+## Current gate status
 
-This is preparation, not Beta qualification. The installed builders are one
-or more servicing steps behind the decision-date floors, no acceptable external
-candidate lock is frozen, historical Gate 1 and runtime repairs remain open, and
-no target-machine workflow matrix has been claimed. No new tag, binary release,
-feed change, or `legacy/1.x` promotion follows from this result.
+Repository-side Alpha identity and package projection are implemented. Alpha 2
+is not yet tagged or distributed because the installed Visual Studio releases
+remain below the declared servicing floors:
 
-The owner has separately authorized deliberate Alpha tags and retained Alpha
-distributions after their documented checks. Explicit human approval is still
-required before any Beta tag, Beta-labelled distribution, or Beta publication.
+```text
+VS2017 >= 15.9.81
+VS2022 >= 17.14.37
+VS2026 >= 18.8.2
+```
 
-## What Alpha 1 establishes
+Administrator servicing, fresh Preparation evidence, external lock capture,
+the live Candidate build, package reproduction, smoke, and final Alpha evidence
+remain required. Old preparation outputs do not qualify as Alpha 2 bytes.
 
-- Direct development ancestry from safe post-release tip `58a5b7d...`.
-- Exact production-genome authority from package source `509c9ec...`, with
-  `v1.2.0b1` / `2413e913...` retained as the qualified release oracle.
-- Archival preservation of the superseded 1.2.1/refactor attempt.
-- A hard compatibility constitution for the original VB.NET WinForms app,
-  DataSet catalogue, settings, UI resources, and XML format 1.1.0.
-- A complete severity-classified ledger of legacy repair candidates.
-- Separate Alpha 1, Beta 1, and stable gates.
-- Historical catalogue and settings fixtures with strict provenance validation.
-- A mechanical baseline-genome manifest and reviewed exception mechanism.
-- Standalone XML characterization tests.
-- Four source-identical build lanes using the one original project:
-  x86/net40, x64/net40, x64/net48, and x64/net481.
-- Binary verification for CPU, target framework, settings parity, and the
-  absence of new runtime DLLs.
-- Exact download/hash verification for the official 1.2.0 Beta 1 executables.
+## Explicit deferrals
 
-## Validation status
+Alpha 2 is an engineering preview, not Beta qualification. It does not claim:
 
-Alpha 1 requires the complete automated maintenance-foundation suite to pass.
-On the current preparation host:
+- historical Gate 1 completion;
+- any lifecycle, persistence, catalogue, settings, counter, or diagnostic repair;
+- minimum-operating-system qualification on XP, Windows 7, or Windows 11 ARM64;
+- native ARM64 runtime execution;
+- public GitHub publication;
+- update-feed promotion; or
+- movement of `legacy/1.x`.
 
-- the baseline genome passes with zero approved differences;
-- the compatibility corpus validates ten releases and five supported producers;
-- all eight XML characterization tests pass;
-- all four lanes compile and pass PE/framework/settings/payload checks; and
-- both official baseline executables match their recorded sizes and SHA-256.
+The inherited recursive close/cancellation defect remains recorded and is not
+an Alpha blocker. It is assigned to the first lifecycle repair wave after
+historical Gate 1.
 
-All four diagnostic applications created their main windows. In the recorded
-full run, net48 and net481 closed normally; both net40 lanes reproduced the
-known recursive close-cancellation defect and were terminated by the bounded
-smoke cleanup. Alpha records this baseline defect for Beta repair.
+## Release authority
 
-VS2017/MSBuild 15 is available for diagnostic net40 builds on this host. The
-required historical VS2015/MSBuild 14.0.25420.1 reconstruction remains a Beta 1
-entry gate and is not represented as passed.
+The owner authorizes the deliberate `v1.3.0a2` annotated tag and retained
+Alpha-labelled packages after the Alpha 2 checks pass. That authority does not
+authorize a public GitHub release.
 
-## Not included
+Explicit human approval remains mandatory before any `v1.3.0b1` tag,
+`1.3.0b1`-labelled package, retained Beta ZIP, or public Beta prerelease is
+created. Stable publication, feed promotion, and `legacy/1.x` advancement remain
+behind their separate stable gates.
 
-- No runtime lifecycle, persistence, tape, counter, referential, settings, or
-  diagnostic repair.
-- No 1.3 portable package.
-- No public GitHub prerelease.
-- No update-feed promotion.
-- No `legacy/1.x` promotion.
-- No new Windows support claim.
+## Historical Alpha 1 boundary
 
-Known baseline data-safety defects remain open and block Beta 1 until addressed
-through the documented one-defect/one-regression commit sequence.
+The immutable `v1.3.0a1` checkpoint remains the source-only recovered
+maintenance foundation. Its four diagnostic x86/x64 lanes remain truthful
+historical evidence; the later owner decision superseded that matrix with the
+three lanes above without rewriting Alpha 1.
 
-## Update feed and downloads
+## Update feed
 
-The repository-root three-line `VERSION` file intentionally remains:
+The repository-root `VERSION` feed intentionally remains the available public
+release:
 
 ```text
 1.2.0
@@ -114,17 +101,5 @@ Release
 14/05/2026
 ```
 
-Existing clients therefore continue to see the available 1.2.0 release. Alpha
-1 is identified only by annotated source tag `v1.3.0a1`; no binaries are attached.
-
-## Next milestones
-
-Beta 1 (`v1.3.0b1`) completes the baseline reconstruction gate, every approved
-runtime repair, settings continuity, authoritative builds, deterministic
-packages, and the full compatibility/manual matrix. Stable (`v1.3.0`) is then a
-metadata-only transition from accepted Beta source followed by a complete new
-build, qualification, publication, download verification, and final feed
-promotion.
-
-See `docs/planning/1.3.0-beta.1.md`, `docs/planning/1.3.0-stable.md`, and
-`TODO.md` for the complete work breakdown.
+See `docs/planning/1.3.0-alpha.2.md`, the qualification matrix, and `TODO.md` for
+the exact Alpha 2 production gate and later work.

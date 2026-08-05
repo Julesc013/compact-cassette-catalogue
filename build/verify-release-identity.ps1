@@ -5,6 +5,10 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$ExpectedStage,
     [Parameter(Mandatory = $true)]
+    [string]$ExpectedReleaseLabel,
+    [Parameter(Mandatory = $true)]
+    [string]$ExpectedTag,
+    [Parameter(Mandatory = $true)]
     [datetime]$ExpectedDate,
     [string]$ExpectedCatalogueFormat = '1.1.0',
     [string]$ExpectedFeedVersion = '1.2.0',
@@ -22,9 +26,11 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $globalsPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\varGlobals.vb'
 $assemblyInfoPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\My Project\AssemblyInfo.vb'
 $projectPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\Compact Cassette Catalogue.vbproj'
+$manifestPath = Join-Path $PSScriptRoot 'lanes.json'
 $globals = Get-Content -LiteralPath $globalsPath -Raw
 $assemblyInfo = Get-Content -LiteralPath $assemblyInfoPath -Raw
 $project = Get-Content -LiteralPath $projectPath -Raw
+$manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
 $failures = New-Object Collections.Generic.List[String]
 
 function Assert-Contains {
@@ -44,7 +50,30 @@ Assert-Contains 'varGlobals VERSIONFILE' $globals "Public Const VERSIONFILE As S
 $numericVersion = "$ExpectedProductVersion.0"
 Assert-Contains 'AssemblyVersion' $assemblyInfo "<Assembly: AssemblyVersion(`"$numericVersion`")>"
 Assert-Contains 'AssemblyFileVersion' $assemblyInfo "<Assembly: AssemblyFileVersion(`"$numericVersion`")>"
+Assert-Contains 'AssemblyInformationalVersion' $assemblyInfo "<Assembly: AssemblyInformationalVersion(`"$ExpectedReleaseLabel`")>"
 Assert-Contains 'ApplicationVersion' $project "<ApplicationVersion>$numericVersion</ApplicationVersion>"
+
+foreach ($manifestAssertion in @(
+        @('releaseVersion', [string]$manifest.releaseVersion, $ExpectedProductVersion),
+        @('releaseStage', [string]$manifest.releaseStage, $ExpectedStage),
+        @('releaseLabel', [string]$manifest.releaseLabel, $ExpectedReleaseLabel),
+        @('releaseTag', [string]$manifest.releaseTag, $ExpectedTag),
+        @('releaseChannel', [string]$manifest.releaseChannel, 'alpha'),
+        @('publicationStatus', [string]$manifest.publicationStatus, 'retained-unpublished'),
+        @('assemblyVersion', [string]$manifest.assemblyVersion, $numericVersion),
+        @('fileVersion', [string]$manifest.fileVersion, $numericVersion),
+        @('assemblyProductVersion', [string]$manifest.assemblyProductVersion, $ExpectedReleaseLabel))) {
+    if ([string]$manifestAssertion[1] -cne [string]$manifestAssertion[2]) {
+        $failures.Add("lanes.json $($manifestAssertion[0]) is '$($manifestAssertion[1])', expected '$($manifestAssertion[2])'.")
+    }
+}
+$expectedPackageNames = @($manifest.lanes | ForEach-Object {
+    "C3-v$ExpectedReleaseLabel-$($_.id)-portable.zip"
+})
+$actualPackageNames = @($manifest.lanes | ForEach-Object { [string]$_.packageName })
+if (($actualPackageNames -join "`n") -cne ($expectedPackageNames -join "`n")) {
+    $failures.Add("lanes.json package names do not project release label '$ExpectedReleaseLabel'.")
+}
 
 $displayStage = $ExpectedStage
 $releaseNotes = Get-Content -LiteralPath (Join-Path $repositoryRoot 'RELEASE_NOTES.md') -Raw
@@ -67,8 +96,8 @@ if ($VerifyBuildOutputs) {
             continue
         }
         $versionInfo = (Get-Item -LiteralPath $executable).VersionInfo
-        if ([string]$versionInfo.ProductVersion -cne $numericVersion) {
-            $failures.Add("$($lane.id) ProductVersion is '$($versionInfo.ProductVersion)', expected '$numericVersion'.")
+        if ([string]$versionInfo.ProductVersion -cne $ExpectedReleaseLabel) {
+            $failures.Add("$($lane.id) ProductVersion is '$($versionInfo.ProductVersion)', expected '$ExpectedReleaseLabel'.")
         }
         if ([string]$versionInfo.FileVersion -cne $numericVersion) {
             $failures.Add("$($lane.id) FileVersion is '$($versionInfo.FileVersion)', expected '$numericVersion'.")

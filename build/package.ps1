@@ -60,10 +60,10 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $lanes = @($manifest.lanes)
 if ([string]::IsNullOrWhiteSpace($OutputDirectory)) {
-    $OutputDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseVersion)"
+    $OutputDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseLabel)"
 }
 if ([string]::IsNullOrWhiteSpace($EvidenceDirectory)) {
-    $EvidenceDirectory = Join-Path $repositoryRoot "artifacts\evidence\packages\$($manifest.releaseVersion)"
+    $EvidenceDirectory = Join-Path $repositoryRoot "artifacts\evidence\packages\$($manifest.releaseLabel)"
 }
 $OutputDirectory = [IO.Path]::GetFullPath($OutputDirectory)
 $EvidenceDirectory = [IO.Path]::GetFullPath($EvidenceDirectory)
@@ -79,6 +79,12 @@ $evidenceRecords = @($lanes | ForEach-Object {
     $evidenceByLane[[string]$_.id] = $laneEvidence
     New-Object PSObject -Property @{
         lane = [string]$_.id
+        releaseVersion = [string]$manifest.releaseVersion
+        releaseStage = [string]$manifest.releaseStage
+        releaseLabel = [string]$manifest.releaseLabel
+        releaseTag = [string]$manifest.releaseTag
+        releaseChannel = [string]$manifest.releaseChannel
+        publicationStatus = [string]$manifest.publicationStatus
         sourceCommit = [string]$laneEvidence.source.commit
         toolchainMode = [string]$laneEvidence.toolchainMode
         toolchainLockStatus = [string]$laneEvidence.toolchainLock.status
@@ -118,9 +124,17 @@ foreach ($buildLane in $lanes) {
     $executableHash = (Get-FileHash -LiteralPath $executable -Algorithm SHA256).Hash.ToLowerInvariant()
     $configHash = (Get-FileHash -LiteralPath $config -Algorithm SHA256).Hash.ToLowerInvariant()
     $buildText = @(
-        'formatVersion=1',
+        'formatVersion=2',
         "product=$($manifest.product)",
         "releaseVersion=$($manifest.releaseVersion)",
+        "releaseStage=$($manifest.releaseStage)",
+        "releaseLabel=$($manifest.releaseLabel)",
+        "releaseTag=$($manifest.releaseTag)",
+        "releaseChannel=$($manifest.releaseChannel)",
+        "publicationStatus=$($manifest.publicationStatus)",
+        "assemblyVersion=$($manifest.assemblyVersion)",
+        "fileVersion=$($manifest.fileVersion)",
+        "assemblyProductVersion=$($manifest.assemblyProductVersion)",
         "lane=$($buildLane.id)",
         "configuration=$Configuration",
         "sourceCommit=$($evidence.source.commit)",
@@ -188,9 +202,15 @@ foreach ($buildLane in $lanes) {
         $archive.Dispose()
     }
     $entryManifest = [ordered]@{
-        schemaVersion = 1
+        schemaVersion = 2
         packageName = [string]$buildLane.packageName
         packageSha256 = $packageHash
+        releaseVersion = [string]$manifest.releaseVersion
+        releaseStage = [string]$manifest.releaseStage
+        releaseLabel = [string]$manifest.releaseLabel
+        releaseTag = [string]$manifest.releaseTag
+        releaseChannel = [string]$manifest.releaseChannel
+        publicationStatus = [string]$manifest.publicationStatus
         sourceCommit = [string]$evidence.source.commit
         toolchainLockSha256 = [string]$evidence.toolchainLock.sha256
         entries = $entryRecords

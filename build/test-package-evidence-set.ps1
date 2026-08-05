@@ -15,6 +15,12 @@ function New-Records {
     return @('win-x86-net40', 'win-x64-net48', 'win-arm64-net481') | ForEach-Object {
         New-Object PSObject -Property @{
             lane = $_
+            releaseVersion = '1.3.0'
+            releaseStage = 'Alpha 2'
+            releaseLabel = '1.3.0a2'
+            releaseTag = 'v1.3.0a2'
+            releaseChannel = 'alpha'
+            publicationStatus = 'retained-unpublished'
             sourceCommit = $Source
             toolchainMode = $Mode
             toolchainLockStatus = $Status
@@ -43,15 +49,23 @@ if ([string]$result.toolchainMode -cne 'Candidate' -or [string]$result.toolchain
 
 $differentLock = @(New-Records)
 $differentLock[2].toolchainLockSha256 = 'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
-Assert-Rejected 'cross-lane lock mismatch' $differentLock 'exactly one source commit.*external-lock SHA-256'
+Assert-Rejected 'cross-lane lock mismatch' $differentLock 'exactly one release identity.*external-lock SHA-256'
 $differentSource = @(New-Records)
 $differentSource[1].sourceCommit = 'dddddddddddddddddddddddddddddddddddddddd'
-Assert-Rejected 'cross-lane source mismatch' $differentSource 'exactly one source commit.*external-lock SHA-256'
+Assert-Rejected 'cross-lane source mismatch' $differentSource 'exactly one release identity.*external-lock SHA-256'
 $mixedMode = @(New-Records)
 $mixedMode[0].toolchainMode = 'Preparation'
 $mixedMode[0].toolchainLockStatus = 'template'
-Assert-Rejected 'cross-lane mode/status mismatch' $mixedMode 'exactly one source commit.*external-lock SHA-256'
+Assert-Rejected 'cross-lane mode/status mismatch' $mixedMode 'exactly one release identity.*external-lock SHA-256'
+$differentLabel = @(New-Records)
+$differentLabel[1].releaseLabel = '1.3.0a3'
+$differentLabel[1].releaseTag = 'v1.3.0a3'
+Assert-Rejected 'cross-lane release-label mismatch' $differentLabel 'exactly one release identity.*external-lock SHA-256'
+$stableLookingAlpha = @(New-Records)
+$stableLookingAlpha[0].releaseLabel = '1.3.0'
+$stableLookingAlpha[0].releaseTag = 'v1.3.0'
+Assert-Rejected 'stable-looking Alpha identity' $stableLookingAlpha 'Alpha package evidence must be alpha-channel and retained-unpublished|exactly one release identity'
 $unlockedCandidate = @(New-Records -Status template)
 Assert-Rejected 'unlocked Candidate set' $unlockedCandidate 'Candidate package evidence requires lock status locked'
 
-Write-Host 'One-source/one-lock three-package evidence assertions passed.'
+Write-Host 'One-release/one-source/one-lock three-package evidence assertions passed.'

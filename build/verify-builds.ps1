@@ -86,7 +86,9 @@ if (@($lanes | Where-Object { [string]$_.status -cne 'required' }).Count -ne 0) 
 
 $genome = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'baseline-genome.v1.json') -Raw | ConvertFrom-Json
 $expectedSettings = @($genome.settings | ForEach-Object { [string]$_.name })
-$expectedVersion = ([string]$manifest.releaseVersion) + '.0'
+$expectedAssemblyVersion = [string]$manifest.assemblyVersion
+$expectedFileVersion = [string]$manifest.fileVersion
+$expectedProductVersion = [string]$manifest.assemblyProductVersion
 $sourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
 
 foreach ($lane in $lanes) {
@@ -130,10 +132,10 @@ foreach ($lane in $lanes) {
 
     $assemblyVersion = [Reflection.AssemblyName]::GetAssemblyName($executable).Version.ToString()
     $versionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($executable)
-    if ($assemblyVersion -cne $expectedVersion -or
-            [string]$versionInfo.FileVersion -cne $expectedVersion -or
-            [string]$versionInfo.ProductVersion -cne $expectedVersion) {
-        throw "$($lane.id) version mismatch: assembly=$assemblyVersion, file=$($versionInfo.FileVersion), product=$($versionInfo.ProductVersion), expected=$expectedVersion."
+    if ($assemblyVersion -cne $expectedAssemblyVersion -or
+            [string]$versionInfo.FileVersion -cne $expectedFileVersion -or
+            [string]$versionInfo.ProductVersion -cne $expectedProductVersion) {
+        throw "$($lane.id) version mismatch: assembly=$assemblyVersion (expected $expectedAssemblyVersion), file=$($versionInfo.FileVersion) (expected $expectedFileVersion), product=$($versionInfo.ProductVersion) (expected $expectedProductVersion)."
     }
 
     [xml]$configDocument = Get-Content -LiteralPath $config -Raw

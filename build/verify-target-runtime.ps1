@@ -54,7 +54,7 @@ function ConvertFrom-EntryManifestJson {
     param([Parameter(Mandatory = $true)][string]$Text)
 
     $schemaMatches = [Regex]::Matches($Text, '"schemaVersion"\s*:\s*(?<value>[0-9]+)', [Text.RegularExpressions.RegexOptions]::Singleline)
-    if ($schemaMatches.Count -ne 1 -or [int]$schemaMatches[0].Groups['value'].Value -ne 1) {
+    if ($schemaMatches.Count -ne 1 -or [int]$schemaMatches[0].Groups['value'].Value -ne 2) {
         throw 'Retained entry manifest must contain exactly one supported schemaVersion.'
     }
 
@@ -70,9 +70,15 @@ function ConvertFrom-EntryManifestJson {
         }
     })
     return New-Object PSObject -Property @{
-        schemaVersion = 1
+        schemaVersion = 2
         packageName = Get-ManifestStringProperty -Text $Text -Name 'packageName'
         packageSha256 = Get-ManifestStringProperty -Text $Text -Name 'packageSha256'
+        releaseVersion = Get-ManifestStringProperty -Text $Text -Name 'releaseVersion'
+        releaseStage = Get-ManifestStringProperty -Text $Text -Name 'releaseStage'
+        releaseLabel = Get-ManifestStringProperty -Text $Text -Name 'releaseLabel'
+        releaseTag = Get-ManifestStringProperty -Text $Text -Name 'releaseTag'
+        releaseChannel = Get-ManifestStringProperty -Text $Text -Name 'releaseChannel'
+        publicationStatus = Get-ManifestStringProperty -Text $Text -Name 'publicationStatus'
         sourceCommit = Get-ManifestStringProperty -Text $Text -Name 'sourceCommit'
         toolchainLockSha256 = Get-ManifestStringProperty -Text $Text -Name 'toolchainLockSha256'
         entries = $entries
@@ -91,7 +97,7 @@ if ($SelfTest) {
     if ($selfHash -notmatch '^[0-9a-f]{64}$') {
         throw 'verify-target-runtime.ps1 PowerShell 2 self-test could not compute SHA-256.'
     }
-    $selfManifest = ConvertFrom-EntryManifestJson '{"schemaVersion":1,"packageName":"test.zip","packageSha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourceCommit":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","toolchainLockSha256":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","entries":[{"name":"BUILD.txt","size":1,"sha256":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}]}'
+    $selfManifest = ConvertFrom-EntryManifestJson '{"schemaVersion":2,"packageName":"test.zip","packageSha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","releaseVersion":"1.3.0","releaseStage":"Alpha 2","releaseLabel":"1.3.0a2","releaseTag":"v1.3.0a2","releaseChannel":"alpha","publicationStatus":"retained-unpublished","sourceCommit":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","toolchainLockSha256":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","entries":[{"name":"BUILD.txt","size":1,"sha256":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}]}'
     if ([string]$selfManifest.packageName -cne 'test.zip' -or @($selfManifest.entries).Count -ne 1) {
         throw 'verify-target-runtime.ps1 PowerShell 2 self-test could not parse retained entry-manifest evidence.'
     }
@@ -167,6 +173,12 @@ if ($entryManifestHash -cne $ExpectedEntryManifestSha256.ToLowerInvariant()) {
 $entryManifest = ConvertFrom-EntryManifestJson ([IO.File]::ReadAllText($EntryManifestPath))
 if ([string]$entryManifest.packageName -cne [string]$laneContract.packageName -or
         [string]$entryManifest.packageSha256 -cne $packageHash -or
+        [string]$entryManifest.releaseVersion -cne [string]$laneContract.releaseVersion -or
+        [string]$entryManifest.releaseStage -cne [string]$laneContract.releaseStage -or
+        [string]$entryManifest.releaseLabel -cne [string]$laneContract.releaseLabel -or
+        [string]$entryManifest.releaseTag -cne [string]$laneContract.releaseTag -or
+        [string]$entryManifest.releaseChannel -cne [string]$laneContract.releaseChannel -or
+        [string]$entryManifest.publicationStatus -cne [string]$laneContract.publicationStatus -or
         [string]$entryManifest.sourceCommit -notmatch '^[0-9a-f]{40}$' -or
         [string]$entryManifest.toolchainLockSha256 -notmatch '^[0-9a-f]{64}$') {
     throw 'Retained entry manifest is not bound to the selected package, source, and toolchain lock.'
@@ -196,7 +208,14 @@ $executable = Join-Path $ExtractedDirectory 'Compact Cassette Catalogue.exe'
 $config = $executable + '.config'
 $executableHash = Get-Sha256 -Path $executable
 $configHash = Get-Sha256 -Path $config
-if ([string]$buildData.lane -cne $Lane -or
+if ([string]$buildData.formatVersion -cne '2' -or
+        [string]$buildData.lane -cne $Lane -or
+        [string]$buildData.releaseVersion -cne [string]$laneContract.releaseVersion -or
+        [string]$buildData.releaseStage -cne [string]$laneContract.releaseStage -or
+        [string]$buildData.releaseLabel -cne [string]$laneContract.releaseLabel -or
+        [string]$buildData.releaseTag -cne [string]$laneContract.releaseTag -or
+        [string]$buildData.releaseChannel -cne [string]$laneContract.releaseChannel -or
+        [string]$buildData.publicationStatus -cne [string]$laneContract.publicationStatus -or
         [string]$buildData.targetFramework -cne [string]$laneContract.targetFramework -or
         [string]$buildData.peMachine -cne [string]$laneContract.peMachine -or
         [string]$buildData.sourceCommit -cne [string]$entryManifest.sourceCommit -or
@@ -221,8 +240,14 @@ if (Test-StringBlank $EvidenceOutput) {
     $EvidenceOutput = Join-Path (Get-Location) "$Lane-runtime-evidence.txt"
 }
 $evidenceLines = @(
-    'formatVersion=1',
+    'formatVersion=2',
     "lane=$Lane",
+    "releaseVersion=$($laneContract.releaseVersion)",
+    "releaseStage=$($laneContract.releaseStage)",
+    "releaseLabel=$($laneContract.releaseLabel)",
+    "releaseTag=$($laneContract.releaseTag)",
+    "releaseChannel=$($laneContract.releaseChannel)",
+    "publicationStatus=$($laneContract.publicationStatus)",
     "targetEnvironmentId=$derivedTargetEnvironmentId",
     "runtimeClaim=$($laneContract.runtimeClaim)",
     "operator=$Operator",

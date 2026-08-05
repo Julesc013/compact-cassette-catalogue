@@ -128,11 +128,13 @@ try {
         }
     }
 
-    $packageDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseVersion)"
-    $packageEvidenceDirectory = Join-Path $repositoryRoot "artifacts\evidence\packages\$($manifest.releaseVersion)"
-    $x64Package = Join-Path $packageDirectory 'C3-v1.3.0-win-x64-net48-portable.zip'
-    $x86Package = Join-Path $packageDirectory 'C3-v1.3.0-win-x86-net40-portable.zip'
-    $x64Manifest = Join-Path $packageEvidenceDirectory 'C3-v1.3.0-win-x64-net48-portable.zip.entries.json'
+    $packageDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseLabel)"
+    $packageEvidenceDirectory = Join-Path $repositoryRoot "artifacts\evidence\packages\$($manifest.releaseLabel)"
+    $x64Lane = @($manifest.lanes | Where-Object { [string]$_.id -ceq 'win-x64-net48' })[0]
+    $x86Lane = @($manifest.lanes | Where-Object { [string]$_.id -ceq 'win-x86-net40' })[0]
+    $x64Package = Join-Path $packageDirectory ([string]$x64Lane.packageName)
+    $x86Package = Join-Path $packageDirectory ([string]$x86Lane.packageName)
+    $x64Manifest = Join-Path $packageEvidenceDirectory "$($x64Lane.packageName).entries.json"
     $x64PackageHash = (Get-FileHash -LiteralPath $x64Package -Algorithm SHA256).Hash.ToLowerInvariant()
     $x64ManifestHash = (Get-FileHash -LiteralPath $x64Manifest -Algorithm SHA256).Hash.ToLowerInvariant()
 

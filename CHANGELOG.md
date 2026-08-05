@@ -4,6 +4,31 @@
 ## C3 1.3 legacy maintenance
 
 
+### Version 1.3.0 Alpha 2 - 5 August 2026
+
+Alpha 2 is the planned, intentionally unpublished three-lane build and
+release-control checkpoint. Its repository identity is projected; the tag and
+retained distributions remain gated on serviced builders and the full Candidate
+path.
+
+- Added a closed stage-aware manifest identity for `1.3.0a2`, `Alpha 2`,
+  `v1.3.0a2`, alpha channel, and retained-unpublished status.
+- Kept CLR assembly and file versions at `1.3.0.0` while projecting `1.3.0a2`
+  through assembly informational/product metadata.
+- Renamed the active package authority to the exact three
+  `C3-v1.3.0a2-...-portable.zip` assets so Alpha production cannot emit
+  stable-looking filenames.
+- Bound the release stage through `BUILD.txt`, authenticated entry manifests,
+  checksum filenames, PowerShell 2 runtime projection, and target evidence.
+- Added cross-lane enforcement for one release label, source commit, toolchain
+  mode, lock status, and external-lock SHA-256.
+- Documented the full Alpha 2 source/lock/Candidate/reproducibility/smoke/tag
+  gate and its retained-but-not-public authority boundary.
+- Kept historical Gate 1, runtime repairs, target-OS qualification, ARM64
+  execution, public release, legacy-feed promotion, and `legacy/1.x` movement
+  explicitly open.
+
+
 ### Post-Alpha stable-matrix decision - 5 August 2026
 
 - Ratified exactly three C3 1.3 Beta/stable release lanes:

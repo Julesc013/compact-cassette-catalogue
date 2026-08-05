@@ -3,7 +3,8 @@ param(
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
     [string]$PackageDirectory,
-    [string]$EvidenceDirectory
+    [string]$EvidenceDirectory,
+    [switch]$RequireCandidateEvidence
 )
 
 Set-StrictMode -Version 2.0
@@ -16,10 +17,10 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $lanes = @($manifest.lanes)
 if ([string]::IsNullOrWhiteSpace($PackageDirectory)) {
-    $PackageDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseVersion)"
+    $PackageDirectory = Join-Path $repositoryRoot "artifacts\packages\$($manifest.releaseLabel)"
 }
 if ([string]::IsNullOrWhiteSpace($EvidenceDirectory)) {
-    $EvidenceDirectory = Join-Path $repositoryRoot "artifacts\evidence\packages\$($manifest.releaseVersion)"
+    $EvidenceDirectory = Join-Path $repositoryRoot "artifacts\evidence\packages\$($manifest.releaseLabel)"
 }
 $PackageDirectory = [IO.Path]::GetFullPath($PackageDirectory)
 $EvidenceDirectory = [IO.Path]::GetFullPath($EvidenceDirectory)
@@ -67,8 +68,15 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
         throw "$($lane.id) retained entry-manifest checksum does not match."
     }
     $entryManifest = Get-Content -LiteralPath $entryManifestPath -Raw | ConvertFrom-Json
-    if ([string]$entryManifest.packageName -cne [string]$lane.packageName -or
+    if ([int]$entryManifest.schemaVersion -ne 2 -or
+            [string]$entryManifest.packageName -cne [string]$lane.packageName -or
             [string]$entryManifest.packageSha256 -cne $packageHash -or
+            [string]$entryManifest.releaseVersion -cne [string]$manifest.releaseVersion -or
+            [string]$entryManifest.releaseStage -cne [string]$manifest.releaseStage -or
+            [string]$entryManifest.releaseLabel -cne [string]$manifest.releaseLabel -or
+            [string]$entryManifest.releaseTag -cne [string]$manifest.releaseTag -or
+            [string]$entryManifest.releaseChannel -cne [string]$manifest.releaseChannel -or
+            [string]$entryManifest.publicationStatus -cne [string]$manifest.publicationStatus -or
             [string]$entryManifest.sourceCommit -notmatch '^[0-9a-f]{40}$' -or
             [string]$entryManifest.toolchainLockSha256 -notmatch '^[0-9a-f]{64}$') {
         throw "$($lane.id) retained entry manifest is not bound to its package/source/toolchain lock."
@@ -136,7 +144,17 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
         finally {
             $reader.Dispose()
         }
-        if ([string]$buildData.lane -cne [string]$lane.id -or
+        if ([string]$buildData.formatVersion -cne '2' -or
+                [string]$buildData.lane -cne [string]$lane.id -or
+                [string]$buildData.releaseVersion -cne [string]$manifest.releaseVersion -or
+                [string]$buildData.releaseStage -cne [string]$manifest.releaseStage -or
+                [string]$buildData.releaseLabel -cne [string]$manifest.releaseLabel -or
+                [string]$buildData.releaseTag -cne [string]$manifest.releaseTag -or
+                [string]$buildData.releaseChannel -cne [string]$manifest.releaseChannel -or
+                [string]$buildData.publicationStatus -cne [string]$manifest.publicationStatus -or
+                [string]$buildData.assemblyVersion -cne [string]$manifest.assemblyVersion -or
+                [string]$buildData.fileVersion -cne [string]$manifest.fileVersion -or
+                [string]$buildData.assemblyProductVersion -cne [string]$manifest.assemblyProductVersion -or
                 [string]$buildData.sourceCommit -cne [string]$entryManifest.sourceCommit -or
                 [string]$buildData.targetFramework -cne [string]$lane.targetFramework -or
                 [string]$buildData.peMachine -cne [string]$lane.peMachine -or
@@ -149,6 +167,12 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
         }
         $packageEvidenceRecords.Add((New-Object PSObject -Property @{
             lane = [string]$lane.id
+            releaseVersion = [string]$buildData.releaseVersion
+            releaseStage = [string]$buildData.releaseStage
+            releaseLabel = [string]$buildData.releaseLabel
+            releaseTag = [string]$buildData.releaseTag
+            releaseChannel = [string]$buildData.releaseChannel
+            publicationStatus = [string]$buildData.publicationStatus
             sourceCommit = [string]$buildData.sourceCommit
             toolchainMode = [string]$buildData.toolchainMode
             toolchainLockStatus = [string]$buildData.toolchainLockStatus
@@ -161,6 +185,25 @@ for ($index = 0; $index -lt $lanes.Count; $index++) {
     Write-Host "Verified portable package: $($lane.packageName) ($packageHash)"
 }
 
-[void](Assert-C3PackageEvidenceSet -Records @($packageEvidenceRecords.ToArray()))
+$packageSetIdentity = Assert-C3PackageEvidenceSet `
+    -Records @($packageEvidenceRecords.ToArray()) `
+    -RequireCandidate:$RequireCandidateEvidence
+if ($RequireCandidateEvidence) {
+    $closurePath = Join-Path $repositoryRoot 'artifacts\evidence\build\candidate-source-closure.json'
+    if (-not (Test-Path -LiteralPath $closurePath -PathType Leaf)) {
+        throw "Candidate package verification requires retained post-build source closure: $closurePath"
+    }
+    $closure = Get-Content -LiteralPath $closurePath -Raw | ConvertFrom-Json
+    if ([string]$closure.status -cne 'pass' -or
+            [string]$closure.sourceCommit -cne [string]$packageSetIdentity.sourceCommit -or
+            [string]$closure.toolchainLockSha256 -cne [string]$packageSetIdentity.toolchainLockSha256 -or
+            -not [bool]$closure.worktreeClean -or
+            -not [bool]$closure.submodulesExact -or
+            [string]$closure.remoteSnapshotCommit -cne [string]$packageSetIdentity.sourceCommit -or
+            [string]$closure.genome -cne 'pass' -or
+            [string]$closure.laneProjection -cne 'pass') {
+        throw 'Candidate package set does not match the retained post-build source/ref/genome/lock closure.'
+    }
+}
 
-Write-Host 'Verified exactly three deterministic portable ZIPs from one source/lock evidence set, checksums, external entry manifests, matching bytes, and prohibited-output exclusion.'
+Write-Host 'Verified exactly three deterministic portable ZIPs from one release/source/lock evidence set, checksums, external entry manifests, matching bytes, and prohibited-output exclusion.'

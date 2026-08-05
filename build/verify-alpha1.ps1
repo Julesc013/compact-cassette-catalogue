@@ -29,6 +29,8 @@ $originalTagArchive = 'refs/tags/archive/v1.3.0a1-original-tag-object-2026-08-05
 & (Join-Path $PSScriptRoot 'verify-release-identity.ps1') `
     -ExpectedProductVersion '1.3.0' `
     -ExpectedStage 'Alpha 1' `
+    -ExpectedReleaseLabel '1.3.0a1' `
+    -ExpectedTag 'v1.3.0a1' `
     -ExpectedDate ([datetime]'2026-08-05') `
     -Configuration $Configuration `
     -VerifyBuildOutputs:(-not $SkipBuildOutputs)

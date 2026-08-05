@@ -7,10 +7,27 @@ $ErrorActionPreference = 'Stop'
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $lock = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'toolchain-lock.json') -Raw | ConvertFrom-Json
+$expectedReleaseIdentity = [ordered]@{
+    schemaVersion = '3'
+    releaseVersion = '1.3.0'
+    releaseStage = 'Alpha 2'
+    releaseLabel = '1.3.0a2'
+    releaseTag = 'v1.3.0a2'
+    releaseChannel = 'alpha'
+    publicationStatus = 'retained-unpublished'
+    assemblyVersion = '1.3.0.0'
+    fileVersion = '1.3.0.0'
+    assemblyProductVersion = '1.3.0a2'
+}
+foreach ($propertyName in $expectedReleaseIdentity.Keys) {
+    if ([string]$manifest.$propertyName -cne [string]$expectedReleaseIdentity[$propertyName]) {
+        throw "Release manifest $propertyName '$($manifest.$propertyName)' does not match '$($expectedReleaseIdentity[$propertyName])'."
+    }
+}
 $expected = @(
-    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; servicingPin = '15.9.81'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0-win-x86-net40-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; servicingPin = '17.14.37'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0-win-x64-net48-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; servicingPin = '18.8.2'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0-win-arm64-net481-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
+    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; servicingPin = '15.9.81'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0a2-win-x86-net40-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; servicingPin = '17.14.37'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0a2-win-x64-net48-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; servicingPin = '18.8.2'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0a2-win-arm64-net481-portable.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
 )
 $lanes = @($manifest.lanes)
 if ($lanes.Count -ne $expected.Count) {
@@ -47,8 +64,27 @@ if ($runtimeLanes.Count -ne $lanes.Count) {
     throw 'PowerShell 2 target projection does not contain exactly the manifest lanes.'
 }
 for ($index = 0; $index -lt $lanes.Count; $index++) {
-    foreach ($propertyName in @('id', 'packageName', 'targetFramework', 'peMachine', 'runtimeEnvironmentId', 'runtimeArchitecture', 'runtimeClaim')) {
-        if ([string]$runtimeLanes[$index].$propertyName -cne [string]$lanes[$index].$propertyName) {
+    foreach ($propertyName in @(
+            'id',
+            'releaseVersion',
+            'releaseStage',
+            'releaseLabel',
+            'releaseTag',
+            'releaseChannel',
+            'publicationStatus',
+            'packageName',
+            'targetFramework',
+            'peMachine',
+            'runtimeEnvironmentId',
+            'runtimeArchitecture',
+            'runtimeClaim')) {
+        $expectedValue = if ($propertyName -in $expectedReleaseIdentity.Keys) {
+            [string]$expectedReleaseIdentity[$propertyName]
+        }
+        else {
+            [string]$lanes[$index].$propertyName
+        }
+        if ([string]$runtimeLanes[$index].$propertyName -cne $expectedValue) {
             throw "Target projection $index property '$propertyName' does not match lanes.json."
         }
     }
