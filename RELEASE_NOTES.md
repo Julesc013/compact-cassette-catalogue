@@ -1,6 +1,6 @@
 # Compact Cassette Catalogue 1.3.0 Beta 1
 
-C3 1.3.0 Beta 1 is the qualified-prerelease Candidate for the final original
+C3 1.3.0 Beta 1 is the public-prerelease Candidate for the final original
 VB.NET WinForms line. Its exact identity is `1.3.0b1 / Beta 1 / v1.3.0b1`.
 Candidate retention is authorized, but this source text does not claim a tag,
 public GitHub release, minimum-operating-system qualification, stable-feed
