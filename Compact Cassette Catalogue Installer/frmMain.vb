@@ -17,6 +17,9 @@ Public Class frmMain
             _facts = C3Setup.SetupEnvironment.Capture()
             C3Setup.SetupEnvironment.Validate(_bundle.Manifest, _facts, _bundle.PayloadBytes)
             installDirectory = C3Setup.SetupEnvironment.DefaultInstallRoot(_facts)
+            C3Setup.SetupTransactionRecovery.RecoverIncomplete(installDirectory,
+                                                                New C3Setup.WindowsSetupShortcutAccess(),
+                                                                New C3Setup.WindowsSetupRegistryAccess())
             txtDirectory.Text = installDirectory
             dialogDirectory.SelectedPath = installDirectory
             chkStartMenu.Checked = True

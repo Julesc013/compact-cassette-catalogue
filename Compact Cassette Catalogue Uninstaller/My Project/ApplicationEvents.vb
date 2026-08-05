@@ -14,6 +14,7 @@ Namespace My
                 Next
                 Dim executablePath As String = Global.System.Windows.Forms.Application.ExecutablePath
                 If arguments.Length = 4 Then
+                    RecoverInterruptedTransaction(arguments(1))
                     Dim context As C3Setup.SetupRelocationContext = C3Setup.SetupSelfRelocation.ValidateRelocatedInvocation(arguments, executablePath)
                     C3Setup.SetupSelfRelocation.ScheduleCleanupAfterExit(context)
                     uninstallStatePath = context.StatePath
@@ -28,6 +29,7 @@ Namespace My
                 Else
                     Throw New C3Setup.SetupContractException("The installed uninstaller accepts only its exact installed-state argument.")
                 End If
+                RecoverInterruptedTransaction(statePath)
                 C3Setup.SetupSelfRelocation.PrepareAndLaunch(executablePath,
                                                              statePath,
                                                              Path.GetTempPath(),
@@ -40,6 +42,17 @@ Namespace My
                                 MessageBoxIcon.Error)
                 e.Cancel = True
             End Try
+        End Sub
+
+        Private Shared Sub RecoverInterruptedTransaction(statePath As String)
+            If String.IsNullOrWhiteSpace(statePath) OrElse
+                    Not String.Equals(Path.GetFileName(statePath), C3Setup.InstalledStateCodec.FileName, StringComparison.Ordinal) Then
+                Throw New C3Setup.SetupContractException("Uninstall recovery requires the exact installed-state path.")
+            End If
+            Dim installRoot As String = C3Setup.SetupPathPolicy.ValidateInstallRoot(Path.GetDirectoryName(Path.GetFullPath(statePath)))
+            C3Setup.SetupTransactionRecovery.RecoverIncomplete(installRoot,
+                                                                New C3Setup.WindowsSetupShortcutAccess(),
+                                                                New C3Setup.WindowsSetupRegistryAccess())
         End Sub
 
     End Class
