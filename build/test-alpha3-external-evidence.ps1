@@ -50,6 +50,16 @@ try {
     [IO.File]::WriteAllText($historicalPath, (($historical | ConvertTo-Json -Depth 8) + "`n"), (New-Object Text.UTF8Encoding($false)))
     Assert-C3Alpha3HistoricalGate1Evidence -Path $historicalPath | Out-Null
 
+    $historical.workflows[0].result = 'pass'
+    [IO.File]::WriteAllText($historicalPath, (($historical | ConvertTo-Json -Depth 8) + "`n"), (New-Object Text.UTF8Encoding($false)))
+    try {
+        Assert-C3Alpha3HistoricalGate1Evidence -Path $historicalPath | Out-Null
+        throw 'External-evidence self-test accepted a false aggregate PASS in place of classified completion.'
+    }
+    catch {
+        if ($_.Exception.Message -notmatch 'missing, incomplete') { throw }
+    }
+    $historical.workflows[0].result = 'complete'
     $historical.workflows[0].scenarios[4].defectIds = @()
     [IO.File]::WriteAllText($historicalPath, (($historical | ConvertTo-Json -Depth 8) + "`n"), (New-Object Text.UTF8Encoding($false)))
     try {

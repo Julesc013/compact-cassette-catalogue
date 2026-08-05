@@ -39,6 +39,7 @@ $requiredFiles = @(
     'release/validation/1.3.0-release-control-hardening-2026-08-05.md',
     'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md',
     'release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md',
+    'release/validation/1.3.0-gate1-inventory-2026-08-06.md',
     'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md',
     'release/validation/1.3.0-alpha.3-preparation-2026-08-05.md',
     'release/validation/1.3.0-alpha.3-qualified.md'
@@ -51,6 +52,9 @@ foreach ($relativePath in @(
         'build/prepare-historical-toolchain.ps1',
         'build/run-historical-gate1-builds.ps1',
         'build/prepare-historical-gate1-runtime-kit.ps1',
+        'build/inventory-gate1-environments.ps1',
+        'build/discover-private-catalogues.ps1',
+        'build/test-gate1-inventory.ps1',
         'build/package-content/HISTORICAL_GATE1_README.txt',
         'build/alpha2-tag-message.ps1',
         'build/alpha2-qualified-evidence.ps1',

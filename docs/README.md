@@ -21,6 +21,7 @@ C3 release line.
 - [Classic setup manifest contracts](setup/1.3.0-manifest-contracts.md)
 - [Target-runtime qualification record template](testing/1.3.0-target-runtime-record.md)
 - [Target classic-setup qualification record template](testing/1.3.0-target-setup-record.md)
+- [Bounded Gate 1 environment inventory](../release/validation/1.3.0-gate1-inventory-2026-08-06.md)
 - [Three-lane preparation validation](../release/validation/1.3.0-three-lane-preparation-2026-08-05.md)
 - [Release-control hardening validation](../release/validation/1.3.0-release-control-hardening-2026-08-05.md)
 - [Candidate-freeze assertion validation](../release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md)
