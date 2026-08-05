@@ -60,6 +60,9 @@ remain behind their focused gates.
 - Rebuilt immutable `v1.2.0b1` in x86/net40 and x64/net40 with exact MSBuild
   `14.0.25420.1`, verified both PE/framework contracts, and retained honest
   non-byte-identical comparisons with the official runtime-oracle binaries.
+- Retrieved the exact official `v1.1.2` oracle and reproduced a deterministic
+  three-oracle/canonical-catalogue Gate 1 runtime kit with a closed operator
+  workflow and nine-cell exchange record.
 - Kept historical Gate 1 open for target workflows, private catalogue exchange,
   screenshots, and control/resource evidence before application behaviour work.
 

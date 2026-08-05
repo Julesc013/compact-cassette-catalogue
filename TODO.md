@@ -160,6 +160,8 @@ Every Beta-labelled operation remains prohibited without explicit human approval
 - [x] Specify closed payload and installed-state XML manifests.
 - [x] Add the S0–S3 application/setup defect and hazard ledger.
 - [ ] Complete historical Gate 1 before changing application runtime behaviour.
+- [x] Prepare and reproduce the deterministic historical Gate 1 runtime kit with
+  exact v1.1.2 and v1.2.0b1 x86/x64 oracle hashes.
 - [x] Freeze installer/uninstaller project, form, control, resource, and artwork
   identity before remediation.
 - [x] Add matched x86/net40, x64/net48, and ARM64/net481 setup configurations.

@@ -63,8 +63,11 @@ Fixture validation alone does not prove `My.Settings.Upgrade()` path discovery.
 - `RELEASE_VALIDATION_1.2.0.md` identifies the manually validated source commit,
   MSBuild 14.0.25420.1, x86/x64 PE results, smoke tests, workflow tests, settings
   persistence, blocked-network behaviour, and exact hashes.
-- `build/download-baseline-assets.ps1` retrieves the two official tagged EXEs
-  and verifies both their sizes and recorded SHA-256 values.
+- `build/download-baseline-assets.ps1` retrieves the two official v1.2 tagged
+  EXEs and verifies both their sizes and recorded SHA-256 values.
+- `build/prepare-historical-gate1-runtime-kit.ps1` also verifies the official
+  v1.1.2 oracle and reproducibly packages all three oracles plus the canonical
+  catalogue for the closed Gate 1 operator record.
 - `build/validate-compatibility-corpus.ps1` checks provenance and fixture hashes.
 - `build/test.ps1` builds and runs the safe standalone XML characterization tests.
 - `build/validate-baseline-genome.ps1` prevents drift from the qualified program
