@@ -3,6 +3,17 @@ $script:C3Alpha3HistoricalRuntimeIds = @(
     'v1.2.0b1-x86-net40',
     'v1.2.0b1-x64-net40'
 )
+$script:C3Alpha3HistoricalScenarioIds = @(
+    'launch-blocked-network-close',
+    'entity-crud',
+    'save-reopen-close',
+    'lists-filters-settings',
+    'dirty-close',
+    'pending-edit-transition',
+    'manual-update-blocked',
+    'private-catalogues',
+    'control-resource-capture'
+)
 $script:C3Alpha3TargetLaneIds = @(
     'win-x86-net40',
     'win-x64-net48',
@@ -56,7 +67,7 @@ function Assert-C3Alpha3HistoricalGate1Evidence {
 
     $Path = [IO.Path]::GetFullPath($Path)
     $record = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
-    if ([int]$record.schemaVersion -ne 1 -or
+    if ([int]$record.schemaVersion -ne 2 -or
             [string]$record.status -cne 'pass' -or
             [string]$record.baselineTag -cne 'v1.2.0b1' -or
             [string]$record.baselineSourceCommit -cne '2413e9139a098f3321385f2f946e743012a447f5' -or
@@ -82,11 +93,39 @@ function Assert-C3Alpha3HistoricalGate1Evidence {
     }
     foreach ($runtimeId in $script:C3Alpha3HistoricalRuntimeIds) {
         $workflow = @($workflows | Where-Object { [string]$_.runtimeId -ceq $runtimeId })
-        if ($workflow.Count -ne 1 -or [string]$workflow[0].result -cne 'pass') {
-            throw "Historical Gate 1 workflow '$runtimeId' is missing or not PASS."
+        if ($workflow.Count -ne 1 -or [string]$workflow[0].result -cne 'complete' -or
+                [int]$workflow[0].unexplainedDeviationCount -ne 0) {
+            throw "Historical Gate 1 workflow '$runtimeId' is missing, incomplete, or has an unexplained deviation."
         }
         Assert-C3RetainedEvidenceFile -IndexDirectory $indexDirectory -RelativePath ([string]$workflow[0].evidenceFile) `
             -ExpectedSha256 ([string]$workflow[0].evidenceSha256) -Context "Historical workflow $runtimeId"
+        $scenarios = @($workflow[0].scenarios)
+        if ($scenarios.Count -ne $script:C3Alpha3HistoricalScenarioIds.Count) {
+            throw "Historical Gate 1 workflow '$runtimeId' must contain exactly nine classified scenario outcomes."
+        }
+        foreach ($scenarioId in $script:C3Alpha3HistoricalScenarioIds) {
+            $scenario = @($scenarios | Where-Object { [string]$_.id -ceq $scenarioId })
+            if ($scenario.Count -ne 1 -or [string]::IsNullOrWhiteSpace([string]$scenario[0].notes)) {
+                throw "Historical Gate 1 workflow '$runtimeId' scenario '$scenarioId' is missing or lacks retained classification notes."
+            }
+            $outcome = [string]$scenario[0].outcome
+            $classification = [string]$scenario[0].classification
+            $defectIds = @($scenario[0].defectIds)
+            if ($outcome -ceq 'compatible') {
+                if ($classification -cne 'expected-compatible' -or $defectIds.Count -ne 0) {
+                    throw "Historical Gate 1 workflow '$runtimeId' scenario '$scenarioId' has an invalid compatible classification."
+                }
+            }
+            elseif ($outcome -ceq 'known-defect-reproduced' -or $outcome -ceq 'known-defect-not-reproduced') {
+                if ($classification -cne 'classified-known-defect' -or $defectIds.Count -eq 0 -or
+                        @($defectIds | Where-Object { [string]$_ -notmatch '^APP-0(0[1-9]|1[0-5])$' }).Count -ne 0) {
+                    throw "Historical Gate 1 workflow '$runtimeId' scenario '$scenarioId' does not bind a known application defect."
+                }
+            }
+            else {
+                throw "Historical Gate 1 workflow '$runtimeId' scenario '$scenarioId' has an unclassified outcome '$outcome'."
+            }
+        }
     }
     $exchange = @($record.catalogueExchange)
     if ($exchange.Count -ne 9) { throw 'Historical Gate 1 catalogue exchange must contain exactly nine producer/reader cells.' }

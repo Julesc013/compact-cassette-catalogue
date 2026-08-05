@@ -21,10 +21,25 @@ try {
     $historical.controlResourceEvidenceFile = $evidenceName
     $historical.controlResourceEvidenceSha256 = $evidenceHash
     foreach ($workflow in @($historical.workflows)) {
-        $workflow.result = 'pass'
+        $workflow.result = 'complete'
+        $workflow.unexplainedDeviationCount = 0
+        foreach ($scenario in @($workflow.scenarios)) {
+            $scenario.outcome = 'compatible'
+            $scenario.classification = 'expected-compatible'
+            $scenario.defectIds = @()
+            $scenario.notes = 'Synthetic workflow observation retained for the verifier self-test.'
+        }
         $workflow.evidenceFile = $evidenceName
         $workflow.evidenceSha256 = $evidenceHash
     }
+    $historical.workflows[0].scenarios[4].outcome = 'known-defect-reproduced'
+    $historical.workflows[0].scenarios[4].classification = 'classified-known-defect'
+    $historical.workflows[0].scenarios[4].defectIds = @('APP-002')
+    $historical.workflows[0].scenarios[4].notes = 'Synthetic recursive-close reproduction classified as APP-002.'
+    $historical.workflows[1].scenarios[5].outcome = 'known-defect-not-reproduced'
+    $historical.workflows[1].scenarios[5].classification = 'classified-known-defect'
+    $historical.workflows[1].scenarios[5].defectIds = @('APP-001')
+    $historical.workflows[1].scenarios[5].notes = 'Synthetic bounded run did not reproduce APP-001; the absence is explicit.'
     foreach ($cell in @($historical.catalogueExchange)) {
         $cell.result = 'pass'
         $cell.evidenceFile = $evidenceName
@@ -34,6 +49,27 @@ try {
     $historicalPath = Join-Path $temporaryRoot 'historical.json'
     [IO.File]::WriteAllText($historicalPath, (($historical | ConvertTo-Json -Depth 8) + "`n"), (New-Object Text.UTF8Encoding($false)))
     Assert-C3Alpha3HistoricalGate1Evidence -Path $historicalPath | Out-Null
+
+    $historical.workflows[0].scenarios[4].defectIds = @()
+    [IO.File]::WriteAllText($historicalPath, (($historical | ConvertTo-Json -Depth 8) + "`n"), (New-Object Text.UTF8Encoding($false)))
+    try {
+        Assert-C3Alpha3HistoricalGate1Evidence -Path $historicalPath | Out-Null
+        throw 'External-evidence self-test accepted a known-defect outcome without a defect-ledger binding.'
+    }
+    catch {
+        if ($_.Exception.Message -notmatch 'does not bind a known application defect') { throw }
+    }
+    $historical.workflows[0].scenarios[4].defectIds = @('APP-002')
+    $historical.workflows[0].unexplainedDeviationCount = 1
+    [IO.File]::WriteAllText($historicalPath, (($historical | ConvertTo-Json -Depth 8) + "`n"), (New-Object Text.UTF8Encoding($false)))
+    try {
+        Assert-C3Alpha3HistoricalGate1Evidence -Path $historicalPath | Out-Null
+        throw 'External-evidence self-test accepted an unexplained historical deviation.'
+    }
+    catch {
+        if ($_.Exception.Message -notmatch 'unexplained deviation') { throw }
+    }
+    $historical.workflows[0].unexplainedDeviationCount = 0
 
     $target = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'evidence-templates\alpha3-target-qualification.json') -Raw | ConvertFrom-Json
     $target.status = 'pass'

@@ -13,5 +13,10 @@ Record the exact OS/framework state, executable hashes, workflow results,
 screenshots, private-catalogue hashes, and all nine writer-to-reader exchange
 cells in docs/testing/1.3.0-historical-gate1-record.md.
 
+The 27 workflow rows are observation/classification evidence. Record a known
+historical defect as reproduced or explicitly not reproduced and bind it to its
+APP-nnn ledger row; do not manufacture a false workflow PASS. The nine exchange
+cells must still preserve all represented catalogue data.
+
 Passing this kit does not authorize an Alpha/Beta tag, distribution, public
 release, feed change, or legacy branch movement.
