@@ -2,6 +2,7 @@
 param(
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
+    [string]$ToolchainLockPath,
     [switch]$SkipBuildOutputs,
     [switch]$IdentityProjectionOnly
 )
@@ -84,6 +85,13 @@ if (-not $SkipBuildOutputs) {
     & (Join-Path $PSScriptRoot 'verify-alpha3-assets.ps1') `
         -Configuration $Configuration `
         -RequireCandidateEvidence
+    if ([string]::IsNullOrWhiteSpace($ToolchainLockPath)) {
+        throw 'Full Alpha 3 Candidate verification requires -ToolchainLockPath for two clean path-distinct product/setup rebuilds.'
+    }
+    & (Join-Path $PSScriptRoot 'test-source-reproducibility.ps1') `
+        -Configuration $Configuration `
+        -ToolchainLockPath $ToolchainLockPath `
+        -IncludeSetup
 }
 
 Write-Host 'C3 1.3.0 Alpha 3 source/candidate controls passed; no Alpha 3 tag, publication, feed, or legacy movement is claimed.'

@@ -3,6 +3,7 @@ param(
     [string]$ToolchainLockPath,
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
+    [switch]$IncludeSetup,
     [switch]$SelfTest
 )
 
@@ -89,9 +90,14 @@ $authoritativeEntryEvidence = Join-Path $repositoryRoot "artifacts\evidence\pack
     -PackageDirectory $authoritativePackages `
     -EvidenceDirectory $authoritativeEntryEvidence `
     -RequireCandidateEvidence
+if ($IncludeSetup) {
+    & (Join-Path $PSScriptRoot 'verify-setup-builds.ps1') -Configuration $Configuration -ExpectedSourceCommit $sourceCommit
+    & (Join-Path $PSScriptRoot 'verify-setup-packages.ps1') -Configuration $Configuration -RequireCandidateEvidence
+    & (Join-Path $PSScriptRoot 'verify-alpha3-assets.ps1') -Configuration $Configuration -RequireCandidateEvidence
+}
 
 $artifactRoot = [IO.Path]::GetFullPath((Join-Path $repositoryRoot 'artifacts'))
-$temporaryParent = [IO.Path]::GetFullPath((Join-Path ([IO.Path]::GetTempPath()) 'c3-alpha2-source-reproducibility'))
+$temporaryParent = [IO.Path]::GetFullPath((Join-Path ([IO.Path]::GetTempPath()) 'c3-source-reproducibility'))
 $worktreeRoot = [IO.Path]::GetFullPath((Join-Path $temporaryParent ([Guid]::NewGuid().ToString('N'))))
 $retainedRoot = [IO.Path]::GetFullPath((Join-Path $artifactRoot "evidence\source-reproducibility\$($manifest.releaseLabel)"))
 $artifactPrefix = $artifactRoot.TrimEnd('\') + '\'
@@ -134,12 +140,52 @@ try {
         & (Join-Path $run.path 'build\verify-packages.ps1') `
             -Configuration $Configuration `
             -RequireCandidateEvidence
+        if ($IncludeSetup) {
+            & (Join-Path $run.path 'build\build-setup.ps1') `
+                -Configuration $Configuration `
+                -ToolchainMode Candidate `
+                -ToolchainLockPath $ToolchainLockPath
+            & (Join-Path $run.path 'build\verify-setup-builds.ps1') `
+                -Configuration $Configuration `
+                -ExpectedSourceCommit $sourceCommit
+            & (Join-Path $run.path 'build\package-setup.ps1') `
+                -Configuration $Configuration `
+                -RequireCandidateEvidence
+            & (Join-Path $run.path 'build\verify-setup-packages.ps1') `
+                -Configuration $Configuration `
+                -RequireCandidateEvidence
+            & (Join-Path $run.path 'build\assemble-alpha3-assets.ps1') `
+                -Configuration $Configuration `
+                -RequireCandidateEvidence
+            & (Join-Path $run.path 'build\verify-alpha3-assets.ps1') `
+                -Configuration $Configuration `
+                -RequireCandidateEvidence
+        }
     }
 
     $assetNames = @($manifest.lanes | ForEach-Object { [string]$_.packageName }) + @('SHA256SUMS.txt')
     $entryEvidenceNames = @($manifest.lanes | ForEach-Object { "$($_.packageName).entries.json" }) + @('ENTRY_MANIFEST_SHA256SUMS.txt')
     $authoritativeAssetMap = Get-FileHashMap -Directory $authoritativePackages -Names $assetNames
     $authoritativeEntryMap = Get-FileHashMap -Directory $authoritativeEntryEvidence -Names $entryEvidenceNames
+    $setupAssetNames = @()
+    $setupEntryEvidenceNames = @()
+    $distributionAssetNames = @()
+    $releaseAssetEvidenceNames = @()
+    $authoritativeSetupAssetMap = [ordered]@{}
+    $authoritativeSetupEntryMap = [ordered]@{}
+    $authoritativeDistributionMap = [ordered]@{}
+    $authoritativeReleaseAssetEvidenceMap = [ordered]@{}
+    if ($IncludeSetup) {
+        $setupAssetNames = @($manifest.lanes | ForEach-Object { [string]$_.setupPackageName }) + @('SHA256SUMS.txt')
+        $setupEntryEvidenceNames = @($manifest.lanes | ForEach-Object { "$($_.setupPackageName).entries.json" }) + @('ENTRY_MANIFEST_SHA256SUMS.txt')
+        $distributionAssetNames = @($manifest.lanes | ForEach-Object { [string]$_.packageName }) +
+            @($manifest.lanes | ForEach-Object { [string]$_.setupPackageName }) + @('SHA256SUMS.txt')
+        $releaseAssetEvidenceNames = @('release-assets.json', 'RELEASE_ASSETS_SHA256.txt')
+        $authoritativeSetupAssetMap = Get-FileHashMap -Directory (Join-Path $repositoryRoot "artifacts\setup\packages\$($manifest.releaseLabel)") -Names $setupAssetNames
+        $authoritativeSetupEntryMap = Get-FileHashMap -Directory (Join-Path $repositoryRoot "artifacts\evidence\setup-packages\$($manifest.releaseLabel)") -Names $setupEntryEvidenceNames
+        $authoritativeDistributionMap = Get-FileHashMap -Directory (Join-Path $repositoryRoot "artifacts\distributions\$($manifest.releaseLabel)") -Names $distributionAssetNames
+        $authoritativeReleaseAssetEvidenceMap = Get-FileHashMap -Directory (Join-Path $repositoryRoot "artifacts\evidence\release-assets\$($manifest.releaseLabel)") -Names $releaseAssetEvidenceNames
+    }
     $runSummaries = New-Object Collections.Generic.List[Object]
     foreach ($run in $runs) {
         $runPackages = Join-Path $run.path "artifacts\packages\$($manifest.releaseLabel)"
@@ -148,6 +194,21 @@ try {
         $entryMap = Get-FileHashMap -Directory $runEntryEvidence -Names $entryEvidenceNames
         Assert-HashMapsEqual -Expected $authoritativeAssetMap -Actual $assetMap -Context "$($run.name) package set"
         Assert-HashMapsEqual -Expected $authoritativeEntryMap -Actual $entryMap -Context "$($run.name) entry-manifest set"
+
+        $setupAssetMap = [ordered]@{}
+        $setupEntryMap = [ordered]@{}
+        $distributionMap = [ordered]@{}
+        $releaseAssetEvidenceMap = [ordered]@{}
+        if ($IncludeSetup) {
+            $setupAssetMap = Get-FileHashMap -Directory (Join-Path $run.path "artifacts\setup\packages\$($manifest.releaseLabel)") -Names $setupAssetNames
+            $setupEntryMap = Get-FileHashMap -Directory (Join-Path $run.path "artifacts\evidence\setup-packages\$($manifest.releaseLabel)") -Names $setupEntryEvidenceNames
+            $distributionMap = Get-FileHashMap -Directory (Join-Path $run.path "artifacts\distributions\$($manifest.releaseLabel)") -Names $distributionAssetNames
+            $releaseAssetEvidenceMap = Get-FileHashMap -Directory (Join-Path $run.path "artifacts\evidence\release-assets\$($manifest.releaseLabel)") -Names $releaseAssetEvidenceNames
+            Assert-HashMapsEqual -Expected $authoritativeSetupAssetMap -Actual $setupAssetMap -Context "$($run.name) setup package set"
+            Assert-HashMapsEqual -Expected $authoritativeSetupEntryMap -Actual $setupEntryMap -Context "$($run.name) setup entry-manifest set"
+            Assert-HashMapsEqual -Expected $authoritativeDistributionMap -Actual $distributionMap -Context "$($run.name) six-asset distribution"
+            Assert-HashMapsEqual -Expected $authoritativeReleaseAssetEvidenceMap -Actual $releaseAssetEvidenceMap -Context "$($run.name) release-asset evidence"
+        }
 
         foreach ($lane in @($manifest.lanes)) {
             foreach ($fileName in @('Compact Cassette Catalogue.exe', 'Compact Cassette Catalogue.exe.config')) {
@@ -159,6 +220,21 @@ try {
                     throw "$($run.name) source build differs for $($lane.id)/$fileName."
                 }
             }
+            if ($IncludeSetup) {
+                foreach ($setupOutput in @(
+                        'installer\Compact Cassette Catalogue Installer.exe',
+                        'installer\Compact Cassette Catalogue Installer.exe.config',
+                        'uninstaller\Compact Cassette Catalogue Uninstaller.exe',
+                        'uninstaller\Compact Cassette Catalogue Uninstaller.exe.config')) {
+                    $authoritativeOutput = Join-Path $repositoryRoot "artifacts\setup\bin\$($lane.id)\$Configuration\$setupOutput"
+                    $runOutput = Join-Path $run.path "artifacts\setup\bin\$($lane.id)\$Configuration\$setupOutput"
+                    $authoritativeHash = (Get-FileHash -LiteralPath $authoritativeOutput -Algorithm SHA256).Hash.ToLowerInvariant()
+                    $runHash = (Get-FileHash -LiteralPath $runOutput -Algorithm SHA256).Hash.ToLowerInvariant()
+                    if ($authoritativeHash -cne $runHash) {
+                        throw "$($run.name) source build differs for setup $($lane.id)/$setupOutput."
+                    }
+                }
+            }
         }
 
         $retainedRun = Join-Path $retainedRoot $run.name
@@ -166,12 +242,23 @@ try {
         Copy-Item -LiteralPath (Join-Path $run.path 'artifacts\evidence\build') -Destination (Join-Path $retainedRun 'build') -Recurse
         Copy-Item -LiteralPath $runPackages -Destination (Join-Path $retainedRun 'packages') -Recurse
         Copy-Item -LiteralPath $runEntryEvidence -Destination (Join-Path $retainedRun 'package-evidence') -Recurse
+        if ($IncludeSetup) {
+            Copy-Item -LiteralPath (Join-Path $run.path 'artifacts\evidence\setup-build') -Destination (Join-Path $retainedRun 'setup-build') -Recurse
+            Copy-Item -LiteralPath (Join-Path $run.path "artifacts\setup\packages\$($manifest.releaseLabel)") -Destination (Join-Path $retainedRun 'setup-packages') -Recurse
+            Copy-Item -LiteralPath (Join-Path $run.path "artifacts\evidence\setup-packages\$($manifest.releaseLabel)") -Destination (Join-Path $retainedRun 'setup-package-evidence') -Recurse
+            Copy-Item -LiteralPath (Join-Path $run.path "artifacts\distributions\$($manifest.releaseLabel)") -Destination (Join-Path $retainedRun 'distribution') -Recurse
+            Copy-Item -LiteralPath (Join-Path $run.path "artifacts\evidence\release-assets\$($manifest.releaseLabel)") -Destination (Join-Path $retainedRun 'release-asset-evidence') -Recurse
+        }
         $runSummaries.Add([ordered]@{
                 name = $run.name
                 sourcePath = [string]$run.path
                 retainedEvidence = $retainedRun
                 packages = $assetMap
                 entryEvidence = $entryMap
+                setupPackages = $setupAssetMap
+                setupEntryEvidence = $setupEntryMap
+                distribution = $distributionMap
+                releaseAssetEvidence = $releaseAssetEvidenceMap
             })
     }
 
@@ -182,6 +269,7 @@ try {
         sourceCommit = $sourceCommit
         toolchainLockSha256 = $lockHash
         configuration = $Configuration
+        includesSetup = [bool]$IncludeSetup
         pathDistinct = ([string]$runs[0].path -cne [string]$runs[1].path)
         authoritativePackages = $authoritativeAssetMap
         authoritativeEntryEvidence = $authoritativeEntryMap
@@ -191,7 +279,8 @@ try {
     $summaryPath = Join-Path $retainedRoot 'source-reproducibility.json'
     $summaryJson = ($summary | ConvertTo-Json -Depth 10) + "`n"
     [IO.File]::WriteAllText($summaryPath, $summaryJson, (New-Object Text.UTF8Encoding($false)))
-    Write-Host "Two clean path-distinct Candidate source builds reproduced the authoritative Alpha package and entry-manifest bytes. Evidence: $summaryPath"
+    $reproducedScope = if ($IncludeSetup) { 'portable/setup binaries, six packages, entry manifests, and assembled distribution' } else { 'portable package and entry-manifest bytes' }
+    Write-Host "Two clean path-distinct Candidate source builds reproduced the authoritative $reproducedScope. Evidence: $summaryPath"
 }
 finally {
     for ($index = $addedWorktrees.Count - 1; $index -ge 0; $index--) {
