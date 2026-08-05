@@ -16,7 +16,7 @@ settings characterization, both release builds, assembly/file/product identity f
 every shipped binary, executable architecture, and diff whitespace.
 
 The characterization build also reflects `C3.Catalogue.dll` and compares its
-524 exported type/member signatures with
+526 exported type/member signatures with
 [`spec/catalogue-api/v1/public-api.txt`](../../spec/catalogue-api/v1/public-api.txt).
 This freezes the VB migration oracle independently from behavior tests; neither
 contract can be regenerated merely to make an unexplained port difference pass.
@@ -27,17 +27,18 @@ matched, the project replaced the VB production assembly
 atomically and the temporary harness was removed. The baseline continues to
 protect the C# assembly from unintended API drift. Alpha 4 deliberately extended
 it to 398 signatures for the native catalogue surface; the reviewed canonical
-document/query/fingerprint resource contract extends it to 524 without changing production
+document/query/fingerprint resource contract extends it to 526 without changing production
 state ownership.
 
-The same reflection mechanism freezes all 470 exported Infrastructure
+The same reflection mechanism freezes all 478 exported Infrastructure
 signatures under `spec/infrastructure-api/v1`. It reflects layered assemblies
 from an isolated copy of the library output directory so cross-assembly public
 types resolve without locking the real outputs before the later rebuild gate.
 The Infrastructure baseline was the independent 312-signature API oracle for its
 Alpha 3 language-only migration and remains an ongoing compatibility alarm. The
 candidate was promoted atomically, Alpha 4 deliberately extended the reviewed
-surface to 470 signatures, and all 97 current characterization scenarios execute
+surface to 470 signatures, and the reviewed read-only canonical shadow adapter
+extends it to 478. All 98 current characterization scenarios execute
 the C# production graph. The temporary candidate harness has been removed.
 
 Tests target .NET Framework 4.0 so the reusable assemblies used by the XP lane

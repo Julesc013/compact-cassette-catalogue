@@ -7,6 +7,7 @@ namespace C3.Catalogue.Canonical
         DeckModel = 2,
         DeckUnit = 3,
         Tape = 4,
-        Recording = 5
+        Recording = 5,
+        CatalogueMetadata = 6
     }
 }

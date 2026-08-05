@@ -1,3 +1,5 @@
+ctor|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Domain.Profiles.CatalogueProfileCapabilities sourceProfile,C3.Catalogue.Canonical.CatalogueSnapshot snapshot,C3.Catalogue.Canonical.CatalogueFingerprintIndex fingerprints
+ctor|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|
@@ -118,6 +120,7 @@ enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|TooLarge|2
 enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|UnsupportedSchema|4
 enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongChannel|6
 enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongProduct|5
+method|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|Project|instance|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Catalogue.Native.NativeCatalogue source,C3.Domain.Catalogues.DocumentSessionId sessionId,C3.Domain.Catalogues.ContentVersion contentVersion,C3.Catalogue.Canonical.CatalogueResourceBudget budget
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Add|instance|System.Void|C3.Catalogue.Brands.Brand value
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Delete|instance|System.Void|System.String code
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|FindByCode|instance|C3.Catalogue.Brands.Brand|System.String code
@@ -218,6 +221,9 @@ method|C3.Infrastructure.Updates.UpdateEndpointPolicy|ExpectedUrl|static|System.
 method|C3.Infrastructure.Updates.UpdateEndpointPolicy|TryValidate|static|System.Boolean|System.Uri feedUri,System.String expectedChannel,System.String& failureMessage
 method|C3.Infrastructure.Updates.UpdateEndpointPolicy|Validate|static|System.Void|System.Uri feedUri,System.String expectedChannel
 method|C3.Infrastructure.Updates.UpdateReleaseManifestReader|Read|instance|C3.Infrastructure.Updates.UpdateManifestReadResult|System.Byte[] payload,System.String expectedChannel
+property|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|Fingerprints|C3.Catalogue.Canonical.CatalogueFingerprintIndex|get
+property|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|Snapshot|C3.Catalogue.Canonical.CatalogueSnapshot|get
+property|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|SourceProfile|C3.Domain.Profiles.CatalogueProfileCapabilities|get
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Document|System.Data.DataSet|getset
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Failure|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|getset
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|FileVersion|System.String|getset
@@ -395,6 +401,8 @@ property|C3.Infrastructure.Updates.UpdateReleasePackage|Lane|System.String|get
 property|C3.Infrastructure.Updates.UpdateReleasePackage|Length|System.Int64|get
 property|C3.Infrastructure.Updates.UpdateReleasePackage|Sha256|System.String|get
 property|C3.Infrastructure.Updates.UpdateReleasePackage|Url|System.String|get
+type|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|enum|sealed

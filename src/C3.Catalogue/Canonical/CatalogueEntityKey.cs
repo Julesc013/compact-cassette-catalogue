@@ -64,7 +64,7 @@ namespace C3.Catalogue.Canonical
             return KindCode(Kind) + ":" + EntityId;
         }
 
-        internal static string KindCode(CatalogueEntityKind kind)
+        public static string KindCode(CatalogueEntityKind kind)
         {
             switch (kind)
             {
@@ -74,6 +74,7 @@ namespace C3.Catalogue.Canonical
                 case CatalogueEntityKind.DeckUnit: return "deck-unit";
                 case CatalogueEntityKind.Tape: return "tape";
                 case CatalogueEntityKind.Recording: return "recording";
+                case CatalogueEntityKind.CatalogueMetadata: return "catalogue-metadata";
                 default: throw new ArgumentOutOfRangeException(nameof(kind));
             }
         }

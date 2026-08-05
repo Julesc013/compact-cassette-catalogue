@@ -50,6 +50,7 @@ enum|C3.Catalogue.Brands.BrandFailure|ReferencedByModel|5
 enum|C3.Catalogue.Brands.BrandFailure|StorageFailure|6
 enum|C3.Catalogue.Canonical.CatalogueEntityKind|Brand|0
 enum|C3.Catalogue.Canonical.CatalogueEntityKind|CassetteModel|1
+enum|C3.Catalogue.Canonical.CatalogueEntityKind|CatalogueMetadata|6
 enum|C3.Catalogue.Canonical.CatalogueEntityKind|DeckModel|2
 enum|C3.Catalogue.Canonical.CatalogueEntityKind|DeckUnit|3
 enum|C3.Catalogue.Canonical.CatalogueEntityKind|Recording|5
@@ -113,6 +114,7 @@ method|C3.Catalogue.Canonical.CatalogueEntityKey|CompareTo|instance|System.Int32
 method|C3.Catalogue.Canonical.CatalogueEntityKey|Equals|instance|System.Boolean|C3.Catalogue.Canonical.CatalogueEntityKey other
 method|C3.Catalogue.Canonical.CatalogueEntityKey|Equals|instance|System.Boolean|System.Object other
 method|C3.Catalogue.Canonical.CatalogueEntityKey|GetHashCode|instance|System.Int32|
+method|C3.Catalogue.Canonical.CatalogueEntityKey|KindCode|static|System.String|C3.Catalogue.Canonical.CatalogueEntityKind kind
 method|C3.Catalogue.Canonical.CatalogueEntityKey|ToString|instance|System.String|
 method|C3.Catalogue.Canonical.CatalogueFingerprintEngine|ApplyDelta|instance|C3.Catalogue.Canonical.CatalogueFingerprintIndex|C3.Catalogue.Canonical.CatalogueFingerprintIndex current,C3.Catalogue.Canonical.CatalogueFingerprintDelta delta
 method|C3.Catalogue.Canonical.CatalogueFingerprintEngine|ComputeFull|instance|C3.Catalogue.Canonical.CatalogueFingerprintIndex|System.Collections.Generic.IEnumerable<C3.Catalogue.Canonical.CatalogueFingerprintEntry> entries

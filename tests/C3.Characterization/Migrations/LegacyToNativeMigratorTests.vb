@@ -1,6 +1,10 @@
 Imports C3.Infrastructure.CatalogueFiles.Xml.V2_0
+Imports C3.Infrastructure.CatalogueFiles.Canonical
 Imports C3.Infrastructure.Migrations.V1_1ToV2_0
 Imports C3.Infrastructure.Migrations.V2_0ToV1_1
+Imports C3.Catalogue.Canonical
+Imports C3.Catalogue.Native
+Imports C3.Domain.Catalogues
 
 Friend NotInheritable Class LegacyToNativeMigratorTests
 
@@ -58,6 +62,74 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
         AssertEqual(True, result.Report.HasBlockingIssues, "unresolved blocking state")
         AssertEqual(True, HasIssue(result.Report, "reference.model-unresolved"), "unresolved issue")
         AssertBytesEqual(sourceBytes, File.ReadAllBytes(sourcePath), "unresolved source bytes")
+    End Sub
+
+    Public Shared Sub NativeShadowProjectionCoversCompleteMigratedGraph()
+        Dim migrated As LegacyToNativeMigrationResult =
+            New LegacyToNativeMigrator().DryRun(FixturePath("valid", "populated.xml"))
+        AssertEqual(True, migrated.IsSuccess, "shadow migration source")
+
+        Dim bytes As Byte() = New NativeXmlCatalogueWriter().Write(migrated.Document)
+        Dim reopened = New NativeXmlCatalogueReader().Read(bytes)
+        Dim sessionId As New DocumentSessionId(
+            Guid.Parse("77777777-7777-7777-7777-777777777777"))
+        Dim budget As New CatalogueResourceBudget(100, 10, 5, 20, 20, 2)
+        Dim projector As New NativeV2CanonicalShadowProjector()
+        Dim first As CanonicalShadowProjection = projector.Project(
+            migrated.Document,
+            sessionId,
+            ContentVersion.Zero,
+            budget)
+        Dim second As CanonicalShadowProjection = projector.Project(
+            reopened,
+            sessionId,
+            ContentVersion.Zero,
+            budget)
+
+        AssertEqual("native-v2.0", first.SourceProfile.ProfileCode, "shadow source profile")
+        AssertEqual(7L, first.Snapshot.TotalEntities, "shadow entity count")
+        AssertEqual(8, first.Fingerprints.Entries.Count, "shadow fingerprint coverage")
+        AssertEqual(first.Snapshot.Fingerprint, second.Snapshot.Fingerprint, "native round-trip fingerprint")
+        AssertEqual(
+            True,
+            New CatalogueFingerprintEngine().Verify(
+                first.Fingerprints,
+                second.Fingerprints.Entries),
+            "shadow full verification")
+
+        Dim originalTape As NativeTape = migrated.Document.Tapes(0)
+        Dim scaledTape As New NativeTape(
+            originalTape.Id,
+            originalTape.CassetteModelId,
+            originalTape.Year,
+            Decimal.Parse("90.00", CultureInfo.InvariantCulture),
+            originalTape.Region,
+            originalTape.Number,
+            originalTape.LegacyIdentifier,
+            originalTape.LegacyShortIdentifier,
+            originalTape.Condition,
+            originalTape.Packaged,
+            originalTape.AddedAt,
+            originalTape.Notes,
+            originalTape.SideA,
+            originalTape.SideB)
+        Dim scaledDocument As New NativeCatalogue(
+            migrated.Document.Id,
+            migrated.Document.Metadata,
+            migrated.Document.Brands,
+            migrated.Document.CassetteModels,
+            migrated.Document.DeckModels,
+            migrated.Document.DeckUnits,
+            {scaledTape})
+        Dim scaled As CanonicalShadowProjection = projector.Project(
+            scaledDocument,
+            sessionId,
+            ContentVersion.Zero,
+            budget)
+        AssertEqual(
+            first.Snapshot.Fingerprint,
+            scaled.Snapshot.Fingerprint,
+            "equivalent decimal scale")
     End Sub
 
     Public Shared Sub ConvertCopyWritesVerifiedReportsWithoutOverwriting()

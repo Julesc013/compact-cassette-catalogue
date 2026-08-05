@@ -218,6 +218,17 @@ full recomputation verification. Delta and full paths must yield identical
 `StateFingerprint` values; future measured tree/index optimizations may not
 change those bytes.
 
+The first read-only adapter projection consumes the accepted native-v2 DTO graph
+inside Infrastructure and produces a version-bound canonical shadow snapshot plus
+complete per-entity fingerprint index. It covers catalogue metadata, Brands,
+cassette models, deck models/units and capabilities, tapes, side relationships,
+and recordings. Native write/read round trips must preserve the shadow root. It
+does not expose native DTOs to presentation and does not become a mutation owner.
+The digest field stream uses explicit big-endian lengths/scalars, strict UTF-8,
+UTC ticks, canonical invariant decimal text, presence markers, and fixed field
+order; equivalent decimal values cannot diverge merely because their internal
+scale differs.
+
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,
 entity ordering, and included metadata. Per-entity digests and ordered aggregate

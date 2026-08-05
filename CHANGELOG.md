@@ -30,6 +30,9 @@
 - Added deterministic per-entity fingerprint indexes, immutable delta
   application, and full aggregate-root verification under a versioned ordinal
   SHA-256 contract.
+- Added a read-only native-v2 canonical shadow projector that fingerprints
+  metadata and every Brand, model, deck, tape, side relationship, and recording
+  field, with semantic-root parity after deterministic native round trip.
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.

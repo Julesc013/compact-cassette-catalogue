@@ -157,6 +157,9 @@ Module Program
             "legacy-to-native dry run blocks unresolved relationships",
             AddressOf LegacyToNativeMigratorTests.DryRunBlocksUnresolvedRelationships)
         RunTest(
+            "native shadow projection covers the complete migrated graph",
+            AddressOf LegacyToNativeMigratorTests.NativeShadowProjectionCoversCompleteMigratedGraph)
+        RunTest(
             "legacy-to-native convert-copy is verified and non-overwriting",
             AddressOf LegacyToNativeMigratorTests.ConvertCopyWritesVerifiedReportsWithoutOverwriting)
         RunTest(

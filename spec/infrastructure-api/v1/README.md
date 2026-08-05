@@ -3,7 +3,9 @@
 This directory versions the accepted public compiled surface of
 `C3.Infrastructure`. It began as the 312-signature VB oracle for Alpha 3; Alpha
 4 intentionally extends it with reviewed native persistence and migration
-contracts. The current bidirectional conversion boundary contains 470 signatures: strict
+contracts. The bidirectional conversion boundary first reached 470 signatures;
+the reviewed read-only native-v2 canonical shadow adapter extends the current
+surface to 478 signatures. The boundary includes strict
 reader/writer, typed results and failures, transactional new-only storage,
 deterministic mapping and reports, resumable recovery checkpoints, and the
 read-only plus convert-copy legacy-to-native services. It also includes the

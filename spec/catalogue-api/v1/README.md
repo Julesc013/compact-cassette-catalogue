@@ -17,7 +17,8 @@ through the file/process schemas, stable result codes, and language-neutral
 fixtures unless a later ADR deliberately accepts an SDK surface.
 
 The Alpha 6 canonical document/query resource contract deliberately expands the
-accepted internal surface to 524 signatures under ADR 0015. It remains a
+accepted internal surface to 526 signatures under ADR 0015 and its typed
+metadata fingerprint key. It remains a
 non-production contract until the complete graph, adapter, and differential
 gates pass.
 
@@ -37,5 +38,5 @@ An intentional API change requires all of the following in one reviewed slice:
 Do not edit the baseline to hide an unexplained difference. The Alpha 3
 mechanical port first reproduced all 269 legacy signatures. The Alpha 4 native
 model expands the accepted surface to 398 signatures, and ADR 0015 expands the
-canonical resource contract to 524; later changes still need their own explicit
+canonical resource contract to 526; later changes still need their own explicit
 contract-and-test slice.

@@ -43,6 +43,9 @@
     <Compile Include="..\Shared\Generated\UpdateBranches.g.cs"><Link>Properties\UpdateBranches.g.cs</Link></Compile>
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyBrandRepository.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCassetteModelRepository.cs" />
+    <Compile Include="CatalogueFiles\Canonical\CanonicalDigestWriter.cs" />
+    <Compile Include="CatalogueFiles\Canonical\CanonicalShadowProjection.cs" />
+    <Compile Include="CatalogueFiles\Canonical\NativeV2CanonicalShadowProjector.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueFileFailure.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueLoadResult.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueMetadata.cs" />
