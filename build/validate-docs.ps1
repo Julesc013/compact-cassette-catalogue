@@ -193,7 +193,8 @@ foreach ($statement in @(
         '# Compact Cassette Catalogue 1.3.0 Alpha 3',
         '1.3.0a3 / Alpha 3 / v1.3.0a3',
         'intentionally unpublished',
-        'runtime repairs, setup engine',
+        'runtime repairs, Candidate reproduction',
+        'Forty-six shared-engine regressions and four',
         'No standalone uninstaller is published',
         'v1.3.0b1',
         'v1.3.0')) {

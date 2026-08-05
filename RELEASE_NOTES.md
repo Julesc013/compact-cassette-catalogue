@@ -51,8 +51,17 @@ updates, or rewrites C3. No standalone uninstaller is published.
 ## Current status
 
 The Alpha 3 scope decision, plan, manifest contracts, and defect ledger are
-ratified. Identity projection does not claim that runtime repairs, setup engine,
-target-machine qualification, tag, or Alpha 3 packages are complete.
+ratified. The classic setup engine, original wizard activation, six setup
+binaries, deterministic bundle controls, and Preparation packaging path pass.
+This does not claim application runtime repairs, Candidate reproduction,
+target-machine qualification, an Alpha 3 tag, or retained Alpha 3 packages.
+
+The current setup implementation is strictly offline and consumes the exact
+five files from the matching verified portable ZIP. Its seven installed files,
+ownership-only uninstall, source/toolchain identity, native architecture, and
+framework are closed mechanically. Forty-six shared-engine regressions and four
+authenticated-sidecar package tamper cases pass. Exact XP, Windows 7, and native
+Windows 11 ARM64 setup execution remains required before Alpha 3 retention.
 
 The exact Windows XP SP3 x86, Windows 7 SP1 x64, and Windows 11 21H2 ARM64
 runtime/setup matrices remain required. ARM64 binary inspection on an x64

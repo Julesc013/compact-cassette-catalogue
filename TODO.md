@@ -165,14 +165,16 @@ Every Beta-labelled operation remains prohibited without explicit human approval
 - [x] Add matched x86/net40, x64/net48, and ARM64/net481 setup configurations.
 - [x] Link the shared VB.NET setup contracts and transaction implementation
   directly into both EXEs without a DLL.
-- [ ] Implement offline verification, path/environment/elevation preflight,
+- [x] Implement offline verification, path/environment/elevation preflight,
   staging, journal, install, repair, upgrade, rollback, registry, and shortcuts.
-- [ ] Implement manifest-bound discovery, self-relocation, reversible removal,
+- [x] Implement manifest-bound discovery, self-relocation, reversible removal,
   and unknown/catalogue/settings preservation.
-- [ ] Complete the classic wizard directory/cancel/error/accessibility flows and
+- [x] Complete the classic wizard directory/cancel/error/accessibility flows and
   deduplicate repeated artwork without redesigning it.
-- [ ] Build deterministic setup bundles from exact qualified portable payload
-  bytes and pass two clean path-distinct setup builds.
+- [x] Build and adversarially verify deterministic setup bundles from exact
+  qualified portable payload bytes.
+- [ ] Pass two clean path-distinct product/setup Candidate builds from one
+  source commit and one immutable external lock.
 - [ ] Pass the full per-lane install/repair/upgrade/uninstall/fault matrix on XP,
   Windows 7, and native Windows 11 ARM64.
 - [ ] Retain and attest annotated `v1.3.0a3` portable/setup artifacts without

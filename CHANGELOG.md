@@ -6,9 +6,10 @@
 
 ### Version 1.3.0 Alpha 3 - 5 August 2026
 
-Alpha 3 is the planned legacy reliability and classic setup revival checkpoint.
-Its identity is projected; functional repairs and setup implementation remain
-subject to their focused gates.
+Alpha 3 is the active legacy reliability and classic setup revival checkpoint.
+Its classic setup implementation passes source, shared-engine, six-binary, and
+Preparation package controls; application repairs and exact target qualification
+remain behind their focused gates.
 
 - Ratified the owner decision making the repaired classic VB.NET setup an
   optional secondary distribution while portable ZIPs remain authoritative.
@@ -32,6 +33,19 @@ subject to their focused gates.
 - Composed manifest discovery, quarantine, exact system-state removal, unknown
   file preservation, and fault restoration into one reversible uninstall
   operation.
+- Activated the original installer and uninstaller wizards against the offline
+  transactional engine, including native/elevated preflight and exact
+  self-relocation for ownership-only removal.
+- Built and verified installer/uninstaller pairs as I386/net40, AMD64/net48,
+  and native ARM64/net481 outputs with matching configs and zero runtime DLLs.
+- Added deterministic setup ZIPs that reuse all five portable payload bytes,
+  canonical seven-file XML manifests, authenticated entry evidence, and four
+  rewritten-sidecar tamper regressions.
+- Added a closed six-archive Alpha asset assembler without weakening the
+  independently verified portable and setup package sets.
+- Replaced five duplicate multi-megabyte form banner resources with the
+  unchanged canonical project artwork and added keyboard/screen-reader wizard
+  contracts without changing forms, controls, layout, or branding.
 - Required preservation of catalogues, settings, unknown files, and unowned
   content.
 - Added the S0–S3 defect ledger and static, differential, randomized, XML,
