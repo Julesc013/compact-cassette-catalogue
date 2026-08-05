@@ -6,9 +6,26 @@
 Imports System.Xml
 Imports System.IO
 Imports System.Net
+Imports System.Security.Cryptography
+Imports System.Text
 Imports System.Text.RegularExpressions
+Imports System.Xml.Schema
 
 Public Class frmMain
+
+    Public Const MaximumCatalogueBytes As Long = 16L * 1024L * 1024L
+
+    Public Enum EditChoice
+        Apply
+        Discard
+        Cancel
+    End Enum
+
+    Public Enum DocumentChoice
+        Save
+        Discard
+        Cancel
+    End Enum
 
     'Declare variables
     Dim updatesMask As Boolean = True
@@ -17,6 +34,271 @@ Public Class frmMain
     Dim thisModelType As Integer
     Dim thisTapedA As Boolean
     Dim thisTapedB As Boolean
+
+    Private loadedFileRevision As String = Nothing
+
+    Public Shared Function TransitionCanContinue(hasPendingEdit As Boolean,
+                                                  editDecision As EditChoice,
+                                                  editApplySucceeded As Boolean,
+                                                  hasDocumentChanges As Boolean,
+                                                  documentDecision As DocumentChoice,
+                                                  documentSaveSucceeded As Boolean) As Boolean
+
+        If hasPendingEdit Then
+            If editDecision = EditChoice.Cancel Then
+                Return False
+            End If
+            If editDecision = EditChoice.Apply AndAlso Not editApplySucceeded Then
+                Return False
+            End If
+        End If
+
+        If hasDocumentChanges Then
+            If documentDecision = DocumentChoice.Cancel Then
+                Return False
+            End If
+            If documentDecision = DocumentChoice.Save AndAlso Not documentSaveSucceeded Then
+                Return False
+            End If
+        End If
+
+        Return True
+
+    End Function
+
+    Public Shared Function LoadCatalogueSnapshot(cataloguePath As String,
+                                                 schemaSource As DataSet,
+                                                 supportedVersions As String()) As DataSet
+        Dim ignoredRevision As String = Nothing
+        Return LoadCatalogueSnapshot(cataloguePath, schemaSource, supportedVersions, ignoredRevision)
+    End Function
+
+    Public Shared Function LoadCatalogueSnapshot(cataloguePath As String,
+                                                 schemaSource As DataSet,
+                                                 supportedVersions As String(),
+                                                 ByRef revision As String) As DataSet
+
+        If schemaSource Is Nothing Then
+            Throw New ArgumentNullException("schemaSource")
+        End If
+        If supportedVersions Is Nothing OrElse supportedVersions.Length = 0 Then
+            Throw New ArgumentException("At least one supported catalogue version is required.", "supportedVersions")
+        End If
+
+        Dim bytes As Byte() = ReadCatalogueBytes(cataloguePath)
+        ValidateCatalogueXml(bytes, schemaSource)
+
+        Dim temporaryCatalogue As DataSet = schemaSource.Clone()
+        temporaryCatalogue.EnforceConstraints = False
+        Using stream As New MemoryStream(bytes, False)
+            Using reader As XmlReader = XmlReader.Create(stream, CreateSecureCatalogueReaderSettings())
+                temporaryCatalogue.ReadXml(reader, XmlReadMode.IgnoreSchema)
+            End Using
+        End Using
+        temporaryCatalogue.EnforceConstraints = True
+
+        Dim fileVersion As String = GetCatalogueVersion(temporaryCatalogue)
+        Dim versionSupported As Boolean = False
+        For Each supportedVersion As String In supportedVersions
+            If String.Equals(fileVersion, supportedVersion, StringComparison.Ordinal) Then
+                versionSupported = True
+                Exit For
+            End If
+        Next
+        If Not versionSupported Then
+            Throw New InvalidDataException("Unsupported or missing catalogue file version: " & If(fileVersion, "(missing)"))
+        End If
+
+        revision = HashBytes(bytes)
+        Return temporaryCatalogue
+
+    End Function
+
+    Public Shared Function SaveCatalogueTransactional(snapshot As DataSet,
+                                                       destinationPath As String,
+                                                       faultStage As String) As String
+
+        If snapshot Is Nothing Then
+            Throw New ArgumentNullException("snapshot")
+        End If
+        If String.IsNullOrWhiteSpace(destinationPath) Then
+            Throw New ArgumentException("A destination path is required.", "destinationPath")
+        End If
+
+        Dim fullDestination As String = Path.GetFullPath(destinationPath)
+        Dim destinationDirectory As String = Path.GetDirectoryName(fullDestination)
+        If String.IsNullOrWhiteSpace(destinationDirectory) OrElse Not Directory.Exists(destinationDirectory) Then
+            Throw New DirectoryNotFoundException("The catalogue destination directory does not exist.")
+        End If
+
+        Dim temporaryPath As String = Path.Combine(destinationDirectory, ".c3-save-" & Guid.NewGuid().ToString("N") & ".tmp")
+        Dim backupPath As String = fullDestination & ".bak"
+        Try
+            InjectSaveFault(faultStage, "create")
+            Using output As New FileStream(temporaryPath, FileMode.CreateNew, FileAccess.Write, FileShare.None, 4096, FileOptions.WriteThrough)
+                InjectSaveFault(faultStage, "write")
+                snapshot.WriteXml(output, XmlWriteMode.IgnoreSchema)
+                InjectSaveFault(faultStage, "flush")
+                output.Flush(True)
+            End Using
+
+            InjectSaveFault(faultStage, "reopen")
+            Dim version As String = GetCatalogueVersion(snapshot)
+            LoadCatalogueSnapshot(temporaryPath, snapshot, New String() {version})
+
+            InjectSaveFault(faultStage, "cleanup")
+            InjectSaveFault(faultStage, "backup")
+            If File.Exists(fullDestination) Then
+                If File.Exists(backupPath) Then
+                    File.Delete(backupPath)
+                End If
+                InjectSaveFault(faultStage, "replace")
+                File.Replace(temporaryPath, fullDestination, backupPath, True)
+            Else
+                InjectSaveFault(faultStage, "replace")
+                File.Move(temporaryPath, fullDestination)
+            End If
+
+            Return CaptureFileRevision(fullDestination)
+        Finally
+            If File.Exists(temporaryPath) Then
+                File.Delete(temporaryPath)
+            End If
+        End Try
+
+    End Function
+
+    Public Shared Function CaptureFileRevision(cataloguePath As String) As String
+        Return HashBytes(ReadCatalogueBytes(cataloguePath))
+    End Function
+
+    Public Shared Function FileRevisionMatches(cataloguePath As String, expectedRevision As String) As Boolean
+        If String.IsNullOrEmpty(expectedRevision) OrElse Not File.Exists(cataloguePath) Then
+            Return False
+        End If
+        Try
+            Return String.Equals(CaptureFileRevision(cataloguePath), expectedRevision, StringComparison.Ordinal)
+        Catch ex As IOException
+            Return False
+        Catch ex As UnauthorizedAccessException
+            Return False
+        End Try
+    End Function
+
+    Public Shared Sub AssignTapeValues(tape As DataRow, values As IDictionary(Of String, Object))
+        If tape Is Nothing Then
+            Throw New ArgumentNullException("tape")
+        End If
+        If values Is Nothing Then
+            Throw New ArgumentNullException("values")
+        End If
+
+        tape.BeginEdit()
+        Try
+            For Each pair As KeyValuePair(Of String, Object) In values
+                If String.Equals(pair.Key, "IdentifierShort", StringComparison.Ordinal) OrElse
+                        String.Equals(pair.Key, "Number", StringComparison.Ordinal) OrElse
+                        String.Equals(pair.Key, "Date", StringComparison.Ordinal) Then
+                    Throw New InvalidOperationException("Tape identity and creation-date fields are immutable during edit: " & pair.Key)
+                End If
+                If Not tape.Table.Columns.Contains(pair.Key) Then
+                    Throw New InvalidOperationException("Unknown tape field: " & pair.Key)
+                End If
+                tape(pair.Key) = If(pair.Value, DBNull.Value)
+            Next
+            tape.EndEdit()
+        Catch
+            tape.CancelEdit()
+            Throw
+        End Try
+    End Sub
+
+    Private Shared Function ReadCatalogueBytes(cataloguePath As String) As Byte()
+        If String.IsNullOrWhiteSpace(cataloguePath) Then
+            Throw New ArgumentException("A catalogue path is required.", "cataloguePath")
+        End If
+
+        Using input As New FileStream(cataloguePath, FileMode.Open, FileAccess.Read, FileShare.Read)
+            If input.Length > MaximumCatalogueBytes Then
+                Throw New InvalidDataException("Catalogue exceeds the 16 MiB safety limit.")
+            End If
+            Dim bytes(CInt(input.Length) - 1) As Byte
+            Dim offset As Integer = 0
+            While offset < bytes.Length
+                Dim read As Integer = input.Read(bytes, offset, bytes.Length - offset)
+                If read = 0 Then
+                    Throw New EndOfStreamException("Catalogue ended before its declared length.")
+                End If
+                offset += read
+            End While
+            Return bytes
+        End Using
+    End Function
+
+    Private Shared Function CreateSecureCatalogueReaderSettings() As XmlReaderSettings
+        Dim settings As New XmlReaderSettings()
+        settings.DtdProcessing = DtdProcessing.Prohibit
+        settings.XmlResolver = Nothing
+        settings.MaxCharactersInDocument = MaximumCatalogueBytes
+        settings.MaxCharactersFromEntities = 0L
+        Return settings
+    End Function
+
+    Private Shared Sub ValidateCatalogueXml(bytes As Byte(), schemaSource As DataSet)
+        Dim settings As XmlReaderSettings = CreateSecureCatalogueReaderSettings()
+        settings.ValidationType = ValidationType.Schema
+        settings.ValidationFlags = XmlSchemaValidationFlags.ReportValidationWarnings
+        Using schemaText As New StringReader(schemaSource.GetXmlSchema())
+            Using schemaReader As XmlReader = XmlReader.Create(schemaText, CreateSecureCatalogueReaderSettings())
+                settings.Schemas.Add(Nothing, schemaReader)
+            End Using
+        End Using
+        Using stream As New MemoryStream(bytes, False)
+            Using reader As XmlReader = XmlReader.Create(stream, settings)
+                While reader.Read()
+                End While
+            End Using
+        End Using
+    End Sub
+
+    Private Shared Function GetCatalogueVersion(source As DataSet) As String
+        If Not source.Tables.Contains("Information") Then
+            Return Nothing
+        End If
+        Dim table As DataTable = source.Tables("Information")
+        If Not table.Columns.Contains("Information") OrElse Not table.Columns.Contains("Value") Then
+            Return Nothing
+        End If
+        For Each row As DataRow In table.Rows
+            If String.Equals(Convert.ToString(row("Information"), Globalization.CultureInfo.InvariantCulture).Trim(), "File Version", StringComparison.Ordinal) Then
+                Return normaliseCatalogueFileVersionShared(Convert.ToString(row("Value"), Globalization.CultureInfo.InvariantCulture))
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Private Shared Function normaliseCatalogueFileVersionShared(rawVersion As String) As String
+        If rawVersion Is Nothing Then
+            Return Nothing
+        End If
+        Dim versionMatch As Match = Regex.Match(rawVersion.Trim(), "^(\d+)\.(\d+)\.(\d+)")
+        If versionMatch.Success Then
+            Return versionMatch.Groups(1).Value & "." & versionMatch.Groups(2).Value & "." & versionMatch.Groups(3).Value
+        End If
+        Return rawVersion.Trim()
+    End Function
+
+    Private Shared Function HashBytes(bytes As Byte()) As String
+        Using hash As SHA256 = SHA256.Create()
+            Return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", String.Empty).ToLowerInvariant()
+        End Using
+    End Function
+
+    Private Shared Sub InjectSaveFault(requestedStage As String, currentStage As String)
+        If String.Equals(requestedStage, currentStage, StringComparison.Ordinal) Then
+            Throw New IOException("Injected catalogue save fault at stage: " & currentStage)
+        End If
+    End Sub
 
     'Dim newTape As Object() = {"", 0, 0, "", 0, "Unsaved", 0, False, False, False, "", CDate("1/1/1970"), "", "", 0, "", False, False, False, 0, 0, "", 0, 0, "", "", "", "", CDate("1/1/1970"), "", "", 0, "", False, False, False, 0, 0, "", 0, 0, "", ""} 'Default record for a new blank tape
 
