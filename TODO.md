@@ -111,6 +111,11 @@ a specific governance amendment.
   to at least 18.8.2 (or later stable servicing available at freeze), rebuild
   Preparation evidence, and create the first acceptable external candidate lock.
 
+Current execution note: servicing requires an administrator token unavailable to
+the Codex session. The exact commands and unchanged installed versions are
+retained in the builder/Gate 1 preparation record; this is an environment block,
+not a passed or waived gate.
+
 ## Beta 1 — lifecycle and data safety
 
 - [ ] S1: resolve pending tape edits before close/open/new/scroll transitions.

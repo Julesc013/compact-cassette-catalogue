@@ -18,6 +18,7 @@ C3 release line.
 - [Three-lane preparation validation](../release/validation/1.3.0-three-lane-preparation-2026-08-05.md)
 - [Release-control hardening validation](../release/validation/1.3.0-release-control-hardening-2026-08-05.md)
 - [Candidate-freeze assertion validation](../release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md)
+- [Builder and Gate 1 preparation record](../release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md)
 - [Corrected reconstructed-baseline evidence](../release/validation/1.3.0-reconstructed-baseline.md)
 - [Corrected Alpha 1 qualification record](../release/validation/1.3.0-alpha.1.md)
 - [Alpha 1 post-correction attestation](../release/validation/1.3.0-alpha.1-post-correction.md)

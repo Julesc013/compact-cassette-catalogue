@@ -30,7 +30,8 @@ $requiredFiles = @(
     'release/validation/1.3.0-alpha.1-post-correction.md',
     'release/validation/1.3.0-three-lane-preparation-2026-08-05.md',
     'release/validation/1.3.0-release-control-hardening-2026-08-05.md',
-    'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md'
+    'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md',
+    'release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md'
 )
 
 foreach ($relativePath in @(
