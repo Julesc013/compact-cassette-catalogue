@@ -94,7 +94,7 @@ function Assert-C3Alpha3HistoricalGate1Evidence {
     foreach ($runtimeId in $script:C3Alpha3HistoricalRuntimeIds) {
         $workflow = @($workflows | Where-Object { [string]$_.runtimeId -ceq $runtimeId })
         if ($workflow.Count -ne 1 -or [string]$workflow[0].result -cne 'complete' -or
-                [int]$workflow[0].unexplainedDeviationCount -ne 0) {
+                [string]$workflow[0].unexplainedDeviationCount -cne '0') {
             throw "Historical Gate 1 workflow '$runtimeId' is missing, incomplete, or has an unexplained deviation."
         }
         Assert-C3RetainedEvidenceFile -IndexDirectory $indexDirectory -RelativePath ([string]$workflow[0].evidenceFile) `
