@@ -24,8 +24,8 @@
 
         'Load data (decks, brands and models)
 
-        deckCount = CInt(counters.Rows(0)("Number"))
-        modelCount = CInt(counters.Rows(2)("Number"))
+        deckCount = decks.Rows.Count
+        modelCount = models.Rows.Count
 
         'Load models into combination box
         'Try
@@ -46,21 +46,16 @@
 
 
         'Load decks into combination boxes
-        Try
-            'If no decks, catch don't crash
+        cmbDeckA.Items.Clear()
+        cmbDeckB.Items.Clear()
 
-            cmbDeckA.Items.Clear()
+        For i As Integer = 0 To deckCount - 1
+            Dim row As DataRow = decks.Rows(i)
 
-            For i As Integer = 0 To deckCount - 1
-                Dim row As DataRow = decks.Rows(i)
-
-                Dim thisDeck As String = CStr(row("Name"))
-                cmbDeckA.Items.Add(thisDeck)
-                cmbDeckB.Items.Add(thisDeck)
-            Next
-
-        Catch
-        End Try
+            Dim thisDeck As String = CStr(row("Name"))
+            cmbDeckA.Items.Add(thisDeck)
+            cmbDeckB.Items.Add(thisDeck)
+        Next
 
     End Sub
 
@@ -69,44 +64,28 @@
 
         ''modelIndex = cmbModel.SelectedIndex 'Order of items in combobox will be same as in records ''NOT ANYMORE, SORTED BOXES
         ''Dim modelRow As DataRow = models.Rows(modelIndex)
-        Dim modelFull As String = cmbModel.Text
-        Dim modelRows As DataTable = makeModels()
-
-        'Serach for each combination of brand and model name (find those that match the model name).
-        Dim modelWords As String() = modelFull.Split(" "c)
-        Dim j As Integer = modelWords.Length - 1
-        For i As Integer = 0 To j
-
-            Dim thisModel As String = modelWords(i)
-            Dim thisRow As DataRow
-
-            For k = i + 1 To j
-                thisModel = thisModel & " " & modelWords(k)
-            Next
-
-            Try
-                thisRow = models.Select("Model='" & thisModel & "'")(0)
-                modelRows.ImportRow(thisRow)
-            Catch ex As IndexOutOfRangeException
-            End Try
-
-        Next
-
-        'Of the rows found, find those that match the brand name.
-        ''Dim modelRow As DataRow = modelRows.Rows(0) 'ASSUME only ONE row is found, and select it
         Dim modelRow As DataRow = Nothing
-        For i As Integer = 0 To modelRows.Rows.Count - 1
-
-            Dim thisRow As DataRow = modelRows.Rows(i)
-            Dim thisBrand As String = CStr(thisRow("Brand"))
-            If thisBrand.Contains(modelWords(0)) Then
-
-                'If the row's brand contains at least part of the selected brand, take that row and leave
+        For Each thisRow As DataRow In models.Rows
+            Dim displayName As String = CStr(thisRow("Brand")) & " " & CStr(thisRow("Model"))
+            If String.Equals(displayName, cmbModel.Text, StringComparison.Ordinal) Then
+                If modelRow IsNot Nothing Then
+                    MsgBox(
+                        "More than one model has the display name " & cmbModel.Text & ". Use unique brand and model names before adding tapes.",
+                        MsgBoxStyle.Exclamation,
+                        "Ambiguous Model")
+                    grpBasic.Enabled = False
+                    grpTaped.Enabled = False
+                    Exit Sub
+                End If
                 modelRow = thisRow
-                Exit For
-
             End If
         Next
+
+        If modelRow Is Nothing Then
+            grpBasic.Enabled = False
+            grpTaped.Enabled = False
+            Exit Sub
+        End If
 
         modelCode = CStr(modelRow("Identifier"))
         modelType = CInt(modelRow("Type"))
@@ -115,7 +94,7 @@
         Dim modelRowReal As DataRow = models.Rows.Find(modelCode)
         modelIndex = models.Rows.IndexOf(modelRowReal)
 
-        number = CInt(modelRow("Number")) 'If 0 tapes, then new index is 0.
+        number = NextTapeSequence(tapes, modelCode, CInt(modelRow("Number")))
         'txtNumber.Text = CStr(number)
 
         numYear.Enabled = True
@@ -128,10 +107,11 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
-        modelCount = CInt(counters.Rows(2)("Number"))
-        tapeCount = CInt(counters.Rows(3)("Number"))
+        modelCount = models.Rows.Count
+        tapeCount = tapes.Rows.Count
 
         Dim bulkAddAmount As Integer = CInt(numBulkAdd.Value)
+        Dim addedIdentifiers As New List(Of String)()
 
         Try 'Try to save tape
 
@@ -247,6 +227,8 @@
                     deckA = cmbDeckA.Text
                     inputA = cmbInputA.Text
                     speedA = cmbSpeedA.Text
+                    peakA = CInt(numPeakA.Value)
+                    biasCalA = CInt(numBiasCalA.Value)
 
                     NRA = cmbNRA.Text
                     HXA = chkHXA.Checked
@@ -270,6 +252,8 @@
                     deckB = cmbDeckB.Text
                     inputB = cmbInputB.Text
                     speedB = cmbSpeedB.Text
+                    peakB = CInt(numPeakB.Value)
+                    biasCalB = CInt(numBiasCalB.Value)
 
                     NRB = cmbNRB.Text
                     HXB = chkHXB.Checked
@@ -289,7 +273,19 @@
             End If
 
 
-            'Write as many tapes as you have to
+            Dim targetModelRow As DataRow = models.Rows.Find(modelCode)
+            If targetModelRow Is Nothing Then
+                Throw New InvalidOperationException("The selected model no longer exists.")
+            End If
+            number = NextTapeSequence(tapes, modelCode, CInt(targetModelRow("Number")))
+            If number > 999 - (bulkAddAmount - 1) Then
+                Throw New InvalidOperationException(
+                    "This model has exhausted the three-digit tape sequence. No tapes were added.")
+            End If
+
+            'Build the whole batch as detached rows before mutating the catalogue.
+
+            Dim pendingRows As New List(Of DataRow)()
 
             For bulkAddIndex As Integer = 0 To bulkAddAmount - 1
 
@@ -297,33 +293,71 @@
                 'Finish off making the identifiers
 
                 'Add leading zeroes to number-code (then remove extra zeroes)
-                Dim numberCode As String = "00" & CStr(number + bulkAddIndex)
+                Dim sequence As Integer = number + bulkAddIndex
+                Dim numberCode As String = "00" & CStr(sequence)
                 numberCode = numberCode.Substring(numberCode.Length - 3, 3)
 
                 Dim identifier As String = CStr(modelCode) & yearCode & lengthCode & numberCode 'Format: MMTmmYYLL###
                 Dim identifierShort As String = CStr(modelCode) & numberCode 'Format: MMTmm###
 
 
-                'Write data to record
-
-                Dim thisTape As Object() = {modelCode, year, length, cmbRegion.Text, number, identifier, identifierShort, condition, packaged, tapedA, tapedB, nameA, recordedA, deckA, inputA, peakA, NRA, HXA, MPXA, dubbedA, speedA, biasCodeA, biasCalA, EQA, levelA, levelCalA, contentsA, artistA, titleA, nameB, recordedB, deckB, inputB, peakB, NRB, HXB, MPXB, dubbedB, speedB, biasCodeB, biasCalB, EQB, levelB, levelCalB, contentsB, artistB, titleB, DateTime.Now, txtNotes.Text} 'The data to be written for this tape entry
-
-                tapes.Rows.Add(thisTape)
-
-
-                'Show confirmation message (only show message box if one coy was added)
-                Dim message As String = "Added tape " & identifierShort & " successfully."
-                If My.Settings.showMessages = True And bulkAddAmount = 1 Then
-                    MsgBox(message, MsgBoxStyle.Question, "Successfully Added Tape")
-                End If
-                consoleAdd(message)
+                Dim thisTape As DataRow = tapes.NewRow()
+                thisTape("Model") = modelCode
+                thisTape("Year") = year
+                thisTape("Length") = length
+                thisTape("Region") = cmbRegion.Text
+                thisTape("Number") = sequence
+                thisTape("Identifier") = identifier
+                thisTape("IdentifierShort") = identifierShort
+                thisTape("Condition") = condition
+                thisTape("Packaged") = packaged
+                thisTape("TapedA") = tapedA
+                thisTape("TapedB") = tapedB
+                thisTape("NameA") = nameA
+                thisTape("RecordedA") = recordedA
+                thisTape("DeckA") = deckA
+                thisTape("InputA") = inputA
+                thisTape("PeakA") = peakA
+                thisTape("NRA") = NRA
+                thisTape("HXA") = HXA
+                thisTape("MPXA") = MPXA
+                thisTape("DubbedA") = dubbedA
+                thisTape("SpeedA") = speedA
+                thisTape("BiasA") = biasCodeA
+                thisTape("BiasCalA") = biasCalA
+                thisTape("EQA") = EQA
+                thisTape("LevelA") = levelA
+                thisTape("LevelCalA") = levelCalA
+                thisTape("ContentsA") = contentsA
+                thisTape("ArtistA") = artistA
+                thisTape("TitleA") = titleA
+                thisTape("NameB") = nameB
+                thisTape("RecordedB") = recordedB
+                thisTape("DeckB") = deckB
+                thisTape("InputB") = inputB
+                thisTape("PeakB") = peakB
+                thisTape("NRB") = NRB
+                thisTape("HXB") = HXB
+                thisTape("MPXB") = MPXB
+                thisTape("DubbedB") = dubbedB
+                thisTape("SpeedB") = speedB
+                thisTape("BiasB") = biasCodeB
+                thisTape("BiasCalB") = biasCalB
+                thisTape("EQB") = EQB
+                thisTape("LevelB") = levelB
+                thisTape("LevelCalB") = levelCalB
+                thisTape("ContentsB") = contentsB
+                thisTape("ArtistB") = artistB
+                thisTape("TitleB") = titleB
+                thisTape("Date") = DateTime.Now
+                thisTape("Notes") = txtNotes.Text
+                pendingRows.Add(thisTape)
+                addedIdentifiers.Add(identifierShort)
 
             Next
 
-            'Update tape and model counters
-            tapeCount += bulkAddAmount
-            counters.Rows(3)("Number") = tapeCount
-            models.Rows(modelIndex)("Number") = number + bulkAddAmount
+            CommitTapeBatch(tapes, targetModelRow, counters, pendingRows, number + bulkAddAmount)
+            tapeCount = tapes.Rows.Count
 
             changes = True
             'Update title bar
@@ -336,6 +370,14 @@
 
         End Try
 
+        For Each identifierShort As String In addedIdentifiers
+            Dim message As String = "Added tape " & identifierShort & " successfully."
+            If My.Settings.showMessages = True AndAlso bulkAddAmount = 1 Then
+                MsgBox(message, MsgBoxStyle.Question, "Successfully Added Tape")
+            End If
+            consoleAdd(message)
+        Next
+
         'Reload data and close this form
         frmMain.loadData()
         Me.Close()
@@ -346,7 +388,7 @@
 
         If chkTapedA.Checked = True Then
 
-            deckCount = CInt(counters.Rows(0)("Number"))
+            deckCount = decks.Rows.Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
@@ -401,7 +443,7 @@
 
         If chkTapedB.Checked = True Then
 
-            deckCount = CInt(counters.Rows(0)("Number"))
+            deckCount = decks.Rows.Count
 
             'Check that at least 1 deck exists
             If deckCount >= 1 Then

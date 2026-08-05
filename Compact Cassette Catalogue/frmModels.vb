@@ -10,6 +10,8 @@
         Dim brandCount As Integer = brands.Rows.Count
 
         ' Load brands into combination box.
+        cmbBrand.Items.Clear()
+        cmbBrand.Items.Add("All Brands")
         For i As Integer = 0 To brandCount - 1
             Dim thisBrand As String = CStr(brands.Rows(i)("Brand"))
             cmbBrand.Items.Add(thisBrand)

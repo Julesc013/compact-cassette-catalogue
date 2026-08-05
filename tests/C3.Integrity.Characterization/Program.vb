@@ -12,7 +12,9 @@ Module Program
         RunTest("display-name references rename atomically", AddressOf DisplayNameReferencesRenameAtomically)
         RunTest("entity counters derive from rows", AddressOf EntityCountersDeriveFromRows)
         RunTest("bulk tape commit rolls back completely", AddressOf BulkTapeCommitRollsBackCompletely)
+        RunTest("bulk tape commit advances rows and sequence together", AddressOf BulkTapeCommitAdvancesRowsAndSequenceTogether)
         RunTest("tape sequence never reuses an allocated value", AddressOf TapeSequenceNeverReusesAllocatedValue)
+        RunTest("randomized batches preserve counter and sequence invariants", AddressOf RandomizedBatchesPreserveInvariants)
         RunTest("integrity source corrections remain present", AddressOf IntegritySourceCorrectionsRemainPresent)
 
         If _failures > 0 Then
@@ -135,13 +137,73 @@ Module Program
         AssertEqual(5, varGlobals.NextTapeSequence(tapeRows, "MAX2XL", 2), "observed high-water mark")
     End Sub
 
+    Private Sub BulkTapeCommitAdvancesRowsAndSequenceTogether()
+        Dim tapeRows As DataTable = TapeTable()
+        Dim modelRows As DataTable = ModelTable(12)
+        Dim counterRows As DataTable = CounterTable(0)
+        Dim batch As New List(Of DataRow)()
+        For sequence As Integer = 12 To 14
+            batch.Add(TapeRow(tapeRows, sequence))
+        Next
+
+        varGlobals.CommitTapeBatch(tapeRows, modelRows.Rows(0), counterRows, batch, 15)
+
+        AssertEqual(3, tapeRows.Rows.Count, "committed row count")
+        AssertEqual(3, CInt(counterRows.Rows(3)("Number")), "committed tape counter")
+        AssertEqual(15, CInt(modelRows.Rows(0)("Number")), "committed sequence")
+        AssertEqual(12, CInt(tapeRows.Rows(0)("Number")), "first batch sequence")
+        AssertEqual(14, CInt(tapeRows.Rows(2)("Number")), "last batch sequence")
+    End Sub
+
+    Private Sub RandomizedBatchesPreserveInvariants()
+        Dim random As New Random(1300)
+        Dim tapeRows As DataTable = TapeTable()
+        Dim modelRows As DataTable = ModelTable(0)
+        Dim counterRows As DataTable = CounterTable(0)
+        Dim allocated As New HashSet(Of Integer)()
+
+        For iteration As Integer = 1 To 200
+            Dim start As Integer = varGlobals.NextTapeSequence(
+                tapeRows,
+                "MAX2XL",
+                CInt(modelRows.Rows(0)("Number")))
+            Dim amount As Integer = random.Next(1, 5)
+            Dim batch As New List(Of DataRow)()
+            For offset As Integer = 0 To amount - 1
+                Dim sequence As Integer = start + offset
+                AssertTrue(allocated.Add(sequence), "sequence is allocated once")
+                batch.Add(TapeRow(tapeRows, sequence))
+            Next
+
+            varGlobals.CommitTapeBatch(
+                tapeRows,
+                modelRows.Rows(0),
+                counterRows,
+                batch,
+                start + amount)
+
+            If tapeRows.Rows.Count > 1 AndAlso random.Next(0, 3) = 0 Then
+                tapeRows.Rows.RemoveAt(random.Next(0, tapeRows.Rows.Count))
+                varGlobals.SynchronizeEntityCounters(
+                    counterRows,
+                    Rows(0),
+                    Rows(0),
+                    modelRows,
+                    tapeRows)
+            End If
+
+            AssertEqual(tapeRows.Rows.Count, CInt(counterRows.Rows(3)("Number")), "random tape counter")
+            AssertEqual(start + amount, CInt(modelRows.Rows(0)("Number")), "random sequence high-water")
+        Next
+    End Sub
+
     Private Sub IntegritySourceCorrectionsRemainPresent()
         Dim modelEdit As String = Source("frmModelEdit.vb")
         Dim deckDelete As String = Source("frmDecks.vb")
         Dim tapeNew As String = Source("frmTapeNew.vb")
 
         AssertContains(modelEdit, "modelNotes = CStr(models.Rows(modelIndex)(""Notes""))", "model notes source")
-        AssertContains(deckDelete, "counters.Rows(0)(""Number"") = deckCount", "deck counter source")
+        AssertContains(deckDelete, "SynchronizeEntityCounters(counters, decks, brands, models, tapes)", "row-derived deck counter")
         AssertContains(tapeNew, "cmbDeckB.Items.Clear()", "side B deck choices cleared")
         AssertContains(tapeNew, "peakA = CInt(numPeakA.Value)", "side A peak captured")
         AssertContains(tapeNew, "biasCalB = CInt(numBiasCalB.Value)", "side B bias calibration captured")
@@ -155,6 +217,38 @@ Module Program
             table.Rows.Add(index)
         Next
         Return table
+    End Function
+
+    Private Function TapeTable() As DataTable
+        Dim table As DataTable = NewTable("Tapes", "IdentifierShort", "Model", "Number")
+        table.Columns("IdentifierShort").Unique = True
+        table.Columns("Number").DataType = GetType(Integer)
+        Return table
+    End Function
+
+    Private Function ModelTable(nextSequence As Integer) As DataTable
+        Dim table As DataTable = NewTable("Models", "Identifier", "Number")
+        table.Columns("Number").DataType = GetType(Integer)
+        table.Rows.Add("MAX2XL", nextSequence)
+        Return table
+    End Function
+
+    Private Function CounterTable(tapeCount As Integer) As DataTable
+        Dim table As DataTable = NewTable("Counters", "Counter", "Number")
+        table.Columns("Number").DataType = GetType(Integer)
+        table.Rows.Add("Decks", 0)
+        table.Rows.Add("Brands", 0)
+        table.Rows.Add("Models", 1)
+        table.Rows.Add("Tapes", tapeCount)
+        Return table
+    End Function
+
+    Private Function TapeRow(table As DataTable, sequence As Integer) As DataRow
+        Dim row As DataRow = table.NewRow()
+        row("IdentifierShort") = "MAX2XL" & sequence.ToString("D6")
+        row("Model") = "MAX2XL"
+        row("Number") = sequence
+        Return row
     End Function
 
     Private Function NewTable(name As String, ParamArray columns As String()) As DataTable

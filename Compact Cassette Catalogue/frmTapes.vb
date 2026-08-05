@@ -35,22 +35,26 @@
 
 
         ' Load brands into combination box.
-        Dim brandCount As Integer = CInt(counters.Rows(1)("Number"))
+        Dim brandCount As Integer = brands.Rows.Count
+        cmbBrand.Items.Clear()
+        cmbBrand.Items.Add("All Brands")
         For i As Integer = 0 To brandCount - 1
             Dim thisBrand As String = CStr(brands.Rows(i)("Brand"))
             cmbBrand.Items.Add(thisBrand)
         Next
+        cmbBrand.SelectedIndex = 0
 
         ' Load decks into combination boxes.
-        Try ' If no decks, catch don't crash.
-            For i As Integer = 0 To deckCount - 1
-                Dim row As DataRow = decks.Rows(i)
+        deckCount = decks.Rows.Count
+        cmbDeck.Items.Clear()
+        cmbDeck.Items.Add("All Decks")
+        For i As Integer = 0 To deckCount - 1
+            Dim row As DataRow = decks.Rows(i)
 
-                Dim thisDeck As String = CStr(row("Name"))
-                cmbDeck.Items.Add(thisDeck)
-            Next
-        Catch
-        End Try
+            Dim thisDeck As String = CStr(row("Name"))
+            cmbDeck.Items.Add(thisDeck)
+        Next
+        cmbDeck.SelectedIndex = 0
 
 
         loadList()
@@ -527,7 +531,7 @@
 
         If cmbBrand.SelectedIndex <> 0 Then
 
-            Dim modelCount As Integer = CInt(counters.Rows(2)("Number"))
+            Dim modelCount As Integer = models.Rows.Count
 
             ' Load models into combination box.
 
