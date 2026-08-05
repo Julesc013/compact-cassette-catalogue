@@ -13,13 +13,13 @@ Namespace Global.C3Setup
                                      payloadDirectory As String,
                                      installRoot As String,
                                      setupSourceCommit As String,
-                                     setupBundleSha256 As String,
+                                     setupExecutableSha256 As String,
                                      faultInjector As Action(Of String)) As InstalledState
             Return Apply(manifestPath,
                          payloadDirectory,
                          installRoot,
                          setupSourceCommit,
-                         setupBundleSha256,
+                         setupExecutableSha256,
                          New List(Of InstalledShortcut)(),
                          Nothing,
                          faultInjector)
@@ -29,15 +29,15 @@ Namespace Global.C3Setup
                                      payloadDirectory As String,
                                      installRoot As String,
                                      setupSourceCommit As String,
-                                     setupBundleSha256 As String,
+                                     setupExecutableSha256 As String,
                                      shortcuts As IList(Of InstalledShortcut),
                                      systemIntegration As Func(Of InstalledState, InstalledState, Action),
                                      faultInjector As Action(Of String)) As InstalledState
             If Not Regex.IsMatch(setupSourceCommit, "^[0-9a-f]{40}$", RegexOptions.CultureInvariant) Then
                 Throw New SetupContractException("Setup source commit is invalid.")
             End If
-            If Not Regex.IsMatch(setupBundleSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) Then
-                Throw New SetupContractException("Setup bundle SHA-256 is invalid.")
+            If Not Regex.IsMatch(setupExecutableSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) Then
+                Throw New SetupContractException("Setup executable SHA-256 is invalid.")
             End If
 
             Dim manifest As PayloadManifest = PayloadManifestReader.Read(manifestPath)
@@ -139,7 +139,7 @@ Namespace Global.C3Setup
                                                 transactionId,
                                                 DateTime.UtcNow,
                                                 FileHash.Sha256(manifestPath),
-                                                setupBundleSha256,
+                                                setupExecutableSha256,
                                                 shortcuts)
                 Dim stagedState As String = Path.Combine(stagingRoot, InstalledStateCodec.FileName)
                 InstalledStateCodec.Write(stagedState, state)

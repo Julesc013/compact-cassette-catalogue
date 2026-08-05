@@ -27,7 +27,7 @@ Namespace Global.C3Setup
                        transactionId As String,
                        installedAtUtc As DateTime,
                        payloadManifestSha256 As String,
-                       setupBundleSha256 As String,
+                       setupExecutableSha256 As String,
                        shortcuts As IList(Of InstalledShortcut))
             Me.Manifest = manifest
             Me.SetupSourceCommit = setupSourceCommit
@@ -36,7 +36,7 @@ Namespace Global.C3Setup
             Me.TransactionId = transactionId
             Me.InstalledAtUtc = installedAtUtc
             Me.PayloadManifestSha256 = payloadManifestSha256
-            Me.SetupBundleSha256 = setupBundleSha256
+            Me.SetupExecutableSha256 = setupExecutableSha256
             Me.Shortcuts = New List(Of InstalledShortcut)(shortcuts).AsReadOnly()
         End Sub
 
@@ -47,7 +47,7 @@ Namespace Global.C3Setup
         Public ReadOnly Property TransactionId As String
         Public ReadOnly Property InstalledAtUtc As DateTime
         Public ReadOnly Property PayloadManifestSha256 As String
-        Public ReadOnly Property SetupBundleSha256 As String
+        Public ReadOnly Property SetupExecutableSha256 As String
         Public ReadOnly Property Shortcuts As IList(Of InstalledShortcut)
 
     End Class
@@ -91,7 +91,7 @@ Namespace Global.C3Setup
                 writer.WriteAttributeString("transactionId", state.TransactionId)
                 writer.WriteAttributeString("installedAtUtc", state.InstalledAtUtc.ToUniversalTime().ToString("o", CultureInfo.InvariantCulture))
                 writer.WriteAttributeString("payloadManifestSha256", state.PayloadManifestSha256)
-                writer.WriteAttributeString("setupBundleSha256", state.SetupBundleSha256)
+                writer.WriteAttributeString("setupExecutableSha256", state.SetupExecutableSha256)
                 writer.WriteEndElement()
 
                 writer.WriteStartElement("Files")
@@ -162,7 +162,7 @@ Namespace Global.C3Setup
             Dim setupSourceCommit As String = RequiredHash(product, "setupSourceCommit", 40)
 
             Dim installation As XmlElement = children(1)
-            RequireAttributes(installation, New String() {"installedAtUtc", "mode", "payloadManifestSha256", "root", "scope", "setupBundleSha256", "transactionId"})
+            RequireAttributes(installation, New String() {"installedAtUtc", "mode", "payloadManifestSha256", "root", "scope", "setupExecutableSha256", "transactionId"})
             RequireEmpty(installation)
             If installation.GetAttribute("scope") <> "perMachine" Then
                 Throw New SetupContractException("Installed state scope must be perMachine.")
@@ -181,7 +181,7 @@ Namespace Global.C3Setup
                 Throw New SetupContractException("Installed state timestamp is invalid.")
             End If
             Dim payloadManifestHash As String = RequiredHash(installation, "payloadManifestSha256", 64)
-            Dim setupBundleHash As String = RequiredHash(installation, "setupBundleSha256", 64)
+            Dim setupExecutableHash As String = RequiredHash(installation, "setupExecutableSha256", 64)
 
             Dim filesElement As XmlElement = children(2)
             RequireAttributes(filesElement, New String() {})
@@ -234,7 +234,7 @@ Namespace Global.C3Setup
                                                 sourceCommit,
                                                 files)
             Dim state As New InstalledState(manifest, setupSourceCommit, installRoot, mode, transactionId,
-                                            installedAtUtc, payloadManifestHash, setupBundleHash, shortcuts)
+                                            installedAtUtc, payloadManifestHash, setupExecutableHash, shortcuts)
             ValidateState(state)
             Return state
         End Function
@@ -246,7 +246,7 @@ Namespace Global.C3Setup
             If Array.IndexOf(New String() {"install", "repair", "upgrade"}, state.Mode) < 0 Then Throw New SetupContractException("Install mode is invalid.")
             If Not Regex.IsMatch(state.TransactionId, "^[0-9a-f]{32}$", RegexOptions.CultureInvariant) Then Throw New SetupContractException("Transaction ID is invalid.")
             If Not Regex.IsMatch(state.PayloadManifestSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) OrElse
-                    Not Regex.IsMatch(state.SetupBundleSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) Then Throw New SetupContractException("Installed-state hashes are invalid.")
+                    Not Regex.IsMatch(state.SetupExecutableSha256, "^[0-9a-f]{64}$", RegexOptions.CultureInvariant) Then Throw New SetupContractException("Installed-state hashes are invalid.")
             SetupShortcutService.ValidateOwnedShortcuts(state)
         End Sub
 
