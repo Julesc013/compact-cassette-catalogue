@@ -89,6 +89,7 @@ foreach ($buildLane in $lanes) {
         "configuration=$Configuration",
         "sourceCommit=$($evidence.source.commit)",
         "toolchainMode=$($evidence.toolchainMode)",
+        "toolchainLockSha256=$($evidence.toolchainLock.sha256)",
         "visualStudioProductVersion=$($evidence.visualStudio.productVersion)",
         "visualStudioInstallationVersion=$($evidence.visualStudio.installationVersion)",
         "msbuildVersion=$($evidence.msbuild.productVersion)",

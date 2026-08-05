@@ -1,7 +1,9 @@
 {
   "schemaVersion": 1,
-  "status": "unfrozen",
+  "purpose": "repository template only; Candidate mode requires an external source-bound copy",
+  "status": "template",
   "sourceCommit": null,
+  "expectedRemoteRef": null,
   "frozenAtUtc": null,
   "lanes": [
     {

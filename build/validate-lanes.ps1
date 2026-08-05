@@ -56,7 +56,7 @@ $lockIds = @($lock.lanes | ForEach-Object { [string]$_.id })
 if (($lockIds -join "`n") -cne (($expected.id) -join "`n")) {
     throw 'Toolchain lock lane IDs do not exactly match the release manifest.'
 }
-if ([string]$lock.status -notin @('unfrozen', 'locked')) {
+if ([string]$lock.status -notin @('template', 'locked')) {
     throw "Unknown toolchain lock status '$($lock.status)'."
 }
 if ([string]$lock.status -ceq 'locked') {

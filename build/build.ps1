@@ -7,9 +7,11 @@ param(
     [string]$Verbosity = 'minimal',
     [ValidateSet('Preparation', 'Candidate')]
     [string]$ToolchainMode = 'Preparation',
+    [string]$ToolchainLockPath,
     [string]$MSBuildPath,
     [switch]$AllowCompatibleFallback,
-    [switch]$Rebuild
+    [switch]$Rebuild,
+    [switch]$PreflightOnly
 )
 
 Set-StrictMode -Version 2.0
@@ -50,7 +52,31 @@ function Get-ReferenceAssemblyEvidence {
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
-$lock = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'toolchain-lock.json') -Raw | ConvertFrom-Json
+$repositoryLockTemplate = Join-Path $PSScriptRoot 'toolchain-lock.json'
+if ($ToolchainMode -ceq 'Candidate') {
+    if ([string]::IsNullOrWhiteSpace($ToolchainLockPath)) {
+        throw 'Candidate builds require -ToolchainLockPath to an external source-bound lock.'
+    }
+    if (-not [IO.Path]::IsPathRooted($ToolchainLockPath)) {
+        throw 'Candidate -ToolchainLockPath must be absolute.'
+    }
+    $resolvedLockPath = [IO.Path]::GetFullPath($ToolchainLockPath)
+    $repositoryPrefix = [IO.Path]::GetFullPath($repositoryRoot).TrimEnd('\') + '\'
+    if ($resolvedLockPath.StartsWith($repositoryPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        throw 'Candidate toolchain lock must be external to the clean frozen source checkout; a tracked self-referential lock is prohibited.'
+    }
+}
+else {
+    if (-not [string]::IsNullOrWhiteSpace($ToolchainLockPath)) {
+        throw '-ToolchainLockPath is reserved for Candidate mode.'
+    }
+    $resolvedLockPath = $repositoryLockTemplate
+}
+if (-not (Test-Path -LiteralPath $resolvedLockPath -PathType Leaf)) {
+    throw "Toolchain lock does not exist: $resolvedLockPath"
+}
+$toolchainLockSha256 = (Get-FileHash -LiteralPath $resolvedLockPath -Algorithm SHA256).Hash.ToLowerInvariant()
+$lock = Get-Content -LiteralPath $resolvedLockPath -Raw | ConvertFrom-Json
 $lanes = @($manifest.lanes)
 if (-not [string]::IsNullOrWhiteSpace($Lane)) {
     $lanes = @($lanes | Where-Object { $_.id -ceq $Lane })
@@ -63,7 +89,10 @@ if ($AllowCompatibleFallback) {
     throw 'Compatible MSBuild fallback is not permitted by the C3 1.3 three-lane release contract.'
 }
 if ($ToolchainMode -ceq 'Candidate' -and [string]$lock.status -cne 'locked') {
-    throw 'Candidate builds require build/toolchain-lock.json status "locked" after candidate freeze.'
+    throw 'Candidate builds require an external toolchain lock with status "locked".'
+}
+if ($PreflightOnly -and $ToolchainMode -cne 'Candidate') {
+    throw '-PreflightOnly is available only in Candidate mode.'
 }
 
 $projectPath = Join-Path $repositoryRoot ([string]$manifest.sourceProject)
@@ -77,6 +106,19 @@ if ($LASTEXITCODE -ne 0) {
     throw 'Could not resolve the source commit for build evidence.'
 }
 $sourceStatus = @(& git -C $repositoryRoot status --short)
+if ($ToolchainMode -ceq 'Candidate' -and [string]$lock.sourceCommit -cne $sourceCommit) {
+    throw "External candidate lock source '$($lock.sourceCommit)' does not match frozen source HEAD '$sourceCommit'."
+}
+foreach ($buildLane in $lanes) {
+    $lockLaneCount = @($lock.lanes | Where-Object { $_.id -ceq $buildLane.id }).Count
+    if ($lockLaneCount -ne 1) {
+        throw "Toolchain lock does not contain exactly one entry for '$($buildLane.id)'."
+    }
+}
+if ($PreflightOnly) {
+    Write-Host "Candidate preflight passed for source $sourceCommit with external lock SHA-256 $toolchainLockSha256."
+    return
+}
 
 $target = if ($Rebuild) { 'Rebuild' } else { 'Build' }
 foreach ($buildLane in $lanes) {
@@ -178,9 +220,6 @@ foreach ($buildLane in $lanes) {
                 throw "$($buildLane.id) $($comparison[0]) '$($comparison[1])' does not match locked value '$($comparison[2])'."
             }
         }
-        if ([string]$lock.sourceCommit -cne $sourceCommit) {
-            throw "Candidate source '$sourceCommit' does not match locked source '$($lock.sourceCommit)'."
-        }
     }
 
     $compilerInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($compilerPath)
@@ -190,6 +229,12 @@ foreach ($buildLane in $lanes) {
         configuration = $Configuration
         toolchainMode = $ToolchainMode
         initialServicingPin = [string]$buildLane.initialServicingPin
+        toolchainLock = [ordered]@{
+            path = $resolvedLockPath
+            sha256 = $toolchainLockSha256
+            status = [string]$lock.status
+            sourceCommit = [string]$lock.sourceCommit
+        }
         visualStudio = [ordered]@{
             displayName = [string]$resolvedToolchain.visualStudioDisplayName
             productVersion = $installedProductVersion
@@ -232,6 +277,11 @@ foreach ($buildLane in $lanes) {
     $evidenceJsonPath = Join-Path $evidencePath 'toolchain.json'
     $evidence | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $evidenceJsonPath -Encoding UTF8
     Write-Host "Recorded toolchain evidence: $evidenceJsonPath"
+}
+
+$finalToolchainLockSha256 = (Get-FileHash -LiteralPath $resolvedLockPath -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($finalToolchainLockSha256 -cne $toolchainLockSha256) {
+    throw "Toolchain lock changed during the build: $toolchainLockSha256 -> $finalToolchainLockSha256."
 }
 
 Write-Host "Built $($lanes.Count) source-identical C3 lane(s) in $ToolchainMode mode."
