@@ -42,6 +42,21 @@ if ($evidenceParents.Count -ne 2 -or $evidenceParents[1] -cne [string]$verdict.s
 $evidenceChanges = @(& git -C $repositoryRoot diff --name-only $verdict.sourceCommit $evidenceCommit)
 $expectedEvidenceChanges = @('release/validation/1.3.0-beta.1-verdict.json', 'release/validation/1.3.0-beta.1-verdict.md')
 if ((($evidenceChanges | Sort-Object) -join "`n") -cne (($expectedEvidenceChanges | Sort-Object) -join "`n")) { throw 'E-beta must change exactly the machine and human Beta verdict records.' }
+$humanVerdict = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release\validation\1.3.0-beta.1-verdict.md') -Raw
+foreach ($fragment in @(
+        'Status: GO',
+        "Package source C-beta: ``$($verdict.sourceCommit)``",
+        'Portable Beta GO: true',
+        'Classic setup Beta GO: true',
+        'Overall Beta GO: true',
+        'Tag authorized: true',
+        'Legacy promotion authorized: true',
+        'Public GitHub release: not authorized',
+        'VERSION feed: unchanged',
+        '`master` and `dev/2.x`: unchanged')) {
+    if (-not $humanVerdict.Contains($fragment)) { throw "E-beta human verdict is missing: $fragment" }
+}
+if ($humanVerdict.Contains('TEMPLATE')) { throw 'E-beta human verdict still contains a template marker.' }
 if ((@(Get-Content -LiteralPath (Join-Path $repositoryRoot 'VERSION')) -join "`n") -cne (@('1.2.0', 'Release', '14/05/2026') -join "`n")) { throw 'Public VERSION feed changed during Beta.' }
 Assert-C3Beta1CommitTopology -RepositoryRoot $repositoryRoot -SourceCommit ([string]$verdict.sourceCommit) `
     -EvidenceCommit $evidenceCommit -PostTagCommit $(if ($TagState -ceq 'PostTag') { $headCommit } else { $null })
