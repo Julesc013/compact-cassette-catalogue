@@ -11,6 +11,13 @@ Its classic setup implementation passes source, shared-engine, six-binary, and
 Preparation package controls; application repairs and exact target qualification
 remain behind their focused gates.
 
+- Ratified the 6 August Beta 1 Candidate authority: retained Beta-labelled
+  bytes are permitted, while tagging and lease-protected `legacy/1.x`
+  advancement remain conditional on complete GO; publication, `master`,
+  `dev/2.x`, `VERSION`, and stable operations remain prohibited.
+- Superseded the uncreated redundant Alpha 3 package/tag wave with one final
+  Beta identity/build/qualification wave after the functional scope closes.
+
 - Ratified the owner decision making the repaired classic VB.NET setup an
   optional secondary distribution while portable ZIPs remain authoritative.
 - Defined offline, version-bound setup bundles for x86/net40, x64/net48, and

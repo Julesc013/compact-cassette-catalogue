@@ -8,6 +8,7 @@ C3 release line.
 - [Ratified three-lane stable matrix](governance/1.3.0-three-lane-matrix-2026-08-05.md)
 - [Preview release authorization](governance/1.3.0-release-authorization-2026-08-05.md)
 - [Alpha 3 classic setup owner decision](governance/1.3.0-alpha3-classic-setup-2026-08-05.md)
+- [Beta 1 Candidate authorization](governance/1.3.0-beta1-authorization-2026-08-06.md)
 - [C3 1.3.0 recovery and qualification plan](planning/1.3.0-recovery-plan.md)
 - [C3 1.3.0 milestone ladder](planning/1.3.0-milestones.md)
 - [C3 1.3.0 Alpha 1 checkpoint](planning/1.3.0-alpha.1.md)

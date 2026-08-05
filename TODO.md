@@ -155,6 +155,10 @@ Every Beta-labelled operation remains prohibited without explicit human approval
 
 ## Alpha 3 — legacy reliability and classic setup
 
+Alpha 3 is now the internal implementation phase. Its uncreated tag and
+separate retained-package wave are superseded by the authorized Beta 1
+Candidate qualification; no functional or target gate is waived.
+
 - [x] Ratify `1.3.0a3 / Alpha 3 / v1.3.0a3` scope, artifact, setup, and
   authorization doctrine.
 - [x] Specify closed payload and installed-state XML manifests.
@@ -185,8 +189,8 @@ Every Beta-labelled operation remains prohibited without explicit human approval
   source commit and one immutable external lock.
 - [ ] Pass the full per-lane install/repair/upgrade/uninstall/fault matrix on XP,
   Windows 7, and native Windows 11 ARM64.
-- [ ] Retain and attest annotated `v1.3.0a3` portable/setup artifacts without
-  public publication, feed change, or legacy movement.
+- [x] Supersede the uncreated Alpha 3 retained/tag checkpoint with the single
+  authorized Beta 1 Candidate build and qualification wave.
 
 ## Alpha 3 — lifecycle and data safety
 

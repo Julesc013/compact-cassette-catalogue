@@ -16,6 +16,7 @@ $requiredFiles = @(
     'docs/governance/1.3.0-three-lane-matrix-2026-08-05.md',
     'docs/governance/1.3.0-release-authorization-2026-08-05.md',
     'docs/governance/1.3.0-alpha3-classic-setup-2026-08-05.md',
+    'docs/governance/1.3.0-beta1-authorization-2026-08-06.md',
     'docs/planning/1.3.0-recovery-plan.md',
     'docs/planning/1.3.0-salvage-ledger.md',
     'docs/planning/1.3.0-milestones.md',
@@ -202,6 +203,20 @@ foreach ($statement in @(
         'producing or retaining a Beta-labelled distribution')) {
     if (-not $releaseAuthorization.Contains($statement)) {
         $failures.Add("Release authorization is missing required owner decision: $statement")
+    }
+}
+
+$betaAuthorization = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/governance/1.3.0-beta1-authorization-2026-08-06.md') -Raw
+foreach ($statement in @(
+        'build and retain the three Beta-labelled portable Candidate ZIPs',
+        'create annotated tag `v1.3.0b1` only after every technical',
+        'fast-forward `legacy/1.x`',
+        'does not authorize',
+        'any change to `master` or `dev/2.x`',
+        'any change to the root `VERSION` feed',
+        'NO-GO retains maximum truthful focused repairs')) {
+    if (-not $betaAuthorization.Contains($statement)) {
+        $failures.Add("Beta authorization is missing required owner boundary: $statement")
     }
 }
 
