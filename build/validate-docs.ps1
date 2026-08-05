@@ -26,8 +26,9 @@ $requiredFiles = @(
     'release/validation/1.3.0-preparation-2026-08-05.md',
     'release/validation/1.3.0-reconstructed-baseline.md',
     'release/validation/1.3.0-alpha.1.md',
-    'release/validation/1.3.0-alpha.1-post-correction.md'
-    'release/validation/1.3.0-three-lane-preparation-2026-08-05.md'
+    'release/validation/1.3.0-alpha.1-post-correction.md',
+    'release/validation/1.3.0-three-lane-preparation-2026-08-05.md',
+    'release/validation/1.3.0-release-control-hardening-2026-08-05.md'
 )
 
 $failures = New-Object Collections.Generic.List[String]
@@ -70,6 +71,7 @@ foreach ($heading in @(
         '## Alpha 1 — maintenance foundation',
         '## Post-Alpha three-lane correction',
         '## Beta 1 entry — finish historical baseline reconstruction',
+        '## Release-control hardening before Gate 1',
         '## Beta 1 — lifecycle and data safety',
         '## Beta 1 — referential and counter integrity',
         '## Beta 1 — settings, diagnostics, lanes, and packages',
@@ -101,6 +103,9 @@ foreach ($statement in @(
         'VS2015/MSBuild 14 = historical 1.2 reconstruction oracle',
         'portable classic executable packages',
         '0xaa64',
+        'The candidate lock is external to source and immutable',
+        'authenticated',
+        'five-entry manifest',
         'Universal Setup')) {
     if (-not $matrixDecision.Contains($statement)) {
         $failures.Add("Three-lane decision is missing required authority: $statement")
