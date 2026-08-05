@@ -313,12 +313,14 @@ Namespace Global.C3Setup
             Try
                 Directory.CreateDirectory(journal.StagingRoot)
                 For Each item As PayloadFile In manifest.Files
-                    File.Copy(SetupPathPolicy.CombineOwnedFile(payloadDirectory, item.Path),
-                              SetupPathPolicy.CombineOwnedFile(journal.StagingRoot, item.Path), False)
+                    Dim stagedFile As String = SetupPathPolicy.CombineOwnedFile(journal.StagingRoot, item.Path)
+                    File.Copy(SetupPathPolicy.CombineOwnedFile(payloadDirectory, item.Path), stagedFile, False)
+                    FlushFile(stagedFile)
                 Next
                 PayloadVerifier.Verify(manifest, journal.StagingRoot)
                 Dim pendingState As String = Path.Combine(journal.StagingRoot, PendingStateName)
                 InstalledStateCodec.Write(pendingState, state)
+                FlushFile(pendingState)
                 journal.IntendedStateSha256 = FileHash.Sha256(pendingState)
                 SetupTransactionRecovery.PersistPhase(journal, journalPath, SetupTransactionPhases.Staged, faultInjector)
                 Inject(faultInjector, "after-staging")
@@ -400,6 +402,7 @@ Namespace Global.C3Setup
                 Directory.CreateDirectory(journal.StagingRoot)
                 Directory.CreateDirectory(journal.BackupRoot)
                 File.Copy(statePath, Path.Combine(journal.BackupRoot, InstalledStateCodec.FileName), False)
+                FlushFile(Path.Combine(journal.BackupRoot, InstalledStateCodec.FileName))
                 SetupTransactionRecovery.PersistPhase(journal, journalPath, SetupTransactionPhases.Staged, faultInjector)
 
                 Dim count As Integer = 0
@@ -502,6 +505,12 @@ Namespace Global.C3Setup
 
         Private Shared Sub Inject(faultInjector As Action(Of String), point As String)
             If faultInjector IsNot Nothing Then faultInjector(point)
+        End Sub
+
+        Private Shared Sub FlushFile(path As String)
+            Using stream As New FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.Read)
+                stream.Flush(True)
+            End Using
         End Sub
     End Class
 

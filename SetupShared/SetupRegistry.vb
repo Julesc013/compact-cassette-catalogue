@@ -37,6 +37,7 @@ Namespace Global.C3Setup
                         Dim kind As RegistryValueKind = If(TypeOf pair.Value Is Integer, RegistryValueKind.DWord, RegistryValueKind.String)
                         key.SetValue(pair.Key, pair.Value, kind)
                     Next
+                    key.Flush()
                 End Using
             End Using
         End Sub
@@ -44,6 +45,7 @@ Namespace Global.C3Setup
         Public Sub DeleteKey(keyPath As String) Implements ISetupRegistryAccess.DeleteKey
             Using baseKey As RegistryKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default)
                 baseKey.DeleteSubKeyTree(keyPath, False)
+                baseKey.Flush()
             End Using
         End Sub
     End Class

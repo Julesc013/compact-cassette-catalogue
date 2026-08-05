@@ -16,6 +16,8 @@ foreach ($requiredPath in @($journalPath, $transactionPath, $testPath)) {
 $journal = [IO.File]::ReadAllText($journalPath)
 $transaction = [IO.File]::ReadAllText($transactionPath)
 $tests = [IO.File]::ReadAllText($testPath)
+$registry = [IO.File]::ReadAllText((Join-Path $repositoryRoot 'SetupShared\SetupRegistry.vb'))
+$shortcuts = [IO.File]::ReadAllText((Join-Path $repositoryRoot 'SetupShared\SetupShortcuts.vb'))
 $expectedPhases = @(
     'prepared',
     'staged',
@@ -39,6 +41,10 @@ foreach ($token in @(
         'recordSha256',
         'RetainSettledEvidence')) {
     if (-not $journal.Contains($token)) { throw "Durable setup journal omits '$token'." }
+}
+if (-not $transaction.Contains('stream.Flush(True)') -or -not $registry.Contains('key.Flush()') -or
+        -not $registry.Contains('baseKey.Flush()') -or -not $shortcuts.Contains('stream.Flush(True)')) {
+    throw 'Durable setup must flush staged/state bytes, HKLM changes, and WSH shortcut bytes before advancing its journal.'
 }
 
 $installStart = $transaction.IndexOf('Public Shared Function Install(', [StringComparison]::Ordinal)
