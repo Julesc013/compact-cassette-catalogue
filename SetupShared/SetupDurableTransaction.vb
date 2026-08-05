@@ -306,10 +306,12 @@ Namespace Global.C3Setup
             Dim mode As String = If(previous Is Nothing, "install", If(previous.Manifest.Label = manifest.Label, "repair", "upgrade"))
             Dim journal As SetupTransactionJournal = SetupTransactionJournal.CreateInstall(root, manifest, FileHash.Sha256(manifestPath), setupSourceCommit, setupExecutableSha256)
             Dim journalPath As String = SetupTransactionJournalCodec.PathForInstallRoot(root)
-            SetupTransactionJournalCodec.Write(journalPath, journal)
-            Inject(faultInjector, "journal:" & SetupTransactionPhases.Prepared)
             Dim state As New InstalledState(manifest, setupSourceCommit, root, mode, journal.TransactionId, DateTime.UtcNow,
                                             journal.PayloadManifestSha256, setupExecutableSha256, shortcuts)
+            SetupShortcutService.ValidateTransition(previous, state, shortcutAccess)
+            SetupRegistryRegistration.ValidateTransition(previous, state, registryAccess)
+            SetupTransactionJournalCodec.Write(journalPath, journal)
+            Inject(faultInjector, "journal:" & SetupTransactionPhases.Prepared)
             Try
                 Directory.CreateDirectory(journal.StagingRoot)
                 For Each item As PayloadFile In manifest.Files
@@ -344,7 +346,7 @@ Namespace Global.C3Setup
                 SetupShortcutService.Transition(previous, state, shortcutAccess)
                 SetupTransactionRecovery.PersistPhase(journal, journalPath, SetupTransactionPhases.ShortcutsMutated, faultInjector)
 
-                SetupRegistryRegistration.Apply(state, registryAccess)
+                SetupRegistryRegistration.ApplyTransition(previous, state, registryAccess)
                 SetupTransactionRecovery.PersistPhase(journal, journalPath, SetupTransactionPhases.RegistryMutated, faultInjector)
                 Inject(faultInjector, "after-system-integration")
 
