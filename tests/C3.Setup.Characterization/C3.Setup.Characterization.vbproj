@@ -54,6 +54,9 @@
     <Compile Include="..\..\SetupShared\InstalledState.vb">
       <Link>Shared\InstalledState.vb</Link>
     </Compile>
+    <Compile Include="..\..\SetupShared\SetupTransactionJournal.vb">
+      <Link>Shared\SetupTransactionJournal.vb</Link>
+    </Compile>
     <Compile Include="..\..\SetupShared\SetupFileTransaction.vb">
       <Link>Shared\SetupFileTransaction.vb</Link>
     </Compile>

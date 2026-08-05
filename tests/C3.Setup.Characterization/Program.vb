@@ -23,6 +23,9 @@ Module Program
         RunTest("installed-state manifest round-trips", AddressOf InstalledStateRoundTrips)
         RunTest("installed-state traversal is rejected", AddressOf InstalledStateTraversalIsRejected)
         RunTest("installed-state unexpected attribute is rejected", AddressOf InstalledStateUnexpectedAttributeIsRejected)
+        RunTest("transaction journal phase set is closed", AddressOf TransactionJournalPhaseSetIsClosed)
+        RunTest("transaction journal round-trips authenticated identity", AddressOf TransactionJournalRoundTrips)
+        RunTest("altered transaction journal is rejected", AddressOf AlteredTransactionJournalIsRejected)
         RunTest("clean file transaction installs exact owned bytes", AddressOf CleanTransactionInstallsOwnedBytes)
         RunTest("repair preserves unknown files", AddressOf RepairPreservesUnknownFiles)
         RunTest("faulted repair rolls back exact prior bytes", AddressOf FaultedRepairRollsBack)
@@ -75,6 +78,65 @@ Module Program
             _failures += 1
             Console.Error.WriteLine("FAIL: {0}{1}{2}", name, Environment.NewLine, ex.ToString())
         End Try
+    End Sub
+
+    Private Sub TransactionJournalPhaseSetIsClosed()
+        Dim expected As String() = {
+            "prepared",
+            "staged",
+            "backup-complete",
+            "payload-promoted",
+            "shortcuts-mutated",
+            "registry-mutated",
+            "state-committed",
+            "complete",
+            "rollback-started",
+            "rollback-complete"
+        }
+        Dim actual As String() = C3Setup.SetupTransactionPhases.All()
+        If expected.Length <> actual.Length Then Throw New Exception("Transaction journal phase count is not closed.")
+        For index As Integer = 0 To expected.Length - 1
+            AssertEqual(expected(index), actual(index), "transaction phase " & index.ToString(CultureInfo.InvariantCulture))
+        Next
+    End Sub
+
+    Private Sub TransactionJournalRoundTrips()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim installRoot As String = CoordinatedInstallRoot(root)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        Dim journal As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournal.CreateInstall(
+                            installRoot,
+                            manifest,
+                            C3Setup.FileHash.Sha256(manifestPath),
+                            "89abcdef0123456789abcdef0123456789abcdef",
+                            "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789")
+                        Dim path As String = C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot)
+                        C3Setup.SetupTransactionJournalCodec.Write(path, journal)
+                        Dim actual As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournalCodec.Read(path)
+                        AssertEqual(journal.TransactionId, actual.TransactionId, "journal transaction")
+                        AssertEqual("install", actual.Operation, "journal operation")
+                        AssertEqual("prepared", actual.Phase, "journal phase")
+                        AssertEqual(manifest.Lane, actual.Lane, "journal lane")
+                        AssertEqual(manifest.SourceCommit, actual.PayloadSourceCommit, "journal payload source")
+                        AssertEqual(journal.IdentitySha256, actual.IdentitySha256, "journal identity authenticator")
+                    End Sub)
+    End Sub
+
+    Private Sub AlteredTransactionJournalIsRejected()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim installRoot As String = CoordinatedInstallRoot(root)
+                        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+                        Dim journal As C3Setup.SetupTransactionJournal = C3Setup.SetupTransactionJournal.CreateInstall(
+                            installRoot,
+                            manifest,
+                            C3Setup.FileHash.Sha256(manifestPath),
+                            "89abcdef0123456789abcdef0123456789abcdef",
+                            "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789")
+                        Dim path As String = C3Setup.SetupTransactionJournalCodec.PathForInstallRoot(installRoot)
+                        C3Setup.SetupTransactionJournalCodec.Write(path, journal)
+                        File.WriteAllText(path, File.ReadAllText(path).Replace("phase=\"prepared\"", "phase=\"complete\""))
+                        AssertContractFailure(Sub() C3Setup.SetupTransactionJournalCodec.Read(path))
+                    End Sub)
     End Sub
 
     Private Sub ValidClosedPayloadPasses()
