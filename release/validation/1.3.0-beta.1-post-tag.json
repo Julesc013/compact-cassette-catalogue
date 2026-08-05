@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "releaseLabel": "1.3.0b1",
+  "tagName": "v1.3.0b1",
+  "tagObject": null,
+  "tagTarget": null,
+  "packageSource": null,
+  "candidateIndexSha256": null,
+  "remoteName": "origin",
+  "remoteUrl": null,
+  "remoteTagObject": null,
+  "remoteTagTarget": null,
+  "masterCommit": null,
+  "dev2Commit": null,
+  "legacyOldCommit": "c4115b82ea43fdd763685d862a08fe5c61db6dff",
+  "publicReleaseApi": null,
+  "publicReleaseAbsent": false,
+  "publicReleaseCheckedAtUtc": null,
+  "publicationStatus": "retained-unpublished",
+  "feedChanged": false,
+  "publicFeed": ["1.2.0", "Release", "14/05/2026"],
+  "masterOrDev2Changed": false,
+  "legacyPromotionAuthorized": true,
+  "recordedAtUtc": null
+}
+
