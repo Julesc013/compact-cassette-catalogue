@@ -1,4 +1,15 @@
 {
   "schemaVersion": 1,
-  "entries": []
+  "entries": [
+    {
+      "surface": "designerHashes",
+      "reason": "APP-010 adds the generated user-scoped retry marker required for durable settings migration.",
+      "regression": "tests/C3.Settings.Characterization"
+    },
+    {
+      "surface": "settings",
+      "reason": "APP-010 adds settingsUpgradeRequired=True so failed profile upgrades remain retryable.",
+      "regression": "tests/C3.Settings.Characterization"
+    }
+  ]
 }
