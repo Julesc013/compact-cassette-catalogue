@@ -158,11 +158,35 @@ foreach ($requiredLine in @(
         throw "Solution is missing ARM64 mapping: $requiredLine"
     }
 }
-foreach ($historicalProjectGuid in @(
-        '{D48984D9-8E3B-413D-A8DA-7DF5B4B3C09B}',
-        '{12C86E82-C311-466C-97B1-C1E1ACC75A9F}')) {
-    if ($solution -match [regex]::Escape($historicalProjectGuid) + '\.(Debug|Release)\|ARM64\.Build\.0') {
-        throw "Historical installer project $historicalProjectGuid must not enter the ARM64 build graph."
+foreach ($setupProject in @(
+        [PSCustomObject]@{ Guid = '{D48984D9-8E3B-413D-A8DA-7DF5B4B3C09B}'; Path = 'Compact Cassette Catalogue Installer\Compact Cassette Catalogue Installer.vbproj' },
+        [PSCustomObject]@{ Guid = '{12C86E82-C311-466C-97B1-C1E1ACC75A9F}'; Path = 'Compact Cassette Catalogue Uninstaller\Compact Cassette Catalogue Uninstaller.vbproj' })) {
+    [xml]$setupXml = Get-Content -LiteralPath (Join-Path $repositoryRoot $setupProject.Path) -Raw
+    $setupNamespace = New-Object Xml.XmlNamespaceManager($setupXml.NameTable)
+    $setupNamespace.AddNamespace('msb', 'http://schemas.microsoft.com/developer/msbuild/2003')
+    foreach ($setupLane in @(
+            [PSCustomObject]@{ Platform = 'x86'; Framework = 'v4.0' },
+            [PSCustomObject]@{ Platform = 'x64'; Framework = 'v4.8' },
+            [PSCustomObject]@{ Platform = 'ARM64'; Framework = 'v4.8.1' })) {
+        foreach ($configuration in @('Debug', 'Release')) {
+            $condition = " '`$(Configuration)|`$(Platform)' == '$configuration|$($setupLane.Platform)' "
+            $group = @($setupXml.SelectNodes('/msb:Project/msb:PropertyGroup', $setupNamespace) |
+                Where-Object { $_.GetAttribute('Condition') -ceq $condition })
+            if ($group.Count -ne 1 -or
+                    [string]$group[0].PlatformTarget -cne $setupLane.Platform -or
+                    [string]$group[0].TargetFrameworkVersion -cne $setupLane.Framework -or
+                    [string]$group[0].Prefer32Bit -cne 'false' -or
+                    [string]$group[0].TreatWarningsAsErrors -cne 'true') {
+                throw "$($setupProject.Path) must contain one strict $configuration|$($setupLane.Platform)/$($setupLane.Framework) configuration."
+            }
+            if ($configuration -ceq 'Release' -and [string]$group[0].Optimize -cne 'true') {
+                throw "$($setupProject.Path) Release|$($setupLane.Platform) must enable optimization."
+            }
+            $mapping = "$($setupProject.Guid).$configuration|$($setupLane.Platform).Build.0 = $configuration|$($setupLane.Platform)"
+            if (-not $solution.Contains($mapping)) {
+                throw "Solution is missing setup build mapping: $mapping"
+            }
+        }
     }
 }
 
@@ -188,4 +212,4 @@ foreach ($requiredTargetControl in @(
     }
 }
 
-Write-Host 'Three-lane contract verified: exact manifest, lock shape, ARM64 configurations, installer exclusion, and source identity policy pass.'
+Write-Host 'Three-lane contract verified: exact manifest, lock shape, application/setup configurations, and source identity policy pass.'
