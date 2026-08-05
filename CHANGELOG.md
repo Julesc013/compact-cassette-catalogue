@@ -4,6 +4,38 @@
 ## C3 1.3 legacy maintenance
 
 
+### Version 1.3.0 Beta 1 - 6 August 2026
+
+Beta 1 is the retained, intentionally unpublished Candidate for the final
+original VB.NET WinForms release. The untagged Alpha 3 implementation phase was
+superseded by this single metadata/build/qualification wave.
+
+- Projected exact `1.3.0b1 / Beta 1 / v1.3.0b1` identity through application,
+  setup, manifests, package names, package content, validation, and evidence.
+- Completed reproduction-backed source repairs for APP-001 through APP-015:
+  lifecycle gates, bounded temporary loading, transactional persistence,
+  external-edit detection, named tape mapping, referential integrity, atomic
+  bulk creation, counters/sequences, settings migration, and diagnostics.
+- Added 21 lifecycle/persistence, 8 integrity, and 6 settings/diagnostics
+  regressions while retaining the original catalogue 1.1.0 format, project,
+  forms, resources, and VB.NET production topology.
+- Added an authenticated, write-through ten-phase setup transaction journal,
+  commit-last installed state, startup recovery/fail-closed behavior, and 30
+  process-death phase cases within 85 setup regressions.
+- Required exactly three portable and three classic-setup Candidate ZIPs, one
+  source commit, one immutable external toolchain lock, one fetched-provider
+  receipt, closed entry manifests, and two complete clean path-distinct builds.
+- Added fail-closed component verdicts for `portableBetaGo`,
+  `classicSetupBetaGo`, and `overallBetaGo`, plus source-bound retention under
+  `artifacts/candidates/1.3.0b1/<source-sha>/` on NO-GO.
+- Kept historical Gate 1 executions and exact XP, Windows 7, and native ARM64
+  runtime/setup qualification as non-substitutable GO gates. No missing target
+  result may be inferred from builder smoke or binary inspection.
+- Preserved the owner boundary: Candidate bytes may be retained, but the tag
+  and `legacy/1.x` advancement require complete GO; public release, `master`,
+  `dev/2.x`, `VERSION`, stable tag, and stable feed changes remain prohibited.
+
+
 ### Version 1.3.0 Alpha 3 - 5 August 2026
 
 Alpha 3 is the active legacy reliability and classic setup revival checkpoint.

@@ -1,86 +1,96 @@
-# Compact Cassette Catalogue 1.3.0 Alpha 3
+# Compact Cassette Catalogue 1.3.0 Beta 1
 
-C3 1.3.0 Alpha 3 is the planned, intentionally unpublished legacy reliability
-and classic setup revival checkpoint. The active source projects the exact
-`1.3.0a3 / Alpha 3 / v1.3.0a3` identity.
+C3 1.3.0 Beta 1 is the qualified-prerelease Candidate for the final original
+VB.NET WinForms line. Its exact identity is `1.3.0b1 / Beta 1 / v1.3.0b1`.
+Candidate retention is authorized, but this source text does not claim a tag,
+public GitHub release, minimum-operating-system qualification, stable-feed
+change, or `legacy/1.x` advancement.
 
-Alpha 2 is complete and immutable: its three portable packages reproduced from
-clean path-distinct builds, its annotated tag remains at evidence commit `E`,
-and post-tag commit `P` records the unchanged feed, publication, and legacy
-boundaries.
+## Candidate assets
 
-## Planned Alpha 3 assets
-
-Canonical portable packages:
+Portable, no-install, no-admin packages:
 
 ```text
-C3-v1.3.0a3-win-x86-net40-portable.zip
-C3-v1.3.0a3-win-x64-net48-portable.zip
-C3-v1.3.0a3-win-arm64-net481-portable.zip
+C3-v1.3.0b1-win-x86-net40-portable.zip
+C3-v1.3.0b1-win-x64-net48-portable.zip
+C3-v1.3.0b1-win-arm64-net481-portable.zip
 ```
 
-Optional offline classic setup bundles:
+Offline elevated per-machine classic setup packages:
 
 ```text
-C3-v1.3.0a3-win-x86-net40-setup.zip
-C3-v1.3.0a3-win-x64-net48-setup.zip
-C3-v1.3.0a3-win-arm64-net481-setup.zip
+C3-v1.3.0b1-win-x86-net40-setup.zip
+C3-v1.3.0b1-win-x64-net48-setup.zip
+C3-v1.3.0b1-win-arm64-net481-setup.zip
 SHA256SUMS.txt
 ```
 
-The portable ZIPs remain authoritative and independently usable. Setup consumes
-the exact qualified application bytes; it never rebuilds, downloads, silently
-updates, or rewrites C3. No standalone uninstaller is published.
+Portable ZIPs remain authoritative and independently usable. Each setup ZIP
+consumes the exact matching portable application/configuration bytes and adds
+the lane-native `SETUP.exe` and `UNINSTALL.exe`. No standalone raw EXE or
+uninstaller is an authoritative asset.
 
-## Intended functional scope
+## Application repairs
 
-- Complete historical Gate 1 before changing application behaviour.
-- Repair lifecycle, load/save, hostile-input, referential-integrity, counters,
-  settings, and diagnostic defects one reproduction-backed outcome at a time.
-- Run a systematic static, differential, randomized, XML, persistence-fault,
-  and lifecycle defect hunt.
-- Retain the classic installer/uninstaller project identities and recognizable
-  WinForms wizard while replacing their unsafe online and placeholder engines.
-- Build source-identical x86/net40, x64/net48, and native ARM64/net481 setup
-  executables from shared linked VB.NET source without a runtime DLL.
-- Install offline through closed XML manifests, same-volume staging,
-  transactional commit, verification, rollback, owned registry/shortcuts, and a
-  real self-relocating reversible uninstaller.
-- Preserve catalogue XML, profile settings, unknown files, and all unowned data.
+- Pending tape edits now resolve through Apply, Discard, or Cancel before
+  document transitions, selection changes, and close.
+- Application close uses one nonrecursive gate; Save/Discard/Cancel and failed
+  or cancelled Save As paths fail closed.
+- Open validates one bounded, DTD-disabled temporary typed catalogue before
+  changing active state.
+- Save uses a same-directory temporary file, durable flush, exact reopen,
+  backup, atomic replacement, cleanup, and external-revision detection.
+- Named tape mapping preserves identifiers, sequence numbers, creation dates,
+  peak level, bias, bias calibration, and level calibration.
+- Referenced brands, models, and decks are protected; compatible display-name
+  renames cascade safely.
+- Bulk tape creation prevalidates and commits atomically with independent,
+  monotonic, non-reused sequence numbers and row-derived counters.
+- Model notes, deck choices, model/tape counts, and historical display-name
+  references use their correct sources.
+- Settings migration is durable and retryable without modifying old profiles;
+  known update values normalize without resetting unrelated preferences.
+- Console export uses a safe configured/Documents path and diagnostic,
+  browser, update-check, and write failures remain nonfatal.
 
-## Current status
+## Classic setup repairs
 
-The Alpha 3 scope decision, plan, manifest contracts, and defect ledger are
-ratified. The classic setup engine, original wizard activation, six setup
-binaries, deterministic bundle controls, and Preparation packaging path pass.
-This does not claim application runtime repairs, Candidate reproduction,
-target-machine qualification, an Alpha 3 tag, or retained Alpha 3 packages.
+Classic setup is offline, version-bound, architecture-specific, elevated, and
+per-machine. It uses closed payload and ownership manifests, Program Files,
+HKLM uninstall registration, owned common shortcuts, staged verification,
+repair/upgrade policy, reversible ownership-only uninstall, and preservation of
+catalogues, settings, unknown files, and unowned system state.
 
-The current setup implementation is strictly offline and consumes the exact
-five files from the matching verified portable ZIP. Its seven installed files,
-ownership-only uninstall, source/toolchain identity, native architecture, and
-framework are closed mechanically. Forty-six shared-engine regressions and four
-authenticated-sidecar package tamper cases pass. Exact XP, Windows 7, and native
-Windows 11 ARM64 setup execution remains required before Alpha 3 retention.
+An authenticated write-through ten-phase journal covers install, repair, and
+uninstall. Installed state is committed last. A later setup invocation recovers
+an interrupted transaction deterministically or refuses mutation, and retains
+settled/failed evidence. The source regression matrix terminates child processes
+at all ten phases of all three operations.
 
-The exact Windows XP SP3 x86, Windows 7 SP1 x64, and Windows 11 21H2 ARM64
-runtime/setup matrices remain required. ARM64 binary inspection on an x64
-builder is not native runtime proof.
+No network fetch, MSI, MSIX, ClickOnce, updater, service, scheduled task,
+self-contained runtime, runtime DLL, or per-user installer is included.
 
-## Release authority
+## Lanes and qualification boundary
 
-An annotated `v1.3.0a3` tag and retained Alpha-labelled portable/setup ZIPs are
-authorized only after every applicable Alpha 3 gate passes. Public Alpha
-publication is not implied.
+```text
+win-x86-net40     VS2017 15.9 / x86 / .NET Framework 4.0
+win-x64-net48     VS2022 17.14 / x64 / .NET Framework 4.8
+win-arm64-net481  VS2026 / native ARM64 / .NET Framework 4.8.1
+```
 
-Every `v1.3.0b1` tag or Beta-labelled retained byte requires explicit human
-approval. Public Beta publication requires separate approval. Stable feed
-promotion and `legacy/1.x` movement remain separately gated.
+Repository-side source evidence includes 21 lifecycle/persistence tests,
+8 integrity tests, 6 settings/diagnostics tests, and 85 setup tests, plus the
+genome, compatibility, lane, offline, package, setup-genome, accessibility,
+documentation, and PowerShell 2 controls.
 
-The available public user release remains C3 1.2.0 Beta 1. The three-line
-`VERSION` feed remains unchanged until stable publication succeeds.
+The remaining independent GO gates are the complete historical Gate 1 record,
+two clean path-distinct Candidate builds, and full runtime/setup qualification
+on exact Windows XP SP3 x86, Windows 7 SP1 x64, and Windows 11 build 22000
+native ARM64 environments. A missing target row is a NO-GO, never an inferred
+pass. Public Beta publication requires a later separate decision. Stable is
+`v1.3.0` and the public `VERSION` feed remains C3 1.2.0 Beta 1 meanwhile.
 
-See the [Alpha 3 plan](docs/planning/1.3.0-alpha.3.md),
-[owner decision](docs/governance/1.3.0-alpha3-classic-setup-2026-08-05.md),
+See the [Beta 1 plan](docs/planning/1.3.0-beta.1.md),
+[owner authorization](docs/governance/1.3.0-beta1-authorization-2026-08-06.md),
 [defect ledger](docs/testing/1.3.0-alpha3-defect-ledger.md), and
-[setup manifest contracts](docs/setup/1.3.0-manifest-contracts.md).
+[qualification matrix](docs/testing/1.3.0-qualification-matrix.md).

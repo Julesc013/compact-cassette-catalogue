@@ -67,7 +67,7 @@ Module Program
         RunTest("altered relocated uninstaller is rejected", AddressOf AlteredRelocatedUninstallerIsRejected)
         RunTest("matching native uninstall environment passes", AddressOf MatchingUninstallEnvironmentPasses)
         RunTest("running application blocks uninstall", AddressOf RunningApplicationBlocksUninstall)
-        RunTest("adjacent Alpha 3 setup bundle loads exact bytes", AddressOf AdjacentBundleLoadsExactBytes)
+        RunTest("adjacent Beta 1 setup bundle loads exact bytes", AddressOf AdjacentBundleLoadsExactBytes)
         RunTest("wrong setup release identity is rejected", AddressOf WrongSetupReleaseIdentityIsRejected)
         For Each phase As String In C3Setup.SetupTransactionPhases.All()
             Dim crashPhase As String = phase
@@ -477,7 +477,7 @@ Module Program
                         Dim key As String = C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)
                         AssertEqual("Software\Microsoft\Windows\CurrentVersion\Uninstall\CompactCassetteCatalogue-1x-x86", key, "lane uninstall key")
                         Dim values As IDictionary(Of String, Object) = access.ReadValues(key)
-                        AssertEqual("1.3.0a3", DirectCast(values("DisplayVersion"), String), "registered display version")
+                        AssertEqual("1.3.0b1", DirectCast(values("DisplayVersion"), String), "registered display version")
                         If values.ContainsKey("QuietUninstallString") Then Throw New Exception("Untested quiet uninstall was registered.")
                         C3Setup.SetupRegistryRegistration.Remove(state, access)
                         If access.ReadValues(key) IsNot Nothing Then Throw New Exception("Owned registration survived removal.")
@@ -838,7 +838,7 @@ Module Program
                         Dim setupPath As String = Path.Combine(root, "SETUP.exe")
                         File.WriteAllText(setupPath, "setup-executable")
                         Dim context As C3Setup.SetupBundleContext = C3Setup.SetupBundleRuntime.Load(root, setupPath)
-                        AssertEqual("1.3.0a3", context.Manifest.Label, "bundle release label")
+                        AssertEqual("1.3.0b1", context.Manifest.Label, "bundle release label")
                         AssertEqual(C3Setup.FileHash.Sha256(setupPath), context.SetupExecutableSha256, "setup executable hash")
                         If context.PayloadBytes <= 0 Then Throw New Exception("Bundle payload byte total was not retained.")
                     End Sub)
@@ -848,7 +848,7 @@ Module Program
         WithPayload(Sub(root As String, manifestPath As String)
                         Dim setupPath As String = Path.Combine(root, "SETUP.exe")
                         File.WriteAllText(setupPath, "setup-executable")
-                        File.WriteAllText(manifestPath, File.ReadAllText(manifestPath).Replace("label=""1.3.0a3""", "label=""1.3.0"""))
+                        File.WriteAllText(manifestPath, File.ReadAllText(manifestPath).Replace("label=""1.3.0b1""", "label=""1.3.0"""))
                         AssertContractFailure(Sub() C3Setup.SetupBundleRuntime.Load(root, setupPath))
                     End Sub)
     End Sub
@@ -1173,7 +1173,7 @@ Module Program
     Private Function BuildManifest(payload As String) As String
         Dim builder As New StringBuilder()
         builder.AppendLine("<C3SetupPayload schemaVersion=""1"">")
-        builder.AppendLine("  <Product version=""1.3.0"" stage=""Alpha 3"" label=""1.3.0a3"" lane=""win-x86-net40"" architecture=""x86"" framework=""v4.0"" sourceCommit=""0123456789abcdef0123456789abcdef01234567"" />")
+        builder.AppendLine("  <Product version=""1.3.0"" stage=""Beta 1"" label=""1.3.0b1"" lane=""win-x86-net40"" architecture=""x86"" framework=""v4.0"" sourceCommit=""0123456789abcdef0123456789abcdef01234567"" />")
         builder.AppendLine("  <Files>")
         For Each name As String In PayloadNames
             Dim filePath As String = Path.Combine(payload, name)
