@@ -54,6 +54,8 @@ Module Program
         RunTest("altered registry blocks coordinated uninstall", AddressOf AlteredRegistryBlocksCoordinatedUninstall)
         RunTest("uninstaller relocation copies exact owned bytes", AddressOf RelocationCopiesExactOwnedBytes)
         RunTest("altered relocated uninstaller is rejected", AddressOf AlteredRelocatedUninstallerIsRejected)
+        RunTest("matching native uninstall environment passes", AddressOf MatchingUninstallEnvironmentPasses)
+        RunTest("running application blocks uninstall", AddressOf RunningApplicationBlocksUninstall)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -699,6 +701,39 @@ Module Program
                                                   context.ExecutablePath))
                     End Sub)
     End Sub
+
+    Private Sub MatchingUninstallEnvironmentPasses()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim programFiles As String = Path.Combine(root, "Program Files")
+                        Directory.CreateDirectory(programFiles)
+                        Dim state As C3Setup.InstalledState = CreateInstalledStateForRoot(Path.Combine(programFiles, "Compact Cassette Catalogue"), manifestPath)
+                        Dim facts As New C3Setup.SetupEnvironmentFacts("x86", "x86", True, True, 0, programFiles, False, 0)
+                        C3Setup.SetupEnvironment.ValidateRemoval(state, facts)
+                    End Sub)
+    End Sub
+
+    Private Sub RunningApplicationBlocksUninstall()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim programFiles As String = Path.Combine(root, "Program Files")
+                        Directory.CreateDirectory(programFiles)
+                        Dim state As C3Setup.InstalledState = CreateInstalledStateForRoot(Path.Combine(programFiles, "Compact Cassette Catalogue"), manifestPath)
+                        Dim facts As New C3Setup.SetupEnvironmentFacts("x86", "x86", True, True, 0, programFiles, True, 0)
+                        AssertContractFailure(Sub() C3Setup.SetupEnvironment.ValidateRemoval(state, facts))
+                    End Sub)
+    End Sub
+
+    Private Function CreateInstalledStateForRoot(installRoot As String, manifestPath As String) As C3Setup.InstalledState
+        Dim manifest As C3Setup.PayloadManifest = C3Setup.PayloadManifestReader.Read(manifestPath)
+        Return New C3Setup.InstalledState(manifest,
+                                          "89abcdef0123456789abcdef0123456789abcdef",
+                                          installRoot,
+                                          "install",
+                                          "0123456789abcdef0123456789abcdef",
+                                          New DateTime(2026, 8, 5, 12, 0, 0, DateTimeKind.Utc),
+                                          C3Setup.FileHash.Sha256(manifestPath),
+                                          "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+                                          New List(Of C3Setup.InstalledShortcut)())
+    End Function
 
     Private Function ExecuteCoordinatedInstall(root As String,
                                                manifestPath As String,

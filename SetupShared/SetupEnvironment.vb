@@ -71,6 +71,28 @@ Namespace Global.C3Setup
             If facts Is Nothing Then Throw New ArgumentNullException("facts")
             If transactionBytes < 0 Then Throw New ArgumentOutOfRangeException("transactionBytes")
 
+            ValidateIdentityAndFramework(manifest, facts)
+            RequireMutationPreconditions(facts)
+            Dim requiredBytes As Long
+            Try
+                requiredBytes = checkedMultiply(transactionBytes, 3L)
+            Catch ex As OverflowException
+                Throw New SetupContractException("The payload size cannot be represented safely.", ex)
+            End Try
+            If facts.AvailableBytes < requiredBytes Then
+                Throw New SetupContractException("The destination volume does not have enough free space for staging and rollback.")
+            End If
+        End Sub
+
+        Public Shared Sub ValidateRemoval(state As InstalledState, facts As SetupEnvironmentFacts)
+            If state Is Nothing Then Throw New ArgumentNullException("state")
+            If facts Is Nothing Then Throw New ArgumentNullException("facts")
+            ValidateIdentityAndFramework(state.Manifest, facts)
+            RequireMutationPreconditions(facts)
+            ValidateInstallRoot(facts, state.InstallRoot)
+        End Sub
+
+        Private Shared Sub ValidateIdentityAndFramework(manifest As PayloadManifest, facts As SetupEnvironmentFacts)
             Dim expectedArchitecture As String
             Dim minimumRelease As Long
             Select Case manifest.Lane
@@ -96,6 +118,9 @@ Namespace Global.C3Setup
             If Not facts.FrameworkFullInstalled OrElse facts.FrameworkRelease < minimumRelease Then
                 Throw New SetupContractException("The payload lane's full .NET Framework prerequisite is not installed.")
             End If
+        End Sub
+
+        Private Shared Sub RequireMutationPreconditions(facts As SetupEnvironmentFacts)
             If Not facts.IsElevated Then
                 Throw New SetupContractException("Per-machine C3 setup requires an elevated administrator token.")
             End If
@@ -105,15 +130,6 @@ Namespace Global.C3Setup
             Dim canonicalProgramFiles As String = SetupPathPolicy.CanonicalDirectory(facts.ProgramFilesPath)
             If Not Directory.Exists(canonicalProgramFiles) Then
                 Throw New SetupContractException("The operating-system Program Files directory does not exist.")
-            End If
-            Dim requiredBytes As Long
-            Try
-                requiredBytes = checkedMultiply(transactionBytes, 3L)
-            Catch ex As OverflowException
-                Throw New SetupContractException("The payload size cannot be represented safely.", ex)
-            End Try
-            If facts.AvailableBytes < requiredBytes Then
-                Throw New SetupContractException("The destination volume does not have enough free space for staging and rollback.")
             End If
         End Sub
 
