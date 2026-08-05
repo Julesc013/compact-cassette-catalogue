@@ -1,6 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "product": "Compact Cassette Catalogue",
+  "releaseVersion": "1.3.0",
   "sourceProject": "Compact Cassette Catalogue/Compact Cassette Catalogue.vbproj",
   "lanes": [
     {
@@ -9,19 +10,19 @@
       "platformTarget": "x86",
       "targetFramework": "v4.0",
       "appConfig": "Compact Cassette Catalogue/App.config",
-      "toolset": "14",
+      "toolset": "15",
+      "visualStudioRange": "[15.0,16.0)",
+      "initialServicingPin": "15.9.81",
+      "effectiveToolsVersion": "15.0",
+      "compilerRelativePath": "MSBuild/15.0/Bin/Roslyn/vbc.exe",
       "status": "required",
-      "runtimeClaim": "Windows XP SP3 x86 or newer"
-    },
-    {
-      "id": "win-x64-net40",
-      "platform": "x64",
-      "platformTarget": "x64",
-      "targetFramework": "v4.0",
-      "appConfig": "Compact Cassette Catalogue/App.config",
-      "toolset": "14",
-      "status": "recommended",
-      "runtimeClaim": "Windows 7 SP1 x64 or newer; Windows XP x64 unclaimed"
+      "packageName": "C3-v1.3.0-win-x86-net40-portable.zip",
+      "runtimeEnvironmentId": "xp-sp3-x86-net40",
+      "runtimeArchitecture": "x86",
+      "runtimeClaim": "Windows XP SP3 x86 with .NET Framework 4.0 Full",
+      "peMachine": "0x014c",
+      "peOptionalHeader": "0x010b",
+      "requires32Bit": true
     },
     {
       "id": "win-x64-net48",
@@ -29,19 +30,39 @@
       "platformTarget": "x64",
       "targetFramework": "v4.8",
       "appConfig": "build/config/net48/App.config",
-      "toolset": "15",
+      "toolset": "17",
+      "visualStudioRange": "[17.0,18.0)",
+      "initialServicingPin": "17.14.36",
+      "effectiveToolsVersion": "Current",
+      "compilerRelativePath": "MSBuild/Current/Bin/Roslyn/vbc.exe",
       "status": "required",
-      "runtimeClaim": "Windows 7 SP1 x64 or newer with .NET Framework 4.8"
+      "packageName": "C3-v1.3.0-win-x64-net48-portable.zip",
+      "runtimeEnvironmentId": "windows-7-sp1-x64-net48",
+      "runtimeArchitecture": "x64",
+      "runtimeClaim": "Windows 7 SP1 x64 with .NET Framework 4.8",
+      "peMachine": "0x8664",
+      "peOptionalHeader": "0x020b",
+      "requires32Bit": false
     },
     {
-      "id": "win-x64-net481",
-      "platform": "x64",
-      "platformTarget": "x64",
+      "id": "win-arm64-net481",
+      "platform": "ARM64",
+      "platformTarget": "ARM64",
       "targetFramework": "v4.8.1",
       "appConfig": "build/config/net481/App.config",
-      "toolset": "17",
+      "toolset": "18",
+      "visualStudioRange": "[18.0,19.0)",
+      "initialServicingPin": "18.8.2",
+      "effectiveToolsVersion": "Current",
+      "compilerRelativePath": "MSBuild/Current/Bin/Roslyn/vbc.exe",
       "status": "required",
-      "runtimeClaim": "Windows 10 22H2 x64 or Windows 11 x64"
+      "packageName": "C3-v1.3.0-win-arm64-net481-portable.zip",
+      "runtimeEnvironmentId": "windows-11-21h2-arm64-net481",
+      "runtimeArchitecture": "ARM64",
+      "runtimeClaim": "Windows 11 21H2/RTM ARM64 with separately installed .NET Framework 4.8.1",
+      "peMachine": "0xaa64",
+      "peOptionalHeader": "0x020b",
+      "requires32Bit": false
     }
   ]
 }

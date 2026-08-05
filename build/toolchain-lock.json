@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "status": "unfrozen",
+  "sourceCommit": null,
+  "frozenAtUtc": null,
+  "lanes": [
+    {
+      "id": "win-x86-net40",
+      "visualStudioProductVersion": null,
+      "visualStudioInstallationVersion": null,
+      "msbuildSha256": null,
+      "vbcSha256": null,
+      "referenceAssemblySetSha256": null
+    },
+    {
+      "id": "win-x64-net48",
+      "visualStudioProductVersion": null,
+      "visualStudioInstallationVersion": null,
+      "msbuildSha256": null,
+      "vbcSha256": null,
+      "referenceAssemblySetSha256": null
+    },
+    {
+      "id": "win-arm64-net481",
+      "visualStudioProductVersion": null,
+      "visualStudioInstallationVersion": null,
+      "msbuildSha256": null,
+      "vbcSha256": null,
+      "referenceAssemblySetSha256": null
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="C3VerifyBuildAuthority" BeforeTargets="CoreCompile">
+    <Error Condition="'$(C3ExpectedMSBuildToolsVersion)' == ''"
+           Text="C3ExpectedMSBuildToolsVersion was not supplied." />
+    <Error Condition="'$(MSBuildToolsVersion)' != '$(C3ExpectedMSBuildToolsVersion)'"
+           Text="Effective MSBuildToolsVersion '$(MSBuildToolsVersion)' does not match required '$(C3ExpectedMSBuildToolsVersion)'." />
+    <Error Condition="'$(C3ExpectedVbcPath)' == '' or !Exists('$(C3ExpectedVbcPath)')"
+           Text="The required C3 VBC path is missing: $(C3ExpectedVbcPath)" />
+    <Error Condition="'$(VbcToolPath)' == ''"
+           Text="VbcToolPath was not forced by the C3 build contract." />
+    <Error Condition="'$(C3ExpectedFrameworkPath)' == '' or !Exists('$(C3ExpectedFrameworkPath)')"
+           Text="The required C3 reference-assembly path is missing: $(C3ExpectedFrameworkPath)" />
+    <Error Condition="'$(FrameworkPathOverride)' != '$(C3ExpectedFrameworkPath)'"
+           Text="FrameworkPathOverride '$(FrameworkPathOverride)' does not match required '$(C3ExpectedFrameworkPath)'." />
+
+    <ItemGroup>
+      <_C3BuildEvidence Include="MSBuildVersion=$(MSBuildVersion)" />
+      <_C3BuildEvidence Include="MSBuildToolsVersion=$(MSBuildToolsVersion)" />
+      <_C3BuildEvidence Include="MSBuildToolsPath=$(MSBuildToolsPath)" />
+      <_C3BuildEvidence Include="VbcToolPath=$(VbcToolPath)" />
+      <_C3BuildEvidence Include="VbcToolExe=$(VbcToolExe)" />
+      <_C3BuildEvidence Include="TargetFrameworkVersion=$(TargetFrameworkVersion)" />
+      <_C3BuildEvidence Include="TargetFrameworkRootPath=$(TargetFrameworkRootPath)" />
+      <_C3BuildEvidence Include="TargetFrameworkDirectory=$(TargetFrameworkDirectory)" />
+      <_C3BuildEvidence Include="FrameworkPathOverride=$(FrameworkPathOverride)" />
+      <_C3BuildEvidence Include="TargetFrameworkSDKToolsDirectory=$(TargetFrameworkSDKToolsDirectory)" />
+      <_C3BuildEvidence Include="ResGenToolPath=$(ResGenToolPath)" />
+      <_C3BuildEvidence Include="ResGenToolExe=$(ResGenToolExe)" />
+      <_C3BuildEvidence Include="Platform=$(Platform)" />
+      <_C3BuildEvidence Include="PlatformTarget=$(PlatformTarget)" />
+      <_C3BuildEvidence Include="Configuration=$(Configuration)" />
+    </ItemGroup>
+    <WriteLinesToFile File="$(C3BuildEvidencePropertiesPath)"
+                      Lines="@(_C3BuildEvidence)"
+                      Overwrite="true"
+                      Encoding="UTF-8" />
+  </Target>
+</Project>
