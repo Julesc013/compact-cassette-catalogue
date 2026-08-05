@@ -100,10 +100,12 @@ if (-not (Test-Path -LiteralPath $MSBuildPath -PathType Leaf)) {
 }
 $MSBuildPath = [IO.Path]::GetFullPath($MSBuildPath)
 $msbuildInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($MSBuildPath)
-if ([string]$msbuildInfo.FileVersion -cne '14.0.25420.1' -or [string]$msbuildInfo.ProductVersion -cne '14.0.25420.1') {
+if ([int]$msbuildInfo.FileMajorPart -ne 14 -or [int]$msbuildInfo.FileMinorPart -ne 0 -or
+        [int]$msbuildInfo.FileBuildPart -ne 25420 -or [int]$msbuildInfo.FilePrivatePart -ne 1 -or
+        [string]$msbuildInfo.ProductVersion -cne '14.0.25420.1') {
     throw "Historical MSBuild must be exactly 14.0.25420.1; found '$($msbuildInfo.FileVersion)' / '$($msbuildInfo.ProductVersion)'."
 }
-$vbcPath = Join-Path (Split-Path -Parent $MSBuildPath) 'Roslyn\vbc.exe'
+$vbcPath = Join-Path (Split-Path -Parent $MSBuildPath) 'vbc.exe'
 if (-not (Test-Path -LiteralPath $vbcPath -PathType Leaf)) {
     throw "Historical Roslyn VB compiler is missing: $vbcPath"
 }
@@ -186,6 +188,7 @@ $evidence = [ordered]@{
     msbuild = [ordered]@{
         path = $MSBuildPath
         fileVersion = [string]$msbuildInfo.FileVersion
+        numericFileVersion = '{0}.{1}.{2}.{3}' -f $msbuildInfo.FileMajorPart,$msbuildInfo.FileMinorPart,$msbuildInfo.FileBuildPart,$msbuildInfo.FilePrivatePart
         productVersion = [string]$msbuildInfo.ProductVersion
         sha256 = (Get-FileHash -LiteralPath $MSBuildPath -Algorithm SHA256).Hash.ToLowerInvariant()
     }
@@ -194,6 +197,7 @@ $evidence = [ordered]@{
         fileVersion = [string](Get-Item -LiteralPath $vbcPath).VersionInfo.FileVersion
         sha256 = (Get-FileHash -LiteralPath $vbcPath -Algorithm SHA256).Hash.ToLowerInvariant()
     }
+    isolatedToolset = Get-ReferenceSet -Root (Split-Path -Parent $MSBuildPath)
     references = Get-ReferenceSet -Root $referenceRoot
     builds = $results.ToArray()
     releaseAuthority = $false
