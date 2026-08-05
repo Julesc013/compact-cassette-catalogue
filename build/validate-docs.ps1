@@ -17,6 +17,7 @@ $requiredFiles = @(
     'docs/governance/1.3.0-release-authorization-2026-08-05.md',
     'docs/governance/1.3.0-alpha3-classic-setup-2026-08-05.md',
     'docs/governance/1.3.0-beta1-authorization-2026-08-06.md',
+    'docs/governance/1.3.0-beta1-control-contract.md',
     'docs/planning/1.3.0-recovery-plan.md',
     'docs/planning/1.3.0-salvage-ledger.md',
     'docs/planning/1.3.0-milestones.md',
@@ -43,7 +44,8 @@ $requiredFiles = @(
     'release/validation/1.3.0-gate1-inventory-2026-08-06.md',
     'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md',
     'release/validation/1.3.0-alpha.3-preparation-2026-08-05.md',
-    'release/validation/1.3.0-alpha.3-qualified.md'
+    'release/validation/1.3.0-alpha.3-qualified.md',
+    'release/validation/1.3.0-beta.1-verdict.md'
 )
 
 $failures = New-Object Collections.Generic.List[String]
@@ -72,8 +74,18 @@ foreach ($relativePath in @(
         'build/new-alpha3-qualified-record.ps1',
         'build/verify-alpha3-tagged.ps1',
         'build/new-alpha3-post-tag-record.ps1',
+        'build/beta1-contract.ps1',
+        'build/verify-beta1.ps1',
+        'build/assemble-beta1-assets.ps1',
+        'build/verify-beta1-assets.ps1',
+        'build/new-beta1-verdict.ps1',
+        'build/create-beta1-tag.ps1',
+        'build/verify-beta1-tagged.ps1',
+        'build/new-beta1-post-tag-record.ps1',
+        'build/promote-beta1-legacy.ps1',
         'build/evidence-templates/alpha3-historical-gate1.json',
         'build/evidence-templates/alpha3-target-qualification.json',
+        'build/evidence-templates/beta1-gate-assessment.json',
         'build/verify-target-setup.ps1',
         'build/get-setup-genome.ps1',
         'build/setup-genome.v1.json',
@@ -82,7 +94,9 @@ foreach ($relativePath in @(
         'release/validation/1.3.0-alpha.2-qualified.json',
         'release/validation/1.3.0-alpha.2-post-tag.json',
         'release/validation/1.3.0-alpha.3-qualified.json',
-        'release/validation/1.3.0-alpha.3-post-tag.json')) {
+        'release/validation/1.3.0-alpha.3-post-tag.json',
+        'release/validation/1.3.0-beta.1-verdict.json',
+        'release/validation/1.3.0-beta.1-post-tag.json')) {
     if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {
         throw "Required release control is missing: $relativePath"
     }
@@ -253,16 +267,19 @@ foreach ($relativePath in $activePlanPaths) {
 
 $releaseNotes = Get-Content -LiteralPath (Join-Path $repositoryRoot 'RELEASE_NOTES.md') -Raw
 foreach ($statement in @(
-        '# Compact Cassette Catalogue 1.3.0 Alpha 3',
-        '1.3.0a3 / Alpha 3 / v1.3.0a3',
-        'intentionally unpublished',
-        'runtime repairs, Candidate reproduction',
-        'Forty-six shared-engine regressions and four',
-        'No standalone uninstaller is published',
+        '# Compact Cassette Catalogue 1.3.0 Beta 1',
+        '1.3.0b1 / Beta 1 / v1.3.0b1',
+        'Candidate retention is authorized',
+        'C3-v1.3.0b1-win-x86-net40-portable.zip',
+        'C3-v1.3.0b1-win-arm64-net481-setup.zip',
+        'No standalone raw EXE or',
+        '21 lifecycle/persistence tests',
+        'authenticated write-through ten-phase journal',
+        'A missing target row is a NO-GO',
         'v1.3.0b1',
         'v1.3.0')) {
     if (-not $releaseNotes.Contains($statement)) {
-        $failures.Add("Release notes are missing required Alpha disclosure: $statement")
+        $failures.Add("Release notes are missing required Beta Candidate disclosure: $statement")
     }
 }
 
