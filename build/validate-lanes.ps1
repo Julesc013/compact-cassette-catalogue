@@ -7,27 +7,34 @@ $ErrorActionPreference = 'Stop'
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'lanes.json') -Raw | ConvertFrom-Json
 $lock = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'toolchain-lock.json') -Raw | ConvertFrom-Json
-$expectedReleaseIdentity = [ordered]@{
-    schemaVersion = '3'
-    releaseVersion = '1.3.0'
-    releaseStage = 'Alpha 3'
-    releaseLabel = '1.3.0a3'
-    releaseTag = 'v1.3.0a3'
-    releaseChannel = 'alpha'
-    publicationStatus = 'retained-unpublished'
-    assemblyVersion = '1.3.0.0'
-    fileVersion = '1.3.0.0'
-    assemblyProductVersion = '1.3.0a3'
+$releaseContracts = @{
+    '1.3.0a3' = [ordered]@{
+        schemaVersion = '3'; releaseVersion = '1.3.0'; releaseStage = 'Alpha 3'
+        releaseLabel = '1.3.0a3'; releaseTag = 'v1.3.0a3'; releaseChannel = 'alpha'
+        publicationStatus = 'retained-unpublished'; assemblyVersion = '1.3.0.0'
+        fileVersion = '1.3.0.0'; assemblyProductVersion = '1.3.0a3'
+    }
+    '1.3.0b1' = [ordered]@{
+        schemaVersion = '3'; releaseVersion = '1.3.0'; releaseStage = 'Beta 1'
+        releaseLabel = '1.3.0b1'; releaseTag = 'v1.3.0b1'; releaseChannel = 'beta'
+        publicationStatus = 'retained-unpublished'; assemblyVersion = '1.3.0.0'
+        fileVersion = '1.3.0.0'; assemblyProductVersion = '1.3.0b1'
+    }
 }
+$releaseLabel = [string]$manifest.releaseLabel
+if (-not $releaseContracts.ContainsKey($releaseLabel)) {
+    throw "Release manifest label '$releaseLabel' is neither the active Alpha 3 implementation identity nor the authorized Beta 1 Candidate identity."
+}
+$expectedReleaseIdentity = $releaseContracts[$releaseLabel]
 foreach ($propertyName in $expectedReleaseIdentity.Keys) {
     if ([string]$manifest.$propertyName -cne [string]$expectedReleaseIdentity[$propertyName]) {
         throw "Release manifest $propertyName '$($manifest.$propertyName)' does not match '$($expectedReleaseIdentity[$propertyName])'."
     }
 }
 $expected = @(
-    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; servicingPin = '15.9.81'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; package = 'C3-v1.3.0a3-win-x86-net40-portable.zip'; setupPackage = 'C3-v1.3.0a3-win-x86-net40-setup.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; servicingPin = '17.14.37'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; package = 'C3-v1.3.0a3-win-x64-net48-portable.zip'; setupPackage = 'C3-v1.3.0a3-win-x64-net48-setup.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
-    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; servicingPin = '18.8.2'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; package = 'C3-v1.3.0a3-win-arm64-net481-portable.zip'; setupPackage = 'C3-v1.3.0a3-win-arm64-net481-setup.zip'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
+    [PSCustomObject]@{ id = 'win-x86-net40'; platform = 'x86'; framework = 'v4.0'; toolset = '15'; servicingPin = '15.9.81'; toolsVersion = '15.0'; machine = '0x014c'; header = '0x010b'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.6.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-x64-net48'; platform = 'x64'; framework = 'v4.8'; toolset = '17'; servicingPin = '17.14.37'; toolsVersion = 'Current'; machine = '0x8664'; header = '0x020b'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' },
+    [PSCustomObject]@{ id = 'win-arm64-net481'; platform = 'ARM64'; framework = 'v4.8.1'; toolset = '18'; servicingPin = '18.8.2'; toolsVersion = 'Current'; machine = '0xaa64'; header = '0x020b'; resourceTool = 'Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8.1 Tools/ResGen.exe' }
 )
 $lanes = @($manifest.lanes)
 if ($lanes.Count -ne $expected.Count) {
@@ -47,8 +54,8 @@ for ($index = 0; $index -lt $expected.Count; $index++) {
             @('resourceToolRelativePath', [string]$actual.resourceToolRelativePath, $contract.resourceTool),
             @('peMachine', [string]$actual.peMachine, $contract.machine),
             @('peOptionalHeader', [string]$actual.peOptionalHeader, $contract.header),
-            @('packageName', [string]$actual.packageName, $contract.package),
-            @('setupPackageName', [string]$actual.setupPackageName, $contract.setupPackage),
+            @('packageName', [string]$actual.packageName, "C3-v$releaseLabel-$($contract.id)-portable.zip"),
+            @('setupPackageName', [string]$actual.setupPackageName, "C3-v$releaseLabel-$($contract.id)-setup.zip"),
             @('status', [string]$actual.status, 'required'))) {
         if ([string]$comparison[1] -cne [string]$comparison[2]) {
             throw "Lane $index $($comparison[0]) '$($comparison[1])' does not match '$($comparison[2])'."
