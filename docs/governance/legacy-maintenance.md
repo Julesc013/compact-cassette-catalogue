@@ -87,10 +87,14 @@ owner decision. Silence is not deferral.
 
 - `dev/1.x` owns unqualified maintenance work.
 - `legacy/1.x` advances only to a fully qualified checkpoint.
-- Alpha tags may identify intentionally unpublished engineering checkpoints on
-  `dev/1.x`; they do not advance `legacy/1.x` or the update feed.
-- Beta tags require a feature/compatibility-complete candidate and the Beta 1
-  gate. A public beta uses already-qualified retained packages.
+- Under the [preview release authorization](1.3.0-release-authorization-2026-08-05.md),
+  Codex may create deliberate annotated Alpha tags and produce retained Alpha
+  distributions after their documented checks. Alpha does not advance
+  `legacy/1.x` or the update feed, and production does not imply publication.
+- Every Beta tag, Beta-labelled distribution, and Beta publication requires
+  explicit human approval in addition to a feature/compatibility-complete
+  candidate and the Beta gate. A public Beta uses already-qualified retained
+  packages.
 - `v1.3.0` identifies the stable qualification commit, not an arbitrary moving
   branch tip.
 - The root three-line `VERSION` remains at 1.2.0 until stable 1.3.0 assets pass

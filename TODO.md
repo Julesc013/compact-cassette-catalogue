@@ -98,6 +98,12 @@ a specific governance amendment.
 - [x] Pass the consolidated adversarial failure suite and restore a clean tree.
 - [x] Classify hosted status checks as supplemental/non-authoritative unless a
   later owner decision adopts a specific hosted qualification environment.
+- [x] Require one source, mode, locked status, and external-lock SHA-256 across
+  the complete three-package Candidate set.
+- [x] Fetch and retain the provider-ref/remote-URL receipt at lock capture, then
+  keep the actual Candidate builds offline.
+- [x] Repeat source/ref/submodule/genome/lock closure after all Candidate lanes
+  and require the retained result before Candidate packaging.
 - [ ] Update VS2017 to at least 15.9.81, VS2022 to at least 17.14.36, and VS2026
   to at least 18.8.2 (or later stable servicing available at freeze), rebuild
   Preparation evidence, and create the first acceptable external candidate lock.
@@ -156,8 +162,10 @@ patch, genome validation, and focused commit.
   RTM ARM64/net481 on their target machines using exact retained package hashes.
 - [ ] Complete all automated, manual, compatibility, and OS Beta gates.
 - [ ] Resolve or reject every S0–S2 salvage-ledger entry with evidence.
-- [ ] Freeze, qualify, tag, and optionally publish `v1.3.0b1` without changing the
-  stable legacy feed.
+- [ ] Freeze and qualify the Beta-eligible source and evidence, then obtain
+  explicit human approval before producing Beta-labelled distributions,
+  creating `v1.3.0b1`, or optionally publishing it; never change the stable
+  legacy feed for Beta.
 
 ## Stable 1.3.0
 

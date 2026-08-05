@@ -14,6 +14,7 @@ $requiredFiles = @(
     'docs/governance/1x-branch-recovery-2026-08-05.md',
     'docs/governance/legacy-maintenance.md',
     'docs/governance/1.3.0-three-lane-matrix-2026-08-05.md',
+    'docs/governance/1.3.0-release-authorization-2026-08-05.md',
     'docs/planning/1.3.0-recovery-plan.md',
     'docs/planning/1.3.0-salvage-ledger.md',
     'docs/planning/1.3.0-milestones.md',
@@ -28,7 +29,8 @@ $requiredFiles = @(
     'release/validation/1.3.0-alpha.1.md',
     'release/validation/1.3.0-alpha.1-post-correction.md',
     'release/validation/1.3.0-three-lane-preparation-2026-08-05.md',
-    'release/validation/1.3.0-release-control-hardening-2026-08-05.md'
+    'release/validation/1.3.0-release-control-hardening-2026-08-05.md',
+    'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md'
 )
 
 $failures = New-Object Collections.Generic.List[String]
@@ -109,6 +111,29 @@ foreach ($statement in @(
         'Universal Setup')) {
     if (-not $matrixDecision.Contains($statement)) {
         $failures.Add("Three-lane decision is missing required authority: $statement")
+    }
+}
+
+$releaseAuthorization = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/governance/1.3.0-release-authorization-2026-08-05.md') -Raw
+foreach ($statement in @(
+        'Codex is authorized to create annotated C3 1.3.0 Alpha tags',
+        'an Alpha distribution does not by itself authorize',
+        'authorize publishing it publicly',
+        'Explicit human approval is required before any C3 1.3.0 Beta version is created',
+        'producing or retaining a Beta-labelled distribution')) {
+    if (-not $releaseAuthorization.Contains($statement)) {
+        $failures.Add("Release authorization is missing required owner decision: $statement")
+    }
+}
+
+$freezeAssertions = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md') -Raw
+foreach ($statement in @(
+        'one source and one lock across the complete three-package set',
+        'Provider-ref capture and offline build boundary',
+        'Final source closure',
+        'Candidate freeze, Beta qualification')) {
+    if (-not $freezeAssertions.Contains($statement)) {
+        $failures.Add("Candidate-freeze assertion record is missing required boundary: $statement")
     }
 }
 

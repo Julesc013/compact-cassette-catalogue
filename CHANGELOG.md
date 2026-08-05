@@ -58,6 +58,15 @@
 - Kept this work classified as preparation: current local Visual Studio
   installations remain below the decision-date floors and cannot be frozen as
   candidate authority.
+- Required one source/mode/status/lock identity across the complete three-package
+  set, with independent package-verifier enforcement and negative tests.
+- Made lock capture fetch and retain the provider ref, commit, remote URL, and
+  timestamp before allowing subsequent offline Candidate builds.
+- Added final source/ref/submodule/genome/lock closure after all Candidate lanes
+  and required it before Candidate packaging.
+- Recorded the owner authorization allowing deliberate Alpha tags and retained
+  Alpha distributions while requiring explicit human approval for every Beta
+  tag, Beta-labelled distribution, or Beta publication.
 
 
 ### Version 1.3.0 Alpha 1 - 5 August 2026

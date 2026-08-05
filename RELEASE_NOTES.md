@@ -33,11 +33,21 @@ actual target scripts parse and run under Windows PowerShell 2. Adversarial
 tests prove that wrong-source locks, dirty files, altered extraction, spoofed
 labels, wrong target facts, and stale servicing baselines fail closed.
 
+Candidate-set hardening additionally requires one source and immutable lock
+across all three packages, captures a freshly fetched provider-ref receipt
+before offline builds, and repeats source/ref/submodule/genome/lock closure after
+the last lane. These controls have passed Preparation and adversarial validation;
+their live Candidate proof awaits serviced builders.
+
 This is preparation, not Beta qualification. The installed builders are one
 or more servicing steps behind the decision-date floors, no acceptable external
 candidate lock is frozen, historical Gate 1 and runtime repairs remain open, and
 no target-machine workflow matrix has been claimed. No new tag, binary release,
 feed change, or `legacy/1.x` promotion follows from this result.
+
+The owner has separately authorized deliberate Alpha tags and retained Alpha
+distributions after their documented checks. Explicit human approval is still
+required before any Beta tag, Beta-labelled distribution, or Beta publication.
 
 ## What Alpha 1 establishes
 
