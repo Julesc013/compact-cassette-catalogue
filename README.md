@@ -5,10 +5,10 @@
 See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](TODO.md "C3 1.3 Workboard"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
 > **Repository status:** the available user release remains C3 1.2.0 Beta 1.
-> `dev/1.x` projects the intentionally unpublished C3 1.3.0 Alpha 2 engineering
-> checkpoint. Its tag and three retained distributions do not exist until the
-> serviced-builder, Candidate, reproducibility, and smoke gates pass. It does
-> not yet contain the planned runtime repairs. See the
+> `dev/1.x` now develops the intentionally unpublished C3 1.3.0 Alpha 3 legacy
+> reliability and classic setup checkpoint. Alpha 2 is immutable and complete;
+> Alpha 3 runtime repairs, setup implementation, and target-machine evidence
+> remain gated. See the
 > [legacy maintenance documentation](docs/README.md).
 > After Alpha, the owner ratified an exact three-lane stable matrix: x86/net40,
 > x64/net48, and native ARM64/net481. The Alpha tag remains immutable historical
@@ -87,21 +87,23 @@ release oracle. The later project-splitting refactor is not production ancestry.
 - Alpha 1 froze the recovery doctrine, compatibility evidence, genome gate, and
   its then-current four-lane diagnostic scaffolding. It is source-only and
   unpublished.
-- Alpha 2 is the planned retained three-lane build/release-control checkpoint.
-  Its `1.3.0a2` identity is projected, but builder servicing and production of
-  the tag and ZIPs remain open.
-- Beta 1 will contain the complete bounded runtime repair set and qualification
-  evidence under the ratified three-lane matrix.
-- Stable will publish only already-qualified portable packages and will update
-  the legacy feed after downloaded assets pass verification.
+- Alpha 2 completed the retained three-lane build/release-control proof.
+- Alpha 3 completes the original-application reliability work, systematic defect
+  hunt, and repaired optional classic VB.NET setup/uninstall lifecycle.
+- Beta 1 will contain the same completed scope only after explicit human
+  approval authorizes Beta-labelled tags and bytes.
+- Stable always publishes the qualified portable packages; classic setup is
+  included only if its target-machine evidence is accepted.
 
 The final stable original WinForms release is built from one source-identical
 project as `win-x86-net40` (VS2017, XP SP3 minimum), `win-x64-net48` (VS2022,
 Windows 7 SP1 minimum), and native `win-arm64-net481` (VS2026, Windows 11 RTM
-ARM64 minimum with .NET Framework 4.8.1 installed). C3 1.3 is portable ZIP only:
-no MSI, MSIX, ClickOnce publication, bootstrapper, updater, or new runtime-DLL
-graph is part of the core release. See the
-[ratified matrix](docs/governance/1.3.0-three-lane-matrix-2026-08-05.md).
+ARM64 minimum with .NET Framework 4.8.1 installed). Portable ZIPs are canonical.
+An optional offline, per-machine classic setup may consume those exact bytes;
+no MSI, MSIX, ClickOnce publication, network bootstrapper, updater, or new
+runtime-DLL graph is part of the release. See the
+[ratified matrix](docs/governance/1.3.0-three-lane-matrix-2026-08-05.md) and
+[Alpha 3 setup decision](docs/governance/1.3.0-alpha3-classic-setup-2026-08-05.md).
 
 The existing DataSet catalogue format remains 1.1.0. No 1.3 milestone introduces
 a new runtime dependency, production assembly, C# source, project split, or UI

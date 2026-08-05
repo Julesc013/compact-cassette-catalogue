@@ -97,7 +97,7 @@ if ($SelfTest) {
     if ($selfHash -notmatch '^[0-9a-f]{64}$') {
         throw 'verify-target-runtime.ps1 PowerShell 2 self-test could not compute SHA-256.'
     }
-    $selfManifest = ConvertFrom-EntryManifestJson '{"schemaVersion":2,"packageName":"test.zip","packageSha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","releaseVersion":"1.3.0","releaseStage":"Alpha 2","releaseLabel":"1.3.0a2","releaseTag":"v1.3.0a2","releaseChannel":"alpha","publicationStatus":"retained-unpublished","sourceCommit":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","toolchainLockSha256":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","entries":[{"name":"BUILD.txt","size":1,"sha256":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}]}'
+    $selfManifest = ConvertFrom-EntryManifestJson '{"schemaVersion":2,"packageName":"test.zip","packageSha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","releaseVersion":"1.3.0","releaseStage":"Alpha 3","releaseLabel":"1.3.0a3","releaseTag":"v1.3.0a3","releaseChannel":"alpha","publicationStatus":"retained-unpublished","sourceCommit":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","toolchainLockSha256":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","entries":[{"name":"BUILD.txt","size":1,"sha256":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}]}'
     if ([string]$selfManifest.packageName -cne 'test.zip' -or @($selfManifest.entries).Count -ne 1) {
         throw 'verify-target-runtime.ps1 PowerShell 2 self-test could not parse retained entry-manifest evidence.'
     }

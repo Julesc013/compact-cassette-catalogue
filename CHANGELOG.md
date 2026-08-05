@@ -4,12 +4,34 @@
 ## C3 1.3 legacy maintenance
 
 
+### Version 1.3.0 Alpha 3 - 5 August 2026
+
+Alpha 3 is the planned legacy reliability and classic setup revival checkpoint.
+Its identity is projected; functional repairs and setup implementation remain
+subject to their focused gates.
+
+- Ratified the owner decision making the repaired classic VB.NET setup an
+  optional secondary distribution while portable ZIPs remain authoritative.
+- Defined offline, version-bound setup bundles for x86/net40, x64/net48, and
+  native ARM64/net481.
+- Specified closed payload and installed-state XML manifests, transactional
+  install/repair/upgrade/rollback, and ownership-only uninstall.
+- Required preservation of catalogues, settings, unknown files, and unowned
+  content.
+- Added the S0–S3 defect ledger and static, differential, randomized, XML,
+  persistence-fault, and lifecycle test programmes.
+- Kept Universal Setup as a future consumer of the same contracts rather than
+  a blocker for the completed historical implementation.
+- Preserved the standing authority for retained unpublished Alpha artifacts and
+  the explicit-human-approval boundary for every Beta-labelled operation.
+
+
 ### Version 1.3.0 Alpha 2 - 5 August 2026
 
-Alpha 2 is the planned, intentionally unpublished three-lane build and
-release-control checkpoint. Its repository identity is projected; the tag and
-retained distributions remain gated on serviced builders and the full Candidate
-path.
+Alpha 2 is the completed, intentionally unpublished three-lane build and
+release-control checkpoint. Its annotated tag, retained packages, immutable
+lock, clean-source reproduction, and post-tag record passed without public
+publication, feed change, or legacy movement.
 
 - Added a closed stage-aware manifest identity for `1.3.0a2`, `Alpha 2`,
   `v1.3.0a2`, alpha channel, and retained-unpublished status.

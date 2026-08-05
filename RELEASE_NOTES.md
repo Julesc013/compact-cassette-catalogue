@@ -1,113 +1,77 @@
-# Compact Cassette Catalogue 1.3.0 Alpha 2
+# Compact Cassette Catalogue 1.3.0 Alpha 3
 
-C3 1.3.0 Alpha 2 is the planned, intentionally unpublished three-lane build and
-release-control checkpoint for the final original C3 line. The source now
-projects the exact `1.3.0a2 / Alpha 2 / v1.3.0a2` identity, but this document is
-not evidence that the tag or distributions already exist.
+C3 1.3.0 Alpha 3 is the planned, intentionally unpublished legacy reliability
+and classic setup revival checkpoint. The active source projects the exact
+`1.3.0a3 / Alpha 3 / v1.3.0a3` identity.
 
-Alpha 2 becomes complete only after the maintained builders are serviced, the
-full Preparation and Candidate paths pass from one clean pushed source and one
-immutable external lock, the three retained packages reproduce, and the
-annotated tag is created and verified.
+Alpha 2 is complete and immutable: its three portable packages reproduced from
+clean path-distinct builds, its annotated tag remains at evidence commit `E`,
+and post-tag commit `P` records the unchanged feed, publication, and legacy
+boundaries.
 
-## Intended retained assets
+## Planned Alpha 3 assets
+
+Canonical portable packages:
 
 ```text
-C3-v1.3.0a2-win-x86-net40-portable.zip
-C3-v1.3.0a2-win-x64-net48-portable.zip
-C3-v1.3.0a2-win-arm64-net481-portable.zip
+C3-v1.3.0a3-win-x86-net40-portable.zip
+C3-v1.3.0a3-win-x64-net48-portable.zip
+C3-v1.3.0a3-win-arm64-net481-portable.zip
+```
+
+Optional offline classic setup bundles:
+
+```text
+C3-v1.3.0a3-win-x86-net40-setup.zip
+C3-v1.3.0a3-win-x64-net48-setup.zip
+C3-v1.3.0a3-win-arm64-net481-setup.zip
 SHA256SUMS.txt
 ```
 
-Every ZIP is restricted to the classic WinForms EXE, its matching config,
-`README.txt`, `RELEASE_NOTES.txt`, and `BUILD.txt`. The release label and stage
-are bound through source constants, assembly informational/product metadata,
-the lane manifest, filenames, `BUILD.txt`, entry manifests, checksums, and the
-eventual annotated tag.
+The portable ZIPs remain authoritative and independently usable. Setup consumes
+the exact qualified application bytes; it never rebuilds, downloads, silently
+updates, or rewrites C3. No standalone uninstaller is published.
 
-## What Alpha 2 is intended to prove
+## Intended functional scope
 
-- Exactly three source-identical lanes: `win-x86-net40`, `win-x64-net48`, and
-  native `win-arm64-net481`.
-- Exact serviced Visual Studio, MSBuild, VB compiler, reference-assembly, and
-  resource-tool authority captured in one external source-bound lock.
-- Genuine x86, x64, and `0xaa64` ARM64 binaries with their exact framework and
-  CorFlags contracts.
-- One clean pushed source, one immutable lock, and final
-  source/ref/submodule/genome/lock closure across the complete package set.
-- Deterministic five-entry portable ZIPs reproduced from clean path-distinct
-  Candidate source rebuilds—not repeated packaging of the same outputs—and
-  authenticated by retained entry manifests.
-- Builder launch smoke for x86 and x64. ARM64 execution remains deferred until
-  the exact native Windows-on-ARM qualification environment is available.
+- Complete historical Gate 1 before changing application behaviour.
+- Repair lifecycle, load/save, hostile-input, referential-integrity, counters,
+  settings, and diagnostic defects one reproduction-backed outcome at a time.
+- Run a systematic static, differential, randomized, XML, persistence-fault,
+  and lifecycle defect hunt.
+- Retain the classic installer/uninstaller project identities and recognizable
+  WinForms wizard while replacing their unsafe online and placeholder engines.
+- Build source-identical x86/net40, x64/net48, and native ARM64/net481 setup
+  executables from shared linked VB.NET source without a runtime DLL.
+- Install offline through closed XML manifests, same-volume staging,
+  transactional commit, verification, rollback, owned registry/shortcuts, and a
+  real self-relocating reversible uninstaller.
+- Preserve catalogue XML, profile settings, unknown files, and all unowned data.
 
-## Current gate status
+## Current status
 
-Repository-side Alpha identity and package projection are implemented. Alpha 2
-is not yet tagged or distributed because the installed Visual Studio releases
-remain below the declared servicing floors:
+The Alpha 3 scope decision, plan, manifest contracts, and defect ledger are
+ratified. Identity projection does not claim that runtime repairs, setup engine,
+target-machine qualification, tag, or Alpha 3 packages are complete.
 
-```text
-VS2017 >= 15.9.81
-VS2022 >= 17.14.37
-VS2026 >= 18.8.2
-```
-
-Administrator servicing, fresh Preparation evidence, external lock capture,
-the live Candidate build, package reproduction, smoke, and final Alpha evidence
-remain required. Old preparation outputs do not qualify as Alpha 2 bytes.
-
-The final record uses `C → E → tag → P`: packages are built from `C`, the
-annotated tag points to evidence commit `E`, and direct child `P` records the
-now-existing local/remote tag object and target plus retained hashes. This
-avoids embedding a tag-object self-reference in its own target commit.
-Machine-readable qualification hashes are frozen at `E`; `P` must match those
-pre-tag values rather than taking a new authoritative snapshot.
-
-## Explicit deferrals
-
-Alpha 2 is an engineering preview, not Beta qualification. It does not claim:
-
-- historical Gate 1 completion;
-- any lifecycle, persistence, catalogue, settings, counter, or diagnostic repair;
-- minimum-operating-system qualification on XP, Windows 7, or Windows 11 ARM64;
-- native ARM64 runtime execution;
-- public GitHub publication;
-- update-feed promotion; or
-- movement of `legacy/1.x`.
-
-The inherited recursive close/cancellation defect remains recorded and is not
-an Alpha blocker. It is assigned to the first lifecycle repair wave after
-historical Gate 1.
+The exact Windows XP SP3 x86, Windows 7 SP1 x64, and Windows 11 21H2 ARM64
+runtime/setup matrices remain required. ARM64 binary inspection on an x64
+builder is not native runtime proof.
 
 ## Release authority
 
-The owner authorizes the deliberate `v1.3.0a2` annotated tag and retained
-Alpha-labelled packages after the Alpha 2 checks pass. That authority does not
-authorize a public GitHub release.
+An annotated `v1.3.0a3` tag and retained Alpha-labelled portable/setup ZIPs are
+authorized only after every applicable Alpha 3 gate passes. Public Alpha
+publication is not implied.
 
-Explicit human approval remains mandatory before any `v1.3.0b1` tag,
-`1.3.0b1`-labelled package, retained Beta ZIP, or public Beta prerelease is
-created. Stable publication, feed promotion, and `legacy/1.x` advancement remain
-behind their separate stable gates.
+Every `v1.3.0b1` tag or Beta-labelled retained byte requires explicit human
+approval. Public Beta publication requires separate approval. Stable feed
+promotion and `legacy/1.x` movement remain separately gated.
 
-## Historical Alpha 1 boundary
+The available public user release remains C3 1.2.0 Beta 1. The three-line
+`VERSION` feed remains unchanged until stable publication succeeds.
 
-The immutable `v1.3.0a1` checkpoint remains the source-only recovered
-maintenance foundation. Its four diagnostic x86/x64 lanes remain truthful
-historical evidence; the later owner decision superseded that matrix with the
-three lanes above without rewriting Alpha 1.
-
-## Update feed
-
-The repository-root `VERSION` feed intentionally remains the available public
-release:
-
-```text
-1.2.0
-Release
-14/05/2026
-```
-
-See `docs/planning/1.3.0-alpha.2.md`, the qualification matrix, and `TODO.md` for
-the exact Alpha 2 production gate and later work.
+See the [Alpha 3 plan](docs/planning/1.3.0-alpha.3.md),
+[owner decision](docs/governance/1.3.0-alpha3-classic-setup-2026-08-05.md),
+[defect ledger](docs/testing/1.3.0-alpha3-defect-ledger.md), and
+[setup manifest contracts](docs/setup/1.3.0-manifest-contracts.md).

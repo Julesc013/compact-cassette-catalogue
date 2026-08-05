@@ -50,8 +50,9 @@ binaries, or change the update feed.
 - [x] Define exactly `win-x86-net40`, `win-x64-net48`, and
   `win-arm64-net481` as Beta/stable release lanes.
 - [x] Assign VS2017, VS2022, and VS2026 compiler authority respectively.
-- [x] Restrict C3 1.3 to portable classic WinForms ZIPs and exclude every
-  installer/updater path from release authority.
+- [x] Keep portable classic WinForms ZIPs authoritative. This earlier exclusion
+  of every installer path is superseded by the Alpha 3 optional classic setup
+  decision; updater/network bootstrap paths remain excluded.
 - [x] Replace the active lane manifest and package-name contract.
 - [x] Add exact-family MSBuild resolution, effective-tools-version checks,
   binary logs, and hash-pinned toolchain evidence.
@@ -107,14 +108,11 @@ a specific governance amendment.
   keep the actual Candidate builds offline.
 - [x] Repeat source/ref/submodule/genome/lock closure after all Candidate lanes
   and require the retained result before Candidate packaging.
-- [ ] Update VS2017 to at least 15.9.81, VS2022 to at least 17.14.37, and VS2026
+- [x] Update VS2017 to at least 15.9.81, VS2022 to at least 17.14.37, and VS2026
   to at least 18.8.2 (or later stable servicing available at freeze), rebuild
   Preparation evidence, and create the first acceptable external candidate lock.
 
-Current execution note: servicing requires an administrator token unavailable to
-the Codex session. The exact commands and unchanged installed versions are
-retained in the builder/Gate 1 preparation record; this is an environment block,
-not a passed or waived gate.
+Servicing completed at VS2017 15.9.81, VS2022 17.14.37, and VS2026 18.8.2.
 
 ## Alpha 2 — three-lane control checkpoint
 
@@ -132,29 +130,53 @@ not a passed or waived gate.
   hashes are unchanged rather than merely taking a new snapshot at `P`.
 - [x] Add a governed two-worktree Candidate source-rebuild harness; repeated
   packaging of one retained binary set is not source reproducibility.
-- [ ] Service all three maintained builders to the declared floors or later
+- [x] Service all three maintained builders to the declared floors or later
   stable releases and discard stale outputs under the validated artifact roots.
-- [ ] Push clean Alpha source commit `C` and pass the complete source-only suite.
-- [ ] Rebuild all three lanes in Preparation mode and retain exact tool evidence.
-- [ ] Fetch `origin/dev/1.x`, capture one external immutable lock bound to `C`,
+- [x] Push clean Alpha source commit `C` and pass the complete source-only suite.
+- [x] Rebuild all three lanes in Preparation mode and retain exact tool evidence.
+- [x] Fetch `origin/dev/1.x`, capture one external immutable lock bound to `C`,
   and rebuild all three lanes in offline Candidate mode.
-- [ ] Pass final source/ref/submodule/genome/lane/lock closure.
-- [ ] Produce exactly the three `C3-v1.3.0a2-...-portable.zip` assets and
+- [x] Pass final source/ref/submodule/genome/lane/lock closure.
+- [x] Produce exactly the three `C3-v1.3.0a2-...-portable.zip` assets and
   `SHA256SUMS.txt`, with authenticated entry manifests.
-- [ ] Prove two clean path-distinct Candidate source rebuilds reproduce every
+- [x] Prove two clean path-distinct Candidate source rebuilds reproduce every
   authoritative build, package, checksum, and entry-manifest byte.
-- [ ] Run x86/x64 builder smoke and record ARM64 runtime as deferred.
-- [ ] Commit evidence `E`, create and verify annotated `v1.3.0a2` at `E` with
+- [x] Run x86/x64 builder smoke and record ARM64 runtime as deferred.
+- [x] Commit evidence `E`, create and verify annotated `v1.3.0a2` at `E` with
   the required deferral message, then push the tag.
-- [ ] Commit direct child `P` changing only the post-tag record; verify remote
+- [x] Commit direct child `P` changing only the post-tag record; verify remote
   tag object/target and unchanged hashes/feed/legacy/publication boundaries.
-- [ ] Retain the exact lock/packages/source-build evidence without public release.
+- [x] Retain the exact lock/packages/source-build evidence without public release.
 
 Alpha 2 does not close historical Gate 1, repair the inherited recursive-close
 defect, qualify a minimum OS, move `legacy/1.x`, or change the public feed.
 Every Beta-labelled operation remains prohibited without explicit human approval.
 
-## Beta 1 — lifecycle and data safety
+## Alpha 3 — legacy reliability and classic setup
+
+- [x] Ratify `1.3.0a3 / Alpha 3 / v1.3.0a3` scope, artifact, setup, and
+  authorization doctrine.
+- [x] Specify closed payload and installed-state XML manifests.
+- [x] Add the S0–S3 application/setup defect and hazard ledger.
+- [ ] Complete historical Gate 1 before changing application runtime behaviour.
+- [ ] Freeze installer/uninstaller project, form, control, resource, and artwork
+  identity before remediation.
+- [ ] Add matched x86/net40, x64/net48, and ARM64/net481 setup configurations.
+- [ ] Link one shared VB.NET setup implementation into both EXEs without a DLL.
+- [ ] Implement offline verification, path/environment/elevation preflight,
+  staging, journal, install, repair, upgrade, rollback, registry, and shortcuts.
+- [ ] Implement manifest-bound discovery, self-relocation, reversible removal,
+  and unknown/catalogue/settings preservation.
+- [ ] Complete the classic wizard directory/cancel/error/accessibility flows and
+  deduplicate repeated artwork without redesigning it.
+- [ ] Build deterministic setup bundles from exact qualified portable payload
+  bytes and pass two clean path-distinct setup builds.
+- [ ] Pass the full per-lane install/repair/upgrade/uninstall/fault matrix on XP,
+  Windows 7, and native Windows 11 ARM64.
+- [ ] Retain and attest annotated `v1.3.0a3` portable/setup artifacts without
+  public publication, feed change, or legacy movement.
+
+## Alpha 3 — lifecycle and data safety
 
 - [ ] S1: resolve pending tape edits before close/open/new/scroll transitions.
 - [ ] S1: replace recursive close cancellation with one explicit close gate.
@@ -172,7 +194,7 @@ Every Beta-labelled operation remains prohibited without explicit human approval
 Every item requires an isolated reproduction, regression, minimal original-file
 patch, genome validation, and focused commit.
 
-## Beta 1 — referential and counter integrity
+## Alpha 3 — referential and counter integrity
 
 - [ ] S2: read model notes from `Models`, not `Brands`.
 - [ ] S2: update the deck counter when deleting a deck.
@@ -187,7 +209,7 @@ patch, genome validation, and focused commit.
 - [ ] S1: recognize historical display-name `Models.Brand` references without a
   format migration.
 
-## Beta 1 — settings, diagnostics, lanes, and packages
+## Alpha 3 — settings, diagnostics, lanes, and packages
 
 - [ ] Add `settingsUpgradeRequired=True` and guarded `My.Settings.Upgrade()`.
 - [ ] Keep migration failures nonfatal and retryable; never alter old profiles.
@@ -203,7 +225,8 @@ patch, genome validation, and focused commit.
 - [x] Finalize exactly three lane-specific config/manifest projections with
   identical application logic and resources.
 - [x] Add deterministic portable packaging and exact payload verification.
-- [ ] Prove two clean, path-distinct builds produce identical ZIPs.
+- [x] Prove two clean, path-distinct portable builds produce identical ZIPs for
+  Alpha 2; repeat for the completed Alpha 3 product and setup sources.
 - [ ] Qualify XP SP3 x86/net40, Windows 7 SP1 x64/net48, and native Windows 11
   RTM ARM64/net481 on their target machines using exact retained package hashes.
 - [ ] Complete all automated, manual, compatibility, and OS Beta gates.
@@ -236,9 +259,9 @@ patch, genome validation, and focused commit.
 - new catalogue fields, formats, plugins, import/export framework, or updater;
 - modular-monolith/service/repository architecture;
 - C# translation or production source relocation;
-- broad UI/DPI/localization redesign; and
-- MSI, MSIX, ClickOnce publication, bootstrapper, installer, uninstaller,
-  background updater, or self-contained runtime;
+- broad application UI/localization redesign;
+- MSI, MSIX, ClickOnce publication, network bootstrapper, background updater,
+  service, or self-contained runtime;
 - a separately qualified Universal Setup product binding; and
 - ordinary feature requests formerly listed as 1.3 usability work.
 

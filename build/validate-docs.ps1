@@ -15,15 +15,19 @@ $requiredFiles = @(
     'docs/governance/legacy-maintenance.md',
     'docs/governance/1.3.0-three-lane-matrix-2026-08-05.md',
     'docs/governance/1.3.0-release-authorization-2026-08-05.md',
+    'docs/governance/1.3.0-alpha3-classic-setup-2026-08-05.md',
     'docs/planning/1.3.0-recovery-plan.md',
     'docs/planning/1.3.0-salvage-ledger.md',
     'docs/planning/1.3.0-milestones.md',
     'docs/planning/1.3.0-alpha.1.md',
     'docs/planning/1.3.0-alpha.2.md',
+    'docs/planning/1.3.0-alpha.3.md',
     'docs/planning/1.3.0-beta.1.md',
     'docs/planning/1.3.0-stable.md',
     'docs/testing/1.3.0-qualification-matrix.md',
+    'docs/testing/1.3.0-alpha3-defect-ledger.md',
     'docs/testing/1.3.0-target-runtime-record.md',
+    'docs/setup/1.3.0-manifest-contracts.md',
     'docs/compatibility/1x-evidence-matrix.md',
     'release/validation/1.3.0-preparation-2026-08-05.md',
     'release/validation/1.3.0-reconstructed-baseline.md',
@@ -32,7 +36,7 @@ $requiredFiles = @(
     'release/validation/1.3.0-three-lane-preparation-2026-08-05.md',
     'release/validation/1.3.0-release-control-hardening-2026-08-05.md',
     'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md',
-    'release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md'
+    'release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md',
     'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md'
 )
 
@@ -45,6 +49,7 @@ foreach ($relativePath in @(
         'build/new-alpha2-post-tag-record.ps1',
         'build/test-alpha2-tag-message.ps1',
         'build/test-source-reproducibility.ps1',
+        'build/verify-alpha3.ps1',
         'release/validation/1.3.0-alpha.2-qualified.json',
         'release/validation/1.3.0-alpha.2-post-tag.json')) {
     if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {
@@ -94,9 +99,10 @@ foreach ($heading in @(
         '## Beta 1 entry — finish historical baseline reconstruction',
         '## Release-control hardening before Gate 1',
         '## Alpha 2 — three-lane control checkpoint',
-        '## Beta 1 — lifecycle and data safety',
-        '## Beta 1 — referential and counter integrity',
-        '## Beta 1 — settings, diagnostics, lanes, and packages',
+        '## Alpha 3 — legacy reliability and classic setup',
+        '## Alpha 3 — lifecycle and data safety',
+        '## Alpha 3 — referential and counter integrity',
+        '## Alpha 3 — settings, diagnostics, lanes, and packages',
         '## Stable 1.3.0',
         '## Explicitly outside C3 1.3')) {
     if (-not $todo.Contains($heading)) {
@@ -162,6 +168,7 @@ foreach ($statement in @(
 
 $activePlanPaths = @(
     'docs/planning/1.3.0-recovery-plan.md',
+    'docs/planning/1.3.0-alpha.3.md',
     'docs/planning/1.3.0-beta.1.md',
     'docs/planning/1.3.0-stable.md',
     'docs/testing/1.3.0-qualification-matrix.md'
@@ -177,15 +184,42 @@ foreach ($relativePath in $activePlanPaths) {
 
 $releaseNotes = Get-Content -LiteralPath (Join-Path $repositoryRoot 'RELEASE_NOTES.md') -Raw
 foreach ($statement in @(
-        '# Compact Cassette Catalogue 1.3.0 Alpha 2',
-        '1.3.0a2 / Alpha 2 / v1.3.0a2',
+        '# Compact Cassette Catalogue 1.3.0 Alpha 3',
+        '1.3.0a3 / Alpha 3 / v1.3.0a3',
         'intentionally unpublished',
-        'not yet tagged or distributed',
-        'recursive close/cancellation defect',
+        'runtime repairs, setup engine',
+        'No standalone uninstaller is published',
         'v1.3.0b1',
         'v1.3.0')) {
     if (-not $releaseNotes.Contains($statement)) {
         $failures.Add("Release notes are missing required Alpha disclosure: $statement")
+    }
+}
+
+$alpha3Decision = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/governance/1.3.0-alpha3-classic-setup-2026-08-05.md') -Raw
+foreach ($statement in @(
+        'portable ZIPs remain the canonical product payloads',
+        'optional, secondary distribution',
+        'exact already-qualified bytes',
+        'One source-identical shared',
+        'No MSI, MSIX, ClickOnce publication, network bootstrapper',
+        'Every Beta-labelled tag or retained portable/setup byte requires explicit')) {
+    if (-not $alpha3Decision.Contains($statement)) {
+        $failures.Add("Alpha 3 decision is missing required authority: $statement")
+    }
+}
+
+$alpha3Plan = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/planning/1.3.0-alpha.3.md') -Raw
+foreach ($statement in @(
+        'Planned tag: `v1.3.0a3`',
+        'C3-v1.3.0a3-win-x86-net40-portable.zip',
+        'C3-v1.3.0a3-win-x64-net48-setup.zip',
+        'Historical Gate 1 remains mandatory',
+        'without a DLL',
+        'post-tag attestation',
+        'Stop before any Beta-labelled tag')) {
+    if (-not $alpha3Plan.Contains($statement)) {
+        $failures.Add("Alpha 3 plan is missing required gate or boundary: $statement")
     }
 }
 

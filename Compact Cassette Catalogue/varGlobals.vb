@@ -10,7 +10,7 @@ Module varGlobals
     ' REMINDER: UPDATE PROG-VER, FILE-VER, AND SUPPOTED-VERS !!!
     ' About program information.
     Public Const VERSION As String = "1.3.0"
-    Public Const VERSIONSTAGE As String = "Alpha 2"
+    Public Const VERSIONSTAGE As String = "Alpha 3"
     Public ReadOnly VERSIONDATE As DateTime = New DateTime(2026, 8, 5, 0, 0, 0, DateTimeKind.Local) ' Y M D, h m s.
     ' About catalogue information.
     Public Const VERSIONFILE As String = "1.1.0" 'Add to top of XML
