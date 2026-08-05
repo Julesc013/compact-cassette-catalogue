@@ -38,9 +38,17 @@ $requiredFiles = @(
 
 foreach ($relativePath in @(
         'build/historical-toolchain.json',
-        'build/prepare-historical-toolchain.ps1')) {
+        'build/prepare-historical-toolchain.ps1',
+        'build/alpha2-tag-message.ps1',
+        'build/alpha2-qualified-evidence.ps1',
+        'build/new-alpha2-qualified-record.ps1',
+        'build/new-alpha2-post-tag-record.ps1',
+        'build/test-alpha2-tag-message.ps1',
+        'build/test-source-reproducibility.ps1',
+        'release/validation/1.3.0-alpha.2-qualified.json',
+        'release/validation/1.3.0-alpha.2-post-tag.json')) {
     if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {
-        throw "Required historical toolchain control is missing: $relativePath"
+        throw "Required release control is missing: $relativePath"
     }
 }
 
@@ -188,11 +196,35 @@ foreach ($statement in @(
         'C3-v1.3.0a2-win-x64-net48-portable.zip',
         'C3-v1.3.0a2-win-arm64-net481-portable.zip',
         'one external immutable lock bound to C',
+        'post-tag descendant P',
+        'build/test-source-reproducibility.ps1',
+        'Public publication: not authorized',
         'Explicit human approval is required before even retaining a package whose name',
         'minimum operating system')) {
     if (-not $alpha2Plan.Contains($statement)) {
         $failures.Add("Alpha 2 plan is missing required gate or boundary: $statement")
     }
+}
+
+$postTagTemplate = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.2-post-tag.json') -Raw | ConvertFrom-Json
+if ([int]$postTagTemplate.schemaVersion -ne 1 -or
+        [string]$postTagTemplate.releaseLabel -cne '1.3.0a2' -or
+        [string]$postTagTemplate.tagName -cne 'v1.3.0a2' -or
+        [string]$postTagTemplate.publicationStatus -cne 'retained-unpublished' -or
+        [bool]$postTagTemplate.publicReleaseCreated -or
+        [bool]$postTagTemplate.feedChanged -or
+        [bool]$postTagTemplate.legacyMoved -or
+        [string]$postTagTemplate.legacyCommit -cne 'c4115b82ea43fdd763685d862a08fe5c61db6dff' -or
+        @($postTagTemplate.packages).Count -ne 3) {
+    $failures.Add('Alpha 2 post-tag record/template does not preserve the release, publication, feed, package, and legacy boundary.')
+}
+
+$qualifiedTemplate = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.2-qualified.json') -Raw | ConvertFrom-Json
+if ([int]$qualifiedTemplate.schemaVersion -ne 1 -or
+        [string]$qualifiedTemplate.releaseLabel -cne '1.3.0a2' -or
+        @($qualifiedTemplate.packages).Count -ne 3 -or
+        @($qualifiedTemplate.buildEvidence).Count -ne 3) {
+    $failures.Add('Alpha 2 qualified evidence record/template does not preserve the three-package and three-builder evidence contract.')
 }
 
 $alpha2Record = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md') -Raw

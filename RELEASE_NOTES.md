@@ -36,7 +36,8 @@ eventual annotated tag.
 - One clean pushed source, one immutable lock, and final
   source/ref/submodule/genome/lock closure across the complete package set.
 - Deterministic five-entry portable ZIPs reproduced from clean path-distinct
-  builds and authenticated by retained entry manifests.
+  Candidate source rebuilds—not repeated packaging of the same outputs—and
+  authenticated by retained entry manifests.
 - Builder launch smoke for x86 and x64. ARM64 execution remains deferred until
   the exact native Windows-on-ARM qualification environment is available.
 
@@ -55,6 +56,13 @@ VS2026 >= 18.8.2
 Administrator servicing, fresh Preparation evidence, external lock capture,
 the live Candidate build, package reproduction, smoke, and final Alpha evidence
 remain required. Old preparation outputs do not qualify as Alpha 2 bytes.
+
+The final record uses `C → E → tag → P`: packages are built from `C`, the
+annotated tag points to evidence commit `E`, and direct child `P` records the
+now-existing local/remote tag object and target plus retained hashes. This
+avoids embedding a tag-object self-reference in its own target commit.
+Machine-readable qualification hashes are frozen at `E`; `P` must match those
+pre-tag values rather than taking a new authoritative snapshot.
 
 ## Explicit deferrals
 

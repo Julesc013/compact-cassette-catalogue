@@ -22,6 +22,18 @@ path.
   checksum filenames, PowerShell 2 runtime projection, and target evidence.
 - Added cross-lane enforcement for one release label, source commit, toolchain
   mode, lock status, and external-lock SHA-256.
+- Enforced internally complete Alpha/Beta/stable label, ordinal, stage, and
+  channel relationships, including a fully consistent stable-looking Alpha
+  negative test.
+- Added exact annotated-tag message requirements and a post-tag verifier using
+  `C → E → tag → P`, so the immutable tag stays at `E` while `P` records its
+  now-existing local/remote object and target without self-reference.
+- Added a machine-readable qualification record at `E` covering package,
+  entry-manifest, checksum, Candidate closure, source-rebuild, toolchain
+  evidence, and binary-log hashes; `P` must match those frozen values.
+- Replaced the Alpha packaging-only reproducibility call with two clean,
+  path-distinct Candidate source rebuilds that compare authoritative build,
+  package, checksum, and entry-manifest bytes and retain both build logs.
 - Documented the full Alpha 2 source/lock/Candidate/reproducibility/smoke/tag
   gate and its retained-but-not-public authority boundary.
 - Kept historical Gate 1, runtime repairs, target-OS qualification, ARM64

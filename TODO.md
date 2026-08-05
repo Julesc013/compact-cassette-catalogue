@@ -123,6 +123,15 @@ not a passed or waived gate.
   product metadata, package names, `BUILD.txt`, entry manifests, target evidence,
   checksums, release notes, plans, and validation controls.
 - [x] Reject mixed-label package sets and stable-looking Alpha package names.
+- [x] Enforce channel semantics: Alpha `version+aN / Alpha N`, Beta
+  `version+bN / Beta N`, and stable `version / Release`.
+- [x] Add exact Alpha tag-message validation and the non-self-referential
+  `C → E → tag → P` post-tag record/verifier topology.
+- [x] Add a machine-readable qualification record at `E` so post-tag verification
+  proves retained package, manifest, build-log, closure, and source-rebuild
+  hashes are unchanged rather than merely taking a new snapshot at `P`.
+- [x] Add a governed two-worktree Candidate source-rebuild harness; repeated
+  packaging of one retained binary set is not source reproducibility.
 - [ ] Service all three maintained builders to the declared floors or later
   stable releases and discard stale outputs under the validated artifact roots.
 - [ ] Push clean Alpha source commit `C` and pass the complete source-only suite.
@@ -132,10 +141,14 @@ not a passed or waived gate.
 - [ ] Pass final source/ref/submodule/genome/lane/lock closure.
 - [ ] Produce exactly the three `C3-v1.3.0a2-...-portable.zip` assets and
   `SHA256SUMS.txt`, with authenticated entry manifests.
-- [ ] Prove clean path-distinct reproduction of every retained byte.
+- [ ] Prove two clean path-distinct Candidate source rebuilds reproduce every
+  authoritative build, package, checksum, and entry-manifest byte.
 - [ ] Run x86/x64 builder smoke and record ARM64 runtime as deferred.
-- [ ] Retain the completed Alpha record, create and verify annotated
-  `v1.3.0a2`, and retain the exact lock/packages/evidence without public release.
+- [ ] Commit evidence `E`, create and verify annotated `v1.3.0a2` at `E` with
+  the required deferral message, then push the tag.
+- [ ] Commit direct child `P` changing only the post-tag record; verify remote
+  tag object/target and unchanged hashes/feed/legacy/publication boundaries.
+- [ ] Retain the exact lock/packages/source-build evidence without public release.
 
 Alpha 2 does not close historical Gate 1, repair the inherited recursive-close
 defect, qualify a minimum OS, move `legacy/1.x`, or change the public feed.
