@@ -67,6 +67,9 @@ binaries, or change the update feed.
 
 ## Beta 1 entry — finish historical baseline reconstruction
 
+- [x] Download the official Microsoft Build Tools 2015 Update 3 bootstrapper,
+  verify version `14.0.25420.1`, exact hashes, and Microsoft Authenticode
+  identity, and retain it as compatibility-laboratory input only.
 - [ ] Install or reconstruct historical VS2015/MSBuild `14.0.25420.1` in the
   compatibility laboratory.
 - [ ] Rebuild `v1.2.0b1` x86/net40 and x64/net40 with that historical 1.2

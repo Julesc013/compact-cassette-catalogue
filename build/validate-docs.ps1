@@ -33,6 +33,14 @@ $requiredFiles = @(
     'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md'
 )
 
+foreach ($relativePath in @(
+        'build/historical-toolchain.json',
+        'build/prepare-historical-toolchain.ps1')) {
+    if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {
+        throw "Required historical toolchain control is missing: $relativePath"
+    }
+}
+
 $failures = New-Object Collections.Generic.List[String]
 foreach ($relativePath in $requiredFiles) {
     if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "classification": "historical-compatibility-laboratory-only",
+  "product": "Microsoft Build Tools 2015 Update 3",
+  "expectedMsbuildVersion": "14.0.25420.1",
+  "installer": {
+    "name": "buildtools_full.exe",
+    "sourceUrl": "https://download.microsoft.com/download/4/3/3/4330912d-79ae-4037-8a55-7a8fc6b5eb68/buildtools_full.exe",
+    "length": 29387928,
+    "sha256": "243eace2d62a208048f562c7f6ffed1912dbfd254d7f9ee00c7d760b36b42416",
+    "sha1": "0e375822c41300c9cbd14ddf21e97e91f6fed3f5",
+    "fileVersion": "14.0.25420.1",
+    "productVersion": "14.0.25420.1",
+    "signerSubject": "CN=Microsoft Corporation, OU=MOPR, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "signerThumbprint": "3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC"
+  }
+}

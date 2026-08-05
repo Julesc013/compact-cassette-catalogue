@@ -70,6 +70,9 @@
 - Corrected the VS2022 decision-date servicing floor to 17.14.37 after official
   release history confirmed its 22 July 2026 release; no lock or Candidate build
   had been accepted under the earlier 17.14.36 floor.
+- Added a pinned historical-toolchain manifest and fail-closed download verifier
+  for the Microsoft-signed Build Tools 2015 Update 3 `14.0.25420.1`
+  compatibility-laboratory bootstrapper.
 
 
 ### Version 1.3.0 Alpha 1 - 5 August 2026
