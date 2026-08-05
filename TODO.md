@@ -151,7 +151,10 @@ Servicing completed at VS2017 15.9.81, VS2022 17.14.37, and VS2026 18.8.2.
 
 Alpha 2 does not close historical Gate 1, repair the inherited recursive-close
 defect, qualify a minimum OS, move `legacy/1.x`, or change the public feed.
-Every Beta-labelled operation remains prohibited without explicit human approval.
+The 6 August 2026 owner decision authorizes production and retention of the six
+`1.3.0b1` Candidate ZIPs. The Beta tag and lease-protected `legacy/1.x`
+advancement are authorized only on complete GO; public publication, `master`,
+`dev/2.x`, the stable feed, and stable release remain unauthorized.
 
 ## Alpha 3 — legacy reliability and classic setup
 
@@ -163,7 +166,9 @@ Candidate qualification; no functional or target gate is waived.
   authorization doctrine.
 - [x] Specify closed payload and installed-state XML manifests.
 - [x] Add the S0–S3 application/setup defect and hazard ledger.
-- [ ] Complete historical Gate 1 before changing application runtime behaviour.
+- [ ] Complete the remaining external historical Gate 1 executions before Beta
+  GO. The owner amendment permits reproduction-backed repairs in parallel; no
+  unexplained historical deviation or missing exchange cell may be waived.
 - [x] Prepare and reproduce the deterministic historical Gate 1 runtime kit with
   exact v1.1.2 and v1.2.0b1 x86/x64 oracle hashes.
 - [x] Freeze installer/uninstaller project, form, control, resource, and artwork
@@ -194,35 +199,35 @@ Candidate qualification; no functional or target gate is waived.
 
 ## Alpha 3 — lifecycle and data safety
 
-- [ ] S1: resolve pending tape edits before close/open/new/scroll transitions.
-- [ ] S1: replace recursive close cancellation with one explicit close gate.
-- [ ] S1: stop Save As cancellation from continuing into save/open operations.
-- [ ] S1: eliminate the duplicate Open dialog after save-before-open.
-- [ ] S0: load and validate temporary catalogue state before replacing active
+- [x] S1: resolve pending tape edits before close/open/new/scroll transitions.
+- [x] S1: replace recursive close cancellation with one explicit close gate.
+- [x] S1: stop Save As cancellation from continuing into save/open operations.
+- [x] S1: eliminate the duplicate Open dialog after save-before-open.
+- [x] S0: load and validate temporary catalogue state before replacing active
   data or path.
-- [ ] S0: implement verified same-directory temporary save, backup, replacement,
+- [x] S0: implement verified same-directory temporary save, backup, replacement,
   and cleanup.
-- [ ] S1: detect external catalogue modification before overwrite.
-- [ ] S0: replace positional tape updates with explicit named assignments.
-- [ ] S1: preserve existing tape identifiers and creation dates during edits.
-- [ ] S2: persist peak, bias, and calibration values from the actual controls.
+- [x] S1: detect external catalogue modification before overwrite.
+- [x] S0: replace positional tape updates with explicit named assignments.
+- [x] S1: preserve existing tape identifiers and creation dates during edits.
+- [x] S2: persist peak, bias, and calibration values from the actual controls.
 
 Every item requires an isolated reproduction, regression, minimal original-file
 patch, genome validation, and focused commit.
 
 ## Alpha 3 — referential and counter integrity
 
-- [ ] S2: read model notes from `Models`, not `Brands`.
-- [ ] S2: update the deck counter when deleting a deck.
-- [ ] S1: block deletion of referenced brands, models, and decks.
-- [ ] S1: make brand rename relationship-safe without changing identifiers.
-- [ ] S2: derive runtime counts from actual rows.
-- [ ] S1: allocate tape sequences from the maximum existing sequence.
-- [ ] S1: validate a complete bulk batch before inserting any row.
-- [ ] S1: assign every bulk copy an independent monotonic sequence.
-- [ ] S2: maintain correct per-model tape counters.
-- [ ] S2: clear both deck combo boxes before repopulation.
-- [ ] S1: recognize historical display-name `Models.Brand` references without a
+- [x] S2: read model notes from `Models`, not `Brands`.
+- [x] S2: update the deck counter when deleting a deck.
+- [x] S1: block deletion of referenced brands, models, and decks.
+- [x] S1: make brand rename relationship-safe without changing identifiers.
+- [x] S2: derive runtime counts from actual rows.
+- [x] S1: allocate tape sequences from the maximum existing sequence.
+- [x] S1: validate a complete bulk batch before inserting any row.
+- [x] S1: assign every bulk copy an independent monotonic sequence.
+- [x] S2: maintain correct per-model tape counters.
+- [x] S2: clear both deck combo boxes before repopulation.
+- [x] S1: recognize historical display-name `Models.Brand` references without a
   format migration.
 
 ## Alpha 3 — settings, diagnostics, lanes, and packages
@@ -236,7 +241,7 @@ patch, genome validation, and focused commit.
 - [x] Keep console write failures nonfatal.
 - [x] Keep console logging, browser launch, and update-failure reporting
   nonfatal when diagnostic UI is unavailable.
-- [ ] Use short same-directory temporary filenames on classic Windows paths.
+- [x] Use short same-directory temporary filenames on classic Windows paths.
 - [ ] Freeze the latest serviced VS2017 15.9, VS2022 17.14, and VS2026 stable
   installations in an immutable external source-bound lock immediately before
   candidate qualification; retain its SHA-256 in packages and evidence.
@@ -244,15 +249,17 @@ patch, genome validation, and focused commit.
   identical application logic and resources.
 - [x] Add deterministic portable packaging and exact payload verification.
 - [x] Prove two clean, path-distinct portable builds produce identical ZIPs for
-  Alpha 2; repeat for the completed Alpha 3 product and setup sources.
+  Alpha 2.
+- [ ] Repeat two complete path-distinct builds for the exact Beta 1 application,
+  setup, six-package, and assembled-distribution sources.
 - [ ] Qualify XP SP3 x86/net40, Windows 7 SP1 x64/net48, and native Windows 11
   RTM ARM64/net481 on their target machines using exact retained package hashes.
 - [ ] Complete all automated, manual, compatibility, and OS Beta gates.
 - [ ] Resolve or reject every S0–S2 salvage-ledger entry with evidence.
-- [ ] Freeze and qualify the Beta-eligible source and evidence, then obtain
-  explicit human approval before producing Beta-labelled distributions,
-  creating `v1.3.0b1`, or optionally publishing it; never change the stable
-  legacy feed for Beta.
+- [ ] Freeze the Beta-eligible source and retain the owner-authorized six
+  Beta-labelled Candidate ZIPs. Create `v1.3.0b1` and advance `legacy/1.x`
+  only after complete GO. Public publication remains a separate approval and
+  the stable legacy feed remains unchanged throughout Beta.
 
 ## Stable 1.3.0
 

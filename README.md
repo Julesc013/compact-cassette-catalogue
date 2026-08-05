@@ -5,17 +5,18 @@
 See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](TODO.md "C3 1.3 Workboard"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
 > **Repository status:** the available user release remains C3 1.2.0 Beta 1.
-> `dev/1.x` now develops the intentionally unpublished C3 1.3.0 Alpha 3 legacy
-> reliability and classic setup checkpoint. Alpha 2 is immutable and complete;
-> Alpha 3 runtime repairs, setup implementation, and target-machine evidence
-> remain gated. See the
+> `dev/1.x` now prepares the intentionally unpublished C3 1.3.0 Beta 1
+> Candidate. Alpha 2 is immutable and complete; the untagged Alpha 3
+> implementation phase has closed its repository-side application and setup
+> repairs. Historical and exact target-machine evidence still blocks GO. See the
 > [legacy maintenance documentation](docs/README.md).
 > After Alpha, the owner ratified an exact three-lane stable matrix: x86/net40,
 > x64/net48, and native ARM64/net481. The Alpha tag remains immutable historical
 > evidence of its earlier four diagnostic lanes.
-> The bounded three-lane build/package preparation now passes, including native
-> ARM64 binary proof, but the toolchains are not frozen and target-machine/Beta
-> qualification remains open; no new binary release is available.
+> The bounded three-lane build/package controls and native ARM64 binary proof
+> pass. Beta-labelled Candidate retention is authorized, but no tag, public
+> release, minimum-OS qualification, feed change, or legacy-ledger promotion is
+> implied until the remaining gates close.
 
 ![Screenshot of C3 in use.](https://github.com/Julesc013/compact-cassette-catalogue/blob/master/Resources/demonstration-screenshot.png)
 
@@ -88,10 +89,12 @@ release oracle. The later project-splitting refactor is not production ancestry.
   its then-current four-lane diagnostic scaffolding. It is source-only and
   unpublished.
 - Alpha 2 completed the retained three-lane build/release-control proof.
-- Alpha 3 completes the original-application reliability work, systematic defect
-  hunt, and repaired optional classic VB.NET setup/uninstall lifecycle.
-- Beta 1 will contain the same completed scope only after explicit human
-  approval authorizes Beta-labelled tags and bytes.
+- Alpha 3 was the internal implementation phase for original-application
+  reliability and the repaired optional classic VB.NET setup/uninstall
+  lifecycle; its uncreated tag/package wave is superseded.
+- Beta 1 projects that completed functional scope without new behaviour. The
+  six retained Candidate ZIPs are authorized; the tag and `legacy/1.x`
+  advancement remain conditional on complete GO.
 - Stable always publishes the qualified portable packages; classic setup is
   included only if its target-machine evidence is accepted.
 
