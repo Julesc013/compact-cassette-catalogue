@@ -75,6 +75,8 @@ foreach ($relativePath in @(
         'build/verify-alpha3-tagged.ps1',
         'build/new-alpha3-post-tag-record.ps1',
         'build/beta1-contract.ps1',
+        'build/beta1-identity-transition.ps1',
+        'build/beta1-topology.ps1',
         'build/verify-beta1.ps1',
         'build/assemble-beta1-assets.ps1',
         'build/verify-beta1-assets.ps1',
