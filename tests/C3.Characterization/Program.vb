@@ -61,6 +61,12 @@ Module Program
             "disk revisions remain opaque and case sensitive",
             AddressOf DocumentIdentityContractTests.DiskRevisionsRemainOpaqueAndCaseSensitive)
         RunTest(
+            "qualified values keep absence uncertainty and zero distinct",
+            AddressOf SemanticValueContractTests.QualifiedValuesKeepAbsenceKnowledgeAndZeroDistinct)
+        RunTest(
+            "historical dates preserve partial precision",
+            AddressOf SemanticValueContractTests.HistoricalDatesPreservePartialPrecision)
+        RunTest(
             "workspace owns explicit document and interaction state",
             AddressOf WorkspaceControllerTests.WorkspaceOwnsExplicitInteractionState)
         RunTest(

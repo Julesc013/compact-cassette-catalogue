@@ -17,6 +17,10 @@
   tree readiness race by placing main-window focus acquisition inside its
   bounded retry policy and allowing the real main form to finish exposing its
   controls under post-build load.
+- Accepted canonical value semantics and added typed qualified values plus
+  partial historical dates so absence, unknown, not-applicable, known zero,
+  estimated, inferred, and date precision cannot collapse into legacy scalar
+  sentinels during whole-document convergence.
 - Added the authoritative C3 2.0 grand-programme map and began the first
   non-production canonical-foundation slice under the accepted whole-document
   convergence architecture.

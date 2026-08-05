@@ -164,6 +164,15 @@ Before the stable writer is selected, the semantic audit must decide:
 - provenance for inferred or normalized values; and
 - the exact meaning of legacy behaviors such as a packaged tape clearing sides.
 
+[ADR 0013](decisions/0013-canonical-value-semantics.md) accepts these baseline
+semantics. Presence is represented independently from unknown,
+not-applicable, known, estimated, and inferred knowledge; known zero is never a
+sentinel. Audit instants remain UTC, historical subject dates preserve partial
+precision, physical measurements name units, vocabularies use stable codes,
+archival text remains distinct from derived comparison keys, and material
+normalization/inference carries bounded provenance. Profile adapters report any
+representation loss rather than weakening the logical model.
+
 ## Document and content identities
 
 These concepts are separate and must not be collapsed into a dirty Boolean:

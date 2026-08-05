@@ -60,9 +60,12 @@
     <Compile Include="Identity\IEntityIdGenerator.cs" />
     <Compile Include="Identity\RandomEntityIdGenerator.cs" />
     <Compile Include="Time\UtcTimestamp.cs" />
+    <Compile Include="Time\HistoricalDate.cs" />
     <Compile Include="Validation\ValidationIssue.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Values\Optional.cs" />
+    <Compile Include="Values\QualifiedValue.cs" />
+    <Compile Include="Values\ValueKnowledge.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

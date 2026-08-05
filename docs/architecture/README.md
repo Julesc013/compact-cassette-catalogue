@@ -163,6 +163,7 @@ behavior contracts. They do not consume the .NET 4.0 implementation as their API
 - [ADR 0010: Stable release identity](decisions/0010-stable-release-identity.md)
 - [ADR 0011: Shared C# WinForms presentation boundary](decisions/0011-shared-winforms-presentation-boundary.md)
 - [ADR 0012: Canonical catalogue before Application/frontends](decisions/0012-canonical-catalogue-before-application-frontends.md)
+- [ADR 0013: Canonical value and evidence semantics](decisions/0013-canonical-value-semantics.md)
 - [Distribution doctrine](../development/distribution.md)
 - [Release catalogue v1 contract](../../spec/release-catalog/v1/README.md)
 - [Update release manifest v1 contract](../../spec/update-feed/v1/README.md)
