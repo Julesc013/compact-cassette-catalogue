@@ -14,6 +14,7 @@ $expectedSharedSources = @(
     'InstalledState.vb',
     'SetupBundleRuntime.vb',
     'SetupContracts.vb',
+    'SetupDurableTransaction.vb',
     'SetupEnvironment.vb',
     'SetupFileTransaction.vb',
     'SetupInstallOperation.vb',
@@ -21,6 +22,7 @@ $expectedSharedSources = @(
     'SetupRemovalTransaction.vb',
     'SetupSelfRelocation.vb',
     'SetupShortcuts.vb',
+    'SetupTransactionJournal.vb',
     'SetupUninstallOperation.vb'
 )
 

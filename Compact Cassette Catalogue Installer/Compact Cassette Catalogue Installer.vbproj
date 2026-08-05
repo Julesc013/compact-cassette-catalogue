@@ -166,6 +166,9 @@
     <Compile Include="..\SetupShared\SetupTransactionJournal.vb">
       <Link>Shared\SetupTransactionJournal.vb</Link>
     </Compile>
+    <Compile Include="..\SetupShared\SetupDurableTransaction.vb">
+      <Link>Shared\SetupDurableTransaction.vb</Link>
+    </Compile>
     <Compile Include="..\SetupShared\SetupFileTransaction.vb">
       <Link>Shared\SetupFileTransaction.vb</Link>
     </Compile>

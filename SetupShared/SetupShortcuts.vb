@@ -244,6 +244,14 @@ Namespace Global.C3Setup
             RemoveTransition(state, access)
         End Sub
 
+        Public Shared Sub ValidateOwned(state As InstalledState, access As ISetupShortcutAccess)
+            RequireArguments(state, access)
+            ValidateAgainstLocations(state, access)
+            For Each item As InstalledShortcut In state.Shortcuts
+                RequireEqual(access.ReadShortcut(item.Path), ExpectedShortcut(item, state.InstallRoot))
+            Next
+        End Sub
+
         Public Shared Function RemoveTransition(state As InstalledState,
                                                 access As ISetupShortcutAccess) As SetupShortcutTransition
             RequireArguments(state, access)
