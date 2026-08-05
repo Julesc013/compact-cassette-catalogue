@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
-  "status": "template",
+  "status": "pass",
   "releaseLabel": "1.3.0a2",
   "tagName": "v1.3.0a2",
-  "tagObject": null,
-  "tagTarget": null,
+  "tagObject": "0e8633671e55bbb7ce5e692f8e0f5c4201a62627",
+  "tagTarget": "0aad46c6ad1d241caa70ceb74ccfe9bbfa12165b",
   "remoteName": "origin",
-  "remoteUrl": null,
-  "remoteTagObject": null,
-  "remoteTagTarget": null,
-  "packageSource": null,
-  "toolchainLockSha256": null,
-  "packageChecksumManifestSha256": null,
-  "entryChecksumManifestSha256": null,
+  "remoteUrl": "https://github.com/Julesc013/compact-cassette-catalogue.git",
+  "remoteTagObject": "0e8633671e55bbb7ce5e692f8e0f5c4201a62627",
+  "remoteTagTarget": "0aad46c6ad1d241caa70ceb74ccfe9bbfa12165b",
+  "packageSource": "0c740ec11865a4df6364b2f430ce2feece58d9d6",
+  "toolchainLockSha256": "f741b6777206d3531dd89b3f2e579ec9ef8ba3b45af7285a342fa98cd0d0107a",
+  "packageChecksumManifestSha256": "f8aba6da3a1aedc1e4c3a8a7dd09fec81dff1da1d3e43f46432b71712da3485b",
+  "entryChecksumManifestSha256": "f51dbcf3c9d7041a87d3a577fc0af45dafada6dd9ee4ebf121ac3105a15b8718",
   "packages": [
     {
       "name": "C3-v1.3.0a2-win-x86-net40-portable.zip",
-      "sha256": null,
+      "sha256": "1ed41a2026d3b566458e1a010dd6c7f4e459d310d6316e50e50ff822424eca35",
       "entryManifestName": "C3-v1.3.0a2-win-x86-net40-portable.zip.entries.json",
-      "entryManifestSha256": null
+      "entryManifestSha256": "5492a391ecaeec23e42eb4efcc72da1b418056af3f06189173ac6a6e6bd9d90c"
     },
     {
       "name": "C3-v1.3.0a2-win-x64-net48-portable.zip",
-      "sha256": null,
+      "sha256": "a65e59cef02a20559c0e787d8cdf332a52500f6e577bf6a585896370cf139fda",
       "entryManifestName": "C3-v1.3.0a2-win-x64-net48-portable.zip.entries.json",
-      "entryManifestSha256": null
+      "entryManifestSha256": "9ca80dce794434367d05ffb53ff08e4628d880291871d9291c5906fe010f1a40"
     },
     {
       "name": "C3-v1.3.0a2-win-arm64-net481-portable.zip",
-      "sha256": null,
+      "sha256": "9cbaaa237204b285d94887162ecb5f5e86560ba53776e4d3f90611e98661a39c",
       "entryManifestName": "C3-v1.3.0a2-win-arm64-net481-portable.zip.entries.json",
-      "entryManifestSha256": null
+      "entryManifestSha256": "65ac53cfebc1ef711abae2465bbcad9063e73e97a1446fcdbf1a102068c6d78e"
     }
   ],
   "publicationStatus": "retained-unpublished",
@@ -43,6 +43,6 @@
   ],
   "legacyMoved": false,
   "legacyCommit": "c4115b82ea43fdd763685d862a08fe5c61db6dff",
-  "packagesRetained": false,
-  "recordedAtUtc": null
+  "packagesRetained": true,
+  "recordedAtUtc": "2026-08-05T14:04:56.3104878Z"
 }
