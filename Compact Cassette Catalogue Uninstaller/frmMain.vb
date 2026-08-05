@@ -1,115 +1,96 @@
-﻿Imports System.IO
-Imports System.Net
-Imports IWshRuntimeLibrary
-
 Public Class frmMain
 
-    ' Name: Compact Cassette Catalogue Uninstaller
-    ' Date: 8 May 2020
-    ' Author: Jules Carboni
-    ' Purpose: Uninstalls Compact Cassette Catalogue.
-
+    Private _state As C3Setup.InstalledState
+    Private _facts As C3Setup.SetupEnvironmentFacts
+    Private _operationInProgress As Boolean
+    Private _allowClose As Boolean
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        ' Set focus on Next button.
-        btnUninstall.Select()
-
+        Try
+            If String.IsNullOrWhiteSpace(uninstallStatePath) Then
+                Throw New C3Setup.SetupContractException("The relocated uninstaller has no authenticated installed-state path.")
+            End If
+            _state = C3Setup.InstalledStateCodec.Read(uninstallStatePath)
+            C3Setup.SetupBundleRuntime.RequireCurrentRelease(_state.Manifest)
+            _facts = C3Setup.SetupEnvironment.Capture()
+            C3Setup.SetupEnvironment.ValidateRemoval(_state, _facts)
+            btnUninstall.Select()
+        Catch ex As Exception
+            ShowFailure("Uninstall could not validate the installed ownership or computer." & Environment.NewLine & Environment.NewLine & ex.Message)
+        End Try
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-
-        '' Confirm exit request, then fall onto failure form.
-
-        'Dim cancelConfirm As MsgBoxResult = confirmCancel()
-
-        '' If responded yes to the prompt, close the uninstaller.
-        'If cancelConfirm = MsgBoxResult.Yes Then
-
-        frmFailure.Show()
-        Me.Close()
-
-        'End If
-
+        If _operationInProgress Then Return
+        If ConfirmCancel() = DialogResult.Yes Then
+            _allowClose = True
+            Application.Exit()
+        End If
     End Sub
 
     Private Sub btnUninstall_Click(sender As Object, e As EventArgs) Handles btnUninstall.Click
-
-        ' Uninstall everything now.
-
-        ' Disable/show elements.
+        If _state Is Nothing OrElse _operationInProgress Then Return
+        _operationInProgress = True
         pnlReady.Visible = False
         pnlReady.Enabled = False
         pnlUninstall.Visible = True
         pnlUninstall.Enabled = True
-
-
-        ' Initialise progress bar.
+        btnUninstall.Enabled = False
+        btnCancel.Enabled = False
+        barInstallProgress.Minimum = 0
+        barInstallProgress.Maximum = 4
         barInstallProgress.Value = 0
-        barInstallProgress.Step = 10
-        barInstallProgress.Maximum = 10 * (3)
-
-
-        ' Perform the uninstallation.
-
         Try
-
-
-            ' Delete Windows Registry entry for this program.
-
-            lblStatusProcess.Text = "Modifying registry" ' Update progress bar label.
-            lblStatusProcess.Update() ' Update label so that it shows the new text.
-
-            'Try (TEMP)
-
-
-            '''''''''REMOVE REGISTRY ENTRIES
-
-
-            'Catch ex As Exception
-            ' Handle this specifically
-
-            'End Try (TEMP)
-
-
-
-            ' Delete files and installation folder.
-
-            barInstallProgress.PerformStep() ' Advance progress bar.
-            lblStatusProcess.Text = "Deleting program files" ' Update progress bar label.
-            lblStatusProcess.Update() ' Update label so that it shows the new text.
-
-            '''''''''DELETE FILES
-
-
-            ' Delete desktop and start menu shortcuts.
-
-            barInstallProgress.PerformStep() ' Advance progress bar.
-            lblStatusProcess.Text = "Deleting shortcuts" ' Update progress bar label.
-            lblStatusProcess.Update() ' Update label so that it shows the new text.
-
-            '''''''''DELETE SHORTCUTS
-
-
-            ' Upon completion, show the success form.
-
-            barInstallProgress.PerformStep() ' Advance progress bar.
-
+            SetStatus("Revalidating installed ownership", 1)
+            _state = C3Setup.InstalledStateCodec.Read(uninstallStatePath)
+            _facts = C3Setup.SetupEnvironment.Capture()
+            C3Setup.SetupEnvironment.ValidateRemoval(_state, _facts)
+            SetStatus("Removing owned program and system entries", 2)
+            C3Setup.SetupUninstallOperation.Execute(_state.InstallRoot,
+                                                    New C3Setup.WindowsSetupShortcutAccess(),
+                                                    New C3Setup.WindowsSetupRegistryAccess(),
+                                                    Nothing)
+            SetStatus("Uninstallation complete", 4)
+            _allowClose = True
             frmSuccess.Show()
             Me.Close()
-
-
         Catch ex As Exception
-
-            ' If expection occurred, jump out to the failure form.
-
-            frmFailure.Show()
-            Me.Close()
-
+            ShowFailure("Uninstall did not complete. Owned changes were restored where removal had begun." & Environment.NewLine & Environment.NewLine & ex.Message)
+        Finally
+            _operationInProgress = False
         End Try
-
-
     End Sub
 
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If _allowClose Then Return
+        If _operationInProgress Then
+            e.Cancel = True
+            Return
+        End If
+        If ConfirmCancel() <> DialogResult.Yes Then e.Cancel = True
+    End Sub
+
+    Private Function ConfirmCancel() As DialogResult
+        Return MessageBox.Show(Me,
+                               "Are you sure you want to cancel Compact Cassette Catalogue uninstallation?",
+                               "Cancel Uninstall",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Question,
+                               MessageBoxDefaultButton.Button2)
+    End Function
+
+    Private Sub SetStatus(message As String, progress As Integer)
+        lblStatusProcess.Text = message
+        lblStatusProcess.Update()
+        barInstallProgress.Value = progress
+        barInstallProgress.Update()
+    End Sub
+
+    Private Sub ShowFailure(message As String)
+        uninstallFailureMessage = message
+        _allowClose = True
+        frmFailure.Show()
+        Me.Close()
+    End Sub
 
 End Class
