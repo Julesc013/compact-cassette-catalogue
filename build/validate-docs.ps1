@@ -40,8 +40,11 @@ $requiredFiles = @(
     'release/validation/1.3.0-candidate-freeze-assertions-2026-08-05.md',
     'release/validation/1.3.0-builder-and-gate1-preparation-2026-08-05.md',
     'release/validation/1.3.0-alpha.2-preparation-2026-08-05.md',
-    'release/validation/1.3.0-alpha.3-preparation-2026-08-05.md'
+    'release/validation/1.3.0-alpha.3-preparation-2026-08-05.md',
+    'release/validation/1.3.0-alpha.3-qualified.md'
 )
+
+$failures = New-Object Collections.Generic.List[String]
 
 foreach ($relativePath in @(
         'build/historical-toolchain.json',
@@ -56,19 +59,46 @@ foreach ($relativePath in @(
         'build/test-alpha2-tag-message.ps1',
         'build/test-source-reproducibility.ps1',
         'build/verify-alpha3.ps1',
+        'build/alpha3-tag-message.ps1',
+        'build/test-alpha3-tag-message.ps1',
         'build/verify-target-setup.ps1',
         'build/get-setup-genome.ps1',
         'build/setup-genome.v1.json',
         'build/setup-genome-allowlist.json',
         'build/validate-setup-genome.ps1',
         'release/validation/1.3.0-alpha.2-qualified.json',
-        'release/validation/1.3.0-alpha.2-post-tag.json')) {
+        'release/validation/1.3.0-alpha.2-post-tag.json',
+        'release/validation/1.3.0-alpha.3-qualified.json',
+        'release/validation/1.3.0-alpha.3-post-tag.json')) {
     if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {
         throw "Required release control is missing: $relativePath"
     }
 }
 
-$failures = New-Object Collections.Generic.List[String]
+$alpha3QualifiedTemplate = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.3-qualified.json') -Raw | ConvertFrom-Json
+$alpha3PostTagTemplate = Get-Content -LiteralPath (Join-Path $repositoryRoot 'release/validation/1.3.0-alpha.3-post-tag.json') -Raw | ConvertFrom-Json
+if ([int]$alpha3QualifiedTemplate.schemaVersion -ne 1 -or
+        [string]$alpha3QualifiedTemplate.status -cne 'template' -or
+        [string]$alpha3QualifiedTemplate.releaseLabel -cne '1.3.0a3' -or
+        @($alpha3QualifiedTemplate.assets).Count -ne 6 -or
+        @($alpha3QualifiedTemplate.applicationBuildEvidence).Count -ne 3 -or
+        @($alpha3QualifiedTemplate.setupBuildEvidence).Count -ne 3) {
+    $failures.Add('Alpha 3 qualification template does not preserve the six-asset and nine-executable evidence contract.')
+}
+if ([int]$alpha3PostTagTemplate.schemaVersion -ne 1 -or
+        [string]$alpha3PostTagTemplate.status -cne 'template' -or
+        [string]$alpha3PostTagTemplate.releaseLabel -cne '1.3.0a3' -or
+        [string]$alpha3PostTagTemplate.tagName -cne 'v1.3.0a3' -or
+        @($alpha3PostTagTemplate.assets).Count -ne 6 -or
+        [string]$alpha3PostTagTemplate.publicationStatus -cne 'retained-unpublished' -or
+        [bool]$alpha3PostTagTemplate.publicReleaseCreated -or
+        [bool]$alpha3PostTagTemplate.feedChanged -or
+        [bool]$alpha3PostTagTemplate.legacyMoved -or
+        [bool]$alpha3PostTagTemplate.packagesRetained -or
+        [bool]$alpha3PostTagTemplate.betaAuthorized) {
+    $failures.Add('Alpha 3 post-tag template does not preserve tag, retention, publication, feed, legacy, and Beta authority boundaries.')
+}
+
 foreach ($relativePath in $requiredFiles) {
     if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $relativePath) -PathType Leaf)) {
         $failures.Add("Required maintenance document is missing: $relativePath")

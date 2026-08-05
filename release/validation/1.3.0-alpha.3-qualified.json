@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "releaseLabel": "1.3.0a3",
+  "packageSource": null,
+  "toolchainLockSha256": null,
+  "historicalGate1EvidenceSha256": null,
+  "targetQualificationEvidenceSha256": null,
+  "candidateSourceClosureSha256": null,
+  "sourceReproducibilityRecordSha256": null,
+  "releaseAssetRecordSha256": null,
+  "distributionChecksumManifestSha256": null,
+  "assets": [
+    { "kind": "portable", "lane": "win-x86-net40", "name": "C3-v1.3.0a3-win-x86-net40-portable.zip", "sha256": null, "entryManifestName": "C3-v1.3.0a3-win-x86-net40-portable.zip.entries.json", "entryManifestSha256": null },
+    { "kind": "portable", "lane": "win-x64-net48", "name": "C3-v1.3.0a3-win-x64-net48-portable.zip", "sha256": null, "entryManifestName": "C3-v1.3.0a3-win-x64-net48-portable.zip.entries.json", "entryManifestSha256": null },
+    { "kind": "portable", "lane": "win-arm64-net481", "name": "C3-v1.3.0a3-win-arm64-net481-portable.zip", "sha256": null, "entryManifestName": "C3-v1.3.0a3-win-arm64-net481-portable.zip.entries.json", "entryManifestSha256": null },
+    { "kind": "setup", "lane": "win-x86-net40", "name": "C3-v1.3.0a3-win-x86-net40-setup.zip", "sha256": null, "entryManifestName": "C3-v1.3.0a3-win-x86-net40-setup.zip.entries.json", "entryManifestSha256": null },
+    { "kind": "setup", "lane": "win-x64-net48", "name": "C3-v1.3.0a3-win-x64-net48-setup.zip", "sha256": null, "entryManifestName": "C3-v1.3.0a3-win-x64-net48-setup.zip.entries.json", "entryManifestSha256": null },
+    { "kind": "setup", "lane": "win-arm64-net481", "name": "C3-v1.3.0a3-win-arm64-net481-setup.zip", "sha256": null, "entryManifestName": "C3-v1.3.0a3-win-arm64-net481-setup.zip.entries.json", "entryManifestSha256": null }
+  ],
+  "applicationBuildEvidence": [
+    { "lane": "win-x86-net40", "toolchainEvidenceSha256": null, "binaryLogSha256": null },
+    { "lane": "win-x64-net48", "toolchainEvidenceSha256": null, "binaryLogSha256": null },
+    { "lane": "win-arm64-net481", "toolchainEvidenceSha256": null, "binaryLogSha256": null }
+  ],
+  "setupBuildEvidence": [
+    { "lane": "win-x86-net40", "toolchainEvidenceSha256": null, "installerBinaryLogSha256": null, "uninstallerBinaryLogSha256": null },
+    { "lane": "win-x64-net48", "toolchainEvidenceSha256": null, "installerBinaryLogSha256": null, "uninstallerBinaryLogSha256": null },
+    { "lane": "win-arm64-net481", "toolchainEvidenceSha256": null, "installerBinaryLogSha256": null, "uninstallerBinaryLogSha256": null }
+  ],
+  "recordedAtUtc": null
+}
