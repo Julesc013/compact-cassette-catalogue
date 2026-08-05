@@ -45,6 +45,10 @@ Module Program
         RunTest("unowned shortcut collision is rejected", AddressOf ShortcutCollisionIsRejected)
         RunTest("altered shortcut blocks removal", AddressOf AlteredShortcutBlocksRemoval)
         RunTest("faulted shortcut removal restores owned links", AddressOf FaultedShortcutRemovalRestoresLinks)
+        RunTest("coordinated clean install commits files registry and shortcuts", AddressOf CoordinatedInstallCommitsAllSurfaces)
+        RunTest("faulted coordinated install rolls back every surface", AddressOf FaultedCoordinatedInstallRollsBack)
+        RunTest("coordinated repair changes owned shortcut selection", AddressOf CoordinatedRepairChangesShortcutSelection)
+        RunTest("post-integration fault rolls back every surface", AddressOf PostIntegrationFaultRollsBack)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} setup characterization test(s) failed.", _failures)
@@ -503,6 +507,115 @@ Module Program
                                           C3Setup.SetupShortcutService.Plan(installRoot, programs, desktop, includeDesktop))
     End Function
 
+    Private Sub CoordinatedInstallCommitsAllSurfaces()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Dim state As C3Setup.InstalledState = ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing)
+                        C3Setup.PayloadVerifier.VerifyOwnedFiles(state.Manifest, state.InstallRoot)
+                        If registry.ReadValues(C3Setup.InstalledStateCodec.UninstallKeyForLane(state.Manifest.Lane)) Is Nothing Then
+                            Throw New Exception("Coordinated install did not create the owned registry key.")
+                        End If
+                        For Each item As C3Setup.InstalledShortcut In state.Shortcuts
+                            If shortcuts.ReadShortcut(item.Path) Is Nothing Then Throw New Exception("Coordinated install did not create an owned shortcut.")
+                        Next
+                    End Sub)
+    End Sub
+
+    Private Sub FaultedCoordinatedInstallRollsBack()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        registry.FailNextWrite = True
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Try
+                            ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing)
+                            Throw New Exception("Expected injected registry failure.")
+                        Catch ex As InvalidOperationException
+                            If ex.Message <> "registry-write-injected" Then Throw
+                        End Try
+                        Dim installRoot As String = CoordinatedInstallRoot(root)
+                        If Directory.Exists(installRoot) Then Throw New Exception("Faulted coordinated install left its product directory.")
+                        Dim key As String = C3Setup.InstalledStateCodec.UninstallKeyForLane("win-x86-net40")
+                        If registry.ReadValues(key) IsNot Nothing Then Throw New Exception("Faulted coordinated install left its registry key.")
+                        Dim expected As IList(Of C3Setup.InstalledShortcut) = C3Setup.SetupShortcutService.Plan(installRoot, shortcuts.CommonProgramsPath, shortcuts.CommonDesktopPath, True)
+                        For Each item As C3Setup.InstalledShortcut In expected
+                            If shortcuts.ReadShortcut(item.Path) IsNot Nothing Then Throw New Exception("Faulted coordinated install left a shortcut.")
+                        Next
+                    End Sub)
+    End Sub
+
+    Private Sub CoordinatedRepairChangesShortcutSelection()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, True, Nothing)
+                        Dim state As C3Setup.InstalledState = ExecuteCoordinatedInstall(root, manifestPath, registry, shortcuts, False, Nothing)
+                        AssertEqual("repair", state.Mode, "coordinated repair mode")
+                        If state.Shortcuts.Count <> 1 Then Throw New Exception("Repair did not record the deselected desktop shortcut.")
+                        Dim desktopPath As String = C3Setup.SetupShortcutService.Plan(state.InstallRoot, shortcuts.CommonProgramsPath, shortcuts.CommonDesktopPath, True)(1).Path
+                        If shortcuts.ReadShortcut(desktopPath) IsNot Nothing Then Throw New Exception("Repair left the deselected owned desktop shortcut.")
+                    End Sub)
+    End Sub
+
+    Private Sub PostIntegrationFaultRollsBack()
+        WithPayload(Sub(root As String, manifestPath As String)
+                        Dim registry As New MemoryRegistryAccess()
+                        Dim shortcuts As MemoryShortcutAccess = CreateShortcutAccess(root)
+                        Try
+                            ExecuteCoordinatedInstall(root,
+                                                      manifestPath,
+                                                      registry,
+                                                      shortcuts,
+                                                      True,
+                                                      Sub(point As String)
+                                                          If point = "after-system-integration" Then Throw New InvalidOperationException("post-integration-injected")
+                                                      End Sub)
+                            Throw New Exception("Expected post-integration failure.")
+                        Catch ex As InvalidOperationException
+                            If ex.Message <> "post-integration-injected" Then Throw
+                        End Try
+                        If Directory.Exists(CoordinatedInstallRoot(root)) Then Throw New Exception("Post-integration failure left its product directory.")
+                        If registry.ReadValues(C3Setup.InstalledStateCodec.UninstallKeyForLane("win-x86-net40")) IsNot Nothing Then Throw New Exception("Post-integration failure left its registry key.")
+                        Dim expected As IList(Of C3Setup.InstalledShortcut) = C3Setup.SetupShortcutService.Plan(CoordinatedInstallRoot(root), shortcuts.CommonProgramsPath, shortcuts.CommonDesktopPath, True)
+                        For Each item As C3Setup.InstalledShortcut In expected
+                            If shortcuts.ReadShortcut(item.Path) IsNot Nothing Then Throw New Exception("Post-integration failure left a shortcut.")
+                        Next
+                    End Sub)
+    End Sub
+
+    Private Function ExecuteCoordinatedInstall(root As String,
+                                               manifestPath As String,
+                                               registry As MemoryRegistryAccess,
+                                               shortcuts As MemoryShortcutAccess,
+                                               includeDesktop As Boolean,
+                                               faultInjector As Action(Of String)) As C3Setup.InstalledState
+        Dim programFiles As String = Path.Combine(root, "Program Files")
+        Directory.CreateDirectory(programFiles)
+        Dim facts As New C3Setup.SetupEnvironmentFacts("x86", "x86", True, True, 0, programFiles, False, 1048576)
+        Return C3Setup.SetupInstallOperation.Execute(manifestPath,
+                                                     Path.Combine(root, "payload"),
+                                                     CoordinatedInstallRoot(root),
+                                                     "89abcdef0123456789abcdef0123456789abcdef",
+                                                     "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+                                                     includeDesktop,
+                                                     facts,
+                                                     shortcuts,
+                                                     registry,
+                                                     faultInjector)
+    End Function
+
+    Private Function CoordinatedInstallRoot(root As String) As String
+        Return Path.Combine(root, "Program Files", "Compact Cassette Catalogue")
+    End Function
+
+    Private Function CreateShortcutAccess(root As String) As MemoryShortcutAccess
+        Dim programs As String = Path.Combine(root, "Common Programs")
+        Dim desktop As String = Path.Combine(root, "Common Desktop")
+        Directory.CreateDirectory(programs)
+        Directory.CreateDirectory(desktop)
+        Return New MemoryShortcutAccess(programs, desktop)
+    End Function
+
     Private Sub WithPayload(action As Action(Of String, String))
         Dim root As String = Path.Combine(Path.GetTempPath(), "C3SetupTests-" & Guid.NewGuid().ToString("N"))
         Dim payload As String = Path.Combine(root, "payload")
@@ -563,6 +676,7 @@ Module Program
         Implements C3Setup.ISetupRegistryAccess
 
         Private ReadOnly _keys As New Dictionary(Of String, IDictionary(Of String, Object))(StringComparer.Ordinal)
+        Public Property FailNextWrite As Boolean
 
         Public Function ReadValues(keyPath As String) As IDictionary(Of String, Object) Implements C3Setup.ISetupRegistryAccess.ReadValues
             If Not _keys.ContainsKey(keyPath) Then Return Nothing
@@ -570,6 +684,10 @@ Module Program
         End Function
 
         Public Sub WriteValues(keyPath As String, values As IDictionary(Of String, Object)) Implements C3Setup.ISetupRegistryAccess.WriteValues
+            If FailNextWrite Then
+                FailNextWrite = False
+                Throw New InvalidOperationException("registry-write-injected")
+            End If
             _keys(keyPath) = New Dictionary(Of String, Object)(values, StringComparer.Ordinal)
         End Sub
 

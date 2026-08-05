@@ -122,6 +122,17 @@ Namespace Global.C3Setup
             Return SetupPathPolicy.ValidateInstallRoot(Path.Combine(facts.ProgramFilesPath, ProductDirectoryName))
         End Function
 
+        Public Shared Function ValidateInstallRoot(facts As SetupEnvironmentFacts, installRoot As String) As String
+            If facts Is Nothing Then Throw New ArgumentNullException("facts")
+            Dim programFiles As String = SetupPathPolicy.CanonicalDirectory(facts.ProgramFilesPath)
+            Dim root As String = SetupPathPolicy.ValidateInstallRoot(installRoot)
+            Dim prefix As String = programFiles.TrimEnd(Path.DirectorySeparatorChar) & Path.DirectorySeparatorChar
+            If Not root.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) Then
+                Throw New SetupContractException("Per-machine C3 setup must install below the operating-system Program Files directory.")
+            End If
+            Return root
+        End Function
+
         Private Shared Sub RequireIdentity(manifest As PayloadManifest, architecture As String, framework As String)
             If manifest.Architecture <> architecture OrElse manifest.Framework <> framework Then
                 Throw New SetupContractException("Payload lane, architecture, and framework identity do not agree.")

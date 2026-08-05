@@ -27,6 +27,17 @@ Namespace Global.C3Setup
         Sub DeleteShortcut(path As String)
     End Interface
 
+    Public NotInheritable Class SetupShortcutTransition
+
+        Public Sub New(before As IDictionary(Of String, SetupShortcut), after As IDictionary(Of String, SetupShortcut))
+            Me.Before = New Dictionary(Of String, SetupShortcut)(before, StringComparer.OrdinalIgnoreCase)
+            Me.After = New Dictionary(Of String, SetupShortcut)(after, StringComparer.OrdinalIgnoreCase)
+        End Sub
+
+        Public ReadOnly Property Before As IDictionary(Of String, SetupShortcut)
+        Public ReadOnly Property After As IDictionary(Of String, SetupShortcut)
+    End Class
+
     Public NotInheritable Class WindowsSetupShortcutAccess
         Implements ISetupShortcutAccess
 
@@ -150,6 +161,65 @@ Namespace Global.C3Setup
             End Try
         End Function
 
+        Public Shared Function Transition(previousState As InstalledState,
+                                          state As InstalledState,
+                                          access As ISetupShortcutAccess) As SetupShortcutTransition
+            RequireArguments(state, access)
+            If previousState IsNot Nothing Then ValidateAgainstLocations(previousState, access)
+            ValidateAgainstLocations(state, access)
+
+            Dim beforeExpected As IDictionary(Of String, SetupShortcut) = ExpectedMap(previousState)
+            Dim afterExpected As IDictionary(Of String, SetupShortcut) = ExpectedMap(state)
+            Dim allPaths As New Dictionary(Of String, Boolean)(StringComparer.OrdinalIgnoreCase)
+            For Each path As String In beforeExpected.Keys
+                allPaths(path) = True
+            Next
+            For Each path As String In afterExpected.Keys
+                allPaths(path) = True
+            Next
+
+            Dim beforeActual As New Dictionary(Of String, SetupShortcut)(StringComparer.OrdinalIgnoreCase)
+            For Each path As String In allPaths.Keys
+                Dim existing As SetupShortcut = access.ReadShortcut(path)
+                If Not beforeExpected.ContainsKey(path) AndAlso existing IsNot Nothing Then
+                    Throw New SetupContractException("Setup refuses to adopt an unowned shortcut: " & path)
+                End If
+                beforeActual.Add(path, existing)
+            Next
+
+            Try
+                For Each path As String In beforeExpected.Keys
+                    If Not afterExpected.ContainsKey(path) Then
+                        RequireEqual(access.ReadShortcut(path), beforeExpected(path))
+                        access.DeleteShortcut(path)
+                        If access.ReadShortcut(path) IsNot Nothing Then Throw New SetupContractException("A deselected owned shortcut remains: " & path)
+                    End If
+                Next
+                For Each path As String In afterExpected.Keys
+                    access.WriteShortcut(afterExpected(path))
+                    RequireEqual(access.ReadShortcut(path), afterExpected(path))
+                Next
+                Return New SetupShortcutTransition(beforeActual, afterExpected)
+            Catch
+                RestoreSnapshot(beforeActual, access)
+                Throw
+            End Try
+        End Function
+
+        Public Shared Sub RestoreTransition(transition As SetupShortcutTransition,
+                                            access As ISetupShortcutAccess)
+            If transition Is Nothing Then Throw New ArgumentNullException("transition")
+            If access Is Nothing Then Throw New ArgumentNullException("access")
+            For Each path As String In transition.Before.Keys
+                If transition.After.ContainsKey(path) Then
+                    RequireEqual(access.ReadShortcut(path), transition.After(path))
+                ElseIf access.ReadShortcut(path) IsNot Nothing Then
+                    Throw New SetupContractException("Shortcut rollback found an unexpected link at a removed path.")
+                End If
+            Next
+            RestoreSnapshot(transition.Before, access)
+        End Sub
+
         Public Shared Sub Restore(state As InstalledState,
                                   previous As IDictionary(Of String, SetupShortcut),
                                   access As ISetupShortcutAccess)
@@ -239,6 +309,26 @@ Namespace Global.C3Setup
                                      installRoot,
                                      ProductName)
         End Function
+
+        Private Shared Function ExpectedMap(state As InstalledState) As IDictionary(Of String, SetupShortcut)
+            Dim result As New Dictionary(Of String, SetupShortcut)(StringComparer.OrdinalIgnoreCase)
+            If state Is Nothing Then Return result
+            For Each item As InstalledShortcut In state.Shortcuts
+                result.Add(item.Path, ExpectedShortcut(item, state.InstallRoot))
+            Next
+            Return result
+        End Function
+
+        Private Shared Sub RestoreSnapshot(snapshot As IDictionary(Of String, SetupShortcut), access As ISetupShortcutAccess)
+            For Each path As String In snapshot.Keys
+                If snapshot(path) Is Nothing Then
+                    access.DeleteShortcut(path)
+                Else
+                    access.WriteShortcut(snapshot(path))
+                    RequireEqual(access.ReadShortcut(path), snapshot(path))
+                End If
+            Next
+        End Sub
 
         Private Shared Function ShortcutPath(directoryPath As String) As String
             Dim directory As String = SetupPathPolicy.CanonicalDirectory(directoryPath)

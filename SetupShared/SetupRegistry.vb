@@ -67,9 +67,18 @@ Namespace Global.C3Setup
                 Throw New SetupContractException("Setup refuses to replace an uninstall key it does not own.")
             End If
             Dim expected As IDictionary(Of String, Object) = ExpectedValues(state)
-            access.WriteValues(keyPath, expected)
-            RequireExactValues(access.ReadValues(keyPath), expected)
-            Return CloneValues(previous)
+            Try
+                access.WriteValues(keyPath, expected)
+                RequireExactValues(access.ReadValues(keyPath), expected)
+                Return CloneValues(previous)
+            Catch
+                If previous Is Nothing Then
+                    access.DeleteKey(keyPath)
+                Else
+                    access.WriteValues(keyPath, previous)
+                End If
+                Throw
+            End Try
         End Function
 
         Public Shared Sub Restore(state As InstalledState,

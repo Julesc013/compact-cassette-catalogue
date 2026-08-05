@@ -15,6 +15,24 @@ Namespace Global.C3Setup
                                      setupSourceCommit As String,
                                      setupBundleSha256 As String,
                                      faultInjector As Action(Of String)) As InstalledState
+            Return Apply(manifestPath,
+                         payloadDirectory,
+                         installRoot,
+                         setupSourceCommit,
+                         setupBundleSha256,
+                         New List(Of InstalledShortcut)(),
+                         Nothing,
+                         faultInjector)
+        End Function
+
+        Public Shared Function Apply(manifestPath As String,
+                                     payloadDirectory As String,
+                                     installRoot As String,
+                                     setupSourceCommit As String,
+                                     setupBundleSha256 As String,
+                                     shortcuts As IList(Of InstalledShortcut),
+                                     systemIntegration As Func(Of InstalledState, InstalledState, Action),
+                                     faultInjector As Action(Of String)) As InstalledState
             If Not Regex.IsMatch(setupSourceCommit, "^[0-9a-f]{40}$", RegexOptions.CultureInvariant) Then
                 Throw New SetupContractException("Setup source commit is invalid.")
             End If
@@ -74,6 +92,7 @@ Namespace Global.C3Setup
 
             Dim installedPaths As New List(Of String)()
             Dim backedUpPaths As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
+            Dim rollbackSystemIntegration As Action = Nothing
             Try
                 Directory.CreateDirectory(stagingRoot)
                 For Each item As PayloadFile In manifest.Files
@@ -121,7 +140,7 @@ Namespace Global.C3Setup
                                                 DateTime.UtcNow,
                                                 FileHash.Sha256(manifestPath),
                                                 setupBundleSha256,
-                                                New List(Of InstalledShortcut)())
+                                                shortcuts)
                 Dim stagedState As String = Path.Combine(stagingRoot, InstalledStateCodec.FileName)
                 InstalledStateCodec.Write(stagedState, state)
                 Inject(faultInjector, "before-manifest")
@@ -130,23 +149,59 @@ Namespace Global.C3Setup
                 InstalledStateCodec.Read(previousStatePath)
                 Inject(faultInjector, "after-manifest")
 
+                If systemIntegration IsNot Nothing Then
+                    rollbackSystemIntegration = systemIntegration(previousState, state)
+                    If rollbackSystemIntegration Is Nothing Then
+                        Throw New SetupContractException("System integration did not provide a rollback operation.")
+                    End If
+                    Inject(faultInjector, "after-system-integration")
+                End If
+
                 Directory.Delete(stagingRoot, False)
                 Directory.Delete(backupRoot, True)
                 Return state
-            Catch
+            Catch failure As Exception
+                Dim rollbackFailures As New List(Of Exception)()
+                If rollbackSystemIntegration IsNot Nothing Then TryRollback(rollbackSystemIntegration, rollbackFailures)
                 For Each installedPath As String In installedPaths
-                    If File.Exists(installedPath) Then File.Delete(installedPath)
+                    Dim pathToDelete As String = installedPath
+                    TryRollback(Sub()
+                                    If File.Exists(pathToDelete) Then File.Delete(pathToDelete)
+                                End Sub,
+                                rollbackFailures)
                 Next
-                If File.Exists(previousStatePath) Then File.Delete(previousStatePath)
+                TryRollback(Sub()
+                                If File.Exists(previousStatePath) Then File.Delete(previousStatePath)
+                            End Sub,
+                            rollbackFailures)
                 For Each original As String In backedUpPaths.Keys
-                    Dim backup As String = backedUpPaths(original)
-                    If File.Exists(backup) Then File.Move(backup, original)
+                    Dim originalPath As String = original
+                    Dim backupPath As String = backedUpPaths(original)
+                    TryRollback(Sub()
+                                    If File.Exists(backupPath) Then File.Move(backupPath, originalPath)
+                                End Sub,
+                                rollbackFailures)
                 Next
-                If Directory.Exists(stagingRoot) Then Directory.Delete(stagingRoot, True)
-                If Directory.Exists(backupRoot) Then Directory.Delete(backupRoot, True)
-                If Not rootExisted AndAlso Directory.Exists(canonicalRoot) AndAlso
-                        New DirectoryInfo(canonicalRoot).GetFileSystemInfos().Length = 0 Then
-                    Directory.Delete(canonicalRoot, False)
+                TryRollback(Sub()
+                                If Directory.Exists(stagingRoot) Then Directory.Delete(stagingRoot, True)
+                            End Sub,
+                            rollbackFailures)
+                TryRollback(Sub()
+                                If Directory.Exists(backupRoot) Then Directory.Delete(backupRoot, True)
+                            End Sub,
+                            rollbackFailures)
+                TryRollback(Sub()
+                                If Not rootExisted AndAlso Directory.Exists(canonicalRoot) AndAlso
+                                        New DirectoryInfo(canonicalRoot).GetFileSystemInfos().Length = 0 Then
+                                    Directory.Delete(canonicalRoot, False)
+                                End If
+                            End Sub,
+                            rollbackFailures)
+                If rollbackFailures.Count <> 0 Then
+                    Dim allFailures As New List(Of Exception)()
+                    allFailures.Add(failure)
+                    allFailures.AddRange(rollbackFailures)
+                    Throw New AggregateException("Setup failed and one or more rollback actions also failed.", allFailures)
                 End If
                 Throw
             End Try
@@ -154,6 +209,14 @@ Namespace Global.C3Setup
 
         Private Shared Sub Inject(faultInjector As Action(Of String), point As String)
             If faultInjector IsNot Nothing Then faultInjector(point)
+        End Sub
+
+        Private Shared Sub TryRollback(action As Action, failures As IList(Of Exception))
+            Try
+                action()
+            Catch ex As Exception
+                failures.Add(ex)
+            End Try
         End Sub
 
         Private Shared Function CompareReleaseIdentity(left As PayloadManifest, right As PayloadManifest) As Integer
