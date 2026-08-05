@@ -40,6 +40,14 @@ subject to their focused gates.
   a blocker for the completed historical implementation.
 - Preserved the standing authority for retained unpublished Alpha artifacts and
   the explicit-human-approval boundary for every Beta-labelled operation.
+- Reconstructed the exact Microsoft Build Tools 2015 Update 3 x86/amd64
+  administrative payload as an isolated, hash-recorded compatibility-lab
+  toolset without registering the retired product system-wide.
+- Rebuilt immutable `v1.2.0b1` in x86/net40 and x64/net40 with exact MSBuild
+  `14.0.25420.1`, verified both PE/framework contracts, and retained honest
+  non-byte-identical comparisons with the official runtime-oracle binaries.
+- Kept historical Gate 1 open for target workflows, private catalogue exchange,
+  screenshots, and control/resource evidence before application behaviour work.
 
 
 ### Version 1.3.0 Alpha 2 - 5 August 2026

@@ -71,9 +71,10 @@ binaries, or change the update feed.
 - [x] Download the official Microsoft Build Tools 2015 Update 3 bootstrapper,
   verify version `14.0.25420.1`, exact hashes, and Microsoft Authenticode
   identity, and retain it as compatibility-laboratory input only.
-- [ ] Install or reconstruct historical VS2015/MSBuild `14.0.25420.1` in the
-  compatibility laboratory.
-- [ ] Rebuild `v1.2.0b1` x86/net40 and x64/net40 with that historical 1.2
+- [x] Reconstruct historical VS2015/MSBuild `14.0.25420.1` as an isolated,
+  hash-recorded administrative toolset in the compatibility laboratory; do not
+  register the retired product system-wide.
+- [x] Rebuild `v1.2.0b1` x86/net40 and x64/net40 with that historical 1.2
   compiler oracle; do not use it for C3 1.3 release builds.
 - [ ] Repeat launch, catalogue, list/filter/edit/delete, settings, and blocked-
   network workflows in disposable environments.
