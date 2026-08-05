@@ -1,18 +1,23 @@
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)]
     [ValidateSet('win-x86-net40', 'win-x64-net48', 'win-arm64-net481')]
     [string]$Lane,
-    [Parameter(Mandatory = $true)][string]$PackagePath,
-    [Parameter(Mandatory = $true)][string]$ExtractedDirectory,
-    [Parameter(Mandatory = $true)][string]$ExpectedPackageSha256,
-    [Parameter(Mandatory = $true)][string]$TargetEnvironmentId,
-    [Parameter(Mandatory = $true)][string]$Operator,
-    [string]$EvidenceOutput
+    [string]$PackagePath,
+    [string]$ExtractedDirectory,
+    [string]$ExpectedPackageSha256,
+    [string]$TargetEnvironmentId,
+    [string]$Operator,
+    [string]$EvidenceOutput,
+    [switch]$SelfTest
 )
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
+
+function Test-StringBlank {
+    param([string]$Value)
+    return [string]::IsNullOrEmpty($Value) -or $Value.Trim().Length -eq 0
+}
 
 function Get-Sha256 {
     param([Parameter(Mandatory = $true)][string]$Path)
@@ -23,14 +28,14 @@ function Get-Sha256 {
         return ([BitConverter]::ToString($algorithm.ComputeHash($stream))).Replace('-', '').ToLowerInvariant()
     }
     finally {
-        $stream.Dispose()
-        $algorithm.Dispose()
+        $stream.Close()
+        $algorithm.Clear()
     }
 }
 
 function Get-NativeArchitecture {
     $value = [string]$env:PROCESSOR_ARCHITEW6432
-    if ([string]::IsNullOrWhiteSpace($value)) {
+    if (Test-StringBlank $value) {
         $value = [string]$env:PROCESSOR_ARCHITECTURE
     }
     switch -Regex ($value) {
@@ -41,8 +46,31 @@ function Get-NativeArchitecture {
     }
 }
 
-$repositoryRoot = Split-Path -Parent $PSScriptRoot
-$runtimeLanes = @(& (Join-Path $PSScriptRoot 'get-runtime-lanes.ps1'))
+$scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+$repositoryRoot = Split-Path -Parent $scriptRoot
+$runtimeLanes = @(& (Join-Path $scriptRoot 'get-runtime-lanes.ps1'))
+if ($SelfTest) {
+    if ((Test-StringBlank $scriptRoot) -or $runtimeLanes.Count -ne 3) {
+        throw 'verify-target-runtime.ps1 PowerShell 2 self-test could not resolve its script root or lane projection.'
+    }
+    $selfHash = Get-Sha256 -Path (Join-Path $scriptRoot 'get-runtime-lanes.ps1')
+    if ($selfHash -notmatch '^[0-9a-f]{64}$') {
+        throw 'verify-target-runtime.ps1 PowerShell 2 self-test could not compute SHA-256.'
+    }
+    Write-Host "verify-target-runtime.ps1 PowerShell 2 self-test passed at '$scriptRoot'."
+    return
+}
+foreach ($requiredValue in @(
+        @('Lane', $Lane),
+        @('PackagePath', $PackagePath),
+        @('ExtractedDirectory', $ExtractedDirectory),
+        @('ExpectedPackageSha256', $ExpectedPackageSha256),
+        @('TargetEnvironmentId', $TargetEnvironmentId),
+        @('Operator', $Operator))) {
+    if (Test-StringBlank ([string]$requiredValue[1])) {
+        throw "-$($requiredValue[0]) is required for target runtime verification."
+    }
+}
 $laneContract = @($runtimeLanes | Where-Object { $_.id -ceq $Lane })
 if ($laneContract.Count -ne 1) {
     throw "Release manifest does not contain exactly one lane '$Lane'."
@@ -98,13 +126,13 @@ if ($TargetEnvironmentId -cne [string]$laneContract.runtimeEnvironmentId) {
     throw "$Lane requires target environment ID '$($laneContract.runtimeEnvironmentId)', found '$TargetEnvironmentId'."
 }
 
-& (Join-Path $PSScriptRoot 'smoke-launch.ps1') `
+& (Join-Path $scriptRoot 'smoke-launch.ps1') `
     -LaneId $Lane `
     -ExecutablePath $executable `
     -ProofMode TargetQualification `
     -TargetEnvironmentId $TargetEnvironmentId
 
-if ([string]::IsNullOrWhiteSpace($EvidenceOutput)) {
+if (Test-StringBlank $EvidenceOutput) {
     $EvidenceOutput = Join-Path (Get-Location) "$Lane-runtime-evidence.txt"
 }
 $evidenceLines = @(

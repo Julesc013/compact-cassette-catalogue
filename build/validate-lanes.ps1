@@ -119,4 +119,11 @@ if ($conditionalSource.Count -gt 0) {
     throw "Architecture/framework-conditional application source is prohibited: $($conditionalSource.Path -join ', ')"
 }
 
+foreach ($targetScript in @('smoke-launch.ps1', 'verify-target-runtime.ps1')) {
+    $targetScriptContent = Get-Content -LiteralPath (Join-Path $PSScriptRoot $targetScript) -Raw
+    if ($targetScriptContent.Contains('$PSScriptRoot')) {
+        throw "$targetScript is target-side PowerShell 2 tooling and must not use `$PSScriptRoot."
+    }
+}
+
 Write-Host 'Three-lane contract verified: exact manifest, lock shape, ARM64 configurations, installer exclusion, and source identity policy pass.'

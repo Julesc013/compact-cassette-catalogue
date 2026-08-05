@@ -9,15 +9,21 @@ param(
     [string]$TargetEnvironmentId,
     [int]$StartupTimeoutSeconds = 30,
     [int]$ExitTimeoutSeconds = 30,
-    [switch]$AllowKnownCloseTimeout
+    [switch]$AllowKnownCloseTimeout,
+    [switch]$SelfTest
 )
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
+function Test-StringBlank {
+    param([string]$Value)
+    return [string]::IsNullOrEmpty($Value) -or $Value.Trim().Length -eq 0
+}
+
 function Get-NativeArchitecture {
     $value = [string]$env:PROCESSOR_ARCHITEW6432
-    if ([string]::IsNullOrWhiteSpace($value)) {
+    if (Test-StringBlank $value) {
         $value = [string]$env:PROCESSOR_ARCHITECTURE
     }
     switch -Regex ($value) {
@@ -28,8 +34,16 @@ function Get-NativeArchitecture {
     }
 }
 
-$repositoryRoot = Split-Path -Parent $PSScriptRoot
-$lanes = @(& (Join-Path $PSScriptRoot 'get-runtime-lanes.ps1'))
+$scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+$repositoryRoot = Split-Path -Parent $scriptRoot
+$lanes = @(& (Join-Path $scriptRoot 'get-runtime-lanes.ps1'))
+if ($SelfTest) {
+    if ((Test-StringBlank $scriptRoot) -or $lanes.Count -ne 3) {
+        throw 'smoke-launch.ps1 PowerShell 2 self-test could not resolve its script root or lane projection.'
+    }
+    Write-Host "smoke-launch.ps1 PowerShell 2 self-test passed at '$scriptRoot'."
+    return
+}
 if ($LaneId.Count -gt 0) {
     $knownLaneIds = @($lanes | ForEach-Object { [string]$_.id })
     $unknownLaneIds = @($LaneId | Where-Object { $knownLaneIds -notcontains $_ })
@@ -38,7 +52,7 @@ if ($LaneId.Count -gt 0) {
     }
     $lanes = @($lanes | Where-Object { $LaneId -contains $_.id })
 }
-if (-not [string]::IsNullOrWhiteSpace($ExecutablePath) -and $lanes.Count -ne 1) {
+if (-not (Test-StringBlank $ExecutablePath) -and $lanes.Count -ne 1) {
     throw '-ExecutablePath requires exactly one selected -LaneId.'
 }
 if ($ProofMode -ceq 'TargetQualification' -and $lanes.Count -ne 1) {
@@ -50,7 +64,7 @@ $executedCount = 0
 foreach ($lane in $lanes) {
     $requiredArchitecture = [string]$lane.runtimeArchitecture
     if ($ProofMode -ceq 'TargetQualification') {
-        if ([string]::IsNullOrWhiteSpace($TargetEnvironmentId) -or
+        if ((Test-StringBlank $TargetEnvironmentId) -or
                 $TargetEnvironmentId -cne [string]$lane.runtimeEnvironmentId) {
             throw "$($lane.id) target proof requires environment ID '$($lane.runtimeEnvironmentId)', found '$TargetEnvironmentId'."
         }
@@ -71,7 +85,7 @@ foreach ($lane in $lanes) {
         }
     }
 
-    $executable = if (-not [string]::IsNullOrWhiteSpace($ExecutablePath)) {
+    $executable = if (-not (Test-StringBlank $ExecutablePath)) {
         [IO.Path]::GetFullPath($ExecutablePath)
     }
     else {
@@ -123,7 +137,7 @@ foreach ($lane in $lanes) {
             $process.Kill()
             [void]$process.WaitForExit(5000)
         }
-        $process.Dispose()
+        $process.Close()
         Start-Sleep -Milliseconds 500
     }
 }
