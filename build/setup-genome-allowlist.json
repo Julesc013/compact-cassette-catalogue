@@ -10,6 +10,31 @@
       "surface": "applicationManifests:Compact Cassette Catalogue Uninstaller/app.manifest",
       "reason": "Ownership-only uninstall reverses the same all-users Program Files, common-shortcut, and HKLM surfaces and must request an administrator token explicitly.",
       "regression": "build/validate-setup-manifests.ps1 requires exactly one requireAdministrator execution level with uiAccess disabled."
+    },
+    {
+      "surface": "resourceKeys:Compact Cassette Catalogue Installer/frmFailure.resx",
+      "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
+      "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."
+    },
+    {
+      "surface": "resourceKeys:Compact Cassette Catalogue Installer/frmMain.resx",
+      "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
+      "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."
+    },
+    {
+      "surface": "resourceKeys:Compact Cassette Catalogue Installer/frmSuccess.resx",
+      "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
+      "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."
+    },
+    {
+      "surface": "resourceKeys:Compact Cassette Catalogue Uninstaller/frmFailure.resx",
+      "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
+      "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."
+    },
+    {
+      "surface": "resourceKeys:Compact Cassette Catalogue Uninstaller/frmSuccess.resx",
+      "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
+      "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."
     }
   ]
 }

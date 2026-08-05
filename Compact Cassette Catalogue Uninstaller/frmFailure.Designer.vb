@@ -102,7 +102,7 @@ Partial Class frmFailure
         '
         'picSideBanner
         '
-        Me.picSideBanner.Image = CType(resources.GetObject("picSideBanner.Image"), System.Drawing.Image)
+        Me.picSideBanner.Image = Global.Compact_Cassette_Catalogue_Uninstaller.My.Resources.Resources.cassette_tapes_transparent_jpg
         Me.picSideBanner.Location = New System.Drawing.Point(0, 0)
         Me.picSideBanner.Margin = New System.Windows.Forms.Padding(0)
         Me.picSideBanner.Name = "picSideBanner"
