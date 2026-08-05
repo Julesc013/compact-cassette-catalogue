@@ -197,9 +197,20 @@
 
         notes = txtNotes.Text
 
+        Dim fullNameNew As String = manufacturer & " " & model
+
 
         'Check entered data is correct
         Try
+
+            If String.IsNullOrWhiteSpace(manufacturer) OrElse String.IsNullOrWhiteSpace(model) Then
+                Throw New Exception("Manufacturer and model names cannot be empty.")
+            End If
+
+            Dim duplicate As DataRow = decks.Rows.Find(fullNameNew)
+            If duplicate IsNot Nothing AndAlso duplicate IsNot deckRow Then
+                Throw New Exception("A deck named " & fullNameNew & " already exists.")
+            End If
 
             If type1 = False And type2 = False And type3 = False And type4 = False Then
                 'If no types selected
@@ -231,15 +242,46 @@
 
         ' Write new data to existing row.
 
-        Dim thisDeck As Object() = {manufacturer, model, fullName, numYear.Value, condition, type1, type2, type3, type4, HX, MPX, DolbyB, DolbyC, DolbyS, DBX1, DBX2, stereo, programSearch, reverse, calibration, azimuth, dubbingSlow, dubbingFast, frequencyMin, frequencyMax, signalRatio, signalRatioNR, wowFlutter, distortion, heads, wells, speedSlow, speedNormal, speedFast, dateCreated, notes}
+        If Not String.Equals(fullName, fullNameNew, StringComparison.Ordinal) Then
+            RenameDeckReferences(tapes, fullName, fullNameNew)
+        End If
 
-        Dim counter As Integer = 0
-        For Each thisObject As Object In thisDeck
-
-            decks.Rows(deckIndex)(counter) = thisObject
-            counter += 1
-
-        Next
+        deckRow("Manufacturer") = manufacturer
+        deckRow("Model") = model
+        deckRow("Name") = fullNameNew
+        deckRow("Year") = year
+        deckRow("Condition") = condition
+        deckRow("Type1") = type1
+        deckRow("Type2") = type2
+        deckRow("Type3") = type3
+        deckRow("Type4") = type4
+        deckRow("HX") = HX
+        deckRow("MPX") = MPX
+        deckRow("DolbyB") = DolbyB
+        deckRow("DolbyC") = DolbyC
+        deckRow("DolbyS") = DolbyS
+        deckRow("DBX1") = DBX1
+        deckRow("DBX2") = DBX2
+        deckRow("Stereo") = stereo
+        deckRow("ProgramSearch") = programSearch
+        deckRow("Reverse") = reverse
+        deckRow("Calibration") = calibration
+        deckRow("Azimuth") = azimuth
+        deckRow("DubbingSlow") = dubbingSlow
+        deckRow("DubbingFast") = dubbingFast
+        deckRow("FrequencyLow") = frequencyMin
+        deckRow("FrequencyHigh") = frequencyMax
+        deckRow("SignalRatio") = signalRatio
+        deckRow("SignalRatioNR") = signalRatioNR
+        deckRow("WowFlutter") = wowFlutter
+        deckRow("Distortion") = distortion
+        deckRow("Heads") = heads
+        deckRow("Wells") = wells
+        deckRow("SpeedSlow") = speedSlow
+        deckRow("SpeedNorm") = speedNormal
+        deckRow("SpeedFast") = speedFast
+        deckRow("Notes") = notes
+        fullName = fullNameNew
 
 
         changes = True

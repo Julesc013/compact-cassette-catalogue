@@ -29,7 +29,7 @@
         Dim speedFast As Boolean = chkSpeedFast.Checked
 
         'Get number of decks already existing
-        Dim deckCount As Integer = CInt(counters.Rows(0)("Number"))
+        Dim deckCount As Integer = decks.Rows.Count
 
         'Check entered data is correct
         Try
@@ -95,7 +95,8 @@
         decks.Rows.Add(New Object() {manufacturer, model, name, numYear.Value, condition, type1, type2, type3, type4, chkHX.Checked, chkMPX.Checked, chkDolbyB.Checked, chkDolbyC.Checked, chkDolbyS.Checked, chkDBX1.Checked, chkDBX2.Checked, chkStereo.Checked, chkSearch.Checked, chkReverse.Checked, chkCalibration.Checked, chkAzimuth.Checked, chkDubbingHalf.Checked, chkDubbingDouble.Checked, numFrequencyMin.Value, frequencyMax, numSignalRatio.Value, cmbSignalRatioNR.Text, numWowFlutter.Value, numDistortion.Value, heads, wells, speedSlow, speedNormal, speedFast, DateTime.Now, txtNotes.Text})
 
         'Update deck counter
-        counters.Rows(0)("Number") = deckCount + 1
+        SynchronizeEntityCounters(counters, decks, brands, models, tapes)
+        deckCount = decks.Rows.Count
 
         changes = True
         'Update title bar

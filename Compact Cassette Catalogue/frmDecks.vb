@@ -272,6 +272,16 @@
 
         ' Delete every deck in the list.
 
+        For Each identifier As String In identifiers
+            If IsDeckReferenced(tapes, identifier) Then
+                MsgBox(
+                    "Deck " & identifier & " is still referenced by one or more tape sides and cannot be deleted.",
+                    MsgBoxStyle.Exclamation,
+                    "Deck In Use")
+                Exit Sub
+            End If
+        Next
+
         ' Confirm with the user that they would like to delete their selection of decks.
         Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") decks?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
 
@@ -284,10 +294,6 @@
 
                 ' Remove the this deck's record from the table.
                 decks.Rows.Remove(deckRow)
-
-                ' Update deck counter.
-                deckCount -= 1
-                counters.Rows(0)("Number") = tapeCount
 
                 ' Update change detection variable.
                 changes = True
@@ -302,6 +308,9 @@
                 consoleAdd(message)
 
             Next
+
+            SynchronizeEntityCounters(counters, decks, brands, models, tapes)
+            deckCount = decks.Rows.Count
 
             loadList() ' Refresh the list data.
 

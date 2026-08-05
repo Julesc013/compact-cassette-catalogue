@@ -105,6 +105,17 @@
 
         ' Delete every brand in the list.
 
+        For Each identifier As String In identifiers
+            Dim candidate As DataRow = brands.Rows.Find(identifier)
+            If candidate IsNot Nothing AndAlso IsBrandReferenced(models, CStr(candidate("Brand"))) Then
+                MsgBox(
+                    "Brand " & CStr(candidate("Brand")) & " is still referenced by one or more models and cannot be deleted.",
+                    MsgBoxStyle.Exclamation,
+                    "Brand In Use")
+                Exit Sub
+            End If
+        Next
+
         ' Confirm with the user that they would like to delete their selection.
         Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") brands?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
 
@@ -117,10 +128,6 @@
 
                 ' Remove the this brand's record from the table.
                 brands.Rows.Remove(brandRow)
-
-                ' Update brand counter.
-                brandCount -= 1
-                counters.Rows(1)("Number") = brandCount
 
                 ' Update change detection variable.
                 changes = True
@@ -135,6 +142,9 @@
                 consoleAdd(message)
 
             Next
+
+            SynchronizeEntityCounters(counters, decks, brands, models, tapes)
+            brandCount = brands.Rows.Count
 
             loadList() ' Refresh the list data.
 

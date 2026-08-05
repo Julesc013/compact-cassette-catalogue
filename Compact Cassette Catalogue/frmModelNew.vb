@@ -3,7 +3,7 @@
     Private Sub FrmAddModel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'Load brands into combination box
-        Dim brandCount As Integer = CInt(counters.Rows(1)("Number"))
+        Dim brandCount As Integer = brands.Rows.Count
 
         For i As Integer = 0 To brandCount - 1
 
@@ -20,7 +20,7 @@
         Dim model As String = txtModel.Text
         Dim code As String = txtCode.Text.ToUpper
 
-        Dim modelCount As Integer = CInt(counters.Rows(2)("Number"))
+        Dim modelCount As Integer = models.Rows.Count
 
         'Find the code for the selected brand
         Dim brand As String = cmbBrand.Text
@@ -76,7 +76,8 @@
         models.Rows.Add(New Object() {brand, type, model, code, identifier, txtName.Text, 0, DateTime.Now, txtNotes.Text})
 
         'Update model counter
-        counters.Rows(2)("Number") = modelCount + 1
+        SynchronizeEntityCounters(counters, decks, brands, models, tapes)
+        modelCount = models.Rows.Count
 
         changes = True
         'Update title bar

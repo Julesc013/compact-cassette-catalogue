@@ -7,7 +7,7 @@
 
         ' Populate objects.
 
-        Dim brandCount As Integer = CInt(counters.Rows(1)("Number"))
+        Dim brandCount As Integer = brands.Rows.Count
 
         ' Load brands into combination box.
         For i As Integer = 0 To brandCount - 1
@@ -194,8 +194,18 @@
 
         ' Delete every model in the list.
 
+        For Each identifier As String In identifiers
+            If IsModelReferenced(tapes, identifier) Then
+                MsgBox(
+                    "Model " & identifier & " is still referenced by one or more tapes and cannot be deleted.",
+                    MsgBoxStyle.Exclamation,
+                    "Model In Use")
+                Exit Sub
+            End If
+        Next
+
         ' Confirm with the user that they would like to delete their selection.
-        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") brands?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
+        Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete all the selected (" & CStr(identifierCount) & ") models?" & vbNewLine & "This action cannot be undone.", MsgBoxStyle.YesNoCancel, "Confirm Deletion")
 
         If result = vbYes Then
 
@@ -206,10 +216,6 @@
 
                 ' Remove the this model's record from the table.
                 models.Rows.Remove(modelRow)
-
-                ' Update model counter.
-                modelCount -= 1
-                counters.Rows(2)("Number") = modelCount
 
                 ' Update change detection variable.
                 changes = True
@@ -224,6 +230,9 @@
                 consoleAdd(message)
 
             Next
+
+            SynchronizeEntityCounters(counters, decks, brands, models, tapes)
+            modelCount = models.Rows.Count
 
             loadList() ' Refresh the list data.
 

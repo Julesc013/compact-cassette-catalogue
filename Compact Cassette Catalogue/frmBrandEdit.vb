@@ -33,31 +33,18 @@
         Dim brandNameNew As String = txtBrand.Text
         Dim brandNotesNew As String = txtNotes.Text
 
-        '' Check entered data is correct.
-        'Try
-
-        '    If brandNameNew = Nothing Then ''Or Not regexAlphanumeric.IsMatch(brand) Then
-        '        ' If nothing or not alphanumeric.
-        '        Throw New Exception("Brand name cannot be empty or include symbols.")
-        '    End If
-
-        'Catch ex As Exception
-        '    MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Invalid Data Entry")
-        '    Exit Sub
-        'End Try
+        If String.IsNullOrWhiteSpace(brandNameNew) Then
+            MsgBox("Brand name cannot be empty.", MsgBoxStyle.Exclamation, "Invalid Data Entry")
+            Exit Sub
+        End If
 
 
         ' Write new data to existing row.
 
-        Dim thisBrand As Object() = {brandName, brandCode, brandDateTime, brandNotesNew} ' Keep existing fields except notes.
-
-        Dim counter As Integer = 0
-        For Each thisObject As Object In thisBrand
-
-            brands.Rows(brandIndex)(counter) = thisObject
-            counter += 1
-
-        Next
+        RenameBrandReferences(models, brandName, brandNameNew)
+        brandRow("Brand") = brandNameNew
+        brandRow("Notes") = brandNotesNew
+        brandName = brandNameNew
 
 
         changes = True
