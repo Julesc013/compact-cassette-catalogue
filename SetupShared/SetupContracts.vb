@@ -7,6 +7,31 @@ Imports System.Xml
 
 Namespace Global.C3Setup
 
+    Public NotInheritable Class SetupContractNames
+
+        Private Shared ReadOnly PayloadNames As String() = {
+            "BUILD.txt",
+            "Compact Cassette Catalogue.exe",
+            "Compact Cassette Catalogue.exe.config",
+            "README.txt",
+            "RELEASE_NOTES.txt",
+            "UNINSTALL.exe",
+            "UNINSTALL.exe.config"
+        }
+
+        Private Sub New()
+        End Sub
+
+        Public Shared Function PayloadFileNames() As String()
+            Return DirectCast(PayloadNames.Clone(), String())
+        End Function
+
+        Public Shared Function IsPayloadFileName(value As String) As Boolean
+            Return Array.IndexOf(PayloadNames, value) >= 0
+        End Function
+
+    End Class
+
     Public NotInheritable Class PayloadFile
 
         Public Sub New(path As String, length As Long, sha256 As String)
@@ -65,16 +90,6 @@ Namespace Global.C3Setup
     End Class
 
     Public NotInheritable Class PayloadManifestReader
-
-        Private Shared ReadOnly AllowedPayloadNames As String() = {
-            "BUILD.txt",
-            "Compact Cassette Catalogue.exe",
-            "Compact Cassette Catalogue.exe.config",
-            "README.txt",
-            "RELEASE_NOTES.txt",
-            "UNINSTALL.exe",
-            "UNINSTALL.exe.config"
-        }
 
         Private Sub New()
         End Sub
@@ -136,7 +151,8 @@ Namespace Global.C3Setup
             Dim filesElement As XmlElement = rootChildren(1)
             RequireAttributes(filesElement, New String() {})
             Dim fileElements As IList(Of XmlElement) = ElementChildren(filesElement)
-            If fileElements.Count <> AllowedPayloadNames.Length Then
+            Dim allowedPayloadNames As String() = SetupContractNames.PayloadFileNames()
+            If fileElements.Count <> allowedPayloadNames.Length Then
                 Throw New SetupContractException("The payload manifest must contain exactly seven files.")
             End If
 
@@ -151,7 +167,7 @@ Namespace Global.C3Setup
 
                 Dim relativePath As String = RequiredValue(fileElement, "path")
                 SetupPathPolicy.RequirePayloadFileName(relativePath)
-                If Array.IndexOf(AllowedPayloadNames, relativePath) < 0 Then
+                If Not SetupContractNames.IsPayloadFileName(relativePath) Then
                     Throw New SetupContractException("Unexpected payload file name: " & relativePath)
                 End If
                 If seen.ContainsKey(relativePath) Then
@@ -170,7 +186,7 @@ Namespace Global.C3Setup
                 files.Add(New PayloadFile(relativePath, length, sha256))
             Next
 
-            For Each requiredName As String In AllowedPayloadNames
+            For Each requiredName As String In allowedPayloadNames
                 If Not seen.ContainsKey(requiredName) Then
                     Throw New SetupContractException("The payload manifest is missing: " & requiredName)
                 End If
@@ -225,6 +241,15 @@ Namespace Global.C3Setup
         End Sub
 
         Public Shared Sub Verify(manifest As PayloadManifest, payloadDirectory As String)
+            VerifyOwnedFiles(manifest, payloadDirectory)
+            Dim root As String = SetupPathPolicy.CanonicalDirectory(payloadDirectory)
+            If New DirectoryInfo(root).GetDirectories().Length <> 0 OrElse
+                    New DirectoryInfo(root).GetFiles().Length <> manifest.Files.Count Then
+                Throw New SetupContractException("The payload directory is not the closed seven-file set.")
+            End If
+        End Sub
+
+        Public Shared Sub VerifyOwnedFiles(manifest As PayloadManifest, payloadDirectory As String)
             If manifest Is Nothing Then
                 Throw New ArgumentNullException("manifest")
             End If
@@ -238,21 +263,10 @@ Namespace Global.C3Setup
                 expected.Add(item.Path, item)
             Next
 
-            Dim actualFiles As FileInfo() = New DirectoryInfo(root).GetFiles()
-            Dim actualDirectories As DirectoryInfo() = New DirectoryInfo(root).GetDirectories()
-            If actualDirectories.Length <> 0 OrElse actualFiles.Length <> expected.Count Then
-                Throw New SetupContractException("The payload directory is not the closed seven-file set.")
-            End If
-            For Each actual As FileInfo In actualFiles
-                If (actual.Attributes And FileAttributes.ReparsePoint) <> 0 OrElse Not expected.ContainsKey(actual.Name) Then
-                    Throw New SetupContractException("Unexpected or unsafe payload entry: " & actual.Name)
-                End If
-            Next
-
             For Each item As PayloadFile In manifest.Files
                 Dim fullPath As String = SetupPathPolicy.CombineOwnedFile(root, item.Path)
                 Dim file As New FileInfo(fullPath)
-                If Not file.Exists OrElse file.Length <> item.Length Then
+                If Not file.Exists OrElse (file.Attributes And FileAttributes.ReparsePoint) <> 0 OrElse file.Length <> item.Length Then
                     Throw New SetupContractException("Payload file length mismatch: " & item.Path)
                 End If
                 Dim actualHash As String = FileHash.Sha256(fullPath)
