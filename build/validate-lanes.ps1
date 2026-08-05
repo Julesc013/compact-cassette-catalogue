@@ -119,10 +119,19 @@ if ($conditionalSource.Count -gt 0) {
     throw "Architecture/framework-conditional application source is prohibited: $($conditionalSource.Path -join ', ')"
 }
 
-foreach ($targetScript in @('smoke-launch.ps1', 'verify-target-runtime.ps1')) {
+foreach ($targetScript in @('smoke-launch.ps1', 'verify-target-runtime.ps1', 'target-environment.ps1', 'test-target-environment.ps1')) {
     $targetScriptContent = Get-Content -LiteralPath (Join-Path $PSScriptRoot $targetScript) -Raw
     if ($targetScriptContent.Contains('$PSScriptRoot')) {
         throw "$targetScript is target-side PowerShell 2 tooling and must not use `$PSScriptRoot."
+    }
+}
+$targetVerifier = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'verify-target-runtime.ps1') -Raw
+foreach ($requiredTargetControl in @(
+        'Caller-supplied -TargetEnvironmentId is prohibited',
+        'Get-C3TargetEnvironmentFacts',
+        'Assert-C3TargetEnvironment')) {
+    if (-not $targetVerifier.Contains($requiredTargetControl)) {
+        throw "Target verifier is missing mechanical environment control '$requiredTargetControl'."
     }
 }
 

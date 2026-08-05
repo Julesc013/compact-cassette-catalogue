@@ -22,4 +22,11 @@ foreach ($scriptName in @('smoke-launch.ps1', 'verify-target-runtime.ps1')) {
     Write-Host ($output -join "`n")
 }
 
+$environmentOutput = @(& $windowsPowerShell -Version 2 -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass `
+    -File (Join-Path $scriptRoot 'test-target-environment.ps1') 2>&1)
+if ($LASTEXITCODE -ne 0) {
+    throw "test-target-environment.ps1 failed under Windows PowerShell 2.0:`n$($environmentOutput -join "`n")"
+}
+Write-Host ($environmentOutput -join "`n")
+
 Write-Host 'Actual target-side scripts parsed and executed successfully under Windows PowerShell 2.0.'

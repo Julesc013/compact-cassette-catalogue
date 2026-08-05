@@ -7,7 +7,8 @@ param(
     [string]$ExpectedPackageSha256,
     [string]$EntryManifestPath,
     [string]$ExpectedEntryManifestSha256,
-    [string]$TargetEnvironmentId,
+    [Alias('TargetEnvironmentId')]
+    [string]$AssertedTargetEnvironmentId,
     [string]$Operator,
     [string]$EvidenceOutput,
     [switch]$SelfTest
@@ -78,21 +79,9 @@ function ConvertFrom-EntryManifestJson {
     }
 }
 
-function Get-NativeArchitecture {
-    $value = [string]$env:PROCESSOR_ARCHITEW6432
-    if (Test-StringBlank $value) {
-        $value = [string]$env:PROCESSOR_ARCHITECTURE
-    }
-    switch -Regex ($value) {
-        '^(?i:AMD64|X64)$' { return 'x64' }
-        '^(?i:X86|I386)$' { return 'x86' }
-        '^(?i:ARM64|AARCH64)$' { return 'ARM64' }
-        default { throw "Unsupported or unknown native host architecture '$value'." }
-    }
-}
-
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repositoryRoot = Split-Path -Parent $scriptRoot
+. (Join-Path $scriptRoot 'target-environment.ps1')
 $runtimeLanes = @(& (Join-Path $scriptRoot 'get-runtime-lanes.ps1'))
 if ($SelfTest) {
     if ((Test-StringBlank $scriptRoot) -or $runtimeLanes.Count -ne 3) {
@@ -106,8 +95,12 @@ if ($SelfTest) {
     if ([string]$selfManifest.packageName -cne 'test.zip' -or @($selfManifest.entries).Count -ne 1) {
         throw 'verify-target-runtime.ps1 PowerShell 2 self-test could not parse retained entry-manifest evidence.'
     }
+    & (Join-Path $scriptRoot 'test-target-environment.ps1')
     Write-Host "verify-target-runtime.ps1 PowerShell 2 self-test passed at '$scriptRoot'."
     return
+}
+if (-not (Test-StringBlank $AssertedTargetEnvironmentId)) {
+    throw 'Caller-supplied -TargetEnvironmentId is prohibited; target identity is derived mechanically from OS, architecture, and framework facts.'
 }
 foreach ($requiredValue in @(
         @('Lane', $Lane),
@@ -116,7 +109,6 @@ foreach ($requiredValue in @(
         @('ExpectedPackageSha256', $ExpectedPackageSha256),
         @('EntryManifestPath', $EntryManifestPath),
         @('ExpectedEntryManifestSha256', $ExpectedEntryManifestSha256),
-        @('TargetEnvironmentId', $TargetEnvironmentId),
         @('Operator', $Operator))) {
     if (Test-StringBlank ([string]$requiredValue[1])) {
         throw "-$($requiredValue[0]) is required for target runtime verification."
@@ -214,19 +206,14 @@ if ([string]$buildData.lane -cne $Lane -or
     throw 'Extracted EXE/config bytes or BUILD.txt do not match the selected release-lane contract.'
 }
 
-$nativeArchitecture = Get-NativeArchitecture
-if ($nativeArchitecture -cne [string]$laneContract.runtimeArchitecture) {
-    throw "$Lane requires native '$($laneContract.runtimeArchitecture)' target architecture, found '$nativeArchitecture'. Emulation is not qualification."
-}
-if ($TargetEnvironmentId -cne [string]$laneContract.runtimeEnvironmentId) {
-    throw "$Lane requires target environment ID '$($laneContract.runtimeEnvironmentId)', found '$TargetEnvironmentId'."
-}
+$targetFacts = Get-C3TargetEnvironmentFacts
+$derivedTargetEnvironmentId = Assert-C3TargetEnvironment -LaneContract $laneContract -Facts $targetFacts
 
 & (Join-Path $scriptRoot 'smoke-launch.ps1') `
     -LaneId $Lane `
     -ExecutablePath $executable `
     -ProofMode TargetQualification `
-    -TargetEnvironmentId $TargetEnvironmentId
+    -TargetEnvironmentId $derivedTargetEnvironmentId
 
 if (Test-StringBlank $EvidenceOutput) {
     $EvidenceOutput = Join-Path (Get-Location) "$Lane-runtime-evidence.txt"
@@ -234,12 +221,18 @@ if (Test-StringBlank $EvidenceOutput) {
 $evidenceLines = @(
     'formatVersion=1',
     "lane=$Lane",
-    "targetEnvironmentId=$TargetEnvironmentId",
+    "targetEnvironmentId=$derivedTargetEnvironmentId",
     "runtimeClaim=$($laneContract.runtimeClaim)",
     "operator=$Operator",
     "machineName=$([Environment]::MachineName)",
-    "osVersion=$([Environment]::OSVersion.VersionString)",
-    "nativeArchitecture=$nativeArchitecture",
+    "osVersion=$($targetFacts.osVersion)",
+    "osBuild=$($targetFacts.osBuild)",
+    "servicePackMajor=$($targetFacts.servicePackMajor)",
+    "servicePackMinor=$($targetFacts.servicePackMinor)",
+    "nativeArchitecture=$($targetFacts.nativeArchitecture)",
+    "frameworkFullInstalled=$($targetFacts.frameworkFullInstalled)",
+    "frameworkVersion=$($targetFacts.frameworkVersion)",
+    "frameworkRelease=$($targetFacts.frameworkRelease)",
     "packageName=$($laneContract.packageName)",
     "packageSha256=$packageHash",
     "entryManifestSha256=$entryManifestHash",
