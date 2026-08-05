@@ -282,6 +282,10 @@ foreach ($buildLane in $lanes) {
     $binaryLogPath = Join-Path $evidencePath 'msbuild.binlog'
     $propertiesPath = Join-Path $evidencePath 'msbuild-properties.txt'
 
+    # Windows PowerShell 5.1 quotes native arguments containing spaces. A
+    # single trailing backslash then escapes the generated closing quote in
+    # MSBuild's command-line parser. Supply two so MSBuild receives the
+    # required single directory separator without splitting Program Files.
     Write-Host "Building $($buildLane.id) from the original project with $msbuild"
     & $msbuild `
         $projectPath `
@@ -291,11 +295,11 @@ foreach ($buildLane in $lanes) {
         "/p:Platform=$($buildLane.platform)" `
         "/p:PlatformTarget=$($buildLane.platformTarget)" `
         "/p:TargetFrameworkVersion=$($buildLane.targetFramework)" `
-        "/p:TargetFrameworkRootPath=$referenceRoot\" `
+        "/p:TargetFrameworkRootPath=$referenceRoot\\" `
         "/p:FrameworkPathOverride=$referencePath" `
         "/p:AppConfig=$appConfigPath" `
-        "/p:OutputPath=$outputPath\" `
-        "/p:IntermediateOutputPath=$intermediatePath\" `
+        "/p:OutputPath=$outputPath\\" `
+        "/p:IntermediateOutputPath=$intermediatePath\\" `
         "/p:VbcToolPath=$([IO.Path]::GetDirectoryName($compilerPath))" `
         '/p:VbcToolExe=vbc.exe' `
         "/p:ResGenToolPath=$([IO.Path]::GetDirectoryName($resourceToolPath))" `
