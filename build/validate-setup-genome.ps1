@@ -57,7 +57,7 @@ function Compare-Surface {
 Compare-Surface 'identity' $expected.identity $actual.identity
 Compare-Surface 'formClasses' $expected.formClasses $actual.formClasses
 
-foreach ($collectionName in @('controls', 'resourceKeys', 'artwork')) {
+foreach ($collectionName in @('applicationManifests', 'controls', 'resourceKeys', 'artwork')) {
     $expectedByPath = @{}
     foreach ($item in @($expected.$collectionName)) { $expectedByPath[[string]$item.path] = $item }
     $actualByPath = @{}

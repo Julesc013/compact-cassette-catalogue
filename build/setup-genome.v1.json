@@ -27,6 +27,18 @@
       "applicationManifest": "app.manifest"
     }
   ],
+  "applicationManifests": [
+    {
+      "path": "Compact Cassette Catalogue Installer/app.manifest",
+      "length": 3245,
+      "sha256": "5436cf64a7d36f8458f86a6419b4d7f8fbb3b1bf7ed2a06eb32a070683d4f372"
+    },
+    {
+      "path": "Compact Cassette Catalogue Uninstaller/app.manifest",
+      "length": 3245,
+      "sha256": "5436cf64a7d36f8458f86a6419b4d7f8fbb3b1bf7ed2a06eb32a070683d4f372"
+    }
+  ],
   "formClasses": [
     { "path": "Compact Cassette Catalogue Installer/frmFailure.Designer.vb", "name": "frmFailure" },
     { "path": "Compact Cassette Catalogue Installer/frmMain.Designer.vb", "name": "frmMain" },

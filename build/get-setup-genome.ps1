@@ -45,9 +45,16 @@ $formClasses = New-Object Collections.Generic.List[Object]
 $controls = New-Object Collections.Generic.List[Object]
 $resourceKeys = New-Object Collections.Generic.List[Object]
 $artwork = New-Object Collections.Generic.List[Object]
+$applicationManifests = New-Object Collections.Generic.List[Object]
 
 foreach ($setupRoot in $setupRoots) {
     $fullRoot = Join-Path $RepositoryRoot $setupRoot
+    $manifest = Get-Item -LiteralPath (Join-Path $fullRoot 'app.manifest')
+    $applicationManifests.Add([ordered]@{
+            path = Get-RelativePath $manifest.FullName
+            length = [long]$manifest.Length
+            sha256 = (Get-FileHash -LiteralPath $manifest.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+        })
     foreach ($designer in @(Get-ChildItem -LiteralPath $fullRoot -Filter 'frm*.Designer.vb' -File | Sort-Object Name)) {
         $relativePath = Get-RelativePath $designer.FullName
         $text = Get-Content -LiteralPath $designer.FullName -Raw
@@ -80,6 +87,7 @@ foreach ($setupRoot in $setupRoots) {
 
 [PSCustomObject][ordered]@{
     identity = $identities
+    applicationManifests = $applicationManifests.ToArray()
     formClasses = $formClasses.ToArray()
     controls = $controls.ToArray()
     resourceKeys = $resourceKeys.ToArray()
