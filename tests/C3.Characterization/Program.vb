@@ -54,6 +54,7 @@ Module Program
         RunTest("Brand browser hierarchy is Designer-owned", AddressOf BrandBrowserHierarchyIsDesignerOwned)
         RunTest("Model browser hierarchy is Designer-owned", AddressOf ModelBrowserHierarchyIsDesignerOwned)
         RunTest("Deck browser hierarchy is Designer-owned", AddressOf DeckBrowserHierarchyIsDesignerOwned)
+        RunTest("Tape browser hierarchy is Designer-owned", AddressOf TapeBrowserHierarchyIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -439,13 +440,12 @@ Module Program
         End Using
 
         Using list As New frmTapes()
-            CatalogueUx.ConfigureListForm(list, "grpTapes", "lstTapes", "grpFilters", "grpActions")
-            Dim resultGroup As Control = FindControl(list, "grpTapes")
-            Dim resultList As Control = FindControl(list, "lstTapes")
             AssertEqual(FormBorderStyle.Sizable, list.FormBorderStyle, "list border")
             AssertEqual(True, list.MaximizeBox, "list maximize")
-            AssertEqual(AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right, resultGroup.Anchor, "result group anchor")
-            AssertEqual(DockStyle.Fill, resultList.Dock, "result list fill")
+            AssertEqual(False, list.AutoScroll, "list form scrolling")
+            AssertEqual(DockStyle.Fill, FindControl(list, "splitBrowseRoot").Dock, "list root fill")
+            AssertEqual(DockStyle.Fill, FindControl(list, "grpTapes").Dock, "result group fill")
+            AssertEqual(DockStyle.Fill, FindControl(list, "lstTapes").Dock, "result list fill")
         End Using
     End Sub
 
@@ -730,6 +730,28 @@ Module Program
         Dim source As String = File.ReadAllText(Path.Combine(
             _repositoryRoot, "Compact Cassette Catalogue", "frmDecks.vb"))
         AssertEqual(False, source.Contains("CatalogueUx.ConfigureListForm"), "Deck runtime list helper")
+    End Sub
+
+    Private Sub TapeBrowserHierarchyIsDesignerOwned()
+        Using browser As New frmTapes()
+            Dim split As SplitContainer = DirectCast(FindControl(browser, "splitBrowseRoot"), SplitContainer)
+            Dim rightLayout As Control = FindControl(browser, "tlpBrowseRight")
+            Dim footer As Control = FindControl(browser, "tlpBrowseFooter")
+            Dim status As Control = FindControl(browser, "flpBrowseStatus")
+            AssertEqual(browser, split.Parent, "Tape browser root")
+            AssertEqual(split.Panel1, FindControl(browser, "grpFilters").Parent, "Tape filter pane")
+            AssertEqual(split.Panel2, rightLayout.Parent, "Tape results pane")
+            AssertEqual(rightLayout, FindControl(browser, "grpTapes").Parent, "Tape result group")
+            AssertEqual(rightLayout, footer.Parent, "Tape footer")
+            AssertEqual(footer, status.Parent, "Tape status row")
+            AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Tape actions footer")
+            AssertEqual(DockStyle.Fill, FindControl(browser, "lstTapes").Dock, "Tape list fill")
+            AssertEqual(False, browser.AutoScroll, "Tape form AutoScroll disabled")
+        End Using
+
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", "frmTapes.vb"))
+        AssertEqual(False, source.Contains("CatalogueUx.ConfigureListForm"), "Tape runtime list helper")
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

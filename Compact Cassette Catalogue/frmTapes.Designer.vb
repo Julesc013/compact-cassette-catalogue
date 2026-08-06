@@ -23,6 +23,10 @@ Partial Class frmTapes
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTapes))
+        Me.splitBrowseRoot = New System.Windows.Forms.SplitContainer()
+        Me.tlpBrowseRight = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpBrowseFooter = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpBrowseStatus = New System.Windows.Forms.FlowLayoutPanel()
         Me.grpFilters = New System.Windows.Forms.GroupBox()
         Me.grpContents = New System.Windows.Forms.GroupBox()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -93,6 +97,13 @@ Partial Class frmTapes
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.txtResults = New System.Windows.Forms.TextBox()
+        CType(Me.splitBrowseRoot, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.splitBrowseRoot.Panel1.SuspendLayout()
+        Me.splitBrowseRoot.Panel2.SuspendLayout()
+        Me.splitBrowseRoot.SuspendLayout()
+        Me.tlpBrowseRight.SuspendLayout()
+        Me.tlpBrowseFooter.SuspendLayout()
+        Me.flpBrowseStatus.SuspendLayout()
         Me.grpFilters.SuspendLayout()
         Me.grpContents.SuspendLayout()
         Me.grpTape.SuspendLayout()
@@ -105,13 +116,79 @@ Partial Class frmTapes
         Me.grpActions.SuspendLayout()
         Me.SuspendLayout()
         '
+        'splitBrowseRoot
+        '
+        Me.splitBrowseRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.splitBrowseRoot.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.splitBrowseRoot.Location = New System.Drawing.Point(0, 0)
+        Me.splitBrowseRoot.Name = "splitBrowseRoot"
+        Me.splitBrowseRoot.Panel1.AutoScroll = True
+        Me.splitBrowseRoot.Panel1.Controls.Add(Me.grpFilters)
+        Me.splitBrowseRoot.Panel1.Padding = New System.Windows.Forms.Padding(15, 14, 4, 10)
+        Me.splitBrowseRoot.Panel2.Controls.Add(Me.tlpBrowseRight)
+        Me.splitBrowseRoot.Panel2.Padding = New System.Windows.Forms.Padding(4, 14, 15, 10)
+        Me.splitBrowseRoot.Size = New System.Drawing.Size(1200, 700)
+        Me.splitBrowseRoot.SplitterDistance = 264
+        Me.splitBrowseRoot.SplitterWidth = 5
+        Me.splitBrowseRoot.TabIndex = 0
+        '
+        'tlpBrowseRight
+        '
+        Me.tlpBrowseRight.ColumnCount = 1
+        Me.tlpBrowseRight.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpBrowseRight.Controls.Add(Me.grpTapes, 0, 0)
+        Me.tlpBrowseRight.Controls.Add(Me.tlpBrowseFooter, 0, 1)
+        Me.tlpBrowseRight.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpBrowseRight.Location = New System.Drawing.Point(4, 14)
+        Me.tlpBrowseRight.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpBrowseRight.Name = "tlpBrowseRight"
+        Me.tlpBrowseRight.RowCount = 2
+        Me.tlpBrowseRight.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpBrowseRight.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBrowseRight.Size = New System.Drawing.Size(912, 676)
+        Me.tlpBrowseRight.TabIndex = 0
+        '
+        'tlpBrowseFooter
+        '
+        Me.tlpBrowseFooter.AutoSize = True
+        Me.tlpBrowseFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpBrowseFooter.ColumnCount = 2
+        Me.tlpBrowseFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpBrowseFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpBrowseFooter.Controls.Add(Me.flpBrowseStatus, 0, 0)
+        Me.tlpBrowseFooter.Controls.Add(Me.grpActions, 1, 0)
+        Me.tlpBrowseFooter.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpBrowseFooter.Location = New System.Drawing.Point(0, 534)
+        Me.tlpBrowseFooter.Margin = New System.Windows.Forms.Padding(0, 6, 0, 0)
+        Me.tlpBrowseFooter.Name = "tlpBrowseFooter"
+        Me.tlpBrowseFooter.RowCount = 1
+        Me.tlpBrowseFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBrowseFooter.Size = New System.Drawing.Size(912, 142)
+        Me.tlpBrowseFooter.TabIndex = 1
+        '
+        'flpBrowseStatus
+        '
+        Me.flpBrowseStatus.AutoSize = True
+        Me.flpBrowseStatus.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpBrowseStatus.Controls.Add(Me.lblResults)
+        Me.flpBrowseStatus.Controls.Add(Me.txtResults)
+        Me.flpBrowseStatus.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpBrowseStatus.Location = New System.Drawing.Point(0, 0)
+        Me.flpBrowseStatus.Margin = New System.Windows.Forms.Padding(0, 0, 8, 0)
+        Me.flpBrowseStatus.Name = "flpBrowseStatus"
+        Me.flpBrowseStatus.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.flpBrowseStatus.Size = New System.Drawing.Size(655, 142)
+        Me.flpBrowseStatus.TabIndex = 0
+        Me.flpBrowseStatus.WrapContents = False
+        '
         'grpFilters
         '
         Me.grpFilters.Controls.Add(Me.grpContents)
         Me.grpFilters.Controls.Add(Me.grpTape)
         Me.grpFilters.Controls.Add(Me.grpModel)
+        Me.grpFilters.Dock = System.Windows.Forms.DockStyle.Top
         Me.grpFilters.Location = New System.Drawing.Point(15, 14)
-        Me.grpFilters.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpFilters.Margin = New System.Windows.Forms.Padding(0)
         Me.grpFilters.Name = "grpFilters"
         Me.grpFilters.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpFilters.Size = New System.Drawing.Size(249, 672)
@@ -567,11 +644,12 @@ Partial Class frmTapes
         'grpTapes
         '
         Me.grpTapes.Controls.Add(Me.lstTapes)
-        Me.grpTapes.Location = New System.Drawing.Point(269, 14)
-        Me.grpTapes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpTapes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpTapes.Location = New System.Drawing.Point(0, 0)
+        Me.grpTapes.Margin = New System.Windows.Forms.Padding(0)
         Me.grpTapes.Name = "grpTapes"
         Me.grpTapes.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpTapes.Size = New System.Drawing.Size(1763, 811)
+        Me.grpTapes.Size = New System.Drawing.Size(912, 528)
         Me.grpTapes.TabIndex = 2
         Me.grpTapes.TabStop = False
         Me.grpTapes.Text = "Tapes"
@@ -580,11 +658,12 @@ Partial Class frmTapes
         '
         Me.lstTapes.AllowColumnReorder = True
         Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colFullIdentifier, Me.colName, Me.colBrand, Me.colModel, Me.colType, Me.colYear, Me.colLength, Me.colRegion, Me.colCondition, Me.colPackaged, Me.colRecorded, Me.colNR, Me.colContents, Me.colDeck, Me.colArtist, Me.colTitle, Me.colNotes})
+        Me.lstTapes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstTapes.HideSelection = False
-        Me.lstTapes.Location = New System.Drawing.Point(7, 21)
-        Me.lstTapes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.lstTapes.Location = New System.Drawing.Point(3, 18)
+        Me.lstTapes.Margin = New System.Windows.Forms.Padding(0)
         Me.lstTapes.Name = "lstTapes"
-        Me.lstTapes.Size = New System.Drawing.Size(1748, 782)
+        Me.lstTapes.Size = New System.Drawing.Size(906, 507)
         Me.lstTapes.TabIndex = 43
         Me.lstTapes.UseCompatibleStateImageBehavior = False
         Me.lstTapes.View = System.Windows.Forms.View.Details
@@ -713,8 +792,9 @@ Partial Class frmTapes
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
         Me.grpActions.Controls.Add(Me.btnEdit)
-        Me.grpActions.Location = New System.Drawing.Point(15, 689)
-        Me.grpActions.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpActions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpActions.Location = New System.Drawing.Point(663, 2)
+        Me.grpActions.Margin = New System.Windows.Forms.Padding(0, 2, 0, 2)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpActions.Size = New System.Drawing.Size(249, 136)
@@ -728,7 +808,7 @@ Partial Class frmTapes
         Me.btnRefresh.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(236, 26)
-        Me.btnRefresh.TabIndex = 1
+        Me.btnRefresh.TabIndex = 2
         Me.btnRefresh.Text = "Refresh List"
         Me.btnRefresh.UseVisualStyleBackColor = True
         '
@@ -748,7 +828,7 @@ Partial Class frmTapes
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(115, 26)
-        Me.btnDelete.TabIndex = 3
+        Me.btnDelete.TabIndex = 4
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
@@ -759,14 +839,15 @@ Partial Class frmTapes
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(115, 26)
-        Me.btnEdit.TabIndex = 2
+        Me.btnEdit.TabIndex = 3
         Me.btnEdit.Text = "Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
         '
         'lblResults
         '
         Me.lblResults.AutoSize = True
-        Me.lblResults.Location = New System.Drawing.Point(15, 694)
+        Me.lblResults.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblResults.Location = New System.Drawing.Point(3, 12)
         Me.lblResults.Name = "lblResults"
         Me.lblResults.Size = New System.Drawing.Size(120, 17)
         Me.lblResults.TabIndex = 28
@@ -774,7 +855,7 @@ Partial Class frmTapes
         '
         'txtResults
         '
-        Me.txtResults.Location = New System.Drawing.Point(152, 690)
+        Me.txtResults.Location = New System.Drawing.Point(141, 7)
         Me.txtResults.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtResults.Name = "txtResults"
         Me.txtResults.ReadOnly = True
@@ -787,13 +868,9 @@ Partial Class frmTapes
         Me.AcceptButton = Me.btnRefresh
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1924, 836)
-        Me.Controls.Add(Me.lblResults)
-        Me.Controls.Add(Me.grpActions)
-        Me.Controls.Add(Me.txtResults)
-        Me.Controls.Add(Me.grpTapes)
-        Me.Controls.Add(Me.grpFilters)
+        Me.AutoScroll = False
+        Me.ClientSize = New System.Drawing.Size(1200, 700)
+        Me.Controls.Add(Me.splitBrowseRoot)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -801,6 +878,16 @@ Partial Class frmTapes
         Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmTapes"
         Me.Text = "View Tapes"
+        Me.splitBrowseRoot.Panel1.ResumeLayout(False)
+        Me.splitBrowseRoot.Panel2.ResumeLayout(False)
+        CType(Me.splitBrowseRoot, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.splitBrowseRoot.ResumeLayout(False)
+        Me.tlpBrowseRight.ResumeLayout(False)
+        Me.tlpBrowseRight.PerformLayout()
+        Me.tlpBrowseFooter.ResumeLayout(False)
+        Me.tlpBrowseFooter.PerformLayout()
+        Me.flpBrowseStatus.ResumeLayout(False)
+        Me.flpBrowseStatus.PerformLayout()
         Me.grpFilters.ResumeLayout(False)
         Me.grpContents.ResumeLayout(False)
         Me.grpContents.PerformLayout()
@@ -819,6 +906,11 @@ Partial Class frmTapes
         Me.PerformLayout()
 
     End Sub
+
+    Friend WithEvents splitBrowseRoot As SplitContainer
+    Friend WithEvents tlpBrowseRight As TableLayoutPanel
+    Friend WithEvents tlpBrowseFooter As TableLayoutPanel
+    Friend WithEvents flpBrowseStatus As FlowLayoutPanel
 
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents grpTapes As GroupBox

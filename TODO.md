@@ -222,7 +222,9 @@ qualification gates earn the Alpha 5 transition.
     contract and remove its runtime layout helper.
   - [x] Rebuild Decks to the same ownership contract and remove its runtime
     layout helper.
-  - [ ] Rebuild Tapes to the same ownership contract.
+  - [x] Rebuild Tapes to the same ownership contract, replace its 1924-pixel
+    default canvas with a practical flexible workspace, and remove its runtime
+    layout helper.
   - [ ] Convert each action group to an adaptive command row and retain the
     complete browser-family atlas.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.

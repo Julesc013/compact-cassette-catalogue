@@ -56,6 +56,7 @@ C3 release line.
 - [Alpha 5 Brands browser structural-layout record](../release/validation/1.3.0-alpha.5-brands-browser-structure-2026-08-06.md)
 - [Alpha 5 Models browser structural-layout record](../release/validation/1.3.0-alpha.5-models-browser-structure-2026-08-06.md)
 - [Alpha 5 Decks browser structural-layout record](../release/validation/1.3.0-alpha.5-decks-browser-structure-2026-08-06.md)
+- [Alpha 5 Tapes browser structural-layout record](../release/validation/1.3.0-alpha.5-tapes-browser-structure-2026-08-06.md)
 - [First Beta 1 Candidate archived verdict](../release/validation/candidates/bbebac288f4996939124f882d0e9febcf2e5bdae/1.3.0-beta.1-verdict.md)
 - [Alpha 2 repository preparation record](../release/validation/1.3.0-alpha.2-preparation-2026-08-05.md)
 - [Corrected reconstructed-baseline evidence](../release/validation/1.3.0-reconstructed-baseline.md)

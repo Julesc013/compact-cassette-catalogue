@@ -89,6 +89,11 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   below it, filter overflow belongs to the fixed pane, form-level scrolling is
   disabled, and its runtime layout helper and duplicate action tab order are
   gone.
+- Completed Stage A of the browser family with Tapes. Its former 1924-pixel
+  absolute canvas is now a practical 1200-pixel default SplitContainer;
+  the deep filter stack scrolls only inside the fixed pane, the 18-column list
+  fills the result pane, and status/actions persist below it. The last browser
+  runtime layout call is removed and action tab order is unique.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

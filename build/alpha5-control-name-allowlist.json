@@ -264,6 +264,30 @@
       "name": "flpBrowseStatus",
       "type": "FlowLayoutPanel",
       "reason": "Keep the Deck result label and read-only count together in the footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "splitBrowseRoot",
+      "type": "SplitContainer",
+      "reason": "Separate the fixed-width Tape filter pane from the flexible results workspace."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "tlpBrowseRight",
+      "type": "TableLayoutPanel",
+      "reason": "Give Tape results all remaining space above a persistent footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "tlpBrowseFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Separate Tape result status from the existing action group."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "flpBrowseStatus",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the Tape result label and read-only count together in the footer."
     }
   ]
 }
