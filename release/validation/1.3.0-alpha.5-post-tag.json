@@ -1,6 +1,24 @@
 {
   "schemaVersion": 1,
-  "status": "template",
+  "status": "pass",
   "releaseLabel": "1.3.0a5",
-  "tagName": "v1.3.0a5"
+  "tagName": "v1.3.0a5",
+  "tagObject": "dee92a768ea3c7bc6933ad19ac0ab051a747dcad",
+  "tagTarget": "311e4f9b597a500b4e11dc222a75297bd2da5ba5",
+  "packageSourceCommit": "3cefb906c0331195b4695bcc61f450e443051186",
+  "toolchainLockSha256": "4791eda380069dc269d4219026858a566968229a90258f91792511bf8a3bdf43",
+  "assetsRetained": 6,
+  "remoteTagVerified": true,
+  "publicationStatus": "retained-unpublished",
+  "publicReleaseCreated": false,
+  "betaTagCreated": false,
+  "betaArtifactsCreated": false,
+  "feedChanged": false,
+  "protectedRefs": {
+    "master": "050b2287eed71e12b78136e5f87ec4fb0ef268cf",
+    "dev2x": "ac9b598cb5a971032c832f4c969410007ca4d080",
+    "legacy1x": "c4115b82ea43fdd763685d862a08fe5c61db6dff"
+  },
+  "ownerAcceptanceStatus": "pending",
+  "recordedAtUtc": "2026-08-06T17:21:51.3423380Z"
 }
