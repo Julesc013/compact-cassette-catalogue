@@ -624,22 +624,8 @@ Public Class frmMain
         tapeCount = CInt(counters.Rows(3)("Number"))
         thisTapeIndex = tapeCount - 1 'Select latest tape
 
-        'Load decks into combination boxes
-        If deckCount > 0 Then
-            'If no decks, catch don't crash
-
-            cmbDeckA.Items.Clear()
-            cmbDeckB.Items.Clear()
-
-            For i As Integer = 0 To deckCount - 1
-                Dim row As DataRow = decks.Rows(i)
-
-                Dim thisDeck As String = CStr(row("Name"))
-                cmbDeckA.Items.Add(thisDeck)
-                cmbDeckB.Items.Add(thisDeck)
-            Next
-
-        End If
+        'Load decks into combination boxes.
+        ReloadMainDeckChoices()
 
         'Load latest tape if any exist
         If tapeCount > 0 Then
@@ -684,6 +670,26 @@ Public Class frmMain
             End If
         End If
 
+    End Sub
+
+    Private Sub ReloadMainDeckChoices()
+        Dim selectedDeckA As String = cmbDeckA.Text
+        Dim selectedDeckB As String = cmbDeckB.Text
+
+        cmbDeckA.Items.Clear()
+        cmbDeckB.Items.Clear()
+        For Each row As DataRow In decks.Rows
+            Dim thisDeck As String = CStr(row("Name"))
+            cmbDeckA.Items.Add(thisDeck)
+            cmbDeckB.Items.Add(thisDeck)
+        Next
+
+        If Not String.IsNullOrEmpty(selectedDeckA) AndAlso cmbDeckA.Items.Contains(selectedDeckA) Then
+            cmbDeckA.SelectedItem = selectedDeckA
+        End If
+        If Not String.IsNullOrEmpty(selectedDeckB) AndAlso cmbDeckB.Items.Contains(selectedDeckB) Then
+            cmbDeckB.SelectedItem = selectedDeckB
+        End If
     End Sub
 
     Private Function updateTape() As Boolean
@@ -1428,14 +1434,26 @@ Public Class frmMain
 
             deckCount = CInt(counters.Rows(0)("Number"))
 
-            'Check that at least 1 deck exists
+            If deckCount < 1 Then
+                Dim createdDeck As CatalogueCreationResult = CatalogueWorkflow.CreateDeckForDetour(Me)
+                If createdDeck Is Nothing Then
+                    chkTapedA.Checked = False
+                    Return
+                End If
+                ReloadMainDeckChoices()
+                cmbDeckA.Text = createdDeck.Key
+                deckCount = decks.Rows.Count
+            End If
+
             If deckCount >= 1 Then
 
                 If thisTapedA = False Then
 
                     'Set defaults
                     datRecordedA.Value = Date.Today
-                    cmbDeckA.SelectedIndex = 0
+                    If cmbDeckA.SelectedIndex < 0 Then
+                        cmbDeckA.SelectedIndex = 0
+                    End If
                     'cmbDeckA.SelectedIndex = cmbDeckA.Items.Count - 1 'Latest deck
 
                     cmbInputA.SelectedIndex = 10 'Phone input
@@ -1467,11 +1485,6 @@ Public Class frmMain
                 'Enable data entry for side A
                 grpSideA.Enabled = True
 
-            Else
-
-                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
-                chkTapedA.Checked = False
-
             End If
 
         Else
@@ -1489,14 +1502,26 @@ Public Class frmMain
 
             deckCount = CInt(counters.Rows(0)("Number"))
 
-            'Check that at least 1 deck exists
+            If deckCount < 1 Then
+                Dim createdDeck As CatalogueCreationResult = CatalogueWorkflow.CreateDeckForDetour(Me)
+                If createdDeck Is Nothing Then
+                    chkTapedB.Checked = False
+                    Return
+                End If
+                ReloadMainDeckChoices()
+                cmbDeckB.Text = createdDeck.Key
+                deckCount = decks.Rows.Count
+            End If
+
             If deckCount >= 1 Then
 
                 If thisTapedB = False Then
 
                     'Set defaults
                     datRecordedB.Value = Date.Today
-                    cmbDeckB.SelectedIndex = 0
+                    If cmbDeckB.SelectedIndex < 0 Then
+                        cmbDeckB.SelectedIndex = 0
+                    End If
                     'cmbDeckB.SelectedIndex = cmbDeckB.Items.Count - 1 'Latest deck
 
                     cmbInputB.SelectedIndex = 10 'Phone input
@@ -1527,11 +1552,6 @@ Public Class frmMain
 
                 'Enable data entry for side B
                 grpSideB.Enabled = True
-
-            Else
-
-                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
-                chkTapedB.Checked = False
 
             End If
 

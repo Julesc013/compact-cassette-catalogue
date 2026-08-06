@@ -402,7 +402,9 @@ Module Program
             _repositoryRoot, "Compact Cassette Catalogue\frmMain.vb"))
         AssertEqual(False, mainSource.Contains("Must add a deck before entering recordings."), "main recording dead end removed")
         AssertEqual(True, mainSource.Contains("CreateDeckForDetour(Me)"), "main deck detour owns active editor")
-        AssertEqual(True, mainSource.Contains("ReloadMainDeckChoices(createdDeck.Key)"), "created deck is selected without loading another tape")
+        AssertEqual(True, mainSource.Contains("ReloadMainDeckChoices()"), "deck choices refresh without loading another tape")
+        AssertEqual(True, mainSource.Contains("cmbDeckA.Text = createdDeck.Key"), "new side A deck is selected")
+        AssertEqual(True, mainSource.Contains("cmbDeckB.Text = createdDeck.Key"), "new side B deck is selected")
     End Sub
 
     Private Sub LegacyWindowsAreResizableAndScrollSafe()
