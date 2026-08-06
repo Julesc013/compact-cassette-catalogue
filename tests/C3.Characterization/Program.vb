@@ -64,6 +64,7 @@ Module Program
         RunTest("Find Results uses fill list and persistent footer", AddressOf FindResultsUsesFillListAndPersistentFooter)
         RunTest("Settings uses a fixed autosizing table", AddressOf SettingsUsesFixedAutosizingTable)
         RunTest("About preserves artwork in autosizing layout", AddressOf AboutPreservesArtworkInAutosizingLayout)
+        RunTest("Statistics uses scroll viewport and persistent commands", AddressOf StatisticsUsesScrollViewportAndPersistentCommands)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -999,6 +1000,35 @@ Module Program
             AssertEqual(DialogResult.OK, okButton.DialogResult, "About OK result")
             AssertEqual(True, about.AutoSize, "About auto size")
             AssertEqual(False, about.AutoScroll, "About form AutoScroll disabled")
+        End Using
+    End Sub
+
+    Private Sub StatisticsUsesScrollViewportAndPersistentCommands()
+        Using statistics As New frmStatistics()
+            Dim root As TableLayoutPanel = DirectCast(FindControl(statistics, "tlpStatisticsRoot"), TableLayoutPanel)
+            Dim viewport As Panel = DirectCast(FindControl(statistics, "pnlStatisticsViewport"), Panel)
+            Dim canvas As Panel = DirectCast(FindControl(statistics, "pnlStatisticsCanvas"), Panel)
+            Dim footer As TableLayoutPanel = DirectCast(FindControl(statistics, "tlpStatisticsFooter"), TableLayoutPanel)
+            Dim commands As FlowLayoutPanel = DirectCast(FindControl(statistics, "flpStatisticsCommands"), FlowLayoutPanel)
+            Dim graphsButton As Button = DirectCast(FindControl(statistics, "btnGraphs"), Button)
+            AssertEqual(statistics, root.Parent, "Statistics root parent")
+            AssertEqual(DockStyle.Fill, root.Dock, "Statistics root fill")
+            AssertEqual(root, viewport.Parent, "Statistics viewport parent")
+            AssertEqual(True, viewport.AutoScroll, "Statistics viewport scroll")
+            AssertEqual(viewport, canvas.Parent, "Statistics canvas parent")
+            AssertEqual(True, canvas.AutoSize, "Statistics canvas auto size")
+            AssertEqual(DockStyle.Top, canvas.Dock, "Statistics canvas top dock")
+            For Each groupName As String In New String() {"grpTotals", "grpPopular", "grpRecords"}
+                AssertEqual(canvas, FindControl(statistics, groupName).Parent, "Statistics " & groupName & " parent")
+            Next
+            AssertEqual(root, footer.Parent, "Statistics footer parent")
+            AssertEqual(footer, FindControl(statistics, "Label1").Parent, "Statistics status parent")
+            AssertEqual(footer, commands.Parent, "Statistics command bar parent")
+            AssertEqual(commands, FindControl(statistics, "btnRefresh").Parent, "Statistics Refresh parent")
+            AssertEqual(commands, graphsButton.Parent, "Statistics Graphs parent")
+            AssertEqual(graphsButton, DirectCast(statistics.AcceptButton, Button), "Statistics default command")
+            AssertEqual(FormBorderStyle.Sizable, statistics.FormBorderStyle, "Statistics sizable")
+            AssertEqual(False, statistics.AutoScroll, "Statistics form AutoScroll disabled")
         End Using
     End Sub
 

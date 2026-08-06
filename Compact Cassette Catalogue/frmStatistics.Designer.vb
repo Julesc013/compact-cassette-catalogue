@@ -23,6 +23,11 @@ Partial Class frmStatistics
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStatistics))
+        Me.tlpStatisticsRoot = New System.Windows.Forms.TableLayoutPanel()
+        Me.pnlStatisticsViewport = New System.Windows.Forms.Panel()
+        Me.pnlStatisticsCanvas = New System.Windows.Forms.Panel()
+        Me.tlpStatisticsFooter = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpStatisticsCommands = New System.Windows.Forms.FlowLayoutPanel()
         Me.grpRecords = New System.Windows.Forms.GroupBox()
         Me.grpRecordings = New System.Windows.Forms.GroupBox()
         Me.txtNewest = New System.Windows.Forms.TextBox()
@@ -132,6 +137,11 @@ Partial Class frmStatistics
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtInput = New System.Windows.Forms.TextBox()
         Me.lblInput = New System.Windows.Forms.Label()
+        Me.tlpStatisticsRoot.SuspendLayout()
+        Me.pnlStatisticsViewport.SuspendLayout()
+        Me.pnlStatisticsCanvas.SuspendLayout()
+        Me.tlpStatisticsFooter.SuspendLayout()
+        Me.flpStatisticsCommands.SuspendLayout()
         Me.grpRecords.SuspendLayout()
         Me.grpRecordings.SuspendLayout()
         Me.grpLengths.SuspendLayout()
@@ -143,6 +153,79 @@ Partial Class frmStatistics
         Me.grpTypes.SuspendLayout()
         Me.grpPopular.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'tlpStatisticsRoot
+        '
+        Me.tlpStatisticsRoot.ColumnCount = 1
+        Me.tlpStatisticsRoot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpStatisticsRoot.Controls.Add(Me.pnlStatisticsViewport, 0, 0)
+        Me.tlpStatisticsRoot.Controls.Add(Me.tlpStatisticsFooter, 0, 1)
+        Me.tlpStatisticsRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpStatisticsRoot.Location = New System.Drawing.Point(0, 0)
+        Me.tlpStatisticsRoot.Name = "tlpStatisticsRoot"
+        Me.tlpStatisticsRoot.Padding = New System.Windows.Forms.Padding(12)
+        Me.tlpStatisticsRoot.RowCount = 2
+        Me.tlpStatisticsRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpStatisticsRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpStatisticsRoot.Size = New System.Drawing.Size(720, 600)
+        Me.tlpStatisticsRoot.TabIndex = 0
+        '
+        'pnlStatisticsViewport
+        '
+        Me.pnlStatisticsViewport.AutoScroll = True
+        Me.pnlStatisticsViewport.Controls.Add(Me.pnlStatisticsCanvas)
+        Me.pnlStatisticsViewport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlStatisticsViewport.Location = New System.Drawing.Point(12, 12)
+        Me.pnlStatisticsViewport.Margin = New System.Windows.Forms.Padding(0, 0, 0, 8)
+        Me.pnlStatisticsViewport.Name = "pnlStatisticsViewport"
+        Me.pnlStatisticsViewport.Size = New System.Drawing.Size(696, 541)
+        Me.pnlStatisticsViewport.TabIndex = 0
+        '
+        'pnlStatisticsCanvas
+        '
+        Me.pnlStatisticsCanvas.AutoSize = True
+        Me.pnlStatisticsCanvas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.pnlStatisticsCanvas.Controls.Add(Me.grpTotals)
+        Me.pnlStatisticsCanvas.Controls.Add(Me.grpPopular)
+        Me.pnlStatisticsCanvas.Controls.Add(Me.grpRecords)
+        Me.pnlStatisticsCanvas.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlStatisticsCanvas.Location = New System.Drawing.Point(0, 0)
+        Me.pnlStatisticsCanvas.MinimumSize = New System.Drawing.Size(442, 510)
+        Me.pnlStatisticsCanvas.Name = "pnlStatisticsCanvas"
+        Me.pnlStatisticsCanvas.Size = New System.Drawing.Size(696, 510)
+        Me.pnlStatisticsCanvas.TabIndex = 0
+        '
+        'tlpStatisticsFooter
+        '
+        Me.tlpStatisticsFooter.AutoSize = True
+        Me.tlpStatisticsFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpStatisticsFooter.ColumnCount = 2
+        Me.tlpStatisticsFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpStatisticsFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpStatisticsFooter.Controls.Add(Me.Label1, 0, 0)
+        Me.tlpStatisticsFooter.Controls.Add(Me.flpStatisticsCommands, 1, 0)
+        Me.tlpStatisticsFooter.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpStatisticsFooter.Location = New System.Drawing.Point(12, 561)
+        Me.tlpStatisticsFooter.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpStatisticsFooter.Name = "tlpStatisticsFooter"
+        Me.tlpStatisticsFooter.RowCount = 1
+        Me.tlpStatisticsFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpStatisticsFooter.Size = New System.Drawing.Size(696, 27)
+        Me.tlpStatisticsFooter.TabIndex = 1
+        '
+        'flpStatisticsCommands
+        '
+        Me.flpStatisticsCommands.AutoSize = True
+        Me.flpStatisticsCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpStatisticsCommands.Controls.Add(Me.btnRefresh)
+        Me.flpStatisticsCommands.Controls.Add(Me.btnGraphs)
+        Me.flpStatisticsCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpStatisticsCommands.Location = New System.Drawing.Point(496, 0)
+        Me.flpStatisticsCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpStatisticsCommands.Name = "flpStatisticsCommands"
+        Me.flpStatisticsCommands.Size = New System.Drawing.Size(200, 27)
+        Me.flpStatisticsCommands.TabIndex = 0
+        Me.flpStatisticsCommands.WrapContents = False
         '
         'grpRecords
         '
@@ -1189,22 +1272,26 @@ Partial Class frmStatistics
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(11, 484)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnRefresh.AutoSize = True
+        Me.btnRefresh.Location = New System.Drawing.Point(0, 0)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(0, 0, 6, 0)
+        Me.btnRefresh.MinimumSize = New System.Drawing.Size(90, 27)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(120, 21)
-        Me.btnRefresh.TabIndex = 5
-        Me.btnRefresh.Text = "Refresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(90, 27)
+        Me.btnRefresh.TabIndex = 0
+        Me.btnRefresh.Text = "&Refresh"
         Me.btnRefresh.UseVisualStyleBackColor = True
         '
         'btnGraphs
         '
-        Me.btnGraphs.Location = New System.Drawing.Point(135, 484)
-        Me.btnGraphs.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnGraphs.AutoSize = True
+        Me.btnGraphs.Location = New System.Drawing.Point(96, 0)
+        Me.btnGraphs.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnGraphs.MinimumSize = New System.Drawing.Size(104, 27)
         Me.btnGraphs.Name = "btnGraphs"
-        Me.btnGraphs.Size = New System.Drawing.Size(120, 21)
-        Me.btnGraphs.TabIndex = 6
-        Me.btnGraphs.Text = "Show Graphs"
+        Me.btnGraphs.Size = New System.Drawing.Size(104, 27)
+        Me.btnGraphs.TabIndex = 1
+        Me.btnGraphs.Text = "Show &Graphs"
         Me.btnGraphs.UseVisualStyleBackColor = True
         '
         'txtNR
@@ -1308,8 +1395,10 @@ Partial Class frmStatistics
         '
         'Label1
         '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 464)
+        Me.Label1.Location = New System.Drawing.Point(0, 7)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(0, 0, 8, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(235, 13)
         Me.Label1.TabIndex = 14
@@ -1339,19 +1428,23 @@ Partial Class frmStatistics
         Me.AcceptButton = Me.btnGraphs
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(442, 516)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.grpTotals)
-        Me.Controls.Add(Me.btnGraphs)
-        Me.Controls.Add(Me.grpPopular)
-        Me.Controls.Add(Me.grpRecords)
-        Me.Controls.Add(Me.btnRefresh)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.ClientSize = New System.Drawing.Size(720, 600)
+        Me.Controls.Add(Me.tlpStatisticsRoot)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.MaximizeBox = False
+        Me.MinimumSize = New System.Drawing.Size(500, 420)
         Me.Name = "frmStatistics"
         Me.Text = "Statistics"
+        Me.tlpStatisticsRoot.ResumeLayout(False)
+        Me.tlpStatisticsRoot.PerformLayout()
+        Me.pnlStatisticsViewport.ResumeLayout(False)
+        Me.pnlStatisticsViewport.PerformLayout()
+        Me.pnlStatisticsCanvas.ResumeLayout(False)
+        Me.tlpStatisticsFooter.ResumeLayout(False)
+        Me.tlpStatisticsFooter.PerformLayout()
+        Me.flpStatisticsCommands.ResumeLayout(False)
+        Me.flpStatisticsCommands.PerformLayout()
         Me.grpRecords.ResumeLayout(False)
         Me.grpRecordings.ResumeLayout(False)
         Me.grpRecordings.PerformLayout()
@@ -1372,9 +1465,13 @@ Partial Class frmStatistics
         Me.grpPopular.ResumeLayout(False)
         Me.grpPopular.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
+    Friend WithEvents tlpStatisticsRoot As TableLayoutPanel
+    Friend WithEvents pnlStatisticsViewport As Panel
+    Friend WithEvents pnlStatisticsCanvas As Panel
+    Friend WithEvents tlpStatisticsFooter As TableLayoutPanel
+    Friend WithEvents flpStatisticsCommands As FlowLayoutPanel
     Friend WithEvents grpRecords As GroupBox
     Friend WithEvents txtTotal As TextBox
     Friend WithEvents lblTapes As Label

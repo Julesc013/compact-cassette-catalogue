@@ -576,6 +576,36 @@
       "name": "flpAboutCommands",
       "type": "FlowLayoutPanel",
       "reason": "Keep the OK command in a Designer-owned dialog command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "tlpStatisticsRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Separate the Statistics viewport from its persistent status and command footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "pnlStatisticsViewport",
+      "type": "Panel",
+      "reason": "Own Statistics overflow without enabling form-level scrolling."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "pnlStatisticsCanvas",
+      "type": "Panel",
+      "reason": "Retain the original dense Statistics groups on one preferred-size canvas."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "tlpStatisticsFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Keep catalogue status beside persistent Statistics commands."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmStatistics.Designer.vb",
+      "name": "flpStatisticsCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep Refresh and Show Graphs together in a Designer-owned command bar."
     }
   ]
 }
