@@ -267,12 +267,14 @@ qualification gates earn the Alpha 5 transition.
   `41bf3ad...` matrix retains 320 exact cells across ten wizard states: 120
   pass and 200 reproduce panel/command-row intersection or non-scrollable
   reachability failures.
-  - [ ] Rebuild the Installer introduction/options/ready/install pages around
+  - [x] Rebuild the Installer introduction/options/ready/install pages around
     one artwork/content/page root and one persistent navigation row.
-  - [ ] Rebuild Installer success/failure as fixed DPI-safe completion pages.
-  - [ ] Rebuild Uninstaller ready/progress/success/failure with the same
+  - [x] Rebuild Installer success/failure as fixed DPI-safe completion pages.
+  - [x] Rebuild Uninstaller ready/progress/success/failure with the same
     wizard ownership contract.
-  - [ ] Retain a clean 320-cell setup qualification atlas with zero failures.
+    The successful validation path now explicitly reveals the formerly hidden
+    ready panel and Uninstall command.
+  - [x] Retain a clean 320-cell setup qualification atlas with zero failures.
 - [ ] Complete visible-text, ellipsis, access-key, default/cancel, tab/focus,
   ErrorProvider, UIA/MSAA, screen-reader, and High Contrast audits.
 - [ ] Add bounded command-state, stable selection restoration, and duplicate-

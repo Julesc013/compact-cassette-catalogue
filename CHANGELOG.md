@@ -155,6 +155,13 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   states: 120 pass and 200 reproduce fixed-panel/command-row intersections or
   controls escaping a non-scrollable view; all setup form behaviour files pass
   the new zero-runtime-geometry source policy.
+- Rebuilt all ten classic setup page states around Designer-owned root tables,
+  persistent wrapping navigation rows, and dedicated scrolling viewports with
+  autosizing canvases. Original cassette artwork, wizard wording, commands,
+  feedback/launch choices, and transaction behavior remain; Uninstaller now
+  explicitly reveals its ready page after successful validation instead of
+  leaving its Designer-hidden start state blank. The clean `341b00b...` result
+  passes all 320 setup size/scale/content cells.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

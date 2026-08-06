@@ -1,0 +1,2575 @@
+{
+  "schemaVersion": 1,
+  "mode": "Qualification",
+  "sourceCommit": "341b00b0705eb308c37cace1f9b7ac689f0fd8cf",
+  "harnessSha256": "ad8892bed40cad8a8bf45086ce43e194d5fbb810d51ae8a2c40f72c43e2f5ae8",
+  "installerSha256": "3a4e5ee15172cc5bc184262b566ca64c5dc0f5523dcaf8bbb0680d5f7955041a",
+  "uninstallerSha256": "104b9e34a814c9f5eb9af8756373fc760e01ab6976f5cbf96b36f136372c05cc",
+  "sourcePolicySha256": "8baec70be23dbffbff7cd62ff1327c636bad1c537deb2ba5c7651edc81b45c9a",
+  "caseCount": 10,
+  "cellCount": 320,
+  "passedCount": 320,
+  "failedCount": 0,
+  "cells": [
+    {
+      "name": "installer-main-introduction-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c4385138c4b91aee13416d1e23e780289c9f37c0f719ec28af875fb2c18bb005",
+      "screenshotSha256": "45a4aff0af78987fad476775ac2f82f59e2e60a9d64761ef77257848589e8079"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "32440d5bc5e75111129ef3b952d0027b26a4d520e0ccab84324352e0069761ad",
+      "screenshotSha256": "45a4aff0af78987fad476775ac2f82f59e2e60a9d64761ef77257848589e8079"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7f5d48624979c37e1c8641439e0851f79783fa3b5dc7d354219ba7c37fceb186",
+      "screenshotSha256": "bdd7206676499c58ddcbf5d2e8e368a2fc6a31e003b849602f9bb75b45b7cede"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a0d0e27563003127f18c56bcce9c76d061f344b5fd96b541168405a6d453773c",
+      "screenshotSha256": "bdd7206676499c58ddcbf5d2e8e368a2fc6a31e003b849602f9bb75b45b7cede"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d85140749b571502349e93a6b991f72effc51b8ed759eed9a5e19887d8a19d92",
+      "screenshotSha256": "cbf2d27a7aeda6a7f33fa4074efc335e7e8873db49e171d16ae8116a19956fd2"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "17e4729d241ff3d64b122a388181e95c0e2a6a343dda94de4415b1e6b8a848ed",
+      "screenshotSha256": "cbf2d27a7aeda6a7f33fa4074efc335e7e8873db49e171d16ae8116a19956fd2"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "18b575ecdb120f7a8c971ac186d1657a42775294744ef1833b697c53f10eb57f",
+      "screenshotSha256": "db0e857d4dfd121573df250299e837b12ebef49a8f089524830a37b5072a5ade"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "389a49e83cb1b0eb5942bbbcadfff6c0cd9580e3b85e7d6663c72ce2fb7e3d8c",
+      "screenshotSha256": "db0e857d4dfd121573df250299e837b12ebef49a8f089524830a37b5072a5ade"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aca425ccbd06b9edad851c7f4ea95f96c9cce43b02d3e6f6339dd9da969f4019",
+      "screenshotSha256": "cc52e9b28bb0903163b476c861f6a58f01d31510f0acf2aaaa0c7e8e69d71aaf"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1b50c7428d817109c06af28287260cf6a1748a942d56b52b83be3c1a31e9cb8d",
+      "screenshotSha256": "cc52e9b28bb0903163b476c861f6a58f01d31510f0acf2aaaa0c7e8e69d71aaf"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4490b5c5e5ffed815f381b41371970c479d918bf2ccad6748905480c739b9cc2",
+      "screenshotSha256": "40662e5d0a4e7ab9224a96beacf4c1bfdddba94fcd762939a5ff02107f57ebe4"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "193956ec219277f42b914dfec0132db808034f559012188359ed36916400256a",
+      "screenshotSha256": "40662e5d0a4e7ab9224a96beacf4c1bfdddba94fcd762939a5ff02107f57ebe4"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "94e630ccaedb06ce35484b6aeb535f9f241508593ca6c424c6c45df0a9ab2c69",
+      "screenshotSha256": "a9003848955a7b58e93ac433565114611fd48b0524ebc1d9934de8d82e4b62b3"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4e103d3a8177c1b9b7988a4b40aea198ca69e84b3b64269023b0efaf116e4a22",
+      "screenshotSha256": "a9003848955a7b58e93ac433565114611fd48b0524ebc1d9934de8d82e4b62b3"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ebaf04a4df8f9e31747a5105d1a39d35a8b561082c6b7253fcc080bc777451da",
+      "screenshotSha256": "9a522650effb845032bf5d2e5aaddcffb342a0cb66d9c03062d7f26c3718f058"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a969b91360bd4ec62241cd8c267942065ae70cce6c9d2987fe0989263cd6417f",
+      "screenshotSha256": "9a522650effb845032bf5d2e5aaddcffb342a0cb66d9c03062d7f26c3718f058"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a369ad22afa48fa0d2c4456495f2c3b96f3b80693ee0f2a0852f2299be6d84db",
+      "screenshotSha256": "fac8235f3942a561db4d60ed990485cdc44c083c9447742eb78481e400f57109"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0494eca7317cc23320cef3dff4c2f3055e49b202c4086ecee7074ec5afd1b78b",
+      "screenshotSha256": "fac8235f3942a561db4d60ed990485cdc44c083c9447742eb78481e400f57109"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "eef2e1d3f4b868ca9acc31d7a0d74984ef2bee2809a38b2d514f8fd89217f555",
+      "screenshotSha256": "2094b9726a18d88125eb2b9bd90f9c71a357b5faccd6fc7d20d6e6f4cfaa5447"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "46a00d95ba2d7ef4a7c210136c1af2a0c521d9c70f1387c9c79a83036a7325c8",
+      "screenshotSha256": "2094b9726a18d88125eb2b9bd90f9c71a357b5faccd6fc7d20d6e6f4cfaa5447"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "57a26d320b937cf4f80c02c50d46cefc52df450322d0fb43355e3911c7f97fa1",
+      "screenshotSha256": "9bd138bf7200b7a459faeabeff4ed831a4c575d78c981804fd3f256a2c5cffe9"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "203fadfecaaab95081e6e0a8c1733e9e26c8ae1aa33b873569a374c8f9391e3c",
+      "screenshotSha256": "9bd138bf7200b7a459faeabeff4ed831a4c575d78c981804fd3f256a2c5cffe9"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b415106589cd43c9fdf806e8674a44f3cf8ae03343537d6abf8c2416646489ff",
+      "screenshotSha256": "84a08b8b2ef2706c877b2620feb71cede636eb8c08b576df5aff93d49e259881"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "63ea00830fa79c051bdc4abaf01ba93781aba9c9cf8d1ac34a88957b57e929fd",
+      "screenshotSha256": "84a08b8b2ef2706c877b2620feb71cede636eb8c08b576df5aff93d49e259881"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f7fe2928d8c34435eef6124204f7617e5ec4699c804881496ea07843830f54f7",
+      "screenshotSha256": "a3c59ab6191a4b724b9190cdf156780dc72be04246934836cc16773b28b61be1"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7596addd5536950fe73d6d12b8052d87f04944b4a3f56798ec8c1d3262fb6cc7",
+      "screenshotSha256": "a3c59ab6191a4b724b9190cdf156780dc72be04246934836cc16773b28b61be1"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "591713dc0a603cc5df620dbedb46ac46b1cb249eb5120e6d054a7b70508aa1a1",
+      "screenshotSha256": "1dca905559ce53af683ba994931c481102a0f0c412e131500fea2b409afa6c26"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9103d55cad729e906fc0f645c3597802d93d1c404b476115acccdf22d3666a03",
+      "screenshotSha256": "1dca905559ce53af683ba994931c481102a0f0c412e131500fea2b409afa6c26"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d059ef129710d5926e89e254fb523cdfc26c04e7f7494d893be78cfbc667d10d",
+      "screenshotSha256": "be39c05f85336fd65afcd88c5f17488404764e390ee3902e3e1dcb77093b3836"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "966a43490b1f2132043661617d517765348ab86bc872365886db340ec12db452",
+      "screenshotSha256": "be39c05f85336fd65afcd88c5f17488404764e390ee3902e3e1dcb77093b3836"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c585beb4bd459a921d39e2ddb8e2abb309b8f3d146d26f30bb39b95524b4940a",
+      "screenshotSha256": "ceaf60aa35060679e8e88ece48a24b445bb7b9f4345f359bc8aed6f2089b78ea"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b491614a19131fdaba6848a9c7bd151fd89803c89244df9cc5ea45c93b323043",
+      "screenshotSha256": "ceaf60aa35060679e8e88ece48a24b445bb7b9f4345f359bc8aed6f2089b78ea"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e95ead37a089d354be08f2c912d3dda37278483ebf6f6f5622d8a0be8b59697c",
+      "screenshotSha256": "aec75ab0a57f6abfe31fb1ada0254de066e9ff619d1a663950f36c9207e66d59"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "25eafd316f46e8d3ed718c4b85cd6c8efa28bf5cd89dad55421ba9f32f619f04",
+      "screenshotSha256": "592936ffd00b50fbb9a5acc1bc1d3ce65452172a6eeb6cb13738c1c06c6d8f76"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ff80bee84613fd05bea83d8de01c9bd1a58d40600ebef07019a92c91461f9527",
+      "screenshotSha256": "3a57172903a937dfc9600af4d1e3269808a5f66cf4e69d46550db28e5ba5d843"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4eb3a48c8cf9960267f2e150a79d890b1dfc59c35c72bb53e99942aeda634052",
+      "screenshotSha256": "bda479d5a1ec4352cc93b271a68626c26d1583a377b6499b654c71074f339a13"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0bbcf959825f30be75ecd9378fa46e527b1717dc3d496e5637645d0c43e125ca",
+      "screenshotSha256": "8156b2485e009744bf8ba5b2c0758d7c648158def1cc8ca786c1fa77fb524e56"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c3ca242438b4111c66cec596a247b717a9ff55d08b78a720751b1ad3b0c215d0",
+      "screenshotSha256": "20761ca8ff2744aad571216f5a8ba8e5fb3361db7f2f42a12d7a900ca4921daf"
+    },
+    {
+      "name": "installer-main-options-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "760f732fa7b83d138dc8837e5e869206b21956e383894f5e6f5cbb1ae14fca07",
+      "screenshotSha256": "be89efe07b30530761df6d402c3bc3d2c6bc2597fc82a6c1b069e40c0e0a76b7"
+    },
+    {
+      "name": "installer-main-options-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6c2dee8aa5a252732e3f81d93b488224de5d69bba702351ebf68d11bb29ded34",
+      "screenshotSha256": "557a8f075ae52d085d35cae7c4163348678e0ead6c5d9c6e46b2978ab9097951"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "33044fa8ec602e3dfd43819c58c094f0b6746d53d91c5e3bbb3bc1cd548c0cd2",
+      "screenshotSha256": "89b69eaf49d7b0f8438af13e5e24fa9d6d1562ea02708c3ee85d00b4366f0ec6"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1fbea01e9a6e32a077b667fce39da789790de2f65afa5a816ec64dc8ec69330e",
+      "screenshotSha256": "a0fc9064f6f7cb45fbabfbf901ca6f72564b7c2a436ec814c4c253c7780325d7"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b5195163b57640a2d3affcd43ba6a4812e33897515dde8c54bda78397b5067ad",
+      "screenshotSha256": "50922b7fc938d7144aaf80b3c789781539c540b4a6636a4b40b3c2c0d7066429"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fae2f2001ad4ba134dfc79a0c22e00d8d0c8edb9509b2f011a37ec3993c41993",
+      "screenshotSha256": "a8298ae061b4d621717efd2acb36d0319425fff685a7d9e52069f85da660e343"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6a3691f9242e634fa70f073a5e5d5adac55c19e49d94aa15d342516c141dfc43",
+      "screenshotSha256": "ff0d98e3038ee39327e1fb505495ee02f57d0e4f5e7b6a12311435acf7b4ae7d"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8fc2d02d8bd29eb50df03a39c8c5af4f120d79b2e69281dca812c4a755b775d3",
+      "screenshotSha256": "25296457dcf09a62f70b81cc6c63f665aebba94e7d9c260387d4cac87c6ee3e8"
+    },
+    {
+      "name": "installer-main-options-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "134d3abd4d6fbf26f9bfc89e6ab047544a50090228fa0dc7e7348c337ff0f702",
+      "screenshotSha256": "2753062e658bdfa22d9fdc634a582a8c9696f3e0282948571ce6469db8fd0e04"
+    },
+    {
+      "name": "installer-main-options-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "336666d5bc65a1df908c7db2b5e13076eef6cc0915436e887643d9f349ddfe5d",
+      "screenshotSha256": "35a7beab63f0d691c5324aedee7b6fe675e5e88b12217b6ebb105d99a3165274"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a03eeffac9493786449bfcb6078d142526891724480ac3dcf461190a0cb71b90",
+      "screenshotSha256": "d7b455195eb5617c391b2b474f5df6b923da19144605e69e2dc2d9cf9e549192"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "097bedc80b12abd12b63cdcda7bd200049c3b9ede926e3f9b4808d6c11395af2",
+      "screenshotSha256": "36f2263eed1fdf778584e71a47fde7e085f2b2252a43d63a73f4ed2bb8995822"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d694de4f2ef0fe45c4b4d99c96ef80631334f596fe5c1d04d1d7b48785163c44",
+      "screenshotSha256": "47e26571d57a01d4db27d733a680cac6dbfa9f7e8ca3050e2edb6e261530a741"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b348b19b1142e1ee8cf935de3dd0e433e52e5c19ac5b613a11764908645612db",
+      "screenshotSha256": "2b06b03c92067b0f1b5dfe2dccffddcf66c43a6686363ee7383bd4f30015c562"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "787aa95d3c27fd9a4b5928b2d21a181ee1e0903c19178e04c90ab532dd6fca36",
+      "screenshotSha256": "8fdeb7d7f54674d4994688bd1046920dbd1364c087a5c1c2a0918e900f64b02a"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "413532b9fc96432ae1c74248b8f5b276f722fc8935bd59b9251f0bf7cbfbf763",
+      "screenshotSha256": "1ab259ad9b00830d886c0ff1197a99d69b22d53d2d8c19aa070339324f9545a0"
+    },
+    {
+      "name": "installer-main-options-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a0e663da17e5974177d5d972e92b98da3fbb0232b79fdf388b9e79f7e18f3b4d",
+      "screenshotSha256": "ef6a8a11f7f857a8df58495373218eb066c399fa5949b53115389ba39f90deef"
+    },
+    {
+      "name": "installer-main-options-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "55b3a9da01ddc5bbf9e7a6d08db64ee54f25ee06e15cbbe52a2a38a0f4dd9fb8",
+      "screenshotSha256": "ac47bacf4c83d65ec9c0b0dc38a2156fc77081f318b2d7b5e7ecb58b305921f0"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "96775b8fc489c3969636cd63a5fd8273415ead82a30b9d4e03889caaa2f5e9dc",
+      "screenshotSha256": "01ece311fb74564c3ead61c5e87a8d12920f2ac03ac941d9de7c8a045490faab"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "85cd37eed2fe2a1bdaab964df70dc343f5c3272a110b2c0e5a2aeadd224eb4ff",
+      "screenshotSha256": "d0b3e39abd4988141cf01de7f6f64ff0b0fa07c6f2088ba9ca74a82a9436515e"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c7c30677587e6522b6d7a38411b99f9ad29e80af5c29bb01fdf1211a6b7e9cec",
+      "screenshotSha256": "b173ed673599e669bdb02e9304c8c43da1bc4dbf21cdc2d5ab1e48a138b5dcee"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b4abf741dd93e57a41e61be88f24f9addb6bad0d9d56b578f6c36b03a196f515",
+      "screenshotSha256": "1effcb3d056dc6f1d82119750c1ceec23e748c212700f9e95eedd2a9609ed0c5"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9d27ce65d892e7f32c3df03d17993154bd6c4f219349f7484e6ad6ca186c2271",
+      "screenshotSha256": "5dd23f2ffe585767b3e32c692657f97a0636c999ecd62e3ce49b6725b48e5f55"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8e959af750da9d8c53beb60100654106959c14b62e863e10b2087a6f5745d4f0",
+      "screenshotSha256": "56d9a06ba8e77fa8825f104684d919aed4d66bd055e4949865f97d9883a6b828"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bee2bd181d25f39703fa3c99a08695ecd7208dde7ebc43834d5bccf126fb7e7a",
+      "screenshotSha256": "dcd6e0d57b44582f04b91a12ca2bb3fb8bec9a70f167eed5045aadb2397f7373"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b250e517af6a64603e37dd335871e8cedcf5a97a033c8e6b7bc98aac5b285db2",
+      "screenshotSha256": "5eec0201fcf820cfd8aef3d695fb9669ff234ab92c066413cdc8456fc5b3c1cc"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0d04fc7d7c75b65ede2adebb7eed91f8a3fc4d68eeb56dc512f23b6566e14ee7",
+      "screenshotSha256": "cbe58ccbb4dfe450e164d03f812ee6f8f4276dff8f2549e081c42c01a3eef3ea"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "60f07d08860e1550916c544f1eeb57561c51ec8428f287be27e71263958ce4ad",
+      "screenshotSha256": "cbe58ccbb4dfe450e164d03f812ee6f8f4276dff8f2549e081c42c01a3eef3ea"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "69f01c2f44730067b7a4ce263aefb6985edaa3b3baef2700496d296ec8751f34",
+      "screenshotSha256": "62bf0b5c7c7f91ddf30c22f785f8316ba94638efe3b7c6da96b4fa4751ba06cc"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8cf27254ae46a27fb1f2324c156be3017ce6e8655d50ced08fff560b215ef152",
+      "screenshotSha256": "62bf0b5c7c7f91ddf30c22f785f8316ba94638efe3b7c6da96b4fa4751ba06cc"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "af8daa641d890b81283516b69d9406efca75a8836f10f52e9986932fbd78c49d",
+      "screenshotSha256": "93c03808caabdce148239077d3253ec9e8757d625ac678adb7a33e78c5fcea2a"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "59394e7dbdccb4929d7e599ee8f14bae938b894e3bb63623e6813a20831e63c7",
+      "screenshotSha256": "93c03808caabdce148239077d3253ec9e8757d625ac678adb7a33e78c5fcea2a"
+    },
+    {
+      "name": "installer-main-ready-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e182c4b745e6190a0dffbaaaf78fbf79cfa11d31894e8c0278601e3eff9515c0",
+      "screenshotSha256": "21c409915dafc5471ba77c588bc86b597a417f64c02e32829d1b4fbeea0e7b35"
+    },
+    {
+      "name": "installer-main-ready-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cd5b9e7ea2d3d4f2f80177e385093c6eea8e68692449ee13e425f5462acb5806",
+      "screenshotSha256": "21c409915dafc5471ba77c588bc86b597a417f64c02e32829d1b4fbeea0e7b35"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cdf4ab9a6c556d05ab9d484fdcca536cd7b4c4c1d5561f593d411babb2bebc51",
+      "screenshotSha256": "c860afe0388ff4d06b1bf466d824dbe8a302c46d5261e5d7f9578dd14c340b9c"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "161454c9d242d1a840e86c22460b8d125c3425731c55fb5d2882b85bc682e43a",
+      "screenshotSha256": "c860afe0388ff4d06b1bf466d824dbe8a302c46d5261e5d7f9578dd14c340b9c"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e356bac4dfdfea54f39464d9aac2f62bdd73ff8fcb0e2e018ad401f58fda538d",
+      "screenshotSha256": "9b62f6c52aa1130e75b281584b3c13e38d090e0a3a14debfd4e9f6a09b8984cf"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5ad365aa7953a485980f6c877b33f686ad146c545421cdd3ef8a81dc2bbca84c",
+      "screenshotSha256": "9b62f6c52aa1130e75b281584b3c13e38d090e0a3a14debfd4e9f6a09b8984cf"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d87b416218fa9e1fa93e01e92b2bb44570bd337fca7b88d23a39ac30f1269c66",
+      "screenshotSha256": "e7aea5ea50f1afc1a93301c2786cf17bf911b662856e2ffcd3817326ae6e8e1b"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9d07519b9bc57c10dcc817ec969dd998ee9b5a4a1e7a66919220e875b25e5907",
+      "screenshotSha256": "e7aea5ea50f1afc1a93301c2786cf17bf911b662856e2ffcd3817326ae6e8e1b"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "28ba56783b1df1fbc0d7eabd51edb4de29e7e41313cf207c32ebce20004ead28",
+      "screenshotSha256": "a57c823421cbe2ab01dc05e2b18967100bf00967c80675955f0737c7e36a8968"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7bab4f037402d8bea43ec9b6fd718d9715352e0bd9bdf47d909d656787bccfd3",
+      "screenshotSha256": "a57c823421cbe2ab01dc05e2b18967100bf00967c80675955f0737c7e36a8968"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2d2dfb8aff2429b6127827ccae8247313025354b69ed84e567b44d603efde117",
+      "screenshotSha256": "0376853625caa9f1257c37ecb32bbb0811a9d64156a32f2b5ebc8cb53813e1a1"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f9a703edd452e4396689c77c9f72db7806d70c350bc7c65b4208a275090bd78c",
+      "screenshotSha256": "0376853625caa9f1257c37ecb32bbb0811a9d64156a32f2b5ebc8cb53813e1a1"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cd3fc2638fd9567d834c30e9d405d401969ae9f6d630acb823eee1e74f70053c",
+      "screenshotSha256": "e9280979da361434fa90ce616451af2a8811a98c41fe2d6ccb27e7c770551996"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d3c792e22bb53468de2da13b42beff560cb1ad90cbe03aef66cf2cc63ed60f77",
+      "screenshotSha256": "e9280979da361434fa90ce616451af2a8811a98c41fe2d6ccb27e7c770551996"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a8b5ce99202f587b16093d9c77161aab697195e6fff068e27a29f48b68beb387",
+      "screenshotSha256": "d441faef89b2d499e7aa89a8a971a4316e155a1988efcbc8ae0c1dbf83614be0"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e8bdde8300188742db4f859ceb477613d0c2a81bcd01872c8a164eedbe5f0fbf",
+      "screenshotSha256": "d441faef89b2d499e7aa89a8a971a4316e155a1988efcbc8ae0c1dbf83614be0"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "85b4dcf562d2f698502120e3f339c5d61737238809924d29aead0ff7da0ca1ed",
+      "screenshotSha256": "e7a389c36c310ad7917a1010f125cabe3f58a3d7bfd58f4f04be4f1547c1e6bd"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aa6de9fd08d087bb74a01261ae3ed59bc293cd296d9525cb06bc2d8398fd3412",
+      "screenshotSha256": "e7a389c36c310ad7917a1010f125cabe3f58a3d7bfd58f4f04be4f1547c1e6bd"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4d5a560ff37912a5d25074c170269898c34146a0d514c0e3ef9aa51b8cca451b",
+      "screenshotSha256": "1f7efcd396562d4ede762755ad879a43b7edd08e83a3dc30a961dc104cdc2527"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a2690e50336e56fa159d6cbfe337b5b4e9b5f19027817c1cb14d2ca1cc01ac1c",
+      "screenshotSha256": "1f7efcd396562d4ede762755ad879a43b7edd08e83a3dc30a961dc104cdc2527"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7685da6cbcc56a455b57578e747bd8dd1745eb74ac9093fa8ea1ff19a962f0dc",
+      "screenshotSha256": "c2fed8113cafdd6837205d64e86efb32dd1816616f2646d10c2aa39f429765b5"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d3413d642bb0ca978bb40e2753ad53fe413fa3c67a1fc416ba1b6ab6fa67a5ca",
+      "screenshotSha256": "c2fed8113cafdd6837205d64e86efb32dd1816616f2646d10c2aa39f429765b5"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6a2ea0d1a874470493214ceb2149a5c88cca2706e4d83a1b8f82589f92b9134b",
+      "screenshotSha256": "8f6b06e8913eec92ba02feac09df3e78f5a102c4d5e5d0ccb63866280b1a1f59"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ed4769e7a96106b025c54e8c4bf75a4820331421c2f27f085f0beae037ad0c1b",
+      "screenshotSha256": "8f6b06e8913eec92ba02feac09df3e78f5a102c4d5e5d0ccb63866280b1a1f59"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "417b2240ef0f6612ede14b8cc4d2f8f8651aba126dff5c0325c6cafaa871d714",
+      "screenshotSha256": "b7f56b172119ff6945534a2f68aca796b199df1f39e36399c7404bbf9aaa25f6"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f3c12f4b2100fe8532c794de46ea8332a73ad9c6efac75e3e8ab3c2cbfe7df9b",
+      "screenshotSha256": "b7f56b172119ff6945534a2f68aca796b199df1f39e36399c7404bbf9aaa25f6"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c2a546bc4b6a096a5ab99d506273e1d9ef676a75f2805fe7379f81a475d9b768",
+      "screenshotSha256": "79321eedf5fc55b9f92e40e545609001965adf85f01a7ffb6e858313fe17281c"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "41a1c731aa27b4011b9a9d01a9006e928831808d33329dd141347cdd8c7c54cc",
+      "screenshotSha256": "e964bc2388177655e06ddaa303582484c14cfabe1703bdfbe8e555f2bb0266c4"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d2ff42dbe30ac1fcdb5bdf702c8c6939ba29cf2c48d9bda62bbdb68bc543fac3",
+      "screenshotSha256": "4fbf315d9b8fbe0556c3cb0628f57c45bd7b1bba2ac581030babd2ed55916c15"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7654be4c51b95ecfaa02f446d54b086bc5706e43bee427504f6a67751c5861e6",
+      "screenshotSha256": "ec2c11182a355a64ff7913b46afc4fd28f7de3c24389042fe1b723f1ae931bbf"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "da07ff9023de6d527a927d156d664d3542c2a8aba1a7cac4aead03390c79578a",
+      "screenshotSha256": "43d7565ad914383c4e10872bd8daf850a37377d8e071d7cab1a3e06483eb435a"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2564e7d0a4a41deb9b124c9bc1cd6ac2e2427e9c1e4b0db3f07e016cff02d697",
+      "screenshotSha256": "876eb9d2af3c8053d75746e06b2d6ee1f6e58813bbdbc1dd171d79b990eddf83"
+    },
+    {
+      "name": "installer-main-install-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a869f7d16ec04498d56dd20e4c9156a2eee4f5cea0968647ef4cf8581f1bcc2c",
+      "screenshotSha256": "b98ffc36ad847dbb832b86a40bb5b900590668286a3aa20eed31e76c8dec491b"
+    },
+    {
+      "name": "installer-main-install-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3d23de4c8deac0103f600ba02277a8e448dfc9b92484811e5f38797b7591ec8d",
+      "screenshotSha256": "0004eb29116207e49932791d72123b80cc79d2ba2a63b14f893502d354786b24"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "17ea234fffca3d684ff21af43c05cf66c410eca8eb19c04098f1383cb71bfcc3",
+      "screenshotSha256": "657f261346947ccd128f3be3a81bd61b6328bb4cb8a864b2f7f497c20d510342"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a410257bfd9e271e7b1608e30291ab507af4a284beeef5e2bc657eb96ddb5c7d",
+      "screenshotSha256": "1db4e68b97a440f550dcd799cff57c6fefc2b41e91ca20361b66ed71aad8fb49"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "683ebb7556c2469afc6f2b86f882aaa430dc7ec924e64ac36dbd5ff194a9639e",
+      "screenshotSha256": "46e17346e9fb543bb754fa29684fd4537a992fcc5dca6863af6b05ca0d0b7842"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b831092c6981c0793c26b73f93340006fae4b73400dfcc378d20dab6050170e0",
+      "screenshotSha256": "b1c922b8ddfcfa5c97a6256224b1448d4dd571437601b2e0443837c03f51e6cb"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "850d49ba0da33bf10e44f968ab80b964bd056cffed0d3a149e7f8e0e70b6f74b",
+      "screenshotSha256": "de965aaf253d5838688f22bb909e43531d2acaadda7bbde5db628a5f27ee6357"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "34bb31d0deb63024bbbb32573f8a982ddbd8a7223524bbd4a3c4a1a058061c96",
+      "screenshotSha256": "33eb28508795d4ed50e090c75dec01fdd6408693611a8f07517a3279facfc65f"
+    },
+    {
+      "name": "installer-main-install-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1f647f518f4402aca644e7a5b4be55dafa168bfdf798a9c54f4cfc2595ba2829",
+      "screenshotSha256": "1258adb78ff3789e48ebcbf516753ba7564ee1a4bc4745631348e3521561fc63"
+    },
+    {
+      "name": "installer-main-install-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ea09904ec8c0f82af2fc3e6576346358a87d8d94507ae8c67943c4aa5c3218a5",
+      "screenshotSha256": "ced2ff96749cda8b3b097bd16a0c76e7ea72b12b656b1fd3a454432c144cbd9c"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "62f0eb520c90c1310ae1f402e77b3bc103077ba3fccfe3caae6c2745e4efb750",
+      "screenshotSha256": "5af540e123cfb98971b0163f728dedff7282b913927adc9dd389f87c676f7365"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5debb80f4c5081fbe9b62285e4ea917579837c66bb38ee3462bc666ec8b0b4f5",
+      "screenshotSha256": "9dbbebc0c72ceacebfb6f55b37d85498653979c2764d45a3b7817e11e751089d"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cd465fd94f0a7e46499066ab8d5ba3830ef6c50f972e82087d1f153f0ceb97e0",
+      "screenshotSha256": "dd3e22b98f876d2c9ccecb1088013ab624161602e6ec0f5e1b528653e6b7f548"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fca4df68e07107c9bfe6ac7bd3042db9d25f597983f5ea1584704212bd6cc897",
+      "screenshotSha256": "d2a7b48fd4ec723a3ce5961f01113f2318c53e9dd963866d58256de69d688c27"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6bd45cce4a31b4a26ef9ceca27df73a7b174977d79de3380efc8cac4d7a4bbec",
+      "screenshotSha256": "3fd7d46226ebc6a811984b0b7e11af83ecf819485e24586010b86c6850056bfb"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8222f28a31b4231b73a5679f5fed29c69f038f77c8d88cbf1265539751ea3fb8",
+      "screenshotSha256": "f89573ae254d54023e84d3d78f17ca4d909640970121b1dd5184b8879a437d7c"
+    },
+    {
+      "name": "installer-main-install-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3d873947de222f914826dd116835e2e6f40ea3bdf42ff0b5ba8fe3b908749bcd",
+      "screenshotSha256": "41ddbfb3a58f5e354941a949bd98c224a528c9c8467d28d676362615a3fec994"
+    },
+    {
+      "name": "installer-main-install-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f37b3ad982ce76f4fdbf393a4104ef510decadcd6ed4ce6bd4ea31975ef5f1bc",
+      "screenshotSha256": "82d0f33286cdb826816c73a9ab53cec121eb3e19fcd2d12cd759a9ab6600ada4"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "58504d82d1a8d9bb1cdbb0c7e7744a7b9c8fa6789ef23de20485b2cb096ef5ef",
+      "screenshotSha256": "e59a918078846e8a4a86a907d3ed56acdcfd7142ad90a31a7cbb5639d74e3036"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3f44683cb91f16cd4d23caba627aded51f196a00553df00554b9c0166f28bf97",
+      "screenshotSha256": "cbb8eb13ae9a5397952f1be93ee2ca47ec4e0fef446799dcfabf9833b283a862"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d29f15223cbf5f4d898c93e943c726b4a638993cbff1dcd9ff638a44c0c6652f",
+      "screenshotSha256": "d702b26fe2f792dcbe8c5d6071b7a3781ba8843a01709885b08118fe2a1dc87b"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "253c7e326da5a092ef369577b42b8e7a86a1051b881856c8aaa0bba050306237",
+      "screenshotSha256": "ac899633394a31e71151ea9995a957646a1cf0a7e799d4497bef19f451ee2526"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "133bfc97e15a99b308c2ee0ccf88178f6e73182969f3b0ba1127d3eb759528ae",
+      "screenshotSha256": "fecb711d5a23973fcf4ac321e378ec8765d42a6936fa9586c19a0fae0b937666"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bb7b6651d9bf91a11bf22096eea56a9b00ce159bb0dc24dc813a5594a4c6615f",
+      "screenshotSha256": "8d97aeaedd9364c446a0810ce2b5908f284f4f10130a9426b6fbdb5a5d8851d3"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e04080e066a435a8e0ab46e0fe19cf429e5e0d9285ecb5ab68bc5eb9aa5217dc",
+      "screenshotSha256": "a8a20d9c2d3fe920a2bc201ea39174f8911270f08ff4c6037a88169f5704ed38"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6cae5a64517fb6eea8065a1002c7f59eeab9220f30fb4b6cb3b7b7afaff6cfe0",
+      "screenshotSha256": "554f0645170cc30aed8ae97d894a21b8166b080c5a3ed0d4b49d8e36171a58e1"
+    },
+    {
+      "name": "installer-success-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1458a965004ca0287ed2ec39632f473750ad6abd29c7bb4803d133ee63ad4165",
+      "screenshotSha256": "d3aa1496f75d4e065fef396fe1be816ad872cc07bba585d15a30817b5e2b73c7"
+    },
+    {
+      "name": "installer-success-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "eacf7ed16275c6a154ae35c66cabe3225b5c4a2121fb398173acedae8fc3783e",
+      "screenshotSha256": "d3aa1496f75d4e065fef396fe1be816ad872cc07bba585d15a30817b5e2b73c7"
+    },
+    {
+      "name": "installer-success-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c5497367b19d3eedee521abe5c6cbdf015dd33c1a404e8856e155a4bdb0f93cd",
+      "screenshotSha256": "fa646634ac20dcb9135cc08e96845def59566e307ef1dab306d4f867842e7baf"
+    },
+    {
+      "name": "installer-success-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "03386f88af8d00b9a86058d32f3a28a6faf8cf35ef49ba775a869797b9710efc",
+      "screenshotSha256": "fa646634ac20dcb9135cc08e96845def59566e307ef1dab306d4f867842e7baf"
+    },
+    {
+      "name": "installer-success-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b667e1572f06ddfe03368b7621deaa4ec76deecd27bbbfccfd1cade14a191e81",
+      "screenshotSha256": "db2a6a13f60ef1cbf3134d47aa32a2a42581456a4c631c151fab4f9ec40c8adf"
+    },
+    {
+      "name": "installer-success-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ad69a764a5acf730119a4c6b8b6670cbfaae07b8c88545f30a521f4b4281e0d6",
+      "screenshotSha256": "db2a6a13f60ef1cbf3134d47aa32a2a42581456a4c631c151fab4f9ec40c8adf"
+    },
+    {
+      "name": "installer-success-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "89b35ab5de8673ef124997922cf129b98fcc296d84aa706832c914af673c5513",
+      "screenshotSha256": "2f537a5fa512029a870484dc6bd5d6b0e91e5a2006a67f37605ca7f73fba4f08"
+    },
+    {
+      "name": "installer-success-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1d36e1c0bda1aab9020f38396a7d184e14aa51396f3ad33d9f85a9ceeafa630e",
+      "screenshotSha256": "2f537a5fa512029a870484dc6bd5d6b0e91e5a2006a67f37605ca7f73fba4f08"
+    },
+    {
+      "name": "installer-success-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "742329e021f69d2e61623d05244aa7dcc28934f82c2b4f7bcd3a1051cb1dc62b",
+      "screenshotSha256": "f2b757d1709d0b21330ba7b93c3fa89f36b0d05299d7eb9087471450ef2e99f3"
+    },
+    {
+      "name": "installer-success-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f7fe0b462ac228cde9623c7a4b9a05a53cd2deefeaf9f6d07681fa150dd98388",
+      "screenshotSha256": "f2b757d1709d0b21330ba7b93c3fa89f36b0d05299d7eb9087471450ef2e99f3"
+    },
+    {
+      "name": "installer-success-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e47e5715e02ee8fb34d13fdbfc1af9d2a977364e701d39d55bf7ba4253a6e440",
+      "screenshotSha256": "80d2611f7aa07ebc12d7ca382cfcf55aa9c2b14a80ef80f8a62c0603c3dc5438"
+    },
+    {
+      "name": "installer-success-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "971edea1371518ababb915819842c98ba70d235c7a203439ee302e390692f33a",
+      "screenshotSha256": "80d2611f7aa07ebc12d7ca382cfcf55aa9c2b14a80ef80f8a62c0603c3dc5438"
+    },
+    {
+      "name": "installer-success-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "99460fbe295bdc5fda680a98747ae27440e47500861f9309b4de5344e1d6a4cf",
+      "screenshotSha256": "25e64358c8345aed19a19f56bd22ca3f366f50fc5adfed0e9fe235f7db33acc4"
+    },
+    {
+      "name": "installer-success-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ba2dc135f32dc550b2b1dd27e5e9699607197a650f2d50d378edcb70967662c2",
+      "screenshotSha256": "25e64358c8345aed19a19f56bd22ca3f366f50fc5adfed0e9fe235f7db33acc4"
+    },
+    {
+      "name": "installer-success-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8cbe4f4dbf8a5022d2e0b01867e719fa9e71d2853bf4452f4e3b9f9ca0b222ec",
+      "screenshotSha256": "e6595eb896d18e81635f7ae259bc758bec3270802f7219503cd70148380f345f"
+    },
+    {
+      "name": "installer-success-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "73b012b3d224c7feba8e68a8095d292b2a42938e2b00317288c7b14f8faeba42",
+      "screenshotSha256": "e6595eb896d18e81635f7ae259bc758bec3270802f7219503cd70148380f345f"
+    },
+    {
+      "name": "installer-success-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8e9f5a46e594edf226bc36bdfcce0ab574aea01c60d6539f1fa24ac697950fea",
+      "screenshotSha256": "924304bfff27315358f10a725e1b70eaf0b3a3bc2bd2855710a9aaa2c6f280ac"
+    },
+    {
+      "name": "installer-success-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2d4179f16e1455bdee773cb0648f2b093b7b4500c87e644858e56b7f43e3326d",
+      "screenshotSha256": "924304bfff27315358f10a725e1b70eaf0b3a3bc2bd2855710a9aaa2c6f280ac"
+    },
+    {
+      "name": "installer-success-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ecc33adc1d6eb638e3844078738598f6156f3f8b24b2ba72819f00982657ce6d",
+      "screenshotSha256": "0fc4786b017f34908ba3db6c313911f5eca470817ecb31fff4726732266c78ad"
+    },
+    {
+      "name": "installer-success-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a55447b6fbf74add976e3af145216240632edc87c903b26ddeee603ff3160697",
+      "screenshotSha256": "0fc4786b017f34908ba3db6c313911f5eca470817ecb31fff4726732266c78ad"
+    },
+    {
+      "name": "installer-success-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b3aa9ff2f402d28890eab117b7ec039841b423be8346105abd1cff7e92d16c03",
+      "screenshotSha256": "c83dd0e23633d117f1f0954712cfefa1e07a0cfa73bf910f2a7c31488003a86e"
+    },
+    {
+      "name": "installer-success-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5b8bbccfd7676a10bc54ff6be02343f17090afbe94055f0480c33e1f543f4b2a",
+      "screenshotSha256": "c83dd0e23633d117f1f0954712cfefa1e07a0cfa73bf910f2a7c31488003a86e"
+    },
+    {
+      "name": "installer-success-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ac7516d7494538db4967f5e6e301f1f2d41b90fd365ea8888bd1e1da5fc90396",
+      "screenshotSha256": "5d7ddeed8d797ae5072af83629a4e707359936c704fc7421e4373283009f837d"
+    },
+    {
+      "name": "installer-success-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6284bb76d69e3e03a0969cd06ff620c4587bca020f26bcef1c38806a4d8c4953",
+      "screenshotSha256": "5d7ddeed8d797ae5072af83629a4e707359936c704fc7421e4373283009f837d"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6fada3fb62500dae0a7578ded248eaf41ce4ed804b74f7538c0cd07bf0bcac54",
+      "screenshotSha256": "8c5343ac1c93663ddf5c9e8b3b9d5f2c25f3b2b55b481a91c4d1d854ab9cf617"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "23af3de5e4c3e41985a2bb434afc587e5272e8b909d54421f8720e6289eeb241",
+      "screenshotSha256": "8c5343ac1c93663ddf5c9e8b3b9d5f2c25f3b2b55b481a91c4d1d854ab9cf617"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9b90b7cbe4636f701c92ea9113d921df46eee77562ee542dfe977591b4c483c0",
+      "screenshotSha256": "a2b8121353782d89f1081e07cb2054ff098a5d90826c4b89827a98eca0561e1b"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f0861206e5f72efa2bb0a1e0486a360ccc4b0103385815ddbd2600423f743041",
+      "screenshotSha256": "a2b8121353782d89f1081e07cb2054ff098a5d90826c4b89827a98eca0561e1b"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "115aba6808d2999dfe6dc31b108dd0bba8b9d011320222a1d71eb289a6708673",
+      "screenshotSha256": "2bd4dd2501294bb5d8d925489b283b5e02a80090bd908d11a24f0f5fe7d63db3"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7486a44fe94b61b3b7879606fe31045b2304cdcde35f8353667150b4c0f1c0a7",
+      "screenshotSha256": "2bd4dd2501294bb5d8d925489b283b5e02a80090bd908d11a24f0f5fe7d63db3"
+    },
+    {
+      "name": "installer-success-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d3b54bf3c34b440e660bb2fa4d037eb18d55906bac2d49d42418a6f7b7255518",
+      "screenshotSha256": "c04a8c0d28b5dd1d1001786f82123f5d7b66de70779c6ecf7b1e9547114f16e5"
+    },
+    {
+      "name": "installer-success-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f7629cecfd2b76d63e7a51dfa084fc29aaf7d5f1cc3ccb13865263ab78c62557",
+      "screenshotSha256": "c04a8c0d28b5dd1d1001786f82123f5d7b66de70779c6ecf7b1e9547114f16e5"
+    },
+    {
+      "name": "installer-failure-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ffd9595d7d041adf85738ec2e44dccbbe63f125d905401d2aba9f84dbb77e61a",
+      "screenshotSha256": "63ec8926995e7a213f0f2d4871f9f53efab9c12c9c37033db72d5ca8192347af"
+    },
+    {
+      "name": "installer-failure-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "47c779a6f5778b4479d69d511fb0dcb988fc5afa3503ae8824d1d6c9c6d96781",
+      "screenshotSha256": "aa8f6b333706427932bb14d5834c224752ae20e4243744398bddedae6cf3cd35"
+    },
+    {
+      "name": "installer-failure-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c55f88e5560900d05ddd844bc6018c12e10732c83127321e722e9911c75970f9",
+      "screenshotSha256": "a99595e01665d1c80292d385972d99bb48465bf09944b709aa70e19e44f1ea3b"
+    },
+    {
+      "name": "installer-failure-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8aad0924168ebc121efa55ec5df8799353c5eb11738b13e02058cfc4d2b36640",
+      "screenshotSha256": "188803ae300273a51d52e0c428996c1665ef96da638aebd7e56207c0b4d1c810"
+    },
+    {
+      "name": "installer-failure-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "059b96ca49407f2039281f1adfea7b565ec464e866c7847bb92955cd21e3ad78",
+      "screenshotSha256": "aeb3deb1ffd530838c7055670b28e72864d201b0c87632dbf2049bd042551ef1"
+    },
+    {
+      "name": "installer-failure-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8ed4d269dd7dd364ba6b7fa7b713a443fab162c04da5ff533d98aa23adf51fdd",
+      "screenshotSha256": "75d36ce7e8e545257f6c7fe961ca4af02cecaa3590e6156531ce9a4e7c23e8bb"
+    },
+    {
+      "name": "installer-failure-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0ac25791bad2949f37e1a0c910cfea1ebacead08128d2acd0fcb0201e215cedb",
+      "screenshotSha256": "d14ef80c7a20cee193a7ac0e9eeb79145144785782f36bed59d2830bd2a6cc8d"
+    },
+    {
+      "name": "installer-failure-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9ab4efc72b533b5c4b547fa13a3ed78918fbe8ae6ba6b980fe323b1420438153",
+      "screenshotSha256": "73ae74297153be8e2b193235ecdabb1fbfaed53c3cf0b75b6cfe5e30a1f27767"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "92e646137c4c4415fa2d25eaa11d4542670a3b79370f4fc856028f1e262a1129",
+      "screenshotSha256": "d91d4d57c78d1126622431c644498d7cd97c47a1a81a84e43d022ee16c38a76e"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e0e539b48a1c34c321bc53fb0a6b0ff67ebbaa8d474b515f0dc8497d9a6254e3",
+      "screenshotSha256": "6296d4b42570cd43affa44537942fcc5127a021021be476ee2cf01427bf4d280"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "65757d58652bcaf698d7370a5cd2bfd2889a777ce806f3d830943a45e6f6f289",
+      "screenshotSha256": "603e207a37aecc76f41269717e1535ebf6f6f50b7ba1b4a0b51be66856f9580d"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9a508299f3799ba3e9fa406171aa57122712b6b9aeb843c4370418a05e029a3f",
+      "screenshotSha256": "e06ac48aabccbf6834b751cabb634b918c808606b39b18edc10bdf5012d76af7"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f80eba148526f2812beed0a575ba7547c42132048846f9a249229061bd93b467",
+      "screenshotSha256": "359e0d0cc94952b4d48401a5db51a4031b36a1616969be0f474ddf7bac966f3f"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "be6d28d6bbdbdc776c9569c49b76c73ab6a4daad918e3c145efa0d2c0f5cb173",
+      "screenshotSha256": "0a307877e7661fcbcaa9350a1687812af2d91d502cda701d38ebf86a71198195"
+    },
+    {
+      "name": "installer-failure-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3f4af7e059bbed1afcbdaabeb6a44515ba2670f6ebfb1ff3629fddb7ddabf269",
+      "screenshotSha256": "e471730f72608071e7c19fb36644307137364f891708928106b177066d70cce0"
+    },
+    {
+      "name": "installer-failure-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a7eb47dba8ae5e8c64335bf38d14d315e5ffd9a4df9669860dcb861660a74997",
+      "screenshotSha256": "180049f0778cf24ced363911a9a21544f0fea00900c092bdb48da998a1569f31"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5a00f02a020326c77fdae6aa38721897e5d549d2ab7d08b0193a28dd340f41e4",
+      "screenshotSha256": "12a4d9d5ae2edf42cf2bc9e53cf8bead25ae31fd78324c7fd8117370034828fd"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "10178c72b182ea13c62c04f6c19bf8bebabc1edf344bd76bfc3a4587071b811f",
+      "screenshotSha256": "9d6ada4c6006e920c9b0a295a046fa0ff5c99de1889b325713a2ce231ec337c4"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e7623b4e108b86bc20ca2cf81eb20a1f16a79511ba9f7051daf82ead3567a920",
+      "screenshotSha256": "457dc731289f76f87f37db9a6d9a149873d4e54c09e46758e96edd6887c29a32"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f05b85c681011ffdb862b95ce404569e3fda365f27a52b2d0ac66262af04d1fd",
+      "screenshotSha256": "207f35f6c09146ec48bca3e0607aa6bc04f001a2334100ed3669724601a5aae9"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3dd41850ca4f8a70a37d9dfa0a69f8fcb4b99d824eeb3d7aace4fd30350f0d0b",
+      "screenshotSha256": "d34e87e9eb23884619f018724e8266ad0e0fce4727adc7e89e182205a6a282b1"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d939ed226d0fff2e5a885394aea4390f5f862cfb895c0b72fe2773925e205d5a",
+      "screenshotSha256": "c03ba158405c5c80ef6998b23e76219796055e60a213abc4c80ca519cbc17549"
+    },
+    {
+      "name": "installer-failure-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aefcdfbbe53551c641c513aa43761b70dd6bcac992982b4a705788e0a4f00314",
+      "screenshotSha256": "78d44e2f9978c53ca420b4be774203d1a523165f6ef0c38d279e3357da6c5f58"
+    },
+    {
+      "name": "installer-failure-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1939b27ceb38718aab75cdb590f35c55a665ccc526516653ee7cf69da779b837",
+      "screenshotSha256": "c5340919bc1ab6de9c0f09fa41c1b5a23babbfaf12630edf3ac06203c41a0f52"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9e14a5e77456a8dc19dd62e39853ff3c891e339d1d01adb048331b94e42b848e",
+      "screenshotSha256": "fae7c8f0931f3e3e99a9d50bc8e46a938a97b0ba8366ed43cbd16cf45da953e6"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "53061fa35ed94ba3f65c1a81e28ad1bc574e575d913b6ba15becf44ac4423c95",
+      "screenshotSha256": "984fe397b4d78e087819473e611e7ac83e5a760aab253cf9cc210c282ac52cc0"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9b9c7d11e931866d2cf5426ecfdbdb101d59ba4b0b36c86fc836a8fd30a07bf0",
+      "screenshotSha256": "e848a0a85b0c70609a28b779121d533bbc9940e05053b2cd0e3e3ae2558537cb"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "89db796f9220054deab8511f7b0ada88e5a78fbc266667cf804e0e21796d74e7",
+      "screenshotSha256": "61dabff5c42c7172d87c9144c3db9728f9d2775f4ac134e43ec6053c5dad6705"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bd7fd6c5c93036ebf659d0ffb5e4dbd9cac8480dedde5c4c11d74e4a391c8711",
+      "screenshotSha256": "e080a85b42ec15943c126b9388c89d3c99d4daa6cd2c2526ce369ed00a25d9b6"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0a840596830fc868974916cbb7044c951a44ebdc93989fc4e6e6811126651435",
+      "screenshotSha256": "1eb213a89e8d72abaf225b1cc479b39a677ead4552e6d2d0f83bf9460e3258b9"
+    },
+    {
+      "name": "installer-failure-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "afdf555ffc07b84323543e968278cab569d20d0bee9228f69e0d6c793b0c4d07",
+      "screenshotSha256": "7c8170596fe2c27773e7dbe36c42d96b001fc10ecea13655fd7033cfd5485255"
+    },
+    {
+      "name": "installer-failure-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4991a81c3047344a2f44b1234f7bffc30e9bcbebe1ab179ed76b169187bb809f",
+      "screenshotSha256": "0b4f08a4c0e7ded213ba90d04822154293bb7fae738ce16c6ed92402f4d50d40"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "560207acf9bcbe1df8398095db03a80465ad4430501725de9727800188d701cb",
+      "screenshotSha256": "fcd2906ba0967d6678af49ecedc5f709c183264fe00e49472b491ed9f1836a42"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5664f59cf988bf622e4e7487896ea023c58646c4f1a0d94c67cb7df290ebb3f0",
+      "screenshotSha256": "fcd2906ba0967d6678af49ecedc5f709c183264fe00e49472b491ed9f1836a42"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f1816f39c989bb42a6b426edbfaeec05d7046871677e91feb6ec54c958d17ec6",
+      "screenshotSha256": "7ec57bbf32b823f98c3993441eb0587fb98131f2548540c48424afa9d535f6f7"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "783b7616f0884b6f66ac0dd94a5ea44bc135b223df09479101e8f883a43df0c1",
+      "screenshotSha256": "7ec57bbf32b823f98c3993441eb0587fb98131f2548540c48424afa9d535f6f7"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1d1a95f8e2bc06f9d95d7b71f508e8ed13d2ba5ae67ff27ee6c27d536f8b24ba",
+      "screenshotSha256": "f177d6cb5965246cdd1e2487a7fbae913aac487ec7da23a17a09c385f14879df"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "684067d21528499d8156d3e8f77fb90fe678105ee5fefaa1505d1e61663225e5",
+      "screenshotSha256": "f177d6cb5965246cdd1e2487a7fbae913aac487ec7da23a17a09c385f14879df"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "09c885a3c9cb98137831214944b97f0068f3eee42953d6e09fa068731aa7d469",
+      "screenshotSha256": "063c10431e9190e590c0131b4d15559d18058c40402f77b62b7cd6916c4b7d33"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0425ef09e65b223664b53a12606f20885f5b6091a7cb95de23ec0f699dc05db6",
+      "screenshotSha256": "063c10431e9190e590c0131b4d15559d18058c40402f77b62b7cd6916c4b7d33"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9e93b1ffdbea9d62974e3d59f2f43e71e32c56268543b2bc2483a56c3e27c9de",
+      "screenshotSha256": "df296bf67c6ed9f4e95a67caa9e4b0c237ef3fbf05dda29dddd0375db141daa4"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f16d415002d7dbf022f35e48cb313ab40c57b05c8cfb59c4ce948ff0cf797704",
+      "screenshotSha256": "df296bf67c6ed9f4e95a67caa9e4b0c237ef3fbf05dda29dddd0375db141daa4"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6baa0a822314d0a8b589dd72d74b22dd4347fb363da9cc048e747a58e1f2d607",
+      "screenshotSha256": "c6ac96d8ba14fb5de5854d1a6f8c3d707a4591b2aad6e9f49bc9f6b84867b9be"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d56c81477a179b526c12c29642f78890b8f4edc8ea20a34e2cc2b5bda7b435f6",
+      "screenshotSha256": "c6ac96d8ba14fb5de5854d1a6f8c3d707a4591b2aad6e9f49bc9f6b84867b9be"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "57bc63dc0892085b2c1022a49850cc3f09292d006f89cfcdd6f8874c826c5a39",
+      "screenshotSha256": "55d4acb7e06a946de265c6479b0c52059608cb0730a29938a0bb1262533f397b"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b5ea943335c581196d413f38744cd6d2531c6713e7afe9261188e05f2701d18a",
+      "screenshotSha256": "55d4acb7e06a946de265c6479b0c52059608cb0730a29938a0bb1262533f397b"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0e5655aaf03e3dff16502b2e8833d3792d7adf3046d12cf900d6f6ec94f17099",
+      "screenshotSha256": "eb8a85898bc809d2ef8f751b3124b84911e5fa01e45e76d0a9676333de2890a4"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9764ddcc47661b8693e2255c102bd20c1080bed340a8f31f90bd2480da87b2f1",
+      "screenshotSha256": "eb8a85898bc809d2ef8f751b3124b84911e5fa01e45e76d0a9676333de2890a4"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "09cea337911bb5315c889958a94a0da4b07042ca5555f57cfdc3c6c211eedbaa",
+      "screenshotSha256": "ce0ad10fa1a6baca7802d04c517dde7217d2fd26206bb9af30fa67eb2f134714"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b258897cbaf555c3fa184c27cf5c98b003f5e5220c842a4db14d2c9f882172fd",
+      "screenshotSha256": "ce0ad10fa1a6baca7802d04c517dde7217d2fd26206bb9af30fa67eb2f134714"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ed95e99881c58d3ca6db79b5c48f2df8fa17869036b22d1e2147e8f3de5173d0",
+      "screenshotSha256": "31e85a7508e54492b53c1edd9a69a0efee7f20638c3a4b7bbf26f617f1f20ef3"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3403322414e5313c59082c8b2ddc839074a328d2e88760710cb0c318caf359bf",
+      "screenshotSha256": "31e85a7508e54492b53c1edd9a69a0efee7f20638c3a4b7bbf26f617f1f20ef3"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e0a4ccf71a246d10e8f9bb45477e1b73250874c6d098fbb583df375e4456b485",
+      "screenshotSha256": "0bb9277c142e370eaead5d0b4a747d13750354025e3956ab3020762592abf2dc"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3bfcb12ac630dc9721c9f1730efa723dd950ef02c7fb158bd4c4bf16a471d815",
+      "screenshotSha256": "0bb9277c142e370eaead5d0b4a747d13750354025e3956ab3020762592abf2dc"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "31ef831e68ef4e5c7bea05065603530687724dc3b76ba678c1ee2e74d07d79f4",
+      "screenshotSha256": "b52fef9105d460b8c613cd704213f3426073215c102e5375a17a3164af23a6cf"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f334bc28af94d4017e3b1531d7696db1a2a1633ffeeb9e1cc85e3e36641bab5c",
+      "screenshotSha256": "b52fef9105d460b8c613cd704213f3426073215c102e5375a17a3164af23a6cf"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d02841f4a0061854ca9ab2ac46b2ce3713103f34d7d92c3818e5365f022a0e7d",
+      "screenshotSha256": "a0a584968b94fc6debc14bb1d6f1e18b1099b66aa39a5bbda98703c6621e34e3"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "373d346c95876ba7e0f34c7232dd63c0c6877a8d07a9b44c67337322aff76511",
+      "screenshotSha256": "a0a584968b94fc6debc14bb1d6f1e18b1099b66aa39a5bbda98703c6621e34e3"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4448ed79b37597588816d1a5f0f4dbc5cd88364f0f1166b669cdbd6f9c35df4f",
+      "screenshotSha256": "f44350af66929bfe0b8cddd51fa280627b2ffc2390c894efd20e6d57296ad09a"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "03cfd3858a6457af2da3c13251a2062ac6234b05a5ea88640308862486038217",
+      "screenshotSha256": "f44350af66929bfe0b8cddd51fa280627b2ffc2390c894efd20e6d57296ad09a"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1083136b8f0648bf7fc738396e6cfda8330cff97e769395545f7c5b4be8cfc30",
+      "screenshotSha256": "89541d820b08ec5811bcc9627e99d65244578d23b96967a75e710a090902f529"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9740426a57f7ec1c752cc5a857d4852417084d3066f5c5f4111d9209fbf1b164",
+      "screenshotSha256": "89541d820b08ec5811bcc9627e99d65244578d23b96967a75e710a090902f529"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "06eb43c3def48af694ee8e99140138211430f7d540ecf89cd11b6285b4533c0a",
+      "screenshotSha256": "0419849253f4649df95e6d3deecfed265808e67fadc47fe7b487420e33ab01f8"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2a6e4f779d0c6c6f97219bfc6b4feb7c466bdb8951ef63a21d503cf3870aa543",
+      "screenshotSha256": "0419849253f4649df95e6d3deecfed265808e67fadc47fe7b487420e33ab01f8"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e7e517dd1321ac52a6e561973f44b4c954814c99e339d63392901e5d87fa164c",
+      "screenshotSha256": "b73b4ba3b34ba50095b252e30ee715bb9f3abc8251481b18b150d3a57ef727d4"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "35026397e68724fb1ffcfab27a9cb9edce37b82be4ab0faa112bcc623f9545cb",
+      "screenshotSha256": "b0d367f8a89f83e203ae4d11221504a303f69f2d7cd9b30a2028079af861af6c"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5f1ff4d439049d5a8d37befcfd769484d6adbc6f9b2301c1671c4bf060630cd0",
+      "screenshotSha256": "03ba78b83fdc1f92c5d27b4713bc445759622acc1b4fd09f412e96a0027f8544"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "499d9457f06bb3cfdf2f8e2ba79e5453384645089e4d9d96b6ab9dcc2e8ff0ce",
+      "screenshotSha256": "4fc5b6fe59795c587749577f92e192c47392610409e5b2c91f72fd8794b30c00"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e2893e0c0d90ccfdb4f1514bbc9173a8d627ed0523505a78afa7d483d7df9295",
+      "screenshotSha256": "f1e57de358757c5ec57551de72ce1108c68a189f01b5e802211dc469376a3af2"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "faa91fccd014c0b539a0bb0a78a996ee59356f004a31589a1081042f5b4a6537",
+      "screenshotSha256": "df136d30456a87a143183e67673b0d0ecbbee748a784da80ae49e6c669d041ae"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e985d87f7b3362e90cd399c6b0d9974f2a3a1e524215c327a2b9cfd85076ef9c",
+      "screenshotSha256": "637affda82cad893b5bb28803951c7363445537ec1fef0c8ee449ae00cc7b693"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f7a9f09c668d1c46a0ec509c8518919c16cba00738e6d67e7fc765ef905ad2d5",
+      "screenshotSha256": "d3f11bddab1b079fe60987460da2567e9c8c986ae99984d19603b4682db2006d"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3869d38e7e15b0bf88f891e9cac07a2b30cdc950991f4536ec1f06a3d4032de8",
+      "screenshotSha256": "b52c3f626bacf1f3714e1ec778561dddbd3fb680a430bf8892d57320c48cdf55"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bc8ad6560a81bf340b652f4c7a2af98c9413106f81092fc3d0ad97c493dd7bf0",
+      "screenshotSha256": "a45da7633f38d5f2ca0452d8d96e16557c54ad4e337c3d50244138836b43382f"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "73d5784724ca2316745e26f18a2de0ea5837f10d3b163747e8ffb2897cf90c13",
+      "screenshotSha256": "b78dfbf7e6034f9d33d2bccc5440d55b82567a042478945f749b4cecb318135a"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "580622c48edd00340c1dd4f52a25a1818b13b514df437ee6a2106d0469e78a01",
+      "screenshotSha256": "cd9f3899509aec4f7121579f80377f8678c4dc1fb6932fad2aae11b16fa52bc1"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "42ddf104a3e595a6af773246c876949b5ac2dc4551c65cede2585dfd604550e0",
+      "screenshotSha256": "80eab1a5f7797f2ebca304d78d49e55ac61065c64283b6ef3a69031f93beea3f"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ffe1cf94b2a16fa288829b882b2484110f156f7b6469556246efe65eea20dba2",
+      "screenshotSha256": "e18567a2fdd7aa3489004026591f0aaa3c01adb9c11bfcab6e5bce7cec00cddb"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fb3643b6296ec0cf42901be922e363ffabb44b76b26f551841e7f465772e2549",
+      "screenshotSha256": "9b38d69aac9e4e514a3b7a750b7739da8088e306c240ac0021cfbbda78dcdbed"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "77cc466aa937790cc4899fcea01d455481c8c11f7811381288b47bb35d2fc6a7",
+      "screenshotSha256": "f7d9db02429cb6469225bc7bffdb685e9b111a6eebbb133af02fc858c0ab09df"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5a5cba93d08106164bceb09dc9135fc843b6051c26d7d94beabb126a800d2985",
+      "screenshotSha256": "f4b98bddbfb5a6da3bf592cbb637de223c6ca33f7f8a5135fcbd338df92a6824"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1b5d97048f5307a9afa610f0104dfd804a7fa86ff4824c03362fe992b4aaca7c",
+      "screenshotSha256": "a515448df8e2977378ba41f1caabb795b0819a3e38f3fd31e3a7f5a79649149b"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "009fa230690edf1eabfa6b3c9d7d474f8089cfa4924e3fba6cc93fceb7f81354",
+      "screenshotSha256": "8886a699996b7ae711db6dd9239056978df26f0c6c4196de242df158c4479c69"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "72b83fbe6debd483132fc094dbdc6be2453a16de9dffdec295a62531534fec27",
+      "screenshotSha256": "8ecbf0e3d48624ee6cc1ad2114dbc076ed1e4354944c6063c2194c893b5be294"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0fc693b019a9350b92973fdeb26fda8d691c48c31260a53c520adccc94e1d3ba",
+      "screenshotSha256": "48d9745eb134e0084695fe2ef271c1aad3dabb24141d32ea701e806999b180ab"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "17e0c21aaf2f9cedbee53f9c9fcbae3069482693d16ad08c7baed1e6e66d9358",
+      "screenshotSha256": "3a82ca67960b223d374060b4cbaea28263829646e83939ebeffffadb696ae0a5"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ceccab0a7ff5b9b03a5813fa8518a40e43f3c72fe89a34d9a0662eb791526327",
+      "screenshotSha256": "40a3c5bbf54fe25dea948e3a4ffe05ddb3c3d6613e17b2e22fbe15249f96f344"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "64bcf435b6236621075964a7405ccdff217ed426113b9f4ff2b7392b530ef173",
+      "screenshotSha256": "611ad732e9ed8de926824b464837dddce3689901f619d76955394e28e2ee2c5d"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aff1abc4244222dcb6c1f7988be2c13ba7e693f8943df149583c372ab8ba27d3",
+      "screenshotSha256": "c535dbcf94309d30310fa904cfd271002b1f91bd98bd0946d0d3928ac4b7c371"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9418b674c89c3995e2e36172fa51de0c1c368aae1692dc53eef1f8271edcc56c",
+      "screenshotSha256": "351f9a6b77df954b5148b90a2f2a1789cf3501152ff58a45ba681433e7baf8a4"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "023781657404f9bdd6409f5e63b767a12fe42e46a7cafecfad8eab89f4b656d2",
+      "screenshotSha256": "9bbd6ed1f05c09433b1dcc6cbdddb8a813700d1d764b63a4a7b81cb3cb8f7bfa"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7655af46c420d41e335c8f762ed0d8108f9a6e282dcb11b7eae2824f789db713",
+      "screenshotSha256": "a770bff1fe5da3c9313118d2169119d1f80a03bb64e7112ced46f558dc074fd2"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7fa2911178db6c4671d8428250749e9cf83a252524b2bd8f5c5effe227b5b51f",
+      "screenshotSha256": "2bcfebd8283a03b642f6f6113bc91cbb2f1cbcfb45c7d65b7492a5b8f16fa0f3"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a3c7bff597e4cf0811493537727af1ece3bf1bf0dd9acb7b946d6a28065b9df9",
+      "screenshotSha256": "128dc46fa5b91da6feb54f21017e49c525ac6c3ca5612242b66c452c30209b54"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cbe8dc2541f53f2a33ce4d0d8b4b55207d92c2295fd81d2e4ebcd79691653a20",
+      "screenshotSha256": "477c2a54bc4cbfd4bb5cab742112c7e07801b58d69bda041e1b06d8fb7cd3348"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "048d532feedf9a4556879370703fac1216ce75833348eb162a735c58ba857afc",
+      "screenshotSha256": "3e3523bd54558ff20bcfc606dc77c915632c22c3f94c223388b35f6214898ddf"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "40f2dfa8bdd1bbf787d50a3495153d6871fb201c226252229a46481898ad5444",
+      "screenshotSha256": "4c2fb418ea160d49bea4923ceaf979f72f62b73d0aa7c50aebd589015c861fc3"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "136e4cc51d01391f72a68edccea0d666128317052c04ffb7c1bf01d3104c4ce5",
+      "screenshotSha256": "4c2fb418ea160d49bea4923ceaf979f72f62b73d0aa7c50aebd589015c861fc3"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4952a55a9d399fa1a468b512d6719ea3c925abb2f60f6e6d6630dae30c923f80",
+      "screenshotSha256": "1c8d20d03d0bd0b0bbce3f1b06213c4fa01cd01035b550af0f99b4c153b633e1"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aff428935942ee4737737c9d4eaa75d4ec6a17142b9f5b09e0ead24a234797f7",
+      "screenshotSha256": "1c8d20d03d0bd0b0bbce3f1b06213c4fa01cd01035b550af0f99b4c153b633e1"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2bd8e16fe24949857faaef3de3cb68186958a95a45c0ef4e43e35f3810015525",
+      "screenshotSha256": "0703259d7b54a8efb5ab854b1b59a0847550162b7f122b46bd8d604fce649930"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "addd165dcf4afe1ceaaa1b7f988e9bb5d700329c4c1970e251f04e9aeaef9ee9",
+      "screenshotSha256": "0703259d7b54a8efb5ab854b1b59a0847550162b7f122b46bd8d604fce649930"
+    },
+    {
+      "name": "uninstaller-success-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "786ce02c323a6383f9b2b47949e96238022325c2fd9eea29ddcaa45f3cbfcec1",
+      "screenshotSha256": "7a148efe5f4f073999e5f9087cee47abcaa90bb1ca08edf1433e209f94a0cc89"
+    },
+    {
+      "name": "uninstaller-success-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ce6c005b4f517ca5410ec19092d8408ea8ac48e7210a080bea523f0a958a6a96",
+      "screenshotSha256": "7a148efe5f4f073999e5f9087cee47abcaa90bb1ca08edf1433e209f94a0cc89"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "078cb7f308651a38ad6041a369a1d9ba422317221cb3cb377cc96eceb048ca72",
+      "screenshotSha256": "97337f87b605e65eaff42024b30820a6503e7b59d3c54b13190bbc67e1fa3aa0"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f497adc637f9d661f859dbcfea4f18ab4f18581db111a7da6af6af9dc732de4f",
+      "screenshotSha256": "97337f87b605e65eaff42024b30820a6503e7b59d3c54b13190bbc67e1fa3aa0"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "675ce7274fe06dd13ad0ce51c2ce3994c334de5e91b1f10df93c6baa370960de",
+      "screenshotSha256": "47669480cfb36424b355ddeeae3e55702757345d947cf94e80b2cec82ee58a9e"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f2ce918e8fd05dca5bdd7a0fac7afe51a7126a9d0317617657efd017d45f910e",
+      "screenshotSha256": "47669480cfb36424b355ddeeae3e55702757345d947cf94e80b2cec82ee58a9e"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d4c06ebe1218335c674d8c25a4e1f439bf88d769554714afa5a138c1da0f89c3",
+      "screenshotSha256": "325aaf48dd1824576ced20a26835529731c991061a98a3aa45334062cdb2c6f0"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d26f5abfa37d564efd728ecc945b3bc4f148a593828be07f64ea2c116a0954d4",
+      "screenshotSha256": "325aaf48dd1824576ced20a26835529731c991061a98a3aa45334062cdb2c6f0"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b3396958097bec242716b8935d9d1060a67cb79c3fe55e5101cc94243b46f672",
+      "screenshotSha256": "f48360ed9c06d513f22e2c7f458836a7e4fe5798999539b9f1c1d95c9661930f"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d211bbcca5a435c54d9416f8a28be6c554445fec5a6bf6781ff031a548801a8a",
+      "screenshotSha256": "f48360ed9c06d513f22e2c7f458836a7e4fe5798999539b9f1c1d95c9661930f"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8ecf975f1eac4bd9c1308110173a046da7b2a5852ef1f532b4ce55008c4e1f9f",
+      "screenshotSha256": "b251962043bcbd75b80d8ca8052c835501577e77276229f47860af4f6b8e2b50"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2cca005cacf2053528f3c258b7b635a161d182b857e0294652069e0d6fc04099",
+      "screenshotSha256": "b251962043bcbd75b80d8ca8052c835501577e77276229f47860af4f6b8e2b50"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9494326e5ef74a505b445c2f8034f336d1255e08131918b1bbc354e20734132a",
+      "screenshotSha256": "076d93f74f1898b25119936b712c19bb90347de4cc6d783b03882c7935b35110"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "be960354c9b3f204bc374b228cf9c762862ac476471ff05e3bf034a6e81fb74c",
+      "screenshotSha256": "076d93f74f1898b25119936b712c19bb90347de4cc6d783b03882c7935b35110"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c66696db3c786b42e28122e75b63a39a817ff2da03ca23dff634e2862e0b6597",
+      "screenshotSha256": "c875f99f0515221f3866fc2e8f34b94e5a56e24c3244fe5c970c8d42ed48b96a"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e3d2f2851a6a72119b50992ecce3bfc5e572a38581dca40c6afa5d9fa2b0c89f",
+      "screenshotSha256": "c875f99f0515221f3866fc2e8f34b94e5a56e24c3244fe5c970c8d42ed48b96a"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "490509a9105ee7763e758682726068d4f712cd491778bce140ea3dcf1f519795",
+      "screenshotSha256": "e3727579da9efd4c514bfb0d06aabdb8d18f8adc5f5cbc4884a9a1d2f7b4f1b0"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7a624d302a50a17f1cdf35c955c155b59e829ba995ad7aad124c9f20f68dc396",
+      "screenshotSha256": "e3727579da9efd4c514bfb0d06aabdb8d18f8adc5f5cbc4884a9a1d2f7b4f1b0"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "13e1ff6ea7589705bad60f9cdfadfb2c75f3e7c291344d16ee9041d8074b569e",
+      "screenshotSha256": "d4e77d3296b63048ddec898e90e381cd69c622a6958475a31d36d473186d0683"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "da66d079df8be1104b4368b78b0ce090fcaacc379842253469c4293991082333",
+      "screenshotSha256": "d4e77d3296b63048ddec898e90e381cd69c622a6958475a31d36d473186d0683"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "508cbf70fb80490ee153f4730e0ac5970943bf2016a086a3326ada241b1e0500",
+      "screenshotSha256": "c911a5316da899559b668d3e30fe864d3936ae7420885e3607e77111e48e1553"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b1af8d5566c527019001cdc18bd420a43e35a67e847d0536cf7e9c159ab4775d",
+      "screenshotSha256": "c911a5316da899559b668d3e30fe864d3936ae7420885e3607e77111e48e1553"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "32641013b87b4d9723b8e3f4920c13578c58472993671275378e748f652d9e71",
+      "screenshotSha256": "378fdb3675bb1572ec990236ab41600702ee31e21d063e60f1fb189265e2cb2a"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "36fdb5e4d19372f9427232e2ceb54f67fb77b63280b10a3e0634ac5b1b428e46",
+      "screenshotSha256": "378fdb3675bb1572ec990236ab41600702ee31e21d063e60f1fb189265e2cb2a"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5488c23c6a93c0da96e6e54b5f24b0de1ddfef7a3b56503193ee54057592184a",
+      "screenshotSha256": "5ca9ef6f54dd16d47519667884da5a9c884330ab746817e840c1d292cef4a8ba"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "64e4dbb7ac46dc8ffa645c072fe7ac36641a30840acd305d5fbeacea271dcc4a",
+      "screenshotSha256": "5ca9ef6f54dd16d47519667884da5a9c884330ab746817e840c1d292cef4a8ba"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6bf131d96f5590f333f771ccb6ef435895bd318d6119c3106c9b446ffdb6a210",
+      "screenshotSha256": "9ff152d37ed6a4253d2ed83fd44fb7439b1b2f9a293c1516bf155b7ba066a1a5"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ddf8c52289fc2208ad337795b5be82bfd792f3916cb92e15219120158c463f26",
+      "screenshotSha256": "4c73c26597343550e563e08925ed952db44ab3f131aa1ef1100ec6ee07abd2f4"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e6c21fce8ef15a1aa440aaa6f00ed66841552423fd6ee19e42e178cf4d21e5d1",
+      "screenshotSha256": "6a7096f23c5df1884a41fc1e85d00765c1b6002b65166ea31779d21389f60bb4"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8972bf54554454538c8faa3ab9501069935e5929187f34a1a6e5468fdf50db4d",
+      "screenshotSha256": "d8b75e4cc5f3c0c6b1110ff0b56a06b85384c569ca383f7d0cd98d63f42094ed"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "be4473afd9c08f8e34203d6303964c67f3a446fe859a1a3fdb92486b9a019b5d",
+      "screenshotSha256": "ca7c694664fc0ca9cdb00f7955d4a1db7dfb2a0172eeb01a02faf7de41ccefe2"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "56f20a8d2bdb8db610fd06ff2490d7a21d04c6b88660d93f2e70375af51b2fbd",
+      "screenshotSha256": "c897cbbc9a296c4e3726cb1a90d2ab47f700c49a5a90c5238e39877598e9efb1"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a8e81c65cc624e8607b91b4d16af01ae7a6f5a542ef75b4e095b96c01ee1a5e9",
+      "screenshotSha256": "d7c3a06e1803d87e856adc02d23acd1ae91941e82c1670b7c6b84fa1bc415210"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6e7e58e7ea80cb0b43ccf52eb7f7b30e4b85180ffaccc70c722011676feeb250",
+      "screenshotSha256": "1a958e882645293b826b270597341239c61dca8733d306e342f974f8199c27da"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f338789a51c77a4a925d66555cada3a99b096b0ff995e404510634766c18ea90",
+      "screenshotSha256": "e83f7ad139b86833200fca6b6d40c99c32e8bb309bc634a3be71a908a7774115"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ab105f77eae0ebf2f05a604b608b7c27d46f9bae510e5f30408d3e4bfde8961d",
+      "screenshotSha256": "814ece208f964e0ea718648887d66b986fde12b9df3578e41d29604108330e16"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "55a7f982d662a2191336afd01560390c5d2931a853f52f2a6f66c8c59d3aabfe",
+      "screenshotSha256": "641695547598da626a9170150d8380c0cbb6d86536c68fe839316293ddecc16d"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8406edc7b637989ee9069a08629e72e8bcdabd6dc5cc2ffc21a2ccf7fa0e6d95",
+      "screenshotSha256": "07f49f3347676877db4faf8e236964eb43006460264f117cb5950b9e5c75fa0b"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6122dcf97f71b698426ffdaed3703db4dc14828495ccd466a8a6ed8a8ffa1cb0",
+      "screenshotSha256": "f8b6e71ee189f62048b2a6932b30463a9528d9c97f7ae38c6d1249c944a50fa2"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f5fd859a3905a2b4adda146fd05d294f6ef60a5994c99080332f3f73864ac402",
+      "screenshotSha256": "b9c2fa9839fc0d0e767be8ec23658af946b619f419a36712f25ded2db8ed8d24"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e83b38a93cc3b45ca4bd992743de0a48b8c37f5ca429edbb2d1f5f5354047395",
+      "screenshotSha256": "6e820afa71e310e0ab436ac94af26d8fa83e9566b45140ea070237c14d99ecf7"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d71c869f7589a9623d175cf3110503cd4c6273e2eab66fd8da94ee81c20b3134",
+      "screenshotSha256": "bff412cc19403bbbbb45b13deae4c74877bbf0c803e0d97178a8016308ea89b9"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "469bbac6225446a19296d330189d562cc8ab448927a12248fd08561fe205314d",
+      "screenshotSha256": "bed0be3e4a78f97d087baef011e5962512a7ade3f17fd3a7ec96c5dd852f2c26"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d3be5dd7639dbc13e1256abccf06901890cdb02e418a93b3e974ef13f0fba273",
+      "screenshotSha256": "f6f0cb118934825a979a1972feda73de7688c767407939312588fcf685030b47"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "03ba9501cc063a003602f2fb59b8f4d3e076d01322e884d76777b7c46aec62d6",
+      "screenshotSha256": "76bea47726c200416e2f61971d45533ceb6ac93219c06d62f19065f39d98c6b4"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3c2cc92730596a5f793e07480986c684588aeb0d285feadd34ae9b6727b9755d",
+      "screenshotSha256": "e73897afb2d731542022a6d72c5eaac8e5cfe45ba84e32760058e528848dd2dd"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4e48ab4783a41538697443147a54061fe0ea56ae3099595ccbfdd56431e43a35",
+      "screenshotSha256": "ae232d2ff2a9866ff87304f68e4a9c6a424a6648e9b175a71a5e036b537d273e"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b7f55f4f673766b1b974a08d9aaf5d00e68c735f6830bff447061d69679ea263",
+      "screenshotSha256": "288e3044abe1215d9b5fe6c1e062a1d27867192a47e0dfa74ab8a6f9d9faa2c5"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c6deda82c555451961652e0f720fecd482c72412fa4b902fde5651103d8c1daf",
+      "screenshotSha256": "8609da3c50f4a9252a1ae61d0257e03422e0660ca92c0bbed4d1122b212af015"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "befc9d300d503e4f70cca8aaa5636c150437fc7f7f296ad06c042a2b476ef516",
+      "screenshotSha256": "0dfc8ff82b99fd7153eb39d38b3c32e7eedb575420589de3723965dc340d119a"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "663642636dea2bb61c809af3db558f3be207634771bc4fac4b2cb6f3504e5f1f",
+      "screenshotSha256": "2e49f99e6ca87a2d91e113e77f579cd361c6104b665d2fe841f82d4574fa9fc1"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5a07ce68896a1a2036bcba6233bcf4d75ac3eb85a6de56859905b8280fb534ff",
+      "screenshotSha256": "1a4d1ea37255e80e9aaf149ebed4d80fa105856c0eaa3a0e6a14800ab454a178"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "79ded9037940466b4648233a339bc883c93400fe6b2a739360ffb7a26c301e71",
+      "screenshotSha256": "500e0665dd58ef4185f39443f7b7e067d06e7c57fd2963d87c7cd1b695827f7a"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ac4f8a54914ae10e4c4f4f994f58728123a732a89fd30b5d01714884522acac7",
+      "screenshotSha256": "c50f943226a222179a2886d04acfc970f4f069cfd2087110c547560157777c5c"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6afec612f62dea88a168eb5face34bd9797852e6771748ce5a8519dbb303d4b0",
+      "screenshotSha256": "054b658bef65c6a5546cfbadca5c36d9cec0e49e6bb32b71c537954616f8f827"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d781ac68d6f7e77eb521ba939b1fe39ad58943f7fe3b2a661367197d3f6203b5",
+      "screenshotSha256": "400e5084de96706e40331e834178a59e5003055ca45e757a9b6aa6a3db7a6a4b"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c8fe8be93a2c2be9bb0981096afe2b5c9f743e7678ab723d8bb3934478415081",
+      "screenshotSha256": "547bd17b44ed8c19cf503365850555e9d2486f64723c3f39ed59075d09c6c356"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c76846467c8534e703d730be9408b8a4d8b688e9c0a4e1587b7c7cc909e5b34c",
+      "screenshotSha256": "0b7379a1b2464326c545ec872343a0eebe3f2ce95cd5e568da4f7295b6457805"
+    }
+  ]
+}
