@@ -1,27 +1,28 @@
-# Compact Cassette Catalogue 1.3.0 Beta 1
+# Compact Cassette Catalogue 1.3.0 Alpha 4
 
-C3 1.3.0 Beta 1 is the public-prerelease Candidate for the final original
-VB.NET WinForms line. Its exact identity is `1.3.0b1 / Beta 1 / v1.3.0b1`.
-Candidate retention is authorized, but this source text does not claim a tag,
-public GitHub release, minimum-operating-system qualification, stable-feed
-change, or `legacy/1.x` advancement.
+C3 1.3.0 Alpha 4 is the retained, intentionally unpublished owner-test preview
+for the final original VB.NET WinForms line. Its exact identity is
+`1.3.0a4 / Alpha 4 / v1.3.0a4`. It packages the completed repository-side
+application and classic-setup repairs without claiming Beta status, public
+publication, minimum-operating-system qualification, stable-feed change, or
+`legacy/1.x` advancement.
 
-## Candidate assets
+## Alpha test assets
 
 Portable, no-install, no-admin packages:
 
 ```text
-C3-v1.3.0b1-win-x86-net40-portable.zip
-C3-v1.3.0b1-win-x64-net48-portable.zip
-C3-v1.3.0b1-win-arm64-net481-portable.zip
+C3-v1.3.0a4-win-x86-net40-portable.zip
+C3-v1.3.0a4-win-x64-net48-portable.zip
+C3-v1.3.0a4-win-arm64-net481-portable.zip
 ```
 
 Offline elevated per-machine classic setup packages:
 
 ```text
-C3-v1.3.0b1-win-x86-net40-setup.zip
-C3-v1.3.0b1-win-x64-net48-setup.zip
-C3-v1.3.0b1-win-arm64-net481-setup.zip
+C3-v1.3.0a4-win-x86-net40-setup.zip
+C3-v1.3.0a4-win-x64-net48-setup.zip
+C3-v1.3.0a4-win-arm64-net481-setup.zip
 SHA256SUMS.txt
 ```
 
@@ -83,14 +84,18 @@ Repository-side source evidence includes 21 lifecycle/persistence tests,
 genome, compatibility, lane, offline, package, setup-genome, accessibility,
 documentation, and PowerShell 2 controls.
 
-The remaining independent GO gates are the complete historical Gate 1 record,
-two clean path-distinct Candidate builds, and full runtime/setup qualification
-on exact Windows XP SP3 x86, Windows 7 SP1 x64, and Windows 11 build 22000
-native ARM64 environments. A missing target row is a NO-GO, never an inferred
-pass. Public Beta publication requires a later separate decision. Stable is
-`v1.3.0` and the public `VERSION` feed remains C3 1.2.0 Beta 1 meanwhile.
+Alpha 4 distribution retention additionally requires one fetched-ref external
+toolchain lock, Candidate-mode builds, closed package verification, and two
+clean path-distinct source reproductions. The remaining independent promotion
+gates are owner acceptance testing, the complete historical Gate 1 record, and
+full runtime/setup qualification on exact Windows XP SP3 x86, Windows 7 SP1
+x64, and Windows 11 build 22000 native ARM64 environments. A missing target row is a NO-GO,
+never an inferred pass. Creating or publishing `v1.3.0b1` requires
+the owner's later explicit approval. Stable is `v1.3.0`; the public `VERSION`
+feed remains C3 1.2.0 Beta 1 meanwhile.
 
-See the [Beta 1 plan](docs/planning/1.3.0-beta.1.md),
+See the [Alpha 4 test plan](docs/planning/1.3.0-alpha.4.md),
+[Beta 1 plan](docs/planning/1.3.0-beta.1.md),
 [owner authorization](docs/governance/1.3.0-beta1-authorization-2026-08-06.md),
 [defect ledger](docs/testing/1.3.0-alpha3-defect-ledger.md), and
 [qualification matrix](docs/testing/1.3.0-qualification-matrix.md).

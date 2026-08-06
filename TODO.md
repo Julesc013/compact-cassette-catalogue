@@ -156,6 +156,21 @@ The 6 August 2026 owner decision authorizes production and retention of the six
 advancement are authorized only on complete GO; public publication, `master`,
 `dev/2.x`, the stable feed, and stable release remain unauthorized.
 
+## Alpha 4 — owner acceptance test distribution
+
+- [x] Project the completed repository-side scope back to an honest
+  `1.3.0a4 / Alpha 4 / v1.3.0a4` test identity.
+- [ ] Build and verify exactly three portable and three classic-setup ZIPs from
+  one clean source commit and one immutable external toolchain lock.
+- [ ] Reproduce all six ZIPs and their entry evidence from two clean,
+  path-distinct source checkouts.
+- [ ] Create and push annotated `v1.3.0a4` only after the retained evidence
+  record binds the exact source, lock, package, and checksum hashes.
+- [ ] Copy the verified local test bundle to the root development worktree's
+  untracked `tmp/` directory without modifying its `dev/2.x` files.
+- [ ] Obtain owner acceptance results. Any `v1.3.0b1` tag or Beta publication
+  remains a later explicit human decision.
+
 ## Alpha 3 — legacy reliability and classic setup
 
 Alpha 3 is now the internal implementation phase. Its uncreated tag and

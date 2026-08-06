@@ -5,18 +5,19 @@
 See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](TODO.md "C3 1.3 Workboard"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
 > **Repository status:** the available user release remains C3 1.2.0 Beta 1.
-> `dev/1.x` now prepares the intentionally unpublished C3 1.3.0 Beta 1
-> Candidate. Alpha 2 is immutable and complete; the untagged Alpha 3
-> implementation phase has closed its repository-side application and setup
-> repairs. Historical and exact target-machine evidence still blocks GO. See the
+> `dev/1.x` now prepares the intentionally unpublished C3 1.3.0 Alpha 4
+> owner-test preview. Alpha 2 is immutable and complete; the untagged Alpha 3
+> implementation phase and the retained Beta-labelled NO-GO candidate closed
+> the repository-side application and setup repairs. Owner acceptance,
+> historical, and exact target-machine evidence still block Beta promotion. See the
 > [legacy maintenance documentation](docs/README.md).
 > After Alpha, the owner ratified an exact three-lane stable matrix: x86/net40,
 > x64/net48, and native ARM64/net481. The Alpha tag remains immutable historical
 > evidence of its earlier four diagnostic lanes.
 > The bounded three-lane build/package controls and native ARM64 binary proof
-> pass. Beta-labelled Candidate retention is authorized, but no tag, public
-> release, minimum-OS qualification, feed change, or legacy-ledger promotion is
-> implied until the remaining gates close.
+> pass. Alpha 4 tagging and local distribution retention are authorized after
+> their checks; no public release, minimum-OS qualification, feed change, Beta
+> tag, or legacy-ledger promotion is implied.
 
 ![Screenshot of C3 in use.](https://github.com/Julesc013/compact-cassette-catalogue/blob/master/Resources/demonstration-screenshot.png)
 

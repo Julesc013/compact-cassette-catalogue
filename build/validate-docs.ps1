@@ -269,11 +269,11 @@ foreach ($relativePath in $activePlanPaths) {
 
 $releaseNotes = Get-Content -LiteralPath (Join-Path $repositoryRoot 'RELEASE_NOTES.md') -Raw
 foreach ($statement in @(
-        '# Compact Cassette Catalogue 1.3.0 Beta 1',
-        '1.3.0b1 / Beta 1 / v1.3.0b1',
-        'Candidate retention is authorized',
-        'C3-v1.3.0b1-win-x86-net40-portable.zip',
-        'C3-v1.3.0b1-win-arm64-net481-setup.zip',
+        '# Compact Cassette Catalogue 1.3.0 Alpha 4',
+        '1.3.0a4 / Alpha 4 / v1.3.0a4',
+        'owner-test preview',
+        'C3-v1.3.0a4-win-x86-net40-portable.zip',
+        'C3-v1.3.0a4-win-arm64-net481-setup.zip',
         'No standalone raw EXE or',
         '21 lifecycle/persistence tests',
         'authenticated write-through ten-phase journal',
@@ -281,7 +281,7 @@ foreach ($statement in @(
         'v1.3.0b1',
         'v1.3.0')) {
     if (-not $releaseNotes.Contains($statement)) {
-        $failures.Add("Release notes are missing required Beta Candidate disclosure: $statement")
+        $failures.Add("Release notes are missing required Alpha 4 test disclosure: $statement")
     }
 }
 

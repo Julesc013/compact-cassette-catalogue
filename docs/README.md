@@ -16,6 +16,7 @@ C3 release line.
 - [C3 1.3.0 Alpha 1 checkpoint](planning/1.3.0-alpha.1.md)
 - [C3 1.3.0 Alpha 2 checkpoint](planning/1.3.0-alpha.2.md)
 - [C3 1.3.0 Alpha 3 checkpoint](planning/1.3.0-alpha.3.md)
+- [C3 1.3.0 Alpha 4 owner-test checkpoint](planning/1.3.0-alpha.4.md)
 - [C3 1.3.0 Beta 1 plan](planning/1.3.0-beta.1.md)
 - [C3 1.3.0 stable plan](planning/1.3.0-stable.md)
 - [1.2.1/refactor salvage ledger](planning/1.3.0-salvage-ledger.md)

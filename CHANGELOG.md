@@ -4,6 +4,30 @@
 ## C3 1.3 legacy maintenance
 
 
+### Version 1.3.0 Alpha 4 - 6 August 2026
+
+Alpha 4 is the retained, intentionally unpublished owner-test preview of the
+completed 1.x application and classic-setup work. It follows the untagged Alpha
+3 implementation phase and the source-bound Beta Candidate NO-GO records; it
+does not reinterpret missing historical or exact target-machine evidence.
+
+- Projected exact `1.3.0a4 / Alpha 4 / v1.3.0a4` identity through the
+  application, setup executables, manifests, package names, package content,
+  validation, and evidence contracts.
+- Preserved all completed lifecycle, persistence, integrity, settings,
+  diagnostics, guided-creation, layout, accessibility, and classic-setup
+  repairs with their 130 source regressions.
+- Defined exactly three portable and three offline classic-setup Alpha test
+  ZIPs from one frozen source commit and one external immutable toolchain lock.
+- Required closed PE/framework/config/payload verification and two clean
+  path-distinct source reproductions before tagging or retaining the test set.
+- Kept public Alpha publication, Beta naming/tagging/publication, `master`,
+  `dev/2.x`, `legacy/1.x`, the stable tag, and the public feed outside this
+  checkpoint.
+- Made owner acceptance and the remaining historical/target rows explicit
+  inputs to the later human decision on `v1.3.0b1`.
+
+
 ### Version 1.3.0 Beta 1 - 6 August 2026
 
 Beta 1 is the retained, intentionally unpublished Candidate for the final

@@ -67,7 +67,7 @@ Module Program
         RunTest("altered relocated uninstaller is rejected", AddressOf AlteredRelocatedUninstallerIsRejected)
         RunTest("matching native uninstall environment passes", AddressOf MatchingUninstallEnvironmentPasses)
         RunTest("running application blocks uninstall", AddressOf RunningApplicationBlocksUninstall)
-        RunTest("adjacent Beta 1 setup bundle loads exact bytes", AddressOf AdjacentBundleLoadsExactBytes)
+        RunTest("adjacent Alpha 4 setup bundle loads exact bytes", AddressOf AdjacentBundleLoadsExactBytes)
         RunTest("wrong setup release identity is rejected", AddressOf WrongSetupReleaseIdentityIsRejected)
         For Each phase As String In C3Setup.SetupTransactionPhases.All()
             Dim crashPhase As String = phase
