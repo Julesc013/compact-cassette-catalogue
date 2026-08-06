@@ -1,4 +1,8 @@
 ﻿Public Class frmDeckNew
+    Public ReadOnly Property CreatedKey As String
+    Public ReadOnly Property CreatedDisplayName As String
+    Public Property SuppressSuccessMessage As Boolean
+
     Private Sub FrmAddDeck_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         numYear.Maximum = Date.Today.Year

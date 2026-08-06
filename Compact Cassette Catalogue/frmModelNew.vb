@@ -1,5 +1,9 @@
 ﻿Public Class frmModelNew
 
+    Public ReadOnly Property CreatedKey As String
+    Public ReadOnly Property CreatedDisplayName As String
+    Public Property SuppressSuccessMessage As Boolean
+
     Private Sub FrmAddModel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'Load brands into combination box

@@ -1,4 +1,8 @@
 ﻿Public Class frmBrandNew
+    Public ReadOnly Property CreatedKey As String
+    Public ReadOnly Property CreatedDisplayName As String
+    Public Property SuppressSuccessMessage As Boolean
+
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
         'Get data to validate

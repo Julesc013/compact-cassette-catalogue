@@ -1,5 +1,9 @@
 ﻿Public Class frmTapeNew
 
+    Public ReadOnly Property CreatedKey As String
+    Public ReadOnly Property CreatedDisplayName As String
+    Public Property SuppressSuccessMessage As Boolean
+
     'Declare variables
     Dim modelIndex As Integer '0-based position in datatable
     Dim modelCode As String 'Identifier
