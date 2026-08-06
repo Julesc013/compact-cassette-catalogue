@@ -30,6 +30,10 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   discovery baseline: all six mandatory workspace/browser cells reproduce the
   prohibited form-scroll/anchor mechanism, the main collision is measured,
   and 52 source-policy violations are closed to exact files and lines.
+- Began the static-command migration by declaring the Brand New and Deck New
+  Cancel commands in their Designers, preserving one-instance keyboard/default
+  semantics while removing their runtime construction. A closed control-name
+  allow-list now rejects unreviewed additions or any baseline control removal.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

@@ -191,6 +191,9 @@ qualification gates earn the Alpha 5 transition.
   control-tree JSON records, screenshots, and the 52-item source-policy record.
 - [ ] Move every known static command into its form Designer and remove the
   geometry-oriented `CatalogueUx` helpers.
+  - [x] Move Brand New and Deck New Cancel commands into reviewed Designer
+    declarations with closed default/cancel semantics.
+  - [ ] Move Model New, Tape New, browser, and Main empty-state commands.
 - [ ] Reconstruct `frmMain` in separate structural and adaptive commits.
 - [ ] Reconstruct `frmTapeNew` in separate structural and adaptive commits.
 - [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.

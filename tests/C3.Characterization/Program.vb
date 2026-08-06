@@ -44,6 +44,7 @@ Module Program
         RunTest("legacy windows are resizable and scroll safe", AddressOf LegacyWindowsAreResizableAndScrollSafe)
         RunTest("inline creation actions remain keyboard reachable", AddressOf InlineCreationActionsRemainKeyboardReachable)
         RunTest("creation actions expose accessible cancel and detour controls", AddressOf CreationActionsExposeAccessibleControls)
+        RunTest("creation dialog cancel commands are Designer-owned", AddressOf CreationDialogCancelCommandsAreDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -473,6 +474,25 @@ Module Program
             AssertEqual(DialogResult.Cancel, cancel.DialogResult, "tape cancel result")
             AssertEqual(True, tape.AutoScroll, "tape detour scroll safety")
         End Using
+    End Sub
+
+    Private Sub CreationDialogCancelCommandsAreDesignerOwned()
+        AssertDesignerOwnedCancel(New frmBrandNew(), "frmBrandNew.vb", "brand")
+        AssertDesignerOwnedCancel(New frmDeckNew(), "frmDeckNew.vb", "deck")
+    End Sub
+
+    Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)
+        Using form
+            Dim addButton As Button = DirectCast(FindControl(form, "btnAdd"), Button)
+            Dim cancelButton As Button = DirectCast(FindControl(form, "btnCancel"), Button)
+            AssertEqual(DialogResult.Cancel, cancelButton.DialogResult, description & " cancel result")
+            AssertEqual(addButton, DirectCast(form.AcceptButton, Button), description & " AcceptButton")
+            AssertEqual(cancelButton, DirectCast(form.CancelButton, Button), description & " CancelButton")
+            AssertEqual(1, form.Controls.Find("btnCancel", True).Length, description & " cancel count")
+        End Using
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", sourceName))
+        AssertEqual(False, source.Contains("AddCancelButton"), description & " runtime cancel construction")
     End Sub
 
     Private Sub ChoiceRefreshPreservesTapeDraft()

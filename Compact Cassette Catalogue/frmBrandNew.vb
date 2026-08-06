@@ -2,7 +2,6 @@
     Private _createdKey As String
     Private _createdDisplayName As String
     Private _validationErrors As ErrorProvider
-    Private _cancelButton As Button
 
     Public ReadOnly Property CreatedKey As String
         Get
@@ -27,7 +26,6 @@
         txtBrand.AccessibleName = "Brand name"
         txtCode.AccessibleName = "Brand code"
         lblAdd.Text = "Changes are saved with the catalogue."
-        _cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click

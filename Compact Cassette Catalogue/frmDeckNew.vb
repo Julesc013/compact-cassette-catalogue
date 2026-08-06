@@ -2,7 +2,6 @@
     Private _createdKey As String
     Private _createdDisplayName As String
     Private _validationErrors As ErrorProvider
-    Private _cancelButton As Button
 
     Public ReadOnly Property CreatedKey As String
         Get
@@ -28,7 +27,6 @@
         txtManufacturer.AccessibleName = "Deck manufacturer"
         txtModel.AccessibleName = "Deck model or name"
         lblAdd.Text = "Changes are saved with the catalogue."
-        _cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)
         numYear.Maximum = Date.Today.Year
 
         'Load defaults

@@ -10,6 +10,7 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 & (Join-Path $PSScriptRoot 'validate-baseline-genome.ps1')
+& (Join-Path $PSScriptRoot 'validate-alpha5-control-names.ps1')
 & (Join-Path $PSScriptRoot 'validate-1x-source-topology.ps1')
 & (Join-Path $PSScriptRoot 'validate-compatibility-corpus.ps1')
 & (Join-Path $PSScriptRoot 'validate-docs.ps1')

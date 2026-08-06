@@ -3,8 +3,13 @@
   "entries": [
     {
       "surface": "designerHashes",
-      "reason": "APP-010 retains its generated retry marker, while the ratified bounded legacy UX tranche updates classic captions and declares main, tape, and list forms resizable and scroll-safe.",
-      "regression": "tests/C3.Settings.Characterization; tests/C3.Characterization"
+      "reason": "APP-010 retains its generated retry marker; the bounded UX tranche updated classic sizing/captions; Alpha 5 moves known static commands into reviewed Designer declarations and reconstructs layout without changing the original form set.",
+      "regression": "tests/C3.Settings.Characterization; tests/C3.Characterization; tests/C3.Layout.Characterization"
+    },
+    {
+      "surface": "controlNames",
+      "reason": "Alpha 5 permits only the exact static commands and native layout containers enumerated by alpha5-control-name-allowlist.json; existing control names may not be removed.",
+      "regression": "build/validate-alpha5-control-names.ps1; tests/C3.Layout.Characterization"
     },
     {
       "surface": "settings",

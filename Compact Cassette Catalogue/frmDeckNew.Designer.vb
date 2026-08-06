@@ -24,6 +24,7 @@ Partial Class frmDeckNew
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDeckNew))
         Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.grpNotes = New System.Windows.Forms.GroupBox()
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.grpBasic = New System.Windows.Forms.GroupBox()
@@ -101,13 +102,28 @@ Partial Class frmDeckNew
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(11, 299)
+        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAdd.Location = New System.Drawing.Point(245, 299)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(151, 21)
         Me.btnAdd.TabIndex = 8
         Me.btnAdd.Text = "Add &Deck"
         Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'btnCancel
+        '
+        Me.btnCancel.AccessibleDescription = "Cancel this creation step and return without adding an item."
+        Me.btnCancel.AccessibleName = "Cancel"
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.Location = New System.Drawing.Point(404, 299)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(151, 21)
+        Me.btnCancel.TabIndex = 9
+        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
         'grpNotes
         '
@@ -796,9 +812,12 @@ Partial Class frmDeckNew
         '
         'frmDeckNew
         '
+        Me.AcceptButton = Me.btnAdd
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(567, 330)
+        Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.grpSpeeds)
         Me.Controls.Add(Me.grpSpecifications)
         Me.Controls.Add(Me.lblAdd)
@@ -814,6 +833,7 @@ Partial Class frmDeckNew
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmDeckNew"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add New Deck"
         Me.grpNotes.ResumeLayout(False)
         Me.grpNotes.PerformLayout()
@@ -843,6 +863,7 @@ Partial Class frmDeckNew
     End Sub
 
     Friend WithEvents btnAdd As Button
+    Friend WithEvents btnCancel As Button
     Friend WithEvents grpNotes As GroupBox
     Friend WithEvents txtNotes As TextBox
     Friend WithEvents grpBasic As GroupBox

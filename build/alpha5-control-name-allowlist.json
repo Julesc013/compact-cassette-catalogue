@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "path": "Compact Cassette Catalogue/frmBrandNew.Designer.vb",
+      "name": "btnCancel",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured creation-dialog Cancel command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckNew.Designer.vb",
+      "name": "btnCancel",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured creation-dialog Cancel command."
+    }
+  ]
+}

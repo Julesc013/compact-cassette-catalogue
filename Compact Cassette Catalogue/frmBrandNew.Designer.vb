@@ -32,6 +32,7 @@ Partial Class frmBrandNew
         Me.txtBrand = New System.Windows.Forms.TextBox()
         Me.lblAdd = New System.Windows.Forms.Label()
         Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.grpNotes.SuspendLayout()
         Me.grpBasic.SuspendLayout()
         Me.SuspendLayout()
@@ -123,7 +124,8 @@ Partial Class frmBrandNew
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(11, 159)
+        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAdd.Location = New System.Drawing.Point(2, 160)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(104, 21)
@@ -131,11 +133,29 @@ Partial Class frmBrandNew
         Me.btnAdd.Text = "&Add Brand"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
+        'btnCancel
+        '
+        Me.btnCancel.AccessibleDescription = "Cancel this creation step and return without adding an item."
+        Me.btnCancel.AccessibleName = "Cancel"
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.Location = New System.Drawing.Point(114, 160)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(104, 21)
+        Me.btnCancel.TabIndex = 4
+        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
         'frmBrandNew
         '
+        Me.AcceptButton = Me.btnAdd
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
+        Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(230, 191)
+        Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.grpNotes)
         Me.Controls.Add(Me.grpBasic)
         Me.Controls.Add(Me.lblAdd)
@@ -144,6 +164,7 @@ Partial Class frmBrandNew
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmBrandNew"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add New Brand"
         Me.grpNotes.ResumeLayout(False)
         Me.grpNotes.PerformLayout()
@@ -162,4 +183,5 @@ Partial Class frmBrandNew
     Friend WithEvents txtBrand As TextBox
     Friend WithEvents lblAdd As Label
     Friend WithEvents btnAdd As Button
+    Friend WithEvents btnCancel As Button
 End Class
