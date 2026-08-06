@@ -1,4 +1,4 @@
-Compact Cassette Catalogue 1.3.0 Alpha 4 test preview
+Compact Cassette Catalogue 1.3.0 Alpha 5 test preview
 ======================================================
 
 This is a retained, intentionally unpublished engineering preview for owner

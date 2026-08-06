@@ -174,8 +174,8 @@ advancement are authorized only on complete GO; public publication, `master`,
 
 ## Alpha 5 — source topology and legacy layout stabilization
 
-The repository remains identified as Alpha 4 until the implementation and
-qualification gates earn the Alpha 5 transition.
+The repository is now identified as Alpha 5 for its final source/build/package
+qualification and retained owner-test distribution.
 
 - [x] Ratify the Alpha 5 visual inheritance, native-layout, fidelity, metric,
   accessibility, performance, and evidence contracts.
@@ -291,7 +291,7 @@ qualification gates earn the Alpha 5 transition.
   close, so this is recorded as a harness correction rather than a layout fix.
 - [ ] Pass the full source/genome/application/setup/package gates after the
   topology and Designer changes.
-- [ ] Project exact `1.3.0a5 / Alpha 5 / v1.3.0a5` identity only at the final
+- [x] Project exact `1.3.0a5 / Alpha 5 / v1.3.0a5` identity at the final
   source freeze.
 - [ ] Rebuild all nine executables and reproduce exactly three portable and
   three setup ZIPs from two clean path-distinct checkouts.

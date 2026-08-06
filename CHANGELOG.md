@@ -4,7 +4,7 @@
 ## C3 1.3 legacy maintenance
 
 
-### Version 1.3.0 Alpha 5 - planned
+### Version 1.3.0 Alpha 5 - 6 August 2026
 
 Alpha 5 is the ratified Legacy Layout Stabilization checkpoint. It preserves
 Alpha 4 as immutable discovery evidence and replaces its absolute/runtime-
@@ -179,9 +179,10 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   lives under Installer `Shared/`; all three consumers compile those same
   physical files, and a closed hash/path validator prohibits a partial 2.x
   `src/` migration or return of root `SetupShared/`.
-- Kept release identity at Alpha 4 until implementation and qualification earn
-  `1.3.0a5`; no new build, package, tag, publication, feed, `master`,
-  `legacy/1.x`, or `dev/2.x` claim is made by this planning tranche.
+- Transitioned the active application, setup, manifest, package, and release
+  notes to exact `1.3.0a5 / Alpha 5 / v1.3.0a5` identity only after the source,
+  geometry, setup, and builder-startup gates passed. Packaging, tagging, and
+  post-tag attestation remain separate final transactions.
 
 
 ### Version 1.3.0 Alpha 4 - 6 August 2026

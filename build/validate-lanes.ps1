@@ -20,6 +20,12 @@ $releaseContracts = @{
         publicationStatus = 'retained-unpublished'; assemblyVersion = '1.3.0.0'
         fileVersion = '1.3.0.0'; assemblyProductVersion = '1.3.0a4'
     }
+    '1.3.0a5' = [ordered]@{
+        schemaVersion = '3'; releaseVersion = '1.3.0'; releaseStage = 'Alpha 5'
+        releaseLabel = '1.3.0a5'; releaseTag = 'v1.3.0a5'; releaseChannel = 'alpha'
+        publicationStatus = 'retained-unpublished'; assemblyVersion = '1.3.0.0'
+        fileVersion = '1.3.0.0'; assemblyProductVersion = '1.3.0a5'
+    }
     '1.3.0b1' = [ordered]@{
         schemaVersion = '3'; releaseVersion = '1.3.0'; releaseStage = 'Beta 1'
         releaseLabel = '1.3.0b1'; releaseTag = 'v1.3.0b1'; releaseChannel = 'beta'

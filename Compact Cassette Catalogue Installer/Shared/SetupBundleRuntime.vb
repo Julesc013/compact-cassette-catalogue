@@ -60,8 +60,8 @@ Namespace Global.C3Setup
 
         Public Shared Sub RequireCurrentRelease(manifest As PayloadManifest)
             If manifest Is Nothing Then Throw New ArgumentNullException("manifest")
-            If manifest.Version <> "1.3.0" OrElse manifest.Stage <> "Alpha 4" OrElse manifest.Label <> "1.3.0a4" Then
-                Throw New SetupContractException("This setup executable accepts only the C3 1.3.0 Alpha 4 payload identity.")
+            If manifest.Version <> "1.3.0" OrElse manifest.Stage <> "Alpha 5" OrElse manifest.Label <> "1.3.0a5" Then
+                Throw New SetupContractException("This setup executable accepts only the C3 1.3.0 Alpha 5 payload identity.")
             End If
         End Sub
 

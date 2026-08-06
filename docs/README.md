@@ -67,6 +67,7 @@ C3 release line.
 - [Alpha 5 conditional application adaptive-layout record](../release/validation/1.3.0-alpha.5-conditional-application-adaptive-2026-08-06.md)
 - [Alpha 5 setup/uninstaller layout discovery record](../release/validation/1.3.0-alpha.5-setup-layout-discovery-2026-08-06.md)
 - [Alpha 5 setup/uninstaller adaptive-layout record](../release/validation/1.3.0-alpha.5-setup-layout-adaptive-2026-08-06.md)
+- [Alpha 5 startup lifecycle qualification](../release/validation/1.3.0-alpha.5-startup-lifecycle-2026-08-06.md)
 - [First Beta 1 Candidate archived verdict](../release/validation/candidates/bbebac288f4996939124f882d0e9febcf2e5bdae/1.3.0-beta.1-verdict.md)
 - [Alpha 2 repository preparation record](../release/validation/1.3.0-alpha.2-preparation-2026-08-05.md)
 - [Corrected reconstructed-baseline evidence](../release/validation/1.3.0-reconstructed-baseline.md)
