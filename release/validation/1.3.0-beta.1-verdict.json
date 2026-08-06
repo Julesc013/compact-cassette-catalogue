@@ -1,16 +1,119 @@
 {
   "schemaVersion": 1,
-  "status": "template",
+  "status": "no-go",
   "releaseVersion": "1.3.0",
   "releaseStage": "Beta 1",
   "releaseLabel": "1.3.0b1",
   "releaseTag": "v1.3.0b1",
   "releaseChannel": "beta",
   "publicationStatus": "retained-unpublished",
-  "sourceCommit": null,
-  "toolchainLockSha256": null,
-  "candidate": { "present": false, "path": null, "candidateIndexSha256": null },
-  "gates": [],
+  "sourceCommit": "989e2987b0f65bbc629cba285a4b40583f5d0a93",
+  "toolchainLockSha256": "a662282ca2b213e653dc38599eb6685dac9bdc865943bc93889859aa284ea38a",
+  "candidate": {
+    "present": true,
+    "path": "artifacts/candidates/1.3.0b1/989e2987b0f65bbc629cba285a4b40583f5d0a93",
+    "candidateIndexSha256": "c1b0a41dc68517b40c4374dcfa396ac8ccb95f0fcb87bcff00a4d774113f212f"
+  },
+  "gates": [
+    {
+      "id": "source-controls",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/989e2987b0f65bbc629cba285a4b40583f5d0a93/source-controls.log",
+      "evidenceSha256": "297e68f57d24eb65f7e4ec04bebb9eae2a8ff7ceb0d56eec61a4243e141385db",
+      "reason": "The closed source gate passed 130 focused regressions, genome and compatibility checks, documentation, PowerShell 2 target tooling, lane controls, and setup source controls at C-beta."
+    },
+    {
+      "id": "application-defects",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/989e2987b0f65bbc629cba285a4b40583f5d0a93/source-controls.log",
+      "evidenceSha256": "297e68f57d24eb65f7e4ec04bebb9eae2a8ff7ceb0d56eec61a4243e141385db",
+      "reason": "APP001 through APP015 and the bounded legacy UX tranche have regression-backed source repairs; exact target-OS UI and workflow observations remain separate runtime gates."
+    },
+    {
+      "id": "historical-gate1",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "The 27 historical workflows, nine catalogue-exchange cells, representative private catalogues, and required screenshot/control evidence were not executed on the exact historical environments."
+    },
+    {
+      "id": "candidate-build",
+      "status": "pass",
+      "evidenceFile": "artifacts/candidates/1.3.0b1/989e2987b0f65bbc629cba285a4b40583f5d0a93/evidence/candidate.json",
+      "evidenceSha256": "c1b0a41dc68517b40c4374dcfa396ac8ccb95f0fcb87bcff00a4d774113f212f",
+      "reason": "All three portable lanes and all three setup lanes were rebuilt from one clean source commit with one fetched-provider-bound external Candidate lock and passed closed binary, payload, and final source closure."
+    },
+    {
+      "id": "source-reproducibility",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/989e2987b0f65bbc629cba285a4b40583f5d0a93/source-reproducibility/source-reproducibility.json",
+      "evidenceSha256": "62916f4f819ba4d7316b5a25067ca77845bab6ba8550c4eceaefec633e8a4133",
+      "reason": "Two clean path-distinct checkouts reproduced the authoritative application/setup binaries, all six ZIPs, entry manifests, and assembled distribution."
+    },
+    {
+      "id": "portable-packages",
+      "status": "pass",
+      "evidenceFile": "artifacts/candidates/1.3.0b1/989e2987b0f65bbc629cba285a4b40583f5d0a93/evidence/candidate.json",
+      "evidenceSha256": "c1b0a41dc68517b40c4374dcfa396ac8ccb95f0fcb87bcff00a4d774113f212f",
+      "reason": "The closed three-package portable set is retained, authenticated, source-bound, lock-bound, and independently verified."
+    },
+    {
+      "id": "target-xp-runtime",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "No exact Windows XP SP3 x86 and .NET Framework 4 Full target was available for the required UX, DPI, accessibility, catalogue, and failure workflows."
+    },
+    {
+      "id": "target-win7-runtime",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "No exact Windows 7 SP1 x64 and .NET Framework 4.8 target was available for the required UX, DPI, accessibility, catalogue, and failure workflows."
+    },
+    {
+      "id": "target-arm64-runtime",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "No exact Windows 11 build 22000 native ARM64 and .NET Framework 4.8.1 target was available; AA64 binary inspection is not runtime qualification."
+    },
+    {
+      "id": "setup-durability",
+      "status": "pass",
+      "evidenceFile": "artifacts/evidence/beta1/989e2987b0f65bbc629cba285a4b40583f5d0a93/source-controls.log",
+      "evidenceSha256": "297e68f57d24eb65f7e4ec04bebb9eae2a8ff7ceb0d56eec61a4243e141385db",
+      "reason": "The authenticated ten-phase setup journal and recovery implementation passed its 85-test durability and adversarial suite."
+    },
+    {
+      "id": "setup-packages",
+      "status": "pass",
+      "evidenceFile": "artifacts/candidates/1.3.0b1/989e2987b0f65bbc629cba285a4b40583f5d0a93/evidence/candidate.json",
+      "evidenceSha256": "c1b0a41dc68517b40c4374dcfa396ac8ccb95f0fcb87bcff00a4d774113f212f",
+      "reason": "The closed three-package classic setup set is retained, authenticated, source-bound, lock-bound, and independently verified."
+    },
+    {
+      "id": "target-xp-setup",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "Classic setup install, verify, repair, rollback, uninstall, DPI, High Contrast, and keyboard workflows were not run on exact Windows XP SP3 x86."
+    },
+    {
+      "id": "target-win7-setup",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "Classic setup install, verify, repair, rollback, uninstall, DPI, High Contrast, and keyboard workflows were not run on exact Windows 7 SP1 x64."
+    },
+    {
+      "id": "target-arm64-setup",
+      "status": "missing",
+      "evidenceFile": null,
+      "evidenceSha256": null,
+      "reason": "Classic setup install, verify, repair, rollback, uninstall, DPI, High Contrast, and keyboard workflows were not run on exact Windows 11 build 22000 native ARM64."
+    }
+  ],
   "portableBetaGo": false,
   "classicSetupBetaGo": false,
   "overallBetaGo": false,
@@ -19,5 +122,5 @@
   "publicReleaseAuthorized": false,
   "feedChangeAuthorized": false,
   "masterOrDev2ChangeAuthorized": false,
-  "recordedAtUtc": null
+  "recordedAtUtc": "2026-08-06T10:18:20.5011329Z"
 }
