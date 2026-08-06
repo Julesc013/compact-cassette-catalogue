@@ -5,34 +5,19 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace C3.Infrastructure.CatalogueFiles.Canonical
+namespace C3.Catalogue.Canonical
 {
     internal sealed class CanonicalDigestWriter : IDisposable
     {
         private readonly MemoryStream stream = new MemoryStream();
 
-        public void Boolean(bool value)
-        {
-            stream.WriteByte(value ? (byte)1 : (byte)0);
-        }
-
-        public void Decimal(decimal value)
-        {
-            String(value.ToString("G29", CultureInfo.InvariantCulture));
-        }
-
-        public void Int32(int value)
-        {
-            UInt32(unchecked((uint)value));
-        }
+        public void Boolean(bool value) { stream.WriteByte(value ? (byte)1 : (byte)0); }
+        public void Decimal(decimal value) { String(value.ToString("G29", CultureInfo.InvariantCulture)); }
+        public void Int32(int value) { UInt32(unchecked((uint)value)); }
 
         public void String(string value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
+            if (value == null) throw new ArgumentNullException(nameof(value));
             var bytes = new UTF8Encoding(false, true).GetBytes(value);
             UInt32(checked((uint)bytes.Length));
             stream.Write(bytes, 0, bytes.Length);
@@ -53,15 +38,11 @@ namespace C3.Infrastructure.CatalogueFiles.Canonical
                 {
                     text.Append(value.ToString("x2", CultureInfo.InvariantCulture));
                 }
-
                 return text.ToString();
             }
         }
 
-        public void Dispose()
-        {
-            stream.Dispose();
-        }
+        public void Dispose() { stream.Dispose(); }
 
         private void UInt32(uint value)
         {

@@ -1,4 +1,4 @@
-ctor|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Domain.Profiles.CatalogueProfileCapabilities sourceProfile,C3.Catalogue.Canonical.CatalogueSnapshot snapshot,C3.Catalogue.Canonical.CatalogueFingerprintIndex fingerprints
+ctor|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Domain.Profiles.CatalogueProfileCapabilities sourceProfile,C3.Catalogue.Canonical.CatalogueState state,C3.Catalogue.Canonical.CatalogueSnapshot snapshot,C3.Catalogue.Canonical.CatalogueFingerprintIndex fingerprints
 ctor|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|System.Func<System.Data.DataSet> documentProvider
@@ -224,6 +224,7 @@ method|C3.Infrastructure.Updates.UpdateReleaseManifestReader|Read|instance|C3.In
 property|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|Fingerprints|C3.Catalogue.Canonical.CatalogueFingerprintIndex|get
 property|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|Snapshot|C3.Catalogue.Canonical.CatalogueSnapshot|get
 property|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|SourceProfile|C3.Domain.Profiles.CatalogueProfileCapabilities|get
+property|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|State|C3.Catalogue.Canonical.CatalogueState|get
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Document|System.Data.DataSet|getset
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|Failure|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|getset
 property|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueLoadResult|FileVersion|System.String|getset

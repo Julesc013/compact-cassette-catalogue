@@ -6,7 +6,15 @@
 
 ### Version 2.0.0 Alpha 6 - In development
 
-- Milestone implementation in progress.
+- Added the complete immutable format-neutral catalogue state graph for
+  metadata, Brands, cassette models, deck models and units, Tapes, sides, and
+  recordings, with strict relationship ownership and orphan/duplicate refusal.
+- Moved canonical digest serialization into `C3.Catalogue` and reduced the
+  native-v2 shadow projector to profile adaptation, so fingerprints now derive
+  from the logical graph rather than native persistence DTOs.
+- Extended native round-trip characterization and deliberately advanced the
+  frozen Catalogue and Infrastructure API projections for the additive Alpha 6
+  contracts.
 
 
 ### Version 2.0.0 Alpha 5 - In development

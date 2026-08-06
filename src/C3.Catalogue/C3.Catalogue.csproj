@@ -51,7 +51,9 @@
     <Compile Include="CassetteModels\CassetteModelService.cs" />
     <Compile Include="CassetteModels\ICassetteModelRepository.cs" />
     <Compile Include="Canonical\CatalogueChangeSet.cs" />
+    <Compile Include="Canonical\CanonicalDigestWriter.cs" />
     <Compile Include="Canonical\CatalogueDocument.cs" />
+    <Compile Include="Canonical\CatalogueEntities.cs" />
     <Compile Include="Canonical\CatalogueEntityCount.cs" />
     <Compile Include="Canonical\CatalogueEntityKey.cs" />
     <Compile Include="Canonical\CatalogueEntityKind.cs" />
@@ -62,6 +64,9 @@
     <Compile Include="Canonical\CatalogueMutationIntent.cs" />
     <Compile Include="Canonical\CatalogueResourceBudget.cs" />
     <Compile Include="Canonical\CatalogueSnapshot.cs" />
+    <Compile Include="Canonical\CatalogueState.cs" />
+    <Compile Include="Canonical\CatalogueStateFingerprintProjector.cs" />
+    <Compile Include="Canonical\CatalogueTapeState.cs" />
     <Compile Include="Canonical\CatalogueTransaction.cs" />
     <Compile Include="Catalogues\CatalogueRevision.cs" />
     <Compile Include="Catalogues\CatalogueSession.cs" />

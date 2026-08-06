@@ -89,6 +89,24 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
         AssertEqual("native-v2.0", first.SourceProfile.ProfileCode, "shadow source profile")
         AssertEqual(7L, first.Snapshot.TotalEntities, "shadow entity count")
         AssertEqual(8, first.Fingerprints.Entries.Count, "shadow fingerprint coverage")
+        AssertEqual(1, first.State.Brands.Count, "shadow Brand state")
+        AssertEqual(1, first.State.CassetteModels.Count, "shadow Model state")
+        AssertEqual(1, first.State.DeckModels.Count, "shadow deck-model state")
+        AssertEqual(1, first.State.DeckUnits.Count, "shadow deck-unit state")
+        AssertEqual(1, first.State.Tapes.Count, "shadow Tape state")
+        AssertEqual(2, first.State.Recordings.Count, "shadow recording state")
+        AssertEqual(
+            first.State.Brands(0).Id,
+            first.State.CassetteModels(0).BrandId,
+            "shadow Model-to-Brand relationship")
+        AssertEqual(
+            first.State.CassetteModels(0).Id,
+            first.State.Tapes(0).CassetteModelId,
+            "shadow Tape-to-Model relationship")
+        AssertEqual(
+            True,
+            first.State.Tapes(0).SideA.RecordingId IsNot Nothing,
+            "shadow side-to-recording relationship")
         AssertEqual(first.Snapshot.Fingerprint, second.Snapshot.Fingerprint, "native round-trip fingerprint")
         AssertEqual(
             True,

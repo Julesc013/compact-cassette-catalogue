@@ -1,6 +1,6 @@
 # Canonical catalogue and Application architecture
 
-Status: **Accepted direction; non-production foundation implementation underway**
+Status: **Accepted direction; Alpha 6 non-production convergence underway**
 
 This document owns the post-Alpha-5 in-memory catalogue, document-lifecycle, and
 frontend boundary. The [execution plan](../planning/2.0-execution-plan.md) owns
@@ -228,6 +228,16 @@ The digest field stream uses explicit big-endian lengths/scalars, strict UTF-8,
 UTC ticks, canonical invariant decimal text, presence markers, and fixed field
 order; equivalent decimal values cannot diverge merely because their internal
 scale differs.
+
+Alpha 6 now owns a complete immutable `CatalogueState` in `C3.Catalogue` for
+metadata, Brands, cassette models, deck models and physical units, Tapes, both
+sides, and recordings. Relationships use kind-checked stable entity keys; the
+graph rejects duplicate identities, unresolved references, multiply-owned
+recordings, and orphan recordings at construction. Canonical digest encoding
+and fingerprint projection are owned beside this logical graph. The native-v2
+Infrastructure adapter now performs only Native DTO-to-logical mapping before
+the shared fingerprint projection. This remains read-only and non-production
+until the direct legacy adapter and cross-profile round-trip gates pass.
 
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,
