@@ -1,38 +1,9 @@
-# Compact Cassette Catalogue 2.0.0 Alpha 5
+# Compact Cassette Catalogue 2.0.0 Alpha 6
 
-C3 2.0.0 Alpha 5 is an in-development checkpoint in the repository-owned 2.0
+C3 2.0.0 Alpha 6 is an in-development checkpoint in the repository-owned 2.0
 release train. Its scope, evidence, limitations, and package identities will be
 recorded here before candidate freeze.
 
-This milestone introduces explicit workspace/document state, practical command
-history and undo/redo, reusable validation/list/editor/error/progress patterns,
-and one complete proven OEM+ workflow before broader shell replacement. Storage,
-migration, and catalogue rules remain owned outside presentation code.
-
-Implemented so far:
-
-- accepted one shared net40/C# 7.3 `C3.Presentation.WinForms` boundary for both
-  executable lanes;
-- replaced module-owned mutable document/services with one instance-owned
-  application composition root;
-- introduced explicit document, selection, view, draft, compatibility, recovery,
-  and background-operation state;
-- added bounded checkpoint-aware command history with safe undo/redo branching;
-- implemented the first semantic create/update/delete Brand commands and a
-  control-independent Brands presenter with stable selection, field validation,
-  reference-safe failure handling, dirty checkpoints, and exact undo/redo; and
-- introduced reusable field, validation, list, inspector, empty-state,
-  feedback, and progress presentation contracts; and
-- replaced the three VB Brand browse/create/edit forms with one shared,
-  resizable, DPI-scaled C# Brands workspace used by both lanes, including
-  keyboard operation, accessible names, stable multi-selection, partial
-  reference-safe delete, explicit draft-close handling, and semantic undo/redo;
-  and
-- added real-control STA workflow coverage plus a repeatable maximum-676-Brand
-  presenter performance measurement with conservative regression budgets; and
-- expanded the canonical portable payload to include the shared presentation
-  assembly from the same manifest in both lanes.
-
 This checkpoint is not published. See the
 [execution plan](docs/planning/2.0-execution-plan.md) and
-[validation record](release/validation/2.0.0-alpha.5.md).
+[validation record](release/validation/2.0.0-alpha.6.md).

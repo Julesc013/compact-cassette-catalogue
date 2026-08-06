@@ -119,6 +119,12 @@ try {
 
     Reset-Fixtures
     $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
+    $train.lastQualifiedTag = '2.0.0a5'
+    Write-JsonFixture $trainPath $train
+    Assert-Fails 'compact last-qualified tag before its milestone'
+
+    Reset-Fixtures
+    $train = Get-Content -LiteralPath $trainPath -Raw | ConvertFrom-Json
     $train.publicationPolicy.stable = 'unchanged-rc-promotion'
     Write-JsonFixture $trainPath $train
     Assert-Fails 'obsolete unchanged-RC stable policy'

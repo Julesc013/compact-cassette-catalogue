@@ -32,7 +32,7 @@
     },
     "lastQualifiedTag": {
       "type": ["string", "null"],
-      "pattern": "^v2\\.0\\.0-alpha\\.(?:[1-9]|1[0-2])$"
+      "pattern": "^(?:v2\\.0\\.0-alpha\\.(?:[1-9]|1[0-2])|2\\.0\\.0a(?:[1-9]|1[0-2]))$"
     },
     "candidateCommit": {
       "type": ["string", "null"],

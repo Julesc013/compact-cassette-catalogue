@@ -15,7 +15,9 @@ The semantic validator additionally requires:
 - the exact sequence Alpha 1 through Alpha 12, then Beta 1;
 - exactly one current milestone;
 - every earlier milestone qualified and every later milestone pending;
-- `lastQualifiedTag` to identify the immediately preceding checkpoint;
+- `lastQualifiedTag` to identify the immediately preceding checkpoint using
+  the historical readable Alpha 1-4 spelling or the canonical compact Alpha
+  5-12 spelling selected by the release-tag resolver;
 - current build identity to match the current milestone;
 - qualified state to agree with the release catalogue and annotated tags; and
 - any non-null `candidateCommit` to agree with the catalogue's recorded `C`.

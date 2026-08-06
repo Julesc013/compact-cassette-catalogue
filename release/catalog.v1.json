@@ -237,6 +237,36 @@
         "length": 224,
         "sha256": "e88501a2bae656894a6787fc88a1501748cdd2c382af969bf800983133cbc2b4"
       }
+    },
+    {
+      "releaseLabel": "2.0.0-alpha.6",
+      "productVersion": "2.0.0",
+      "stage": "Alpha 6",
+      "channel": "alpha",
+      "predecessor": "2.0.0-alpha.5",
+      "qualification": {
+        "state": "active",
+        "sourceCommit": null
+      },
+      "supersededBy": null,
+      "promotion": {
+        "state": "unpromoted",
+        "targetBranch": "master",
+        "tag": "2.0.0a6",
+        "tagObject": null
+      },
+      "publication": {
+        "policy": "intentionally-unpublished",
+        "state": "unpublished",
+        "releaseUrl": null,
+        "feedPromoted": false
+      },
+      "postVerification": {
+        "state": "not-applicable"
+      },
+      "validationRecord": "release/validation/2.0.0-alpha.6.md",
+      "packages": [],
+      "checksumManifest": null
     }
   ]
 }

@@ -4,6 +4,11 @@
 
 ## Releases
 
+### Version 2.0.0 Alpha 6 - In development
+
+- Milestone implementation in progress.
+
+
 ### Version 2.0.0 Alpha 5 - In development
 
 - Adopted compact Git checkpoint tags from Alpha 5 onward (`2.0.0a5`,
