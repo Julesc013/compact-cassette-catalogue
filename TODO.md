@@ -250,16 +250,17 @@ patch, genome validation, and focused commit.
 - [x] Add deterministic portable packaging and exact payload verification.
 - [x] Prove two clean, path-distinct portable builds produce identical ZIPs for
   Alpha 2.
-- [ ] Repeat two complete path-distinct builds for the exact Beta 1 application,
+- [x] Repeat two complete path-distinct builds for the exact Beta 1 application,
   setup, six-package, and assembled-distribution sources.
 - [ ] Qualify XP SP3 x86/net40, Windows 7 SP1 x64/net48, and native Windows 11
   RTM ARM64/net481 on their target machines using exact retained package hashes.
 - [ ] Complete all automated, manual, compatibility, and OS Beta gates.
 - [ ] Resolve or reject every S0–S2 salvage-ledger entry with evidence.
-- [ ] Freeze the Beta-eligible source and retain the owner-authorized six
-  Beta-labelled Candidate ZIPs. Create `v1.3.0b1` and advance `legacy/1.x`
-  only after complete GO. Public publication remains a separate approval and
-  the stable legacy feed remains unchanged throughout Beta.
+- [x] Freeze the Beta-eligible source and retain the owner-authorized six
+  Beta-labelled Candidate ZIPs under its exact source SHA.
+- [ ] Create `v1.3.0b1` and advance `legacy/1.x` only after complete GO. Public
+  publication remains a separate approval and the stable legacy feed remains
+  unchanged throughout Beta.
 
 ## Beta 1 — bounded legacy usability and layout hardening
 
@@ -283,7 +284,7 @@ patch, genome validation, and focused commit.
   policy, High Contrast policy, and keyboard reachability regressions.
 - [x] Review the single new workflow file and bounded form/control surfaces in
   the baseline-genome allow-list.
-- [ ] Rebuild and reproduce all six Beta-labelled ZIPs under a new immutable
+- [x] Rebuild and reproduce all six Beta-labelled ZIPs under a new immutable
   source-bound Candidate directory; never overwrite the `bbebac...` Candidate.
 
 ## Stable 1.3.0

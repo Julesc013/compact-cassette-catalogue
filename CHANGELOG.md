@@ -51,6 +51,12 @@ superseded by this single metadata/build/qualification wave.
 - Archived the first `bbebac288f4996939124f882d0e9febcf2e5bdae`
   source-bound NO-GO verdict before restoring the active verdict template for
   the required UX-hardened Candidate; the old Candidate bytes remain immutable.
+- Froze the UX-hardened package source at `989e2987…`, captured one fetched-ref
+  external lock, rebuilt all nine application/setup executables, retained six
+  authenticated Candidate ZIPs, and reproduced the complete distribution from
+  two clean path-distinct checkouts. Historical Gate 1 and exact XP/Windows 7/
+  native ARM64 target evidence remain missing, so evidence commit `92a6466`
+  records NO-GO with no tag or ledger movement.
 
 
 ### Version 1.3.0 Alpha 3 - 5 August 2026
