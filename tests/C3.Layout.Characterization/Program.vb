@@ -11,9 +11,12 @@ Module Program
 
         Dim outputPath As String = RequiredArgument(arguments, "--output")
         Dim result As New LayoutCellResult() With {
-            .SchemaVersion = 1,
+            .SchemaVersion = 2,
             .SourceCommit = RequiredArgument(arguments, "--source-commit"),
             .FormName = RequiredArgument(arguments, "--form"),
+            .AssemblyPath = OptionalArgument(arguments, "--assembly-path"),
+            .TypeName = OptionalArgument(arguments, "--type-name"),
+            .PageState = OptionalArgument(arguments, "--page-state"),
             .ContentProfile = RequiredArgument(arguments, "--profile"),
             .RequestedWidth = ParseInteger(RequiredArgument(arguments, "--width"), "width"),
             .RequestedHeight = ParseInteger(RequiredArgument(arguments, "--height"), "height"),
@@ -37,8 +40,12 @@ Module Program
     End Sub
 
     Private Sub ExecuteCell(result As LayoutCellResult, screenshotPath As String)
-        Dim form As Form = CreateForm(result.FormName)
+        Dim form As Form = CreateForm(result.FormName, result.AssemblyPath, result.TypeName)
         Try
+            If Not String.IsNullOrEmpty(result.AssemblyPath) Then
+                SuppressLoadHandlers(form)
+                ConfigureSetupPage(form, result.PageState)
+            End If
             form.StartPosition = FormStartPosition.Manual
             form.Location = New Point(8, 8)
             form.ShowInTaskbar = False
@@ -74,14 +81,90 @@ Module Program
         End Try
     End Sub
 
-    Private Function CreateForm(formName As String) As Form
-        Dim typeName As String = "Compact_Cassette_Catalogue." & formName
-        Dim formType As Type = GetType(frmMain).Assembly.GetType(typeName, True, False)
+    Private Function CreateForm(formName As String, assemblyPath As String, explicitTypeName As String) As Form
+        Dim formType As Type
+        If String.IsNullOrEmpty(assemblyPath) Then
+            Dim typeName As String = "Compact_Cassette_Catalogue." & formName
+            formType = GetType(frmMain).Assembly.GetType(typeName, True, False)
+        Else
+            If Not IO.File.Exists(assemblyPath) Then
+                Throw New IO.FileNotFoundException("External form assembly was not found.", assemblyPath)
+            End If
+            If String.IsNullOrEmpty(explicitTypeName) Then
+                Throw New ArgumentException("--type-name is required with --assembly-path.")
+            End If
+            formType = Assembly.LoadFrom(IO.Path.GetFullPath(assemblyPath)).GetType(explicitTypeName, True, False)
+        End If
         Dim instance As Object = Activator.CreateInstance(formType)
         Dim form As Form = TryCast(instance, Form)
-        If form Is Nothing Then Throw New InvalidOperationException(typeName & " is not a Form.")
+        If form Is Nothing Then Throw New InvalidOperationException(formType.FullName & " is not a Form.")
         Return form
     End Function
+
+    Private Sub SuppressLoadHandlers(form As Form)
+        Dim eventField As FieldInfo = Nothing
+        For Each candidate As FieldInfo In GetType(Form).GetFields(BindingFlags.NonPublic Or BindingFlags.Static)
+            Dim normalized As String = candidate.Name.Replace("_", String.Empty)
+            If String.Equals(normalized, "eventload", StringComparison.OrdinalIgnoreCase) OrElse
+                    String.Equals(normalized, "loadevent", StringComparison.OrdinalIgnoreCase) Then
+                eventField = candidate
+                Exit For
+            End If
+        Next
+        If eventField Is Nothing Then Throw New InvalidOperationException("The WinForms Load event key could not be located.")
+
+        Dim eventsProperty As PropertyInfo = GetType(ComponentModel.Component).GetProperty(
+            "Events", BindingFlags.NonPublic Or BindingFlags.Instance)
+        If eventsProperty Is Nothing Then Throw New InvalidOperationException("The component event list could not be located.")
+        Dim eventList As ComponentModel.EventHandlerList = DirectCast(
+            eventsProperty.GetValue(form, Nothing), ComponentModel.EventHandlerList)
+        Dim eventKey As Object = eventField.GetValue(Nothing)
+        Dim handler As [Delegate] = eventList(eventKey)
+        If handler IsNot Nothing Then eventList.RemoveHandler(eventKey, handler)
+    End Sub
+
+    Private Sub ConfigureSetupPage(form As Form, pageState As String)
+        If String.IsNullOrEmpty(pageState) Then Return
+
+        Dim pageNames As String() = {
+            "pnlIntroduction", "pnlOptions", "pnlReady", "pnlInstall",
+            "pnlUninstall", "pnlSuccess", "pnlFailure"
+        }
+        For Each pageName As String In pageNames
+            Dim page As Control = FindControl(form, pageName)
+            If page IsNot Nothing Then page.Visible = String.Equals(pageName, pageState, StringComparison.Ordinal)
+        Next
+
+        Dim nextButton As Control = FindControl(form, "btnNext")
+        Dim installButton As Control = FindControl(form, "btnInstall")
+        Dim uninstallButton As Control = FindControl(form, "btnUninstall")
+        Dim backButton As Control = FindControl(form, "btnBack")
+        Dim cancelButton As Control = FindControl(form, "btnCancel")
+
+        If nextButton IsNot Nothing Then
+            nextButton.Visible = Not String.Equals(pageState, "pnlReady", StringComparison.Ordinal)
+            nextButton.Enabled = String.Equals(pageState, "pnlIntroduction", StringComparison.Ordinal) OrElse
+                String.Equals(pageState, "pnlOptions", StringComparison.Ordinal)
+        End If
+        If installButton IsNot Nothing Then
+            installButton.Visible = String.Equals(pageState, "pnlReady", StringComparison.Ordinal)
+            installButton.Enabled = installButton.Visible
+        End If
+        If uninstallButton IsNot Nothing Then
+            uninstallButton.Visible = True
+            uninstallButton.Enabled = String.Equals(pageState, "pnlReady", StringComparison.Ordinal)
+        End If
+        If backButton IsNot Nothing Then
+            backButton.Visible = form.Name = "frmMain" AndAlso nextButton IsNot Nothing
+            backButton.Enabled = String.Equals(pageState, "pnlOptions", StringComparison.Ordinal) OrElse
+                String.Equals(pageState, "pnlReady", StringComparison.Ordinal)
+        End If
+        If cancelButton IsNot Nothing Then
+            cancelButton.Visible = form.Name = "frmMain"
+            cancelButton.Enabled = Not String.Equals(pageState, "pnlInstall", StringComparison.Ordinal) AndAlso
+                Not String.Equals(pageState, "pnlUninstall", StringComparison.Ordinal)
+        End If
+    End Sub
 
     Private Sub PrepareFormState(form As Form)
         Dim brandEdit As frmBrandEdit = TryCast(form, frmBrandEdit)
@@ -173,6 +256,19 @@ Module Program
                     End If
                 End If
             Next
+
+            Dim directoryText As Control = FindControl(form, "txtDirectory")
+            If directoryText IsNot Nothing Then
+                directoryText.Text = "C:\Program Files\Compact Cassette Catalogue\Representative Long Installation Directory"
+            End If
+            Dim statusText As Control = FindControl(form, "lblStatusProcess")
+            If statusText IsNot Nothing Then
+                statusText.Text = "Revalidating representative installed ownership and verified offline payload"
+            End If
+            Dim failureText As Control = FindControl(form, "lblFailure")
+            If failureText IsNot Nothing Then
+                failureText.Text = "The representative setup operation could not complete because a deliberately long diagnostic message must remain visible and readable."
+            End If
         End If
     End Sub
 
@@ -470,6 +566,9 @@ Public Class LayoutCellResult
     <DataMember(Order:=13)> Public Property Passed As Boolean
     <DataMember(Order:=14)> Public Property Failures As List(Of String)
     <DataMember(Order:=15)> Public Property Controls As List(Of ControlRecord)
+    Public Property AssemblyPath As String
+    <DataMember(Order:=16)> Public Property TypeName As String
+    <DataMember(Order:=17)> Public Property PageState As String
 End Class
 
 <DataContract()>
