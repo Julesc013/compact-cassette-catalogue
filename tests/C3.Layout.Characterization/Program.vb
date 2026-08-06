@@ -84,23 +84,39 @@ Module Program
     End Function
 
     Private Sub PrepareFormState(form As Form)
+        Dim brandEdit As frmBrandEdit = TryCast(form, frmBrandEdit)
+        If brandEdit IsNot Nothing Then
+            Dim brandRow As DataRow = CreateRepresentativeRow(brands)
+            brandRow("Brand") = "Representative Brand"
+            brandRow("Code") = "RB"
+            brandRow("Date") = DateTime.Today
+            brandRow("Notes") = "Representative Brand notes"
+            brands.Rows.Add(brandRow)
+            brandEdit.brandRow = brandRow
+            Return
+        End If
+
+        Dim modelEdit As frmModelEdit = TryCast(form, frmModelEdit)
+        If modelEdit IsNot Nothing Then
+            Dim modelRow As DataRow = CreateRepresentativeRow(models)
+            modelRow("Brand") = "Representative Brand"
+            modelRow("Type") = 1
+            modelRow("Model") = "Representative Model"
+            modelRow("Code") = "RM"
+            modelRow("Identifier") = "RB-1-RM"
+            modelRow("Name") = "Representative Model Name"
+            modelRow("Number") = 1
+            modelRow("Date") = DateTime.Today
+            modelRow("Notes") = "Representative Model notes"
+            models.Rows.Add(modelRow)
+            modelEdit.modelRow = modelRow
+            Return
+        End If
+
         Dim deckEdit As frmDeckEdit = TryCast(form, frmDeckEdit)
         If deckEdit Is Nothing Then Return
 
-        Dim row As DataRow = decks.NewRow()
-        For Each column As DataColumn In decks.Columns
-            If column.DataType Is GetType(String) Then
-                row(column) = String.Empty
-            ElseIf column.DataType Is GetType(Boolean) Then
-                row(column) = False
-            ElseIf column.DataType Is GetType(Integer) Then
-                row(column) = 0
-            ElseIf column.DataType Is GetType(Decimal) Then
-                row(column) = Decimal.Zero
-            ElseIf column.DataType Is GetType(DateTime) Then
-                row(column) = DateTime.Today
-            End If
-        Next
+        Dim row As DataRow = CreateRepresentativeRow(decks)
         row("Manufacturer") = "Representative Manufacturer"
         row("Model") = "Representative Model"
         row("Name") = "Representative Manufacturer Representative Model"
@@ -119,6 +135,24 @@ Module Program
         decks.Rows.Add(row)
         deckEdit.deckRow = row
     End Sub
+
+    Private Function CreateRepresentativeRow(table As DataTable) As DataRow
+        Dim row As DataRow = table.NewRow()
+        For Each column As DataColumn In table.Columns
+            If column.DataType Is GetType(String) Then
+                row(column) = String.Empty
+            ElseIf column.DataType Is GetType(Boolean) Then
+                row(column) = False
+            ElseIf column.DataType Is GetType(Integer) Then
+                row(column) = 0
+            ElseIf column.DataType Is GetType(Decimal) Then
+                row(column) = Decimal.Zero
+            ElseIf column.DataType Is GetType(DateTime) Then
+                row(column) = DateTime.Today
+            End If
+        Next
+        Return row
+    End Function
 
     Private Sub PopulateRepresentativeContent(form As Form, profile As String)
         If String.Equals(profile, "maximum", StringComparison.Ordinal) Then
