@@ -26,7 +26,7 @@ if ([string]$record.status -cne 'pass' -or [string]$record.sourceCommit -cne $so
 }
 $allowed = @('release/validation/1.3.0-alpha.5-qualified.json', 'release/validation/1.3.0-alpha.5-qualified.md')
 $changes = @(& git -C $repositoryRoot diff --name-only $sourceCommit $evidenceCommit | Sort-Object)
-if ((Compare-Object ($allowed | Sort-Object) $changes).Count -ne 0) {
+if (@(Compare-Object ($allowed | Sort-Object) $changes).Count -ne 0) {
     throw "Alpha 5 evidence commit E changed unexpected paths: $($changes -join ', ')"
 }
 Assert-C3Alpha5Distribution -Directory $DistributionDirectory -Record $record
