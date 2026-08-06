@@ -40,6 +40,7 @@ Module Program
         RunTest("creation dialogs expose explicit result contracts", AddressOf CreationDialogsExposeResultContracts)
         RunTest("guided creation has no prerequisite dead ends", AddressOf GuidedCreationHasNoDeadEnds)
         RunTest("tape prerequisite detours preserve the active form", AddressOf TapeDetoursPreserveActiveForm)
+        RunTest("main recording detours preserve the active tape draft", AddressOf MainRecordingDetoursPreserveActiveDraft)
         RunTest("legacy windows are resizable and scroll safe", AddressOf LegacyWindowsAreResizableAndScrollSafe)
         RunTest("inline creation actions remain keyboard reachable", AddressOf InlineCreationActionsRemainKeyboardReachable)
         RunTest("creation actions expose accessible cancel and detour controls", AddressOf CreationActionsExposeAccessibleControls)
@@ -394,6 +395,14 @@ Module Program
         AssertEqual(True, tapeSource.Contains("ReloadModelChoices(createdModel.Key)"), "new model selected")
         AssertEqual(True, tapeSource.Contains("ReloadDeckChoices(createdDeck.Key)"), "new deck selected")
         AssertEqual(False, tapeSource.Contains("Must add a deck before entering recordings."), "recording dead end removed")
+    End Sub
+
+    Private Sub MainRecordingDetoursPreserveActiveDraft()
+        Dim mainSource As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue\frmMain.vb"))
+        AssertEqual(False, mainSource.Contains("Must add a deck before entering recordings."), "main recording dead end removed")
+        AssertEqual(True, mainSource.Contains("CreateDeckForDetour(Me)"), "main deck detour owns active editor")
+        AssertEqual(True, mainSource.Contains("ReloadMainDeckChoices(createdDeck.Key)"), "created deck is selected without loading another tape")
     End Sub
 
     Private Sub LegacyWindowsAreResizableAndScrollSafe()
