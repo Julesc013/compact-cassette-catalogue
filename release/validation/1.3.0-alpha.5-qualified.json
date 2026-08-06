@@ -1,7 +1,80 @@
 {
   "schemaVersion": 1,
-  "status": "template",
+  "status": "pass",
+  "classification": "retained-alpha-test-distribution",
+  "releaseVersion": "1.3.0",
+  "releaseStage": "Alpha 5",
   "releaseLabel": "1.3.0a5",
-  "sourceCommit": null,
-  "assets": []
+  "releaseTag": "v1.3.0a5",
+  "releaseChannel": "alpha",
+  "publicationStatus": "retained-unpublished",
+  "sourceCommit": "3cefb906c0331195b4695bcc61f450e443051186",
+  "toolchainLockSha256": "4791eda380069dc269d4219026858a566968229a90258f91792511bf8a3bdf43",
+  "sourceClosureSha256": "55dd4430f07f8c1085ab822ba6cb37eccc732face28e2473a135f40e6287c2c2",
+  "sourceReproducibilityEvidenceSha256": "8a1de0a7e2f6ccef965775e0919f27e5ba607f1f2bfaf0e6141ec18405fa54be",
+  "startupEvidenceSha256": "b7efc49e1ecf61f84ac4ea8976fe2a94dd5c208071673a01af06f469e8bd14d4",
+  "startupRuns": 40,
+  "protectedRefs": {
+    "master": "050b2287eed71e12b78136e5f87ec4fb0ef268cf",
+    "dev2x": "ac9b598cb5a971032c832f4c969410007ca4d080",
+    "legacy1x": "c4115b82ea43fdd763685d862a08fe5c61db6dff"
+  },
+  "feedSha256": "eb67d1104940ba74bd57e7a8f151ecad148919f0daaead221d09e352b1e384c2",
+  "acceptanceStatus": "pending-owner-test",
+  "historicalGate1": "open",
+  "exactTargetQualification": "open",
+  "nativeArm64Execution": "open",
+  "publicReleaseCreated": false,
+  "betaAuthorized": false,
+  "assets": [
+    {
+      "name": "C3-v1.3.0a5-win-x86-net40-portable.zip",
+      "kind": "portable",
+      "lane": "win-x86-net40",
+      "size": 916475,
+      "sha256": "e3208a7e85910d9cf895da27bdb7f81b6f11ae73709e2fc918b88971ff94d389",
+      "entryManifestSha256": "51e519b5afe33945363f7fc23896138c18380d3001d2f2eb4511a9004782cea6"
+    },
+    {
+      "name": "C3-v1.3.0a5-win-x64-net48-portable.zip",
+      "kind": "portable",
+      "lane": "win-x64-net48",
+      "size": 916354,
+      "sha256": "a56cf6c059ed91e859c8f7cabfb203d0415077219d5e69931448ae992b73a413",
+      "entryManifestSha256": "e0a2db6422f274d5e4949ae059cd4cb0e556437225e49d7dea0b038164156d86"
+    },
+    {
+      "name": "C3-v1.3.0a5-win-arm64-net481-portable.zip",
+      "kind": "portable",
+      "lane": "win-arm64-net481",
+      "size": 916396,
+      "sha256": "59bcfa5a8f73994a378e57cf02044e17f5afef58c2035c57ecbe8aad2eece3dd",
+      "entryManifestSha256": "7bf1a1f46e0846220770d4f1f92ca1d8a225169e002f035b197d982c4760726f"
+    },
+    {
+      "name": "C3-v1.3.0a5-win-x86-net40-setup.zip",
+      "kind": "setup",
+      "lane": "win-x86-net40",
+      "size": 14441073,
+      "sha256": "0282c0f3de4147b1a356932539793986879f2fee8ba64ef8f88820804830f1e1",
+      "entryManifestSha256": "2d7bcbdacdf7de34b43f2fdab779abcf0c0d1b51991ae92672f77acc39c73595"
+    },
+    {
+      "name": "C3-v1.3.0a5-win-x64-net48-setup.zip",
+      "kind": "setup",
+      "lane": "win-x64-net48",
+      "size": 14441013,
+      "sha256": "3d7c70cd96112665d2c468cdbf1615d8bea7dfd3e3a2ce9af4dab0861f45e92c",
+      "entryManifestSha256": "41a626557090201bd7cdc95d96671aa6edfbd6f709b56b3ede7f9f35fd7859f0"
+    },
+    {
+      "name": "C3-v1.3.0a5-win-arm64-net481-setup.zip",
+      "kind": "setup",
+      "lane": "win-arm64-net481",
+      "size": 14440825,
+      "sha256": "8fab48962edd818593ba7d75c3b24af6079ff39e0f641ce2991665a4693ec8c8",
+      "entryManifestSha256": "2d30c1e70d132eac98c2c256cea5cab95fccef57fdafbac88b12e73bbc95bae7"
+    }
+  ],
+  "recordedAtUtc": "2026-08-06T17:21:09.5517176Z"
 }
