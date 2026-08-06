@@ -14,6 +14,12 @@ $releaseContracts = @{
         publicationStatus = 'retained-unpublished'; assemblyVersion = '1.3.0.0'
         fileVersion = '1.3.0.0'; assemblyProductVersion = '1.3.0a3'
     }
+    '1.3.0a4' = [ordered]@{
+        schemaVersion = '3'; releaseVersion = '1.3.0'; releaseStage = 'Alpha 4'
+        releaseLabel = '1.3.0a4'; releaseTag = 'v1.3.0a4'; releaseChannel = 'alpha'
+        publicationStatus = 'retained-unpublished'; assemblyVersion = '1.3.0.0'
+        fileVersion = '1.3.0.0'; assemblyProductVersion = '1.3.0a4'
+    }
     '1.3.0b1' = [ordered]@{
         schemaVersion = '3'; releaseVersion = '1.3.0'; releaseStage = 'Beta 1'
         releaseLabel = '1.3.0b1'; releaseTag = 'v1.3.0b1'; releaseChannel = 'beta'
@@ -23,7 +29,7 @@ $releaseContracts = @{
 }
 $releaseLabel = [string]$manifest.releaseLabel
 if (-not $releaseContracts.ContainsKey($releaseLabel)) {
-    throw "Release manifest label '$releaseLabel' is neither the active Alpha 3 implementation identity nor the authorized Beta 1 Candidate identity."
+    throw "Release manifest label '$releaseLabel' is not an approved C3 1.3 prerelease identity."
 }
 $expectedReleaseIdentity = $releaseContracts[$releaseLabel]
 foreach ($propertyName in $expectedReleaseIdentity.Keys) {
