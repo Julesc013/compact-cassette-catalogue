@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "classification": "retained-alpha-test-distribution",
+  "releaseVersion": "1.3.0",
+  "releaseStage": "Alpha 4",
+  "releaseLabel": "1.3.0a4",
+  "releaseTag": "v1.3.0a4",
+  "releaseChannel": "alpha",
+  "publicationStatus": "retained-unpublished",
+  "sourceCommit": "f914ab6209f1de8c627fe724cabf6f92abe0d50e",
+  "toolchainLockSha256": "cc20cf2a425f3599ad51edcc31286b8f70549a9fe48d68d0e0252cf86020d0ec",
+  "sourceClosureSha256": "2af4b2df2719331fd5a75978fd0189677539a3e6bba0f39c8c7090b221b8f322",
+  "releaseAssetEvidenceSha256": "95491e9ee03e12c6da4fd4a3d46f6244fa6e5792549a2f47d464843224d0cde8",
+  "sourceReproducibilityEvidenceSha256": "fbc16385864b61b110b214ba13c59bfa354783a6ce12c095565d80ef74e3a9cf",
+  "sourceReproducibility": {
+    "status": "pass",
+    "cleanPathDistinctBuilds": 2,
+    "includesApplicationBinaries": true,
+    "includesSetupAndUninstallBinaries": true,
+    "includesPackagesAndEntryEvidence": true
+  },
+  "builderSmoke": {
+    "classification": "supplemental-warning",
+    "win-x86-net40": {
+      "normalLaunchClosePasses": 1,
+      "mainWindowTimeouts": 0
+    },
+    "win-x64-net48": {
+      "normalLaunchClosePasses": 2,
+      "mainWindowTimeouts": 2,
+      "timeoutSeconds": 30,
+      "observation": "The process remained alive but intermittently did not expose a MainWindowHandle before the builder-smoke bound; no crash event was recorded. Owner and target-machine testing remain authoritative."
+    },
+    "win-arm64-net481": {
+      "status": "not-executed-on-x64-builder",
+      "binaryInspection": "pass"
+    }
+  },
+  "acceptanceStatus": "pending-owner-test",
+  "historicalGate1": "open",
+  "exactTargetRuntimeAndSetupQualification": "open",
+  "publicReleaseCreated": false,
+  "betaAuthorized": false,
+  "feedChanged": false,
+  "legacyMoved": false,
+  "assets": [
+    {
+      "name": "C3-v1.3.0a4-win-x86-net40-portable.zip",
+      "kind": "portable",
+      "lane": "win-x86-net40",
+      "size": 902926,
+      "sha256": "3c31b069b56d85a00b48ae078cb15b5796bb44d2285b538ef9008b4c89f51fec",
+      "entryManifestSha256": "96c2b268433a5a4f942ba2f920f6bbb7a921bfb6bebd6d36a5b1a2e3b1bf16e4"
+    },
+    {
+      "name": "C3-v1.3.0a4-win-x64-net48-portable.zip",
+      "kind": "portable",
+      "lane": "win-x64-net48",
+      "size": 902752,
+      "sha256": "9f53362187beb1ba8f2783b6fd4b29569d8faf1bd1288c246de34b443cf0ea8f",
+      "entryManifestSha256": "17da47997234d60af928dc51faf67dd159b1b99e7138a630a457fcd0a75a5abd"
+    },
+    {
+      "name": "C3-v1.3.0a4-win-arm64-net481-portable.zip",
+      "kind": "portable",
+      "lane": "win-arm64-net481",
+      "size": 902829,
+      "sha256": "7d9d8c0a83a00aa2f46a53bfd854bc9f0de342c21784c1722547a3120055ed71",
+      "entryManifestSha256": "efbe19021f0203d8b5040b30d60db79600dd80576a63914c7f81db6e80c43cc9"
+    },
+    {
+      "name": "C3-v1.3.0a4-win-x86-net40-setup.zip",
+      "kind": "setup",
+      "lane": "win-x86-net40",
+      "size": 14422429,
+      "sha256": "4f4a332889750ab225b18808a10801effb8851c17888ab7d2965920f9bd8e67c",
+      "entryManifestSha256": "9667f4caaf30aed4dcb737d2496b3efc14ec404898276ac146f1fe239ccf7559"
+    },
+    {
+      "name": "C3-v1.3.0a4-win-x64-net48-setup.zip",
+      "kind": "setup",
+      "lane": "win-x64-net48",
+      "size": 14422335,
+      "sha256": "ff3c317c5914ce9e1d56409dee28eb7c09f1235625d62eacd4fcf41c182b8b58",
+      "entryManifestSha256": "7ca85f0791ea8504237afc4ba79f65911e9906595416df7ed83bbdfeaf02fc7b"
+    },
+    {
+      "name": "C3-v1.3.0a4-win-arm64-net481-setup.zip",
+      "kind": "setup",
+      "lane": "win-arm64-net481",
+      "size": 14422139,
+      "sha256": "62cff334edb81b944b193acd31d7a5401ffae1cfa9aab36c50e56813e9baeae8",
+      "entryManifestSha256": "4db7c92b733cc4799d0e90fe849ca146a1d2b86949e0c82a6d05d76f91eadc97"
+    }
+  ],
+  "recordedAtUtc": "2026-08-06T10:54:24.8491673Z"
+}
