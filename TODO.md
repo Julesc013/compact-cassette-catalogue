@@ -263,8 +263,16 @@ qualification gates earn the Alpha 5 transition.
     information links, and OK command escape four matrix cells.
   - [x] Retain all 160 clean-source post-repair geometry records and screenshots;
     every conditional application cell passes the strengthened reachability gate.
-- [ ] Characterize setup/uninstall pages and change them only when their own
-  matrix reproduces a defect.
+- [x] Characterize setup/uninstall pages before changing them. The clean
+  `41bf3ad...` matrix retains 320 exact cells across ten wizard states: 120
+  pass and 200 reproduce panel/command-row intersection or non-scrollable
+  reachability failures.
+  - [ ] Rebuild the Installer introduction/options/ready/install pages around
+    one artwork/content/page root and one persistent navigation row.
+  - [ ] Rebuild Installer success/failure as fixed DPI-safe completion pages.
+  - [ ] Rebuild Uninstaller ready/progress/success/failure with the same
+    wizard ownership contract.
+  - [ ] Retain a clean 320-cell setup qualification atlas with zero failures.
 - [ ] Complete visible-text, ellipsis, access-key, default/cancel, tab/focus,
   ErrorProvider, UIA/MSAA, screen-reader, and High Contrast audits.
 - [ ] Add bounded command-state, stable selection restoration, and duplicate-

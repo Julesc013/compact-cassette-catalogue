@@ -1,0 +1,3341 @@
+{
+  "schemaVersion": 1,
+  "mode": "Discovery",
+  "sourceCommit": "41bf3adeb8c5aa2faa7b25998f35196b95da7ee8",
+  "harnessSha256": "acf01409bd50400af2fcc88dd9fc3e62a33d9b8e3b141fe3c4482e7737c8b751",
+  "installerSha256": "2dacf80ee094e6677b8ddec33266fbdf49f23c9e8cc709615cdcf49904a8fb99",
+  "uninstallerSha256": "ef7461727bdb4d0ecaf00bd3465fad4f2aafb910a53aa780d26863dfa80ee015",
+  "sourcePolicySha256": "1642810bbd484e4b46f7795f08d6775c0be837102176aeacd94c6272d11572d7",
+  "caseCount": 10,
+  "cellCount": 320,
+  "passedCount": 120,
+  "failedCount": 200,
+  "cells": [
+    {
+      "name": "installer-main-introduction-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3e98642d2fb20b31407ef35b88a293703e68d28d41e7ee48909454607e235cf8",
+      "screenshotSha256": "5ed63756058c9de7c3651991bd78f7efc01a930c543a168e92d824cba627df76"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "456847e177fc4b17602bea29908ce7dd8af3e20c14891ef69198fcf2aa2ad2e1",
+      "screenshotSha256": "5ed63756058c9de7c3651991bd78f7efc01a930c543a168e92d824cba627df76"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "951153ba26a0e5fc6fdafb72de749ef8af606546a59e84dd3b9ce2f55b1e8ec7",
+      "screenshotSha256": "ece28bf3e66cfc43052cc077d4ffae671aedaf28f28c74a455283108bf0c18f9"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "fe369a50b582aa92a7d6be2da9377d8d68fe1727778ef36faa41e71a90e425c8",
+      "screenshotSha256": "ece28bf3e66cfc43052cc077d4ffae671aedaf28f28c74a455283108bf0c18f9"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblHeadingIntroduction"
+      ],
+      "resultSha256": "ab523dc7db02ee9e3eeb7a93f925dad9f3b93e55a12e9f34dfc64c6d032502de",
+      "screenshotSha256": "8e525d2d9cb58919b5b3587aefa3e4230bf052307c2f84c8720d9ee11e4d3a53"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblHeadingIntroduction"
+      ],
+      "resultSha256": "2ebf8215682dd521183054b9d2ddbaca82eacd4883f9ab762917e2e6e4b2f4c6",
+      "screenshotSha256": "8e525d2d9cb58919b5b3587aefa3e4230bf052307c2f84c8720d9ee11e4d3a53"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblHeadingIntroduction"
+      ],
+      "resultSha256": "f639b9ceb154bdb507a4c39ac2003e8aeb87aaf15fc4a13ea91834c3cb0e1b9b",
+      "screenshotSha256": "3914387fd461445d40685d9f663184db161ea9625c33ab04ae47b88b2e34aa1b"
+    },
+    {
+      "name": "installer-main-introduction-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblHeadingIntroduction"
+      ],
+      "resultSha256": "47368a70b894fed98f22592007fbed9be918606b5268b0f6b42c7573483afe66",
+      "screenshotSha256": "3914387fd461445d40685d9f663184db161ea9625c33ab04ae47b88b2e34aa1b"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4dbba3084cd8a9b8588f6db7e9b4471a91cd6eb295e88428913e02b0436c6926",
+      "screenshotSha256": "9e6c3108f638ae8ca37628d8a47557a7eb4eecf59c721ef7f57ac7102cbca18f"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c5b55850136cb019de2c8219ac443154974dde20dcdf44a0cb2ac9619ef91928",
+      "screenshotSha256": "9e6c3108f638ae8ca37628d8a47557a7eb4eecf59c721ef7f57ac7102cbca18f"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "058759fef79e12bf519d6c4460e4fb5518fef237fa96c6eed2d16919419ae8c4",
+      "screenshotSha256": "5a3f401cd1e462a20ac5c211146cca904bc7d78da98aa2875be1e2ae0394e18a"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "c66d2bee1cea5922c009ff0745ecf6db14ddfaadfe34223ccc6366aebdc106bb",
+      "screenshotSha256": "5a3f401cd1e462a20ac5c211146cca904bc7d78da98aa2875be1e2ae0394e18a"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction"
+      ],
+      "resultSha256": "8a5f015a60abe00f477e34d53b12789f4fb43308cc451767d6b83805ceda925f",
+      "screenshotSha256": "a15e2501707e6ba0878f65dd5b5390092b3720d2e37b5ef18f8f29309682a67d"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction"
+      ],
+      "resultSha256": "9f8e4ee6197d6755c15d8b2534c1611c42ba9b8eb61254fc5211426404efd223",
+      "screenshotSha256": "a15e2501707e6ba0878f65dd5b5390092b3720d2e37b5ef18f8f29309682a67d"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblHeadingIntroduction"
+      ],
+      "resultSha256": "d785d6898d0473fa9d38fa56ec93b5e71cb4284c3550ad3a74aa09925cf22ca6",
+      "screenshotSha256": "3f7d8cfa0a6c85cd3f54dfda4e0f52c1354cb24f6e24547b6aba047e25c31672"
+    },
+    {
+      "name": "installer-main-introduction-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/lblHeadingIntroduction"
+      ],
+      "resultSha256": "0090ab5c748fc64fe67946932655baf0c55fe5a4ce8ac4fc9cc5f8508ed8de29",
+      "screenshotSha256": "3f7d8cfa0a6c85cd3f54dfda4e0f52c1354cb24f6e24547b6aba047e25c31672"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b7ddbcbf1e51ed50c7e722d426b82acdf6c9d85fff8806ce6005fc9eca462374",
+      "screenshotSha256": "2d1f62fe4ba0efabe63ef79fd842806970e7d94dc1c4750d6807036d80b6add2"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "53372423608123aec4fb949fe7113ddccf1b618cdbf956d88af885da2ae1b835",
+      "screenshotSha256": "2d1f62fe4ba0efabe63ef79fd842806970e7d94dc1c4750d6807036d80b6add2"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "990d5ee8e90380fee122e5cde374d5c3855c4a3da7a9170f1fa82d85f8339a7d",
+      "screenshotSha256": "7baab9a5cdf08e6d38d601bedee615271d696ee5981a08e734aef763aedb5b67"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "15431e2fd29e34e9bb1bb4cc6399b3bd04028a9fb5f6a78f4a75810997b7a134",
+      "screenshotSha256": "7baab9a5cdf08e6d38d601bedee615271d696ee5981a08e734aef763aedb5b67"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons"
+      ],
+      "resultSha256": "d4328e7e46f384e1d3581ca71893e5d5a54eca32a3856a4b0ef94f5fd0231899",
+      "screenshotSha256": "21c52ba8d9de21cb03ff407bbb97e9db3736453bff9c9e09a5b4bf5deccd977e"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons"
+      ],
+      "resultSha256": "cbe2eadbdfe7d0767df6f2b7db51d238ce97683a97491d4f6e49579fe66701dc",
+      "screenshotSha256": "21c52ba8d9de21cb03ff407bbb97e9db3736453bff9c9e09a5b4bf5deccd977e"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner"
+      ],
+      "resultSha256": "6fd5574451c9200741ae8f49ebffd18472bceaf504b7457cfe49c31c71133696",
+      "screenshotSha256": "0382a50f0d7fe77d1806b3ad78af6c23471bf5fcfca6419e80aefe37b9eab38b"
+    },
+    {
+      "name": "installer-main-introduction-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlIntroduction:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlIntroduction/picSideBanner"
+      ],
+      "resultSha256": "94ccc5980a570d9c16005dc733a0b718d3fdf550eee8558a53ce3e1f0f850b5a",
+      "screenshotSha256": "0382a50f0d7fe77d1806b3ad78af6c23471bf5fcfca6419e80aefe37b9eab38b"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "915320068f0cf95c0034d49fdf6dbeb7e2031717eed64ff16cee4bb05f49ac42",
+      "screenshotSha256": "f5a3432699e961f42194decdc425b3862d406af609f26797e54317314caa6971"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "60ad94d3a7c8f16abad00a51552a2e3abdeab3cd51d39b9bf656f565229f2d09",
+      "screenshotSha256": "f5a3432699e961f42194decdc425b3862d406af609f26797e54317314caa6971"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "788aede8a1c5520969486b17b1a6e0b60b7dc8cc9028328d1ceb2fa47f763cc5",
+      "screenshotSha256": "5295a4fddb299539e1839b481916c2dc723edb4c5cb20d652b6c48d7f505714b"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "b4781ca3b90bbc31709d6fcbc3ee7280e546e1751cbea378a74182b14a76fd59",
+      "screenshotSha256": "5295a4fddb299539e1839b481916c2dc723edb4c5cb20d652b6c48d7f505714b"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f1d9b15cdf1a2454db6cd5bc24a4ff365d44c7d2861eb5d7b5a7634f67bb95cd",
+      "screenshotSha256": "6fda9f57716fd810a409e0c9bafbb8f4812b1a0c4324b2bac135669b515ab942"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f071ea65d2d35e3bfeaca1f5789a656bbbc72e68fe1010ada2ec6da1f9199579",
+      "screenshotSha256": "6fda9f57716fd810a409e0c9bafbb8f4812b1a0c4324b2bac135669b515ab942"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b36d6ca9c56e2e58d358a53f68a5a507bc6d98dfeba814c0723ff0b162393438",
+      "screenshotSha256": "b8bc2991405ce6de54cf951c7347270ba9358a50fddf89035324b7938b689414"
+    },
+    {
+      "name": "installer-main-introduction-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5e670da484e0baba2c0495803bd942de1c30c5ccae95c9201ce9d8d28e7cfd9f",
+      "screenshotSha256": "b8bc2991405ce6de54cf951c7347270ba9358a50fddf89035324b7938b689414"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a619876cee53dbbbb5f3901ef8cd6b880fb5169facc49b407c84f2e6db0ae2f1",
+      "screenshotSha256": "0604df064d1b94d2ab364062ed0167ce56542c806133d482c966bc7370b72a39"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2c6254579174cffee6c844212ce55a72039c5daf6ffc57cfc312d8de3ae6e786",
+      "screenshotSha256": "06d31b44d4e2fd8ee0d2209cdeb681962b63777c941d7461c8b0c986a7633e91"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "0bbe0798d9e86c22fcb8fad5a42ac5ff8dc212e762e6036dc347de86fe500114",
+      "screenshotSha256": "c0b08d0f353404eaf2c7972e6420d169f7827a92a36f72dd0667f07b936fa8bb"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "f1ead4f9573e802c6b05913311c862e643f2e780b66b38529479452db96105c8",
+      "screenshotSha256": "e4e08c29a011d280c22d48e30e90a246203047108214848ed072ced1d1e83750"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/btnChangeDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/txtDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions/lblOptionsHeading",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/lblDirectory"
+      ],
+      "resultSha256": "d212ea19dda9d80f3a62662bf5000bbb5c55c798523d931c5bf4b3fc7811e3ad",
+      "screenshotSha256": "9af2e35f24c59ed463af0b2cc9bc2447d858c2ae8cc18332af1013b85ceb3673"
+    },
+    {
+      "name": "installer-main-options-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/btnChangeDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/txtDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions/lblOptionsHeading",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/lblDirectory"
+      ],
+      "resultSha256": "6b8f37c5c55c118cf594ce122b6296ef225e2465af188e8e7a13d97722da60ec",
+      "screenshotSha256": "75bf863916e7b9226917c3c2aa2ce10e9fb26fe6cd1991f0a747c8a254247b30"
+    },
+    {
+      "name": "installer-main-options-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/btnChangeDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/txtDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions/lblOptionsHeading",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/lblDirectory"
+      ],
+      "resultSha256": "fe556d35391e654b62ebf01a651900313d4683b69d0851e26dc3ba9440887a27",
+      "screenshotSha256": "d6d4ec7d474ce0cc4f0c0b381393eb61ff1c35ee56151678b0ccc90beb5a8c3e"
+    },
+    {
+      "name": "installer-main-options-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/btnChangeDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/txtDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions/lblOptionsHeading",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/lblDirectory"
+      ],
+      "resultSha256": "a903b5f46a24f05501727c6cb4009349854a023f5075995cec91bb2e356ae16a",
+      "screenshotSha256": "5a3a6d51aaaff904b7693e98c3827de571cd96c750addeec0a9f68dbea4a1e41"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "02ba1b51c9b6cbdf3ce7ada440c7b81f471d1e9b785adab2c54e7a7a34da9238",
+      "screenshotSha256": "31b7c7906cec57b9bf353e777d172a40469b7c537d13f145b21de495b177c85d"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d0ebc393c3e91072156061d582f3d5e14d83c4fd0a0772c2c37f1b0f6d66a297",
+      "screenshotSha256": "0b0b3849fa7630e5248f425a8f38abbee7ff3bbf8e9ababe24e4e4a62965b9be"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "d95357554bc718066289614b8de3b055d1ac693f816469e34e16543758e9e9c0",
+      "screenshotSha256": "9880f02e4f0e8ac659b8ed08132e42328f9bf1f9a9d0c64cd5d464bf05a0ffef"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "a43f11ec4f7cd1acb3689ee6fe0c2f4ed960fdeca85f70365a7b3d6f263193f4",
+      "screenshotSha256": "5b2f4aee8fa04de0588e2ebfdebc3fbb40a365ac1b68bdd812f9de106272b21c"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions"
+      ],
+      "resultSha256": "e165dd180d6c7ce1828a5044b51c67edc810475b91ca410640d96a9130e87077",
+      "screenshotSha256": "bc7ab30ec09ad43ea269d439af1ff7f60bdac72602b888dae0b8efbfcb623cb9"
+    },
+    {
+      "name": "installer-main-options-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions"
+      ],
+      "resultSha256": "707a77686827c1d51c96df3f94a724183aa5393ae1812d328f2306878dbdf4c3",
+      "screenshotSha256": "6cf816345d5091fd09f1d731a23bffd6642842737361c1a0349d507154cc6ea6"
+    },
+    {
+      "name": "installer-main-options-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/btnChangeDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions/lblOptionsHeading",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/lblDirectory"
+      ],
+      "resultSha256": "30ac08618aee17f798764b0fdb8b8a95cce180cad9848ce24ca57266ba4151d0",
+      "screenshotSha256": "8bbc2d938b4283434152387b102d845ce8ef68cc05634d21d249b8031ca459f3"
+    },
+    {
+      "name": "installer-main-options-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/btnChangeDirectory",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/pnlHeaderOptions/lblOptionsHeading",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions/lblDirectory"
+      ],
+      "resultSha256": "fd4cb1961e52236e9d785169b30ba2538defbc2fefe0997669506e04cb3e261d",
+      "screenshotSha256": "20edb37089d97f6cacbafcd498a97cb39cd87dd170a35d5b3ba8c118f199d69d"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "899ebafafd7e9f020e71a46040a389d7a48e067aaa6acd26b966e7baec0b9c07",
+      "screenshotSha256": "2b32e1522e92069dc2a145f98ae1c651079b7c176b03009ca297956942961ded"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "13670fd1288387d4370fd30dfba7933aa18b6a8cf8c7ec63677763db5dd2c46a",
+      "screenshotSha256": "dbc8bd2c66b0d831cf48372a75b4d16701ac3e357a86ddc7bcec4eb841e3e0eb"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "2f5aa6eba96182292a4e73d7fac59fd76ea23ddcced6f115ac3bb0afa0171f4d",
+      "screenshotSha256": "c002aafe0d8cfb22e27a5d2585236f75b8743cd1871d59d5d7cda4f11d77064e"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "23de174ca97f5c13d373739a635291e5c5b90ae009e53317f227d86d46660a52",
+      "screenshotSha256": "a86308e2d26e0c5bf212f656b72fa607ae0c279574a693a463792405fd65c98a"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons"
+      ],
+      "resultSha256": "a232e36b2cc46b09c2eb334e947aa8a79898fa2c0499fbb30e84425f7ddb2eb9",
+      "screenshotSha256": "c5d3a66ee75e35d2e056881d53eab7256a547a8b27c8c4bb778de3a5773a2402"
+    },
+    {
+      "name": "installer-main-options-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons"
+      ],
+      "resultSha256": "7835731d849999643756304e9dc1ae2720341ae4a723ae52069311991a34e7d7",
+      "screenshotSha256": "ee143b207aa243b8c0b2033ae519e37619ffe5810944f715292cf8689e1670c6"
+    },
+    {
+      "name": "installer-main-options-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions"
+      ],
+      "resultSha256": "5768bdabdbe9bc195ebd3618118e81530757a4c9bf730d09b04848376c6209f8",
+      "screenshotSha256": "61b72092a57a69b242007e91e5e552466c8f319adb810192d3098c024446bf14"
+    },
+    {
+      "name": "installer-main-options-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlOptions:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlOptions"
+      ],
+      "resultSha256": "5f4a46af1d9eb745dc9d809da99d6f6f1eace903ecd4bae7de033f46e8fe65e1",
+      "screenshotSha256": "33997b89f890d1af07c2ddee81d6e3172a488f416f42dadf1f375f421367b7f4"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5db515d9d3ed509b069f434c4542ddaab785545d33cda5ad595bf6d81c37e1f1",
+      "screenshotSha256": "b11fb5ce9f410c0f4a96d23c40150e52e3ec23d042647d9605f970faa75c0079"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b7bb0b5c7f7eff8daa4474abc0249ea9fed33e54fe1b92f5a85f914e3096c1b2",
+      "screenshotSha256": "2b8a30e2c478653c0471c4da9d2a326f595c0d521dc82fb6cc34b9163ef20a29"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "e6a939d3650aa6255fc106ebb2c92ac2072f914b335145ec5f6f7fa2e7516230",
+      "screenshotSha256": "2119c7ee82d9f40cef22dad7dc074d5bdd7c6fa2cca9a1da6bd6a39368b994c6"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "daee723c37a27fb672536d512b555b52267d3d744d56b87d99436e376cb2f44a",
+      "screenshotSha256": "9453af63c7aaa32dff4ec2ae574cfbe55745cd8f11096495560f151f59e9621c"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7cfc32d018359185dba49c93a33706661074eb9c303ec4a6113ab1e44c3506d5",
+      "screenshotSha256": "06e7221d8e5a58f77e389f57371ec627935b813550292c1c15ff473f50b8dcf0"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c641571fc1a53e19f882f39eda5ad66179b6aeac65cce3312d78897e352d85bf",
+      "screenshotSha256": "139b20a6f275584347fdab3adbbd0bf06d3b7a1fd21883ff188f5f03ed8668f5"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9bdc3825752a0c47e84d0e3506ec3e6e3f97fff33ce082016eda123fa5c3541a",
+      "screenshotSha256": "021c91074114c1d89ee81c76bab7ea740e94c95934b3e4c5a0b8768b58fa8620"
+    },
+    {
+      "name": "installer-main-options-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e62d19039b977115297307510730b7c9fb14cbe9c63f841b9d218bae2ae6ee11",
+      "screenshotSha256": "86fc0c895d2704f88e93eef66e202b2a75ae36f05eae3cfd26a9814dec38a1dc"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a096ee6c9fe02936d19442a5d8f04bdb550bb13f3e48316f678773937f233ad4",
+      "screenshotSha256": "e0bb93fb23fd149bf64e2c537488faad54cdb62bddfa0105d59c8640df4ec54d"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4c6076fb74ecf156aa182aaf5b68077fda61f319ad4aaf67c74a7c85b35f90e9",
+      "screenshotSha256": "e0bb93fb23fd149bf64e2c537488faad54cdb62bddfa0105d59c8640df4ec54d"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "20ba20c1b8389227066bccfb6918c55628ed179bc4ac16d4758e3a9fbbe244f5",
+      "screenshotSha256": "4e046bda750c7060bd180e174108e5cc984b8e2ea2c5146599b13637fc728cfb"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "ec6c8558bc1ebb7f93616218df51bbd59fb1cbcde2b1b5f9659ec109ca7231b5",
+      "screenshotSha256": "4e046bda750c7060bd180e174108e5cc984b8e2ea2c5146599b13637fc728cfb"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "af291d524dfe9480b71868deb56ba481f8e38e158de2e371d440bdc06fa8529e",
+      "screenshotSha256": "572bee585e209a85afb3053f33326c8f5d40a83feda22265d070075af985324b"
+    },
+    {
+      "name": "installer-main-ready-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "fa3ac050c16d9684e78142e87ef995f0d1083d93e3cdb55df7e59ea2f5a173e2",
+      "screenshotSha256": "572bee585e209a85afb3053f33326c8f5d40a83feda22265d070075af985324b"
+    },
+    {
+      "name": "installer-main-ready-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "f95516f328579402b271c6786d51be6fb1ac98b97ea096109e747541ff6a5ce1",
+      "screenshotSha256": "40fbd4bc2a0f0b85e7129270b4ca2c0012624091af7e7e5c6d3cd7cf4d1a19fc"
+    },
+    {
+      "name": "installer-main-ready-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "a5471a0327b2c02ba6b29755296c2694aa308795aa8bbf0cace720dce2125dc4",
+      "screenshotSha256": "40fbd4bc2a0f0b85e7129270b4ca2c0012624091af7e7e5c6d3cd7cf4d1a19fc"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "14fd64e83869d622f58fddef94b7cfeb724e0a04c703618508d4ef217aec280a",
+      "screenshotSha256": "415d0c2bd11c716c623db4a42b7c46e0e224f90d53df023cb847cb46d3d34922"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "244b0b761b79e09d7ec963e5b442cd81ceba6f896b6fe880bd30ce43324df8df",
+      "screenshotSha256": "415d0c2bd11c716c623db4a42b7c46e0e224f90d53df023cb847cb46d3d34922"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "66371f58b20427a2f7d4af8034b0d8780f228c51eed8883016ac3467a36344ff",
+      "screenshotSha256": "5d4ed7550427792219577abff14b319e0f6b611f21b54e467b674a0f423ccd22"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "4b84c0ed73420863264fe900ae56f028c177e6872a955243dfa05b1872888f65",
+      "screenshotSha256": "5d4ed7550427792219577abff14b319e0f6b611f21b54e467b674a0f423ccd22"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady"
+      ],
+      "resultSha256": "6dece27af5c515d5063930343900dad9af7b20d0a6e79e155e171c7c02856d05",
+      "screenshotSha256": "c27a59ca2c89ec6d0cbe0431b41600868890d57902aa0c68dcd0f9bd2c489b10"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady"
+      ],
+      "resultSha256": "094b359a40e5a7f130d6d3b5fcbc0eeeb51bf05aa66adc6e9abf276061417241",
+      "screenshotSha256": "c27a59ca2c89ec6d0cbe0431b41600868890d57902aa0c68dcd0f9bd2c489b10"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "47f9ea0ac76c33768af55bf364ceacc2ddc034c3ca6d609f82881ce6858b6f56",
+      "screenshotSha256": "a53feadbf7afefaffdbf6a427a482f882fd2982e75d762f3fa262a2123fab68d"
+    },
+    {
+      "name": "installer-main-ready-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "3307629b59bfbe48f35112f5fcfe31c4aeca68227087fe0dbdaa7af51c9dd935",
+      "screenshotSha256": "a53feadbf7afefaffdbf6a427a482f882fd2982e75d762f3fa262a2123fab68d"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "eaf9401e05784b9c503ccd0eacc049a3d8c8565cc4575b355a7f281928963a8e",
+      "screenshotSha256": "bef750a76084f1bf6c6704c7ddbf334003e4c6636d0c39dd46fffabbfd8b5555"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3d18615c4814e5de0b54127989b2f599b4c4803f96edcf2ba97eed84fcec3f61",
+      "screenshotSha256": "bef750a76084f1bf6c6704c7ddbf334003e4c6636d0c39dd46fffabbfd8b5555"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "b099a3e320c4ce873d2e52789827df64aed6743e8ba99e98acac122b4b9590a1",
+      "screenshotSha256": "69802c5da590fcf15c2b73436d7eab5eb09c2f08ab114904ee957f61896e8a7d"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "a051996ec90a586aae83b9b27cd66c58808b8fd7319f5d8c712b04170173b713",
+      "screenshotSha256": "69802c5da590fcf15c2b73436d7eab5eb09c2f08ab114904ee957f61896e8a7d"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons"
+      ],
+      "resultSha256": "352566b513ee6958d7f5dfafd4fb41036bb187fce3894185ad71be47940d4c6b",
+      "screenshotSha256": "b08d8e1c2f598bb19ab12923f5cfcbbc7e3f89729cd36929dc255cda084d747a"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons"
+      ],
+      "resultSha256": "8ed2cb58459e6429c49c0589667bf89dd460fff311f17521e5d294f2d070cdd2",
+      "screenshotSha256": "b08d8e1c2f598bb19ab12923f5cfcbbc7e3f89729cd36929dc255cda084d747a"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady"
+      ],
+      "resultSha256": "2a1f5e15930468be8c075dc4303823c3e70085207bb376024ec9ff0de446d331",
+      "screenshotSha256": "b1385c491535f7bdcfcaac50dc0acff079825a911c619e0bce49173df2e6ef79"
+    },
+    {
+      "name": "installer-main-ready-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady"
+      ],
+      "resultSha256": "b6cf1e84d9a319359cbf246234f92e4e13b384fad2c50e475bf7d7ab75fd9843",
+      "screenshotSha256": "b1385c491535f7bdcfcaac50dc0acff079825a911c619e0bce49173df2e6ef79"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5bf470d7182a789977041e3693df7d8aa352d4f95e7ddf18f4159255b7d9f7cf",
+      "screenshotSha256": "9959ead8d40fae9ded7dc4dab559e05eb860127d8854cf3af58123084f7dce42"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4a5ec110e7956e1c21a439d76912c1965a6d591ab66c8c282cacca5317d89ae6",
+      "screenshotSha256": "9959ead8d40fae9ded7dc4dab559e05eb860127d8854cf3af58123084f7dce42"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "1f31b92c561e79123ebd39705feed4f863d6cd622a2b38b8640951b710137938",
+      "screenshotSha256": "b5981b6dab145846a148380db9e7df0c9ff7a63e94b712ace431e01177c65002"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "7c6dde219d847b354cc3aef3fc7d692a8288bb7fe1e1af102f06941e65ff9317",
+      "screenshotSha256": "b5981b6dab145846a148380db9e7df0c9ff7a63e94b712ace431e01177c65002"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4851d59a2c81e6101c0e8d6abd1f80533cd05079ac8d4ff26201934a3334e863",
+      "screenshotSha256": "dc798b62869bd67f8b3236955b79d1f93145a870b9261b84342fceebf42282d5"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f8d33b46b780ca59617f4314440e510e4b86fcc247d830cf30be94a2c143914a",
+      "screenshotSha256": "dc798b62869bd67f8b3236955b79d1f93145a870b9261b84342fceebf42282d5"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e34446b4beb4c103e003b1cf72e81c412b5b0212b941c08172019891b1ff1c97",
+      "screenshotSha256": "e1132bb5cf83f8783f0fdafc9e4e38cc046f25e8602a3ad9e139724623dfd69b"
+    },
+    {
+      "name": "installer-main-ready-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "83f54fd99286ac3b6d375fc084d0e7f0fe938c820baabe49593b990d6cc294c8",
+      "screenshotSha256": "e1132bb5cf83f8783f0fdafc9e4e38cc046f25e8602a3ad9e139724623dfd69b"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c1260e1a500f20ac7744a93a70870ab7bc28966e9373ecee175847f93dc55daf",
+      "screenshotSha256": "b64d7b0df7f24678ee44f763dd324df7cd15c9bf016b60f29e7c9bd043c27bff"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bfa3881c095e923800fbf5cc8f145bb5ce1329bb5533707c352327520984602d",
+      "screenshotSha256": "7b606dd40aecfd703ab093caf9e72d5b481868a7bb59ca47b1b8398e3f7ee3b7"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "1c2d5508a1200e740305c5550e1b1ef122bb280518bd3ee2ff4354389c820f02",
+      "screenshotSha256": "40b15da86290e14601c6a735f23bb284fa9e29b3b134c903abb11bd96ae7632a"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "3805060ddcb67127f87124ae57bb5533352069a51cb671ba81821101080a9a58",
+      "screenshotSha256": "01e923bd2733a7e2d60bceb00efef8112f2c062540af8cf674902986c4026d1b"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblInstallInstructions"
+      ],
+      "resultSha256": "dda705f8b8ea56d4a303465d3de914185334585020a8dda320d205086bfaded3",
+      "screenshotSha256": "3530dbf0ea02ec27662f58e2534f03d6ec80d9ad8c2ee2849d4129a7486b7d99"
+    },
+    {
+      "name": "installer-main-install-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblInstallInstructions"
+      ],
+      "resultSha256": "27a1561f83dcef3d0df8e57f173f400f1476eb258daa2110dc1a751333d95b62",
+      "screenshotSha256": "711940a8b4873e76268f3d4797c9397d100073012114660066aa08d985aaa9e4"
+    },
+    {
+      "name": "installer-main-install-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblInstallInstructions"
+      ],
+      "resultSha256": "bba172d4357b36dd09d1907521368405509b108287b2ca85c70ed6898acd7f84",
+      "screenshotSha256": "d4ca6a90d654429ac314c2fb1e5ac3198dfb3ce14ca560630a2fce2a2186afb2"
+    },
+    {
+      "name": "installer-main-install-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblInstallInstructions"
+      ],
+      "resultSha256": "96ddce635653b34a2cd1a31c6b1e0d5b9ab503006645a5b986683f06cae50ce1",
+      "screenshotSha256": "e622d0b7414cd0b6ef68fe9c2280ad0d0ab4004f6aef199c836e05e976e5741e"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "217970d6d164c63a2a949f567156eed50dcb8bc6900161af05c32c3e4556af68",
+      "screenshotSha256": "549881e791e17e55ce5be2767e1bf1d9327f840204e4bb23ebcc3e99bf518b95"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2ffe74f6c406ec4ac688cccbe4e25f8e8cd38141104e39327f4a400042230fd2",
+      "screenshotSha256": "dc5481293f1f34d8354099f36d6584c626210ae82d8429b0568cd581a381cd0e"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "5914babdddc0a75f2eb735354e53f23a864e85214ec95479bf725e694e37ad52",
+      "screenshotSha256": "4ad80a7549bee170936cf9aed96f7a7ff37e839f2b9ea192cdfab2775d22dd13"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "375cac20c342b904bb45eb5a385a7f8062ff92b170db7ff6f6239e0d802c33ff",
+      "screenshotSha256": "704c0e136bf939cbd90002d26608599df3fbc10053b61d830b0df22009e5782d"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall"
+      ],
+      "resultSha256": "4e27877febe501c5f80261457caad1210510a535a950c69b08e9326c029e1a07",
+      "screenshotSha256": "7a3873b1d156d7b037a34511ab1cef53aa7bf973a56b88c9065621c52a82519d"
+    },
+    {
+      "name": "installer-main-install-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall"
+      ],
+      "resultSha256": "7277e64da2c2d5d2dc1c4b93cde51547655f0982b796b096fc0470119df765d4",
+      "screenshotSha256": "629c1c539313179152557e6d4a9f309d7a098e692ab238b7896288c723246fb7"
+    },
+    {
+      "name": "installer-main-install-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblInstallInstructions"
+      ],
+      "resultSha256": "136bedb2e54e2daa4f64a08d457f4f1a8095d357cea11297aa821d5286acdad7",
+      "screenshotSha256": "095b68202ad8092e5e945d167722c0c8e5d78e75fc4a57b401699787c6c8eb46"
+    },
+    {
+      "name": "installer-main-install-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/pnlHeaderInstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall/lblInstallInstructions"
+      ],
+      "resultSha256": "cd887f581ca0d6af22be158b7b7ace0034bf7faa6fe4729c07e8967251a7172f",
+      "screenshotSha256": "b881b17475a95d2133088b9790ee437789fabcf83f8a0276e527e950cbca39aa"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6a6d7a0b829348a40f6179982297d74c46f231ab75de8fa83b757745b61ca258",
+      "screenshotSha256": "ab8a402d91a72c6f80f4f73591dac69946cbcd1bcf35e6c48e7442f3fff6ae1c"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "500a4b930d0b0ba2a8ab1017125a35a66927c15be65a3e2218b9f9f1c2f256d3",
+      "screenshotSha256": "2b4a468950ba33dfa15d4c038a1e7617c191cd0430a2551ecf56ed8efa9d2b4c"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "86db4f6fbad46c73dc4f3a48c055ac2a5ee03f4caf5218702f78e565989677e9",
+      "screenshotSha256": "9d92b8d1132e0e428ba273d7d8b4904e93a8d54676d0e5d28192ee95a8b57e45"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "35c1605f1de0a4fe18c58e1f08d0420db8420bd826e9ec77e79cfb9a0f1bdd64",
+      "screenshotSha256": "496ef166a1ffd94b28768d48d1d63bf9a21cec90ef08c916f953d90468bd2308"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons"
+      ],
+      "resultSha256": "35b85290e71431c092a60341ddb97bbe89ef610a953a0cedfa99af5300f59f92",
+      "screenshotSha256": "5eed27a0d9272619384d015c92fced6b03d956b681c860cc923995491ccbf967"
+    },
+    {
+      "name": "installer-main-install-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons"
+      ],
+      "resultSha256": "48d075b907cccb85bd61665b6ce1d2f3eeb4405055dfea1078f3ed92189f1914",
+      "screenshotSha256": "155a5f5d5f43325c9d19d767e56d27e3916db7ca71789b710bc8a723d41cc89e"
+    },
+    {
+      "name": "installer-main-install-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall"
+      ],
+      "resultSha256": "73ef96d84f4dddcde9c0fb5293d6ba3f6b29b5a891e5a137653da0f729725b2e",
+      "screenshotSha256": "544773f2e3493664941daa4d805712e35c9f62a848ac964cad85154891e9aac4"
+    },
+    {
+      "name": "installer-main-install-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlInstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlInstall"
+      ],
+      "resultSha256": "e185d911e766ab97aec887b49ed88647fb6a60088f9ab2dedaca00314c3ab694",
+      "screenshotSha256": "e071a970358944f537c41ea3f34cfe8a4a5d1f122043dbbb0e0473f5a672f183"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e4fbbdc49a83a7799f6e727bf553fc8643b5b0f10f9d61218f88884f9170c1cc",
+      "screenshotSha256": "a180149e7e3ebfe8fac254f25eb18dfe61c3dbe0eef4589ba9d7dd53e4fbd2c8"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "346e723c9f6074f1e8ee6b56f323ed7b4a4f0cfb618ab3d3f73749d566399305",
+      "screenshotSha256": "66f0f69c29abdbd7190867cc6467e340c7414c9d971bafc28d9804cb7f2e7180"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "963cdf53d6fd3dc57df814e8ea46b5c0e6de778ad97b1d18a36cff660277ea20",
+      "screenshotSha256": "c518f33d30c23fe4eccbfdb3a4b775549876882bd531edd1a80093255af8fd35"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "77155b6261c7e8d182a4fc861426c4cdadc9b0d14d13ee8b53c44f89f269ac01",
+      "screenshotSha256": "e1e943c88b62a44bb67f89841b3d5a68d828a596b54116c87ea53c2eb5e62645"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "54a81690a526f48df5542146ca0cef21a5e2693141bc1bf4477649a2fe339762",
+      "screenshotSha256": "751863c9c359affe34da65c9f8c1eb757ee7906491e7d381439374d10ad8c021"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "18332c739337b278cec9e898284002374ca837e243813ac67ee7421e2cc79e70",
+      "screenshotSha256": "76a026bbce31ceb2a1fafb87bb1cca03987483a25ebd5c549f255153b11c2275"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "19c607f49a0cdfd39b8aea5552e6903a30765bc18983f53b11add183703e9b53",
+      "screenshotSha256": "59bd2060d034a9efd6d30748f169195ec9159f221637c3fa60df3d72251fa3e8"
+    },
+    {
+      "name": "installer-main-install-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b6aaa75f4312678bcccd38553075b97f7dc65267f61a04900233d8451ded85d2",
+      "screenshotSha256": "5ae6e6b0a0b0ec500cc54c246a62ed59e03e84034f96cf661493c8ec69ea49c7"
+    },
+    {
+      "name": "installer-success-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c7a56db5704057b0207723182e7ed8e99f39c46174e5a94c6a5b0d95c36c0ece",
+      "screenshotSha256": "8c44bd9374895437eae219c1974c4ff90f898015e19974e959be4ac563f43ce7"
+    },
+    {
+      "name": "installer-success-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "80f7d84311cf95edd80fab05f2eaa40a00d247fa8b9cf7f4cd876d87fd9fe997",
+      "screenshotSha256": "8c44bd9374895437eae219c1974c4ff90f898015e19974e959be4ac563f43ce7"
+    },
+    {
+      "name": "installer-success-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "108ecb2479d8f8c381d823ec9efdacb0d3b87d5a9d5458c94533aa8293aa9769",
+      "screenshotSha256": "dde9ecb5eea98c5c66f3e37f9f4e1259b3b425f871637da5d5c12f0fbe98bd70"
+    },
+    {
+      "name": "installer-success-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "ca15a659d7a37ad409de61ae3e2c99300d5c8b45173eda02bd79d02b6f159a18",
+      "screenshotSha256": "dde9ecb5eea98c5c66f3e37f9f4e1259b3b425f871637da5d5c12f0fbe98bd70"
+    },
+    {
+      "name": "installer-success-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkStartProgram",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "0804883da413d9856316b83b0fdb9d31f5b627585ee7e7a46b5021405e47abae",
+      "screenshotSha256": "b1cd572b49461b619f0f2c9ef01914c53bf4e1fe903c59235adc8f59ea9cd510"
+    },
+    {
+      "name": "installer-success-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkStartProgram",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "25c1b2b238ae7e2ce29625682c483d5424e57e01575a3dd7c5b4bfbd27ccb4c3",
+      "screenshotSha256": "b1cd572b49461b619f0f2c9ef01914c53bf4e1fe903c59235adc8f59ea9cd510"
+    },
+    {
+      "name": "installer-success-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkStartProgram",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "c757f070ff41c827fa3641e0aa2f96d0238307c6f228a057671a8bceb5606e5a",
+      "screenshotSha256": "083b82d558ac186976881bdf10755b27a823410659c7bd488537d810f73932ff"
+    },
+    {
+      "name": "installer-success-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkStartProgram",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "3373fe569039e8ee772b4c75f0db2833cfef69c70ef1277220c016b4549567d0",
+      "screenshotSha256": "083b82d558ac186976881bdf10755b27a823410659c7bd488537d810f73932ff"
+    },
+    {
+      "name": "installer-success-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5424b1f79fd4931b0d97d434106d0196f55cc93b0c1f05e893cc13e942565bac",
+      "screenshotSha256": "1a458e53e8d8150b2347c9d1a719d881cdee1bd4c07842327defaa7829465ce0"
+    },
+    {
+      "name": "installer-success-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b172f61283c2b86510b17e2eae4e873394af0471a5a7641730ea85f8727911a0",
+      "screenshotSha256": "1a458e53e8d8150b2347c9d1a719d881cdee1bd4c07842327defaa7829465ce0"
+    },
+    {
+      "name": "installer-success-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "eb4c75b63c8d13944c86dded061ad3b51d0616db42996296cbf0572bf8ac6ad5",
+      "screenshotSha256": "71d30fdb093a616f5a7bd5eea86211df1f547f2c87c3786c4942e7e64dd246ad"
+    },
+    {
+      "name": "installer-success-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "a5d0ff8710cd6dfe39c39772e45f47bf7317e51031f5420cc6613946f6929290",
+      "screenshotSha256": "71d30fdb093a616f5a7bd5eea86211df1f547f2c87c3786c4942e7e64dd246ad"
+    },
+    {
+      "name": "installer-success-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess"
+      ],
+      "resultSha256": "6fd2631fb492a085c1d6b1dae2d3af1ab7aa24682a22ba2108cd5c4ef655b93c",
+      "screenshotSha256": "1e8792dfb796976e13804895e822225140c9112d9536dfa6e38ae62f49ab996a"
+    },
+    {
+      "name": "installer-success-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess"
+      ],
+      "resultSha256": "5db5667bc758182ed3dad70ce024e3cd65bf989cf514e42a856c2fa967ae40c2",
+      "screenshotSha256": "1e8792dfb796976e13804895e822225140c9112d9536dfa6e38ae62f49ab996a"
+    },
+    {
+      "name": "installer-success-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkStartProgram",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "d3b98c56b9330c11b152bec2452f3b0ae035ba40700e85cdd908a4974ee8a48c",
+      "screenshotSha256": "613dd351f6e83bda256a52f16bdf8418ed43d861f90144fb227ce51f16e6ba5e"
+    },
+    {
+      "name": "installer-success-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkStartProgram",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "3149f6a747b7f0195f14527bb3834139413c5d9a76f9557e6ac1a3fafd320386",
+      "screenshotSha256": "613dd351f6e83bda256a52f16bdf8418ed43d861f90144fb227ce51f16e6ba5e"
+    },
+    {
+      "name": "installer-success-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "64c37b6b8696fc68d99c18ad23343326cd003681cf0929d9b832ab2dd75e5ac6",
+      "screenshotSha256": "9022ffd6899e974e6d7d2f79ecacf2eade296ee7eb06a93b0b825aa9b250da55"
+    },
+    {
+      "name": "installer-success-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "327191afd58902e36396e71de0341da7ea117bd223106f34294a2ea587c7db3e",
+      "screenshotSha256": "9022ffd6899e974e6d7d2f79ecacf2eade296ee7eb06a93b0b825aa9b250da55"
+    },
+    {
+      "name": "installer-success-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "fd1d3c485944a6102d55c4f33c79c28602ae4d83cf7745b366b6453f695cc4fa",
+      "screenshotSha256": "dc1e27d89247f54beff5988e3a8647416332b1084634d012559abfc168810d8d"
+    },
+    {
+      "name": "installer-success-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "60ed5e0a79e2c2c93894572966326c108461a21915a4445832c34df238244a97",
+      "screenshotSha256": "dc1e27d89247f54beff5988e3a8647416332b1084634d012559abfc168810d8d"
+    },
+    {
+      "name": "installer-success-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons"
+      ],
+      "resultSha256": "0dec962f1fe07a069183d8530ab87bc28e06315a41f4275113c412c8e3278f4e",
+      "screenshotSha256": "aed04ff3c378e53e42f730317a40d6575c1a76c5552ace434d879e8eef9af817"
+    },
+    {
+      "name": "installer-success-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons"
+      ],
+      "resultSha256": "3eea03aeb30e5f7d3119ed2ba2cc30c62716d098e1b18e8430732d6a1cc347fc",
+      "screenshotSha256": "aed04ff3c378e53e42f730317a40d6575c1a76c5552ace434d879e8eef9af817"
+    },
+    {
+      "name": "installer-success-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner"
+      ],
+      "resultSha256": "9d50ea241c19086d8e09dfd23588b1f3a477872d823e4f7ea63410f0dc4f938e",
+      "screenshotSha256": "5145c86e3dd52670af4c90f51504d67e51de857618eb3ad86068fb36f8f1f7ae"
+    },
+    {
+      "name": "installer-success-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner"
+      ],
+      "resultSha256": "ea002c1db4f02a3e325908a0c330bdc6e61713365e8813354c0c3cd1c925de86",
+      "screenshotSha256": "5145c86e3dd52670af4c90f51504d67e51de857618eb3ad86068fb36f8f1f7ae"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8e084df7a281553f7243e85ab2b67ae1efbf8f6e81cbb17fcaca494c4dc28521",
+      "screenshotSha256": "89e474c4460e32afd93fb86283f760ce9a78491f7a090e6b111000da736485eb"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fab2e7c95377bdcfe686b6ec6cfe6568d534cf0a2a586784a8e4bb8a44ac7b9b",
+      "screenshotSha256": "89e474c4460e32afd93fb86283f760ce9a78491f7a090e6b111000da736485eb"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "c8add9342358843ea54dc4b78778ffd5602e52470d4a277c39cc6044660fd6f7",
+      "screenshotSha256": "bb98f37ae6deecdc9a91b4ec1a66b65001ed3571a29dcaeeacb1af26530c3d85"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "d3144f71519d4e5e5be142c00f323f09f795ad36b6c9f8258ea53bf9ea72d6e7",
+      "screenshotSha256": "bb98f37ae6deecdc9a91b4ec1a66b65001ed3571a29dcaeeacb1af26530c3d85"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e22f149601697e581a6a2e276c4bec696b1ae8ee36ee86bdf0f67189931ec29c",
+      "screenshotSha256": "358c62ca65bd68b1d6d2c7c1472a3c0afb19b89a8ddd3d48336875fa1a97c099"
+    },
+    {
+      "name": "installer-success-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "13279f12bcfc93686945122a7a67ffeb29ac7cb2a6f8243a4784d7dc05ddfcb7",
+      "screenshotSha256": "358c62ca65bd68b1d6d2c7c1472a3c0afb19b89a8ddd3d48336875fa1a97c099"
+    },
+    {
+      "name": "installer-success-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "64d7e3767862b00a5d7b50f5e076a8b284723c66827b2a1ec591a3525728d357",
+      "screenshotSha256": "86cac691657bba51a34abec9ac31c068cb9c2b60ecf84ad504c7c871250a6111"
+    },
+    {
+      "name": "installer-success-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8258a39fa31bc6b3021948e434350678dd78fac790cda3b9a2b3aeb48e180153",
+      "screenshotSha256": "86cac691657bba51a34abec9ac31c068cb9c2b60ecf84ad504c7c871250a6111"
+    },
+    {
+      "name": "installer-failure-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7ddccad67f2e8fc37a1aad1ac57e2a2fc9e964cdaa04738a58478c1caa525aa5",
+      "screenshotSha256": "7a5dad08713a418311f40eb5ccb292502cacc6181496a9040b7442953e95db90"
+    },
+    {
+      "name": "installer-failure-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aef5c6126d31c2af511a280628965a56182c9b9320206ee061b70837f93d5dba",
+      "screenshotSha256": "a3fdb76004fba299911068ec756d7c1b71607949699a209e0b7c0fe5c5415ee4"
+    },
+    {
+      "name": "installer-failure-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "13d99d7ea730d32928282805d084dd28690e4bff2655e55df2ac7996b8842f8f",
+      "screenshotSha256": "da9f56ee72e82bb2d3f780bbaaab76dd385f145798698160270425b7ea668be1"
+    },
+    {
+      "name": "installer-failure-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "4cea3ace508e01ae86a63faf27d2f08d0bbc5dd8e68d6c934aa9cbe966e6aacb",
+      "screenshotSha256": "12c7429cce521ad0a3b70185ddb1ade58fd229d382d063157d6970eb6f5e1b50"
+    },
+    {
+      "name": "installer-failure-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "e6cfbab240789b954673962f54cdbe66f72e57ae321bea94f3068d7fdf55ef38",
+      "screenshotSha256": "3529ffaddff569450840b6847d0901ea5297a5febbaa3eaac0c2b8702c910275"
+    },
+    {
+      "name": "installer-failure-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "29836fd38f8e4af24d03370dcfce9badf2df34808ffddbdc1184bb01cdaf981d",
+      "screenshotSha256": "c8a2e3195272f1c22ff12191388adbcee74a695f77bd5fade4f73309bc047d0f"
+    },
+    {
+      "name": "installer-failure-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "358be1606ec3a6974536178625847e3c0446c0ecbda4918ba28ada4b4c722b71",
+      "screenshotSha256": "9a6e18c3f628d2548f6a74bad05e7b37277ffe3b21290e719a8dbc4b3b717db9"
+    },
+    {
+      "name": "installer-failure-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "c749f3555867f6ab0b7efa645f6dde1bc379d59ebbc329b6b550321babfdeb32",
+      "screenshotSha256": "5ab97b999f06d0c1536e51311fa96ae74bdb04c7f5552378143fa1ae4702c74f"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "445b061bb690a408b61b20d4b72e15708bfd6bc93ca3e6913bc0d57bc5e58e84",
+      "screenshotSha256": "ce39303878d171552e88a03e45ffc871ffffd2781bb3376164e55151e0272631"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c831c48ef4fc1850b256933c38bbe06789fcbd40fa03b02624dcda4eb44d9866",
+      "screenshotSha256": "1948e693df2172c167ffdfc0b375b33d60267baafa935a0dc4ef51b3f995bfbe"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "fa6fb06fff8ca5f405576a73f75ccc8df478723a54a8a25e69a83e9553bed204",
+      "screenshotSha256": "f49d82f41b084b7772520bb76c2a5635d6c2a3324368f06689fb4697a8656559"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "f4f95443a2a8cdefc12fb4519a66892976921746d04762c105f8eb01f3f89ea7",
+      "screenshotSha256": "140993764ca67782cd912c4a5302fb79acebee8ba012b017e326b9d5e6c108bb"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure"
+      ],
+      "resultSha256": "6d28f25ef7b287b39a656d6bbbbfc7ab961701820d18c4fdd5ed1aba82410461",
+      "screenshotSha256": "de267546710f628b58c1edce51c5e9d4499040fc3ec6be216d75ba930eaffb42"
+    },
+    {
+      "name": "installer-failure-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure"
+      ],
+      "resultSha256": "d2bcc526773d18678c0a98c66c9b4a52cbbd983a0b473059be5790b64f2f777a",
+      "screenshotSha256": "a5e558db9f1d37653d3f4d777850df746b339b4ca0df7e27a90d18e87c218095"
+    },
+    {
+      "name": "installer-failure-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "576ba525cca3ee92d03d19f77bba5c3da84f04f0f8d3a596298ffe6103798fe1",
+      "screenshotSha256": "5ea1df279c4433a4b1cbacf80fe68f0462eacfbda9d66fb55ec43f6341c3e577"
+    },
+    {
+      "name": "installer-failure-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "8c64b898399bad6a4ffac760be9b1755bacc00f0a9dd09d51d0e17cd67a2332a",
+      "screenshotSha256": "e3b251c712919606fac1fe59a937b5afa8f946e8b107ff05578d605ee1afd044"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "65252f579102fdfbd1d9d93e83e31e2b97300526231af7ea2e644d6a7f4ebc9d",
+      "screenshotSha256": "35130ebe26f23bb3ab574b33281d7dfd956b8f3092011238028bbfe5e137cd15"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4a72a18f88a99f90be97e066d06830e815cb9f394c2d4a4b874ba9d3ef1ddf3d",
+      "screenshotSha256": "99cc794e422f3e3552632b679491e14b8eba830d81a9a7abef515293737aa3b4"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "6e33b766122573238a8470b87406fb95d10fd342cdf233358a15654bf878668a",
+      "screenshotSha256": "7519ba0fcfd7df87099450e5fdf297a63ba48849079c27f4426473b5a1468fd0"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "7565835ac9e4f63b95a3e6faa41ab38d196fb8dda5b21100d39f4fdf641be44f",
+      "screenshotSha256": "108434c9d6324ec73e9e9aeb2103b0cb046261f9c117b85ddd4d90f4ac45299c"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons"
+      ],
+      "resultSha256": "fea9da2b11fdf63d5a9f32970db0ff0ff252793a62737231d48ff723113dfb08",
+      "screenshotSha256": "b596c30e4ff48377eb83b56eea60c60180a0107e5252fe49fca0d69094904c0e"
+    },
+    {
+      "name": "installer-failure-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons"
+      ],
+      "resultSha256": "048eaf31597d152a1688b83eeefc3ce1a927aa7355e9231ca817954a16c9c099",
+      "screenshotSha256": "42778c47e7334b265714e260a63936043fd8c0c2ca2082b63e9d2460e81ec550"
+    },
+    {
+      "name": "installer-failure-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner"
+      ],
+      "resultSha256": "c4352f78d1c6d0edfe59649695589a6c655a3ac770da05a54e8b77887defeaf0",
+      "screenshotSha256": "c5476352e80480fd62c52ec666302f7dfb915d5df612e3b35bf7d6f55ecf158c"
+    },
+    {
+      "name": "installer-failure-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner"
+      ],
+      "resultSha256": "063dbc1c74fec091872a4f9312b862c09bb952ba881daf719a8ed3b5dd28cba0",
+      "screenshotSha256": "62f2a6d1f60942657da50d29bebf1574fd8d7f4396f30d072437918f7aa5ffed"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8169a9ec58572851cd98a30cd8954baab2ba3553266873add660006c5679957d",
+      "screenshotSha256": "0926818b27985c1f110a70b18405b26755bf3bd9347741cc9b28e33f0c46b66e"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7650314dea4d243853b609ec3c94ff92ec7755e14e6f5b9345dd4c2df91d808d",
+      "screenshotSha256": "646101035c2a573d842c6a0a53d59b149e1f10413135f742a40b0e3346ad5da7"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "279f0ed4afbb5c6f19d4d3093302426eb86c6447c2e4992f7d3d1edb2fe403b1",
+      "screenshotSha256": "33e76b197a5bc6103a05896b2648f879a4dc4d9834c537c8e923dc8dde8b5fe6"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "6c45161a500a23c3d6df6c363ac6ff29ae84c2d8229a378a84f2e1520b37b885",
+      "screenshotSha256": "c82d04a1add03a5f6957ce8211782d8f9be11514c16f827f2ec5e7d8465efe5f"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d52e25212bc3d83f2215212b16550c7a9c5f222640aa4521145e92cb662cc2d9",
+      "screenshotSha256": "c59e7d843730dfb58f7ab4831f9c592174c068f3674e87931801dca6c3203ecc"
+    },
+    {
+      "name": "installer-failure-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e19e7a38e5f0c50c31f65b86d9d51d392dd0edd9bb821edbf1aad90be12020ee",
+      "screenshotSha256": "fc03ee108a27525d80af42e0317431428ee93bd2e50ad948286a8b3b682b8c21"
+    },
+    {
+      "name": "installer-failure-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "325dec279db027f6f5458e2d0eaac28223d88ffad1ae24603aeb3956da517dd7",
+      "screenshotSha256": "4a88916b9e18af00a0199cf157183a935a8c53fab75d9c0491ab40123a74f68b"
+    },
+    {
+      "name": "installer-failure-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b943689b9bfe1746dd730358f1cd4e5f5b39134a412912ab141fabb637cb409e",
+      "screenshotSha256": "9c370879f97b358034332602171b2da25f6e9de03eb949652f4b6b2a28d65405"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5ed8c00f07e084294d251ff64ab87276824ce065c5cb26d35450d10fb1c34a88",
+      "screenshotSha256": "8b2dd3760c293199ad983bb6d618ad9280808a463c20f28f8e9d6f9c5337c172"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "027de8ce22be4c7131d70255d2de332edbd1497dc9bbbe3d99813a612408198d",
+      "screenshotSha256": "8b2dd3760c293199ad983bb6d618ad9280808a463c20f28f8e9d6f9c5337c172"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "27b2d6863cb6e2418cc2de59369c2ee1d6b0a4a5f2dde8d1017534062144d1eb",
+      "screenshotSha256": "11d22a2ae1297f8e86b1dbfedfd53d16753a66122e3673674f2c021087386f45"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "571bd7ffadf95e3d7f9d20a23f305c5937e88c492eef721ca4ae3a4184c2ebe2",
+      "screenshotSha256": "11d22a2ae1297f8e86b1dbfedfd53d16753a66122e3673674f2c021087386f45"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "5f6751645be70307e1fdefe8872b46b5a71cfe540c7e5061c84f0598ed688ea4",
+      "screenshotSha256": "008d1327da86cb56b40a205c0c6cd4c8915afff46d780165fdc56891dcccb5cc"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "eae9034ae461da413c45807ea79ea7cf21d08818cb1c9baa9a0b231cf653dcfb",
+      "screenshotSha256": "008d1327da86cb56b40a205c0c6cd4c8915afff46d780165fdc56891dcccb5cc"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "6206e911802d2a4cbd5d7896db6e7ac7059b5fc00f1a4957907ae64a384283fd",
+      "screenshotSha256": "94fe742f7b9fbac3a9ac8b3a71278f87d70e744babf441cb1446964aaa098fba"
+    },
+    {
+      "name": "uninstaller-main-ready-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "b75df2696e23cabe6aeb746d19af61035bf91bafaf67bfe3e209061458c4c708",
+      "screenshotSha256": "94fe742f7b9fbac3a9ac8b3a71278f87d70e744babf441cb1446964aaa098fba"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ef57685f826891d835bfb14faddb4b30c58c8a359b3d518d599d252ad4860b91",
+      "screenshotSha256": "b3e043d0adced6044f26920ba9c8cd7749d39107c249c7f815d3a6d7e586b9fb"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "204bce8cc3c2a54fe406718e75ee03a3942448fd70725c50590ee02020764e09",
+      "screenshotSha256": "b3e043d0adced6044f26920ba9c8cd7749d39107c249c7f815d3a6d7e586b9fb"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "52803b57b444f2d37d36cb60d1307b6dc379413d18f7eabc814941d33c104ee2",
+      "screenshotSha256": "3c827b639303891a914ef8c4784d4e428b82568a5edbf7fce6521cb206cc0679"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "fa422c2d60bc3efb55b89b1f2a98d60a3aa0327cbd6e76c29b4ba40a352860b2",
+      "screenshotSha256": "3c827b639303891a914ef8c4784d4e428b82568a5edbf7fce6521cb206cc0679"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady"
+      ],
+      "resultSha256": "9d54f4de1d002215a746fc31fcd05fce5b6122f26103245cb95271f18dc2efe5",
+      "screenshotSha256": "c3a86bd4a89a288cce1672825657fe68a5be435ceb56e198e55eb387c0dc0775"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady"
+      ],
+      "resultSha256": "195f7f4d97dcb3a946610db0ddef276938566c67384eef74652196f4d8da669f",
+      "screenshotSha256": "c3a86bd4a89a288cce1672825657fe68a5be435ceb56e198e55eb387c0dc0775"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "4d0b45d2de0254f4276d0e88a0eb847f2fefd5aa04cf74078c2c4a5cb2fcc22f",
+      "screenshotSha256": "56aaa09b935a03b633afe56566a3fdbe34694432c84d0fbe67d00da2b8b33a69"
+    },
+    {
+      "name": "uninstaller-main-ready-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/pnlHeaderReady/lblReady",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady/lblReadyInstructions"
+      ],
+      "resultSha256": "393427892ae4ce53c98b046d57b97ffe2530fb171970667d188dd73b3ccf6cc3",
+      "screenshotSha256": "56aaa09b935a03b633afe56566a3fdbe34694432c84d0fbe67d00da2b8b33a69"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "57f606c967d4e95d175deaaa80a4de94085228da8487db110ef7a2ab94e2d81f",
+      "screenshotSha256": "03a38c6508ccad29e21b1e653c8b845157de86feee15f4393cd701d4cebafafb"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c0cc729720083c7aa30ac018b7a8574f79265bd5feafe47c5eeee1babe4be7c1",
+      "screenshotSha256": "03a38c6508ccad29e21b1e653c8b845157de86feee15f4393cd701d4cebafafb"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "e1b739f78f13fab1e0a4afdd74533e7238f6968f326cecddcf8f5c565c4c52d0",
+      "screenshotSha256": "3cc4fd5030d77958fd2096b1f92635a0ac208c678078b9f5d2280576f9cc498c"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "0fc02f472f1cb12f5a1aee72c60b2e61e6f22c8324568562272f956cef2a2606",
+      "screenshotSha256": "3cc4fd5030d77958fd2096b1f92635a0ac208c678078b9f5d2280576f9cc498c"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons"
+      ],
+      "resultSha256": "1a6f57667ad53f7200f45262a2b8a824da8bebfd92e67e297154a777f5dbf400",
+      "screenshotSha256": "f6e23840bb613580a311058a7c8eaf7cf32753c577d0093851eb9fc16dee52d8"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons"
+      ],
+      "resultSha256": "f4c51b6b05b71623e0108a52872100bb62c8863fc72647700967af985c751cfa",
+      "screenshotSha256": "f6e23840bb613580a311058a7c8eaf7cf32753c577d0093851eb9fc16dee52d8"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady"
+      ],
+      "resultSha256": "e470186cc1b4ff1c5d4c9576532953597c7cca139fd0f7bc37afa089e90ab4c2",
+      "screenshotSha256": "c9f4cb5f1fa882ec8b92fb798862509e36f4ec192fa2df262d4be4dc066cb726"
+    },
+    {
+      "name": "uninstaller-main-ready-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlReady:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlReady"
+      ],
+      "resultSha256": "ad0afb2d2330031a7c214ced0cf9ead83b4dac7fa7f850584c454590ecfa4a84",
+      "screenshotSha256": "c9f4cb5f1fa882ec8b92fb798862509e36f4ec192fa2df262d4be4dc066cb726"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a001dbdda56468f58fd5f9675af943e6bf146fd2271896face83d7678697a7f6",
+      "screenshotSha256": "f39727d5cf2e7fb98cc0434e89d38f846cb70b61b37105ea18eafc398256ce69"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8d1fa29ac0a5a6b1aba672dc301bffebcab87de1e96876c660721a024c4a6011",
+      "screenshotSha256": "f39727d5cf2e7fb98cc0434e89d38f846cb70b61b37105ea18eafc398256ce69"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "9f910e94c5362d9eacff92d3436b3a21296569983ff0e471c6492deca23554cf",
+      "screenshotSha256": "8aa772bf89d0f9197d52f5d589c7804998d78b2cdc16d0b38665ca4aafddd662"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "d04b4db3305c5ee00b363aab4d6c8a2417648ed873e0b98a252c2ff84622cfbc",
+      "screenshotSha256": "8aa772bf89d0f9197d52f5d589c7804998d78b2cdc16d0b38665ca4aafddd662"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "30a542a2521db30405a396793a4ab9675192343bf3c663a2508c68bde7eef5c7",
+      "screenshotSha256": "0dd73344f843c62598b6b52f924d28f0f77d8c654af46a28ce8a37d7403d653e"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "214096beff4fb3e3f8c6dd474403484ab52a094d3e1641ab2eec3bf4d7abcfb4",
+      "screenshotSha256": "0dd73344f843c62598b6b52f924d28f0f77d8c654af46a28ce8a37d7403d653e"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2948e1dcc0dc5f7f59addb5d5746a308dd8316904cc5df1c8a55971114e0bbf2",
+      "screenshotSha256": "d6b6e52d79c4845961ebebf8c5c1d5810f71e6633c20d9437b498c7b20886579"
+    },
+    {
+      "name": "uninstaller-main-ready-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b656c21e0c3304e265dc3762daf4028f7fb53f325dee4b1d681567444d2afbed",
+      "screenshotSha256": "d6b6e52d79c4845961ebebf8c5c1d5810f71e6633c20d9437b498c7b20886579"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "799a924553414a97a926ec05165aebc87e5123cf71da25deb6a98dd22042f234",
+      "screenshotSha256": "987856e8815d930b47c2a97835d866be71eb2d6fc55e353e3ca83ddcd82691df"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "31c74b7bda1bef298efb4871488220b31709fc386940acececaabca2d7b0898e",
+      "screenshotSha256": "318bffdf432328ddf92eb573766c22a7c35cd2a5c6fae32430b7622617859979"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "3c10f26c690ffe272e46afe5ca9a93043a0018ffae2db0769c28546638f37e6d",
+      "screenshotSha256": "52719e07fed7774a1c57512a2aa749f140ce0680e53ee643bd80472400ca89a6"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "fb4f9b8e4040de12125f89e41517947b06d5e3cf3e9f6f73092e16bc8610d01e",
+      "screenshotSha256": "5758c1216b4700203dba86e528cdb3dcd3e48ce104b6fe0db08b1d805149ac73"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblInstallInstructions"
+      ],
+      "resultSha256": "85f3b1ba368f2cc6d9e2225e0bb18989072d83b482ee79a48ac1a6c74fda62d4",
+      "screenshotSha256": "56fc2f68ab34486350b3eda08b50ad534e0619a10de169d3c824905f071d4984"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblInstallInstructions"
+      ],
+      "resultSha256": "68430e8c8089ce50056283819d633da634fbb89393b178a75fe25700ab25c4ea",
+      "screenshotSha256": "5ae61cc4ba7b44fbd209994b3f59acb3a19a73333f42c54b0d3ff65df3fa9d8d"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblInstallInstructions"
+      ],
+      "resultSha256": "96bc3055c63258240f13517ec00996060abebcebfa286d54f8a88cc7ec587df7",
+      "screenshotSha256": "8c7d7b1ecebc1699eb8cf9598e2c3896e0523fc88af08b6d6f3f00e33bbf040a"
+    },
+    {
+      "name": "uninstaller-main-uninstall-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblInstallInstructions"
+      ],
+      "resultSha256": "a68b4742a39292f1a8d6a9640f030f72717263b6eb1ac2a6f31e76ac0b335a85",
+      "screenshotSha256": "194bd2fcbbfbddfbbbfb53d3ef836a9792939ad976868ff28957e51ce0e18f06"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "65c5c11dff5552033a33a8cdf12bc71335dd7c965d590db4d4a6cdf41bb2411e",
+      "screenshotSha256": "d2731932298c6ad0170c13a478c2f0f9af2ea6ad01bd52a53098d82a198c7b2d"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5288d162a1027ca8c5a38f3783f8ebb517971d6cb0fa1f94f080646d5b5dbefb",
+      "screenshotSha256": "25fe9de35d304198fc1c5c592fb9d4863a91251a607b17bf68793cf3e311045d"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "ca764128815867fda4dfed7ba31e09c973cded00d8bfa0c1e019c632667436c1",
+      "screenshotSha256": "11fcab179f4e729283242e442fb9a3b3faa2e43ab687dc464e64928ffe672547"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "b18230acd83b1a4c0b03a1d4e3bc88cf157c5318b9a190f5387b0897aa9ce48b",
+      "screenshotSha256": "2608658c472eb69d536bf95814f8ef4b83fb750f998630e01876f9ab79ba8343"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall"
+      ],
+      "resultSha256": "9ae8b816381092af74f47834ddf619d539c6395b323787b893b1a28523c8fc9d",
+      "screenshotSha256": "e924fc562ad961b9077df722d75eadcd91f4d67f9d1278e3066e00247c97ab45"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall"
+      ],
+      "resultSha256": "77421d6e2e36aa527c83ed74dfd3a9d0f155f63aca112bcb05dccbe03f972ff8",
+      "screenshotSha256": "be26fe4771899baf1a83e418ff8385d1152b3d1ab6b8d9325e425b341865c2d3"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblInstallInstructions"
+      ],
+      "resultSha256": "09cad19cfc31da4c3bd183bae76932d88a190df86952b11b2aa1d803ab0a8fbd",
+      "screenshotSha256": "b1a53e58f5b73cda950330a1dea2a4e0268c5bd8f487b192abdc001f2a451365"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 7,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/barInstallProgress",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblStatusProcess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/pnlHeaderUninstall/lblInstall",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall/lblInstallInstructions"
+      ],
+      "resultSha256": "cbf3538f29e70294362a94affafa6920572461d2de66343e454184be72bb5330",
+      "screenshotSha256": "295d9ee182bc3e1c8ac5ff11ee2f220e37d157d132eeed885c52dbd5b876cb55"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0cf301129fe1cd22c5236abb033df11e92db5a27c817620bfedb062e2e32fe8d",
+      "screenshotSha256": "215fbe8346f2f38231306c08a04cd80f592685c6dd4189ad288a0ae5f0cec6be"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ae2b12d467c2833f2dd5be0f711f2e3ce50e230e37ba334c846ba2a7c2137f14",
+      "screenshotSha256": "1489b9c8bfff0728d74c68d315170b0024e4e55b8e7dbb64c3c228c6b4115753"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "3735b23b5f60bf8d7d605e47cf4526458a3a770a943e3cf55336a2aa2e39c3d9",
+      "screenshotSha256": "01d62791fabb6209f76f6c98520aa79b8e8f1667ebd22ddd970a02584c3dad8a"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "59c9177fcf34d6d665ed899a3b15dd25d33a71a6f67fc15197d4628f27e4f9c1",
+      "screenshotSha256": "7b0f7d2fb1d7b967b1bd4eb97083938ec9a527d15e4e25c130d744c55869898f"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons"
+      ],
+      "resultSha256": "5ecc6f6a3348e801766b99f9aa30d399827010dc1935d6c8e9345f65aa5f826d",
+      "screenshotSha256": "da1c826d6fb7d9d5d265c92e967eff25e0564ee0908e540337425c120d8ad7e5"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons"
+      ],
+      "resultSha256": "bae9f1c5650ed861b6d83d3f060e3e14caae327f36944a7ca1180f6dcf843632",
+      "screenshotSha256": "39bf7779d0f1d790aaf20280635782b393c93d0cecf18eaf4ab4c78d92137ae0"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall"
+      ],
+      "resultSha256": "b3e8a9e456c47a367fc7d14191943945a33118cc1be781b1c75cc3a3a936dc16",
+      "screenshotSha256": "218f387bbf79b5a05561e4586dd0ebf633b5c4cc72acc53e65293bc8ac539279"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmMain:pnlUninstall:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlUninstall"
+      ],
+      "resultSha256": "cfef8577bf6003afff2583db9a761745a58db6b1160a54b84e289f2e7e138b5e",
+      "screenshotSha256": "1622c263e5d0020a75f1b909f5ef4d39ac100b9330c0503a7898e137286ca803"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bf2de7b71b7266b2fb5a7058f5f2f4ba64c45af0eacc5b5f75c884217bfd5e59",
+      "screenshotSha256": "087dc73791a828e1d8d85184010b8f6ace8322a605ec3a2ce7a1ba95295d7a4c"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4f6849ff8d87459af62bbd419179e92226f9316afe14f70054a505cdb4d5fa7d",
+      "screenshotSha256": "2a617e35dff2a297a83dee2d04da8a4606862ee955e383e3473e77455359f196"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "6ef1a9d99caa1aa8c67aa95e377cdbf6a38d963cde858b12c91ab283bbf0b07d",
+      "screenshotSha256": "3fed245d829e29c9bc52a6c2e923802dcee175bc55c521b80661efc5237f669c"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmMain/pnlButtons"
+      ],
+      "resultSha256": "450974c1a4d90905a0df8014e214fb11e60cef46b861410bca29af02877cd123",
+      "screenshotSha256": "12a45087d32c61b07cf1faedf2690330c5728f80e84f41f614006da09a47e15c"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "59f258c84dc7d9a190a92a301f90ead0e909f1618ec7dbb8cb712b440b3075ed",
+      "screenshotSha256": "35cafc1bc74dc07478b6b5dbba8abd85b8887f5ab61a1b601d7746641417144b"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c5816cc6f1961157c9843f7272b43c6521429573c6d92b3cc89206e9106ef7bd",
+      "screenshotSha256": "d2ce8c0db87601dd16d5958d56cb333127a1a89677f3f1a171efec15dcad0c40"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5f610533040aead3260b34600d1ec6e7d15c22c00e230fe1061a2e2751f31ffd",
+      "screenshotSha256": "8a36f5d338e8b947e5796585c9306803279d6036164557f94c13ecff6af5bc36"
+    },
+    {
+      "name": "uninstaller-main-uninstall-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "377cb2648fc79a4a5d66e2da8defce7fc106f7f96fce7ccc795f681b75b41798",
+      "screenshotSha256": "f2a95d6f6d2ba189869993afd0d907bf2aacf6467259d4156676e7f1abfebf09"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d98ea2e1598c024d15434e7af77ad5fb43275aae1ddc4f1d38de0d21f5906c6d",
+      "screenshotSha256": "987b0c44493f386339d4c71d7c6f254a4ea7570e0b100f24aac7bc3083bbe366"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8dbf5752314da5314ed000349e30f16afb90736250568667984a35868153c201",
+      "screenshotSha256": "987b0c44493f386339d4c71d7c6f254a4ea7570e0b100f24aac7bc3083bbe366"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "7bccdf1df0805eb349b250d153baa98bdea8c09c7e10e543fc8534d8079e1609",
+      "screenshotSha256": "8eb7fb82d7658f3960d6d8fb07c5da6964f4226e8066469996348002a9c4734a"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "64a6d7a1cdfe958c7aec93e312bfa4fdf0ad5a4fa2bf73863532cb349aad81b2",
+      "screenshotSha256": "8eb7fb82d7658f3960d6d8fb07c5da6964f4226e8066469996348002a9c4734a"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkOpenFeedback",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "f9691b5ce7d2cdec52e115f5cdb4290ed757a07ed5d3e66078f2f7ce279e8524",
+      "screenshotSha256": "48d89594ddc1d5ba061bb62a2fb33f28b9c94ae7d68bfbfab4fcb8989f08d083"
+    },
+    {
+      "name": "uninstaller-success-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkOpenFeedback",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "ca07375e6772b5cbf78941eada79e4a7e83e4a24585e97f74a10c2cd77ee31a2",
+      "screenshotSha256": "48d89594ddc1d5ba061bb62a2fb33f28b9c94ae7d68bfbfab4fcb8989f08d083"
+    },
+    {
+      "name": "uninstaller-success-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkOpenFeedback",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "68fb3071edfedbc30004795ccd44141a3f6692f7fec021f632c770a33b26ddec",
+      "screenshotSha256": "db2b7c04b37684346990f86c85ceedb479c54fa3eda6697c186deb9ac10d27c3"
+    },
+    {
+      "name": "uninstaller-success-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkOpenFeedback",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "c682a0e44be5cf721f6f67cc3923e87b92c5f67d7d7c0aed14f868d3dedd5071",
+      "screenshotSha256": "db2b7c04b37684346990f86c85ceedb479c54fa3eda6697c186deb9ac10d27c3"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "38acaa9e3fef5fce7facd815fb7a354020f5697d61c8ebea937f14606973ffa2",
+      "screenshotSha256": "e91e325c70711e096689ce84679125847841d15f620c020302889425b656dc9e"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b156065ce9da502f818af24fe91f1806b27ce1073a51dc425c7e299e49251e5b",
+      "screenshotSha256": "e91e325c70711e096689ce84679125847841d15f620c020302889425b656dc9e"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "4650de1a6ad6506e84beffcc048e5d05e9d797be8e8e33b1e9e16dfcf3520d57",
+      "screenshotSha256": "e6a2d7dd5c5676866964add5281420ac8e6885a2049c9c35865922e7ee4091fb"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "7094172053843f6eab6bcb89298e174d4cd26065f1a8e36dd52b9d481db09f52",
+      "screenshotSha256": "e6a2d7dd5c5676866964add5281420ac8e6885a2049c9c35865922e7ee4091fb"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess"
+      ],
+      "resultSha256": "b84cd530c390d3d12556aec4577e1d908ae1c422eda49a4ef91bf5a0c6f4c303",
+      "screenshotSha256": "10bfbdf31ae2438665c0aaa011299e9ea8acedc7377e93f351c9d828472d2c7d"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess"
+      ],
+      "resultSha256": "5321c1c09e03d839baf0ed517087ccce07beaf3f1d3a932a5cd22425954dbc43",
+      "screenshotSha256": "10bfbdf31ae2438665c0aaa011299e9ea8acedc7377e93f351c9d828472d2c7d"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkOpenFeedback",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "c30396cf487db77ecacbcc400e823f560b56cb85e8d3e821a3971f45ad76664e",
+      "screenshotSha256": "6db666b073100802d786055dd67063b313d2e6f53ddb5d0a5dd82f82300f9d90"
+    },
+    {
+      "name": "uninstaller-success-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 6,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/chkOpenFeedback",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/lblHeadingSuccess"
+      ],
+      "resultSha256": "9985e2384644eaea52e3b65d4c77425d91ed2f22be657906dc5698b4570401ee",
+      "screenshotSha256": "6db666b073100802d786055dd67063b313d2e6f53ddb5d0a5dd82f82300f9d90"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1debc2c732c83706c321f93e748c015a9704165aaa643356b592be7a89966235",
+      "screenshotSha256": "dc688b323b79935dc4b2db696c07748fa474aa07f6fbada892cdee1f65c736f8"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d175fff37fdd96e72ecd0160c5cfd4d7b689fecd0f667d284dda34fe89c02460",
+      "screenshotSha256": "dc688b323b79935dc4b2db696c07748fa474aa07f6fbada892cdee1f65c736f8"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "f566e548189efe4a8c1abbd630b68a6245d03a4feff7f1cc82193833d1b441d0",
+      "screenshotSha256": "fff6efc7a97b54b3e2fa75a5328fc07c2b79b138260f0531b4a0d3682e8b6f26"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "0a98d3e0afa2d2d4ebe6221868119606b19e7f5a5ce92796eb959e0c58ffc1e8",
+      "screenshotSha256": "fff6efc7a97b54b3e2fa75a5328fc07c2b79b138260f0531b4a0d3682e8b6f26"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons"
+      ],
+      "resultSha256": "e706ce38a8ec6829b775e983ab23d4aa9e980ca681ae880a7acbac5f75752692",
+      "screenshotSha256": "10869fce03a5f5f5c35b0fe72ea57969339c0934cb473b5e4971a7a57be64c0b"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons"
+      ],
+      "resultSha256": "0e533f7fc137ff0dc4467b179392748bd0d06027110fc62408efc91fc6bb8cfb",
+      "screenshotSha256": "10869fce03a5f5f5c35b0fe72ea57969339c0934cb473b5e4971a7a57be64c0b"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner"
+      ],
+      "resultSha256": "97015d73a95499974842a508bfcb9f21efceeabb0b83e73bc2cfaaeef3ffc7b8",
+      "screenshotSha256": "ad1384fa1d225f23501dd5a72c1d8f02a94a779caf2029e3649af355369e18b9"
+    },
+    {
+      "name": "uninstaller-success-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmSuccess:pnlSuccess:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlSuccess/picSideBanner"
+      ],
+      "resultSha256": "e7ba73eeaf32d8581a852a7519e14c9f75f1c274f5e9e92adedcc35f3a35596b",
+      "screenshotSha256": "ad1384fa1d225f23501dd5a72c1d8f02a94a779caf2029e3649af355369e18b9"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b49f4624e1b407a994cdd95dfa1be15e2a5c9f0c22b42b07664c57dd4766d136",
+      "screenshotSha256": "619c81738e6fbcc8a1ec161325fef83ee55e945cd3455ed5dd35f1365d79415c"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9a4d020188bd6896d17ba73227906d6bb073a83a53fa22b732842bbe0c435393",
+      "screenshotSha256": "619c81738e6fbcc8a1ec161325fef83ee55e945cd3455ed5dd35f1365d79415c"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "9dceb98d8b052d94f936eb49d8ab2d68eb67b828fe465ba351bd763ab4be65db",
+      "screenshotSha256": "3dc5e6c24dbd31751073744ec5d41f876dd8cc1697c8802dc6eee218ee4d46b7"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmSuccess/pnlButtons"
+      ],
+      "resultSha256": "95e64da07f7eb89fc2040d073ca6343c0c60dc3d564eea151da6704ba1dfb485",
+      "screenshotSha256": "3dc5e6c24dbd31751073744ec5d41f876dd8cc1697c8802dc6eee218ee4d46b7"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "539361fd513646a1ef454fcd7a705cfdf09608d24e6a30fceaf6539920378064",
+      "screenshotSha256": "5c5f4112e62673bd2aab242916fdb5132ac11401188e11f2df8cc32c6948635e"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b777e1711f8f7628dea1a41d5920a680c0ee20a1daa2e7605bb3e2c9e017b034",
+      "screenshotSha256": "5c5f4112e62673bd2aab242916fdb5132ac11401188e11f2df8cc32c6948635e"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8f40aea0a300c266badec612b4613efb7883d9fb290eb40ef5d424a4e257d901",
+      "screenshotSha256": "a1e10951ec7950f0cc515a95745329955930d54b6c7b73d340624c8fc6404214"
+    },
+    {
+      "name": "uninstaller-success-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "abccbed7c5a51a1d9921fa89b24591cc578274f8544003aaf84f4a2c1e2f2eee",
+      "screenshotSha256": "a1e10951ec7950f0cc515a95745329955930d54b6c7b73d340624c8fc6404214"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "22fd0b758671b40271ecded66633a9f8572bcec2ac9d402c4767bda93d4d0ca7",
+      "screenshotSha256": "6ad070b1d1717b88a9de5e83bf49b4cb1dc19092c4c14a42d40fb1cbceee5f8e"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1759f190e93bca822350d6be35db126338b1bbb3b196e3dc10154c78aaa5195b",
+      "screenshotSha256": "bd8f2fb2d215d1ed468224c8971056e9117ec1fded1dd39e50ab5013d6144dd9"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "40c9be6dbbfa58f53f33afb204cba4d77ac8475db2dff664e2d29c606b17e0b6",
+      "screenshotSha256": "de123e2b1d880efecdb32e4faa5596390030861f43121f13cfe37d4c21c0f12a"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.25-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "99c983bbde9fff43c42aa103f9af527f50a8527c610763c3398fab91e1da6edb",
+      "screenshotSha256": "e06f645b56f38651e606a241c7512825bf56c0cb2640417f0b8a22a0902e287f"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "4ff47b0b1e03dc4c4a7914cca5a182b10fa92a6370009b9a9cdcdceaffd2e220",
+      "screenshotSha256": "abeedf5534f8e7ef76b244aa2aabeb6f067071f57fd6609dcd696451667c7e7c"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s1.50-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "d3c64ffc5cf04c9d84aa09f2079b4d5f3b00d73f12bbe07f3bbc950be2998598",
+      "screenshotSha256": "b6ed16cfceae1fc8da09814b9c1bb04cd77800ce0030cc0ece79ce8ceb27381b"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "aa6288473d24a81671b6a42adc75c451213492ee767b23d98bd9b9c7b010d149",
+      "screenshotSha256": "2fbb10ce99a4af291f863eeeb9f097f1d1842dfcb88e9de2425069a11aecb443"
+    },
+    {
+      "name": "uninstaller-failure-800x552-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "4ee4e4e092c4686838e45392b36c599fc3b56075dff24451c58c5e2926b05003",
+      "screenshotSha256": "fca72c11933232fcd1d40eda3a058fdfae567b3ee3507e8c182a7955aa55c87c"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5473129112ba5631b484b883297f016c34c2baa8c8bea285bb76257d01291c97",
+      "screenshotSha256": "6d0c81add2b6c7d07d4981157df4b8fb41add9efb868629ba3fc0695068e3962"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "26ebb8b5306ad18edeba48913337c8d9952d17cd4012d5f4983ceca7e0f74071",
+      "screenshotSha256": "3811277bea024c37b665e13c6445ccbd1b3a8c5d39426c57d95efd9fa69b8de2"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "2c7d208f33709e556af0dd3973c53a80ba713ae364a9163cb40c02afb148bf9e",
+      "screenshotSha256": "3646b14468156dc24b0fba218744d38ef316ec0eb6ffc1b1463e63ab9659af84"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "e02cb0696563fc4078eb79f3fdef2e3ba86c8659ed7728b58892fdd59e21950a",
+      "screenshotSha256": "5674b8489c79c8d0aba67bb7589aafb27c96aaf2eea28e4c6b42b79287e2e042"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure"
+      ],
+      "resultSha256": "01dd027579d6d3d8235f81e944e8e72d940184b18bd5eacc43299f4e002eda70",
+      "screenshotSha256": "5e906f7ca0adea259fb676d14661f0698993fca0ac14112ae911d2f1fdaf5a63"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s1.50-maximum",
+      "passed": false,
+      "failureCount": 2,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure"
+      ],
+      "resultSha256": "792405fe22c2239ab58e10513ba19a03a45043d88c010b41fd830ff050f169c6",
+      "screenshotSha256": "6f6008c21b71cfa131c53e52437eeb598ed8a212d9502c10df88e9e444353bb2"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "fc78c9e860853ccf888c65cd42057fd8058767c436328ef2ee921aee0c90180c",
+      "screenshotSha256": "bfbecdf4ceec795cea4acf620fe0e79b75f50bfb96bd9f05d4799af891847cb0"
+    },
+    {
+      "name": "uninstaller-failure-1024x720-s2.00-maximum",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/lblHeadingFailure"
+      ],
+      "resultSha256": "0529c5502a5123dcfd74c8a0876662ae6135fb40baa9fe82e537aea2ea58cc84",
+      "screenshotSha256": "2e2b4a5b61c22901b15d0346af951fbc48047d58bfac705bc79b6e0a44ac8532"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6e3a11f1b629d384ed4bfdca2b1799fcef9d8c6a76c995935cb33efdf2c51f03",
+      "screenshotSha256": "4f9038307dbbfd9d32f85ab288e3c7b2abe5d18ff08fc7a27f89a4818a8b03fc"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8f4150c254627c9a80e49681f447b2b390c570c30263e408b06a50e5775c4031",
+      "screenshotSha256": "18840759718548d1edc36084e26bb310bdec35cf1ca8bf998f638b68d11cd9ed"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "5f6b6b25e46413f9b2b0cc312e0fa3c899050ff7188c9006c7aeb6b055105caa",
+      "screenshotSha256": "66db1fbf9ae4277f4148cef2c751afdfc82dd4b0e9f1091d92a2f3c6bd014564"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "cf805465612287fe3f799ef371df67ed044cddb1e9a6583044f726ba60435909",
+      "screenshotSha256": "f8141b47cae6651db76512f4409d97f2e07f2e675ce352a100dad8fdfb701cfb"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.50-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons"
+      ],
+      "resultSha256": "5929ad2451f16579fd2e2560bb9bb2a83645afe6684c71a351349b8d5b1a05d9",
+      "screenshotSha256": "53b9c0c3aae37c4dcc1cc622d3724076e032260da2f2e9d138f990da98debf2c"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s1.50-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons"
+      ],
+      "resultSha256": "684ebd3308fc54885a9f4736b2c1514086fd7261a3eb565444c3d7a8376aae1b",
+      "screenshotSha256": "33ddd519aa4dbe4513828ae9d98d8a420c5be163c21a9d801ac98c32ba97e298"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s2.00-ordinary",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner"
+      ],
+      "resultSha256": "068d3c1e55f9918059fbe7a9eb9da0ff99cebac61e38d79ba2cf8943e92b1410",
+      "screenshotSha256": "f2c59d59106d40d3fac8baa5f4dc3fa4e42bfd146f81b50730d7c718a905538c"
+    },
+    {
+      "name": "uninstaller-failure-1366x728-s2.00-maximum",
+      "passed": false,
+      "failureCount": 3,
+      "failures": [
+        "SIBLING_INTERSECTION:frmFailure:pnlFailure:pnlButtons",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure",
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlFailure/picSideBanner"
+      ],
+      "resultSha256": "2cc5790980869725e1fcbcb51ebe3670bf83ad5b97348f6a0751a774de06351b",
+      "screenshotSha256": "d33a338fcee836e01891f81a6c8ad220a53ff76f4e9d8c399145c5f96ae14584"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "31691252a20b12825b5cf0bd29bc317bd8c27e3c3b1879ea63549a536212bfd4",
+      "screenshotSha256": "269f0d962eb12ef428fca0985d4cb4bb3ea5e53c9b93438aa4ad75bd73ddc58b"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7c369f8fd28a1a2f9593d69fb41625908703c86a894b94f2edc34661494c57ea",
+      "screenshotSha256": "c5830ded5d7dff99a4f3a442de52ffe597fe6e0e8e19f485d738555814ebc6b8"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.25-ordinary",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "29e6847f0f575b4540e512fc29414ebb0c81d0007ecb7f1b6772362d141ff6ba",
+      "screenshotSha256": "d3ac945a77de581c89b4137afa837442a36d11430611c249c2b655cf9af15773"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.25-maximum",
+      "passed": false,
+      "failureCount": 1,
+      "failures": [
+        "CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:frmFailure/pnlButtons"
+      ],
+      "resultSha256": "3bce98341e75504198d723b46eb3f2dcd1bb54f5b1f8f2f27c54a78cf9ff20b3",
+      "screenshotSha256": "99a7535da88bfe84590691484c3cf09f24eb42ac73485df37bf15343226b7db8"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "26ead32b24af3dfe497bfd66fca3490cf31bbc122c60a1f367c3e74744e00774",
+      "screenshotSha256": "5839d406baab50502b5d7aabaf6691db2590229e75fd2f72719829a8c68cb3ba"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fff2516bede6d9a60df29dea0524daaef8f04deec2da422573603ef1f13f6ec8",
+      "screenshotSha256": "4f8337e738ce145f33ca87e6bd22a70db9ab6bbba9508e8d0ff3383695f18091"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9ee24532c3c185a730b87ebfbdd283e723a13b6c2d5782de8d889f29dba27ee1",
+      "screenshotSha256": "76965be1f293422dc34bf4c8fc1896675e510219fdb9092cc3183661d545fa22"
+    },
+    {
+      "name": "uninstaller-failure-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0eb6087407e741da8ecce5ec93fd0511d02940f5b98905bb51ea7f7a34ba3e11",
+      "screenshotSha256": "7a3e6ca43a75ac199bf589cbc434df1cb7e2591cb3cee5ad95aa21116f762cfa"
+    }
+  ]
+}

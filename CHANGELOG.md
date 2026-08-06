@@ -149,6 +149,12 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
 - Retained the exact `134e574...` conditional application atlas. All 160 fresh-
   process cells pass the strengthened non-scrollable reachability, parent
   clipping, label, command-bar, intersection, tab-order, and source-policy gates.
+- Added external-assembly and explicit wizard-page support to the fresh-process
+  layout harness without executing setup operations. The clean `41bf3ad...`
+  setup discovery retains 320 geometry records across ten installer/uninstaller
+  states: 120 pass and 200 reproduce fixed-panel/command-row intersections or
+  controls escaping a non-scrollable view; all setup form behaviour files pass
+  the new zero-runtime-geometry source policy.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,
