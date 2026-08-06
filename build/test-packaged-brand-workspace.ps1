@@ -526,24 +526,13 @@ function Send-C3Shortcut {
     )
 
     $Process.Refresh()
-    $mainWindow = [System.Windows.Automation.AutomationElement]::FromHandle(
-        $Process.MainWindowHandle)
-    if ($null -eq $mainWindow) {
-        throw 'The packaged C3 main window did not expose an automation element.'
-    }
-    $windowPattern = $mainWindow.GetCurrentPattern(
-        [System.Windows.Automation.WindowPattern]::Pattern)
-    $windowPattern.SetWindowVisualState(
-        [System.Windows.Automation.WindowVisualState]::Normal)
-    $focusAnchor = Wait-C3Element `
-        -AutomationId 'btnAdd' `
-        -Name '' `
-        -Within $mainWindow `
-        -TimeoutSeconds 30
-    $focusAnchor.SetFocus()
-    Start-Sleep -Milliseconds 100
-
     $window = $Process.MainWindowHandle
+    if ($window -eq [IntPtr]::Zero) {
+        throw 'The packaged C3 process has no main window for shortcut input.'
+    }
+    if (-not $Process.Responding) {
+        throw 'The packaged C3 main window is not responding.'
+    }
     $keyParameter = [UIntPtr]::new([uint64]$VirtualKey)
     if (-not [C3PackagedBrandNativeMethods]::PostMessage(
             $window,
