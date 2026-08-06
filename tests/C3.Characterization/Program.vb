@@ -49,6 +49,7 @@ Module Program
         RunTest("main empty catalogue surface is Designer-owned", AddressOf MainEmptyCatalogueSurfaceIsDesignerOwned)
         RunTest("main workspace hierarchy is Designer-owned", AddressOf MainWorkspaceHierarchyIsDesignerOwned)
         RunTest("main header fields remain layout-owned and reachable", AddressOf MainHeaderFieldsRemainLayoutOwnedAndReachable)
+        RunTest("tape editor hierarchy is Designer-owned", AddressOf TapeEditorHierarchyIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -426,10 +427,10 @@ Module Program
         End Using
 
         Using tape As New frmTapeNew()
-            CatalogueUx.ConfigureTapeForm(tape)
             AssertEqual(FormBorderStyle.Sizable, tape.FormBorderStyle, "tape border")
             AssertEqual(True, tape.MaximizeBox, "tape maximize")
-            AssertEqual(True, tape.AutoScroll, "tape scrolling")
+            AssertEqual(False, tape.AutoScroll, "tape form scrolling")
+            AssertEqual(True, DirectCast(FindControl(tape, "pnlTapeViewport"), Panel).AutoScroll, "tape viewport scrolling")
             AssertEqual(AutoScaleMode.Font, tape.AutoScaleMode, "tape font scaling")
         End Using
 
@@ -486,7 +487,8 @@ Module Program
             AssertEqual(True, addModel.AccessibleDescription.Length > 0, "Add Model accessible description")
             AssertEqual(True, addDeck.AccessibleDescription.Length > 0, "Add Deck accessible description")
             AssertEqual(DialogResult.Cancel, cancel.DialogResult, "tape cancel result")
-            AssertEqual(True, tape.AutoScroll, "tape detour scroll safety")
+            AssertEqual(False, tape.AutoScroll, "tape form scroll ownership")
+            AssertEqual(True, DirectCast(FindControl(tape, "pnlTapeViewport"), Panel).AutoScroll, "tape detour viewport safety")
         End Using
     End Sub
 
@@ -603,6 +605,34 @@ Module Program
             Next
             AssertEqual(1, FindControl(main, "grpFind").Controls.Count, "Find layout ownership")
             AssertEqual(1, FindControl(main, "grpIdentification").Controls.Count, "Identification layout ownership")
+        End Using
+    End Sub
+
+    Private Sub TapeEditorHierarchyIsDesignerOwned()
+        Using tape As New frmTapeNew()
+            Dim root As Control = FindControl(tape, "tlpTapeRoot")
+            Dim viewport As Panel = DirectCast(FindControl(tape, "pnlTapeViewport"), Panel)
+            Dim canvas As Control = FindControl(tape, "tlpTapeCanvas")
+            Dim metadata As Control = FindControl(tape, "tlpTapeMetadata")
+            Dim commands As Control = FindControl(tape, "tlpTapeCommands")
+            Dim commitCommands As Control = FindControl(tape, "flpTapeCommitCommands")
+            AssertEqual(tape, root.Parent, "tape root parent")
+            AssertEqual(root, viewport.Parent, "tape viewport parent")
+            AssertEqual(root, commands.Parent, "tape commands parent")
+            AssertEqual(viewport, canvas.Parent, "tape canvas parent")
+            AssertEqual(canvas, metadata.Parent, "tape metadata parent")
+            AssertEqual(canvas, FindControl(tape, "grpSideA").Parent, "tape Side A parent")
+            AssertEqual(canvas, FindControl(tape, "grpSideB").Parent, "tape Side B parent")
+            For Each groupName As String In New String() {"grpModel", "grpBasic", "grpTaped", "grpNotes", "grpBulkAdd"}
+                AssertEqual(metadata, FindControl(tape, groupName).Parent, groupName & " tape metadata parent")
+            Next
+            AssertEqual(commands, FindControl(tape, "btnAddDeck").Parent, "Add Deck command parent")
+            AssertEqual(commands, commitCommands.Parent, "commit command bar parent")
+            AssertEqual(commitCommands, FindControl(tape, "btnAdd").Parent, "Add Tape command parent")
+            AssertEqual(commitCommands, FindControl(tape, "btnCancel").Parent, "Cancel command parent")
+            AssertEqual(False, tape.AutoScroll, "tape form AutoScroll disabled")
+            AssertEqual(True, viewport.AutoScroll, "tape viewport AutoScroll enabled")
+            AssertEqual(DockStyle.Top, canvas.Dock, "tape canvas top dock")
         End Using
     End Sub
 

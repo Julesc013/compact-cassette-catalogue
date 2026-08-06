@@ -64,6 +64,12 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   remains grouped in a non-wrapping flow row. The 800-pixel view and 200%
   maximum-text view now retain every command and field without the Alpha 4
   collisions or off-canvas controls.
+- Rebuilt `frmTapeNew` around a fill viewport and persistent bottom command
+  region. A preferred-width three-column table owns metadata plus equal Side A
+  and Side B groups; a metadata table stacks Model, Basic, Taped, Notes, and
+  Bulk Add; and Add Deck/Add Tape/Cancel no longer move with the scrollable
+  canvas. Form-level scrolling is disabled while the dedicated viewport owns
+  both axes.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

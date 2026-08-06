@@ -208,6 +208,11 @@ qualification gates earn the Alpha 5 transition.
   - [ ] Retain the commit-bound Main atlas and complete native DPI, keyboard,
     High Contrast, and assistive-technology review before qualification.
 - [ ] Reconstruct `frmTapeNew` in separate structural and adaptive commits.
+  - [x] Reparent the editor into a dedicated scrolling canvas, stack its five
+    metadata groups, and keep Add Deck/Add Tape/Cancel in a persistent
+    Designer-owned command region outside that viewport.
+  - [ ] Replace the remaining fixed geometry inside the Model group with a
+    local field table, close command-bar reachability, and retain its atlas.
 - [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
 - [ ] Change Console, Find Results, Statistics, Settings, About, and setup/

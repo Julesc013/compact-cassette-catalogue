@@ -150,6 +150,42 @@
       "name": "flpIdentificationNumber",
       "type": "FlowLayoutPanel",
       "reason": "Keep the read-only current/total tape-number controls together on a second identity row."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "tlpTapeRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Separate the fill tape editor from its persistent command region."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "pnlTapeViewport",
+      "type": "Panel",
+      "reason": "Own narrow-window scrolling without making the Tape form an absolute scroll canvas."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "tlpTapeCanvas",
+      "type": "TableLayoutPanel",
+      "reason": "Arrange tape metadata and equal Side A/Side B columns on a preferred-width canvas."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "tlpTapeMetadata",
+      "type": "TableLayoutPanel",
+      "reason": "Stack the existing Model, Basic, Taped, Notes, and Bulk Add groups."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "tlpTapeCommands",
+      "type": "TableLayoutPanel",
+      "reason": "Keep Add Deck and commit commands outside the scrolling editor viewport."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "flpTapeCommitCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep Add Tape and Cancel ordered together in the persistent command region."
     }
   ]
 }

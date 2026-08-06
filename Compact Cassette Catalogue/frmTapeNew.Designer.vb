@@ -23,6 +23,12 @@ Partial Class frmTapeNew
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTapeNew))
+        Me.tlpTapeRoot = New System.Windows.Forms.TableLayoutPanel()
+        Me.pnlTapeViewport = New System.Windows.Forms.Panel()
+        Me.tlpTapeCanvas = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpTapeMetadata = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpTapeCommands = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpTapeCommitCommands = New System.Windows.Forms.FlowLayoutPanel()
         Me.cmbModel = New System.Windows.Forms.ComboBox()
         Me.btnAddModel = New System.Windows.Forms.Button()
         Me.lblAdd = New System.Windows.Forms.Label()
@@ -125,6 +131,12 @@ Partial Class frmTapeNew
         Me.lblBulkAdd = New System.Windows.Forms.Label()
         Me.lblBulkCopies = New System.Windows.Forms.Label()
         Me.grpBulkAdd = New System.Windows.Forms.GroupBox()
+        Me.tlpTapeRoot.SuspendLayout()
+        Me.pnlTapeViewport.SuspendLayout()
+        Me.tlpTapeCanvas.SuspendLayout()
+        Me.tlpTapeMetadata.SuspendLayout()
+        Me.tlpTapeCommands.SuspendLayout()
+        Me.flpTapeCommitCommands.SuspendLayout()
         Me.grpSideB.SuspendLayout()
         CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpConfigB.SuspendLayout()
@@ -148,6 +160,113 @@ Partial Class frmTapeNew
         CType(Me.numBulkAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpBulkAdd.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'tlpTapeRoot
+        '
+        Me.tlpTapeRoot.ColumnCount = 1
+        Me.tlpTapeRoot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpTapeRoot.Controls.Add(Me.pnlTapeViewport, 0, 0)
+        Me.tlpTapeRoot.Controls.Add(Me.tlpTapeCommands, 0, 1)
+        Me.tlpTapeRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpTapeRoot.Location = New System.Drawing.Point(0, 0)
+        Me.tlpTapeRoot.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpTapeRoot.Name = "tlpTapeRoot"
+        Me.tlpTapeRoot.RowCount = 2
+        Me.tlpTapeRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpTapeRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeRoot.Size = New System.Drawing.Size(989, 459)
+        Me.tlpTapeRoot.TabIndex = 0
+        '
+        'pnlTapeViewport
+        '
+        Me.pnlTapeViewport.AutoScroll = True
+        Me.pnlTapeViewport.AutoScrollMinSize = New System.Drawing.Size(970, 518)
+        Me.pnlTapeViewport.Controls.Add(Me.tlpTapeCanvas)
+        Me.pnlTapeViewport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlTapeViewport.Location = New System.Drawing.Point(12, 12)
+        Me.pnlTapeViewport.Margin = New System.Windows.Forms.Padding(12, 12, 12, 4)
+        Me.pnlTapeViewport.Name = "pnlTapeViewport"
+        Me.pnlTapeViewport.Size = New System.Drawing.Size(965, 399)
+        Me.pnlTapeViewport.TabIndex = 0
+        '
+        'tlpTapeCanvas
+        '
+        Me.tlpTapeCanvas.AutoSize = True
+        Me.tlpTapeCanvas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpTapeCanvas.ColumnCount = 3
+        Me.tlpTapeCanvas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350.0!))
+        Me.tlpTapeCanvas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpTapeCanvas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpTapeCanvas.Controls.Add(Me.tlpTapeMetadata, 0, 0)
+        Me.tlpTapeCanvas.Controls.Add(Me.grpSideA, 1, 0)
+        Me.tlpTapeCanvas.Controls.Add(Me.grpSideB, 2, 0)
+        Me.tlpTapeCanvas.Dock = System.Windows.Forms.DockStyle.Top
+        Me.tlpTapeCanvas.Location = New System.Drawing.Point(0, 0)
+        Me.tlpTapeCanvas.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpTapeCanvas.MinimumSize = New System.Drawing.Size(970, 518)
+        Me.tlpTapeCanvas.Name = "tlpTapeCanvas"
+        Me.tlpTapeCanvas.RowCount = 1
+        Me.tlpTapeCanvas.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeCanvas.Size = New System.Drawing.Size(970, 518)
+        Me.tlpTapeCanvas.TabIndex = 0
+        '
+        'tlpTapeMetadata
+        '
+        Me.tlpTapeMetadata.AutoSize = True
+        Me.tlpTapeMetadata.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpTapeMetadata.ColumnCount = 1
+        Me.tlpTapeMetadata.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpTapeMetadata.Controls.Add(Me.grpModel, 0, 0)
+        Me.tlpTapeMetadata.Controls.Add(Me.grpBasic, 0, 1)
+        Me.tlpTapeMetadata.Controls.Add(Me.grpTaped, 0, 2)
+        Me.tlpTapeMetadata.Controls.Add(Me.grpNotes, 0, 3)
+        Me.tlpTapeMetadata.Controls.Add(Me.grpBulkAdd, 0, 4)
+        Me.tlpTapeMetadata.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpTapeMetadata.Location = New System.Drawing.Point(0, 0)
+        Me.tlpTapeMetadata.Margin = New System.Windows.Forms.Padding(0, 0, 5, 0)
+        Me.tlpTapeMetadata.Name = "tlpTapeMetadata"
+        Me.tlpTapeMetadata.RowCount = 5
+        Me.tlpTapeMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeMetadata.Size = New System.Drawing.Size(345, 518)
+        Me.tlpTapeMetadata.TabIndex = 0
+        '
+        'tlpTapeCommands
+        '
+        Me.tlpTapeCommands.AutoSize = True
+        Me.tlpTapeCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpTapeCommands.ColumnCount = 3
+        Me.tlpTapeCommands.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpTapeCommands.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpTapeCommands.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpTapeCommands.Controls.Add(Me.btnAddDeck, 0, 0)
+        Me.tlpTapeCommands.Controls.Add(Me.lblAdd, 1, 0)
+        Me.tlpTapeCommands.Controls.Add(Me.flpTapeCommitCommands, 2, 0)
+        Me.tlpTapeCommands.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.tlpTapeCommands.Location = New System.Drawing.Point(12, 419)
+        Me.tlpTapeCommands.Margin = New System.Windows.Forms.Padding(12, 4, 12, 10)
+        Me.tlpTapeCommands.Name = "tlpTapeCommands"
+        Me.tlpTapeCommands.RowCount = 1
+        Me.tlpTapeCommands.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpTapeCommands.Size = New System.Drawing.Size(965, 30)
+        Me.tlpTapeCommands.TabIndex = 1
+        '
+        'flpTapeCommitCommands
+        '
+        Me.flpTapeCommitCommands.AutoSize = True
+        Me.flpTapeCommitCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpTapeCommitCommands.Controls.Add(Me.btnAdd)
+        Me.flpTapeCommitCommands.Controls.Add(Me.btnCancel)
+        Me.flpTapeCommitCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpTapeCommitCommands.Location = New System.Drawing.Point(651, 0)
+        Me.flpTapeCommitCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpTapeCommitCommands.Name = "flpTapeCommitCommands"
+        Me.flpTapeCommitCommands.Size = New System.Drawing.Size(314, 30)
+        Me.flpTapeCommitCommands.TabIndex = 2
+        Me.flpTapeCommitCommands.WrapContents = False
         '
         'cmbModel
         '
@@ -174,7 +293,9 @@ Partial Class frmTapeNew
         'lblAdd
         '
         Me.lblAdd.AutoSize = True
-        Me.lblAdd.Location = New System.Drawing.Point(168, 426)
+        Me.lblAdd.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblAdd.Location = New System.Drawing.Point(122, 6)
+        Me.lblAdd.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(190, 17)
         Me.lblAdd.TabIndex = 40
@@ -182,9 +303,10 @@ Partial Class frmTapeNew
         '
         'btnAdd
         '
-        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(673, 423)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnAdd.AutoSize = True
+        Me.btnAdd.Location = New System.Drawing.Point(0, 2)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(0, 2, 4, 2)
+        Me.btnAdd.MinimumSize = New System.Drawing.Size(148, 26)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(148, 26)
         Me.btnAdd.TabIndex = 38
@@ -195,8 +317,11 @@ Partial Class frmTapeNew
         '
         Me.btnAddDeck.AccessibleDescription = "Create a recording deck and select it without clearing this tape draft."
         Me.btnAddDeck.AccessibleName = "Add Deck"
-        Me.btnAddDeck.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAddDeck.Location = New System.Drawing.Point(320, 423)
+        Me.btnAddDeck.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.btnAddDeck.AutoSize = True
+        Me.btnAddDeck.Location = New System.Drawing.Point(0, 2)
+        Me.btnAddDeck.Margin = New System.Windows.Forms.Padding(0, 2, 0, 2)
+        Me.btnAddDeck.MinimumSize = New System.Drawing.Size(116, 26)
         Me.btnAddDeck.Name = "btnAddDeck"
         Me.btnAddDeck.Size = New System.Drawing.Size(116, 26)
         Me.btnAddDeck.TabIndex = 37
@@ -207,9 +332,11 @@ Partial Class frmTapeNew
         '
         Me.btnCancel.AccessibleDescription = "Cancel this creation step and return without adding an item."
         Me.btnCancel.AccessibleName = "Cancel"
-        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.AutoSize = True
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(829, 423)
+        Me.btnCancel.Location = New System.Drawing.Point(152, 2)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(0, 2, 0, 2)
+        Me.btnCancel.MinimumSize = New System.Drawing.Size(148, 26)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(148, 26)
         Me.btnCancel.TabIndex = 39
@@ -229,12 +356,13 @@ Partial Class frmTapeNew
         Me.grpSideB.Controls.Add(Me.lblRecordedB)
         Me.grpSideB.Controls.Add(Me.cmbDeckB)
         Me.grpSideB.Controls.Add(Me.lblDeckB)
+        Me.grpSideB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpSideB.Enabled = False
-        Me.grpSideB.Location = New System.Drawing.Point(672, 14)
-        Me.grpSideB.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpSideB.Location = New System.Drawing.Point(663, 0)
+        Me.grpSideB.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
         Me.grpSideB.Name = "grpSideB"
         Me.grpSideB.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpSideB.Size = New System.Drawing.Size(301, 433)
+        Me.grpSideB.Size = New System.Drawing.Size(307, 518)
         Me.grpSideB.TabIndex = 44
         Me.grpSideB.TabStop = False
         Me.grpSideB.Text = "Side B"
@@ -623,11 +751,12 @@ Partial Class frmTapeNew
         Me.grpTaped.Controls.Add(Me.lblSides)
         Me.grpTaped.Controls.Add(Me.chkTapedB)
         Me.grpTaped.Controls.Add(Me.chkTapedA)
-        Me.grpTaped.Location = New System.Drawing.Point(291, 14)
-        Me.grpTaped.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpTaped.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpTaped.Location = New System.Drawing.Point(0, 175)
+        Me.grpTaped.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpTaped.Name = "grpTaped"
         Me.grpTaped.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpTaped.Size = New System.Drawing.Size(69, 113)
+        Me.grpTaped.Size = New System.Drawing.Size(345, 113)
         Me.grpTaped.TabIndex = 41
         Me.grpTaped.TabStop = False
         Me.grpTaped.Text = "Taped"
@@ -668,8 +797,9 @@ Partial Class frmTapeNew
         Me.grpBasic.Controls.Add(Me.chkPackaged)
         Me.grpBasic.Controls.Add(Me.lblCondition)
         Me.grpBasic.Controls.Add(Me.cmbCondition)
-        Me.grpBasic.Location = New System.Drawing.Point(15, 132)
-        Me.grpBasic.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpBasic.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpBasic.Location = New System.Drawing.Point(0, 117)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpBasic.Name = "grpBasic"
         Me.grpBasic.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpBasic.Size = New System.Drawing.Size(345, 54)
@@ -711,8 +841,9 @@ Partial Class frmTapeNew
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(15, 191)
-        Me.grpNotes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpNotes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpNotes.Location = New System.Drawing.Point(0, 292)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpNotes.Name = "grpNotes"
         Me.grpNotes.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpNotes.Size = New System.Drawing.Size(345, 173)
@@ -722,11 +853,12 @@ Partial Class frmTapeNew
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(7, 21)
-        Me.txtNotes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtNotes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtNotes.Location = New System.Drawing.Point(3, 17)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(0)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(331, 144)
+        Me.txtNotes.Size = New System.Drawing.Size(339, 154)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
@@ -743,12 +875,13 @@ Partial Class frmTapeNew
         Me.grpSideA.Controls.Add(Me.lblRecordedA)
         Me.grpSideA.Controls.Add(Me.cmbDeckA)
         Me.grpSideA.Controls.Add(Me.lblDeckA)
+        Me.grpSideA.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpSideA.Enabled = False
-        Me.grpSideA.Location = New System.Drawing.Point(365, 14)
-        Me.grpSideA.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpSideA.Location = New System.Drawing.Point(353, 0)
+        Me.grpSideA.Margin = New System.Windows.Forms.Padding(3, 0, 3, 0)
         Me.grpSideA.Name = "grpSideA"
         Me.grpSideA.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpSideA.Size = New System.Drawing.Size(301, 433)
+        Me.grpSideA.Size = New System.Drawing.Size(304, 518)
         Me.grpSideA.TabIndex = 42
         Me.grpSideA.TabStop = False
         Me.grpSideA.Text = "Side A"
@@ -1143,11 +1276,12 @@ Partial Class frmTapeNew
         Me.grpModel.Controls.Add(Me.lblYear)
         Me.grpModel.Controls.Add(Me.lblModel)
         Me.grpModel.Controls.Add(Me.cmbModel)
-        Me.grpModel.Location = New System.Drawing.Point(15, 14)
-        Me.grpModel.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpModel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpModel.Location = New System.Drawing.Point(0, 0)
+        Me.grpModel.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpModel.Name = "grpModel"
         Me.grpModel.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpModel.Size = New System.Drawing.Size(271, 113)
+        Me.grpModel.Size = New System.Drawing.Size(345, 113)
         Me.grpModel.TabIndex = 39
         Me.grpModel.TabStop = False
         Me.grpModel.Text = "Model"
@@ -1254,8 +1388,9 @@ Partial Class frmTapeNew
         Me.grpBulkAdd.Controls.Add(Me.numBulkAdd)
         Me.grpBulkAdd.Controls.Add(Me.lblBulkCopies)
         Me.grpBulkAdd.Controls.Add(Me.lblBulkAdd)
-        Me.grpBulkAdd.Location = New System.Drawing.Point(15, 368)
-        Me.grpBulkAdd.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpBulkAdd.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpBulkAdd.Location = New System.Drawing.Point(0, 473)
+        Me.grpBulkAdd.Margin = New System.Windows.Forms.Padding(0)
         Me.grpBulkAdd.Name = "grpBulkAdd"
         Me.grpBulkAdd.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpBulkAdd.Size = New System.Drawing.Size(345, 49)
@@ -1268,20 +1403,10 @@ Partial Class frmTapeNew
         Me.AcceptButton = Me.btnAdd
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoScroll = True
+        Me.AutoScroll = False
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(989, 459)
-        Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.btnAddDeck)
-        Me.Controls.Add(Me.grpBulkAdd)
-        Me.Controls.Add(Me.grpSideB)
-        Me.Controls.Add(Me.grpTaped)
-        Me.Controls.Add(Me.grpBasic)
-        Me.Controls.Add(Me.grpNotes)
-        Me.Controls.Add(Me.grpSideA)
-        Me.Controls.Add(Me.grpModel)
-        Me.Controls.Add(Me.lblAdd)
-        Me.Controls.Add(Me.btnAdd)
+        Me.Controls.Add(Me.tlpTapeRoot)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -1290,6 +1415,17 @@ Partial Class frmTapeNew
         Me.Name = "frmTapeNew"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add New Tape"
+        Me.tlpTapeRoot.ResumeLayout(False)
+        Me.tlpTapeRoot.PerformLayout()
+        Me.pnlTapeViewport.ResumeLayout(False)
+        Me.pnlTapeViewport.PerformLayout()
+        Me.tlpTapeCanvas.ResumeLayout(False)
+        Me.tlpTapeCanvas.PerformLayout()
+        Me.tlpTapeMetadata.ResumeLayout(False)
+        Me.tlpTapeCommands.ResumeLayout(False)
+        Me.tlpTapeCommands.PerformLayout()
+        Me.flpTapeCommitCommands.ResumeLayout(False)
+        Me.flpTapeCommitCommands.PerformLayout()
         Me.grpSideB.ResumeLayout(False)
         Me.grpSideB.PerformLayout()
         CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1327,6 +1463,12 @@ Partial Class frmTapeNew
         Me.PerformLayout()
 
     End Sub
+    Friend WithEvents tlpTapeRoot As TableLayoutPanel
+    Friend WithEvents pnlTapeViewport As Panel
+    Friend WithEvents tlpTapeCanvas As TableLayoutPanel
+    Friend WithEvents tlpTapeMetadata As TableLayoutPanel
+    Friend WithEvents tlpTapeCommands As TableLayoutPanel
+    Friend WithEvents flpTapeCommitCommands As FlowLayoutPanel
     Friend WithEvents cmbModel As ComboBox
     Friend WithEvents btnAddModel As Button
     Friend WithEvents lblAdd As Label
