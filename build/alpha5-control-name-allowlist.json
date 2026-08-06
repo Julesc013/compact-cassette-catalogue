@@ -192,6 +192,30 @@
       "name": "tlpTapeModelFields",
       "type": "TableLayoutPanel",
       "reason": "Keep the Model selector, Add Model command, Year, Length, and Region reachable without fixed sibling geometry."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "splitBrowseRoot",
+      "type": "SplitContainer",
+      "reason": "Separate the fixed-width Brand filter pane from the flexible results workspace."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "tlpBrowseRight",
+      "type": "TableLayoutPanel",
+      "reason": "Give Brand results all remaining space above a persistent footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "tlpBrowseFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Separate Brand result status from the existing action group."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "flpBrowseStatus",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the Brand result label and read-only count together in the footer."
     }
   ]
 }

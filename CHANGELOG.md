@@ -75,6 +75,11 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   Length retain bounded numeric editors, and Region fills its row. Focused
   800-pixel and 200% maximum-text observations keep the fields ordered while
   Add Deck/Add Tape/Cancel remain owned by the non-scrolling command region.
+- Began the shared entity-browser reconstruction with Brands: a fixed
+  scrollable filter pane is separated from a flexible results pane, the
+  ListView fills its result group, and result status plus the existing action
+  group remain in a persistent footer. Form-level scrolling and the Brands
+  runtime `ConfigureListForm` call are removed; tab indexes are unique.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,
