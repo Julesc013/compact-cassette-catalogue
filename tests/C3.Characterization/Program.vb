@@ -36,6 +36,8 @@ Module Program
         RunTest("creation planner closes every prerequisite graph", AddressOf CreationPlannerClosesPrerequisites)
         RunTest("catalogue choices preserve stable identity", AddressOf CatalogueChoicesPreserveStableIdentity)
         RunTest("creation dialogs expose explicit result contracts", AddressOf CreationDialogsExposeResultContracts)
+        RunTest("guided creation has no prerequisite dead ends", AddressOf GuidedCreationHasNoDeadEnds)
+        RunTest("tape prerequisite detours preserve the active form", AddressOf TapeDetoursPreserveActiveForm)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -363,6 +365,29 @@ Module Program
             AssertEqual(True, formType.GetProperty("CreatedDisplayName") IsNot Nothing, formType.Name & " CreatedDisplayName")
             AssertEqual(True, formType.GetProperty("SuppressSuccessMessage") IsNot Nothing, formType.Name & " SuppressSuccessMessage")
         Next
+    End Sub
+
+    Private Sub GuidedCreationHasNoDeadEnds()
+        Dim mainSource As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue\frmMain.vb"))
+        Dim workflowSource As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue\CatalogueWorkflow.vb"))
+        AssertEqual(False, mainSource.Contains("Add at least one brand first."), "brand blocker removed")
+        AssertEqual(False, mainSource.Contains("Add at least one model first."), "model blocker removed")
+        AssertEqual(False, Regex.IsMatch(mainSource, "frm(Brand|Model|Deck|Tape)New\.Show\(\)"), "default creation forms removed")
+        AssertEqual(True, workflowSource.Contains("ShowDialog(owner)"), "owned modal creation")
+        AssertEqual(True, workflowSource.Contains("AddModelWithPrerequisites"), "model prerequisite journey")
+        AssertEqual(True, workflowSource.Contains("Public Function AddTape"), "tape journey")
+    End Sub
+
+    Private Sub TapeDetoursPreserveActiveForm()
+        Dim tapeSource As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue\frmTapeNew.vb"))
+        AssertEqual(True, tapeSource.Contains("CreateModelForDetour(Me)"), "model detour owns tape form")
+        AssertEqual(True, tapeSource.Contains("CreateDeckForDetour(Me)"), "deck detour owns tape form")
+        AssertEqual(True, tapeSource.Contains("ReloadModelChoices(createdModel.Key)"), "new model selected")
+        AssertEqual(True, tapeSource.Contains("ReloadDeckChoices(createdDeck.Key)"), "new deck selected")
+        AssertEqual(False, tapeSource.Contains("Must add a deck before entering recordings."), "recording dead end removed")
     End Sub
 
     Private Sub AssertSteps(
