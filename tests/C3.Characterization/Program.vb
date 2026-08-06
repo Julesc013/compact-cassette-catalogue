@@ -42,6 +42,8 @@ Module Program
         RunTest("tape prerequisite detours preserve the active form", AddressOf TapeDetoursPreserveActiveForm)
         RunTest("legacy windows are resizable and scroll safe", AddressOf LegacyWindowsAreResizableAndScrollSafe)
         RunTest("inline creation actions remain keyboard reachable", AddressOf InlineCreationActionsRemainKeyboardReachable)
+        RunTest("creation actions expose accessible cancel and detour controls", AddressOf CreationActionsExposeAccessibleControls)
+        RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -436,6 +438,55 @@ Module Program
             Dim source As String = File.ReadAllText(Path.Combine(_repositoryRoot, "Compact Cassette Catalogue", sourceName))
             AssertEqual(True, source.Contains("CatalogueWorkflow.Add"), sourceName & " creation action")
         Next
+    End Sub
+
+    Private Sub CreationActionsExposeAccessibleControls()
+        Using model As New frmModelNew()
+            InvokePrivate(model, "ConfigureCreationActions")
+            Dim addBrand As Button = DirectCast(FindControl(model, "btnAddBrand"), Button)
+            Dim cancel As Button = DirectCast(FindControl(model, "btnCancel"), Button)
+            AssertEqual(True, addBrand.Text.Contains("&"), "Add Brand access key")
+            AssertEqual(True, addBrand.AccessibleDescription.Length > 0, "Add Brand accessible description")
+            AssertEqual(DialogResult.Cancel, cancel.DialogResult, "model cancel result")
+            AssertEqual(cancel, DirectCast(model.CancelButton, Button), "model CancelButton")
+            AssertEqual(DirectCast(FindControl(model, "btnAdd"), Button), DirectCast(model.AcceptButton, Button), "model AcceptButton")
+        End Using
+
+        Using tape As New frmTapeNew()
+            InvokePrivate(tape, "ConfigureCreationActions")
+            Dim addModel As Button = DirectCast(FindControl(tape, "btnAddModel"), Button)
+            Dim addDeck As Button = DirectCast(FindControl(tape, "btnAddDeck"), Button)
+            Dim cancel As Button = DirectCast(FindControl(tape, "btnCancel"), Button)
+            AssertEqual(True, addModel.AccessibleDescription.Length > 0, "Add Model accessible description")
+            AssertEqual(True, addDeck.AccessibleDescription.Length > 0, "Add Deck accessible description")
+            AssertEqual(DialogResult.Cancel, cancel.DialogResult, "tape cancel result")
+            AssertEqual(True, tape.AutoScroll, "tape detour scroll safety")
+        End Using
+    End Sub
+
+    Private Sub ChoiceRefreshPreservesTapeDraft()
+        Using tape As New frmTapeNew()
+            Dim notes As TextBox = DirectCast(FindControl(tape, "txtNotes"), TextBox)
+            Dim sideA As TextBox = DirectCast(FindControl(tape, "txtNameA"), TextBox)
+            Dim year As NumericUpDown = DirectCast(FindControl(tape, "numYear"), NumericUpDown)
+            notes.Text = "draft notes"
+            sideA.Text = "draft side A"
+            year.Value = 1997D
+            tape.ReloadModelChoices(Nothing)
+            tape.ReloadDeckChoices(Nothing)
+            AssertEqual("draft notes", notes.Text, "notes after choice refresh")
+            AssertEqual("draft side A", sideA.Text, "side A after choice refresh")
+            AssertEqual(1997D, year.Value, "year after choice refresh")
+        End Using
+    End Sub
+
+    Private Sub InvokePrivate(instance As Object, methodName As String)
+        Dim method As MethodInfo = instance.GetType().GetMethod(
+            methodName, BindingFlags.Instance Or BindingFlags.NonPublic)
+        If method Is Nothing Then
+            Throw New InvalidOperationException("Missing private method " & methodName & ".")
+        End If
+        method.Invoke(instance, Nothing)
     End Sub
 
     Private Function FindControl(form As Form, name As String) As Control
