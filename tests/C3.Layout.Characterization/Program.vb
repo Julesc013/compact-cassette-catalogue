@@ -133,8 +133,9 @@ Module Program
         For Each pageName As String In pageNames
             Dim page As Control = FindControl(form, pageName)
             If page IsNot Nothing Then
-                page.Visible = String.Equals(pageName, pageState, StringComparison.Ordinal)
-                page.Enabled = page.Visible
+                Dim isSelected As Boolean = String.Equals(pageName, pageState, StringComparison.Ordinal)
+                page.Visible = isSelected
+                page.Enabled = isSelected
             End If
         Next
 
