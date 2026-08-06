@@ -26,6 +26,10 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   geometry in `Load`, `Shown`, and `Resize` handlers.
 - Replaced property-only resize proof with fresh-process geometry, text,
   reachability, accessibility, performance, and native visual evidence.
+- Added the first fresh-process STA geometry runner and retained the Alpha 4
+  discovery baseline: all six mandatory workspace/browser cells reproduce the
+  prohibited form-scroll/anchor mechanism, the main collision is measured,
+  and 52 source-policy violations are closed to exact files and lines.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

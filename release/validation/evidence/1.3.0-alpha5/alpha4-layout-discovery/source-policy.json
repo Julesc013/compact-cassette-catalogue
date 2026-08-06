@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "mode": "Discovery",
+  "sourceCommit": "a0982e0d09951ab0f0656479379375068e938051",
+  "violationCount": 52,
+  "violations": [
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/CatalogueWorkflow.vb",
+      "line": 405,
+      "text": "cancel.Left = form.ClientSize.Width - cancel.Width - 12"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/CatalogueWorkflow.vb",
+      "line": 406,
+      "text": "addButton.Left = cancel.Left - addButton.Width - 8"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/CatalogueWorkflow.vb",
+      "line": 407,
+      "text": "cancel.Top = form.ClientSize.Height - cancel.Height - 10"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/CatalogueWorkflow.vb",
+      "line": 408,
+      "text": "addButton.Top = cancel.Top"
+    },
+    {
+      "rule": "runtime-visible-control",
+      "path": "Compact Cassette Catalogue/CatalogueWorkflow.vb",
+      "line": 412,
+      "text": "form.Controls.Add(cancel)"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/CatalogueWorkflow.vb",
+      "line": 430,
+      "text": "button.Bounds = bounds"
+    },
+    {
+      "rule": "runtime-visible-control",
+      "path": "Compact Cassette Catalogue/CatalogueWorkflow.vb",
+      "line": 435,
+      "text": "parent.Controls.Add(button)"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmBrandNew.vb",
+      "line": 30,
+      "text": "_cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmBrands.vb",
+      "line": 13,
+      "text": "CatalogueUx.ConfigureListForm(Me, \"grpModels\", \"lstBrands\", \"grpFilters\", \"grpActions\")"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmBrands.vb",
+      "line": 14,
+      "text": "grpActions.Top -= 25"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmBrands.vb",
+      "line": 15,
+      "text": "grpActions.Height += 25"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmBrands.vb",
+      "line": 17,
+      "text": "child.Top += 25"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmBrands.vb",
+      "line": 19,
+      "text": "addBrandButton = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmBrands.vb",
+      "line": 20,
+      "text": "grpActions, \"btnAddBrand\", \"Add &Brand…\", New Rectangle(4, 17, 188, 21), 1,"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmDeckNew.vb",
+      "line": 31,
+      "text": "_cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmDecks.vb",
+      "line": 21,
+      "text": "CatalogueUx.ConfigureListForm(Me, \"grpTapes\", \"lstDecks\", \"grpFilters\", \"grpActions\")"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmDecks.vb",
+      "line": 22,
+      "text": "grpActions.Top -= 25"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmDecks.vb",
+      "line": 23,
+      "text": "grpActions.Height += 25"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmDecks.vb",
+      "line": 25,
+      "text": "child.Top += 25"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmDecks.vb",
+      "line": 27,
+      "text": "addDeckButton = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmDecks.vb",
+      "line": 28,
+      "text": "grpActions, \"btnAddDeck\", \"Add &Deck…\", New Rectangle(5, 17, 194, 21), 1,"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmMain.vb",
+      "line": 378,
+      "text": "CatalogueUx.ConfigureMainForm(Me)"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmMain.vb",
+      "line": 389,
+      "text": "emptyStatePanel.Bounds = grpData.Bounds"
+    },
+    {
+      "rule": "runtime-visible-control",
+      "path": "Compact Cassette Catalogue/frmMain.vb",
+      "line": 404,
+      "text": "emptyStatePanel.Controls.Add(message)"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmMain.vb",
+      "line": 406,
+      "text": "emptyStateAction = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmMain.vb",
+      "line": 410,
+      "text": "New Rectangle(Math.Max(20, (emptyStatePanel.Width - 180) \\ 2), 185, 180, 32),"
+    },
+    {
+      "rule": "runtime-client-size",
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "line": 30,
+      "text": "ClientSize = New Size(436, ClientSize.Height)"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "line": 31,
+      "text": "grpBasic.Width = 250"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "line": 32,
+      "text": "grpExtra.Left = 265"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "line": 33,
+      "text": "grpNotes.Left = 265"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "line": 42,
+      "text": "_addBrandButton = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "line": 46,
+      "text": "New Rectangle(160, 16, 84, 23),"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmModelNew.vb",
+      "line": 50,
+      "text": "_cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmModels.vb",
+      "line": 33,
+      "text": "CatalogueUx.ConfigureListForm(Me, \"grpModels\", \"lstModels\", \"grpFilters\", \"grpActions\")"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmModels.vb",
+      "line": 34,
+      "text": "grpActions.Top -= 25"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmModels.vb",
+      "line": 35,
+      "text": "grpActions.Height += 25"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmModels.vb",
+      "line": 37,
+      "text": "child.Top += 25"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmModels.vb",
+      "line": 39,
+      "text": "addModelButton = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmModels.vb",
+      "line": 40,
+      "text": "grpActions, \"btnAddModel\", \"Add &Model…\", New Rectangle(4, 17, 170, 21), 1,"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "line": 55,
+      "text": "CatalogueUx.ConfigureTapeForm(Me)"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "line": 66,
+      "text": "cmbModel.Width = 105"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "line": 67,
+      "text": "_addModelButton = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "line": 71,
+      "text": "New Rectangle(175, 19, 90, 26),"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "line": 76,
+      "text": "_addDeckButton = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "line": 80,
+      "text": "New Rectangle(320, ClientSize.Height - 36, 116, 26),"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmTapeNew.vb",
+      "line": 85,
+      "text": "_cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmTapes.vb",
+      "line": 68,
+      "text": "CatalogueUx.ConfigureListForm(Me, \"grpTapes\", \"lstTapes\", \"grpFilters\", \"grpActions\")"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmTapes.vb",
+      "line": 69,
+      "text": "grpActions.Top -= 31"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmTapes.vb",
+      "line": 70,
+      "text": "grpActions.Height += 31"
+    },
+    {
+      "rule": "runtime-bounds",
+      "path": "Compact Cassette Catalogue/frmTapes.vb",
+      "line": 72,
+      "text": "child.Top += 31"
+    },
+    {
+      "rule": "runtime-layout-helper",
+      "path": "Compact Cassette Catalogue/frmTapes.vb",
+      "line": 74,
+      "text": "addTapeButton = CatalogueUx.AddActionButton("
+    },
+    {
+      "rule": "runtime-literal-rectangle",
+      "path": "Compact Cassette Catalogue/frmTapes.vb",
+      "line": 75,
+      "text": "grpActions, \"btnAddTape\", \"&Add Tape…\", New Rectangle(7, 21, 236, 26), 1,"
+    }
+  ]
+}

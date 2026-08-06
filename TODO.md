@@ -186,8 +186,9 @@ qualification gates earn the Alpha 5 transition.
 - [x] Move the byte-identical `SetupShared` implementation to
   `Compact Cassette Catalogue Installer/Shared/`, relink both setup projects
   and tests, update validators, and pass the topology/genome/source gates.
-- [ ] Reproduce Alpha 4 overlap, clipping, dynamic-command, and handler-
-  geometry failures with a fresh-process STA harness.
+- [x] Reproduce Alpha 4 overlap, dynamic-command, form-scroll/anchor, tab-order,
+  and handler-geometry failures with a fresh-process STA harness; retain six
+  control-tree JSON records, screenshots, and the 52-item source-policy record.
 - [ ] Move every known static command into its form Designer and remove the
   geometry-oriented `CatalogueUx` helpers.
 - [ ] Reconstruct `frmMain` in separate structural and adaptive commits.

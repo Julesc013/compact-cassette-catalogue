@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "mode": "Discovery",
+  "sourceCommit": "a0982e0d09951ab0f0656479379375068e938051",
+  "executableSha256": "67b539b635b6ed6de058494a171b6462ec47f4e9d4a840e6e00060972f8f1e35",
+  "cellCount": 6,
+  "cells": [
+    {
+      "name": "frmMain-800x552-s1.00-ordinary",
+      "passed": false,
+      "failureCount": 10,
+      "failures": [
+        "FORM_AUTOSCROLL",
+        "SIBLING_INTERSECTION:frmMain:pnlEmptyCatalogue:grpData",
+        "SIBLING_INTERSECTION:frmMain:grpScroll:grpIdentification",
+        "SIBLING_INTERSECTION:frmMain:grpActions:grpIdentification",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:pnlEmptyCatalogue",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpScroll",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpActions",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpFind",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpData",
+        "KNOWN_MAIN_IDENTIFICATION_SCROLL_COLLISION"
+      ],
+      "resultSha256": "34d10934a963bae93f419f0b9623dcf3c65f18d5b2ebb4e9992fb54704cd88a1",
+      "screenshotSha256": "71b726f8d4d7f7bd8d2d295b862efcb8965e066ee7dfda135592db63757d913a"
+    },
+    {
+      "name": "frmTapeNew-800x552-s1.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "FORM_AUTOSCROLL",
+        "DUPLICATE_TAB_INDEX:frmTapeNew:38",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:btnAdd",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:btnAddDeck",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:btnCancel"
+      ],
+      "resultSha256": "2461867b64aeabd2e8bb6e9f14e07accc9e5530543ca5a60548cc75fe4e7d400",
+      "screenshotSha256": "e049578d9f93bd3cbed3bff59f3e7cb185a885493d3ca533a1bb09e6431d399d"
+    },
+    {
+      "name": "frmTapes-800x552-s1.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "FORM_AUTOSCROLL",
+        "DUPLICATE_TAB_INDEX:frmTapes/grpActions:1",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpActions",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpTapes",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpFilters"
+      ],
+      "resultSha256": "26153cf5767c69b02bb3e25991a0f2575471c59e46ed22567c18aa37f325f66b",
+      "screenshotSha256": "2932d365004bf9090ac40f5755a778c5081f2250c7da5340a72e9cff3bd46873"
+    },
+    {
+      "name": "frmModels-800x552-s1.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "FORM_AUTOSCROLL",
+        "DUPLICATE_TAB_INDEX:frmModels/grpActions:1",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpModels",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpActions",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpFilters"
+      ],
+      "resultSha256": "f5c4353156e43f908417fe0ba381b4d4c9316a610371a03538dd3de62c95cfd8",
+      "screenshotSha256": "b69aeb3d76cadbcdf8b887f79f4fff6ba474260c5a854c6c11d5f0e0cab5e80d"
+    },
+    {
+      "name": "frmBrands-800x552-s1.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "FORM_AUTOSCROLL",
+        "DUPLICATE_TAB_INDEX:frmBrands/grpActions:1",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpFilters",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpActions",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpModels"
+      ],
+      "resultSha256": "8823be90eb16175b0f1f4de315877788431ed82e69d1e4678297e3cf4a039cff",
+      "screenshotSha256": "d8d7b29e0f32a5a1bfb5dd983a86dbc09b564f50d05b6f7dd7a26cfec388e21e"
+    },
+    {
+      "name": "frmDecks-800x552-s1.00-ordinary",
+      "passed": false,
+      "failureCount": 5,
+      "failures": [
+        "FORM_AUTOSCROLL",
+        "DUPLICATE_TAB_INDEX:frmDecks/grpActions:1",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpTapes",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpActions",
+        "FORM_SCROLL_RIGHT_BOTTOM_ANCHOR:grpFilters"
+      ],
+      "resultSha256": "25c960482c0b1235a1b3fd9c08b7c19975e14b7f02bdb596f9fcf9531f805ff3",
+      "screenshotSha256": "f49301d596e8e000235ec3f086c1b3ae09cbb454c06c6ad0596e428ee25e3a53"
+    }
+  ]
+}
