@@ -251,16 +251,18 @@ qualification gates earn the Alpha 5 transition.
 - [x] Characterize Console, Find Results, Statistics, Settings, and About before
   changing them; the strengthened reachability gate reproduces failures in all
   five application surfaces and retains 58 exact failing cells.
-  - [ ] Rebuild Console around a fill output region and persistent input command
+  - [x] Rebuild Console around a fill output region and persistent input command
     row; its Enter command and output surface escape the 200% minimum view.
-  - [ ] Rebuild Find Results around a fill list and persistent command/status
+  - [x] Rebuild Find Results around a fill list and persistent command/status
     footer; its list and Edit/Delete commands escape 28 matrix cells.
-  - [ ] Rebuild Statistics around a dedicated scrolling preferred-size canvas;
+  - [x] Rebuild Statistics around a dedicated scrolling preferred-size canvas;
     its dense totals/popular/record sections escape 22 matrix cells.
-  - [ ] Rebuild Settings as a fixed autosizing table; its choices and Save
+  - [x] Rebuild Settings as a fixed autosizing table; its choices and Save
     command escape the 200% minimum view.
-  - [ ] Rebuild About as a fixed autosizing or scroll-safe layout; its artwork,
+  - [x] Rebuild About as a fixed autosizing or scroll-safe layout; its artwork,
     information links, and OK command escape four matrix cells.
+  - [x] Retain all 160 clean-source post-repair geometry records and screenshots;
+    every conditional application cell passes the strengthened reachability gate.
 - [ ] Characterize setup/uninstall pages and change them only when their own
   matrix reproduces a defect.
 - [ ] Complete visible-text, ellipsis, access-key, default/cancel, tab/focus,

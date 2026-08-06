@@ -139,6 +139,16 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
 - Retained the exact `5b4970d...` conditional discovery result: 58 of 160 cells
   fail (About 4, Console 2, Find Results 28, Settings 2, Statistics 22). These
   failures are now the bounded entry authority for five conditional repairs.
+- Rebuilt Console as a fill output workspace with a persistent command row;
+  Find Results as a fill ListView with status and Edit/Delete footer; Settings
+  as a fixed autosizing table with Save/Cancel; and About as an autosizing
+  artwork/information layout with explicit OK semantics.
+- Rebuilt dense Statistics around a dedicated scrolling preferred-size canvas
+  while keeping catalogue status and Refresh/Show Graphs outside the viewport.
+  Existing nested statistic controls and visual group relationships remain.
+- Retained the exact `134e574...` conditional application atlas. All 160 fresh-
+  process cells pass the strengthened non-scrollable reachability, parent
+  clipping, label, command-bar, intersection, tab-order, and source-policy gates.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,
