@@ -23,7 +23,7 @@
     },
     {
       "surface": "typeNames",
-      "reason": "CatalogueWorkflow.vb contains the reviewed prerequisite enums, stable choice/result/validation types, workflow coordinator, and legacy layout helper required by the bounded UX contract.",
+      "reason": "CatalogueWorkflow.vb contains the reviewed prerequisite enums, stable choice/result/validation types, and workflow coordinator required by the bounded UX contract; Alpha 5 removed its obsolete geometry helper module.",
       "regression": "tests/C3.Characterization"
     }
   ]

@@ -199,6 +199,8 @@ qualification gates earn the Alpha 5 transition.
     stack geometry into reviewed Designer declarations.
   - [x] Move the Main empty-state command, guidance, and overlay into the
     Designer; close their exact control names and event wiring mechanically.
+  - [x] Remove the dead `CatalogueUx` runtime geometry/control-construction
+    module after every production caller moved to Designer ownership.
 - [x] Reconstruct `frmMain` in separate structural and adaptive commits.
   - [x] Reparent the existing menu, header groups, editor groups, and empty
     state into a Designer-owned root/header/overlay/viewport hierarchy; remove

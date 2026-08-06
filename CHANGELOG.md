@@ -103,6 +103,10 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
 - Retained the exact `cf2bae1...` browser-family atlas: all 128 fresh-process
   ordinary/maximum cells pass at four window sizes and 100/125/150/200%
   relative scales, with geometry JSON and screenshot hashes for every cell.
+- Removed the now-unreferenced `CatalogueUx` module and its form-scroll,
+  anchoring, rectangle, and runtime-control factories. A direct regression
+  rejects its return; the layout source-policy inventory is reduced from the
+  Alpha 4 baseline of 52 findings to the one open Deck New form-scroll setting.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

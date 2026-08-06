@@ -55,6 +55,7 @@ Module Program
         RunTest("Model browser hierarchy is Designer-owned", AddressOf ModelBrowserHierarchyIsDesignerOwned)
         RunTest("Deck browser hierarchy is Designer-owned", AddressOf DeckBrowserHierarchyIsDesignerOwned)
         RunTest("Tape browser hierarchy is Designer-owned", AddressOf TapeBrowserHierarchyIsDesignerOwned)
+        RunTest("runtime layout helper module is absent", AddressOf RuntimeLayoutHelperModuleIsAbsent)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -772,6 +773,17 @@ Module Program
             Dim command As Control = FindControl(browser, orderedNames(index))
             AssertEqual(commands, command.Parent, description & " " & orderedNames(index) & " parent")
             AssertEqual(index, commands.Controls.GetChildIndex(command), description & " " & orderedNames(index) & " order")
+        Next
+    End Sub
+
+    Private Sub RuntimeLayoutHelperModuleIsAbsent()
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", "CatalogueWorkflow.vb"))
+        AssertEqual(False, source.Contains("Public Module CatalogueUx"), "runtime layout module")
+        For Each helperName As String In New String() {
+                "ConfigureMainForm", "ConfigureTapeForm", "ConfigureListForm",
+                "AddCancelButton", "AddActionButton", "AnchorIfPresent"}
+            AssertEqual(False, source.Contains(helperName), helperName & " removed")
         Next
     End Sub
 
