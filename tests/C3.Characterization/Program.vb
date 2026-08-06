@@ -61,6 +61,7 @@ Module Program
         RunTest("Brand dialogs use fixed autosizing layout", AddressOf BrandDialogsUseFixedAutosizingLayout)
         RunTest("Model dialogs use fixed autosizing layout", AddressOf ModelDialogsUseFixedAutosizingLayout)
         RunTest("Console uses fill output and persistent commands", AddressOf ConsoleUsesFillOutputAndPersistentCommands)
+        RunTest("Find Results uses fill list and persistent footer", AddressOf FindResultsUsesFillListAndPersistentFooter)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -921,6 +922,29 @@ Module Program
             AssertEqual(enterButton, DirectCast(console.AcceptButton, Button), "Console default command")
             AssertEqual(FormBorderStyle.Sizable, console.FormBorderStyle, "Console sizable")
             AssertEqual(False, console.AutoScroll, "Console form AutoScroll disabled")
+        End Using
+    End Sub
+
+    Private Sub FindResultsUsesFillListAndPersistentFooter()
+        Using results As New frmFindResults()
+            Dim root As TableLayoutPanel = DirectCast(FindControl(results, "tlpFindRoot"), TableLayoutPanel)
+            Dim list As ListView = DirectCast(FindControl(results, "lstTapes"), ListView)
+            Dim footer As TableLayoutPanel = DirectCast(FindControl(results, "tlpFindFooter"), TableLayoutPanel)
+            Dim status As FlowLayoutPanel = DirectCast(FindControl(results, "flpFindStatus"), FlowLayoutPanel)
+            Dim commands As FlowLayoutPanel = DirectCast(FindControl(results, "flpFindCommands"), FlowLayoutPanel)
+            AssertEqual(results, root.Parent, "Find Results root parent")
+            AssertEqual(DockStyle.Fill, root.Dock, "Find Results root fill")
+            AssertEqual(root, list.Parent, "Find Results list parent")
+            AssertEqual(DockStyle.Fill, list.Dock, "Find Results list fill")
+            AssertEqual(root, footer.Parent, "Find Results footer parent")
+            AssertEqual(footer, status.Parent, "Find Results status parent")
+            AssertEqual(status, FindControl(results, "lblResults").Parent, "Find Results label parent")
+            AssertEqual(status, FindControl(results, "TextBox2").Parent, "Find Results count parent")
+            AssertEqual(footer, commands.Parent, "Find Results commands parent")
+            AssertEqual(commands, FindControl(results, "btnEdit").Parent, "Find Results Edit parent")
+            AssertEqual(commands, FindControl(results, "btnDelete").Parent, "Find Results Delete parent")
+            AssertEqual(FormBorderStyle.Sizable, results.FormBorderStyle, "Find Results sizable")
+            AssertEqual(False, results.AutoScroll, "Find Results form AutoScroll disabled")
         End Using
     End Sub
 

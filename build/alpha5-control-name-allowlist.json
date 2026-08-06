@@ -510,6 +510,30 @@
       "name": "tlpConsoleCommands",
       "type": "TableLayoutPanel",
       "reason": "Keep the command field and Enter button reachable at every supported size and scale."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "tlpFindRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Give Find Results a fill list above a persistent footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "tlpFindFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Separate result status from Edit and Delete commands."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "flpFindStatus",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the result caption and count together in the persistent footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmFindResults.Designer.vb",
+      "name": "flpFindCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep Edit and Delete together in a Designer-owned command bar."
     }
   ]
 }

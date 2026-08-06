@@ -1,31 +1,22 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmFindResults
     Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
+            If disposing AndAlso components IsNot Nothing Then components.Dispose()
         Finally
             MyBase.Dispose(disposing)
         End Try
     End Sub
 
-    'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFindResults))
-        Me.lblResults = New System.Windows.Forms.Label()
-        Me.btnEdit = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.tlpFindRoot = New System.Windows.Forms.TableLayoutPanel()
         Me.lstTapes = New System.Windows.Forms.ListView()
         Me.colIdentifier = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -41,50 +32,45 @@ Partial Class frmFindResults
         Me.colAlbum = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colTitle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.tlpFindFooter = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpFindStatus = New System.Windows.Forms.FlowLayoutPanel()
+        Me.lblResults = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.flpFindCommands = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
+        Me.tlpFindRoot.SuspendLayout()
+        Me.tlpFindFooter.SuspendLayout()
+        Me.flpFindStatus.SuspendLayout()
+        Me.flpFindCommands.SuspendLayout()
         Me.SuspendLayout()
         '
-        'lblResults
+        'tlpFindRoot
         '
-        Me.lblResults.AutoSize = True
-        Me.lblResults.Location = New System.Drawing.Point(11, 307)
-        Me.lblResults.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblResults.Name = "lblResults"
-        Me.lblResults.Size = New System.Drawing.Size(88, 13)
-        Me.lblResults.TabIndex = 32
-        Me.lblResults.Text = "Results (Filtered):"
-        '
-        'btnEdit
-        '
-        Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(919, 303)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(87, 21)
-        Me.btnEdit.TabIndex = 2
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.UseVisualStyleBackColor = True
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(103, 304)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(87, 20)
-        Me.TextBox2.TabIndex = 2
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.tlpFindRoot.ColumnCount = 1
+        Me.tlpFindRoot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpFindRoot.Controls.Add(Me.lstTapes, 0, 0)
+        Me.tlpFindRoot.Controls.Add(Me.tlpFindFooter, 0, 1)
+        Me.tlpFindRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpFindRoot.Location = New System.Drawing.Point(0, 0)
+        Me.tlpFindRoot.Name = "tlpFindRoot"
+        Me.tlpFindRoot.Padding = New System.Windows.Forms.Padding(12)
+        Me.tlpFindRoot.RowCount = 2
+        Me.tlpFindRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpFindRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpFindRoot.Size = New System.Drawing.Size(1000, 430)
+        Me.tlpFindRoot.TabIndex = 0
         '
         'lstTapes
         '
         Me.lstTapes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdentifier, Me.colName, Me.colBrand, Me.colModel, Me.colType, Me.colYear, Me.colLength, Me.colCondition, Me.colRecorded, Me.colContents, Me.colNoise, Me.colAlbum, Me.colTitle, Me.colNotes})
+        Me.lstTapes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstTapes.HideSelection = False
-        Me.lstTapes.Location = New System.Drawing.Point(11, 11)
-        Me.lstTapes.Margin = New System.Windows.Forms.Padding(2)
+        Me.lstTapes.Location = New System.Drawing.Point(12, 12)
+        Me.lstTapes.Margin = New System.Windows.Forms.Padding(0, 0, 0, 8)
         Me.lstTapes.Name = "lstTapes"
-        Me.lstTapes.Size = New System.Drawing.Size(1086, 288)
-        Me.lstTapes.TabIndex = 1
+        Me.lstTapes.Size = New System.Drawing.Size(976, 371)
+        Me.lstTapes.TabIndex = 0
         Me.lstTapes.UseCompatibleStateImageBehavior = False
         Me.lstTapes.View = System.Windows.Forms.View.Details
         '
@@ -158,15 +144,98 @@ Partial Class frmFindResults
         Me.colNotes.Text = "Notes"
         Me.colNotes.Width = 90
         '
+        'tlpFindFooter
+        '
+        Me.tlpFindFooter.AutoSize = True
+        Me.tlpFindFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpFindFooter.ColumnCount = 2
+        Me.tlpFindFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpFindFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpFindFooter.Controls.Add(Me.flpFindStatus, 0, 0)
+        Me.tlpFindFooter.Controls.Add(Me.flpFindCommands, 1, 0)
+        Me.tlpFindFooter.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpFindFooter.Location = New System.Drawing.Point(12, 391)
+        Me.tlpFindFooter.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpFindFooter.Name = "tlpFindFooter"
+        Me.tlpFindFooter.RowCount = 1
+        Me.tlpFindFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpFindFooter.Size = New System.Drawing.Size(976, 27)
+        Me.tlpFindFooter.TabIndex = 1
+        '
+        'flpFindStatus
+        '
+        Me.flpFindStatus.AutoSize = True
+        Me.flpFindStatus.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpFindStatus.Controls.Add(Me.lblResults)
+        Me.flpFindStatus.Controls.Add(Me.TextBox2)
+        Me.flpFindStatus.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpFindStatus.Location = New System.Drawing.Point(0, 0)
+        Me.flpFindStatus.Margin = New System.Windows.Forms.Padding(0, 0, 8, 0)
+        Me.flpFindStatus.Name = "flpFindStatus"
+        Me.flpFindStatus.Size = New System.Drawing.Size(806, 27)
+        Me.flpFindStatus.TabIndex = 0
+        Me.flpFindStatus.WrapContents = False
+        '
+        'lblResults
+        '
+        Me.lblResults.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblResults.AutoSize = True
+        Me.lblResults.Location = New System.Drawing.Point(0, 7)
+        Me.lblResults.Margin = New System.Windows.Forms.Padding(0, 0, 6, 0)
+        Me.lblResults.Name = "lblResults"
+        Me.lblResults.Size = New System.Drawing.Size(88, 13)
+        Me.lblResults.TabIndex = 0
+        Me.lblResults.Text = "Results (Filtered):"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Enabled = False
+        Me.TextBox2.Location = New System.Drawing.Point(94, 3)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(0, 3, 0, 0)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(87, 20)
+        Me.TextBox2.TabIndex = 0
+        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'flpFindCommands
+        '
+        Me.flpFindCommands.AutoSize = True
+        Me.flpFindCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpFindCommands.Controls.Add(Me.btnEdit)
+        Me.flpFindCommands.Controls.Add(Me.btnDelete)
+        Me.flpFindCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpFindCommands.Location = New System.Drawing.Point(814, 0)
+        Me.flpFindCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpFindCommands.Name = "flpFindCommands"
+        Me.flpFindCommands.Size = New System.Drawing.Size(162, 27)
+        Me.flpFindCommands.TabIndex = 1
+        Me.flpFindCommands.WrapContents = False
+        '
+        'btnEdit
+        '
+        Me.btnEdit.AutoSize = True
+        Me.btnEdit.Enabled = False
+        Me.btnEdit.Location = New System.Drawing.Point(0, 0)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(0, 0, 6, 0)
+        Me.btnEdit.MinimumSize = New System.Drawing.Size(75, 27)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(75, 27)
+        Me.btnEdit.TabIndex = 0
+        Me.btnEdit.Text = "&Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
         'btnDelete
         '
+        Me.btnDelete.AutoSize = True
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(1010, 303)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnDelete.Location = New System.Drawing.Point(81, 0)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnDelete.MinimumSize = New System.Drawing.Size(75, 27)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(87, 21)
-        Me.btnDelete.TabIndex = 33
-        Me.btnDelete.Text = "Delete"
+        Me.btnDelete.Size = New System.Drawing.Size(75, 27)
+        Me.btnDelete.TabIndex = 1
+        Me.btnDelete.Text = "&Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'frmFindResults
@@ -174,26 +243,25 @@ Partial Class frmFindResults
         Me.AcceptButton = Me.btnEdit
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1107, 334)
-        Me.Controls.Add(Me.btnDelete)
-        Me.Controls.Add(Me.lblResults)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.btnEdit)
-        Me.Controls.Add(Me.lstTapes)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.ClientSize = New System.Drawing.Size(1000, 430)
+        Me.Controls.Add(Me.tlpFindRoot)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.MaximizeBox = False
+        Me.MinimumSize = New System.Drawing.Size(640, 360)
         Me.Name = "frmFindResults"
         Me.Text = "Find Results"
+        Me.tlpFindRoot.ResumeLayout(False)
+        Me.tlpFindRoot.PerformLayout()
+        Me.tlpFindFooter.ResumeLayout(False)
+        Me.tlpFindFooter.PerformLayout()
+        Me.flpFindStatus.ResumeLayout(False)
+        Me.flpFindStatus.PerformLayout()
+        Me.flpFindCommands.ResumeLayout(False)
+        Me.flpFindCommands.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
-
     End Sub
 
-    Friend WithEvents lblResults As Label
-    Friend WithEvents btnEdit As Button
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents tlpFindRoot As TableLayoutPanel
     Friend WithEvents lstTapes As ListView
     Friend WithEvents colIdentifier As ColumnHeader
     Friend WithEvents colName As ColumnHeader
@@ -209,5 +277,11 @@ Partial Class frmFindResults
     Friend WithEvents colAlbum As ColumnHeader
     Friend WithEvents colTitle As ColumnHeader
     Friend WithEvents colNotes As ColumnHeader
+    Friend WithEvents tlpFindFooter As TableLayoutPanel
+    Friend WithEvents flpFindStatus As FlowLayoutPanel
+    Friend WithEvents lblResults As Label
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents flpFindCommands As FlowLayoutPanel
+    Friend WithEvents btnEdit As Button
     Friend WithEvents btnDelete As Button
 End Class
