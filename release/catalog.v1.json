@@ -203,10 +203,10 @@
       },
       "supersededBy": null,
       "promotion": {
-        "state": "unpromoted",
+        "state": "tagged",
         "targetBranch": "master",
         "tag": "2.0.0a5",
-        "tagObject": null
+        "tagObject": "a35e50d9d931b5bb8eb059e20598bfe1249822ce"
       },
       "publication": {
         "policy": "intentionally-unpublished",
