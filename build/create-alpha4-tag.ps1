@@ -33,8 +33,9 @@ if ([int]$record.schemaVersion -ne 1 -or [string]$record.status -cne 'pass' -or
     throw 'Alpha 4 qualification record does not bind a passing source/lock/six-asset test checkpoint.'
 }
 $allowedEvidenceChanges = @('release/validation/1.3.0-alpha.4-qualified.json', 'release/validation/1.3.0-alpha.4-qualified.md')
-$evidenceChanges = @(& git -C $repositoryRoot diff --name-only $parent $head)
-if (($evidenceChanges | Sort-Object) -join "`n" -cne ($allowedEvidenceChanges | Sort-Object) -join "`n") {
+$evidenceChanges = @(& git -C $repositoryRoot diff --name-only $parent $head | Sort-Object)
+$unexpectedEvidenceChanges = @(Compare-Object -ReferenceObject ($allowedEvidenceChanges | Sort-Object) -DifferenceObject $evidenceChanges)
+if ($unexpectedEvidenceChanges.Count -ne 0) {
     throw "Alpha 4 evidence commit must change only the qualified JSON/Markdown pair: $($evidenceChanges -join ', ')"
 }
 $expectedTopLevel = @($script:C3Alpha4AssetNames) + @('SHA256SUMS.txt')

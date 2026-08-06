@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "releaseLabel": "1.3.0a4",
+  "tagName": "v1.3.0a4",
+  "tagObject": "8153f56544cff812fc8cf319a06224da563c3faf",
+  "tagTarget": "08a0da3c8a7ce64cccf107e1aa4f9ef7dfb6ade8",
+  "packageSourceCommit": "f914ab6209f1de8c627fe724cabf6f92abe0d50e",
+  "toolchainLockSha256": "cc20cf2a425f3599ad51edcc31286b8f70549a9fe48d68d0e0252cf86020d0ec",
+  "assetsRetained": 6,
+  "localTestBundle": "tmp/C3-v1.3.0a4-test in the root dev/2.x worktree",
+  "localTestBundleHashesVerified": true,
+  "remoteTagVerified": true,
+  "publicReleaseCreated": false,
+  "betaTagCreated": false,
+  "feedChanged": false,
+  "legacyMoved": false,
+  "masterChanged": false,
+  "dev2TrackedFilesChangedByAlphaWork": false,
+  "ownerAcceptanceStatus": "pending",
+  "recordedAtUtc": "2026-08-06T10:57:00Z"
+}
