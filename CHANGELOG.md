@@ -36,6 +36,9 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
 - Retained 40/40 clean-HEAD x86/x64 startup lifecycle passes: every launch
   produced a visible handle, reached first idle, accepted normal close, exited
   with code zero, and required no cleanup kill.
+- Corrected the final minimum-width Tape browser edge case by allowing its
+  Results/count/persistence status row to wrap; both ordinary and maximum-text
+  800×552 cells now keep the full persistence notice inside the footer.
 - Added the first fresh-process STA geometry runner and retained the Alpha 4
   discovery baseline: all six mandatory workspace/browser cells reproduce the
   prohibited form-scroll/anchor mechanism, the main collision is measured,

@@ -679,7 +679,7 @@ Module Program
             Dim split As SplitContainer = DirectCast(FindControl(browser, "splitBrowseRoot"), SplitContainer)
             Dim rightLayout As Control = FindControl(browser, "tlpBrowseRight")
             Dim footer As Control = FindControl(browser, "tlpBrowseFooter")
-            Dim status As Control = FindControl(browser, "flpBrowseStatus")
+            Dim status As FlowLayoutPanel = DirectCast(FindControl(browser, "flpBrowseStatus"), FlowLayoutPanel)
             AssertEqual(browser, split.Parent, "Brand browser root")
             AssertEqual(split.Panel1, FindControl(browser, "grpFilters").Parent, "Brand filter pane")
             AssertEqual(split.Panel2, rightLayout.Parent, "Brand results pane")
@@ -750,7 +750,7 @@ Module Program
             Dim split As SplitContainer = DirectCast(FindControl(browser, "splitBrowseRoot"), SplitContainer)
             Dim rightLayout As Control = FindControl(browser, "tlpBrowseRight")
             Dim footer As Control = FindControl(browser, "tlpBrowseFooter")
-            Dim status As Control = FindControl(browser, "flpBrowseStatus")
+            Dim status As FlowLayoutPanel = DirectCast(FindControl(browser, "flpBrowseStatus"), FlowLayoutPanel)
             AssertEqual(browser, split.Parent, "Tape browser root")
             AssertEqual(split.Panel1, FindControl(browser, "grpFilters").Parent, "Tape filter pane")
             AssertEqual(split.Panel2, rightLayout.Parent, "Tape results pane")
@@ -759,6 +759,7 @@ Module Program
             AssertEqual(footer, status.Parent, "Tape status row")
             AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Tape actions footer")
             AssertBrowserCommandBar(browser, "btnAddTape", "Tape")
+            AssertEqual(True, status.WrapContents, "Tape status row wraps at minimum width")
             AssertEqual(DockStyle.Fill, FindControl(browser, "lstTapes").Dock, "Tape list fill")
             AssertEqual(False, browser.AutoScroll, "Tape form AutoScroll disabled")
         End Using
@@ -769,7 +770,7 @@ Module Program
     End Sub
 
     Private Sub AssertBrowserCommandBar(browser As Form, addButtonName As String, description As String)
-        Dim status As Control = FindControl(browser, "flpBrowseStatus")
+        Dim status As FlowLayoutPanel = DirectCast(FindControl(browser, "flpBrowseStatus"), FlowLayoutPanel)
         Dim actions As GroupBox = DirectCast(FindControl(browser, "grpActions"), GroupBox)
         Dim commands As FlowLayoutPanel = DirectCast(FindControl(browser, "flpBrowseCommands"), FlowLayoutPanel)
         AssertEqual(status, FindControl(browser, "Label1").Parent, description & " persistence status parent")

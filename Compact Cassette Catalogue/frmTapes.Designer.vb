@@ -182,7 +182,7 @@ Partial Class frmTapes
         Me.flpBrowseStatus.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.flpBrowseStatus.Size = New System.Drawing.Size(655, 142)
         Me.flpBrowseStatus.TabIndex = 0
-        Me.flpBrowseStatus.WrapContents = False
+        Me.flpBrowseStatus.WrapContents = True
         '
         'flpBrowseCommands
         '
