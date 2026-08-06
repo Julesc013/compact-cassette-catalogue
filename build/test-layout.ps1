@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('Discovery', 'Qualification')]
+    [ValidateSet('Discovery', 'Qualification', 'Conditional')]
     [string]$Mode = 'Qualification',
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
@@ -31,6 +31,8 @@ $executable = Join-Path $repositoryRoot "artifacts\tests\layout\$Configuration\C
 $sourceCommit = (& git -C $repositoryRoot rev-parse HEAD).Trim()
 $forms = if ($Mode -eq 'Discovery') {
     @('frmMain', 'frmTapeNew', 'frmTapes', 'frmModels', 'frmBrands', 'frmDecks')
+} elseif ($Mode -eq 'Conditional') {
+    @('frmConsole', 'frmFindResults', 'frmStatistics', 'frmSettings', 'frmAbout')
 } else {
     @(
         'frmMain', 'frmTapeNew', 'frmTapes', 'frmModels', 'frmBrands', 'frmDecks',
@@ -105,4 +107,5 @@ $failed = @($cells | Where-Object { -not $_.passed })
 if ($failed.Count -ne 0) {
     throw "Alpha 5 layout qualification failed in $($failed.Count) of $($cells.Count) fresh-process cells."
 }
-Write-Host "Alpha 5 layout qualification passed in $($cells.Count) fresh STA processes; evidence: $EvidenceRoot"
+$scope = if ($Mode -eq 'Conditional') { 'conditional-form characterization' } else { 'layout qualification' }
+Write-Host "Alpha 5 $scope passed in $($cells.Count) fresh STA processes; evidence: $EvidenceRoot"

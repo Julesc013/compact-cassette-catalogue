@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('Discovery', 'Qualification')]
+    [ValidateSet('Discovery', 'Qualification', 'Conditional')]
     [string]$Mode = 'Qualification',
     [string]$OutputPath
 )
