@@ -157,43 +157,43 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SetupShared\SetupContracts.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupContracts.vb">
       <Link>Shared\SetupContracts.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\InstalledState.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\InstalledState.vb">
       <Link>Shared\InstalledState.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupTransactionJournal.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupTransactionJournal.vb">
       <Link>Shared\SetupTransactionJournal.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupDurableTransaction.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupDurableTransaction.vb">
       <Link>Shared\SetupDurableTransaction.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupFileTransaction.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupFileTransaction.vb">
       <Link>Shared\SetupFileTransaction.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupRemovalTransaction.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupRemovalTransaction.vb">
       <Link>Shared\SetupRemovalTransaction.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupEnvironment.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupEnvironment.vb">
       <Link>Shared\SetupEnvironment.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupRegistry.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupRegistry.vb">
       <Link>Shared\SetupRegistry.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupShortcuts.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupShortcuts.vb">
       <Link>Shared\SetupShortcuts.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupInstallOperation.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupInstallOperation.vb">
       <Link>Shared\SetupInstallOperation.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupUninstallOperation.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupUninstallOperation.vb">
       <Link>Shared\SetupUninstallOperation.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupSelfRelocation.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupSelfRelocation.vb">
       <Link>Shared\SetupSelfRelocation.vb</Link>
     </Compile>
-    <Compile Include="..\SetupShared\SetupBundleRuntime.vb">
+    <Compile Include="..\Compact Cassette Catalogue Installer\Shared\SetupBundleRuntime.vb">
       <Link>Shared\SetupBundleRuntime.vb</Link>
     </Compile>
     <Compile Include="frmFailure.Designer.vb">

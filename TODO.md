@@ -183,7 +183,7 @@ qualification gates earn the Alpha 5 transition.
   `src/` migration.
 - [x] Remove ignored `dev/2.x` `src/` build residue from the shared local
   checkout; no tracked 1.x source existed there.
-- [ ] Move the byte-identical `SetupShared` implementation to
+- [x] Move the byte-identical `SetupShared` implementation to
   `Compact Cassette Catalogue Installer/Shared/`, relink both setup projects
   and tests, update validators, and pass the topology/genome/source gates.
 - [ ] Reproduce Alpha 4 overlap, clipping, dynamic-command, and handler-

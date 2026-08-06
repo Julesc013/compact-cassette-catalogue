@@ -44,7 +44,8 @@ function Assert-C3Beta1IdentityTransition {
         'Compact Cassette Catalogue/My Project/AssemblyInfo.vb', 'Compact Cassette Catalogue/varGlobals.vb',
         'Compact Cassette Catalogue Installer/My Project/AssemblyInfo.vb',
         'Compact Cassette Catalogue Uninstaller/My Project/AssemblyInfo.vb',
-        'SetupShared/SetupBundleRuntime.vb', 'build/get-runtime-lanes.ps1', 'build/lanes.json',
+        'Compact Cassette Catalogue Installer/Shared/SetupBundleRuntime.vb',
+        'build/get-runtime-lanes.ps1', 'build/lanes.json',
         'build/package-content/README.txt', 'docs/setup/1.3.0-manifest-contracts.md',
         'tests/C3.Setup.Characterization/Program.vb'
     )

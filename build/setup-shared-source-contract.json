@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "canonicalRoot": "Compact Cassette Catalogue Installer/Shared",
+  "files": [
+    { "name": "InstalledState.vb", "sha256": "68621b11d31a4709eb76b353fc16f725eba8e2a29abb3c04ce326c568a53366e" },
+    { "name": "SetupBundleRuntime.vb", "sha256": "ebc41c429e585cf4c95566348d88a61f6326821f210ba47fb2a859d0705f977c" },
+    { "name": "SetupContracts.vb", "sha256": "ccd184f1907fbc0a28ce030ab59f902960e4a379c180382ef4092a8962468d92" },
+    { "name": "SetupDurableTransaction.vb", "sha256": "13d581ce965dd402a3a0d6d1d1f5857e055cc90f6bdb4b23a6007da735a4adba" },
+    { "name": "SetupEnvironment.vb", "sha256": "e1155f6cc61d63d660be020c96489d1182d5b2e4e22abf30d20572837bb0e1ad" },
+    { "name": "SetupFileTransaction.vb", "sha256": "edc2d4dc88ad988489737a1e60795aa324e4d41fb8653dfa5e909149c7398f93" },
+    { "name": "SetupInstallOperation.vb", "sha256": "513b0e85687d7cc3517aa48a114ce15ef0578c5d7aaf9fc04b9cef7a07ac4948" },
+    { "name": "SetupRegistry.vb", "sha256": "a35d67938e3806dbf0ae94005f4600f4ac64d627d75e9134be55980899619003" },
+    { "name": "SetupRemovalTransaction.vb", "sha256": "0aa91a86a18e37ca11cd4128547a849f8accb9194261f2336f8f44796e25e761" },
+    { "name": "SetupSelfRelocation.vb", "sha256": "a1c4f22c680afcee9744a1d1fb6bc84da62ce315af45d7c6db83cf6359709d6a" },
+    { "name": "SetupShortcuts.vb", "sha256": "f805991bcb957a2ab85bda4f6405c93c32475c4e293961634959b17bd5e5a1b0" },
+    { "name": "SetupTransactionJournal.vb", "sha256": "5a1500447c407c5f1847e8584a29d32d6c29222e54d01e12ecf6b8b36a167bb4" },
+    { "name": "SetupUninstallOperation.vb", "sha256": "9fd2d4aed953654d2fd9e4bf13af659c99d85ea848bbbbb5bbeaa13cdf57d15a" }
+  ]
+}

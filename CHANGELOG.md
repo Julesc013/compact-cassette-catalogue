@@ -28,9 +28,11 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   reachability, accessibility, performance, and native visual evidence.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
-- Chose the original-simple 1.x source topology: application, installer, and
-  uninstaller roots remain; the shared setup engine will move under Installer
-  `Shared/`; a partial 2.x `src/` migration is prohibited.
+- Implemented the original-simple 1.x source topology: application, installer,
+  and uninstaller roots remain; the byte-identical 13-file setup engine now
+  lives under Installer `Shared/`; all three consumers compile those same
+  physical files, and a closed hash/path validator prohibits a partial 2.x
+  `src/` migration or return of root `SetupShared/`.
 - Kept release identity at Alpha 4 until implementation and qualification earn
   `1.3.0a5`; no new build, package, tag, publication, feed, `master`,
   `legacy/1.x`, or `dev/2.x` claim is made by this planning tranche.

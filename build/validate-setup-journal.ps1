@@ -5,8 +5,9 @@ Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
-$journalPath = Join-Path $repositoryRoot 'SetupShared\SetupTransactionJournal.vb'
-$transactionPath = Join-Path $repositoryRoot 'SetupShared\SetupDurableTransaction.vb'
+$sharedRoot = Join-Path $repositoryRoot 'Compact Cassette Catalogue Installer\Shared'
+$journalPath = Join-Path $sharedRoot 'SetupTransactionJournal.vb'
+$transactionPath = Join-Path $sharedRoot 'SetupDurableTransaction.vb'
 $testPath = Join-Path $repositoryRoot 'tests\C3.Setup.Characterization\Program.vb'
 
 foreach ($requiredPath in @($journalPath, $transactionPath, $testPath)) {
@@ -16,8 +17,8 @@ foreach ($requiredPath in @($journalPath, $transactionPath, $testPath)) {
 $journal = [IO.File]::ReadAllText($journalPath)
 $transaction = [IO.File]::ReadAllText($transactionPath)
 $tests = [IO.File]::ReadAllText($testPath)
-$registry = [IO.File]::ReadAllText((Join-Path $repositoryRoot 'SetupShared\SetupRegistry.vb'))
-$shortcuts = [IO.File]::ReadAllText((Join-Path $repositoryRoot 'SetupShared\SetupShortcuts.vb'))
+$registry = [IO.File]::ReadAllText((Join-Path $sharedRoot 'SetupRegistry.vb'))
+$shortcuts = [IO.File]::ReadAllText((Join-Path $sharedRoot 'SetupShortcuts.vb'))
 $expectedPhases = @(
     'prepared',
     'staged',

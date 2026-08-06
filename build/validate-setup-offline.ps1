@@ -36,9 +36,11 @@ foreach ($relativeProjectPath in $projectPaths) {
         throw "$relativeProjectPath contains a reference outside the closed classic setup framework set: $($references -join ', ')"
     }
     $sharedSources = @($project.SelectNodes('//msb:Compile', $namespace) |
-        ForEach-Object { [string]$_.Include } |
-        Where-Object { $_ -like '..\SetupShared\*' } |
-        ForEach-Object { [IO.Path]::GetFileName($_) } |
+        Where-Object {
+            $linkNode = $_.SelectSingleNode('msb:Link', $namespace)
+            $null -ne $linkNode -and [string]$linkNode.InnerText -like 'Shared\*'
+        } |
+        ForEach-Object { [IO.Path]::GetFileName([string]$_.Include) } |
         Sort-Object -Unique)
     if (($sharedSources -join "`n") -cne (($expectedSharedSources | Sort-Object) -join "`n")) {
         throw "$relativeProjectPath does not compile the exact source-identical shared setup engine."
@@ -49,7 +51,7 @@ foreach ($relativeProjectPath in $projectPaths) {
     }
 }
 
-$sourceRoots = @('SetupShared', 'Compact Cassette Catalogue Installer', 'Compact Cassette Catalogue Uninstaller')
+$sourceRoots = @('Compact Cassette Catalogue Installer', 'Compact Cassette Catalogue Uninstaller')
 $forbiddenPatterns = [ordered]@{
     'System.Net import' = '(?im)^\s*Imports\s+System\.Net(?:\.|\s*$)'
     'WebClient' = '(?i)\bWebClient\b'
