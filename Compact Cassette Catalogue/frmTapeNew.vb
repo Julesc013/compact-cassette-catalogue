@@ -105,6 +105,10 @@
     End Sub
 
     Public Sub ReloadDeckChoices(preferredName As String)
+        ReloadDeckChoices(preferredName, preferredName)
+    End Sub
+
+    Private Sub ReloadDeckChoices(preferredNameA As String, preferredNameB As String)
         deckCount = decks.Rows.Count
         cmbDeckA.Items.Clear()
         cmbDeckB.Items.Clear()
@@ -113,8 +117,22 @@
             cmbDeckA.Items.Add(New CatalogueChoice(name, name))
             cmbDeckB.Items.Add(New CatalogueChoice(name, name))
         Next
-        CatalogueWorkflow.SelectChoice(cmbDeckA, preferredName)
-        CatalogueWorkflow.SelectChoice(cmbDeckB, preferredName)
+        CatalogueWorkflow.SelectChoice(cmbDeckA, preferredNameA)
+        CatalogueWorkflow.SelectChoice(cmbDeckB, preferredNameB)
+    End Sub
+
+    Public Sub ReloadDeckChoicesForDetour(createdName As String)
+        Dim preferredNameA As String = CatalogueWorkflow.SelectedChoiceKey(cmbDeckA)
+        Dim preferredNameB As String = CatalogueWorkflow.SelectedChoiceKey(cmbDeckB)
+        If chkTapedB.Checked AndAlso Not chkTapedA.Checked Then
+            preferredNameB = createdName
+        ElseIf chkTapedA.Checked AndAlso chkTapedB.Checked Then
+            preferredNameA = createdName
+            preferredNameB = createdName
+        Else
+            preferredNameA = createdName
+        End If
+        ReloadDeckChoices(preferredNameA, preferredNameB)
     End Sub
 
     Public Sub AddModelFromTape()
@@ -131,7 +149,7 @@
         If createdDeck Is Nothing Then
             Return
         End If
-        ReloadDeckChoices(createdDeck.Key)
+        ReloadDeckChoicesForDetour(createdDeck.Key)
         cmbDeckA.Focus()
     End Sub
 

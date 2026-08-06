@@ -393,7 +393,7 @@ Module Program
         AssertEqual(True, tapeSource.Contains("CreateModelForDetour(Me)"), "model detour owns tape form")
         AssertEqual(True, tapeSource.Contains("CreateDeckForDetour(Me)"), "deck detour owns tape form")
         AssertEqual(True, tapeSource.Contains("ReloadModelChoices(createdModel.Key)"), "new model selected")
-        AssertEqual(True, tapeSource.Contains("ReloadDeckChoices(createdDeck.Key)"), "new deck selected")
+        AssertEqual(True, tapeSource.Contains("ReloadDeckChoicesForDetour(createdDeck.Key)"), "new deck selected without replacing the opposite side")
         AssertEqual(False, tapeSource.Contains("Must add a deck before entering recordings."), "recording dead end removed")
     End Sub
 
@@ -489,6 +489,31 @@ Module Program
             AssertEqual("draft side A", sideA.Text, "side A after choice refresh")
             AssertEqual(1997D, year.Value, "year after choice refresh")
         End Using
+
+        Dim addedRows As New List(Of DataRow)()
+        Try
+            For Each name As String In New String() {"C3 Test Deck A", "C3 Test Deck B", "C3 Test Deck New"}
+                Dim row As DataRow = decks.NewRow()
+                row("Name") = name
+                decks.Rows.Add(row)
+                addedRows.Add(row)
+            Next
+            Using tape As New frmTapeNew()
+                tape.ReloadDeckChoices("C3 Test Deck A")
+                CatalogueWorkflow.SelectChoice(DirectCast(FindControl(tape, "cmbDeckB"), ComboBox), "C3 Test Deck B")
+                tape.ReloadDeckChoicesForDetour("C3 Test Deck New")
+                AssertEqual("C3 Test Deck New", CatalogueWorkflow.SelectedChoiceKey(
+                    DirectCast(FindControl(tape, "cmbDeckA"), ComboBox)), "detour selects new deck for default side")
+                AssertEqual("C3 Test Deck B", CatalogueWorkflow.SelectedChoiceKey(
+                    DirectCast(FindControl(tape, "cmbDeckB"), ComboBox)), "detour preserves opposite-side deck")
+            End Using
+        Finally
+            For Each row As DataRow In addedRows
+                If row.Table IsNot Nothing Then
+                    row.Table.Rows.Remove(row)
+                End If
+            Next
+        End Try
     End Sub
 
     Private Sub InvokePrivate(instance As Object, methodName As String)
