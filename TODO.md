@@ -220,7 +220,9 @@ qualification gates earn the Alpha 5 transition.
     persistent status/actions footer; remove its runtime layout helper.
   - [x] Rebuild Models to the same fixed-filter/fill-results/persistent-footer
     contract and remove its runtime layout helper.
-  - [ ] Rebuild Decks and Tapes to the same ownership contract.
+  - [x] Rebuild Decks to the same ownership contract and remove its runtime
+    layout helper.
+  - [ ] Rebuild Tapes to the same ownership contract.
   - [ ] Convert each action group to an adaptive command row and retain the
     complete browser-family atlas.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.

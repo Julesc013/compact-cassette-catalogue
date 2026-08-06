@@ -84,6 +84,11 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   now expands with the result pane, filters stay in the fixed scrollable pane,
   status/actions persist below the list, action tab indexes are unique, and no
   behavior-time layout helper remains.
+- Rebuilt Decks with the shared fixed filter/flexible results contract. Its
+  21-column ListView now fills the available pane, status and actions persist
+  below it, filter overflow belongs to the fixed pane, form-level scrolling is
+  disabled, and its runtime layout helper and duplicate action tab order are
+  gone.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

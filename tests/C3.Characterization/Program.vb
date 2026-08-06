@@ -53,6 +53,7 @@ Module Program
         RunTest("tape model fields and commands remain layout-owned", AddressOf TapeModelFieldsAndCommandsRemainLayoutOwned)
         RunTest("Brand browser hierarchy is Designer-owned", AddressOf BrandBrowserHierarchyIsDesignerOwned)
         RunTest("Model browser hierarchy is Designer-owned", AddressOf ModelBrowserHierarchyIsDesignerOwned)
+        RunTest("Deck browser hierarchy is Designer-owned", AddressOf DeckBrowserHierarchyIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -707,6 +708,28 @@ Module Program
         Dim source As String = File.ReadAllText(Path.Combine(
             _repositoryRoot, "Compact Cassette Catalogue", "frmModels.vb"))
         AssertEqual(False, source.Contains("CatalogueUx.ConfigureListForm"), "Model runtime list helper")
+    End Sub
+
+    Private Sub DeckBrowserHierarchyIsDesignerOwned()
+        Using browser As New frmDecks()
+            Dim split As SplitContainer = DirectCast(FindControl(browser, "splitBrowseRoot"), SplitContainer)
+            Dim rightLayout As Control = FindControl(browser, "tlpBrowseRight")
+            Dim footer As Control = FindControl(browser, "tlpBrowseFooter")
+            Dim status As Control = FindControl(browser, "flpBrowseStatus")
+            AssertEqual(browser, split.Parent, "Deck browser root")
+            AssertEqual(split.Panel1, FindControl(browser, "grpFilters").Parent, "Deck filter pane")
+            AssertEqual(split.Panel2, rightLayout.Parent, "Deck results pane")
+            AssertEqual(rightLayout, FindControl(browser, "grpTapes").Parent, "Deck result group")
+            AssertEqual(rightLayout, footer.Parent, "Deck footer")
+            AssertEqual(footer, status.Parent, "Deck status row")
+            AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Deck actions footer")
+            AssertEqual(DockStyle.Fill, FindControl(browser, "lstDecks").Dock, "Deck list fill")
+            AssertEqual(False, browser.AutoScroll, "Deck form AutoScroll disabled")
+        End Using
+
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", "frmDecks.vb"))
+        AssertEqual(False, source.Contains("CatalogueUx.ConfigureListForm"), "Deck runtime list helper")
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

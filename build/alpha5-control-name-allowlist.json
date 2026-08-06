@@ -240,6 +240,30 @@
       "name": "flpBrowseStatus",
       "type": "FlowLayoutPanel",
       "reason": "Keep the Model result label and read-only count together in the footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "splitBrowseRoot",
+      "type": "SplitContainer",
+      "reason": "Separate the fixed-width Deck filter pane from the flexible results workspace."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "tlpBrowseRight",
+      "type": "TableLayoutPanel",
+      "reason": "Give Deck results all remaining space above a persistent footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "tlpBrowseFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Separate Deck result status from the existing action group."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "flpBrowseStatus",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the Deck result label and read-only count together in the footer."
     }
   ]
 }

@@ -17,7 +17,6 @@
     End Sub
 
     Private Sub ConfigureListUx()
-        CatalogueUx.ConfigureListForm(Me, "grpTapes", "lstDecks", "grpFilters", "grpActions")
         Label1.Text = "Changes are saved with the catalogue."
     End Sub
 
