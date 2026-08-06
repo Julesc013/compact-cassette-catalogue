@@ -32,6 +32,16 @@
       "regression": "build/test-setup-layout.ps1 characterizes ready and progress states across the governed matrix; build/validate-setup-accessibility.ps1 requires an explicit visible ready-state transition after validation."
     },
     {
+      "surface": "controls:Compact Cassette Catalogue Uninstaller/frmSuccess.Designer.vb",
+      "reason": "Alpha 5 places the existing uninstall-complete artwork, text, feedback choice, and Finish command in a fixed-dialog root with a scroll-safe autosizing canvas and persistent navigation row.",
+      "regression": "build/test-setup-layout.ps1 characterizes Uninstaller success across the governed matrix while setup accessibility tests retain feedback-choice and Finish semantics."
+    },
+    {
+      "surface": "controls:Compact Cassette Catalogue Uninstaller/frmFailure.Designer.vb",
+      "reason": "Alpha 5 places the existing uninstall-failure artwork, diagnostic text, and Finish command in a fixed-dialog root with a scroll-safe autosizing canvas and persistent navigation row.",
+      "regression": "build/test-setup-layout.ps1 characterizes Uninstaller failure across the governed matrix while setup accessibility tests retain diagnostic and Finish semantics."
+    },
+    {
       "surface": "resourceKeys:Compact Cassette Catalogue Installer/frmFailure.resx",
       "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
       "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."
