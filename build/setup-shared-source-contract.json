@@ -3,7 +3,7 @@
   "canonicalRoot": "Compact Cassette Catalogue Installer/Shared",
   "files": [
     { "name": "InstalledState.vb", "sha256": "68621b11d31a4709eb76b353fc16f725eba8e2a29abb3c04ce326c568a53366e" },
-    { "name": "SetupBundleRuntime.vb", "sha256": "ebc41c429e585cf4c95566348d88a61f6326821f210ba47fb2a859d0705f977c" },
+    { "name": "SetupBundleRuntime.vb", "sha256": "b0d5a907973f888daf47eeacfb5d96a9f1e4ce3367599b1ba5085c4d0817409f" },
     { "name": "SetupContracts.vb", "sha256": "ccd184f1907fbc0a28ce030ab59f902960e4a379c180382ef4092a8962468d92" },
     { "name": "SetupDurableTransaction.vb", "sha256": "13d581ce965dd402a3a0d6d1d1f5857e055cc90f6bdb4b23a6007da735a4adba" },
     { "name": "SetupEnvironment.vb", "sha256": "e1155f6cc61d63d660be020c96489d1182d5b2e4e22abf30d20572837bb0e1ad" },

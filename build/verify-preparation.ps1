@@ -11,6 +11,8 @@ $ErrorActionPreference = 'Stop'
 
 & (Join-Path $PSScriptRoot 'validate-baseline-genome.ps1')
 & (Join-Path $PSScriptRoot 'validate-alpha5-control-names.ps1')
+& (Join-Path $PSScriptRoot 'validate-startup-instrumentation.ps1')
+& (Join-Path $PSScriptRoot 'test-alpha5-tag-message.ps1')
 & (Join-Path $PSScriptRoot 'validate-1x-source-topology.ps1')
 & (Join-Path $PSScriptRoot 'validate-compatibility-corpus.ps1')
 & (Join-Path $PSScriptRoot 'validate-docs.ps1')

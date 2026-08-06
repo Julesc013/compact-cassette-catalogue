@@ -108,8 +108,10 @@ $markdown = @"
 
 Status: **PASS for retained, unpublished owner testing.**
 
-Package source: ``$sourceCommit``  
-External toolchain lock SHA-256: ``$lockHash``  
+Package source: ``$sourceCommit``
+
+External toolchain lock SHA-256: ``$lockHash``
+
 Startup lifecycle: ``$($startup.passed)/$($startup.total) PASS``
 
 All three application, installer, and uninstaller lanes passed Candidate
