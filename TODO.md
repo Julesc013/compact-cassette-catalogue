@@ -227,8 +227,10 @@ qualification gates earn the Alpha 5 transition.
     layout helper.
   - [x] Convert each inherited full-width action stack to a Designer-owned,
     wrapping Add/Refresh/Edit/Delete command row with governed logical minimums.
-  - [ ] Retain the complete commit-bound browser-family atlas and finish native
-    keyboard, DPI, High Contrast, and assistive-technology review.
+  - [x] Retain the complete 128-cell commit-bound browser-family geometry and
+    screenshot atlas from the exact pushed adaptive source.
+  - [ ] Finish native keyboard, DPI, High Contrast, and assistive-technology
+    review for the four browser forms.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
 - [ ] Change Console, Find Results, Statistics, Settings, About, and setup/
   uninstall pages only when the characterization matrix reproduces a defect.

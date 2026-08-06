@@ -100,6 +100,9 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   inherited full-width rectangles. The geometry runner now populates maximum
   content without inventing invalid stable-key selections and fails when a
   command escapes its command bar.
+- Retained the exact `cf2bae1...` browser-family atlas: all 128 fresh-process
+  ordinary/maximum cells pass at four window sizes and 100/125/150/200%
+  relative scales, with geometry JSON and screenshot hashes for every cell.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,
