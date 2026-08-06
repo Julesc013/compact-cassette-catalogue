@@ -218,7 +218,9 @@ qualification gates earn the Alpha 5 transition.
 - [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.
   - [x] Rebuild Brands with a fixed filter pane, fill results list, and
     persistent status/actions footer; remove its runtime layout helper.
-  - [ ] Rebuild Models, Decks, and Tapes to the same ownership contract.
+  - [x] Rebuild Models to the same fixed-filter/fill-results/persistent-footer
+    contract and remove its runtime layout helper.
+  - [ ] Rebuild Decks and Tapes to the same ownership contract.
   - [ ] Convert each action group to an adaptive command row and retain the
     complete browser-family atlas.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.

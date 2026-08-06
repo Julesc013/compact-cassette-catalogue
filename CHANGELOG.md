@@ -80,6 +80,10 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   ListView fills its result group, and result status plus the existing action
   group remain in a persistent footer. Form-level scrolling and the Brands
   runtime `ConfigureListForm` call are removed; tab indexes are unique.
+- Applied the same closed browser structure to Models: the larger column set
+  now expands with the result pane, filters stay in the fixed scrollable pane,
+  status/actions persist below the list, action tab indexes are unique, and no
+  behavior-time layout helper remains.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

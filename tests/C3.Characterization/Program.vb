@@ -52,6 +52,7 @@ Module Program
         RunTest("tape editor hierarchy is Designer-owned", AddressOf TapeEditorHierarchyIsDesignerOwned)
         RunTest("tape model fields and commands remain layout-owned", AddressOf TapeModelFieldsAndCommandsRemainLayoutOwned)
         RunTest("Brand browser hierarchy is Designer-owned", AddressOf BrandBrowserHierarchyIsDesignerOwned)
+        RunTest("Model browser hierarchy is Designer-owned", AddressOf ModelBrowserHierarchyIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -684,6 +685,28 @@ Module Program
         Dim source As String = File.ReadAllText(Path.Combine(
             _repositoryRoot, "Compact Cassette Catalogue", "frmBrands.vb"))
         AssertEqual(False, source.Contains("CatalogueUx.ConfigureListForm"), "Brand runtime list helper")
+    End Sub
+
+    Private Sub ModelBrowserHierarchyIsDesignerOwned()
+        Using browser As New frmModels()
+            Dim split As SplitContainer = DirectCast(FindControl(browser, "splitBrowseRoot"), SplitContainer)
+            Dim rightLayout As Control = FindControl(browser, "tlpBrowseRight")
+            Dim footer As Control = FindControl(browser, "tlpBrowseFooter")
+            Dim status As Control = FindControl(browser, "flpBrowseStatus")
+            AssertEqual(browser, split.Parent, "Model browser root")
+            AssertEqual(split.Panel1, FindControl(browser, "grpFilters").Parent, "Model filter pane")
+            AssertEqual(split.Panel2, rightLayout.Parent, "Model results pane")
+            AssertEqual(rightLayout, FindControl(browser, "grpModels").Parent, "Model result group")
+            AssertEqual(rightLayout, footer.Parent, "Model footer")
+            AssertEqual(footer, status.Parent, "Model status row")
+            AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Model actions footer")
+            AssertEqual(DockStyle.Fill, FindControl(browser, "lstModels").Dock, "Model list fill")
+            AssertEqual(False, browser.AutoScroll, "Model form AutoScroll disabled")
+        End Using
+
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", "frmModels.vb"))
+        AssertEqual(False, source.Contains("CatalogueUx.ConfigureListForm"), "Model runtime list helper")
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

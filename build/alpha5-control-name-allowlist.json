@@ -216,6 +216,30 @@
       "name": "flpBrowseStatus",
       "type": "FlowLayoutPanel",
       "reason": "Keep the Brand result label and read-only count together in the footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "splitBrowseRoot",
+      "type": "SplitContainer",
+      "reason": "Separate the fixed-width Model filter pane from the flexible results workspace."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "tlpBrowseRight",
+      "type": "TableLayoutPanel",
+      "reason": "Give Model results all remaining space above a persistent footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "tlpBrowseFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Separate Model result status from the existing action group."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "flpBrowseStatus",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the Model result label and read-only count together in the footer."
     }
   ]
 }
