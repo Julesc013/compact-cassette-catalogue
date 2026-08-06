@@ -2,6 +2,7 @@
     Private _createdKey As String
     Private _createdDisplayName As String
     Private _validationErrors As ErrorProvider
+    Private _cancelButton As Button
 
     Public ReadOnly Property CreatedKey As String
         Get
@@ -18,7 +19,16 @@
     Public Property SuppressSuccessMessage As Boolean
 
     Private Sub FrmAddDeck_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        AutoScaleMode = AutoScaleMode.Font
+        AutoScroll = True
+        MinimumSize = Size
+        btnAdd.Text = "Add &Deck"
+        btnAdd.AccessibleName = "Add Deck"
+        btnAdd.AccessibleDescription = "Add this deck to the current catalogue."
+        txtManufacturer.AccessibleName = "Deck manufacturer"
+        txtModel.AccessibleName = "Deck model or name"
+        lblAdd.Text = "Changes are saved with the catalogue."
+        _cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)
         numYear.Maximum = Date.Today.Year
 
         'Load defaults

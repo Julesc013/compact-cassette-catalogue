@@ -2,8 +2,11 @@
 
     Dim identifiers As New List(Of String)
     Dim identifierCount As Integer = 0
+    Private addModelButton As Button
 
     Private Sub frmModels_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        ConfigureListUx()
 
         ' Populate objects.
 
@@ -24,6 +27,26 @@
 
         loadList()
 
+    End Sub
+
+    Private Sub ConfigureListUx()
+        CatalogueUx.ConfigureListForm(Me, "grpModels", "lstModels", "grpFilters", "grpActions")
+        grpActions.Top -= 25
+        grpActions.Height += 25
+        For Each child As Control In grpActions.Controls
+            child.Top += 25
+        Next
+        addModelButton = CatalogueUx.AddActionButton(
+            grpActions, "btnAddModel", "Add &Model…", New Rectangle(4, 17, 170, 21), 1,
+            "Add a model and create a missing brand when required.")
+        AddHandler addModelButton.Click, AddressOf addModelButton_Click
+        Label1.Text = "Changes are saved with the catalogue."
+    End Sub
+
+    Private Sub addModelButton_Click(sender As Object, e As EventArgs)
+        If CatalogueWorkflow.AddModel(Me) Then
+            loadList()
+        End If
     End Sub
 
     Public Sub loadList()
@@ -251,10 +274,12 @@
 
         ' Get index of this model's row in the data table.
         Dim identifier As String = identifiers(0) ' Use the first model selected.
-        frmModelEdit.modelRow = models.Rows.Find(identifier) ' Send this row to the next form for processing.
-
-        ' Open the editting form.
-        frmModelEdit.Show()
+        Using dialog As New frmModelEdit()
+            dialog.modelRow = models.Rows.Find(identifier)
+            dialog.StartPosition = FormStartPosition.CenterParent
+            dialog.ShowDialog(Me)
+        End Using
+        loadList()
 
     End Sub
 

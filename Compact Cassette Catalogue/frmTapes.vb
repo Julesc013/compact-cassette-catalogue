@@ -4,8 +4,11 @@
 
     Dim identifiers As New List(Of String)
     Dim identifierCount As Integer = 0
+    Private addTapeButton As Button
 
     Private Sub frmViewTapes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        ConfigureListUx()
 
         ' Initialise objects.
 
@@ -59,6 +62,26 @@
 
         loadList()
 
+    End Sub
+
+    Private Sub ConfigureListUx()
+        CatalogueUx.ConfigureListForm(Me, "grpTapes", "lstTapes", "grpFilters", "grpActions")
+        grpActions.Top -= 31
+        grpActions.Height += 31
+        For Each child As Control In grpActions.Controls
+            child.Top += 31
+        Next
+        addTapeButton = CatalogueUx.AddActionButton(
+            grpActions, "btnAddTape", "&Add Tape…", New Rectangle(7, 21, 236, 26), 1,
+            "Add a tape and create missing Brand or Model prerequisites.")
+        AddHandler addTapeButton.Click, AddressOf addTapeButton_Click
+        Label1.Text = "Changes are saved with the catalogue."
+    End Sub
+
+    Private Sub addTapeButton_Click(sender As Object, e As EventArgs)
+        If CatalogueWorkflow.AddTape(Me) Then
+            loadList()
+        End If
     End Sub
 
     Private Sub loadList()

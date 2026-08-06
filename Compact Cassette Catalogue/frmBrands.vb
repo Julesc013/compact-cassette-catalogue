@@ -2,9 +2,31 @@
 
     Dim identifiers As New List(Of String)
     Dim identifierCount As Integer = 0
+    Private addBrandButton As Button
 
     Private Sub frmViewBrands_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ConfigureListUx()
         loadList()
+    End Sub
+
+    Private Sub ConfigureListUx()
+        CatalogueUx.ConfigureListForm(Me, "grpModels", "lstBrands", "grpFilters", "grpActions")
+        grpActions.Top -= 25
+        grpActions.Height += 25
+        For Each child As Control In grpActions.Controls
+            child.Top += 25
+        Next
+        addBrandButton = CatalogueUx.AddActionButton(
+            grpActions, "btnAddBrand", "Add &Brand…", New Rectangle(4, 17, 188, 21), 1,
+            "Add a brand to the current catalogue.")
+        AddHandler addBrandButton.Click, AddressOf addBrandButton_Click
+        Label1.Text = "Changes are saved with the catalogue."
+    End Sub
+
+    Private Sub addBrandButton_Click(sender As Object, e As EventArgs)
+        If CatalogueWorkflow.AddBrand(Me) Then
+            loadList()
+        End If
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
@@ -161,10 +183,12 @@
 
         ' Get index of this brand's row in the data table.
         Dim identifier As String = identifiers(0) ' Use the first brand selected.
-        frmBrandEdit.brandRow = brands.Rows.Find(identifier) ' Send this row to the next form for processing.
-
-        ' Open the editting form.
-        frmBrandEdit.Show()
+        Using dialog As New frmBrandEdit()
+            dialog.brandRow = brands.Rows.Find(identifier)
+            dialog.StartPosition = FormStartPosition.CenterParent
+            dialog.ShowDialog(Me)
+        End Using
+        loadList()
 
     End Sub
 

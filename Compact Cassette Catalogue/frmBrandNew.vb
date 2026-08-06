@@ -2,6 +2,7 @@
     Private _createdKey As String
     Private _createdDisplayName As String
     Private _validationErrors As ErrorProvider
+    Private _cancelButton As Button
 
     Public ReadOnly Property CreatedKey As String
         Get
@@ -16,6 +17,18 @@
     End Property
 
     Public Property SuppressSuccessMessage As Boolean
+
+    Private Sub frmBrandNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        AutoScaleMode = AutoScaleMode.Font
+        MinimumSize = Size
+        btnAdd.Text = "&Add Brand"
+        btnAdd.AccessibleName = "Add Brand"
+        btnAdd.AccessibleDescription = "Add this brand to the current catalogue."
+        txtBrand.AccessibleName = "Brand name"
+        txtCode.AccessibleName = "Brand code"
+        lblAdd.Text = "Changes are saved with the catalogue."
+        _cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)
+    End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 

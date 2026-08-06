@@ -3,6 +3,8 @@
     Private _createdKey As String
     Private _createdDisplayName As String
     Private _validationErrors As ErrorProvider
+    Private _cancelButton As Button
+    Private _addBrandButton As Button
 
     Public ReadOnly Property CreatedKey As String
         Get
@@ -20,8 +22,37 @@
     Public Property PreferredBrandCode As String
 
     Private Sub FrmAddModel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        ConfigureCreationActions()
         ReloadBrandChoices(PreferredBrandCode)
+    End Sub
+
+    Private Sub ConfigureCreationActions()
+        ClientSize = New Size(436, ClientSize.Height)
+        grpBasic.Width = 250
+        grpExtra.Left = 265
+        grpNotes.Left = 265
+        btnAdd.Text = "Add &Model"
+        btnAdd.AccessibleName = "Add Model"
+        btnAdd.AccessibleDescription = "Add this model to the current catalogue."
+        cmbBrand.AccessibleName = "Model brand"
+        cmbType.AccessibleName = "Tape type"
+        txtModel.AccessibleName = "Model name"
+        txtCode.AccessibleName = "Model code"
+        lblAdd.Text = "Changes are saved with the catalogue."
+        _addBrandButton = CatalogueUx.AddActionButton(
+            grpBasic,
+            "btnAddBrand",
+            "Add &Brand…",
+            New Rectangle(160, 16, 84, 23),
+            2,
+            "Create a brand and select it for this model.")
+        AddHandler _addBrandButton.Click, AddressOf btnAddBrand_Click
+        _cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)
+        MinimumSize = Size
+    End Sub
+
+    Private Sub btnAddBrand_Click(sender As Object, e As EventArgs)
+        AddBrandFromModel()
     End Sub
 
     Public Sub ReloadBrandChoices(preferredCode As String)

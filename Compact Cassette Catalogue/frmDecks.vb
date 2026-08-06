@@ -2,8 +2,11 @@
 
     Dim identifiers As New List(Of String)
     Dim identifierCount As Integer = 0
+    Private addDeckButton As Button
 
     Private Sub FrmViewDecks_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        ConfigureListUx()
 
         ' Intialise objects.
         cmbNR.SelectedIndex = 0
@@ -12,6 +15,26 @@
         ' Load list.
         loadList()
 
+    End Sub
+
+    Private Sub ConfigureListUx()
+        CatalogueUx.ConfigureListForm(Me, "grpTapes", "lstDecks", "grpFilters", "grpActions")
+        grpActions.Top -= 25
+        grpActions.Height += 25
+        For Each child As Control In grpActions.Controls
+            child.Top += 25
+        Next
+        addDeckButton = CatalogueUx.AddActionButton(
+            grpActions, "btnAddDeck", "Add &Deck…", New Rectangle(5, 17, 194, 21), 1,
+            "Add a recording deck to the current catalogue.")
+        AddHandler addDeckButton.Click, AddressOf addDeckButton_Click
+        Label1.Text = "Changes are saved with the catalogue."
+    End Sub
+
+    Private Sub addDeckButton_Click(sender As Object, e As EventArgs)
+        If CatalogueWorkflow.AddDeck(Me) Then
+            loadList()
+        End If
     End Sub
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         loadList()
@@ -327,10 +350,12 @@
 
         ' Get fullname/identifier of this decks's row in the data table.
         Dim nameid As String = identifiers(0) ' Use the first deck selected.
-        frmDeckEdit.deckRow = decks.Rows.Find(nameid) ' Send this row to the next form for processing.
-
-        ' Open the editting form.
-        frmDeckEdit.Show()
+        Using dialog As New frmDeckEdit()
+            dialog.deckRow = decks.Rows.Find(nameid)
+            dialog.StartPosition = FormStartPosition.CenterParent
+            dialog.ShowDialog(Me)
+        End Using
+        loadList()
 
     End Sub
 

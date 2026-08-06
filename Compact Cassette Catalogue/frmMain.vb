@@ -37,6 +37,8 @@ Public Class frmMain
 
     Private loadedFileRevision As String = Nothing
     Private closeApproved As Boolean = False
+    Private emptyStatePanel As Panel
+    Private emptyStateAction As Button
 
     Public Shared Function TransitionCanContinue(hasPendingEdit As Boolean,
                                                   editDecision As EditChoice,
@@ -314,6 +316,8 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        ConfigureMainUx()
+
         ' Indicate to subroutines that the program is in the 'initial setup' phase.
         duringSetup = True
 
@@ -368,6 +372,52 @@ Public Class frmMain
         ' Indicate to subroutines that the program has finished the 'initial setup' phase.
         duringSetup = False
 
+    End Sub
+
+    Private Sub ConfigureMainUx()
+        CatalogueUx.ConfigureMainForm(Me)
+        btnAdd.Text = "&Add Tape…"
+        btnAdd.AccessibleName = "Add Tape"
+        btnAdd.AccessibleDescription = "Add a tape and create any missing catalogue prerequisites."
+        NewTapeToolStripMenuItem.Text = "Add &Tape…"
+        NewModelToolStripMenuItem.Text = "Add &Model…"
+        NewManufactererToolStripMenuItem.Text = "Add &Brand…"
+        NewDeckToolStripMenuItem.Text = "Add &Deck…"
+
+        emptyStatePanel = New Panel()
+        emptyStatePanel.Name = "pnlEmptyCatalogue"
+        emptyStatePanel.Bounds = grpData.Bounds
+        emptyStatePanel.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        emptyStatePanel.BackColor = SystemColors.Control
+        emptyStatePanel.AccessibleName = "Empty catalogue"
+
+        Dim message As New Label()
+        message.Name = "lblEmptyCatalogue"
+        message.AutoSize = False
+        message.TextAlign = ContentAlignment.MiddleCenter
+        message.Text = "No tapes have been added yet." & Environment.NewLine & Environment.NewLine &
+            "Add your first tape. C3 will guide you through" & Environment.NewLine &
+            "Brand → Model → Tape as required."
+        message.SetBounds(20, 60, Math.Max(300, emptyStatePanel.Width - 40), 110)
+        message.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        message.AccessibleName = "No tapes have been added yet"
+        emptyStatePanel.Controls.Add(message)
+
+        emptyStateAction = CatalogueUx.AddActionButton(
+            emptyStatePanel,
+            "btnAddFirstTape",
+            "&Add First Tape…",
+            New Rectangle(Math.Max(20, (emptyStatePanel.Width - 180) \ 2), 185, 180, 32),
+            1,
+            "Start the guided Brand, Model, and Tape creation journey.")
+        emptyStateAction.Anchor = AnchorStyles.Top
+        AddHandler emptyStateAction.Click, AddressOf emptyStateAction_Click
+        Controls.Add(emptyStatePanel)
+        emptyStatePanel.BringToFront()
+    End Sub
+
+    Private Sub emptyStateAction_Click(sender As Object, e As EventArgs)
+        addNewTape()
     End Sub
 
     Private Function normaliseUpdateCheckPolicy(policy As String) As String
@@ -626,6 +676,13 @@ Public Class frmMain
 
         'Unmask update routines
         updatesMask = False
+
+        If emptyStatePanel IsNot Nothing Then
+            emptyStatePanel.Visible = tapeCount = 0
+            If emptyStatePanel.Visible Then
+                emptyStatePanel.BringToFront()
+            End If
+        End If
 
     End Sub
 
