@@ -64,7 +64,8 @@ namespace C3.Catalogue.Canonical
             writer.String(value.BrandId.EntityId); writer.Int32(value.TypeNumber);
             writer.String(value.ModelName); writer.String(value.LegacyCode);
             writer.String(value.LegacyIdentifier); writer.String(value.DisplayName);
-            writer.Timestamp(value.AddedAt); writer.String(value.Notes);
+            writer.Int32(value.LegacyCounter); writer.Timestamp(value.AddedAt);
+            writer.String(value.Notes);
         }
 
         private static void DeckModel(CanonicalDigestWriter writer, CatalogueDeckModelState value)

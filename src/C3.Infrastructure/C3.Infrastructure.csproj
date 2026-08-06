@@ -66,6 +66,7 @@
     <Compile Include="FileOperations\CompactSiblingFileName.cs" />
     <Compile Include="FileOperations\OwnedSiblingTemporaryFile.cs" />
     <Compile Include="Migrations\V1_1ToV2_0\LegacyTimestampLexemes.cs" />
+    <Compile Include="Migrations\V1_1ToV2_0\LegacyV1CanonicalMapper.cs" />
     <Compile Include="Migrations\V1_1ToV2_0\LegacyToNativeConversionService.cs" />
     <Compile Include="Migrations\V1_1ToV2_0\LegacyToNativeMigrator.cs" />
     <Compile Include="Migrations\V1_1ToV2_0\MigrationContracts.cs" />

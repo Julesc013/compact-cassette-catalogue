@@ -243,6 +243,24 @@ from `CatalogueState`; characterization requires byte-exact native writer output
 and fingerprint parity. This keeps XML and profile mechanics outside the
 logical owner while proving that canonical state is sufficient for native I/O.
 
+Legacy-v1.1 now has one read-only `DataSet`-to-`CatalogueState` mapping owner in
+Infrastructure. The migration service delegates to that mapper and then to the
+canonical-to-native adapter; it no longer interprets every legacy field a
+second time. Historical deterministic IDs remain byte-compatible with the
+accepted migration profile, timestamp lexemes retain the accepted UTC
+normalization evidence, and every supported entity, side, recording,
+relationship, alias, and measurement enters the logical graph before any native
+DTO is created.
+
+Legacy aggregate table counters are validated and normalized by the secure
+v1.1 store as derived row counts. The per-model sequence value is stored profile
+evidence rather than a derived row count: canonical state retains and
+fingerprints it. Frozen native-v2 has no corresponding field. The migration
+report therefore records the exact information loss, and the general native
+adapter refuses a non-zero counter; only the explicit migration adaptation path
+may perform that already-reported loss. A successor native profile may add a
+representation, but the qualified Alpha 4 format is not changed retroactively.
+
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,
 entity ordering, and included metadata. Per-entity digests and ordered aggregate

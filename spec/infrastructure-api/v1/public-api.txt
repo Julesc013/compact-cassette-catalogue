@@ -263,6 +263,7 @@ property|C3.Infrastructure.Diagnostics.CrashReportContext|OperatingSystem|System
 property|C3.Infrastructure.Diagnostics.CrashReportContext|ProcessBitness|System.String|getset
 property|C3.Infrastructure.Diagnostics.CrashReportContext|ProductVersion|System.String|getset
 property|C3.Infrastructure.Diagnostics.CrashReportContext|ReleaseStage|System.String|getset
+property|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|CanonicalState|C3.Catalogue.Canonical.CatalogueState|get
 property|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|Document|C3.Catalogue.Native.NativeCatalogue|get
 property|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|IsSuccess|System.Boolean|get
 property|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrationResult|Report|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport|get

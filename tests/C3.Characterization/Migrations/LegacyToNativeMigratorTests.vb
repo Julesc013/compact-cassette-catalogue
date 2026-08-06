@@ -29,6 +29,15 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
         AssertEqual(2, first.Report.Counts.Recordings, "recording count")
         AssertEqual(64, first.Report.SourceRevision.Length, "source revision length")
         AssertEqual(False, first.Report.HasBlockingIssues, "blocking issues")
+        AssertEqual(1, first.CanonicalState.CassetteModels(0).LegacyCounter, "legacy model counter")
+        AssertEqual(
+            first.Document.CassetteModels(0).Id.ToString(),
+            first.CanonicalState.CassetteModels(0).Id.EntityId,
+            "canonical migration identity")
+        AssertEqual(
+            True,
+            HasIssue(first.Report, "native-v2.legacy-model-counter-not-represented"),
+            "explicit native profile loss")
         AssertEqual(
             New DateTime(2026, 8, 3, 14, 0, 0, DateTimeKind.Utc),
             first.Document.Brands(0).AddedAt.Value,
@@ -92,6 +101,8 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
             sessionId,
             ContentVersion.Zero,
             budget)
+        Dim legacyFingerprints =
+            New CatalogueStateFingerprintProjector().Project(migrated.CanonicalState)
 
         AssertEqual("native-v2.0", first.SourceProfile.ProfileCode, "shadow source profile")
         AssertEqual(7L, first.Snapshot.TotalEntities, "shadow entity count")
@@ -119,6 +130,16 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
             first.Snapshot.Fingerprint,
             adaptedProjection.Snapshot.Fingerprint,
             "canonical-to-native adapter fingerprint")
+        AssertEqual(
+            False,
+            first.Snapshot.Fingerprint.Equals(legacyFingerprints.Root),
+            "legacy counter profile difference is fingerprinted")
+        AssertThrows(Of InvalidOperationException)(
+            Sub()
+                Dim ignored As NativeCatalogue =
+                    New CanonicalToNativeV2Adapter().Adapt(migrated.CanonicalState)
+            End Sub,
+            "strict adapter refuses legacy counter loss")
         AssertBytesEqual(
             New NativeXmlCatalogueWriter().Write(migrated.Document),
             New NativeXmlCatalogueWriter().Write(adapted),
@@ -343,6 +364,18 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
                 Throw New InvalidOperationException(name & " differs at byte " & index.ToString() & ".")
             End If
         Next
+    End Sub
+
+    Private Shared Sub AssertThrows(Of TException As Exception)(
+            action As Action,
+            name As String)
+        Try
+            action()
+        Catch exception As TException
+            Return
+        End Try
+        Throw New InvalidOperationException(name & " did not throw " &
+            GetType(TException).Name & ".")
     End Sub
 
     Private Shared Sub AssertEqual(Of T)(expected As T, actual As T, name As String)

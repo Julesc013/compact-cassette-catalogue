@@ -18,6 +18,14 @@
 - Added the reverse logical-to-native adapter and byte-exact round-trip proof,
   establishing that the canonical graph can drive the frozen native-v2 writer
   without moving XML or profile rules into `C3.Catalogue`.
+- Replaced the migration-owned second field mapper with one legacy-v1.1-to-
+  canonical adapter. The migrator is now a thin load/project/adapt
+  orchestrator, and its result exposes the exact read-only canonical state used
+  to produce native-v2 output.
+- Preserved and fingerprinted the legacy cassette-model sequence counter in the
+  canonical graph. Because frozen native-v2 cannot store that profile field,
+  migration records an explicit warning and ordinary native adaptation refuses
+  the loss instead of dropping it silently.
 
 
 ### Version 2.0.0 Alpha 5 - In development

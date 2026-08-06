@@ -1,3 +1,4 @@
+using C3.Catalogue.Canonical;
 using C3.Catalogue.Native;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -123,14 +124,20 @@ namespace C3.Infrastructure.Migrations.V1_1ToV2_0
 
     public sealed class LegacyToNativeMigrationResult
     {
-        internal LegacyToNativeMigrationResult(NativeCatalogue document, MigrationReport report)
+        internal LegacyToNativeMigrationResult(
+            NativeCatalogue document,
+            CatalogueState canonicalState,
+            MigrationReport report)
         {
             Document = document;
+            CanonicalState = canonicalState;
             Report = report;
         }
 
-        public bool IsSuccess => Document != null && !Report.HasBlockingIssues;
+        public bool IsSuccess =>
+            Document != null && CanonicalState != null && !Report.HasBlockingIssues;
         public NativeCatalogue Document { get; }
+        public CatalogueState CanonicalState { get; }
         public MigrationReport Report { get; }
     }
 

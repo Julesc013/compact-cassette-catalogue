@@ -11,6 +11,18 @@ namespace C3.Infrastructure.CatalogueFiles.Canonical
     {
         public NativeCatalogue Adapt(CatalogueState source)
         {
+            return Adapt(source, false);
+        }
+
+        internal NativeCatalogue AdaptLegacyMigration(CatalogueState source)
+        {
+            return Adapt(source, true);
+        }
+
+        private static NativeCatalogue Adapt(
+            CatalogueState source,
+            bool permitLegacyCounterLoss)
+        {
             if (source == null) throw new ArgumentNullException(nameof(source));
 
             var brands = new List<NativeBrand>();
@@ -27,6 +39,12 @@ namespace C3.Infrastructure.CatalogueFiles.Canonical
             var models = new List<NativeCassetteModel>();
             foreach (var value in source.CassetteModels)
             {
+                if (value.LegacyCounter != 0 && !permitLegacyCounterLoss)
+                {
+                    throw new InvalidOperationException(
+                        "The frozen native-v2 profile cannot represent a non-zero " +
+                        "legacy cassette-model counter.");
+                }
                 models.Add(new NativeCassetteModel(
                     Id<NativeCassetteModel>(value.Id, CatalogueEntityKind.CassetteModel),
                     Id<NativeBrand>(value.BrandId, CatalogueEntityKind.Brand),
