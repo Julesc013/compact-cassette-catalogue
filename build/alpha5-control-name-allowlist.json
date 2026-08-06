@@ -498,6 +498,18 @@
       "name": "btnCancel",
       "type": "Button",
       "reason": "Provide an explicit keyboard-reachable cancel result for Model editing."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.Designer.vb",
+      "name": "tlpConsoleRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Give Console output all available space above a persistent input row."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmConsole.Designer.vb",
+      "name": "tlpConsoleCommands",
+      "type": "TableLayoutPanel",
+      "reason": "Keep the command field and Enter button reachable at every supported size and scale."
     }
   ]
 }

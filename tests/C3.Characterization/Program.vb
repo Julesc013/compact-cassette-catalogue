@@ -60,6 +60,7 @@ Module Program
         RunTest("Deck Edit viewport is Designer-owned", AddressOf DeckEditViewportIsDesignerOwned)
         RunTest("Brand dialogs use fixed autosizing layout", AddressOf BrandDialogsUseFixedAutosizingLayout)
         RunTest("Model dialogs use fixed autosizing layout", AddressOf ModelDialogsUseFixedAutosizingLayout)
+        RunTest("Console uses fill output and persistent commands", AddressOf ConsoleUsesFillOutputAndPersistentCommands)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -900,6 +901,27 @@ Module Program
     Private Sub ModelDialogsUseFixedAutosizingLayout()
         AssertModelDialogLayout(New frmModelNew(), "btnAdd", True, "Model New")
         AssertModelDialogLayout(New frmModelEdit(), "btnUpdate", False, "Model Edit")
+    End Sub
+
+    Private Sub ConsoleUsesFillOutputAndPersistentCommands()
+        Using console As New frmConsole()
+            Dim root As TableLayoutPanel = DirectCast(FindControl(console, "tlpConsoleRoot"), TableLayoutPanel)
+            Dim output As ListBox = DirectCast(FindControl(console, "lstConsole"), ListBox)
+            Dim commands As TableLayoutPanel = DirectCast(FindControl(console, "tlpConsoleCommands"), TableLayoutPanel)
+            Dim input As TextBox = DirectCast(FindControl(console, "txtCommand"), TextBox)
+            Dim enterButton As Button = DirectCast(FindControl(console, "btnEnter"), Button)
+            AssertEqual(console, root.Parent, "Console root parent")
+            AssertEqual(DockStyle.Fill, root.Dock, "Console root fill")
+            AssertEqual(root, output.Parent, "Console output parent")
+            AssertEqual(DockStyle.Fill, output.Dock, "Console output fill")
+            AssertEqual(True, output.HorizontalScrollbar, "Console horizontal history scroll")
+            AssertEqual(root, commands.Parent, "Console command row parent")
+            AssertEqual(commands, input.Parent, "Console input parent")
+            AssertEqual(commands, enterButton.Parent, "Console Enter parent")
+            AssertEqual(enterButton, DirectCast(console.AcceptButton, Button), "Console default command")
+            AssertEqual(FormBorderStyle.Sizable, console.FormBorderStyle, "Console sizable")
+            AssertEqual(False, console.AutoScroll, "Console form AutoScroll disabled")
+        End Using
     End Sub
 
     Private Sub AssertModelDialogLayout(form As Form, commitButtonName As String, hasPrerequisiteCommand As Boolean, description As String)
