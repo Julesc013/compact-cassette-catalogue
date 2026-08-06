@@ -63,6 +63,7 @@ Module Program
         RunTest("Console uses fill output and persistent commands", AddressOf ConsoleUsesFillOutputAndPersistentCommands)
         RunTest("Find Results uses fill list and persistent footer", AddressOf FindResultsUsesFillListAndPersistentFooter)
         RunTest("Settings uses a fixed autosizing table", AddressOf SettingsUsesFixedAutosizingTable)
+        RunTest("About preserves artwork in autosizing layout", AddressOf AboutPreservesArtworkInAutosizingLayout)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -970,6 +971,34 @@ Module Program
             AssertEqual(True, settings.AutoSize, "Settings auto size")
             AssertEqual(AutoSizeMode.GrowAndShrink, settings.AutoSizeMode, "Settings auto size mode")
             AssertEqual(False, settings.AutoScroll, "Settings form AutoScroll disabled")
+        End Using
+    End Sub
+
+    Private Sub AboutPreservesArtworkInAutosizingLayout()
+        Using about As New frmAbout()
+            Dim root As TableLayoutPanel = DirectCast(FindControl(about, "tlpAboutRoot"), TableLayoutPanel)
+            Dim body As TableLayoutPanel = DirectCast(FindControl(about, "tlpAboutBody"), TableLayoutPanel)
+            Dim details As TableLayoutPanel = DirectCast(FindControl(about, "tlpAboutDetails"), TableLayoutPanel)
+            Dim commands As FlowLayoutPanel = DirectCast(FindControl(about, "flpAboutCommands"), FlowLayoutPanel)
+            Dim okButton As Button = DirectCast(FindControl(about, "btnOK"), Button)
+            AssertEqual(about, root.Parent, "About root parent")
+            AssertEqual(root, FindControl(about, "PictureBox1").Parent, "About banner parent")
+            AssertEqual(root, body.Parent, "About body parent")
+            AssertEqual(body, FindControl(about, "PictureBox2").Parent, "About icon parent")
+            AssertEqual(body, FindControl(about, "pnlInformation").Parent, "About information parent")
+            AssertEqual(FindControl(about, "pnlInformation"), details.Parent, "About details parent")
+            For Each controlName As String In New String() {
+                    "lblProgramName", "lblCopyright", "lblProgramVersion", "lblCatalogueVersion",
+                    "lblProgramDate", "lblWebsite", "lnkWebsite", "lblContactEmail", "lnkContactEmail"}
+                AssertEqual(details, FindControl(about, controlName).Parent, "About " & controlName & " parent")
+            Next
+            AssertEqual(root, commands.Parent, "About command bar parent")
+            AssertEqual(commands, okButton.Parent, "About OK parent")
+            AssertEqual(okButton, DirectCast(about.AcceptButton, Button), "About default command")
+            AssertEqual(okButton, DirectCast(about.CancelButton, Button), "About cancel command")
+            AssertEqual(DialogResult.OK, okButton.DialogResult, "About OK result")
+            AssertEqual(True, about.AutoSize, "About auto size")
+            AssertEqual(False, about.AutoScroll, "About form AutoScroll disabled")
         End Using
     End Sub
 

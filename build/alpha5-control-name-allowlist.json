@@ -552,6 +552,30 @@
       "name": "btnCancel",
       "type": "Button",
       "reason": "Provide an explicit keyboard-reachable cancel result for Settings."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "tlpAboutRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Arrange About artwork, information, and commands in a fixed autosizing dialog."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "tlpAboutBody",
+      "type": "TableLayoutPanel",
+      "reason": "Keep the cassette icon beside the flexible information region."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "tlpAboutDetails",
+      "type": "TableLayoutPanel",
+      "reason": "Align version, date, website, and contact information without absolute positions."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmAbout.Designer.vb",
+      "name": "flpAboutCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the OK command in a Designer-owned dialog command bar."
     }
   ]
 }
