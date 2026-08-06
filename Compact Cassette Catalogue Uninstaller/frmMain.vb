@@ -15,10 +15,21 @@ Public Class frmMain
             C3Setup.SetupBundleRuntime.RequireCurrentRelease(_state.Manifest)
             _facts = C3Setup.SetupEnvironment.Capture()
             C3Setup.SetupEnvironment.ValidateRemoval(_state, _facts)
+            ShowReadyPage()
             btnUninstall.Select()
         Catch ex As Exception
             ShowFailure("Uninstall could not validate the installed ownership or computer." & Environment.NewLine & Environment.NewLine & ex.Message)
         End Try
+    End Sub
+
+    Private Sub ShowReadyPage()
+        pnlUninstall.Visible = False
+        pnlUninstall.Enabled = False
+        pnlReady.Visible = True
+        pnlReady.Enabled = True
+        btnUninstall.Visible = True
+        btnUninstall.Enabled = True
+        btnCancel.Enabled = True
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click

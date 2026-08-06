@@ -27,6 +27,11 @@
       "regression": "build/test-setup-layout.ps1 characterizes Installer failure across the governed size, scale, and content matrix while setup accessibility tests retain diagnostic and Finish semantics."
     },
     {
+      "surface": "controls:Compact Cassette Catalogue Uninstaller/frmMain.Designer.vb",
+      "reason": "Alpha 5 replaces the reproduced fixed-panel uninstall geometry with Designer-owned root, scroll-viewport, autosizing canvas, status-table, and persistent navigation containers while preserving the original commands and ownership-only removal controls.",
+      "regression": "build/test-setup-layout.ps1 characterizes ready and progress states across the governed matrix; build/validate-setup-accessibility.ps1 requires an explicit visible ready-state transition after validation."
+    },
+    {
       "surface": "resourceKeys:Compact Cassette Catalogue Installer/frmFailure.resx",
       "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
       "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."

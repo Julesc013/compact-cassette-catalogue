@@ -21,6 +21,9 @@ $contracts = [ordered]@{
         'Private Sub ConfigureAccessibility()',
         'Me.AccessibleName = "Compact Cassette Catalogue Uninstaller"',
         'barInstallProgress.AccessibleName = "Uninstallation progress"',
+        'Private Sub ShowReadyPage()',
+        'pnlReady.Visible = True',
+        'btnUninstall.Visible = True',
         'Me.AcceptButton = btnUninstall',
         'Me.AcceptButton = Nothing'
     )
