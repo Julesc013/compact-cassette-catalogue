@@ -53,54 +53,58 @@
 
         ' Declare variables.
 
+        If deckRow Is Nothing Then
+            Throw New InvalidOperationException("Deck Edit requires a catalogue row.")
+        End If
+
         deckIndex = decks.Rows.IndexOf(deckRow)
 
-        manufacturer = CStr(decks.Rows(deckIndex)("Manufacturer"))
-        model = CStr(decks.Rows(deckIndex)("Model"))
-        fullName = CStr(decks.Rows(deckIndex)("Name"))
-        year = CInt(decks.Rows(deckIndex)("Year"))
-        condition = CInt(decks.Rows(deckIndex)("Condition"))
+        manufacturer = CStr(deckRow("Manufacturer"))
+        model = CStr(deckRow("Model"))
+        fullName = CStr(deckRow("Name"))
+        year = CInt(deckRow("Year"))
+        condition = CInt(deckRow("Condition"))
 
-        type1 = CBool(decks.Rows(deckIndex)("Type1"))
-        type2 = CBool(decks.Rows(deckIndex)("Type2"))
-        type3 = CBool(decks.Rows(deckIndex)("Type3"))
-        type4 = CBool(decks.Rows(deckIndex)("Type4"))
+        type1 = CBool(deckRow("Type1"))
+        type2 = CBool(deckRow("Type2"))
+        type3 = CBool(deckRow("Type3"))
+        type4 = CBool(deckRow("Type4"))
 
-        HX = CBool(decks.Rows(deckIndex)("HX"))
-        MPX = CBool(decks.Rows(deckIndex)("MPX"))
+        HX = CBool(deckRow("HX"))
+        MPX = CBool(deckRow("MPX"))
 
-        DolbyB = CBool(decks.Rows(deckIndex)("DolbyB"))
-        DolbyC = CBool(decks.Rows(deckIndex)("DolbyC"))
-        DolbyS = CBool(decks.Rows(deckIndex)("DolbyS"))
-        DBX1 = CBool(decks.Rows(deckIndex)("DBX1"))
-        DBX2 = CBool(decks.Rows(deckIndex)("DBX2"))
+        DolbyB = CBool(deckRow("DolbyB"))
+        DolbyC = CBool(deckRow("DolbyC"))
+        DolbyS = CBool(deckRow("DolbyS"))
+        DBX1 = CBool(deckRow("DBX1"))
+        DBX2 = CBool(deckRow("DBX2"))
 
-        stereo = CBool(decks.Rows(deckIndex)("Stereo"))
-        programSearch = CBool(decks.Rows(deckIndex)("ProgramSearch"))
-        reverse = CBool(decks.Rows(deckIndex)("Reverse"))
-        calibration = CBool(decks.Rows(deckIndex)("Calibration"))
-        azimuth = CBool(decks.Rows(deckIndex)("Azimuth"))
+        stereo = CBool(deckRow("Stereo"))
+        programSearch = CBool(deckRow("ProgramSearch"))
+        reverse = CBool(deckRow("Reverse"))
+        calibration = CBool(deckRow("Calibration"))
+        azimuth = CBool(deckRow("Azimuth"))
 
-        dubbingSlow = CBool(decks.Rows(deckIndex)("DubbingSlow"))
-        dubbingFast = CBool(decks.Rows(deckIndex)("DubbingFast"))
+        dubbingSlow = CBool(deckRow("DubbingSlow"))
+        dubbingFast = CBool(deckRow("DubbingFast"))
 
-        speedSlow = CBool(decks.Rows(deckIndex)("SpeedSlow"))
-        speedNormal = CBool(decks.Rows(deckIndex)("SpeedNorm"))
-        speedFast = CBool(decks.Rows(deckIndex)("SpeedFast"))
+        speedSlow = CBool(deckRow("SpeedSlow"))
+        speedNormal = CBool(deckRow("SpeedNorm"))
+        speedFast = CBool(deckRow("SpeedFast"))
 
-        frequencyMin = CInt(decks.Rows(deckIndex)("FrequencyLow"))
-        frequencyMax = CInt(decks.Rows(deckIndex)("FrequencyHigh"))
+        frequencyMin = CInt(deckRow("FrequencyLow"))
+        frequencyMax = CInt(deckRow("FrequencyHigh"))
 
-        signalRatio = CInt(decks.Rows(deckIndex)("SignalRatio"))
-        signalRatioNR = CStr(decks.Rows(deckIndex)("SignalRatioNR"))
-        wowFlutter = CDec(decks.Rows(deckIndex)("WowFlutter"))
-        distortion = CDec(decks.Rows(deckIndex)("Distortion"))
+        signalRatio = CInt(deckRow("SignalRatio"))
+        signalRatioNR = CStr(deckRow("SignalRatioNR"))
+        wowFlutter = CDec(deckRow("WowFlutter"))
+        distortion = CDec(deckRow("Distortion"))
 
-        heads = CInt(decks.Rows(deckIndex)("Heads"))
-        wells = CInt(decks.Rows(deckIndex)("Wells"))
+        heads = CInt(deckRow("Heads"))
+        wells = CInt(deckRow("Wells"))
 
-        dateCreated = Convert.ToDateTime(decks.Rows(deckIndex)("Date"))
-        notes = CStr(decks.Rows(deckIndex)("Notes"))
+        dateCreated = Convert.ToDateTime(deckRow("Date"))
+        notes = CStr(deckRow("Notes"))
 
 
         ' Populate objects.

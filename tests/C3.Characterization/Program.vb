@@ -57,6 +57,7 @@ Module Program
         RunTest("Tape browser hierarchy is Designer-owned", AddressOf TapeBrowserHierarchyIsDesignerOwned)
         RunTest("runtime layout helper module is absent", AddressOf RuntimeLayoutHelperModuleIsAbsent)
         RunTest("Deck New viewport is Designer-owned", AddressOf DeckNewViewportIsDesignerOwned)
+        RunTest("Deck Edit viewport is Designer-owned", AddressOf DeckEditViewportIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -819,6 +820,39 @@ Module Program
             _repositoryRoot, "Compact Cassette Catalogue", "frmDeckNew.vb"))
         AssertEqual(False, source.Contains("AutoScroll ="), "Deck New runtime scrolling")
         AssertEqual(False, source.Contains("MinimumSize ="), "Deck New runtime minimum size")
+    End Sub
+
+    Private Sub DeckEditViewportIsDesignerOwned()
+        Using deck As New frmDeckEdit()
+            Dim root As Control = FindControl(deck, "tlpDeckRoot")
+            Dim viewport As Panel = DirectCast(FindControl(deck, "pnlDeckViewport"), Panel)
+            Dim canvas As Panel = DirectCast(FindControl(deck, "pnlDeckCanvas"), Panel)
+            Dim commandLayout As Control = FindControl(deck, "tlpDeckCommands")
+            Dim commandBar As FlowLayoutPanel = DirectCast(FindControl(deck, "flpDeckCommitCommands"), FlowLayoutPanel)
+            Dim updateButton As Button = DirectCast(FindControl(deck, "btnUpdate"), Button)
+            Dim cancelButton As Button = DirectCast(FindControl(deck, "btnCancel"), Button)
+            AssertEqual(deck, root.Parent, "Deck Edit root")
+            AssertEqual(DockStyle.Fill, root.Dock, "Deck Edit root fill")
+            AssertEqual(root, viewport.Parent, "Deck Edit viewport parent")
+            AssertEqual(True, viewport.AutoScroll, "Deck Edit viewport scroll")
+            AssertEqual(viewport, canvas.Parent, "Deck Edit canvas parent")
+            AssertEqual(True, canvas.AutoSize, "Deck Edit canvas auto size")
+            AssertEqual(DockStyle.Top, canvas.Dock, "Deck Edit canvas top dock")
+            For Each groupName As String In New String() {
+                    "grpBasic", "grpTypes", "grpSpeeds", "grpNR", "grpFeatures",
+                    "grpSpecifications", "grpTransport", "grpNotes"}
+                AssertEqual(canvas, FindControl(deck, groupName).Parent, groupName & " edit canvas parent")
+            Next
+            AssertEqual(root, commandLayout.Parent, "Deck Edit command layout parent")
+            AssertEqual(commandLayout, FindControl(deck, "lblAdd").Parent, "Deck Edit status parent")
+            AssertEqual(commandLayout, commandBar.Parent, "Deck Edit command bar parent")
+            AssertEqual(commandBar, updateButton.Parent, "Deck Edit Update parent")
+            AssertEqual(commandBar, cancelButton.Parent, "Deck Edit Cancel parent")
+            AssertEqual(updateButton, DirectCast(deck.AcceptButton, Button), "Deck Edit default command")
+            AssertEqual(cancelButton, DirectCast(deck.CancelButton, Button), "Deck Edit cancel command")
+            AssertEqual(DialogResult.Cancel, cancelButton.DialogResult, "Deck Edit cancel result")
+            AssertEqual(False, deck.AutoScroll, "Deck Edit form AutoScroll disabled")
+        End Using
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

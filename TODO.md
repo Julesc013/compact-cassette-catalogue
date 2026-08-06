@@ -236,8 +236,10 @@ qualification gates earn the Alpha 5 transition.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
   - [x] Rebuild Deck New around a dedicated scroll viewport, fixed preferred
     canvas, and persistent Designer-owned status/Add/Cancel command row.
-  - [ ] Apply the verified dense-form pattern to Deck Edit and retain the
-    complete Deck New/Edit matrix.
+  - [x] Apply the verified dense-form pattern to Deck Edit, add an explicit
+    Designer-owned Cancel result, and exercise its real Load path in the harness.
+  - [ ] Retain the complete commit-bound Deck New/Edit matrix and finish native
+    keyboard, DPI, High Contrast, and assistive-technology review.
 - [ ] Change Console, Find Results, Statistics, Settings, About, and setup/
   uninstall pages only when the characterization matrix reproduces a defect.
 - [ ] Complete visible-text, ellipsis, access-key, default/cancel, tab/focus,

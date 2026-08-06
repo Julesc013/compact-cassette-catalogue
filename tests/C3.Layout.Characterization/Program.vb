@@ -5,6 +5,7 @@ Module Program
 
     <STAThread()>
     Sub Main(arguments As String())
+        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException)
         Application.EnableVisualStyles()
         Application.SetCompatibleTextRenderingDefault(False)
 
@@ -46,6 +47,7 @@ Module Program
                 form.Font.SizeInPoints * result.ScaleFactor,
                 form.Font.Style,
                 GraphicsUnit.Point)
+            PrepareFormState(form)
             form.Show()
             Application.DoEvents()
             PopulateRepresentativeContent(form, result.ContentProfile)
@@ -80,6 +82,43 @@ Module Program
         If form Is Nothing Then Throw New InvalidOperationException(typeName & " is not a Form.")
         Return form
     End Function
+
+    Private Sub PrepareFormState(form As Form)
+        Dim deckEdit As frmDeckEdit = TryCast(form, frmDeckEdit)
+        If deckEdit Is Nothing Then Return
+
+        Dim row As DataRow = decks.NewRow()
+        For Each column As DataColumn In decks.Columns
+            If column.DataType Is GetType(String) Then
+                row(column) = String.Empty
+            ElseIf column.DataType Is GetType(Boolean) Then
+                row(column) = False
+            ElseIf column.DataType Is GetType(Integer) Then
+                row(column) = 0
+            ElseIf column.DataType Is GetType(Decimal) Then
+                row(column) = Decimal.Zero
+            ElseIf column.DataType Is GetType(DateTime) Then
+                row(column) = DateTime.Today
+            End If
+        Next
+        row("Manufacturer") = "Representative Manufacturer"
+        row("Model") = "Representative Model"
+        row("Name") = "Representative Manufacturer Representative Model"
+        row("Year") = 2020
+        row("Condition") = 8
+        row("Type1") = True
+        row("SpeedNorm") = True
+        row("FrequencyLow") = 20
+        row("FrequencyHigh") = 20000
+        row("SignalRatio") = 60
+        row("SignalRatioNR") = "None"
+        row("WowFlutter") = CDec(0.1)
+        row("Distortion") = CDec(0.1)
+        row("Heads") = 2
+        row("Wells") = 1
+        decks.Rows.Add(row)
+        deckEdit.deckRow = row
+    End Sub
 
     Private Sub PopulateRepresentativeContent(form As Form, profile As String)
         If String.Equals(profile, "maximum", StringComparison.Ordinal) Then

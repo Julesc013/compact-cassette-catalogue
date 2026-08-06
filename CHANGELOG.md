@@ -112,6 +112,11 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   groups and fields remain on the canvas, runtime size/scroll/accessibility
   mutations are removed from Load, and the layout source-policy gate is now
   clean in Qualification mode.
+- Applied the same dense-editor contract to Deck Edit. Update and a new
+  explicit Cancel result stay outside the scroll viewport; edit loading reads
+  the supplied row directly while retaining its global index for persistence.
+  The geometry harness now creates a complete representative Deck row and has
+  an explicit System.Data dependency, so the actual Load path is characterized.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

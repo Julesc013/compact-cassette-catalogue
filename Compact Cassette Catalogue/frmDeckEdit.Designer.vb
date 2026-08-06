@@ -23,6 +23,12 @@ Partial Class frmDeckEdit
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDeckEdit))
+        Me.tlpDeckRoot = New System.Windows.Forms.TableLayoutPanel()
+        Me.pnlDeckViewport = New System.Windows.Forms.Panel()
+        Me.pnlDeckCanvas = New System.Windows.Forms.Panel()
+        Me.tlpDeckCommands = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpDeckCommitCommands = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.chkDBX2 = New System.Windows.Forms.CheckBox()
         Me.grpNR = New System.Windows.Forms.GroupBox()
         Me.chkMPX = New System.Windows.Forms.CheckBox()
@@ -83,6 +89,11 @@ Partial Class frmDeckEdit
         Me.lblHeads = New System.Windows.Forms.Label()
         Me.grpTransport = New System.Windows.Forms.GroupBox()
         Me.lblAdd = New System.Windows.Forms.Label()
+        Me.tlpDeckRoot.SuspendLayout()
+        Me.pnlDeckViewport.SuspendLayout()
+        Me.pnlDeckCanvas.SuspendLayout()
+        Me.tlpDeckCommands.SuspendLayout()
+        Me.flpDeckCommitCommands.SuspendLayout()
         Me.grpNR.SuspendLayout()
         Me.grpTypes.SuspendLayout()
         Me.grpFeatures.SuspendLayout()
@@ -98,6 +109,102 @@ Partial Class frmDeckEdit
         CType(Me.numYear, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpTransport.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'tlpDeckRoot
+        '
+        Me.tlpDeckRoot.ColumnCount = 1
+        Me.tlpDeckRoot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDeckRoot.Controls.Add(Me.pnlDeckViewport, 0, 0)
+        Me.tlpDeckRoot.Controls.Add(Me.tlpDeckCommands, 0, 1)
+        Me.tlpDeckRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpDeckRoot.Location = New System.Drawing.Point(0, 0)
+        Me.tlpDeckRoot.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpDeckRoot.Name = "tlpDeckRoot"
+        Me.tlpDeckRoot.Padding = New System.Windows.Forms.Padding(9)
+        Me.tlpDeckRoot.RowCount = 2
+        Me.tlpDeckRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDeckRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDeckRoot.Size = New System.Drawing.Size(700, 430)
+        Me.tlpDeckRoot.TabIndex = 0
+        '
+        'pnlDeckViewport
+        '
+        Me.pnlDeckViewport.AutoScroll = True
+        Me.pnlDeckViewport.Controls.Add(Me.pnlDeckCanvas)
+        Me.pnlDeckViewport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlDeckViewport.Location = New System.Drawing.Point(9, 9)
+        Me.pnlDeckViewport.Margin = New System.Windows.Forms.Padding(0, 0, 0, 8)
+        Me.pnlDeckViewport.Name = "pnlDeckViewport"
+        Me.pnlDeckViewport.Size = New System.Drawing.Size(682, 365)
+        Me.pnlDeckViewport.TabIndex = 0
+        '
+        'pnlDeckCanvas
+        '
+        Me.pnlDeckCanvas.AutoSize = True
+        Me.pnlDeckCanvas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.pnlDeckCanvas.Controls.Add(Me.grpBasic)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpTypes)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpSpeeds)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpNR)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpFeatures)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpSpecifications)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpTransport)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpNotes)
+        Me.pnlDeckCanvas.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlDeckCanvas.Location = New System.Drawing.Point(0, 0)
+        Me.pnlDeckCanvas.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlDeckCanvas.MinimumSize = New System.Drawing.Size(568, 306)
+        Me.pnlDeckCanvas.Name = "pnlDeckCanvas"
+        Me.pnlDeckCanvas.Size = New System.Drawing.Size(682, 306)
+        Me.pnlDeckCanvas.TabIndex = 0
+        '
+        'tlpDeckCommands
+        '
+        Me.tlpDeckCommands.AutoSize = True
+        Me.tlpDeckCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpDeckCommands.ColumnCount = 2
+        Me.tlpDeckCommands.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDeckCommands.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpDeckCommands.Controls.Add(Me.lblAdd, 0, 0)
+        Me.tlpDeckCommands.Controls.Add(Me.flpDeckCommitCommands, 1, 0)
+        Me.tlpDeckCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpDeckCommands.Location = New System.Drawing.Point(9, 382)
+        Me.tlpDeckCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpDeckCommands.Name = "tlpDeckCommands"
+        Me.tlpDeckCommands.RowCount = 1
+        Me.tlpDeckCommands.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDeckCommands.Size = New System.Drawing.Size(682, 39)
+        Me.tlpDeckCommands.TabIndex = 1
+        '
+        'flpDeckCommitCommands
+        '
+        Me.flpDeckCommitCommands.AutoSize = True
+        Me.flpDeckCommitCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpDeckCommitCommands.Controls.Add(Me.btnUpdate)
+        Me.flpDeckCommitCommands.Controls.Add(Me.btnCancel)
+        Me.flpDeckCommitCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpDeckCommitCommands.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight
+        Me.flpDeckCommitCommands.Location = New System.Drawing.Point(490, 0)
+        Me.flpDeckCommitCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpDeckCommitCommands.Name = "flpDeckCommitCommands"
+        Me.flpDeckCommitCommands.Size = New System.Drawing.Size(192, 39)
+        Me.flpDeckCommitCommands.TabIndex = 1
+        Me.flpDeckCommitCommands.WrapContents = False
+        '
+        'btnCancel
+        '
+        Me.btnCancel.AccessibleDescription = "Cancel this edit and return without changing the deck."
+        Me.btnCancel.AccessibleName = "Cancel"
+        Me.btnCancel.AutoSize = True
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.Location = New System.Drawing.Point(98, 2)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.MinimumSize = New System.Drawing.Size(90, 23)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(90, 23)
+        Me.btnCancel.TabIndex = 2
+        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
         'chkDBX2
         '
@@ -598,12 +705,16 @@ Partial Class frmDeckEdit
         '
         'btnUpdate
         '
+        Me.btnUpdate.AccessibleDescription = "Save changes to this deck."
+        Me.btnUpdate.AccessibleName = "Update Deck"
+        Me.btnUpdate.AutoSize = True
         Me.btnUpdate.Location = New System.Drawing.Point(11, 299)
         Me.btnUpdate.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnUpdate.MinimumSize = New System.Drawing.Size(90, 23)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(151, 21)
-        Me.btnUpdate.TabIndex = 50
-        Me.btnUpdate.Text = "Update Deck"
+        Me.btnUpdate.Size = New System.Drawing.Size(90, 23)
+        Me.btnUpdate.TabIndex = 1
+        Me.btnUpdate.Text = "&Update Deck"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'grpNotes
@@ -798,24 +909,29 @@ Partial Class frmDeckEdit
         '
         'frmDeckEdit
         '
+        Me.AcceptButton = Me.btnUpdate
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(568, 330)
-        Me.Controls.Add(Me.grpNR)
-        Me.Controls.Add(Me.grpTypes)
-        Me.Controls.Add(Me.grpFeatures)
-        Me.Controls.Add(Me.grpSpeeds)
-        Me.Controls.Add(Me.grpSpecifications)
-        Me.Controls.Add(Me.btnUpdate)
-        Me.Controls.Add(Me.grpNotes)
-        Me.Controls.Add(Me.grpBasic)
-        Me.Controls.Add(Me.grpTransport)
-        Me.Controls.Add(Me.lblAdd)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.AutoScroll = False
+        Me.CancelButton = Me.btnCancel
+        Me.ClientSize = New System.Drawing.Size(700, 430)
+        Me.Controls.Add(Me.tlpDeckRoot)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = True
+        Me.MinimumSize = New System.Drawing.Size(600, 400)
         Me.Name = "frmDeckEdit"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Edit Deck"
+        Me.tlpDeckRoot.ResumeLayout(False)
+        Me.tlpDeckRoot.PerformLayout()
+        Me.pnlDeckViewport.ResumeLayout(False)
+        Me.pnlDeckViewport.PerformLayout()
+        Me.pnlDeckCanvas.ResumeLayout(False)
+        Me.tlpDeckCommands.ResumeLayout(False)
+        Me.tlpDeckCommands.PerformLayout()
+        Me.flpDeckCommitCommands.ResumeLayout(False)
+        Me.flpDeckCommitCommands.PerformLayout()
         Me.grpNR.ResumeLayout(False)
         Me.grpNR.PerformLayout()
         Me.grpTypes.ResumeLayout(False)
@@ -843,6 +959,12 @@ Partial Class frmDeckEdit
 
     End Sub
 
+    Friend WithEvents tlpDeckRoot As TableLayoutPanel
+    Friend WithEvents pnlDeckViewport As Panel
+    Friend WithEvents pnlDeckCanvas As Panel
+    Friend WithEvents tlpDeckCommands As TableLayoutPanel
+    Friend WithEvents flpDeckCommitCommands As FlowLayoutPanel
+    Friend WithEvents btnCancel As Button
     Friend WithEvents chkDBX2 As CheckBox
     Friend WithEvents grpNR As GroupBox
     Friend WithEvents chkMPX As CheckBox

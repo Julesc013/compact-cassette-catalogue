@@ -342,6 +342,42 @@
       "name": "flpDeckCommitCommands",
       "type": "FlowLayoutPanel",
       "reason": "Keep Add Deck and Cancel together in a Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "tlpDeckRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Separate the dense Deck Edit viewport from its persistent command row."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "pnlDeckViewport",
+      "type": "Panel",
+      "reason": "Own Deck Edit overflow without enabling form-level scrolling."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "pnlDeckCanvas",
+      "type": "Panel",
+      "reason": "Retain the original dense Deck Edit groups on one preferred-size canvas."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "tlpDeckCommands",
+      "type": "TableLayoutPanel",
+      "reason": "Keep Deck Edit status and commit commands outside the scroll viewport."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "flpDeckCommitCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep Update Deck and Cancel together in a Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDeckEdit.Designer.vb",
+      "name": "btnCancel",
+      "type": "Button",
+      "reason": "Provide an explicit keyboard-reachable cancel result for Deck editing."
     }
   ]
 }
