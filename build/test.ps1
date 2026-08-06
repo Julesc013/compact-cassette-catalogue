@@ -37,6 +37,8 @@ if (-not [string]::IsNullOrWhiteSpace($MSBuildPath)) {
 }
 $msbuild = & (Join-Path $PSScriptRoot 'resolve-msbuild.ps1') @resolveArguments
 
+& (Join-Path $PSScriptRoot 'validate-startup-instrumentation.ps1')
+
 foreach ($test in $projects) {
     & $msbuild $test.Project '/t:Build' "/p:Configuration=$Configuration" '/p:Platform=AnyCPU' '/v:minimal' '/nologo'
     if ($LASTEXITCODE -ne 0) {

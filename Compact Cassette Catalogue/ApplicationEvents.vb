@@ -11,7 +11,9 @@
                 sender As Object,
                 e As Microsoft.VisualBasic.ApplicationServices.StartupEventArgs) Handles Me.Startup
 
+            StartupTrace.Record("application.startup.enter")
             migrateSettingsIfRequired()
+            StartupTrace.Record("application.startup.complete")
 
         End Sub
 

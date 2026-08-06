@@ -18,13 +18,13 @@
     },
     {
       "surface": "productionFiles",
-      "reason": "The bounded legacy UX amendment permits exactly one new CatalogueWorkflow.vb production file inside the original single EXE project.",
-      "regression": "tests/C3.Characterization"
+      "reason": "The bounded legacy UX amendment adds CatalogueWorkflow.vb and Alpha 5 adds the fail-safe, opt-in StartupTrace.vb diagnostic boundary inside the original single EXE project.",
+      "regression": "tests/C3.Characterization; build/validate-startup-instrumentation.ps1"
     },
     {
       "surface": "typeNames",
-      "reason": "CatalogueWorkflow.vb contains the reviewed prerequisite enums, stable choice/result/validation types, and workflow coordinator required by the bounded UX contract; Alpha 5 removed its obsolete geometry helper module.",
-      "regression": "tests/C3.Characterization"
+      "reason": "CatalogueWorkflow.vb contains the reviewed prerequisite enums, stable choice/result/validation types, and workflow coordinator required by the bounded UX contract; Alpha 5 removed its obsolete geometry helper module and adds only the internal StartupTrace diagnostic module.",
+      "regression": "tests/C3.Characterization; build/validate-startup-instrumentation.ps1"
     }
   ]
 }

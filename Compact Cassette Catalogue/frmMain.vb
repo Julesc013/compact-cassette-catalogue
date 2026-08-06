@@ -15,6 +15,12 @@ Public Class frmMain
 
     Public Const MaximumCatalogueBytes As Long = 16L * 1024L * 1024L
 
+    Public Sub New()
+        StartupTrace.Record("main.constructor.enter")
+        InitializeComponent()
+        StartupTrace.Record("main.initialize-component.complete")
+    End Sub
+
     Public Enum EditChoice
         Apply
         Discard
@@ -314,6 +320,7 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        StartupTrace.Record("main.load.enter")
         ConfigureMainUx()
 
         ' Indicate to subroutines that the program is in the 'initial setup' phase.
@@ -369,7 +376,24 @@ Public Class frmMain
 
         ' Indicate to subroutines that the program has finished the 'initial setup' phase.
         duringSetup = False
+        StartupTrace.Record("main.load.complete")
 
+    End Sub
+
+    Protected Overrides Sub OnHandleCreated(e As EventArgs)
+        MyBase.OnHandleCreated(e)
+        StartupTrace.Record("main.handle-created")
+    End Sub
+
+    Protected Overrides Sub OnShown(e As EventArgs)
+        MyBase.OnShown(e)
+        StartupTrace.Record("main.shown")
+        AddHandler Application.Idle, AddressOf RecordFirstIdle
+    End Sub
+
+    Private Sub RecordFirstIdle(sender As Object, e As EventArgs)
+        RemoveHandler Application.Idle, AddressOf RecordFirstIdle
+        StartupTrace.Record("main.first-idle")
     End Sub
 
     Private Sub ConfigureMainUx()
