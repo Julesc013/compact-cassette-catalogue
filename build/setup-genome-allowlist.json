@@ -12,6 +12,11 @@
       "regression": "build/validate-setup-manifests.ps1 requires exactly one requireAdministrator execution level with uiAccess disabled."
     },
     {
+      "surface": "controls:Compact Cassette Catalogue Installer/frmMain.Designer.vb",
+      "reason": "Alpha 5 replaces the reproduced fixed-panel setup geometry with Designer-owned root, scroll-viewport, autosizing canvas, field-table, and persistent navigation containers while preserving every original command and data control.",
+      "regression": "build/test-setup-layout.ps1 characterizes all four Installer Main page states across the governed size, scale, and content matrix; build/validate-setup-layout-source-policy.ps1 rejects runtime geometry construction."
+    },
+    {
       "surface": "resourceKeys:Compact Cassette Catalogue Installer/frmFailure.resx",
       "reason": "The unchanged side-banner artwork is supplied by the existing canonical project resource instead of a form-local duplicate.",
       "regression": "build/validate-setup-artwork.ps1 requires the shared resource binding and rejects a form-local serialized banner."

@@ -132,7 +132,10 @@ Module Program
         }
         For Each pageName As String In pageNames
             Dim page As Control = FindControl(form, pageName)
-            If page IsNot Nothing Then page.Visible = String.Equals(pageName, pageState, StringComparison.Ordinal)
+            If page IsNot Nothing Then
+                page.Visible = String.Equals(pageName, pageState, StringComparison.Ordinal)
+                page.Enabled = page.Visible
+            End If
         Next
 
         Dim nextButton As Control = FindControl(form, "btnNext")

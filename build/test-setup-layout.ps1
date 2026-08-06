@@ -4,6 +4,7 @@ param(
     [string]$Mode = 'Qualification',
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
+    [string]$CasePattern = '*',
     [string]$MSBuildPath,
     [string]$EvidenceRoot
 )
@@ -72,6 +73,8 @@ $cases = @(
     [PSCustomObject]@{ Name = 'uninstaller-success'; Assembly = $uninstallerAssembly; Type = 'Compact_Cassette_Catalogue_Uninstaller.frmSuccess'; Page = 'pnlSuccess' },
     [PSCustomObject]@{ Name = 'uninstaller-failure'; Assembly = $uninstallerAssembly; Type = 'Compact_Cassette_Catalogue_Uninstaller.frmFailure'; Page = 'pnlFailure' }
 )
+$cases = @($cases | Where-Object { $_.Name -like $CasePattern })
+if ($cases.Count -eq 0) { throw "No setup layout cases match '$CasePattern'." }
 $sizes = @(
     [PSCustomObject]@{ Width = 800; Height = 552 },
     [PSCustomObject]@{ Width = 1024; Height = 720 },
