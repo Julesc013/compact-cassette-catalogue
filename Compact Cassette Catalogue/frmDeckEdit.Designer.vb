@@ -794,7 +794,7 @@ Partial Class frmDeckEdit
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(144, 13)
         Me.lblAdd.TabIndex = 51
-        Me.lblAdd.Text = "Save changes via main form."
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'frmDeckEdit
         '

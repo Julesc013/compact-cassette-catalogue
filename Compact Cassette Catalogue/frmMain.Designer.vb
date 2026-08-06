@@ -386,21 +386,21 @@ Partial Class frmMain
         Me.NewTapeToolStripMenuItem.Name = "NewTapeToolStripMenuItem"
         Me.NewTapeToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
         Me.NewTapeToolStripMenuItem.Size = New System.Drawing.Size(268, 26)
-        Me.NewTapeToolStripMenuItem.Text = "Add Tape"
+        Me.NewTapeToolStripMenuItem.Text = "Add &Tape…"
         '
         'NewModelToolStripMenuItem
         '
         Me.NewModelToolStripMenuItem.Name = "NewModelToolStripMenuItem"
         Me.NewModelToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
         Me.NewModelToolStripMenuItem.Size = New System.Drawing.Size(268, 26)
-        Me.NewModelToolStripMenuItem.Text = "Add Model"
+        Me.NewModelToolStripMenuItem.Text = "Add &Model…"
         '
         'NewManufactererToolStripMenuItem
         '
         Me.NewManufactererToolStripMenuItem.Name = "NewManufactererToolStripMenuItem"
         Me.NewManufactererToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.B), System.Windows.Forms.Keys)
         Me.NewManufactererToolStripMenuItem.Size = New System.Drawing.Size(268, 26)
-        Me.NewManufactererToolStripMenuItem.Text = "Add Brand"
+        Me.NewManufactererToolStripMenuItem.Text = "Add &Brand…"
         '
         'ToolStripSeparator2
         '
@@ -412,7 +412,7 @@ Partial Class frmMain
         Me.NewDeckToolStripMenuItem.Name = "NewDeckToolStripMenuItem"
         Me.NewDeckToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.NewDeckToolStripMenuItem.Size = New System.Drawing.Size(268, 26)
-        Me.NewDeckToolStripMenuItem.Text = "Add Deck"
+        Me.NewDeckToolStripMenuItem.Text = "Add &Deck…"
         '
         'ToolStripSeparator3
         '
@@ -1706,7 +1706,7 @@ Partial Class frmMain
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(145, 26)
         Me.btnAdd.TabIndex = 1
-        Me.btnAdd.Text = "Add Tape"
+        Me.btnAdd.Text = "&Add Tape…"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'grpScroll
@@ -1762,6 +1762,7 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1000, 620)
         Me.Controls.Add(Me.grpScroll)
         Me.Controls.Add(Me.grpActions)
@@ -1769,11 +1770,12 @@ Partial Class frmMain
         Me.Controls.Add(Me.grpFind)
         Me.Controls.Add(Me.grpData)
         Me.Controls.Add(Me.menuStripMain)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.menuStripMain
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = True
+        Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmMain"
         Me.Text = "Compact Cassette Catalogue"
         Me.grpIdentification.ResumeLayout(False)

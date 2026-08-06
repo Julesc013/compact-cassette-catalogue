@@ -106,7 +106,7 @@ Partial Class frmDeckNew
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(151, 21)
         Me.btnAdd.TabIndex = 8
-        Me.btnAdd.Text = "Add Deck"
+        Me.btnAdd.Text = "Add &Deck"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'grpNotes
@@ -238,7 +238,7 @@ Partial Class frmDeckNew
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(144, 13)
         Me.lblAdd.TabIndex = 36
-        Me.lblAdd.Text = "Save changes via main form."
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'lblHeads
         '

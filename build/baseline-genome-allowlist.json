@@ -3,13 +3,23 @@
   "entries": [
     {
       "surface": "designerHashes",
-      "reason": "APP-010 adds the generated user-scoped retry marker required for durable settings migration.",
-      "regression": "tests/C3.Settings.Characterization"
+      "reason": "APP-010 retains its generated retry marker, while the ratified bounded legacy UX tranche updates classic captions and declares main, tape, and list forms resizable and scroll-safe.",
+      "regression": "tests/C3.Settings.Characterization; tests/C3.Characterization"
     },
     {
       "surface": "settings",
       "reason": "APP-010 adds settingsUpgradeRequired=True so failed profile upgrades remain retryable.",
       "regression": "tests/C3.Settings.Characterization"
+    },
+    {
+      "surface": "productionFiles",
+      "reason": "The bounded legacy UX amendment permits exactly one new CatalogueWorkflow.vb production file inside the original single EXE project.",
+      "regression": "tests/C3.Characterization"
+    },
+    {
+      "surface": "typeNames",
+      "reason": "CatalogueWorkflow.vb contains the reviewed prerequisite enums, stable choice/result/validation types, workflow coordinator, and legacy layout helper required by the bounded UX contract.",
+      "regression": "tests/C3.Characterization"
     }
   ]
 }

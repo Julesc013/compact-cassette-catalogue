@@ -164,7 +164,7 @@ Partial Class frmTapeNew
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(190, 17)
         Me.lblAdd.TabIndex = 38
-        Me.lblAdd.Text = "Save changes via main form."
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'btnAdd
         '
@@ -173,7 +173,7 @@ Partial Class frmTapeNew
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(148, 26)
         Me.btnAdd.TabIndex = 37
-        Me.btnAdd.Text = "Add Tape"
+        Me.btnAdd.Text = "&Add Tape"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'grpSideB
@@ -1226,6 +1226,7 @@ Partial Class frmTapeNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(989, 459)
         Me.Controls.Add(Me.grpBulkAdd)
         Me.Controls.Add(Me.grpSideB)
@@ -1236,10 +1237,11 @@ Partial Class frmTapeNew
         Me.Controls.Add(Me.grpModel)
         Me.Controls.Add(Me.lblAdd)
         Me.Controls.Add(Me.btnAdd)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = True
+        Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmTapeNew"
         Me.Text = "Add New Tape"
         Me.grpSideB.ResumeLayout(False)

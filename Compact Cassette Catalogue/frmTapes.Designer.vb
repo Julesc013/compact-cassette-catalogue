@@ -725,7 +725,7 @@ Partial Class frmTapes
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(190, 17)
         Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Save changes via main form."
+        Me.Label1.Text = "Changes are saved with the catalogue."
         '
         'btnDelete
         '
@@ -773,16 +773,18 @@ Partial Class frmTapes
         Me.AcceptButton = Me.btnRefresh
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1924, 836)
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.txtResults)
         Me.Controls.Add(Me.grpTapes)
         Me.Controls.Add(Me.grpFilters)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = True
+        Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmTapes"
         Me.Text = "View Tapes"
         Me.grpFilters.ResumeLayout(False)

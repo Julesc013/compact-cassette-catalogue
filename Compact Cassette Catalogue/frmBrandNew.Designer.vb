@@ -119,7 +119,7 @@ Partial Class frmBrandNew
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(100, 13)
         Me.lblAdd.TabIndex = 48
-        Me.lblAdd.Text = "Save via main form."
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'btnAdd
         '
@@ -128,7 +128,7 @@ Partial Class frmBrandNew
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(104, 21)
         Me.btnAdd.TabIndex = 3
-        Me.btnAdd.Text = "Add Brand"
+        Me.btnAdd.Text = "&Add Brand"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'frmBrandNew

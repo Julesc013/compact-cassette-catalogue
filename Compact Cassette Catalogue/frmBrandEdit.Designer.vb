@@ -121,7 +121,7 @@ Partial Class frmBrandEdit
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(100, 13)
         Me.lblAdd.TabIndex = 4
-        Me.lblAdd.Text = "Save via main form."
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'btnUpdate
         '

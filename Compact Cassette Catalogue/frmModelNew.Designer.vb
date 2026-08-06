@@ -172,7 +172,7 @@ Partial Class frmModelNew
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(160, 21)
         Me.btnAdd.TabIndex = 4
-        Me.btnAdd.Text = "Add Model"
+        Me.btnAdd.Text = "Add &Model"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'lblAdd
@@ -183,7 +183,7 @@ Partial Class frmModelNew
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(144, 13)
         Me.lblAdd.TabIndex = 45
-        Me.lblAdd.Text = "Save changes via main form."
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'grpExtra
         '

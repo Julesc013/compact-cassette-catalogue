@@ -245,7 +245,7 @@ Partial Class frmDecks
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(144, 13)
         Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Save changes via main form."
+        Me.Label1.Text = "Changes are saved with the catalogue."
         '
         'btnDelete
         '
@@ -446,16 +446,18 @@ Partial Class frmDecks
         Me.AcceptButton = Me.btnRefresh
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1177, 331)
         Me.Controls.Add(Me.lblResults)
         Me.Controls.Add(Me.grpTapes)
         Me.Controls.Add(Me.grpActions)
         Me.Controls.Add(Me.txtResults)
         Me.Controls.Add(Me.grpFilters)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = True
+        Me.MinimumSize = New System.Drawing.Size(800, 360)
         Me.Name = "frmDecks"
         Me.Text = "View Decks"
         Me.grpTapes.ResumeLayout(False)

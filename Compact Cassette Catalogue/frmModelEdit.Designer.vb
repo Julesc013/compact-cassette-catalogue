@@ -195,7 +195,7 @@ Partial Class frmModelEdit
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(144, 13)
         Me.lblAdd.TabIndex = 50
-        Me.lblAdd.Text = "Save changes via main form."
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'txtType
         '
