@@ -147,4 +147,159 @@ Public Module CatalogueWorkflow
         End If
         Return False
     End Function
+
+    Public Function AddBrand(owner As IWin32Window) As Boolean
+        Dim created As CatalogueCreationResult = CreateBrand(owner, False, Nothing)
+        If created Is Nothing Then
+            Return False
+        End If
+        RefreshMainAfterCreation()
+        Return True
+    End Function
+
+    Public Function AddModel(owner As IWin32Window) As Boolean
+        Dim entries As New List(Of String)()
+        Dim neededBrand As Boolean = brands.Rows.Count = 0
+        Dim created As CatalogueCreationResult = AddModelWithPrerequisites(owner, neededBrand, entries)
+        If created Is Nothing Then
+            Return False
+        End If
+        RefreshMainAfterCreation()
+        If neededBrand Then
+            ShowJourneySummary(owner, entries)
+        End If
+        Return True
+    End Function
+
+    Public Function AddDeck(owner As IWin32Window) As Boolean
+        Dim created As CatalogueCreationResult = CreateDeck(owner, False, Nothing)
+        If created Is Nothing Then
+            Return False
+        End If
+        RefreshMainAfterCreation()
+        Return True
+    End Function
+
+    Public Function AddTape(owner As IWin32Window) As Boolean
+        Dim entries As New List(Of String)()
+        Dim preferredModelIdentifier As String = Nothing
+        If models.Rows.Count = 0 Then
+            Dim createdModel As CatalogueCreationResult = AddModelWithPrerequisites(owner, True, entries)
+            If createdModel Is Nothing Then
+                Return False
+            End If
+            preferredModelIdentifier = createdModel.Key
+        End If
+
+        Using dialog As New frmTapeNew()
+            dialog.PreferredModelIdentifier = preferredModelIdentifier
+            dialog.SuppressSuccessMessage = True
+            dialog.StartPosition = FormStartPosition.CenterParent
+            If dialog.ShowDialog(owner) <> DialogResult.OK Then
+                Return False
+            End If
+            entries.Add("Tape: " & dialog.CreatedDisplayName)
+        End Using
+
+        RefreshMainAfterCreation()
+        ShowJourneySummary(owner, entries)
+        Return True
+    End Function
+
+    Public Function AddModelWithPrerequisites(
+            owner As IWin32Window,
+            guided As Boolean,
+            entries As IList(Of String)) As CatalogueCreationResult
+        Dim preferredBrandCode As String = Nothing
+        If brands.Rows.Count = 0 Then
+            Dim createdBrand As CatalogueCreationResult = CreateBrand(owner, True, entries)
+            If createdBrand Is Nothing Then
+                Return Nothing
+            End If
+            preferredBrandCode = createdBrand.Key
+        End If
+
+        Using dialog As New frmModelNew()
+            dialog.PreferredBrandCode = preferredBrandCode
+            dialog.SuppressSuccessMessage = guided
+            dialog.StartPosition = FormStartPosition.CenterParent
+            If dialog.ShowDialog(owner) <> DialogResult.OK Then
+                Return Nothing
+            End If
+            If entries IsNot Nothing Then
+                entries.Add("Model: " & dialog.CreatedDisplayName)
+            End If
+            Return New CatalogueCreationResult(dialog.CreatedKey, dialog.CreatedDisplayName)
+        End Using
+    End Function
+
+    Public Function CreateModelForDetour(owner As IWin32Window) As CatalogueCreationResult
+        Return AddModelWithPrerequisites(owner, True, New List(Of String)())
+    End Function
+
+    Public Function CreateBrandForDetour(owner As IWin32Window) As CatalogueCreationResult
+        Return CreateBrand(owner, True, Nothing)
+    End Function
+
+    Public Function CreateDeckForDetour(owner As IWin32Window) As CatalogueCreationResult
+        Return CreateDeck(owner, True, Nothing)
+    End Function
+
+    Private Function CreateBrand(
+            owner As IWin32Window,
+            suppressMessage As Boolean,
+            entries As IList(Of String)) As CatalogueCreationResult
+        Using dialog As New frmBrandNew()
+            dialog.SuppressSuccessMessage = suppressMessage
+            dialog.StartPosition = FormStartPosition.CenterParent
+            If dialog.ShowDialog(owner) <> DialogResult.OK Then
+                Return Nothing
+            End If
+            If entries IsNot Nothing Then
+                entries.Add("Brand: " & dialog.CreatedDisplayName)
+            End If
+            Return New CatalogueCreationResult(dialog.CreatedKey, dialog.CreatedDisplayName)
+        End Using
+    End Function
+
+    Private Function CreateDeck(
+            owner As IWin32Window,
+            suppressMessage As Boolean,
+            entries As IList(Of String)) As CatalogueCreationResult
+        Using dialog As New frmDeckNew()
+            dialog.SuppressSuccessMessage = suppressMessage
+            dialog.StartPosition = FormStartPosition.CenterParent
+            If dialog.ShowDialog(owner) <> DialogResult.OK Then
+                Return Nothing
+            End If
+            If entries IsNot Nothing Then
+                entries.Add("Deck: " & dialog.CreatedDisplayName)
+            End If
+            Return New CatalogueCreationResult(dialog.CreatedKey, dialog.CreatedDisplayName)
+        End Using
+    End Function
+
+    Private Sub RefreshMainAfterCreation()
+        For Each openForm As Form In Application.OpenForms
+            If TypeOf openForm Is frmMain Then
+                Dim main As frmMain = DirectCast(openForm, frmMain)
+                main.loadData()
+                main.Text = fileName & "* - C3"
+                Exit For
+            End If
+        Next
+    End Sub
+
+    Private Sub ShowJourneySummary(owner As IWin32Window, entries As IList(Of String))
+        If Not My.Settings.showMessages OrElse entries.Count = 0 Then
+            Return
+        End If
+        MessageBox.Show(
+            owner,
+            "Added:" & Environment.NewLine & "  " & String.Join(
+                Environment.NewLine & "  ", entries.ToArray()),
+            "Catalogue Items Added",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information)
+    End Sub
 End Module

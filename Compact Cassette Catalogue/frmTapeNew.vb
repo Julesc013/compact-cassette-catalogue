@@ -72,6 +72,24 @@
         CatalogueWorkflow.SelectChoice(cmbDeckB, preferredName)
     End Sub
 
+    Public Sub AddModelFromTape()
+        Dim createdModel As CatalogueCreationResult = CatalogueWorkflow.CreateModelForDetour(Me)
+        If createdModel Is Nothing Then
+            Return
+        End If
+        ReloadModelChoices(createdModel.Key)
+        cmbModel.Focus()
+    End Sub
+
+    Public Sub AddDeckFromTape()
+        Dim createdDeck As CatalogueCreationResult = CatalogueWorkflow.CreateDeckForDetour(Me)
+        If createdDeck Is Nothing Then
+            Return
+        End If
+        ReloadDeckChoices(createdDeck.Key)
+        cmbDeckA.Focus()
+    End Sub
+
     Private Sub CmbModel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbModel.SelectedIndexChanged
         'Get next index and generate code
 
@@ -400,12 +418,24 @@
 
             deckCount = decks.Rows.Count
 
+            If deckCount = 0 Then
+                Dim createdDeck As CatalogueCreationResult = CatalogueWorkflow.CreateDeckForDetour(Me)
+                If createdDeck Is Nothing Then
+                    chkTapedA.Checked = False
+                    Return
+                End If
+                ReloadDeckChoices(createdDeck.Key)
+                deckCount = decks.Rows.Count
+            End If
+
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
 
                 'Set defaults
                 datRecordedA.Value = Date.Today
-                cmbDeckA.SelectedIndex = 0
+                If cmbDeckA.SelectedIndex < 0 Then
+                    cmbDeckA.SelectedIndex = 0
+                End If
                 'cmbDeckA.SelectedIndex = cmbDeckA.Items.Count - 1 'Latest deck
 
                 cmbInputA.SelectedIndex = 10 'Phone input
@@ -437,7 +467,6 @@
 
             Else
 
-                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
                 chkTapedA.Checked = False
 
             End If
@@ -455,12 +484,24 @@
 
             deckCount = decks.Rows.Count
 
+            If deckCount = 0 Then
+                Dim createdDeck As CatalogueCreationResult = CatalogueWorkflow.CreateDeckForDetour(Me)
+                If createdDeck Is Nothing Then
+                    chkTapedB.Checked = False
+                    Return
+                End If
+                ReloadDeckChoices(createdDeck.Key)
+                deckCount = decks.Rows.Count
+            End If
+
             'Check that at least 1 deck exists
             If deckCount >= 1 Then
 
                 'Set defaults
                 datRecordedB.Value = Date.Today
-                cmbDeckB.SelectedIndex = 0
+                If cmbDeckB.SelectedIndex < 0 Then
+                    cmbDeckB.SelectedIndex = 0
+                End If
                 'cmbDeckB.SelectedIndex = cmbDeckB.Items.Count - 1 'Latest deck
 
                 cmbInputB.SelectedIndex = 10 'Phone input
@@ -492,7 +533,6 @@
 
             Else
 
-                MsgBox("Must add a deck before entering recordings.", MsgBoxStyle.Exclamation, "No decks.")
                 chkTapedB.Checked = False
 
             End If

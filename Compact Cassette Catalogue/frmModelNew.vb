@@ -32,6 +32,15 @@
         CatalogueWorkflow.SelectChoice(cmbBrand, preferredCode)
     End Sub
 
+    Public Sub AddBrandFromModel()
+        Dim createdBrand As CatalogueCreationResult = CatalogueWorkflow.CreateBrandForDetour(Me)
+        If createdBrand Is Nothing Then
+            Return
+        End If
+        ReloadBrandChoices(createdBrand.Key)
+        cmbBrand.Focus()
+    End Sub
+
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
         'Get data to validate

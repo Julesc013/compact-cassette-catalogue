@@ -1490,21 +1490,15 @@ Public Class frmMain
     End Sub
 
     Private Sub NewDeckToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDeckToolStripMenuItem.Click
-        frmDeckNew.Show() 'temp
+        CatalogueWorkflow.AddDeck(Me)
     End Sub
 
     Private Sub NewManufactererToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewManufactererToolStripMenuItem.Click
-        frmBrandNew.Show() 'temp
+        CatalogueWorkflow.AddBrand(Me)
     End Sub
 
     Private Sub NewModelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewModelToolStripMenuItem.Click
-
-        If CInt(counters.Rows(1)("Number")) > 0 Then
-            frmModelNew.Show()
-        Else
-            MsgBox("Add at least one brand first.", MsgBoxStyle.Exclamation, "No Brands")
-        End If
-
+        CatalogueWorkflow.AddModel(Me)
     End Sub
 
     Private Sub ChkPackaged_CheckedChanged(sender As Object, e As EventArgs) Handles chkPackaged.CheckedChanged
@@ -1531,17 +1525,7 @@ Public Class frmMain
 
     Private Sub addNewTapeActual()
 
-        modelCount = CInt(counters.Rows(2)("Number"))
-
-        'Check that there is at least 1 model (and 1 deck for recording)
-
-        If modelCount >= 1 Then
-            frmTapeNew.Show() 'temp
-
-        Else
-            MsgBox("Add at least one model first.", MsgBoxStyle.Exclamation, "No Models")
-
-        End If
+        CatalogueWorkflow.AddTape(Me)
 
     End Sub
 
