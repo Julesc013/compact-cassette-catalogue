@@ -58,6 +58,7 @@ Module Program
         RunTest("runtime layout helper module is absent", AddressOf RuntimeLayoutHelperModuleIsAbsent)
         RunTest("Deck New viewport is Designer-owned", AddressOf DeckNewViewportIsDesignerOwned)
         RunTest("Deck Edit viewport is Designer-owned", AddressOf DeckEditViewportIsDesignerOwned)
+        RunTest("Brand dialogs use fixed autosizing layout", AddressOf BrandDialogsUseFixedAutosizingLayout)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -852,6 +853,46 @@ Module Program
             AssertEqual(cancelButton, DirectCast(deck.CancelButton, Button), "Deck Edit cancel command")
             AssertEqual(DialogResult.Cancel, cancelButton.DialogResult, "Deck Edit cancel result")
             AssertEqual(False, deck.AutoScroll, "Deck Edit form AutoScroll disabled")
+        End Using
+    End Sub
+
+    Private Sub BrandDialogsUseFixedAutosizingLayout()
+        AssertBrandDialogLayout(New frmBrandNew(), "btnAdd", "Brand New")
+        AssertBrandDialogLayout(New frmBrandEdit(), "btnUpdate", "Brand Edit")
+    End Sub
+
+    Private Sub AssertBrandDialogLayout(form As Form, commitButtonName As String, description As String)
+        Using form
+            Dim root As TableLayoutPanel = DirectCast(FindControl(form, "tlpDialogRoot"), TableLayoutPanel)
+            Dim basicFields As TableLayoutPanel = DirectCast(FindControl(form, "tlpBasicFields"), TableLayoutPanel)
+            Dim footer As TableLayoutPanel = DirectCast(FindControl(form, "tlpDialogFooter"), TableLayoutPanel)
+            Dim commands As FlowLayoutPanel = DirectCast(FindControl(form, "flpDialogCommands"), FlowLayoutPanel)
+            Dim commitButton As Button = DirectCast(FindControl(form, commitButtonName), Button)
+            Dim cancelButton As Button = DirectCast(FindControl(form, "btnCancel"), Button)
+
+            AssertEqual(form, root.Parent, description & " root parent")
+            AssertEqual(DockStyle.Fill, root.Dock, description & " root fill")
+            AssertEqual(root, FindControl(form, "grpBasic").Parent, description & " Basic parent")
+            AssertEqual(root, FindControl(form, "grpNotes").Parent, description & " Notes parent")
+            AssertEqual(FindControl(form, "grpBasic"), basicFields.Parent, description & " field table parent")
+            For Each fieldName As String In New String() {"lblBrand", "txtBrand", "lblCode", "txtCode"}
+                AssertEqual(basicFields, FindControl(form, fieldName).Parent, description & " " & fieldName & " parent")
+            Next
+            AssertEqual(root, footer.Parent, description & " footer parent")
+            AssertEqual(footer, FindControl(form, "lblAdd").Parent, description & " status parent")
+            AssertEqual(footer, commands.Parent, description & " command bar parent")
+            AssertEqual(commands, commitButton.Parent, description & " commit parent")
+            AssertEqual(commands, cancelButton.Parent, description & " Cancel parent")
+            AssertEqual(0, commands.Controls.GetChildIndex(commitButton), description & " commit order")
+            AssertEqual(1, commands.Controls.GetChildIndex(cancelButton), description & " Cancel order")
+            AssertEqual(commitButton, DirectCast(form.AcceptButton, Button), description & " default command")
+            AssertEqual(cancelButton, DirectCast(form.CancelButton, Button), description & " cancel command")
+            AssertEqual(DialogResult.Cancel, cancelButton.DialogResult, description & " cancel result")
+            AssertEqual(FormBorderStyle.FixedDialog, form.FormBorderStyle, description & " fixed dialog")
+            AssertEqual(True, form.AutoSize, description & " auto size")
+            AssertEqual(AutoSizeMode.GrowAndShrink, form.AutoSizeMode, description & " auto size mode")
+            AssertEqual(False, form.AutoScroll, description & " form AutoScroll disabled")
+            AssertEqual(AutoScaleMode.Font, form.AutoScaleMode, description & " font scaling")
         End Using
     End Sub
 
