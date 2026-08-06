@@ -261,6 +261,15 @@ adapter refuses a non-zero counter; only the explicit migration adaptation path
 may perform that already-reported loss. A successor native profile may add a
 representation, but the qualified Alpha 4 format is not changed retroactively.
 
+Native DTO-to-logical mapping is owned by `NativeV2ToCanonicalAdapter`; the
+shadow projector only applies resource bounds and constructs snapshot and
+fingerprint evidence. In the other direction,
+`CanonicalToNativeV2Adapter` owns native profile adaptation. Loss-aware v1.1
+export accepts `CatalogueState` and constructs the legacy `DataSet` inside the
+v1.1 Infrastructure boundary. Its older Native DTO overloads are compatibility
+entry points only and delegate through the native-to-canonical adapter first.
+Thus neither writer requires a second logical catalogue model.
+
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,
 entity ordering, and included metadata. Per-entity digests and ordered aggregate

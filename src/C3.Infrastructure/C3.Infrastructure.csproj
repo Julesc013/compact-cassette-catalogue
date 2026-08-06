@@ -46,6 +46,7 @@
     <Compile Include="CatalogueFiles\Canonical\CanonicalShadowProjection.cs" />
     <Compile Include="CatalogueFiles\Canonical\CanonicalToNativeV2Adapter.cs" />
     <Compile Include="CatalogueFiles\Canonical\NativeV2CanonicalShadowProjector.cs" />
+    <Compile Include="CatalogueFiles\Canonical\NativeV2ToCanonicalAdapter.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueFileFailure.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueLoadResult.cs" />
     <Compile Include="CatalogueFiles\Xml\V1_1\LegacyCatalogueMetadata.cs" />

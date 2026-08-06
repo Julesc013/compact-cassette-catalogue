@@ -1,6 +1,7 @@
 ctor|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Domain.Profiles.CatalogueProfileCapabilities sourceProfile,C3.Catalogue.Canonical.CatalogueState state,C3.Catalogue.Canonical.CatalogueSnapshot snapshot,C3.Catalogue.Canonical.CatalogueFingerprintIndex fingerprints
 ctor|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalToNativeV2Adapter|
 ctor|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|
+ctor|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2ToCanonicalAdapter|
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueMetadata|
@@ -123,6 +124,7 @@ enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongChannel|6
 enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongProduct|5
 method|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalToNativeV2Adapter|Adapt|instance|C3.Catalogue.Native.NativeCatalogue|C3.Catalogue.Canonical.CatalogueState source
 method|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|Project|instance|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Catalogue.Native.NativeCatalogue source,C3.Domain.Catalogues.DocumentSessionId sessionId,C3.Domain.Catalogues.ContentVersion contentVersion,C3.Catalogue.Canonical.CatalogueResourceBudget budget
+method|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2ToCanonicalAdapter|Adapt|instance|C3.Catalogue.Canonical.CatalogueState|C3.Catalogue.Native.NativeCatalogue source
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Add|instance|System.Void|C3.Catalogue.Brands.Brand value
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Delete|instance|System.Void|System.String code
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|FindByCode|instance|C3.Catalogue.Brands.Brand|System.String code
@@ -188,7 +190,9 @@ method|C3.Infrastructure.Migrations.V1_1ToV2_0.LegacyToNativeMigrator|DryRun|ins
 method|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReportWriter|WriteJson|instance|System.Byte[]|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport report,System.String status
 method|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReportWriter|WriteText|instance|System.Byte[]|C3.Infrastructure.Migrations.V1_1ToV2_0.MigrationReport report,System.String status
 method|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReportWriter|WriteJson|instance|System.Byte[]|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportReport report
+method|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|ExportCopy|instance|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|C3.Catalogue.Canonical.CatalogueState source,System.String destinationPath
 method|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|ExportCopy|instance|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportResult|C3.Catalogue.Native.NativeCatalogue source,System.String destinationPath
+method|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|Preview|instance|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportPreview|C3.Catalogue.Canonical.CatalogueState source
 method|C3.Infrastructure.Migrations.V2_0ToV1_1.NativeToLegacyExporter|Preview|instance|C3.Infrastructure.Migrations.V2_0ToV1_1.LegacyExportPreview|C3.Catalogue.Native.NativeCatalogue source
 method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|
 method|C3.Infrastructure.Preferences.LegacySettingsProfileLocator|Locate|instance|System.Collections.Generic.IList<C3.Infrastructure.Preferences.LegacySettingsProfileCandidate>|System.String localApplicationDataDirectory
@@ -408,6 +412,7 @@ property|C3.Infrastructure.Updates.UpdateReleasePackage|Url|System.String|get
 type|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalToNativeV2Adapter|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2ToCanonicalAdapter|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCatalogueFileFailure|enum|sealed

@@ -26,6 +26,11 @@
   canonical graph. Because frozen native-v2 cannot store that profile field,
   migration records an explicit warning and ordinary native adaptation refuses
   the loss instead of dropping it silently.
+- Extracted native-v2-to-canonical adaptation from the shadow projector and
+  made loss-aware v1.1 export consume `CatalogueState`. Existing Native DTO
+  overloads are now compatibility shims that adapt before export, while the
+  canonical path preserves legacy counters and remains readable by the captured
+  historical 1.x binaries.
 
 
 ### Version 2.0.0 Alpha 5 - In development

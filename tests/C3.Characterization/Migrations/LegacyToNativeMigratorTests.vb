@@ -260,9 +260,13 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
                 AssertEqual(True, HasExportIssue(preview.Report, "identity.omitted"), "identity loss")
                 AssertEqual(True, HasExportIssue(preview.Report, "provenance.omitted"), "provenance loss")
                 AssertEqual(True, HasExportIssue(preview.Report, "timestamp.utc-semantics"), "timestamp loss")
+                Dim canonicalPreview As LegacyExportPreview =
+                    exporter.Preview(nativeResult.CanonicalState)
+                AssertEqual(True, canonicalPreview.IsExportable, "canonical legacy export preview")
 
                 Dim destination As String = Path.Combine(workDirectory, "legacy-export.xml")
-                Dim exported As LegacyExportResult = exporter.ExportCopy(nativeResult.Document, destination)
+                Dim exported As LegacyExportResult =
+                    exporter.ExportCopy(nativeResult.CanonicalState, destination)
                 AssertEqual(True, exported.IsSuccess, "legacy export")
                 AssertEqual(True, File.Exists(exported.ReportPath), "loss report")
                 Dim reopened As LegacyToNativeMigrationResult =
@@ -273,9 +277,14 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
                 AssertEqual(1, reopened.Report.Counts.DeckUnits, "exported deck count")
                 AssertEqual(1, reopened.Report.Counts.Tapes, "exported tape count")
                 AssertEqual(2, reopened.Report.Counts.Recordings, "exported recording count")
+                AssertEqual(
+                    1,
+                    reopened.CanonicalState.CassetteModels(0).LegacyCounter,
+                    "legacy counter round trip")
 
                 Dim bytes As Byte() = File.ReadAllBytes(destination)
-                Dim refused As LegacyExportResult = exporter.ExportCopy(nativeResult.Document, destination)
+                Dim refused As LegacyExportResult =
+                    exporter.ExportCopy(nativeResult.CanonicalState, destination)
                 AssertEqual(False, refused.IsSuccess, "legacy overwrite refusal")
                 AssertBytesEqual(bytes, File.ReadAllBytes(destination), "legacy overwrite bytes")
             End Sub)

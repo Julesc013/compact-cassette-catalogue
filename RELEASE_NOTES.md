@@ -19,6 +19,12 @@ The legacy model sequence counter is retained in canonical profile evidence and
 included in its fingerprint. Frozen native-v2 cannot represent it, so migration
 reports that loss and strict ordinary native adaptation refuses it.
 
+Loss-aware v1.1 export now consumes the same canonical state directly. Native
+DTO entry points remain only as compatibility shims and adapt before export.
+The canonical export preserves the legacy model counter, is reopened through
+the secure current reader, and remains subject to the exact historical-binary
+reader/writer matrix.
+
 This checkpoint is not published. See the
 [execution plan](docs/planning/2.0-execution-plan.md) and
 [validation record](release/validation/2.0.0-alpha.6.md).
