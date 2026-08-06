@@ -31,6 +31,9 @@ Partial Class frmMain
         Me.pnlEditorViewport = New System.Windows.Forms.Panel()
         Me.tlpEditorCanvas = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpEditorMetadata = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpFindFields = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpIdentificationFields = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpIdentificationNumber = New System.Windows.Forms.FlowLayoutPanel()
         Me.grpIdentification = New System.Windows.Forms.GroupBox()
         Me.lblMax = New System.Windows.Forms.Label()
         Me.txtIndex = New System.Windows.Forms.TextBox()
@@ -200,6 +203,9 @@ Partial Class frmMain
         Me.pnlEditorViewport.SuspendLayout()
         Me.tlpEditorCanvas.SuspendLayout()
         Me.tlpEditorMetadata.SuspendLayout()
+        Me.tlpFindFields.SuspendLayout()
+        Me.tlpIdentificationFields.SuspendLayout()
+        Me.flpIdentificationNumber.SuspendLayout()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
         Me.pnlEmptyCatalogue.SuspendLayout()
@@ -367,23 +373,76 @@ Partial Class frmMain
         Me.tlpEditorMetadata.Size = New System.Drawing.Size(313, 433)
         Me.tlpEditorMetadata.TabIndex = 0
         '
+        'tlpFindFields
+        '
+        Me.tlpFindFields.ColumnCount = 3
+        Me.tlpFindFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpFindFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170.0!))
+        Me.tlpFindFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpFindFields.Controls.Add(Me.txtTerm, 0, 0)
+        Me.tlpFindFields.Controls.Add(Me.cmbField, 1, 0)
+        Me.tlpFindFields.Controls.Add(Me.btnFind, 2, 0)
+        Me.tlpFindFields.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpFindFields.Location = New System.Drawing.Point(3, 17)
+        Me.tlpFindFields.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpFindFields.Name = "tlpFindFields"
+        Me.tlpFindFields.RowCount = 1
+        Me.tlpFindFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpFindFields.Size = New System.Drawing.Size(652, 35)
+        Me.tlpFindFields.TabIndex = 0
+        '
+        'tlpIdentificationFields
+        '
+        Me.tlpIdentificationFields.AutoSize = True
+        Me.tlpIdentificationFields.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpIdentificationFields.ColumnCount = 4
+        Me.tlpIdentificationFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpIdentificationFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpIdentificationFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpIdentificationFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpIdentificationFields.Controls.Add(Me.lblShort, 0, 0)
+        Me.tlpIdentificationFields.Controls.Add(Me.txtShort, 1, 0)
+        Me.tlpIdentificationFields.Controls.Add(Me.lblLong, 2, 0)
+        Me.tlpIdentificationFields.Controls.Add(Me.txtLong, 3, 0)
+        Me.tlpIdentificationFields.Controls.Add(Me.flpIdentificationNumber, 0, 1)
+        Me.tlpIdentificationFields.SetColumnSpan(Me.flpIdentificationNumber, 4)
+        Me.tlpIdentificationFields.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpIdentificationFields.Location = New System.Drawing.Point(3, 17)
+        Me.tlpIdentificationFields.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpIdentificationFields.Name = "tlpIdentificationFields"
+        Me.tlpIdentificationFields.RowCount = 2
+        Me.tlpIdentificationFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpIdentificationFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpIdentificationFields.Size = New System.Drawing.Size(578, 63)
+        Me.tlpIdentificationFields.TabIndex = 0
+        '
+        'flpIdentificationNumber
+        '
+        Me.flpIdentificationNumber.AutoSize = True
+        Me.flpIdentificationNumber.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpIdentificationNumber.Controls.Add(Me.lblIndex)
+        Me.flpIdentificationNumber.Controls.Add(Me.txtIndex)
+        Me.flpIdentificationNumber.Controls.Add(Me.lblMax)
+        Me.flpIdentificationNumber.Controls.Add(Me.txtTotal)
+        Me.flpIdentificationNumber.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpIdentificationNumber.Location = New System.Drawing.Point(0, 28)
+        Me.flpIdentificationNumber.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpIdentificationNumber.Name = "flpIdentificationNumber"
+        Me.flpIdentificationNumber.Size = New System.Drawing.Size(578, 35)
+        Me.flpIdentificationNumber.TabIndex = 4
+        Me.flpIdentificationNumber.WrapContents = False
+        '
         'grpIdentification
         '
-        Me.grpIdentification.Controls.Add(Me.lblMax)
-        Me.grpIdentification.Controls.Add(Me.txtIndex)
-        Me.grpIdentification.Controls.Add(Me.txtTotal)
-        Me.grpIdentification.Controls.Add(Me.lblIndex)
-        Me.grpIdentification.Controls.Add(Me.txtLong)
-        Me.grpIdentification.Controls.Add(Me.txtShort)
-        Me.grpIdentification.Controls.Add(Me.lblLong)
-        Me.grpIdentification.Controls.Add(Me.lblShort)
+        Me.grpIdentification.Controls.Add(Me.tlpIdentificationFields)
         Me.grpIdentification.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpIdentification.Enabled = False
         Me.grpIdentification.Location = New System.Drawing.Point(0, 0)
         Me.grpIdentification.Margin = New System.Windows.Forms.Padding(0, 0, 5, 0)
+        Me.grpIdentification.MinimumSize = New System.Drawing.Size(0, 84)
         Me.grpIdentification.Name = "grpIdentification"
         Me.grpIdentification.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpIdentification.Size = New System.Drawing.Size(584, 58)
+        Me.grpIdentification.Size = New System.Drawing.Size(584, 84)
         Me.grpIdentification.TabIndex = 4
         Me.grpIdentification.TabStop = False
         Me.grpIdentification.Text = "Identification"
@@ -391,7 +450,9 @@ Partial Class frmMain
         'lblMax
         '
         Me.lblMax.AutoSize = True
-        Me.lblMax.Location = New System.Drawing.Point(500, 25)
+        Me.lblMax.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblMax.Location = New System.Drawing.Point(136, 7)
+        Me.lblMax.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
         Me.lblMax.Name = "lblMax"
         Me.lblMax.Size = New System.Drawing.Size(12, 17)
         Me.lblMax.TabIndex = 6
@@ -399,28 +460,30 @@ Partial Class frmMain
         '
         'txtIndex
         '
-        Me.txtIndex.Location = New System.Drawing.Point(437, 21)
+        Me.txtIndex.Location = New System.Drawing.Point(68, 3)
         Me.txtIndex.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtIndex.Name = "txtIndex"
         Me.txtIndex.ReadOnly = True
-        Me.txtIndex.Size = New System.Drawing.Size(59, 22)
+        Me.txtIndex.Size = New System.Drawing.Size(65, 22)
         Me.txtIndex.TabIndex = 5
         Me.txtIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtTotal
         '
-        Me.txtTotal.Location = New System.Drawing.Point(517, 21)
+        Me.txtTotal.Location = New System.Drawing.Point(151, 3)
         Me.txtTotal.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.ReadOnly = True
-        Me.txtTotal.Size = New System.Drawing.Size(57, 22)
+        Me.txtTotal.Size = New System.Drawing.Size(65, 22)
         Me.txtTotal.TabIndex = 3
         Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblIndex
         '
         Me.lblIndex.AutoSize = True
-        Me.lblIndex.Location = New System.Drawing.Point(371, 26)
+        Me.lblIndex.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblIndex.Location = New System.Drawing.Point(3, 7)
+        Me.lblIndex.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
         Me.lblIndex.Name = "lblIndex"
         Me.lblIndex.Size = New System.Drawing.Size(62, 17)
         Me.lblIndex.TabIndex = 4
@@ -428,26 +491,29 @@ Partial Class frmMain
         '
         'txtLong
         '
-        Me.txtLong.Location = New System.Drawing.Point(219, 21)
+        Me.txtLong.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtLong.Location = New System.Drawing.Point(376, 3)
         Me.txtLong.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtLong.Name = "txtLong"
         Me.txtLong.ReadOnly = True
-        Me.txtLong.Size = New System.Drawing.Size(144, 22)
+        Me.txtLong.Size = New System.Drawing.Size(199, 22)
         Me.txtLong.TabIndex = 2
         '
         'txtShort
         '
-        Me.txtShort.Location = New System.Drawing.Point(59, 21)
+        Me.txtShort.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtShort.Location = New System.Drawing.Point(55, 3)
         Me.txtShort.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtShort.Name = "txtShort"
         Me.txtShort.ReadOnly = True
-        Me.txtShort.Size = New System.Drawing.Size(104, 22)
+        Me.txtShort.Size = New System.Drawing.Size(268, 22)
         Me.txtShort.TabIndex = 1
         '
         'lblLong
         '
         Me.lblLong.AutoSize = True
-        Me.lblLong.Location = New System.Drawing.Point(169, 25)
+        Me.lblLong.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblLong.Location = New System.Drawing.Point(329, 5)
         Me.lblLong.Name = "lblLong"
         Me.lblLong.Size = New System.Drawing.Size(44, 17)
         Me.lblLong.TabIndex = 1
@@ -456,7 +522,8 @@ Partial Class frmMain
         'lblShort
         '
         Me.lblShort.AutoSize = True
-        Me.lblShort.Location = New System.Drawing.Point(5, 25)
+        Me.lblShort.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblShort.Location = New System.Drawing.Point(3, 5)
         Me.lblShort.Name = "lblShort"
         Me.lblShort.Size = New System.Drawing.Size(46, 17)
         Me.lblShort.TabIndex = 0
@@ -1804,9 +1871,7 @@ Partial Class frmMain
         '
         'grpFind
         '
-        Me.grpFind.Controls.Add(Me.cmbField)
-        Me.grpFind.Controls.Add(Me.txtTerm)
-        Me.grpFind.Controls.Add(Me.btnFind)
+        Me.grpFind.Controls.Add(Me.tlpFindFields)
         Me.grpFind.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpFind.Enabled = False
         Me.grpFind.Location = New System.Drawing.Point(0, 0)
@@ -1823,26 +1888,31 @@ Partial Class frmMain
         Me.cmbField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbField.FormattingEnabled = True
         Me.cmbField.Items.AddRange(New Object() {"All Fields", "Identifier", "Name/Label", "Brand", "Model", "Year", "Length", "Condition", "Noise Reduction", "Date Recorded", "Contents Type", "Artist", "Title", "Notes", "Index/Number"})
-        Me.cmbField.Location = New System.Drawing.Point(417, 21)
+        Me.cmbField.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmbField.Location = New System.Drawing.Point(416, 5)
         Me.cmbField.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbField.Name = "cmbField"
-        Me.cmbField.Size = New System.Drawing.Size(169, 24)
+        Me.cmbField.Size = New System.Drawing.Size(164, 24)
         Me.cmbField.TabIndex = 2
         '
         'txtTerm
         '
-        Me.txtTerm.Location = New System.Drawing.Point(7, 22)
+        Me.txtTerm.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtTerm.Location = New System.Drawing.Point(3, 5)
         Me.txtTerm.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtTerm.Name = "txtTerm"
-        Me.txtTerm.Size = New System.Drawing.Size(404, 22)
+        Me.txtTerm.Size = New System.Drawing.Size(407, 22)
         Me.txtTerm.TabIndex = 1
         '
         'btnFind
         '
-        Me.btnFind.Location = New System.Drawing.Point(593, 21)
+        Me.btnFind.AutoSize = True
+        Me.btnFind.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnFind.Location = New System.Drawing.Point(586, 2)
         Me.btnFind.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnFind.Name = "btnFind"
-        Me.btnFind.Size = New System.Drawing.Size(59, 26)
+        Me.btnFind.MinimumSize = New System.Drawing.Size(59, 26)
+        Me.btnFind.Size = New System.Drawing.Size(63, 31)
         Me.btnFind.TabIndex = 3
         Me.btnFind.Text = "Find"
         Me.btnFind.UseVisualStyleBackColor = True
@@ -1993,7 +2063,14 @@ Partial Class frmMain
         Me.tlpEditorCanvas.ResumeLayout(False)
         Me.tlpEditorCanvas.PerformLayout()
         Me.tlpEditorMetadata.ResumeLayout(False)
+        Me.tlpFindFields.ResumeLayout(False)
+        Me.tlpFindFields.PerformLayout()
+        Me.tlpIdentificationFields.ResumeLayout(False)
+        Me.tlpIdentificationFields.PerformLayout()
+        Me.flpIdentificationNumber.ResumeLayout(False)
+        Me.flpIdentificationNumber.PerformLayout()
         Me.grpIdentification.ResumeLayout(False)
+        Me.grpIdentification.PerformLayout()
         Me.grpIdentification.PerformLayout()
         Me.menuStripMain.ResumeLayout(False)
         Me.menuStripMain.PerformLayout()
@@ -2046,6 +2123,9 @@ Partial Class frmMain
     Friend WithEvents pnlEditorViewport As Panel
     Friend WithEvents tlpEditorCanvas As TableLayoutPanel
     Friend WithEvents tlpEditorMetadata As TableLayoutPanel
+    Friend WithEvents tlpFindFields As TableLayoutPanel
+    Friend WithEvents tlpIdentificationFields As TableLayoutPanel
+    Friend WithEvents flpIdentificationNumber As FlowLayoutPanel
     Friend WithEvents grpIdentification As GroupBox
     Friend WithEvents txtLong As TextBox
     Friend WithEvents txtShort As TextBox

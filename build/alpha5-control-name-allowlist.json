@@ -132,6 +132,24 @@
       "name": "tlpEditorMetadata",
       "type": "TableLayoutPanel",
       "reason": "Stack existing Model, Basic, Taped, and Notes groups without absolute sibling geometry."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpFindFields",
+      "type": "TableLayoutPanel",
+      "reason": "Keep the Find term, field selector, and command reachable as the header narrows."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpIdentificationFields",
+      "type": "TableLayoutPanel",
+      "reason": "Adapt Short, Long, and Number identity fields without fixed sibling coordinates."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "flpIdentificationNumber",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the read-only current/total tape-number controls together on a second identity row."
     }
   ]
 }

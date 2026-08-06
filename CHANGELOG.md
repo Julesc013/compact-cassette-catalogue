@@ -58,6 +58,12 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   runtime Main layout call are gone. The initial 32-cell Main intersection
   matrix passes while the separately recorded 800-pixel Find-field adaptation
   remains open.
+- Made the Main Find and Identification interiors adaptive: the Find term,
+  field selector, and command share a three-column table, while Short/Long
+  identity fields stretch in a two-row table and the current/total counter
+  remains grouped in a non-wrapping flow row. The 800-pixel view and 200%
+  maximum-text view now retain every command and field without the Alpha 4
+  collisions or off-canvas controls.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

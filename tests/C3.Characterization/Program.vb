@@ -48,6 +48,7 @@ Module Program
         RunTest("browser Add commands are Designer-owned", AddressOf BrowserAddCommandsAreDesignerOwned)
         RunTest("main empty catalogue surface is Designer-owned", AddressOf MainEmptyCatalogueSurfaceIsDesignerOwned)
         RunTest("main workspace hierarchy is Designer-owned", AddressOf MainWorkspaceHierarchyIsDesignerOwned)
+        RunTest("main header fields remain layout-owned and reachable", AddressOf MainHeaderFieldsRemainLayoutOwnedAndReachable)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -575,6 +576,34 @@ Module Program
         Dim source As String = File.ReadAllText(Path.Combine(
             _repositoryRoot, "Compact Cassette Catalogue", "frmMain.vb"))
         AssertEqual(False, source.Contains("CatalogueUx.ConfigureMainForm"), "runtime Main layout helper")
+    End Sub
+
+    Private Sub MainHeaderFieldsRemainLayoutOwnedAndReachable()
+        Using main As New frmMain()
+            main.Size = New System.Drawing.Size(800, 600)
+            main.PerformLayout()
+
+            Dim findLayout As TableLayoutPanel = DirectCast(FindControl(main, "tlpFindFields"), TableLayoutPanel)
+            Dim identityLayout As TableLayoutPanel = DirectCast(FindControl(main, "tlpIdentificationFields"), TableLayoutPanel)
+            Dim numberLayout As FlowLayoutPanel = DirectCast(FindControl(main, "flpIdentificationNumber"), FlowLayoutPanel)
+            For Each controlName As String In New String() {"txtTerm", "cmbField", "btnFind"}
+                Dim control As Control = FindControl(main, controlName)
+                AssertEqual(findLayout, control.Parent, controlName & " Find parent")
+                AssertEqual(True, findLayout.ClientRectangle.Contains(control.Bounds), controlName & " Find reachability")
+            Next
+            For Each controlName As String In New String() {"lblShort", "txtShort", "lblLong", "txtLong"}
+                Dim control As Control = FindControl(main, controlName)
+                AssertEqual(identityLayout, control.Parent, controlName & " Identification parent")
+                AssertEqual(True, identityLayout.ClientRectangle.Contains(control.Bounds), controlName & " Identification reachability")
+            Next
+            For Each controlName As String In New String() {"lblIndex", "txtIndex", "lblMax", "txtTotal"}
+                Dim control As Control = FindControl(main, controlName)
+                AssertEqual(numberLayout, control.Parent, controlName & " number parent")
+                AssertEqual(True, numberLayout.ClientRectangle.Contains(control.Bounds), controlName & " number reachability")
+            Next
+            AssertEqual(1, FindControl(main, "grpFind").Controls.Count, "Find layout ownership")
+            AssertEqual(1, FindControl(main, "grpIdentification").Controls.Count, "Identification layout ownership")
+        End Using
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)
