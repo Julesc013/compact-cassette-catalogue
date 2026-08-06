@@ -227,6 +227,8 @@ Module Program
 
         CheckParentScopes(form, result.Failures)
         CheckCommandBars(form, result.Failures)
+        CheckReachability(form, result.Failures)
+        CheckAutoSizeLabels(form, result.Failures)
         CheckRootAnchors(form, result.Failures)
         CheckKnownAlpha4Collisions(form, result.Failures)
     End Sub
@@ -275,6 +277,36 @@ Module Program
                     failures.Add("COMMAND_OUTSIDE_BAR:" & commandBar.Name & ":" & command.Name)
                 End If
             Next
+        Next
+    End Sub
+
+    Private Sub CheckReachability(form As Form, failures As List(Of String))
+        For Each control As Control In Descendants(form)
+            If Not control.Visible OrElse String.IsNullOrEmpty(control.Name) Then Continue For
+
+            Dim bounds As Rectangle = BoundsInForm(form, control)
+            If Not form.ClientRectangle.Contains(bounds) AndAlso
+                    String.IsNullOrEmpty(ScrollAncestorName(control)) Then
+                failures.Add("CONTROL_OUTSIDE_NONSCROLLABLE_VIEW:" & ControlPath(control))
+                Continue For
+            End If
+
+            If control.Parent Is Nothing OrElse control.Parent Is form OrElse
+                    Not String.IsNullOrEmpty(ScrollAncestorName(control)) Then Continue For
+            If Not control.Parent.ClientRectangle.Contains(control.Bounds) Then
+                failures.Add("CONTROL_CLIPPED_BY_PARENT:" & ControlPath(control))
+            End If
+        Next
+    End Sub
+
+    Private Sub CheckAutoSizeLabels(form As Form, failures As List(Of String))
+        For Each control As Control In Descendants(form)
+            Dim label As Label = TryCast(control, Label)
+            If label Is Nothing OrElse Not label.Visible OrElse Not label.AutoSize Then Continue For
+            Dim measured As Size = MeasureText(label)
+            If measured.Width > label.ClientSize.Width OrElse measured.Height > label.ClientSize.Height Then
+                failures.Add("AUTOSIZE_LABEL_CLIPPED:" & ControlPath(label))
+            End If
         Next
     End Sub
 
