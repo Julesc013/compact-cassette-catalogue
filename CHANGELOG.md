@@ -107,6 +107,11 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   anchoring, rectangle, and runtime-control factories. A direct regression
   rejects its return; the layout source-policy inventory is reduced from the
   Alpha 4 baseline of 52 findings to the one open Deck New form-scroll setting.
+- Rebuilt Deck New as a sizable dense editor with a dedicated scrolling
+  preferred-size canvas and a persistent status/Add/Cancel row. All original
+  groups and fields remain on the canvas, runtime size/scroll/accessibility
+  mutations are removed from Load, and the layout source-policy gate is now
+  clean in Qualification mode.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

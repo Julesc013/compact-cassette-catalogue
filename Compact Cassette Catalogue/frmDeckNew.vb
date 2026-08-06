@@ -18,15 +18,6 @@
     Public Property SuppressSuccessMessage As Boolean
 
     Private Sub FrmAddDeck_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AutoScaleMode = AutoScaleMode.Font
-        AutoScroll = True
-        MinimumSize = Size
-        btnAdd.Text = "Add &Deck"
-        btnAdd.AccessibleName = "Add Deck"
-        btnAdd.AccessibleDescription = "Add this deck to the current catalogue."
-        txtManufacturer.AccessibleName = "Deck manufacturer"
-        txtModel.AccessibleName = "Deck model or name"
-        lblAdd.Text = "Changes are saved with the catalogue."
         numYear.Maximum = Date.Today.Year
 
         'Load defaults

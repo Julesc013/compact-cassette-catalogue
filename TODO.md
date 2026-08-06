@@ -234,6 +234,10 @@ qualification gates earn the Alpha 5 transition.
   - [ ] Finish native keyboard, DPI, High Contrast, and assistive-technology
     review for the four browser forms.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
+  - [x] Rebuild Deck New around a dedicated scroll viewport, fixed preferred
+    canvas, and persistent Designer-owned status/Add/Cancel command row.
+  - [ ] Apply the verified dense-form pattern to Deck Edit and retain the
+    complete Deck New/Edit matrix.
 - [ ] Change Console, Find Results, Statistics, Settings, About, and setup/
   uninstall pages only when the characterization matrix reproduces a defect.
 - [ ] Complete visible-text, ellipsis, access-key, default/cancel, tab/focus,

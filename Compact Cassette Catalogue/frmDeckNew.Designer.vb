@@ -23,6 +23,11 @@ Partial Class frmDeckNew
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDeckNew))
+        Me.tlpDeckRoot = New System.Windows.Forms.TableLayoutPanel()
+        Me.pnlDeckViewport = New System.Windows.Forms.Panel()
+        Me.pnlDeckCanvas = New System.Windows.Forms.Panel()
+        Me.tlpDeckCommands = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpDeckCommitCommands = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.grpNotes = New System.Windows.Forms.GroupBox()
@@ -84,6 +89,11 @@ Partial Class frmDeckNew
         Me.lblDistortion = New System.Windows.Forms.Label()
         Me.grpSpecifications = New System.Windows.Forms.GroupBox()
         Me.grpSpeeds = New System.Windows.Forms.GroupBox()
+        Me.tlpDeckRoot.SuspendLayout()
+        Me.pnlDeckViewport.SuspendLayout()
+        Me.pnlDeckCanvas.SuspendLayout()
+        Me.tlpDeckCommands.SuspendLayout()
+        Me.flpDeckCommitCommands.SuspendLayout()
         Me.grpNotes.SuspendLayout()
         Me.grpBasic.SuspendLayout()
         CType(Me.numYear, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,13 +110,97 @@ Partial Class frmDeckNew
         Me.grpSpeeds.SuspendLayout()
         Me.SuspendLayout()
         '
+        'tlpDeckRoot
+        '
+        Me.tlpDeckRoot.ColumnCount = 1
+        Me.tlpDeckRoot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDeckRoot.Controls.Add(Me.pnlDeckViewport, 0, 0)
+        Me.tlpDeckRoot.Controls.Add(Me.tlpDeckCommands, 0, 1)
+        Me.tlpDeckRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpDeckRoot.Location = New System.Drawing.Point(0, 0)
+        Me.tlpDeckRoot.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpDeckRoot.Name = "tlpDeckRoot"
+        Me.tlpDeckRoot.Padding = New System.Windows.Forms.Padding(9)
+        Me.tlpDeckRoot.RowCount = 2
+        Me.tlpDeckRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDeckRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDeckRoot.Size = New System.Drawing.Size(700, 430)
+        Me.tlpDeckRoot.TabIndex = 0
+        '
+        'pnlDeckViewport
+        '
+        Me.pnlDeckViewport.AutoScroll = True
+        Me.pnlDeckViewport.Controls.Add(Me.pnlDeckCanvas)
+        Me.pnlDeckViewport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlDeckViewport.Location = New System.Drawing.Point(9, 9)
+        Me.pnlDeckViewport.Margin = New System.Windows.Forms.Padding(0, 0, 0, 8)
+        Me.pnlDeckViewport.Name = "pnlDeckViewport"
+        Me.pnlDeckViewport.Size = New System.Drawing.Size(682, 365)
+        Me.pnlDeckViewport.TabIndex = 0
+        '
+        'pnlDeckCanvas
+        '
+        Me.pnlDeckCanvas.AutoSize = True
+        Me.pnlDeckCanvas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.pnlDeckCanvas.Controls.Add(Me.grpBasic)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpTypes)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpSpeeds)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpNR)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpFeatures)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpSpecifications)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpTransport)
+        Me.pnlDeckCanvas.Controls.Add(Me.grpNotes)
+        Me.pnlDeckCanvas.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlDeckCanvas.Location = New System.Drawing.Point(0, 0)
+        Me.pnlDeckCanvas.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlDeckCanvas.MinimumSize = New System.Drawing.Size(567, 306)
+        Me.pnlDeckCanvas.Name = "pnlDeckCanvas"
+        Me.pnlDeckCanvas.Size = New System.Drawing.Size(682, 306)
+        Me.pnlDeckCanvas.TabIndex = 0
+        '
+        'tlpDeckCommands
+        '
+        Me.tlpDeckCommands.AutoSize = True
+        Me.tlpDeckCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpDeckCommands.ColumnCount = 2
+        Me.tlpDeckCommands.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDeckCommands.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpDeckCommands.Controls.Add(Me.lblAdd, 0, 0)
+        Me.tlpDeckCommands.Controls.Add(Me.flpDeckCommitCommands, 1, 0)
+        Me.tlpDeckCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpDeckCommands.Location = New System.Drawing.Point(9, 382)
+        Me.tlpDeckCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpDeckCommands.Name = "tlpDeckCommands"
+        Me.tlpDeckCommands.RowCount = 1
+        Me.tlpDeckCommands.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDeckCommands.Size = New System.Drawing.Size(682, 39)
+        Me.tlpDeckCommands.TabIndex = 1
+        '
+        'flpDeckCommitCommands
+        '
+        Me.flpDeckCommitCommands.AutoSize = True
+        Me.flpDeckCommitCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpDeckCommitCommands.Controls.Add(Me.btnAdd)
+        Me.flpDeckCommitCommands.Controls.Add(Me.btnCancel)
+        Me.flpDeckCommitCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpDeckCommitCommands.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight
+        Me.flpDeckCommitCommands.Location = New System.Drawing.Point(490, 0)
+        Me.flpDeckCommitCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpDeckCommitCommands.Name = "flpDeckCommitCommands"
+        Me.flpDeckCommitCommands.Size = New System.Drawing.Size(192, 39)
+        Me.flpDeckCommitCommands.TabIndex = 1
+        Me.flpDeckCommitCommands.WrapContents = False
+        '
         'btnAdd
         '
-        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAdd.AccessibleDescription = "Add this deck to the current catalogue."
+        Me.btnAdd.AccessibleName = "Add Deck"
+        Me.btnAdd.AutoSize = True
         Me.btnAdd.Location = New System.Drawing.Point(245, 299)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAdd.MinimumSize = New System.Drawing.Size(90, 23)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(151, 21)
+        Me.btnAdd.Size = New System.Drawing.Size(90, 23)
         Me.btnAdd.TabIndex = 8
         Me.btnAdd.Text = "Add &Deck"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -115,12 +209,13 @@ Partial Class frmDeckNew
         '
         Me.btnCancel.AccessibleDescription = "Cancel this creation step and return without adding an item."
         Me.btnCancel.AccessibleName = "Cancel"
-        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.AutoSize = True
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(404, 299)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.MinimumSize = New System.Drawing.Size(90, 23)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(151, 21)
+        Me.btnCancel.Size = New System.Drawing.Size(90, 23)
         Me.btnCancel.TabIndex = 9
         Me.btnCancel.Text = "&Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
@@ -202,6 +297,7 @@ Partial Class frmDeckNew
         Me.txtModel.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModel.MaxLength = 100
         Me.txtModel.Name = "txtModel"
+        Me.txtModel.AccessibleName = "Deck model or name"
         Me.txtModel.Size = New System.Drawing.Size(122, 20)
         Me.txtModel.TabIndex = 2
         '
@@ -211,6 +307,7 @@ Partial Class frmDeckNew
         Me.txtManufacturer.Margin = New System.Windows.Forms.Padding(2)
         Me.txtManufacturer.MaxLength = 100
         Me.txtManufacturer.Name = "txtManufacturer"
+        Me.txtManufacturer.AccessibleName = "Deck manufacturer"
         Me.txtManufacturer.Size = New System.Drawing.Size(122, 20)
         Me.txtManufacturer.TabIndex = 1
         '
@@ -815,26 +912,27 @@ Partial Class frmDeckNew
         Me.AcceptButton = Me.btnAdd
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = False
         Me.CancelButton = Me.btnCancel
-        Me.ClientSize = New System.Drawing.Size(567, 330)
-        Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.grpSpeeds)
-        Me.Controls.Add(Me.grpSpecifications)
-        Me.Controls.Add(Me.lblAdd)
-        Me.Controls.Add(Me.grpFeatures)
-        Me.Controls.Add(Me.btnAdd)
-        Me.Controls.Add(Me.grpNR)
-        Me.Controls.Add(Me.grpTransport)
-        Me.Controls.Add(Me.grpBasic)
-        Me.Controls.Add(Me.grpTypes)
-        Me.Controls.Add(Me.grpNotes)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.ClientSize = New System.Drawing.Size(700, 430)
+        Me.Controls.Add(Me.tlpDeckRoot)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = True
+        Me.MinimumSize = New System.Drawing.Size(600, 400)
         Me.Name = "frmDeckNew"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add New Deck"
+        Me.tlpDeckRoot.ResumeLayout(False)
+        Me.tlpDeckRoot.PerformLayout()
+        Me.pnlDeckViewport.ResumeLayout(False)
+        Me.pnlDeckViewport.PerformLayout()
+        Me.pnlDeckCanvas.ResumeLayout(False)
+        Me.tlpDeckCommands.ResumeLayout(False)
+        Me.tlpDeckCommands.PerformLayout()
+        Me.flpDeckCommitCommands.ResumeLayout(False)
+        Me.flpDeckCommitCommands.PerformLayout()
         Me.grpNotes.ResumeLayout(False)
         Me.grpNotes.PerformLayout()
         Me.grpBasic.ResumeLayout(False)
@@ -862,6 +960,11 @@ Partial Class frmDeckNew
 
     End Sub
 
+    Friend WithEvents tlpDeckRoot As TableLayoutPanel
+    Friend WithEvents pnlDeckViewport As Panel
+    Friend WithEvents pnlDeckCanvas As Panel
+    Friend WithEvents tlpDeckCommands As TableLayoutPanel
+    Friend WithEvents flpDeckCommitCommands As FlowLayoutPanel
     Friend WithEvents btnAdd As Button
     Friend WithEvents btnCancel As Button
     Friend WithEvents grpNotes As GroupBox

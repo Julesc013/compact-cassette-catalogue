@@ -56,6 +56,7 @@ Module Program
         RunTest("Deck browser hierarchy is Designer-owned", AddressOf DeckBrowserHierarchyIsDesignerOwned)
         RunTest("Tape browser hierarchy is Designer-owned", AddressOf TapeBrowserHierarchyIsDesignerOwned)
         RunTest("runtime layout helper module is absent", AddressOf RuntimeLayoutHelperModuleIsAbsent)
+        RunTest("Deck New viewport is Designer-owned", AddressOf DeckNewViewportIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -785,6 +786,39 @@ Module Program
                 "AddCancelButton", "AddActionButton", "AnchorIfPresent"}
             AssertEqual(False, source.Contains(helperName), helperName & " removed")
         Next
+    End Sub
+
+    Private Sub DeckNewViewportIsDesignerOwned()
+        Using deck As New frmDeckNew()
+            Dim root As Control = FindControl(deck, "tlpDeckRoot")
+            Dim viewport As Panel = DirectCast(FindControl(deck, "pnlDeckViewport"), Panel)
+            Dim canvas As Panel = DirectCast(FindControl(deck, "pnlDeckCanvas"), Panel)
+            Dim commandLayout As Control = FindControl(deck, "tlpDeckCommands")
+            Dim commandBar As FlowLayoutPanel = DirectCast(FindControl(deck, "flpDeckCommitCommands"), FlowLayoutPanel)
+            AssertEqual(deck, root.Parent, "Deck New root")
+            AssertEqual(DockStyle.Fill, root.Dock, "Deck New root fill")
+            AssertEqual(root, viewport.Parent, "Deck New viewport parent")
+            AssertEqual(True, viewport.AutoScroll, "Deck New viewport scroll")
+            AssertEqual(viewport, canvas.Parent, "Deck New canvas parent")
+            AssertEqual(True, canvas.AutoSize, "Deck New canvas auto size")
+            AssertEqual(DockStyle.Top, canvas.Dock, "Deck New canvas top dock")
+            For Each groupName As String In New String() {
+                    "grpBasic", "grpTypes", "grpSpeeds", "grpNR", "grpFeatures",
+                    "grpSpecifications", "grpTransport", "grpNotes"}
+                AssertEqual(canvas, FindControl(deck, groupName).Parent, groupName & " canvas parent")
+            Next
+            AssertEqual(root, commandLayout.Parent, "Deck New command layout parent")
+            AssertEqual(commandLayout, FindControl(deck, "lblAdd").Parent, "Deck New status parent")
+            AssertEqual(commandLayout, commandBar.Parent, "Deck New command bar parent")
+            AssertEqual(commandBar, FindControl(deck, "btnAdd").Parent, "Deck New Add parent")
+            AssertEqual(commandBar, FindControl(deck, "btnCancel").Parent, "Deck New Cancel parent")
+            AssertEqual(False, deck.AutoScroll, "Deck New form AutoScroll disabled")
+        End Using
+
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", "frmDeckNew.vb"))
+        AssertEqual(False, source.Contains("AutoScroll ="), "Deck New runtime scrolling")
+        AssertEqual(False, source.Contains("MinimumSize ="), "Deck New runtime minimum size")
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)
