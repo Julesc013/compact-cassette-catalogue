@@ -62,6 +62,7 @@ Module Program
         RunTest("Model dialogs use fixed autosizing layout", AddressOf ModelDialogsUseFixedAutosizingLayout)
         RunTest("Console uses fill output and persistent commands", AddressOf ConsoleUsesFillOutputAndPersistentCommands)
         RunTest("Find Results uses fill list and persistent footer", AddressOf FindResultsUsesFillListAndPersistentFooter)
+        RunTest("Settings uses a fixed autosizing table", AddressOf SettingsUsesFixedAutosizingTable)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -945,6 +946,30 @@ Module Program
             AssertEqual(commands, FindControl(results, "btnDelete").Parent, "Find Results Delete parent")
             AssertEqual(FormBorderStyle.Sizable, results.FormBorderStyle, "Find Results sizable")
             AssertEqual(False, results.AutoScroll, "Find Results form AutoScroll disabled")
+        End Using
+    End Sub
+
+    Private Sub SettingsUsesFixedAutosizingTable()
+        Using settings As New frmSettings()
+            Dim root As TableLayoutPanel = DirectCast(FindControl(settings, "tlpSettingsRoot"), TableLayoutPanel)
+            Dim commands As FlowLayoutPanel = DirectCast(FindControl(settings, "flpSettingsCommands"), FlowLayoutPanel)
+            Dim saveButton As Button = DirectCast(FindControl(settings, "btnSave"), Button)
+            Dim cancelButton As Button = DirectCast(FindControl(settings, "btnCancel"), Button)
+            AssertEqual(settings, root.Parent, "Settings root parent")
+            AssertEqual(DockStyle.Fill, root.Dock, "Settings root fill")
+            For Each controlName As String In New String() {"lblShowMessages", "cmbShowMessages", "lblCheckUpdates", "cmbCheckUpdates"}
+                AssertEqual(root, FindControl(settings, controlName).Parent, "Settings " & controlName & " parent")
+            Next
+            AssertEqual(root, commands.Parent, "Settings command bar parent")
+            AssertEqual(commands, saveButton.Parent, "Settings Save parent")
+            AssertEqual(commands, cancelButton.Parent, "Settings Cancel parent")
+            AssertEqual(saveButton, DirectCast(settings.AcceptButton, Button), "Settings default command")
+            AssertEqual(cancelButton, DirectCast(settings.CancelButton, Button), "Settings cancel command")
+            AssertEqual(DialogResult.Cancel, cancelButton.DialogResult, "Settings cancel result")
+            AssertEqual(FormBorderStyle.FixedDialog, settings.FormBorderStyle, "Settings fixed dialog")
+            AssertEqual(True, settings.AutoSize, "Settings auto size")
+            AssertEqual(AutoSizeMode.GrowAndShrink, settings.AutoSizeMode, "Settings auto size mode")
+            AssertEqual(False, settings.AutoScroll, "Settings form AutoScroll disabled")
         End Using
     End Sub
 

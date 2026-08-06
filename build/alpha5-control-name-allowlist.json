@@ -534,6 +534,24 @@
       "name": "flpFindCommands",
       "type": "FlowLayoutPanel",
       "reason": "Keep Edit and Delete together in a Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "tlpSettingsRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Align the two Settings labels and choices in a fixed autosizing dialog."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "flpSettingsCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep Save Settings and Cancel together in a Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmSettings.Designer.vb",
+      "name": "btnCancel",
+      "type": "Button",
+      "reason": "Provide an explicit keyboard-reachable cancel result for Settings."
     }
   ]
 }
