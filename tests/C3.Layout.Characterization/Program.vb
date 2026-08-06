@@ -46,8 +46,9 @@ Module Program
                 form.Font.SizeInPoints * result.ScaleFactor,
                 form.Font.Style,
                 GraphicsUnit.Point)
-            PopulateRepresentativeContent(form, result.ContentProfile)
             form.Show()
+            Application.DoEvents()
+            PopulateRepresentativeContent(form, result.ContentProfile)
             Application.DoEvents()
             form.Size = New Size(result.RequestedWidth, result.RequestedHeight)
             form.PerformLayout()
@@ -89,8 +90,14 @@ Module Program
                 End If
                 Dim combo As ComboBox = TryCast(control, ComboBox)
                 If combo IsNot Nothing Then
-                    combo.Items.Add("Representative maximum-length catalogue choice — WWWWWWWWWWWWWWWW")
-                    combo.SelectedIndex = combo.Items.Count - 1
+                    Dim representativeChoice As String = "Representative maximum-length catalogue choice — WWWWWWWWWWWWWWWW"
+                    If combo.DropDownStyle = ComboBoxStyle.DropDownList Then
+                        'Key-bound catalogue choices must retain a real loaded item: selecting an
+                        'invented display value would correctly fail the stable-identity contract.
+                        combo.Items.Add(representativeChoice)
+                    Else
+                        combo.Text = representativeChoice
+                    End If
                 End If
             Next
         End If
@@ -146,6 +153,7 @@ Module Program
         Next
 
         CheckParentScopes(form, result.Failures)
+        CheckCommandBars(form, result.Failures)
         CheckRootAnchors(form, result.Failures)
         CheckKnownAlpha4Collisions(form, result.Failures)
     End Sub
@@ -178,6 +186,22 @@ Module Program
 
         For Each child As Control In parent.Controls
             CheckParentScopes(child, failures)
+        Next
+    End Sub
+
+    Private Sub CheckCommandBars(form As Form, failures As List(Of String))
+        For Each control As Control In Descendants(form)
+            Dim commandBar As FlowLayoutPanel = TryCast(control, FlowLayoutPanel)
+            If commandBar Is Nothing OrElse
+                    commandBar.Name.IndexOf("Commands", StringComparison.OrdinalIgnoreCase) < 0 Then
+                Continue For
+            End If
+
+            For Each command As Control In commandBar.Controls
+                If command.Visible AndAlso Not commandBar.ClientRectangle.Contains(command.Bounds) Then
+                    failures.Add("COMMAND_OUTSIDE_BAR:" & commandBar.Name & ":" & command.Name)
+                End If
+            Next
         Next
     End Sub
 

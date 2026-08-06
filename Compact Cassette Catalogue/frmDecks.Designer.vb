@@ -27,6 +27,7 @@ Partial Class frmDecks
         Me.tlpBrowseRight = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpBrowseFooter = New System.Windows.Forms.TableLayoutPanel()
         Me.flpBrowseStatus = New System.Windows.Forms.FlowLayoutPanel()
+        Me.flpBrowseCommands = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblResults = New System.Windows.Forms.Label()
         Me.grpTapes = New System.Windows.Forms.GroupBox()
         Me.lstDecks = New System.Windows.Forms.ListView()
@@ -79,6 +80,7 @@ Partial Class frmDecks
         Me.tlpBrowseRight.SuspendLayout()
         Me.tlpBrowseFooter.SuspendLayout()
         Me.flpBrowseStatus.SuspendLayout()
+        Me.flpBrowseCommands.SuspendLayout()
         Me.grpTapes.SuspendLayout()
         Me.grpActions.SuspendLayout()
         Me.grpBasic.SuspendLayout()
@@ -122,16 +124,16 @@ Partial Class frmDecks
         '
         Me.tlpBrowseFooter.AutoSize = True
         Me.tlpBrowseFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.tlpBrowseFooter.ColumnCount = 2
+        Me.tlpBrowseFooter.ColumnCount = 1
         Me.tlpBrowseFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpBrowseFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpBrowseFooter.Controls.Add(Me.flpBrowseStatus, 0, 0)
-        Me.tlpBrowseFooter.Controls.Add(Me.grpActions, 1, 0)
+        Me.tlpBrowseFooter.Controls.Add(Me.grpActions, 0, 1)
         Me.tlpBrowseFooter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpBrowseFooter.Location = New System.Drawing.Point(0, 477)
         Me.tlpBrowseFooter.Margin = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.tlpBrowseFooter.Name = "tlpBrowseFooter"
-        Me.tlpBrowseFooter.RowCount = 1
+        Me.tlpBrowseFooter.RowCount = 2
+        Me.tlpBrowseFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
         Me.tlpBrowseFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
         Me.tlpBrowseFooter.Size = New System.Drawing.Size(966, 114)
         Me.tlpBrowseFooter.TabIndex = 1
@@ -142,6 +144,7 @@ Partial Class frmDecks
         Me.flpBrowseStatus.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.flpBrowseStatus.Controls.Add(Me.lblResults)
         Me.flpBrowseStatus.Controls.Add(Me.txtResults)
+        Me.flpBrowseStatus.Controls.Add(Me.Label1)
         Me.flpBrowseStatus.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpBrowseStatus.Location = New System.Drawing.Point(0, 0)
         Me.flpBrowseStatus.Margin = New System.Windows.Forms.Padding(0, 0, 6, 0)
@@ -150,6 +153,22 @@ Partial Class frmDecks
         Me.flpBrowseStatus.Size = New System.Drawing.Size(756, 114)
         Me.flpBrowseStatus.TabIndex = 0
         Me.flpBrowseStatus.WrapContents = False
+        '
+        'flpBrowseCommands
+        '
+        Me.flpBrowseCommands.AutoSize = True
+        Me.flpBrowseCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpBrowseCommands.Controls.Add(Me.btnAddDeck)
+        Me.flpBrowseCommands.Controls.Add(Me.btnRefresh)
+        Me.flpBrowseCommands.Controls.Add(Me.btnEdit)
+        Me.flpBrowseCommands.Controls.Add(Me.btnDelete)
+        Me.flpBrowseCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpBrowseCommands.Location = New System.Drawing.Point(2, 15)
+        Me.flpBrowseCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpBrowseCommands.Name = "flpBrowseCommands"
+        Me.flpBrowseCommands.Size = New System.Drawing.Size(962, 25)
+        Me.flpBrowseCommands.TabIndex = 0
+        Me.flpBrowseCommands.WrapContents = True
         '
         'lblResults
         '
@@ -298,19 +317,19 @@ Partial Class frmDecks
         Me.btnAddDeck.AccessibleName = "Add Deck"
         Me.btnAddDeck.Location = New System.Drawing.Point(5, 17)
         Me.btnAddDeck.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddDeck.MinimumSize = New System.Drawing.Size(90, 23)
         Me.btnAddDeck.Name = "btnAddDeck"
-        Me.btnAddDeck.Size = New System.Drawing.Size(194, 21)
+        Me.btnAddDeck.Size = New System.Drawing.Size(90, 23)
+        Me.btnAddDeck.AutoSize = True
         Me.btnAddDeck.TabIndex = 1
         Me.btnAddDeck.Text = "Add &Deck…"
         Me.btnAddDeck.UseVisualStyleBackColor = True
         '
         'grpActions
         '
-        Me.grpActions.Controls.Add(Me.btnAddDeck)
-        Me.grpActions.Controls.Add(Me.btnEdit)
-        Me.grpActions.Controls.Add(Me.btnRefresh)
-        Me.grpActions.Controls.Add(Me.Label1)
-        Me.grpActions.Controls.Add(Me.btnDelete)
+        Me.grpActions.AutoSize = True
+        Me.grpActions.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.grpActions.Controls.Add(Me.flpBrowseCommands)
         Me.grpActions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpActions.Location = New System.Drawing.Point(762, 2)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(0, 2, 0, 2)
@@ -325,8 +344,10 @@ Partial Class frmDecks
         '
         Me.btnRefresh.Location = New System.Drawing.Point(5, 42)
         Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnRefresh.MinimumSize = New System.Drawing.Size(75, 23)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(194, 21)
+        Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefresh.AutoSize = True
         Me.btnRefresh.TabIndex = 2
         Me.btnRefresh.Text = "Refresh List"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -346,8 +367,10 @@ Partial Class frmDecks
         Me.btnDelete.Enabled = False
         Me.btnDelete.Location = New System.Drawing.Point(104, 67)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnDelete.MinimumSize = New System.Drawing.Size(75, 23)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(95, 21)
+        Me.btnDelete.Size = New System.Drawing.Size(75, 23)
+        Me.btnDelete.AutoSize = True
         Me.btnDelete.TabIndex = 4
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
@@ -530,8 +553,10 @@ Partial Class frmDecks
         Me.btnEdit.Enabled = False
         Me.btnEdit.Location = New System.Drawing.Point(5, 67)
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnEdit.MinimumSize = New System.Drawing.Size(75, 23)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(95, 21)
+        Me.btnEdit.Size = New System.Drawing.Size(75, 23)
+        Me.btnEdit.AutoSize = True
         Me.btnEdit.TabIndex = 3
         Me.btnEdit.Text = "Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
@@ -561,6 +586,8 @@ Partial Class frmDecks
         Me.tlpBrowseFooter.PerformLayout()
         Me.flpBrowseStatus.ResumeLayout(False)
         Me.flpBrowseStatus.PerformLayout()
+        Me.flpBrowseCommands.ResumeLayout(False)
+        Me.flpBrowseCommands.PerformLayout()
         Me.grpTapes.ResumeLayout(False)
         Me.grpActions.ResumeLayout(False)
         Me.grpActions.PerformLayout()
@@ -576,6 +603,7 @@ Partial Class frmDecks
     Friend WithEvents tlpBrowseRight As TableLayoutPanel
     Friend WithEvents tlpBrowseFooter As TableLayoutPanel
     Friend WithEvents flpBrowseStatus As FlowLayoutPanel
+    Friend WithEvents flpBrowseCommands As FlowLayoutPanel
     Friend WithEvents lblResults As Label
     Friend WithEvents grpTapes As GroupBox
     Friend WithEvents grpActions As GroupBox

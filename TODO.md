@@ -225,8 +225,10 @@ qualification gates earn the Alpha 5 transition.
   - [x] Rebuild Tapes to the same ownership contract, replace its 1924-pixel
     default canvas with a practical flexible workspace, and remove its runtime
     layout helper.
-  - [ ] Convert each action group to an adaptive command row and retain the
-    complete browser-family atlas.
+  - [x] Convert each inherited full-width action stack to a Designer-owned,
+    wrapping Add/Refresh/Edit/Delete command row with governed logical minimums.
+  - [ ] Retain the complete commit-bound browser-family atlas and finish native
+    keyboard, DPI, High Contrast, and assistive-technology review.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
 - [ ] Change Console, Find Results, Statistics, Settings, About, and setup/
   uninstall pages only when the characterization matrix reproduces a defect.

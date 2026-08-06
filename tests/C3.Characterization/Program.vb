@@ -679,6 +679,7 @@ Module Program
             AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Brand actions footer")
             AssertEqual(status, FindControl(browser, "lblResults").Parent, "Brand status label")
             AssertEqual(status, FindControl(browser, "txtResults").Parent, "Brand status count")
+            AssertBrowserCommandBar(browser, "btnAddBrand", "Brand")
             AssertEqual(DockStyle.Fill, FindControl(browser, "lstBrands").Dock, "Brand list fill")
             AssertEqual(False, browser.AutoScroll, "Brand form AutoScroll disabled")
         End Using
@@ -701,6 +702,7 @@ Module Program
             AssertEqual(rightLayout, footer.Parent, "Model footer")
             AssertEqual(footer, status.Parent, "Model status row")
             AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Model actions footer")
+            AssertBrowserCommandBar(browser, "btnAddModel", "Model")
             AssertEqual(DockStyle.Fill, FindControl(browser, "lstModels").Dock, "Model list fill")
             AssertEqual(False, browser.AutoScroll, "Model form AutoScroll disabled")
         End Using
@@ -723,6 +725,7 @@ Module Program
             AssertEqual(rightLayout, footer.Parent, "Deck footer")
             AssertEqual(footer, status.Parent, "Deck status row")
             AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Deck actions footer")
+            AssertBrowserCommandBar(browser, "btnAddDeck", "Deck")
             AssertEqual(DockStyle.Fill, FindControl(browser, "lstDecks").Dock, "Deck list fill")
             AssertEqual(False, browser.AutoScroll, "Deck form AutoScroll disabled")
         End Using
@@ -745,6 +748,7 @@ Module Program
             AssertEqual(rightLayout, footer.Parent, "Tape footer")
             AssertEqual(footer, status.Parent, "Tape status row")
             AssertEqual(footer, FindControl(browser, "grpActions").Parent, "Tape actions footer")
+            AssertBrowserCommandBar(browser, "btnAddTape", "Tape")
             AssertEqual(DockStyle.Fill, FindControl(browser, "lstTapes").Dock, "Tape list fill")
             AssertEqual(False, browser.AutoScroll, "Tape form AutoScroll disabled")
         End Using
@@ -752,6 +756,23 @@ Module Program
         Dim source As String = File.ReadAllText(Path.Combine(
             _repositoryRoot, "Compact Cassette Catalogue", "frmTapes.vb"))
         AssertEqual(False, source.Contains("CatalogueUx.ConfigureListForm"), "Tape runtime list helper")
+    End Sub
+
+    Private Sub AssertBrowserCommandBar(browser As Form, addButtonName As String, description As String)
+        Dim status As Control = FindControl(browser, "flpBrowseStatus")
+        Dim actions As GroupBox = DirectCast(FindControl(browser, "grpActions"), GroupBox)
+        Dim commands As FlowLayoutPanel = DirectCast(FindControl(browser, "flpBrowseCommands"), FlowLayoutPanel)
+        AssertEqual(status, FindControl(browser, "Label1").Parent, description & " persistence status parent")
+        AssertEqual(actions, commands.Parent, description & " command bar parent")
+        AssertEqual(True, actions.AutoSize, description & " actions auto size")
+        AssertEqual(True, commands.AutoSize, description & " command bar auto size")
+        AssertEqual(True, commands.WrapContents, description & " command bar wraps")
+        Dim orderedNames As String() = {addButtonName, "btnRefresh", "btnEdit", "btnDelete"}
+        For index As Integer = 0 To orderedNames.Length - 1
+            Dim command As Control = FindControl(browser, orderedNames(index))
+            AssertEqual(commands, command.Parent, description & " " & orderedNames(index) & " parent")
+            AssertEqual(index, commands.Controls.GetChildIndex(command), description & " " & orderedNames(index) & " order")
+        Next
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

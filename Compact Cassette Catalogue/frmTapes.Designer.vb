@@ -27,6 +27,7 @@ Partial Class frmTapes
         Me.tlpBrowseRight = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpBrowseFooter = New System.Windows.Forms.TableLayoutPanel()
         Me.flpBrowseStatus = New System.Windows.Forms.FlowLayoutPanel()
+        Me.flpBrowseCommands = New System.Windows.Forms.FlowLayoutPanel()
         Me.grpFilters = New System.Windows.Forms.GroupBox()
         Me.grpContents = New System.Windows.Forms.GroupBox()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -104,6 +105,7 @@ Partial Class frmTapes
         Me.tlpBrowseRight.SuspendLayout()
         Me.tlpBrowseFooter.SuspendLayout()
         Me.flpBrowseStatus.SuspendLayout()
+        Me.flpBrowseCommands.SuspendLayout()
         Me.grpFilters.SuspendLayout()
         Me.grpContents.SuspendLayout()
         Me.grpTape.SuspendLayout()
@@ -152,16 +154,16 @@ Partial Class frmTapes
         '
         Me.tlpBrowseFooter.AutoSize = True
         Me.tlpBrowseFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.tlpBrowseFooter.ColumnCount = 2
+        Me.tlpBrowseFooter.ColumnCount = 1
         Me.tlpBrowseFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpBrowseFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.tlpBrowseFooter.Controls.Add(Me.flpBrowseStatus, 0, 0)
-        Me.tlpBrowseFooter.Controls.Add(Me.grpActions, 1, 0)
+        Me.tlpBrowseFooter.Controls.Add(Me.grpActions, 0, 1)
         Me.tlpBrowseFooter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpBrowseFooter.Location = New System.Drawing.Point(0, 534)
         Me.tlpBrowseFooter.Margin = New System.Windows.Forms.Padding(0, 6, 0, 0)
         Me.tlpBrowseFooter.Name = "tlpBrowseFooter"
-        Me.tlpBrowseFooter.RowCount = 1
+        Me.tlpBrowseFooter.RowCount = 2
+        Me.tlpBrowseFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
         Me.tlpBrowseFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
         Me.tlpBrowseFooter.Size = New System.Drawing.Size(912, 142)
         Me.tlpBrowseFooter.TabIndex = 1
@@ -172,6 +174,7 @@ Partial Class frmTapes
         Me.flpBrowseStatus.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.flpBrowseStatus.Controls.Add(Me.lblResults)
         Me.flpBrowseStatus.Controls.Add(Me.txtResults)
+        Me.flpBrowseStatus.Controls.Add(Me.Label1)
         Me.flpBrowseStatus.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpBrowseStatus.Location = New System.Drawing.Point(0, 0)
         Me.flpBrowseStatus.Margin = New System.Windows.Forms.Padding(0, 0, 8, 0)
@@ -180,6 +183,22 @@ Partial Class frmTapes
         Me.flpBrowseStatus.Size = New System.Drawing.Size(655, 142)
         Me.flpBrowseStatus.TabIndex = 0
         Me.flpBrowseStatus.WrapContents = False
+        '
+        'flpBrowseCommands
+        '
+        Me.flpBrowseCommands.AutoSize = True
+        Me.flpBrowseCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpBrowseCommands.Controls.Add(Me.btnAddTape)
+        Me.flpBrowseCommands.Controls.Add(Me.btnRefresh)
+        Me.flpBrowseCommands.Controls.Add(Me.btnEdit)
+        Me.flpBrowseCommands.Controls.Add(Me.btnDelete)
+        Me.flpBrowseCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpBrowseCommands.Location = New System.Drawing.Point(3, 18)
+        Me.flpBrowseCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpBrowseCommands.Name = "flpBrowseCommands"
+        Me.flpBrowseCommands.Size = New System.Drawing.Size(906, 30)
+        Me.flpBrowseCommands.TabIndex = 0
+        Me.flpBrowseCommands.WrapContents = True
         '
         'grpFilters
         '
@@ -779,19 +798,19 @@ Partial Class frmTapes
         Me.btnAddTape.AccessibleName = "Add Tape"
         Me.btnAddTape.Location = New System.Drawing.Point(7, 21)
         Me.btnAddTape.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnAddTape.MinimumSize = New System.Drawing.Size(95, 26)
         Me.btnAddTape.Name = "btnAddTape"
-        Me.btnAddTape.Size = New System.Drawing.Size(236, 26)
+        Me.btnAddTape.Size = New System.Drawing.Size(95, 26)
+        Me.btnAddTape.AutoSize = True
         Me.btnAddTape.TabIndex = 1
         Me.btnAddTape.Text = "&Add Tape…"
         Me.btnAddTape.UseVisualStyleBackColor = True
         '
         'grpActions
         '
-        Me.grpActions.Controls.Add(Me.btnAddTape)
-        Me.grpActions.Controls.Add(Me.btnRefresh)
-        Me.grpActions.Controls.Add(Me.Label1)
-        Me.grpActions.Controls.Add(Me.btnDelete)
-        Me.grpActions.Controls.Add(Me.btnEdit)
+        Me.grpActions.AutoSize = True
+        Me.grpActions.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.grpActions.Controls.Add(Me.flpBrowseCommands)
         Me.grpActions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpActions.Location = New System.Drawing.Point(663, 2)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(0, 2, 0, 2)
@@ -806,8 +825,10 @@ Partial Class frmTapes
         '
         Me.btnRefresh.Location = New System.Drawing.Point(7, 52)
         Me.btnRefresh.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnRefresh.MinimumSize = New System.Drawing.Size(90, 26)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(236, 26)
+        Me.btnRefresh.Size = New System.Drawing.Size(90, 26)
+        Me.btnRefresh.AutoSize = True
         Me.btnRefresh.TabIndex = 2
         Me.btnRefresh.Text = "Refresh List"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -826,8 +847,10 @@ Partial Class frmTapes
         Me.btnDelete.Enabled = False
         Me.btnDelete.Location = New System.Drawing.Point(127, 83)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnDelete.MinimumSize = New System.Drawing.Size(75, 26)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(115, 26)
+        Me.btnDelete.Size = New System.Drawing.Size(75, 26)
+        Me.btnDelete.AutoSize = True
         Me.btnDelete.TabIndex = 4
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
@@ -837,8 +860,10 @@ Partial Class frmTapes
         Me.btnEdit.Enabled = False
         Me.btnEdit.Location = New System.Drawing.Point(7, 83)
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnEdit.MinimumSize = New System.Drawing.Size(75, 26)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(115, 26)
+        Me.btnEdit.Size = New System.Drawing.Size(75, 26)
+        Me.btnEdit.AutoSize = True
         Me.btnEdit.TabIndex = 3
         Me.btnEdit.Text = "Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
@@ -888,6 +913,8 @@ Partial Class frmTapes
         Me.tlpBrowseFooter.PerformLayout()
         Me.flpBrowseStatus.ResumeLayout(False)
         Me.flpBrowseStatus.PerformLayout()
+        Me.flpBrowseCommands.ResumeLayout(False)
+        Me.flpBrowseCommands.PerformLayout()
         Me.grpFilters.ResumeLayout(False)
         Me.grpContents.ResumeLayout(False)
         Me.grpContents.PerformLayout()
@@ -911,6 +938,7 @@ Partial Class frmTapes
     Friend WithEvents tlpBrowseRight As TableLayoutPanel
     Friend WithEvents tlpBrowseFooter As TableLayoutPanel
     Friend WithEvents flpBrowseStatus As FlowLayoutPanel
+    Friend WithEvents flpBrowseCommands As FlowLayoutPanel
 
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents grpTapes As GroupBox

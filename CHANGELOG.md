@@ -94,6 +94,12 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   the deep filter stack scrolls only inside the fixed pane, the 18-column list
   fills the result pane, and status/actions persist below it. The last browser
   runtime layout call is removed and action tab order is unique.
+- Completed the browser-family command-row pass. Brands, Models, Decks, and
+  Tapes now keep their result status above a Designer-owned wrapping
+  Add/Refresh/Edit/Delete flow, with logical minimum button sizes replacing
+  inherited full-width rectangles. The geometry runner now populates maximum
+  content without inventing invalid stable-key selections and fails when a
+  command escapes its command bar.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

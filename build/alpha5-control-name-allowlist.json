@@ -288,6 +288,30 @@
       "name": "flpBrowseStatus",
       "type": "FlowLayoutPanel",
       "reason": "Keep the Tape result label and read-only count together in the footer."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmBrands.Designer.vb",
+      "name": "flpBrowseCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the four Brand commands in a single wrapping Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModels.Designer.vb",
+      "name": "flpBrowseCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the four Model commands in a single wrapping Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmDecks.Designer.vb",
+      "name": "flpBrowseCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the four Deck commands in a single wrapping Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapes.Designer.vb",
+      "name": "flpBrowseCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep the four Tape commands in a single wrapping Designer-owned command bar."
     }
   ]
 }
