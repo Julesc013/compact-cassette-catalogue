@@ -238,6 +238,10 @@ and fingerprint projection are owned beside this logical graph. The native-v2
 Infrastructure adapter now performs only Native DTO-to-logical mapping before
 the shared fingerprint projection. This remains read-only and non-production
 until the direct legacy adapter and cross-profile round-trip gates pass.
+The reverse Infrastructure adapter recreates the frozen native-v2 DTO graph
+from `CatalogueState`; characterization requires byte-exact native writer output
+and fingerprint parity. This keeps XML and profile mechanics outside the
+logical owner while proving that canonical state is sufficient for native I/O.
 
 `StateFingerprint` uses a documented scheme such as
 `c3-logical-state-sha256-v1`. It declares field ordering, text/value rules,

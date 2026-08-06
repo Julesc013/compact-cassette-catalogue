@@ -15,6 +15,9 @@
 - Extended native round-trip characterization and deliberately advanced the
   frozen Catalogue and Infrastructure API projections for the additive Alpha 6
   contracts.
+- Added the reverse logical-to-native adapter and byte-exact round-trip proof,
+  establishing that the canonical graph can drive the frozen native-v2 writer
+  without moving XML or profile rules into `C3.Catalogue`.
 
 
 ### Version 2.0.0 Alpha 5 - In development

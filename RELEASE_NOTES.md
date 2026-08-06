@@ -11,6 +11,10 @@ models, decks, Tapes, sides, and recordings. Direct legacy projection and
 cross-profile round-trip convergence remain in progress; production mutation
 still uses the qualified pre-Alpha-6 path.
 
+The reverse native-v2 adapter now recreates the frozen persistence DTO graph
+from canonical state. Characterization requires the adapted native XML bytes
+and semantic fingerprint to remain identical to the original qualified graph.
+
 This checkpoint is not published. See the
 [execution plan](docs/planning/2.0-execution-plan.md) and
 [validation record](release/validation/2.0.0-alpha.6.md).

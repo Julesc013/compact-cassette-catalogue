@@ -1,4 +1,5 @@
 ctor|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Domain.Profiles.CatalogueProfileCapabilities sourceProfile,C3.Catalogue.Canonical.CatalogueState state,C3.Catalogue.Canonical.CatalogueSnapshot snapshot,C3.Catalogue.Canonical.CatalogueFingerprintIndex fingerprints
+ctor|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalToNativeV2Adapter|
 ctor|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|System.Func<System.Data.DataSet> documentProvider
 ctor|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|System.Func<System.Data.DataSet> documentProvider
@@ -120,6 +121,7 @@ enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|TooLarge|2
 enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|UnsupportedSchema|4
 enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongChannel|6
 enum|C3.Infrastructure.Updates.UpdateManifestReadFailure|WrongProduct|5
+method|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalToNativeV2Adapter|Adapt|instance|C3.Catalogue.Native.NativeCatalogue|C3.Catalogue.Canonical.CatalogueState source
 method|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|Project|instance|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|C3.Catalogue.Native.NativeCatalogue source,C3.Domain.Catalogues.DocumentSessionId sessionId,C3.Domain.Catalogues.ContentVersion contentVersion,C3.Catalogue.Canonical.CatalogueResourceBudget budget
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Add|instance|System.Void|C3.Catalogue.Brands.Brand value
 method|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|Delete|instance|System.Void|System.String code
@@ -403,6 +405,7 @@ property|C3.Infrastructure.Updates.UpdateReleasePackage|Length|System.Int64|get
 property|C3.Infrastructure.Updates.UpdateReleasePackage|Sha256|System.String|get
 property|C3.Infrastructure.Updates.UpdateReleasePackage|Url|System.String|get
 type|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalShadowProjection|class|sealed
+type|C3.Infrastructure.CatalogueFiles.Canonical.CanonicalToNativeV2Adapter|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Canonical.NativeV2CanonicalShadowProjector|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyBrandRepository|class|sealed
 type|C3.Infrastructure.CatalogueFiles.Xml.V1_1.LegacyCassetteModelRepository|class|sealed

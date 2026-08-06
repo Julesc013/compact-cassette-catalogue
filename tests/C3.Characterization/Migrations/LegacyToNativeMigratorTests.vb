@@ -85,6 +85,13 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
             sessionId,
             ContentVersion.Zero,
             budget)
+        Dim adapted As NativeCatalogue =
+            New CanonicalToNativeV2Adapter().Adapt(first.State)
+        Dim adaptedProjection As CanonicalShadowProjection = projector.Project(
+            adapted,
+            sessionId,
+            ContentVersion.Zero,
+            budget)
 
         AssertEqual("native-v2.0", first.SourceProfile.ProfileCode, "shadow source profile")
         AssertEqual(7L, first.Snapshot.TotalEntities, "shadow entity count")
@@ -108,6 +115,14 @@ Friend NotInheritable Class LegacyToNativeMigratorTests
             first.State.Tapes(0).SideA.RecordingId IsNot Nothing,
             "shadow side-to-recording relationship")
         AssertEqual(first.Snapshot.Fingerprint, second.Snapshot.Fingerprint, "native round-trip fingerprint")
+        AssertEqual(
+            first.Snapshot.Fingerprint,
+            adaptedProjection.Snapshot.Fingerprint,
+            "canonical-to-native adapter fingerprint")
+        AssertBytesEqual(
+            New NativeXmlCatalogueWriter().Write(migrated.Document),
+            New NativeXmlCatalogueWriter().Write(adapted),
+            "canonical-to-native adapter bytes")
         AssertEqual(
             True,
             New CatalogueFingerprintEngine().Verify(
