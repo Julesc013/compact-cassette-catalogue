@@ -432,6 +432,72 @@
       "name": "btnCancel",
       "type": "Button",
       "reason": "Provide an explicit keyboard-reachable cancel result for Brand editing."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "tlpDialogRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Arrange the fixed Model creation dialog as autosizing semantic rows."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "tlpBasicFields",
+      "type": "TableLayoutPanel",
+      "reason": "Keep the Brand prerequisite command inline while all Model identity fields stretch safely."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "tlpExtraFields",
+      "type": "TableLayoutPanel",
+      "reason": "Align the optional Model name without absolute geometry."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "tlpDialogFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Separate Model creation persistence guidance from commit commands."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "flpDialogCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep Add Model and Cancel together in a Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "tlpDialogRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Arrange the fixed Model edit dialog as autosizing semantic rows."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "tlpBasicFields",
+      "type": "TableLayoutPanel",
+      "reason": "Align the Model identity fields without absolute sibling geometry."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "tlpExtraFields",
+      "type": "TableLayoutPanel",
+      "reason": "Align the editable Model name without absolute geometry."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "tlpDialogFooter",
+      "type": "TableLayoutPanel",
+      "reason": "Separate Model edit persistence guidance from commit commands."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "flpDialogCommands",
+      "type": "FlowLayoutPanel",
+      "reason": "Keep Update Model and Cancel together in a Designer-owned command bar."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelEdit.Designer.vb",
+      "name": "btnCancel",
+      "type": "Button",
+      "reason": "Provide an explicit keyboard-reachable cancel result for Model editing."
     }
   ]
 }

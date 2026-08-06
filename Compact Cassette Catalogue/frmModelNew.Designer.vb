@@ -1,193 +1,326 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmModelNew
     Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
+            If disposing AndAlso components IsNot Nothing Then components.Dispose()
         Finally
             MyBase.Dispose(disposing)
         End Try
     End Sub
 
-    'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmModelNew))
-        Me.txtModel = New System.Windows.Forms.TextBox()
-        Me.lblModel = New System.Windows.Forms.Label()
+        Me.tlpDialogRoot = New System.Windows.Forms.TableLayoutPanel()
         Me.grpBasic = New System.Windows.Forms.GroupBox()
+        Me.tlpBasicFields = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblBrand = New System.Windows.Forms.Label()
+        Me.cmbBrand = New System.Windows.Forms.ComboBox()
+        Me.btnAddBrand = New System.Windows.Forms.Button()
+        Me.lblType = New System.Windows.Forms.Label()
+        Me.cmbType = New System.Windows.Forms.ComboBox()
+        Me.lblModel = New System.Windows.Forms.Label()
+        Me.txtModel = New System.Windows.Forms.TextBox()
         Me.lblCode = New System.Windows.Forms.Label()
         Me.txtCode = New System.Windows.Forms.TextBox()
-        Me.cmbType = New System.Windows.Forms.ComboBox()
-        Me.lblType = New System.Windows.Forms.Label()
-        Me.cmbBrand = New System.Windows.Forms.ComboBox()
-        Me.lblBrand = New System.Windows.Forms.Label()
-        Me.btnAddBrand = New System.Windows.Forms.Button()
-        Me.txtNotes = New System.Windows.Forms.TextBox()
-        Me.grpNotes = New System.Windows.Forms.GroupBox()
-        Me.btnAdd = New System.Windows.Forms.Button()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.lblAdd = New System.Windows.Forms.Label()
         Me.grpExtra = New System.Windows.Forms.GroupBox()
+        Me.tlpExtraFields = New System.Windows.Forms.TableLayoutPanel()
         Me.lblName = New System.Windows.Forms.Label()
         Me.txtName = New System.Windows.Forms.TextBox()
+        Me.grpNotes = New System.Windows.Forms.GroupBox()
+        Me.txtNotes = New System.Windows.Forms.TextBox()
+        Me.tlpDialogFooter = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblAdd = New System.Windows.Forms.Label()
+        Me.flpDialogCommands = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.tlpDialogRoot.SuspendLayout()
         Me.grpBasic.SuspendLayout()
-        Me.grpNotes.SuspendLayout()
+        Me.tlpBasicFields.SuspendLayout()
         Me.grpExtra.SuspendLayout()
+        Me.tlpExtraFields.SuspendLayout()
+        Me.grpNotes.SuspendLayout()
+        Me.tlpDialogFooter.SuspendLayout()
+        Me.flpDialogCommands.SuspendLayout()
         Me.SuspendLayout()
         '
-        'txtModel
+        'tlpDialogRoot
         '
-        Me.txtModel.Location = New System.Drawing.Point(46, 67)
-        Me.txtModel.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtModel.MaxLength = 100
-        Me.txtModel.Name = "txtModel"
-        Me.txtModel.Size = New System.Drawing.Size(109, 20)
-        Me.txtModel.TabIndex = 3
-        '
-        'lblModel
-        '
-        Me.lblModel.AutoSize = True
-        Me.lblModel.Location = New System.Drawing.Point(4, 70)
-        Me.lblModel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblModel.Name = "lblModel"
-        Me.lblModel.Size = New System.Drawing.Size(39, 13)
-        Me.lblModel.TabIndex = 24
-        Me.lblModel.Text = "Model:"
+        Me.tlpDialogRoot.AutoSize = True
+        Me.tlpDialogRoot.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpDialogRoot.ColumnCount = 1
+        Me.tlpDialogRoot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDialogRoot.Controls.Add(Me.grpBasic, 0, 0)
+        Me.tlpDialogRoot.Controls.Add(Me.grpExtra, 0, 1)
+        Me.tlpDialogRoot.Controls.Add(Me.grpNotes, 0, 2)
+        Me.tlpDialogRoot.Controls.Add(Me.tlpDialogFooter, 0, 3)
+        Me.tlpDialogRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpDialogRoot.Location = New System.Drawing.Point(0, 0)
+        Me.tlpDialogRoot.Name = "tlpDialogRoot"
+        Me.tlpDialogRoot.Padding = New System.Windows.Forms.Padding(12)
+        Me.tlpDialogRoot.RowCount = 4
+        Me.tlpDialogRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDialogRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDialogRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 118.0!))
+        Me.tlpDialogRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDialogRoot.Size = New System.Drawing.Size(560, 397)
+        Me.tlpDialogRoot.TabIndex = 0
         '
         'grpBasic
         '
-        Me.grpBasic.Controls.Add(Me.btnAddBrand)
-        Me.grpBasic.Controls.Add(Me.lblCode)
-        Me.grpBasic.Controls.Add(Me.txtCode)
-        Me.grpBasic.Controls.Add(Me.cmbType)
-        Me.grpBasic.Controls.Add(Me.lblType)
-        Me.grpBasic.Controls.Add(Me.cmbBrand)
-        Me.grpBasic.Controls.Add(Me.lblModel)
-        Me.grpBasic.Controls.Add(Me.lblBrand)
-        Me.grpBasic.Controls.Add(Me.txtModel)
-        Me.grpBasic.Location = New System.Drawing.Point(11, 11)
-        Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpBasic.AutoSize = True
+        Me.grpBasic.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.grpBasic.Controls.Add(Me.tlpBasicFields)
+        Me.grpBasic.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpBasic.Location = New System.Drawing.Point(12, 12)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(0, 0, 0, 8)
         Me.grpBasic.Name = "grpBasic"
-        Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpBasic.Size = New System.Drawing.Size(250, 117)
-        Me.grpBasic.TabIndex = 1
+        Me.grpBasic.Padding = New System.Windows.Forms.Padding(8)
+        Me.grpBasic.Size = New System.Drawing.Size(536, 133)
+        Me.grpBasic.TabIndex = 0
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
+        '
+        'tlpBasicFields
+        '
+        Me.tlpBasicFields.AutoSize = True
+        Me.tlpBasicFields.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpBasicFields.ColumnCount = 3
+        Me.tlpBasicFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBasicFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpBasicFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBasicFields.Controls.Add(Me.lblBrand, 0, 0)
+        Me.tlpBasicFields.Controls.Add(Me.cmbBrand, 1, 0)
+        Me.tlpBasicFields.Controls.Add(Me.btnAddBrand, 2, 0)
+        Me.tlpBasicFields.Controls.Add(Me.lblType, 0, 1)
+        Me.tlpBasicFields.Controls.Add(Me.cmbType, 1, 1)
+        Me.tlpBasicFields.Controls.Add(Me.lblModel, 0, 2)
+        Me.tlpBasicFields.Controls.Add(Me.txtModel, 1, 2)
+        Me.tlpBasicFields.Controls.Add(Me.lblCode, 0, 3)
+        Me.tlpBasicFields.Controls.Add(Me.txtCode, 1, 3)
+        Me.tlpBasicFields.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpBasicFields.Location = New System.Drawing.Point(8, 21)
+        Me.tlpBasicFields.Name = "tlpBasicFields"
+        Me.tlpBasicFields.RowCount = 4
+        Me.tlpBasicFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBasicFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBasicFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBasicFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpBasicFields.SetColumnSpan(Me.cmbType, 2)
+        Me.tlpBasicFields.SetColumnSpan(Me.txtModel, 2)
+        Me.tlpBasicFields.SetColumnSpan(Me.txtCode, 2)
+        Me.tlpBasicFields.Size = New System.Drawing.Size(520, 104)
+        Me.tlpBasicFields.TabIndex = 0
+        '
+        'lblBrand
+        '
+        Me.lblBrand.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblBrand.AutoSize = True
+        Me.lblBrand.Margin = New System.Windows.Forms.Padding(0, 0, 6, 6)
+        Me.lblBrand.Name = "lblBrand"
+        Me.lblBrand.Size = New System.Drawing.Size(38, 13)
+        Me.lblBrand.TabIndex = 0
+        Me.lblBrand.Text = "Brand:"
+        '
+        'cmbBrand
+        '
+        Me.cmbBrand.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmbBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbBrand.FormattingEnabled = True
+        Me.cmbBrand.Margin = New System.Windows.Forms.Padding(0, 0, 6, 6)
+        Me.cmbBrand.MinimumSize = New System.Drawing.Size(250, 0)
+        Me.cmbBrand.Name = "cmbBrand"
+        Me.cmbBrand.Sorted = True
+        Me.cmbBrand.TabIndex = 0
         '
         'btnAddBrand
         '
         Me.btnAddBrand.AccessibleDescription = "Create a brand and select it for this model."
         Me.btnAddBrand.AccessibleName = "Add Brand"
-        Me.btnAddBrand.Location = New System.Drawing.Point(160, 16)
-        Me.btnAddBrand.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddBrand.AutoSize = True
+        Me.btnAddBrand.Margin = New System.Windows.Forms.Padding(0, 0, 0, 6)
+        Me.btnAddBrand.MinimumSize = New System.Drawing.Size(84, 27)
         Me.btnAddBrand.Name = "btnAddBrand"
-        Me.btnAddBrand.Size = New System.Drawing.Size(84, 23)
-        Me.btnAddBrand.TabIndex = 2
+        Me.btnAddBrand.Size = New System.Drawing.Size(84, 27)
+        Me.btnAddBrand.TabIndex = 1
         Me.btnAddBrand.Text = "Add &Brand…"
         Me.btnAddBrand.UseVisualStyleBackColor = True
         '
+        'lblType
+        '
+        Me.lblType.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblType.AutoSize = True
+        Me.lblType.Margin = New System.Windows.Forms.Padding(0, 0, 6, 6)
+        Me.lblType.Name = "lblType"
+        Me.lblType.Size = New System.Drawing.Size(34, 13)
+        Me.lblType.TabIndex = 1
+        Me.lblType.Text = "Type:"
+        '
+        'cmbType
+        '
+        Me.cmbType.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbType.FormattingEnabled = True
+        Me.cmbType.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferrichrome)", "Type IV (Metal)"})
+        Me.cmbType.Margin = New System.Windows.Forms.Padding(0, 0, 0, 6)
+        Me.cmbType.Name = "cmbType"
+        Me.cmbType.TabIndex = 2
+        '
+        'lblModel
+        '
+        Me.lblModel.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblModel.AutoSize = True
+        Me.lblModel.Margin = New System.Windows.Forms.Padding(0, 0, 6, 6)
+        Me.lblModel.Name = "lblModel"
+        Me.lblModel.Size = New System.Drawing.Size(39, 13)
+        Me.lblModel.TabIndex = 2
+        Me.lblModel.Text = "Model:"
+        '
+        'txtModel
+        '
+        Me.txtModel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtModel.Margin = New System.Windows.Forms.Padding(0, 0, 0, 6)
+        Me.txtModel.MaxLength = 100
+        Me.txtModel.Name = "txtModel"
+        Me.txtModel.TabIndex = 3
+        '
         'lblCode
         '
+        Me.lblCode.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.lblCode.AutoSize = True
-        Me.lblCode.Location = New System.Drawing.Point(4, 94)
-        Me.lblCode.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblCode.Margin = New System.Windows.Forms.Padding(0, 0, 6, 0)
         Me.lblCode.Name = "lblCode"
         Me.lblCode.Size = New System.Drawing.Size(35, 13)
-        Me.lblCode.TabIndex = 29
+        Me.lblCode.TabIndex = 3
         Me.lblCode.Text = "Code:"
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(46, 91)
-        Me.txtCode.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.txtCode.Margin = New System.Windows.Forms.Padding(0)
         Me.txtCode.MaxLength = 2
         Me.txtCode.Name = "txtCode"
-        Me.txtCode.Size = New System.Drawing.Size(109, 20)
+        Me.txtCode.Size = New System.Drawing.Size(64, 20)
         Me.txtCode.TabIndex = 4
         '
-        'cmbType
+        'grpExtra
         '
-        Me.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbType.FormattingEnabled = True
-        Me.cmbType.Items.AddRange(New Object() {"Type I (Ferric)", "Type II (Chrome)", "Type III (Ferrichrome)", "Type IV (Metal)"})
-        Me.cmbType.Location = New System.Drawing.Point(46, 42)
-        Me.cmbType.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbType.Name = "cmbType"
-        Me.cmbType.Size = New System.Drawing.Size(109, 21)
-        Me.cmbType.TabIndex = 2
+        Me.grpExtra.AutoSize = True
+        Me.grpExtra.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.grpExtra.Controls.Add(Me.tlpExtraFields)
+        Me.grpExtra.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpExtra.Location = New System.Drawing.Point(12, 153)
+        Me.grpExtra.Margin = New System.Windows.Forms.Padding(0, 0, 0, 8)
+        Me.grpExtra.Name = "grpExtra"
+        Me.grpExtra.Padding = New System.Windows.Forms.Padding(8)
+        Me.grpExtra.Size = New System.Drawing.Size(536, 55)
+        Me.grpExtra.TabIndex = 1
+        Me.grpExtra.TabStop = False
+        Me.grpExtra.Text = "Extra"
         '
-        'lblType
+        'tlpExtraFields
         '
-        Me.lblType.AutoSize = True
-        Me.lblType.Location = New System.Drawing.Point(4, 45)
-        Me.lblType.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblType.Name = "lblType"
-        Me.lblType.Size = New System.Drawing.Size(34, 13)
-        Me.lblType.TabIndex = 27
-        Me.lblType.Text = "Type:"
+        Me.tlpExtraFields.AutoSize = True
+        Me.tlpExtraFields.ColumnCount = 2
+        Me.tlpExtraFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpExtraFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpExtraFields.Controls.Add(Me.lblName, 0, 0)
+        Me.tlpExtraFields.Controls.Add(Me.txtName, 1, 0)
+        Me.tlpExtraFields.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpExtraFields.Name = "tlpExtraFields"
+        Me.tlpExtraFields.RowCount = 1
+        Me.tlpExtraFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpExtraFields.TabIndex = 0
         '
-        'cmbBrand
+        'lblName
         '
-        Me.cmbBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbBrand.FormattingEnabled = True
-        Me.cmbBrand.Location = New System.Drawing.Point(46, 17)
-        Me.cmbBrand.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbBrand.Name = "cmbBrand"
-        Me.cmbBrand.Size = New System.Drawing.Size(109, 21)
-        Me.cmbBrand.Sorted = True
-        Me.cmbBrand.TabIndex = 1
+        Me.lblName.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblName.AutoSize = True
+        Me.lblName.Margin = New System.Windows.Forms.Padding(0, 0, 6, 0)
+        Me.lblName.Name = "lblName"
+        Me.lblName.Size = New System.Drawing.Size(38, 13)
+        Me.lblName.TabIndex = 0
+        Me.lblName.Text = "Name:"
         '
-        'lblBrand
+        'txtName
         '
-        Me.lblBrand.AutoSize = True
-        Me.lblBrand.Location = New System.Drawing.Point(4, 20)
-        Me.lblBrand.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblBrand.Name = "lblBrand"
-        Me.lblBrand.Size = New System.Drawing.Size(38, 13)
-        Me.lblBrand.TabIndex = 23
-        Me.lblBrand.Text = "Brand:"
-        '
-        'txtNotes
-        '
-        Me.txtNotes.Location = New System.Drawing.Point(5, 17)
-        Me.txtNotes.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtNotes.Multiline = True
-        Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(150, 47)
-        Me.txtNotes.TabIndex = 1
-        Me.txtNotes.WordWrap = False
+        Me.txtName.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtName.Margin = New System.Windows.Forms.Padding(0)
+        Me.txtName.MaxLength = 100
+        Me.txtName.Name = "txtName"
+        Me.txtName.TabIndex = 0
         '
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(265, 58)
-        Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
+        Me.grpNotes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpNotes.Location = New System.Drawing.Point(12, 216)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(0, 0, 0, 8)
         Me.grpNotes.Name = "grpNotes"
-        Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpNotes.Size = New System.Drawing.Size(160, 70)
-        Me.grpNotes.TabIndex = 3
+        Me.grpNotes.Padding = New System.Windows.Forms.Padding(8)
+        Me.grpNotes.Size = New System.Drawing.Size(536, 110)
+        Me.grpNotes.TabIndex = 2
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
         '
+        'txtNotes
+        '
+        Me.txtNotes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtNotes.Location = New System.Drawing.Point(8, 21)
+        Me.txtNotes.Multiline = True
+        Me.txtNotes.Name = "txtNotes"
+        Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtNotes.Size = New System.Drawing.Size(520, 81)
+        Me.txtNotes.TabIndex = 0
+        '
+        'tlpDialogFooter
+        '
+        Me.tlpDialogFooter.AutoSize = True
+        Me.tlpDialogFooter.ColumnCount = 2
+        Me.tlpDialogFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpDialogFooter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDialogFooter.Controls.Add(Me.lblAdd, 0, 0)
+        Me.tlpDialogFooter.Controls.Add(Me.flpDialogCommands, 1, 0)
+        Me.tlpDialogFooter.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpDialogFooter.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpDialogFooter.Name = "tlpDialogFooter"
+        Me.tlpDialogFooter.RowCount = 1
+        Me.tlpDialogFooter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpDialogFooter.TabIndex = 3
+        '
+        'lblAdd
+        '
+        Me.lblAdd.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblAdd.AutoSize = True
+        Me.lblAdd.Margin = New System.Windows.Forms.Padding(0, 0, 8, 0)
+        Me.lblAdd.Name = "lblAdd"
+        Me.lblAdd.Size = New System.Drawing.Size(222, 13)
+        Me.lblAdd.TabIndex = 0
+        Me.lblAdd.Text = "Changes are saved with the catalogue."
+        '
+        'flpDialogCommands
+        '
+        Me.flpDialogCommands.AutoSize = True
+        Me.flpDialogCommands.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.flpDialogCommands.Controls.Add(Me.btnAdd)
+        Me.flpDialogCommands.Controls.Add(Me.btnCancel)
+        Me.flpDialogCommands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpDialogCommands.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpDialogCommands.Name = "flpDialogCommands"
+        Me.flpDialogCommands.TabIndex = 0
+        Me.flpDialogCommands.WrapContents = False
+        '
         'btnAdd
         '
-        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(96, 132)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAdd.AutoSize = True
+        Me.btnAdd.MinimumSize = New System.Drawing.Size(90, 27)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(160, 21)
-        Me.btnAdd.TabIndex = 4
+        Me.btnAdd.TabIndex = 0
         Me.btnAdd.Text = "Add &Model"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
@@ -195,105 +328,72 @@ Partial Class frmModelNew
         '
         Me.btnCancel.AccessibleDescription = "Cancel this creation step and return without adding an item."
         Me.btnCancel.AccessibleName = "Cancel"
-        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.AutoSize = True
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(264, 132)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.MinimumSize = New System.Drawing.Size(75, 27)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(160, 21)
-        Me.btnCancel.TabIndex = 5
+        Me.btnCancel.TabIndex = 1
         Me.btnCancel.Text = "&Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'lblAdd
-        '
-        Me.lblAdd.AutoSize = True
-        Me.lblAdd.Location = New System.Drawing.Point(179, 136)
-        Me.lblAdd.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblAdd.Name = "lblAdd"
-        Me.lblAdd.Size = New System.Drawing.Size(144, 13)
-        Me.lblAdd.TabIndex = 45
-        Me.lblAdd.Text = "Changes are saved with the catalogue."
-        '
-        'grpExtra
-        '
-        Me.grpExtra.Controls.Add(Me.lblName)
-        Me.grpExtra.Controls.Add(Me.txtName)
-        Me.grpExtra.Location = New System.Drawing.Point(265, 11)
-        Me.grpExtra.Margin = New System.Windows.Forms.Padding(2)
-        Me.grpExtra.Name = "grpExtra"
-        Me.grpExtra.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpExtra.Size = New System.Drawing.Size(160, 43)
-        Me.grpExtra.TabIndex = 2
-        Me.grpExtra.TabStop = False
-        Me.grpExtra.Text = "Extra"
-        '
-        'lblName
-        '
-        Me.lblName.AutoSize = True
-        Me.lblName.Location = New System.Drawing.Point(4, 20)
-        Me.lblName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(38, 13)
-        Me.lblName.TabIndex = 29
-        Me.lblName.Text = "Name:"
-        '
-        'txtName
-        '
-        Me.txtName.Location = New System.Drawing.Point(46, 17)
-        Me.txtName.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtName.MaxLength = 100
-        Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(109, 20)
-        Me.txtName.TabIndex = 1
         '
         'frmModelNew
         '
         Me.AcceptButton = Me.btnAdd
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoScroll = True
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.CancelButton = Me.btnCancel
-        Me.ClientSize = New System.Drawing.Size(436, 163)
-        Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.grpExtra)
-        Me.Controls.Add(Me.grpBasic)
-        Me.Controls.Add(Me.grpNotes)
-        Me.Controls.Add(Me.btnAdd)
-        Me.Controls.Add(Me.lblAdd)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.ClientSize = New System.Drawing.Size(560, 397)
+        Me.Controls.Add(Me.tlpDialogRoot)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmModelNew"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add New Model"
+        Me.tlpDialogRoot.ResumeLayout(False)
+        Me.tlpDialogRoot.PerformLayout()
         Me.grpBasic.ResumeLayout(False)
         Me.grpBasic.PerformLayout()
-        Me.grpNotes.ResumeLayout(False)
-        Me.grpNotes.PerformLayout()
+        Me.tlpBasicFields.ResumeLayout(False)
+        Me.tlpBasicFields.PerformLayout()
         Me.grpExtra.ResumeLayout(False)
         Me.grpExtra.PerformLayout()
+        Me.tlpExtraFields.ResumeLayout(False)
+        Me.tlpExtraFields.PerformLayout()
+        Me.grpNotes.ResumeLayout(False)
+        Me.grpNotes.PerformLayout()
+        Me.tlpDialogFooter.ResumeLayout(False)
+        Me.tlpDialogFooter.PerformLayout()
+        Me.flpDialogCommands.ResumeLayout(False)
+        Me.flpDialogCommands.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
-
     End Sub
-    Friend WithEvents txtModel As TextBox
-    Friend WithEvents lblModel As Label
+
+    Friend WithEvents tlpDialogRoot As TableLayoutPanel
     Friend WithEvents grpBasic As GroupBox
+    Friend WithEvents tlpBasicFields As TableLayoutPanel
     Friend WithEvents lblBrand As Label
-    Friend WithEvents btnAddBrand As Button
-    Friend WithEvents txtNotes As TextBox
-    Friend WithEvents grpNotes As GroupBox
-    Friend WithEvents btnAdd As Button
-    Friend WithEvents btnCancel As Button
-    Friend WithEvents lblAdd As Label
     Friend WithEvents cmbBrand As ComboBox
-    Friend WithEvents cmbType As ComboBox
+    Friend WithEvents btnAddBrand As Button
     Private WithEvents lblType As Label
+    Friend WithEvents cmbType As ComboBox
+    Friend WithEvents lblModel As Label
+    Friend WithEvents txtModel As TextBox
     Friend WithEvents lblCode As Label
     Friend WithEvents txtCode As TextBox
     Friend WithEvents grpExtra As GroupBox
+    Friend WithEvents tlpExtraFields As TableLayoutPanel
     Friend WithEvents lblName As Label
     Friend WithEvents txtName As TextBox
+    Friend WithEvents grpNotes As GroupBox
+    Friend WithEvents txtNotes As TextBox
+    Friend WithEvents tlpDialogFooter As TableLayoutPanel
+    Friend WithEvents lblAdd As Label
+    Friend WithEvents flpDialogCommands As FlowLayoutPanel
+    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnCancel As Button
 End Class

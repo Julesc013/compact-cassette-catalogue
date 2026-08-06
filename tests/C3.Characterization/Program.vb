@@ -59,6 +59,7 @@ Module Program
         RunTest("Deck New viewport is Designer-owned", AddressOf DeckNewViewportIsDesignerOwned)
         RunTest("Deck Edit viewport is Designer-owned", AddressOf DeckEditViewportIsDesignerOwned)
         RunTest("Brand dialogs use fixed autosizing layout", AddressOf BrandDialogsUseFixedAutosizingLayout)
+        RunTest("Model dialogs use fixed autosizing layout", AddressOf ModelDialogsUseFixedAutosizingLayout)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -885,6 +886,56 @@ Module Program
             AssertEqual(commands, cancelButton.Parent, description & " Cancel parent")
             AssertEqual(0, commands.Controls.GetChildIndex(commitButton), description & " commit order")
             AssertEqual(1, commands.Controls.GetChildIndex(cancelButton), description & " Cancel order")
+            AssertEqual(commitButton, DirectCast(form.AcceptButton, Button), description & " default command")
+            AssertEqual(cancelButton, DirectCast(form.CancelButton, Button), description & " cancel command")
+            AssertEqual(DialogResult.Cancel, cancelButton.DialogResult, description & " cancel result")
+            AssertEqual(FormBorderStyle.FixedDialog, form.FormBorderStyle, description & " fixed dialog")
+            AssertEqual(True, form.AutoSize, description & " auto size")
+            AssertEqual(AutoSizeMode.GrowAndShrink, form.AutoSizeMode, description & " auto size mode")
+            AssertEqual(False, form.AutoScroll, description & " form AutoScroll disabled")
+            AssertEqual(AutoScaleMode.Font, form.AutoScaleMode, description & " font scaling")
+        End Using
+    End Sub
+
+    Private Sub ModelDialogsUseFixedAutosizingLayout()
+        AssertModelDialogLayout(New frmModelNew(), "btnAdd", True, "Model New")
+        AssertModelDialogLayout(New frmModelEdit(), "btnUpdate", False, "Model Edit")
+    End Sub
+
+    Private Sub AssertModelDialogLayout(form As Form, commitButtonName As String, hasPrerequisiteCommand As Boolean, description As String)
+        Using form
+            Dim root As TableLayoutPanel = DirectCast(FindControl(form, "tlpDialogRoot"), TableLayoutPanel)
+            Dim basicFields As TableLayoutPanel = DirectCast(FindControl(form, "tlpBasicFields"), TableLayoutPanel)
+            Dim extraFields As TableLayoutPanel = DirectCast(FindControl(form, "tlpExtraFields"), TableLayoutPanel)
+            Dim footer As TableLayoutPanel = DirectCast(FindControl(form, "tlpDialogFooter"), TableLayoutPanel)
+            Dim commands As FlowLayoutPanel = DirectCast(FindControl(form, "flpDialogCommands"), FlowLayoutPanel)
+            Dim commitButton As Button = DirectCast(FindControl(form, commitButtonName), Button)
+            Dim cancelButton As Button = DirectCast(FindControl(form, "btnCancel"), Button)
+
+            AssertEqual(form, root.Parent, description & " root parent")
+            AssertEqual(DockStyle.Fill, root.Dock, description & " root fill")
+            For Each groupName As String In New String() {"grpBasic", "grpExtra", "grpNotes"}
+                AssertEqual(root, FindControl(form, groupName).Parent, description & " " & groupName & " parent")
+            Next
+            AssertEqual(FindControl(form, "grpBasic"), basicFields.Parent, description & " field table parent")
+            For Each labelName As String In New String() {"lblBrand", "lblType", "lblModel", "lblCode"}
+                AssertEqual(basicFields, FindControl(form, labelName).Parent, description & " " & labelName & " parent")
+            Next
+            If hasPrerequisiteCommand Then
+                AssertEqual(basicFields, FindControl(form, "cmbBrand").Parent, description & " Brand choice parent")
+                AssertEqual(basicFields, FindControl(form, "cmbType").Parent, description & " Type choice parent")
+                AssertEqual(basicFields, FindControl(form, "btnAddBrand").Parent, description & " Add Brand parent")
+            Else
+                AssertEqual(basicFields, FindControl(form, "txtBrand").Parent, description & " Brand value parent")
+                AssertEqual(basicFields, FindControl(form, "txtType").Parent, description & " Type value parent")
+            End If
+            AssertEqual(FindControl(form, "grpExtra"), extraFields.Parent, description & " extra table parent")
+            AssertEqual(extraFields, FindControl(form, "txtName").Parent, description & " Name parent")
+            AssertEqual(root, footer.Parent, description & " footer parent")
+            AssertEqual(footer, FindControl(form, "lblAdd").Parent, description & " status parent")
+            AssertEqual(footer, commands.Parent, description & " command bar parent")
+            AssertEqual(commands, commitButton.Parent, description & " commit parent")
+            AssertEqual(commands, cancelButton.Parent, description & " Cancel parent")
             AssertEqual(commitButton, DirectCast(form.AcceptButton, Button), description & " default command")
             AssertEqual(cancelButton, DirectCast(form.CancelButton, Button), description & " cancel command")
             AssertEqual(DialogResult.Cancel, cancelButton.DialogResult, description & " cancel result")
