@@ -1,6 +1,20 @@
 ﻿Public Class frmBrandNew
+    Private _createdKey As String
+    Private _createdDisplayName As String
+    Private _validationErrors As ErrorProvider
+
     Public ReadOnly Property CreatedKey As String
+        Get
+            Return _createdKey
+        End Get
+    End Property
+
     Public ReadOnly Property CreatedDisplayName As String
+        Get
+            Return _createdDisplayName
+        End Get
+    End Property
+
     Public Property SuppressSuccessMessage As Boolean
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -10,39 +24,28 @@
         Dim code As String = txtCode.Text.ToUpper
 
         Dim brandCount As Integer = brands.Rows.Count
-
-        'Check entered data is correct
-        Try
-
-            If brand = Nothing Then ''Or Not regexAlphanumeric.IsMatch(brand) Then
-                'If nothing or not alphanumeric
-                Throw New Exception("Brand name cannot be empty or include symbols.")
+        Dim issues As New List(Of ValidationIssue)()
+        If String.IsNullOrWhiteSpace(brand) Then
+            issues.Add(New ValidationIssue("txtBrand", "Enter a brand name."))
+        End If
+        If code.Length <> 2 Then
+            issues.Add(New ValidationIssue("txtCode", "Enter a unique two-character brand code."))
+        End If
+        For Each row As DataRow In brands.Rows
+            If String.Equals(CStr(row("Code")), code, StringComparison.OrdinalIgnoreCase) Then
+                issues.Add(New ValidationIssue("txtCode", "Brand code " & code & " already exists."))
             End If
-
-            If code = Nothing Or Not code.Length = 2 Then ''Or Not regexAlphabetic.IsMatch(code) Then
-                'If nothing or not alphabetic or not length of two chars
-                Throw New Exception("Code must be 2 characters and cannot include numbers or symbols.")
+            If String.Equals(CStr(row("Brand")), brand, StringComparison.OrdinalIgnoreCase) Then
+                issues.Add(New ValidationIssue("txtBrand", "Brand " & brand & " already exists."))
             End If
-
-            'Check if this code is already used
-            For i As Integer = 0 To brandCount - 1
-                Dim row As DataRow = brands.Rows(i)
-
-                If CStr(row("Code")) = code Then
-                    'If not removed and has save code
-                    Throw New Exception("Code must be unique." & vbNewLine & code & " already exists.")
-                End If
-
-                If String.Equals(CStr(row("Brand")), brand, StringComparison.OrdinalIgnoreCase) Then
-                    Throw New Exception("Brand name must be unique." & vbNewLine & brand & " already exists.")
-                End If
-
-            Next
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Invalid Data Entry")
+        Next
+        If _validationErrors Is Nothing Then
+            _validationErrors = New ErrorProvider(components)
+            _validationErrors.ContainerControl = Me
+        End If
+        If Not CatalogueWorkflow.ShowValidationIssues(Me, _validationErrors, issues, "Check Brand Details") Then
             Exit Sub
-        End Try
+        End If
 
         ''Find next index and save data to record
         ''Dim thisIndex As Integer = CInt(counters.Rows(1)("Number")) '1 = Brands row
@@ -59,19 +62,19 @@
         brandCount = brands.Rows.Count
 
         changes = True
-        'Update title bar
-        frmMain.Text = fileName & "* - C3"
+
+        _createdKey = code
+        _createdDisplayName = brand
 
         'Show confirmation message
         Dim message As String = "Added brand " & brand & " successfully."
-        If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Question, "Successfully Added Brand")
+        If My.Settings.showMessages AndAlso Not SuppressSuccessMessage Then
+            MessageBox.Show(Me, message, "Brand Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
         consoleAdd(message)
 
-        'Reload data and close this form
-        frmMain.loadData()
-        Me.Close()
+        DialogResult = DialogResult.OK
+        Close()
 
     End Sub
 End Class

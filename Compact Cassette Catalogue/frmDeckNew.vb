@@ -1,6 +1,20 @@
 ﻿Public Class frmDeckNew
+    Private _createdKey As String
+    Private _createdDisplayName As String
+    Private _validationErrors As ErrorProvider
+
     Public ReadOnly Property CreatedKey As String
+        Get
+            Return _createdKey
+        End Get
+    End Property
+
     Public ReadOnly Property CreatedDisplayName As String
+        Get
+            Return _createdDisplayName
+        End Get
+    End Property
+
     Public Property SuppressSuccessMessage As Boolean
 
     Private Sub FrmAddDeck_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -35,46 +49,31 @@
         'Get number of decks already existing
         Dim deckCount As Integer = decks.Rows.Count
 
-        'Check entered data is correct
-        Try
-
-            If manufacturer = Nothing Then ''Or Not regexAlphanumeric.IsMatch(manufacturer) Then
-                'If nothing or not alphanumeric
-                Throw New Exception("Manufacturer name cannot be empty or include symbols.")
+        Dim issues As New List(Of ValidationIssue)()
+        If String.IsNullOrWhiteSpace(manufacturer) Then
+            issues.Add(New ValidationIssue("txtManufacturer", "Enter a deck manufacturer."))
+        End If
+        If String.IsNullOrWhiteSpace(model) Then
+            issues.Add(New ValidationIssue("txtModel", "Enter a deck model or name."))
+        End If
+        If Not type1 AndAlso Not type2 AndAlso Not type3 AndAlso Not type4 Then
+            issues.Add(New ValidationIssue("grpTypes", "Select at least one supported tape type."))
+        End If
+        If Not speedSlow AndAlso Not speedNormal AndAlso Not speedFast Then
+            issues.Add(New ValidationIssue("grpSpeeds", "Select at least one supported tape speed."))
+        End If
+        For Each row As DataRow In decks.Rows
+            If String.Equals(CStr(row("Name")), name, StringComparison.OrdinalIgnoreCase) Then
+                issues.Add(New ValidationIssue("txtModel", "Deck " & name & " already exists."))
             End If
-
-            If model = Nothing Then ''Or Not regexAlphanumeric.IsMatch(model) Then
-                'If nothing or not alphanumeric
-                Throw New Exception("Model name cannot be empty or include symbols.")
-            End If
-
-            If type1 = False And type2 = False And type3 = False And type4 = False Then
-                'If no types selected
-                Throw New Exception("No types selected.")
-            End If
-
-            If speedSlow = False And speedNormal = False And speedFast = False Then
-                'If no speeds selected
-                Throw New Exception("No speeds selected.")
-            End If
-
-            'Check if this deck is already added
-            For i As Integer = 0 To deckCount - 1
-                Dim row As DataRow = decks.Rows(i)
-
-                Dim thisName As String = CStr(row("Name"))
-
-                If thisName = name Then
-                    'If has same name
-                    Throw New Exception("Name must be unique." & vbNewLine & thisName & " already exists.")
-                End If
-
-            Next
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Invalid Data Entry")
+        Next
+        If _validationErrors Is Nothing Then
+            _validationErrors = New ErrorProvider(components)
+            _validationErrors.ContainerControl = Me
+        End If
+        If Not CatalogueWorkflow.ShowValidationIssues(Me, _validationErrors, issues, "Check Deck Details") Then
             Exit Sub
-        End Try
+        End If
 
         'Verify strange data
         If type1 = False Then
@@ -140,19 +139,19 @@
         deckCount = decks.Rows.Count
 
         changes = True
-        'Update title bar
-        frmMain.Text = fileName & "* - C3"
+
+        _createdKey = name
+        _createdDisplayName = name
 
         'Show confirmation message
         Dim message As String = "Added deck " & name & " successfully."
-        If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Question, "Successfully Added Deck")
+        If My.Settings.showMessages AndAlso Not SuppressSuccessMessage Then
+            MessageBox.Show(Me, message, "Deck Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
         consoleAdd(message)
 
-        'Reload data and close this form
-        frmMain.loadData()
-        Me.Close()
+        DialogResult = DialogResult.OK
+        Close()
 
     End Sub
 

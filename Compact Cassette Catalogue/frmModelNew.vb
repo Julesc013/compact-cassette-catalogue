@@ -1,22 +1,35 @@
 ﻿Public Class frmModelNew
 
+    Private _createdKey As String
+    Private _createdDisplayName As String
+    Private _validationErrors As ErrorProvider
+
     Public ReadOnly Property CreatedKey As String
+        Get
+            Return _createdKey
+        End Get
+    End Property
+
     Public ReadOnly Property CreatedDisplayName As String
+        Get
+            Return _createdDisplayName
+        End Get
+    End Property
+
     Public Property SuppressSuccessMessage As Boolean
+    Public Property PreferredBrandCode As String
 
     Private Sub FrmAddModel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'Load brands into combination box
-        Dim brandCount As Integer = brands.Rows.Count
+        ReloadBrandChoices(PreferredBrandCode)
+    End Sub
+
+    Public Sub ReloadBrandChoices(preferredCode As String)
         cmbBrand.Items.Clear()
-
-        For i As Integer = 0 To brandCount - 1
-
-            Dim thisBrand As String = CStr(brands.Rows(i)("Brand"))
-            cmbBrand.Items.Add(thisBrand)
-
+        For Each row As DataRow In brands.Rows
+            cmbBrand.Items.Add(New CatalogueChoice(CStr(row("Code")), CStr(row("Brand"))))
         Next
-
+        CatalogueWorkflow.SelectChoice(cmbBrand, preferredCode)
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -27,68 +40,49 @@
 
         Dim modelCount As Integer = models.Rows.Count
 
-        Dim brand As String = cmbBrand.Text
+        Dim brandChoice As CatalogueChoice = TryCast(cmbBrand.SelectedItem, CatalogueChoice)
+        Dim brand As String = If(brandChoice Is Nothing, Nothing, brandChoice.Text)
         Dim type As Integer = cmbType.SelectedIndex + 1
         Dim brandRow As DataRow = Nothing
         Dim identifier As String = Nothing
 
-        'Check entered data is correct
-        Try
-
-            'Check brand and type have been selected
-            If cmbBrand.Text = Nothing Then
-                Throw New Exception("Must select a brand.")
-            End If
-
-            If cmbType.Text = Nothing Then
-                Throw New Exception("Must select a type.")
-            End If
-
-            For Each candidate As DataRow In brands.Rows
-                If String.Equals(CStr(candidate("Brand")), brand, StringComparison.Ordinal) Then
-                    brandRow = candidate
-                    Exit For
-                End If
-            Next
+        Dim issues As New List(Of ValidationIssue)()
+        If brandChoice Is Nothing Then
+            issues.Add(New ValidationIssue("cmbBrand", "Select a brand."))
+        Else
+            brandRow = brands.Rows.Find(brandChoice.Key)
             If brandRow Is Nothing Then
-                Throw New Exception("The selected brand no longer exists.")
+                issues.Add(New ValidationIssue("cmbBrand", "The selected brand no longer exists."))
             End If
-
-            Dim brandCode As String = CStr(brandRow("Code"))
-            identifier = brandCode & CStr(type) & code
-
-            If model = Nothing Then ''Or Not regexAlphanumeric.IsMatch(model) Then
-                'If nothing or not alphanumeric
-                Throw New Exception("Model name cannot be empty or include symbols.")
-            End If
-
-            If code = Nothing Or Not code.Length = 2 Then ''Or Not regexAlphabetic.IsMatch(code) Then
-                'If nothing or not alphabetic or not length of two chars
-                Throw New Exception("Code must be 2 characters and cannot include numbers or symbols.")
-            End If
-
-            'Check if this code is already used
-            For i As Integer = 0 To modelCount - 1
-
-                Dim row As DataRow = models.Rows(i)
-                Dim thisIdentifier As String = CStr(row("Identifier"))
-
-                If thisIdentifier = identifier Then
-                    'If has same code
-                    Throw New Exception("Code must be unique." & vbNewLine & thisIdentifier & " already exists.")
+        End If
+        If cmbType.SelectedIndex < 0 Then
+            issues.Add(New ValidationIssue("cmbType", "Select a tape type."))
+        End If
+        If String.IsNullOrWhiteSpace(model) Then
+            issues.Add(New ValidationIssue("txtModel", "Enter a model name."))
+        End If
+        If code.Length <> 2 Then
+            issues.Add(New ValidationIssue("txtCode", "Enter a unique two-character model code."))
+        End If
+        If brandRow IsNot Nothing AndAlso cmbType.SelectedIndex >= 0 AndAlso code.Length = 2 Then
+            identifier = CStr(brandRow("Code")) & CStr(type) & code
+            For Each row As DataRow In models.Rows
+                If String.Equals(CStr(row("Identifier")), identifier, StringComparison.Ordinal) Then
+                    issues.Add(New ValidationIssue("txtCode", "Model identifier " & identifier & " already exists."))
                 End If
-
                 If String.Equals(CStr(row("Brand")), brand, StringComparison.OrdinalIgnoreCase) AndAlso
                         String.Equals(CStr(row("Model")), model, StringComparison.OrdinalIgnoreCase) Then
-                    Throw New Exception("Model display name must be unique within its brand.")
+                    issues.Add(New ValidationIssue("txtModel", "That model name already exists for the selected brand."))
                 End If
-
             Next
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Invalid Data Entry")
+        End If
+        If _validationErrors Is Nothing Then
+            _validationErrors = New ErrorProvider(components)
+            _validationErrors.ContainerControl = Me
+        End If
+        If Not CatalogueWorkflow.ShowValidationIssues(Me, _validationErrors, issues, "Check Model Details") Then
             Exit Sub
-        End Try
+        End If
 
         ''Find next index and save data to record
         ''Dim thisIndex As Integer = CInt(counters.Rows(2)("Number")) '2 = Models row
@@ -110,19 +104,19 @@
         modelCount = models.Rows.Count
 
         changes = True
-        'Update title bar
-        frmMain.Text = fileName & "* - C3"
+
+        _createdKey = identifier
+        _createdDisplayName = brand & " " & model
 
         'Show confirmation message
         Dim message As String = "Added model " & brand & " " & model & " successfully."
-        If My.Settings.showMessages = True Then
-            MsgBox(message, MsgBoxStyle.Question, "Successfully Added Model")
+        If My.Settings.showMessages AndAlso Not SuppressSuccessMessage Then
+            MessageBox.Show(Me, message, "Model Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
         consoleAdd(message)
 
-        'Reload data and close this form
-        frmMain.loadData()
-        Me.Close()
+        DialogResult = DialogResult.OK
+        Close()
 
     End Sub
 

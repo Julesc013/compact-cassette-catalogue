@@ -1,8 +1,24 @@
 ﻿Public Class frmTapeNew
 
+    Private _createdKey As String
+    Private _createdDisplayName As String
+    Private _validationErrors As ErrorProvider
+
     Public ReadOnly Property CreatedKey As String
+        Get
+            Return _createdKey
+        End Get
+    End Property
+
     Public ReadOnly Property CreatedDisplayName As String
+        Get
+            Return _createdDisplayName
+        End Get
+    End Property
+
     Public Property SuppressSuccessMessage As Boolean
+    Public Property PreferredModelIdentifier As String
+    Public Property PreferredDeckName As String
 
     'Declare variables
     Dim modelIndex As Integer '0-based position in datatable
@@ -28,62 +44,42 @@
 
         'Load data (decks, brands and models)
 
-        deckCount = decks.Rows.Count
+        ReloadModelChoices(PreferredModelIdentifier)
+        ReloadDeckChoices(PreferredDeckName)
+    End Sub
+
+    Public Sub ReloadModelChoices(preferredIdentifier As String)
         modelCount = models.Rows.Count
-
-        'Load models into combination box
-        'Try
-        '    'If no models, catch don't crash
-
         cmbModel.Items.Clear()
-
-        For i As Integer = 0 To modelCount - 1
-            Dim row As DataRow = models.Rows(i)
-
-            Dim thisModel As String = CStr(row("Brand")) & " " & CStr(row("Model"))
-            cmbModel.Items.Add(thisModel)
+        For Each row As DataRow In models.Rows
+            cmbModel.Items.Add(New CatalogueChoice(
+                CStr(row("Identifier")),
+                CStr(row("Brand")) & " " & CStr(row("Model"))))
         Next
+        CatalogueWorkflow.SelectChoice(cmbModel, preferredIdentifier)
+    End Sub
 
-        'Catch
-        '    MsgBox("No models. Unhandled non-fatal error.", MsgBoxStyle.Critical, "No Models Error")
-        'End Try
-
-
-        'Load decks into combination boxes
+    Public Sub ReloadDeckChoices(preferredName As String)
+        deckCount = decks.Rows.Count
         cmbDeckA.Items.Clear()
         cmbDeckB.Items.Clear()
-
-        For i As Integer = 0 To deckCount - 1
-            Dim row As DataRow = decks.Rows(i)
-
-            Dim thisDeck As String = CStr(row("Name"))
-            cmbDeckA.Items.Add(thisDeck)
-            cmbDeckB.Items.Add(thisDeck)
+        For Each row As DataRow In decks.Rows
+            Dim name As String = CStr(row("Name"))
+            cmbDeckA.Items.Add(New CatalogueChoice(name, name))
+            cmbDeckB.Items.Add(New CatalogueChoice(name, name))
         Next
-
+        CatalogueWorkflow.SelectChoice(cmbDeckA, preferredName)
+        CatalogueWorkflow.SelectChoice(cmbDeckB, preferredName)
     End Sub
 
     Private Sub CmbModel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbModel.SelectedIndexChanged
         'Get next index and generate code
 
-        ''modelIndex = cmbModel.SelectedIndex 'Order of items in combobox will be same as in records ''NOT ANYMORE, SORTED BOXES
-        ''Dim modelRow As DataRow = models.Rows(modelIndex)
-        Dim modelRow As DataRow = Nothing
-        For Each thisRow As DataRow In models.Rows
-            Dim displayName As String = CStr(thisRow("Brand")) & " " & CStr(thisRow("Model"))
-            If String.Equals(displayName, cmbModel.Text, StringComparison.Ordinal) Then
-                If modelRow IsNot Nothing Then
-                    MsgBox(
-                        "More than one model has the display name " & cmbModel.Text & ". Use unique brand and model names before adding tapes.",
-                        MsgBoxStyle.Exclamation,
-                        "Ambiguous Model")
-                    grpBasic.Enabled = False
-                    grpTaped.Enabled = False
-                    Exit Sub
-                End If
-                modelRow = thisRow
-            End If
-        Next
+        Dim selectedIdentifier As String = CatalogueWorkflow.SelectedChoiceKey(cmbModel)
+        Dim modelRow As DataRow = If(
+            String.IsNullOrWhiteSpace(selectedIdentifier),
+            Nothing,
+            models.Rows.Find(selectedIdentifier))
 
         If modelRow Is Nothing Then
             grpBasic.Enabled = False
@@ -117,30 +113,37 @@
         Dim bulkAddAmount As Integer = CInt(numBulkAdd.Value)
         Dim addedIdentifiers As New List(Of String)()
 
+        Dim issues As New List(Of ValidationIssue)()
+        If String.IsNullOrWhiteSpace(CatalogueWorkflow.SelectedChoiceKey(cmbModel)) Then
+            issues.Add(New ValidationIssue("cmbModel", "Select a tape model."))
+        End If
+        If Not chkPackaged.Checked Then
+            If chkTapedA.Checked AndAlso String.IsNullOrWhiteSpace(txtNameA.Text) Then
+                issues.Add(New ValidationIssue("txtNameA", "Enter a label for recorded side A."))
+            End If
+            If chkTapedB.Checked AndAlso String.IsNullOrWhiteSpace(txtNameB.Text) Then
+                issues.Add(New ValidationIssue("txtNameB", "Enter a label for recorded side B."))
+            End If
+            If chkTapedA.Checked AndAlso String.IsNullOrWhiteSpace(CatalogueWorkflow.SelectedChoiceKey(cmbDeckA)) Then
+                issues.Add(New ValidationIssue("cmbDeckA", "Select the deck used for side A."))
+            End If
+            If chkTapedB.Checked AndAlso String.IsNullOrWhiteSpace(CatalogueWorkflow.SelectedChoiceKey(cmbDeckB)) Then
+                issues.Add(New ValidationIssue("cmbDeckB", "Select the deck used for side B."))
+            End If
+        End If
+        If _validationErrors Is Nothing Then
+            _validationErrors = New ErrorProvider(components)
+            _validationErrors.ContainerControl = Me
+        End If
+        If Not CatalogueWorkflow.ShowValidationIssues(Me, _validationErrors, issues, "Check Tape Details") Then
+            Exit Sub
+        End If
+
         Try 'Try to save tape
 
             Dim packaged As Boolean = chkPackaged.Checked
             Dim tapedA As Boolean = chkTapedA.Checked
             Dim tapedB As Boolean = chkTapedB.Checked
-
-
-            'Validate if current tape is okay to save (all boxes filled)
-
-            If cmbModel.Text = Nothing Then
-                Throw New Exception("No model selected.")
-            End If
-
-            If packaged = False Then
-
-                If tapedA = True And txtNameA.Text = Nothing Then
-                    Throw New Exception("No name for side A.")
-                End If
-
-                If tapedB = True And txtNameB.Text = Nothing Then
-                    Throw New Exception("No name for side B.")
-                End If
-
-            End If
 
 
             'Get values to be recorded
@@ -228,7 +231,7 @@
 
                     nameA = txtNameA.Text
                     recordedA = datRecordedA.Value
-                    deckA = cmbDeckA.Text
+                    deckA = CatalogueWorkflow.SelectedChoiceKey(cmbDeckA)
                     inputA = cmbInputA.Text
                     speedA = cmbSpeedA.Text
                     peakA = CInt(numPeakA.Value)
@@ -253,7 +256,7 @@
 
                     nameB = txtNameB.Text
                     recordedB = datRecordedB.Value
-                    deckB = cmbDeckB.Text
+                    deckB = CatalogueWorkflow.SelectedChoiceKey(cmbDeckB)
                     inputB = cmbInputB.Text
                     speedB = cmbSpeedB.Text
                     peakB = CInt(numPeakB.Value)
@@ -364,27 +367,30 @@
             tapeCount = tapes.Rows.Count
 
             changes = True
-            'Update title bar
-            frmMain.Text = fileName & "* - C3"
+
+            _createdKey = addedIdentifiers(0)
+            _createdDisplayName = If(
+                addedIdentifiers.Count = 1,
+                addedIdentifiers(0),
+                addedIdentifiers.Count.ToString(Globalization.CultureInfo.InvariantCulture) & " tapes")
 
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Cannot Save Incomplete Tape")
+            MessageBox.Show(Me, ex.Message, "Unable to Add Tape", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
 
         End Try
 
         For Each identifierShort As String In addedIdentifiers
             Dim message As String = "Added tape " & identifierShort & " successfully."
-            If My.Settings.showMessages = True AndAlso bulkAddAmount = 1 Then
-                MsgBox(message, MsgBoxStyle.Question, "Successfully Added Tape")
+            If My.Settings.showMessages AndAlso bulkAddAmount = 1 AndAlso Not SuppressSuccessMessage Then
+                MessageBox.Show(Me, message, "Tape Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
             consoleAdd(message)
         Next
 
-        'Reload data and close this form
-        frmMain.loadData()
-        Me.Close()
+        DialogResult = DialogResult.OK
+        Close()
 
     End Sub
 
