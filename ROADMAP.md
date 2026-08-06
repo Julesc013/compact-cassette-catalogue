@@ -44,6 +44,8 @@ or issue tracker.
 - Introduce explicit workspace/document state, command history, and undo/redo.
 - Prove reusable C# WinForms patterns through one complete Brands workflow in
   both runtime lanes.
+- Qualify the unpublished checkpoint through automated exact-package evidence;
+  retain its real-display matrix for the exact Beta 1 owner qualification.
 
 ## 2.0.0 Alpha 6 — canonical catalogue convergence
 

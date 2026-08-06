@@ -206,8 +206,12 @@ guards and should cover maximum accepted text lengths. They do not replace real
 display scaling, high contrast, or screen-reader checks because those depend on
 the operating system, device context, theme, and assistive technology.
 
-The exact owner procedure for the first OEM+ production slice is the
-[Alpha 5 Brands manual qualification matrix](alpha5-brands-manual-matrix.md).
+The [Brands manual qualification matrix](alpha5-brands-manual-matrix.md)
+remains the exact real-display procedure for this changed surface. Under
+[ADR 0016](../architecture/decisions/0016-unpublished-alpha-qualification.md),
+it is accumulated and executed against the exact feature-complete Beta 1
+candidate rather than repeated for every intentionally unpublished alpha.
+Automated alpha evidence must not be relabelled as a manual pass.
 
 Performance uses named synthetic catalogue sizes and machine profiles. Capture
 launch, open/save, list/filter, editor, bulk preview/apply, memory high-water, and

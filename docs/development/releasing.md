@@ -55,9 +55,9 @@ remain authoritative for C/E/P topology, artifacts, and observed external facts.
 | Two clean path-distinct package builds and checksums | Required | Required | Required | Required for newly built stable bytes |
 | Known data-loss defects | Zero | Zero | Zero | Zero |
 | Critical local workflow smoke | Required | Required | Required | Required |
-| Full owner workflow matrix | Selected changed/critical paths | Required | Required | Required |
+| Full owner workflow matrix | Deferred without a pass claim | Required | Required | Required |
 | XP SP3 / Windows 7 SP1 support matrix | May be explicitly deferred | Required for public support claims | Required | Required |
-| DPI/accessibility | Changed surfaces | Required | Required | Required |
+| DPI/accessibility | Automated changed-surface guards; manual evidence deferred | Required | Required | Required |
 | GitHub release and post-download verification | No | Required prerelease | Required prerelease | Required public release |
 | Update-feed promotion | No | Beta feed last | Beta feed last | Stable feed last |
 
@@ -67,6 +67,15 @@ metadata-only source transition from the accepted RC, followed by a complete
 rebuild and requalification of the new stable bytes. C3 never claims that RC and
 stable payloads are byte-identical; any functional correction requires another
 RC. See [ADR 0010](../architecture/decisions/0010-stable-release-identity.md).
+
+Unpublished alpha checkpoints are engineering integration checkpoints. They may
+qualify from the complete maintained-machine automated gate, exact-package
+process tests, deterministic UI construction/layout/accessibility-contract
+checks, and reproducible artifacts. Missing real-display, screen-reader,
+minimum-OS, or owner-usability evidence is recorded as deferred and must never be
+described as a pass. The complete owner matrix is run once against the exact
+feature-complete Beta 1 candidate; a failure there creates corrected candidate
+bytes and repeats the complete Beta gate.
 
 ## Prepare and freeze source commit C
 

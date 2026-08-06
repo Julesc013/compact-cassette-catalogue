@@ -1,9 +1,10 @@
-# Alpha 5 Brands manual qualification matrix
+# Brands owner qualification matrix
 
-This runbook closes the interaction evidence that source inspection, relative
-scaling, UI Automation, and off-screen rendering cannot prove. Run it against
-the exact frozen Alpha 5 portable archives after the automated gate and
-reproducibility comparison pass.
+This runbook defines the Brands interaction evidence that source inspection,
+relative scaling, UI Automation, and off-screen rendering cannot prove. Under
+ADR 0016, accumulate it during alpha development and run it as part of the
+complete owner matrix against the exact frozen Beta 1 portable archives after
+the automated gate and reproducibility comparison pass.
 
 Do not reuse results after any candidate source, binary, configuration, payload,
 or archive byte changes. A changed candidate receives new packages, hashes, and
@@ -11,7 +12,7 @@ a complete rerun.
 
 ## Evidence header
 
-Record this header in `release/validation/2.0.0-alpha.5.md` before testing:
+Record this header in the exact Beta 1 owner evidence before testing:
 
 ```text
 Candidate source SHA:
@@ -143,12 +144,13 @@ same claim as an automatic live-region announcement.
 
 ## Acceptance
 
-Alpha 5 interaction evidence passes only when every required row is completed and
-no release-blocking behavior, accessibility, data-safety, or layout defect remains.
+The Beta 1 Brands interaction evidence passes only when every required row is
+completed and no release-blocking behavior, accessibility, data-safety, or
+layout defect remains.
 Attach defect identifiers and corrective candidate SHAs rather than changing a
 failed result to pending.
 
 After a pass, copy the completed tables or their exact evidence reference into
-the Alpha 5 validation record. Candidate qualification still requires the full
+the Beta 1 validation record. Candidate qualification still requires the full
 automated verifier, exact-package workflow/performance rerun, path-distinct
 reproducible packages, and the repository C/E/P transaction.

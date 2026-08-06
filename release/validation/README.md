@@ -72,7 +72,7 @@ successful public `P`.
 | `2.0.0-alpha.2.md` | Qualified, tagged, intentionally unpublished C3 2.0 compatibility checkpoint evidence |
 | `2.0.0-alpha.3.md` | Qualified, tagged, intentionally unpublished typed-domain/C# checkpoint evidence |
 | `2.0.0-alpha.4.md` | Qualified, tagged, intentionally unpublished native-format/migration checkpoint evidence |
-| `2.0.0-alpha.5.md` | Active shared-workspace proof; owner real-display/accessibility evidence remains pending |
+| `2.0.0-alpha.5.md` | Active shared-workspace proof; automated requalification pending after the owner-directed Alpha policy amendment |
 
 A superseded record keeps its original hashes and limitations. A new identity
 requires a clean build, new packages, new hashes, and a new validation record.
