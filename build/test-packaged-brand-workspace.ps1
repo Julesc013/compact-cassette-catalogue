@@ -67,13 +67,6 @@ public static class C3PackagedBrandNativeMethods
         IntPtr parameter,
         string text);
 
-    [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true)]
-    public static extern IntPtr SendMessagePointer(
-        IntPtr window,
-        uint message,
-        IntPtr parameter,
-        IntPtr messageData);
-
     [DllImport("user32.dll", SetLastError = true)]
     public static extern bool PostMessage(
         IntPtr window,
@@ -85,11 +78,20 @@ public static class C3PackagedBrandNativeMethods
     public static extern bool SetForegroundWindow(IntPtr window);
 
     [DllImport("user32.dll")]
+    public static extern bool BringWindowToTop(IntPtr window);
+
+    [DllImport("user32.dll")]
+    public static extern bool ShowWindowAsync(IntPtr window, int command);
+
+    [DllImport("user32.dll")]
     public static extern void keybd_event(
         byte virtualKey,
         byte scanCode,
         uint flags,
         UIntPtr extraInfo);
+
+    [DllImport("user32.dll")]
+    public static extern uint MapVirtualKey(uint code, uint mapType);
 
     [DllImport("user32.dll")]
     public static extern bool GetWindowRect(IntPtr window, out RECT rectangle);
@@ -261,11 +263,25 @@ function Invoke-C3Element {
     $controlType = $Element.Current.ControlType.ProgrammaticName
     $lastFailure = $null
 
+    if (-not $Element.Current.IsEnabled) {
+        throw "C3 element '$automationId' ('$name', $controlType) is disabled."
+    }
+
+    $window = [IntPtr]$Element.Current.NativeWindowHandle
+    if ($window -ne [IntPtr]::Zero) {
+        if (-not [C3PackagedBrandNativeMethods]::PostMessage(
+                $window,
+                0x00F5,
+                [UIntPtr]::Zero,
+                [IntPtr]::Zero)) {
+            throw "Unable to post a click to C3 element '$automationId' ('$name', $controlType)."
+        }
+        Start-Sleep -Milliseconds 200
+        return
+    }
+
     for ($attempt = 1; $attempt -le 3; $attempt++) {
         try {
-            if (-not $Element.Current.IsEnabled) {
-                throw 'element is disabled'
-            }
             $pattern = $Element.GetCurrentPattern(
                 [System.Windows.Automation.InvokePattern]::Pattern)
             $pattern.Invoke()
@@ -278,18 +294,27 @@ function Invoke-C3Element {
         }
     }
 
-    $window = [IntPtr]$Element.Current.NativeWindowHandle
-    if ($window -ne [IntPtr]::Zero) {
-        [void][C3PackagedBrandNativeMethods]::SendMessagePointer(
-            $window,
-            0x00F5,
-            [IntPtr]::Zero,
-            [IntPtr]::Zero)
-        Start-Sleep -Milliseconds 200
-        return
+    throw "C3 element '$automationId' ('$name', $controlType) could not be invoked after three attempts and has no native button handle: $lastFailure"
+}
+
+function Invoke-C3DialogCommand {
+    param(
+        [System.Windows.Automation.AutomationElement]$Dialog,
+        [uint32]$CommandId
+    )
+
+    $dialogHandle = [IntPtr]$Dialog.Current.NativeWindowHandle
+    if ($dialogHandle -eq [IntPtr]::Zero) {
+        throw "C3 dialog '$($Dialog.Current.Name)' has no native window handle."
     }
 
-    throw "C3 element '$automationId' ('$name', $controlType) could not be invoked after three attempts and has no native button handle: $lastFailure"
+    if (-not [C3PackagedBrandNativeMethods]::PostMessage(
+            $dialogHandle,
+            0x0111,
+            [UIntPtr]::new([uint64]$CommandId),
+            [IntPtr]::Zero)) {
+        throw "Unable to send command $CommandId to C3 dialog '$($Dialog.Current.Name)'."
+    }
 }
 
 function Set-C3Text {
@@ -327,39 +352,6 @@ function Set-C3Value {
     Start-Sleep -Milliseconds 100
 }
 
-function Select-C3BrandRow {
-    param(
-        [System.Windows.Automation.AutomationElement]$BrandWindow,
-        [string]$Code
-    )
-
-    $nameCondition = New-PropertyCondition `
-        -Property ([System.Windows.Automation.AutomationElement]::NameProperty) `
-        -Value $Code
-    $typeCondition = New-PropertyCondition `
-        -Property ([System.Windows.Automation.AutomationElement]::ControlTypeProperty) `
-        -Value ([System.Windows.Automation.ControlType]::DataItem)
-    $condition = New-Object System.Windows.Automation.AndCondition(
-        $nameCondition,
-        $typeCondition)
-    $row = $BrandWindow.FindFirst(
-        [System.Windows.Automation.TreeScope]::Descendants,
-        $condition)
-    if ($null -eq $row) {
-        throw "Brand row '$Code' was not found."
-    }
-
-    try {
-        $selection = $row.GetCurrentPattern(
-            [System.Windows.Automation.SelectionItemPattern]::Pattern)
-    }
-    catch {
-        throw "Brand row '$Code' does not support SelectionItem: $($_.Exception.Message)"
-    }
-    $selection.Select()
-    Start-Sleep -Milliseconds 250
-}
-
 function Assert-C3BrandRow {
     param(
         [System.Windows.Automation.AutomationElement]$BrandWindow,
@@ -369,9 +361,17 @@ function Assert-C3BrandRow {
     )
 
     $deadline = [DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
+    $lastFailure = $null
     do {
         try {
-            Select-C3BrandRow -BrandWindow $BrandWindow -Code $Code
+            $codeRows = $BrandWindow.FindAll(
+                [System.Windows.Automation.TreeScope]::Descendants,
+                (New-PropertyCondition `
+                        -Property ([System.Windows.Automation.AutomationElement]::NameProperty) `
+                        -Value $Code))
+            if ($codeRows.Count -eq 0) {
+                throw "Brand row '$Code' is absent."
+            }
             $texts = $BrandWindow.FindAll(
                 [System.Windows.Automation.TreeScope]::Descendants,
                 (New-PropertyCondition `
@@ -383,12 +383,19 @@ function Assert-C3BrandRow {
         }
         catch {
             # The form rebuilds ListView rows after mutations; retry until stable.
+            $lastFailure = $_.Exception.Message
         }
         Start-Sleep -Milliseconds 100
     }
     while ([DateTime]::UtcNow -lt $deadline)
 
-    throw "Brand '$Code' did not present the expected name '$ExpectedName'."
+    $dataItems = $BrandWindow.FindAll(
+        [System.Windows.Automation.TreeScope]::Descendants,
+        (New-PropertyCondition `
+                -Property ([System.Windows.Automation.AutomationElement]::ControlTypeProperty) `
+                -Value ([System.Windows.Automation.ControlType]::DataItem)))
+    $availableRows = @($dataItems | ForEach-Object { $_.Current.Name }) -join ', '
+    throw "Brand '$Code' did not present the expected name '$ExpectedName'. Last selection failure: '$lastFailure'. Available rows: '$availableRows'."
 }
 
 function Assert-C3BrandCount {
@@ -464,13 +471,21 @@ function Measure-C3WindowPaint {
 }
 
 function Start-C3Package {
-    param([string]$Executable)
+    param(
+        [string]$Executable,
+        [string]$CataloguePath
+    )
 
     $startup = [Diagnostics.Stopwatch]::StartNew()
-    $process = Start-Process `
-        -FilePath $Executable `
-        -WorkingDirectory (Split-Path -Parent $Executable) `
-        -PassThru
+    $startArguments = @{
+        FilePath = $Executable
+        WorkingDirectory = Split-Path -Parent $Executable
+        PassThru = $true
+    }
+    if (-not [string]::IsNullOrWhiteSpace($CataloguePath)) {
+        $startArguments.ArgumentList = '"' + $CataloguePath + '"'
+    }
+    $process = Start-Process @startArguments
     $deadline = [DateTime]::UtcNow.AddSeconds(30)
     while ($process.MainWindowHandle -eq [IntPtr]::Zero -and
             [DateTime]::UtcNow -lt $deadline) {
@@ -533,46 +548,51 @@ function Send-C3Shortcut {
     if (-not $Process.Responding) {
         throw 'The packaged C3 main window is not responding.'
     }
-    $keyParameter = [UIntPtr]::new([uint64]$VirtualKey)
-    if (-not [C3PackagedBrandNativeMethods]::PostMessage(
-            $window,
-            0x0100,
-            $keyParameter,
-            [IntPtr]::Zero)) {
-        throw "Unable to post key-down 0x$($VirtualKey.ToString('X2')) to packaged C3 (Win32 $([Runtime.InteropServices.Marshal]::GetLastWin32Error()))."
+    if (Set-C3Foreground -Window $window) {
+        Start-Sleep -Milliseconds 200
+        [C3PackagedBrandNativeMethods]::keybd_event([byte]$VirtualKey, 0, 0, [UIntPtr]::Zero)
+        [C3PackagedBrandNativeMethods]::keybd_event([byte]$VirtualKey, 0, 2, [UIntPtr]::Zero)
     }
-    if (-not [C3PackagedBrandNativeMethods]::PostMessage(
-            $window,
-            0x0101,
-            $keyParameter,
-            [IntPtr]::Zero)) {
-        throw "Unable to post key-up 0x$($VirtualKey.ToString('X2')) to packaged C3 (Win32 $([Runtime.InteropServices.Marshal]::GetLastWin32Error()))."
+    else {
+        $scanCode = [C3PackagedBrandNativeMethods]::MapVirtualKey($VirtualKey, 0)
+        $keyDownData = [IntPtr]([int64](1 -bor ($scanCode -shl 16)))
+        $keyUpData = [IntPtr]([int64](0xC0000001L -bor ($scanCode -shl 16)))
+        $keyParameter = [UIntPtr]::new([uint64]$VirtualKey)
+        if (-not [C3PackagedBrandNativeMethods]::PostMessage(
+                $window,
+                0x0100,
+                $keyParameter,
+                $keyDownData) -or
+                -not [C3PackagedBrandNativeMethods]::PostMessage(
+                $window,
+                0x0101,
+                $keyParameter,
+                $keyUpData)) {
+            throw "Unable to post fallback shortcut 0x$($VirtualKey.ToString('X2')) to packaged C3."
+        }
     }
     Start-Sleep -Milliseconds 300
 }
 
-function Send-C3ModifiedShortcut {
-    param(
-        [Diagnostics.Process]$Process,
-        [byte]$ModifierVirtualKey,
-        [byte]$VirtualKey
-    )
+function Set-C3Foreground {
+    param([IntPtr]$Window)
 
-    $Process.Refresh()
-    $window = $Process.MainWindowHandle
-    if ($window -eq [IntPtr]::Zero) {
-        throw 'The packaged C3 process has no main window for a modified shortcut.'
-    }
-    if (-not [C3PackagedBrandNativeMethods]::SetForegroundWindow($window)) {
-        throw "Unable to foreground packaged C3 for shortcut input (Win32 $([Runtime.InteropServices.Marshal]::GetLastWin32Error()))."
+    [void][C3PackagedBrandNativeMethods]::ShowWindowAsync($Window, 9)
+    [void][C3PackagedBrandNativeMethods]::BringWindowToTop($Window)
+    for ($attempt = 1; $attempt -le 5; $attempt++) {
+        if ([C3PackagedBrandNativeMethods]::SetForegroundWindow($Window)) {
+            return $true
+        }
+
+        # A synthetic ALT transition grants this interactive test harness the
+        # same foreground permission as a real keyboard action without relying
+        # on whichever control happened to own focus previously.
+        [C3PackagedBrandNativeMethods]::keybd_event(0x12, 0, 0, [UIntPtr]::Zero)
+        [C3PackagedBrandNativeMethods]::keybd_event(0x12, 0, 2, [UIntPtr]::Zero)
+        Start-Sleep -Milliseconds 100
     }
 
-    Start-Sleep -Milliseconds 200
-    [C3PackagedBrandNativeMethods]::keybd_event($ModifierVirtualKey, 0, 0, [UIntPtr]::Zero)
-    [C3PackagedBrandNativeMethods]::keybd_event($VirtualKey, 0, 0, [UIntPtr]::Zero)
-    [C3PackagedBrandNativeMethods]::keybd_event($VirtualKey, 0, 2, [UIntPtr]::Zero)
-    [C3PackagedBrandNativeMethods]::keybd_event($ModifierVirtualKey, 0, 2, [UIntPtr]::Zero)
-    Start-Sleep -Milliseconds 300
+    return $false
 }
 
 function Close-C3Window {
@@ -709,11 +729,11 @@ function Invoke-BrandMutationAndSave {
         $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
         Write-Host ('PACKAGED_BRAND_COMMAND|lane={0}|operation=clear-filter|elapsed-ms={1}' -f $Lane, [Math]::Round($interaction.Elapsed.TotalMilliseconds, 3))
 
-        Select-C3BrandRow $brandWindow $Code
+        Assert-C3BrandRow $brandWindow $Code $FinalName
         Invoke-C3Element (Wait-C3Element 'deleteButton' '' $brandWindow)
         $deleteDialog = Wait-C3Element '' 'Delete brand' $null 10
         $interaction.Restart()
-        Invoke-C3Element (Wait-C3Element '6' 'Yes' $deleteDialog 10)
+        Invoke-C3DialogCommand -Dialog $deleteDialog -CommandId 6
         Assert-C3BrandCount $brandWindow 0
         $interaction.Stop()
         $interactionDurations.Add($interaction.Elapsed.TotalMilliseconds)
@@ -806,15 +826,9 @@ function Assert-BrandCatalogueReopens {
 
     $process = $null
     try {
-        $process = Start-C3Package -Executable $Executable
-        Send-C3ModifiedShortcut `
-            -Process $process `
-            -ModifierVirtualKey 0x11 `
-            -VirtualKey 0x4F
-        Set-FileDialogPathAndAccept `
-            -DialogName 'Open Catalogue' `
-            -Path $CataloguePath `
-            -AcceptName 'Open'
+        $process = Start-C3Package `
+            -Executable $Executable `
+            -CataloguePath $CataloguePath
         $brandWindow = Open-C3BrandWindow -Process $process
         Assert-C3BrandRow $brandWindow $Code $ExpectedName
         Write-Host (

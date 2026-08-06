@@ -50,6 +50,15 @@ Public Class frmMain
         ' Load data (decks, brands and models).
         loadData()
 
+        ' A single catalogue path follows the normal Windows "Open with" contract.
+        ' Loading still flows through the same transactional catalogue owner as
+        ' File > Open; the command line only removes the file-picker step.
+        Dim startupArguments As String() = Environment.GetCommandLineArgs()
+        If startupArguments.Length = 2 AndAlso
+                Not String.IsNullOrWhiteSpace(startupArguments(1)) Then
+            OpenCataloguePath(startupArguments(1))
+        End If
+
         UiDiagnostics.Add("Successfully loaded program.")
 
         If UpdateCheckSchedule.ShouldCheck(
@@ -890,73 +899,7 @@ Public Class frmMain
         Dim selectedPath As String = dlgOpen.FileName
 
         If dlgResult = DialogResult.OK And selectedPath IsNot Nothing Then
-            'If user has given a valid file path.
-
-            Dim loadResult As LegacyCatalogueLoadResult = Composition.CatalogueStore.Load(
-                selectedPath,
-                Composition.Catalogue,
-                VERSIONFILESUPPORTED)
-            If Not loadResult.IsSuccess Then
-                BufferedLogger.Error("Catalogue load failed: " & loadResult.Message)
-                MsgBox(
-                    "Catalogue was not opened. The current catalogue is unchanged." &
-                        vbNewLine & vbNewLine & loadResult.Message,
-                    MsgBoxStyle.Critical,
-                    "Catalogue Load Error")
-                Exit Sub
-            End If
-
-            Dim fileVersion As String = loadResult.FileVersion
-
-            'Only load if the file version is supported.
-            If VERSIONFILESUPPORTED.Contains(fileVersion) Then
-
-                Dim selectedFileName As String = Path.GetFileName(selectedPath)
-                Composition.ReplaceCatalogue(loadResult.Document)
-                Composition.Workspace.MarkLoaded(
-                    selectedPath,
-                    selectedFileName,
-                    loadResult.Revision,
-                    CatalogueCompatibilityMode.LegacyV1_1,
-                    False)
-
-
-                'Reset changes variable
-                _hasPendingTapeEdits = False
-
-                'Reset buttons
-                btnUpdate.Enabled = False
-                UpdateTapeToolStripMenuItem.Enabled = False
-
-                'Update title bar
-                Me.Text = Composition.CatalogueSession.DisplayName & " - C3"
-
-
-                Composition.CatalogueMetadata.RefreshProductMetadata(
-                    VERSION,
-                    VERSIONSTAGE,
-                    VERSIONDATE)
-
-                'Show confirmation message
-                Dim message As String = "Opened catalogue successfully."
-                UiDiagnostics.Add(message)
-
-                'Load data into forms
-                loadData()
-
-            Else
-                'If file is not the right version.
-
-                'Make string of list of supported versions
-                Dim versionsSupported As String = VERSIONFILESUPPORTED(0)
-                For i As Integer = 1 To VERSIONFILESUPPORTED.Length - 1
-                    versionsSupported = versionsSupported & ", " & VERSIONFILESUPPORTED(i)
-                Next
-
-                'Show error message
-                MsgBox("Format version of this file is not supported." & vbNewLine & "Selected file version: " & fileVersion & vbNewLine & "Supported file version(s): " & versionsSupported, MsgBoxStyle.Critical, "Unsupported File Version")
-
-            End If
+            OpenCataloguePath(selectedPath)
 
         ElseIf dlgResult <> DialogResult.Cancel Then
             'If user did NOT deliberately cancel save procedure.
@@ -966,6 +909,62 @@ Public Class frmMain
 
         End If
 
+    End Sub
+
+    Private Sub OpenCataloguePath(selectedPath As String)
+        BufferedLogger.RecordAction("Open catalogue " & selectedPath)
+
+        Dim loadResult As LegacyCatalogueLoadResult = Composition.CatalogueStore.Load(
+            selectedPath,
+            Composition.Catalogue,
+            VERSIONFILESUPPORTED)
+        If Not loadResult.IsSuccess Then
+            BufferedLogger.Error("Catalogue load failed: " & loadResult.Message)
+            MsgBox(
+                "Catalogue was not opened. The current catalogue is unchanged." &
+                    vbNewLine & vbNewLine & loadResult.Message,
+                MsgBoxStyle.Critical,
+                "Catalogue Load Error")
+            Exit Sub
+        End If
+
+        Dim fileVersion As String = loadResult.FileVersion
+        If Not VERSIONFILESUPPORTED.Contains(fileVersion) Then
+            Dim versionsSupported As String = VERSIONFILESUPPORTED(0)
+            For i As Integer = 1 To VERSIONFILESUPPORTED.Length - 1
+                versionsSupported = versionsSupported & ", " & VERSIONFILESUPPORTED(i)
+            Next
+
+            MsgBox(
+                "Format version of this file is not supported." & vbNewLine &
+                    "Selected file version: " & fileVersion & vbNewLine &
+                    "Supported file version(s): " & versionsSupported,
+                MsgBoxStyle.Critical,
+                "Unsupported File Version")
+            Exit Sub
+        End If
+
+        Dim selectedFileName As String = Path.GetFileName(selectedPath)
+        Composition.ReplaceCatalogue(loadResult.Document)
+        Composition.Workspace.MarkLoaded(
+            selectedPath,
+            selectedFileName,
+            loadResult.Revision,
+            CatalogueCompatibilityMode.LegacyV1_1,
+            False)
+
+        _hasPendingTapeEdits = False
+        btnUpdate.Enabled = False
+        UpdateTapeToolStripMenuItem.Enabled = False
+        Me.Text = Composition.CatalogueSession.DisplayName & " - C3"
+
+        Composition.CatalogueMetadata.RefreshProductMetadata(
+            VERSION,
+            VERSIONSTAGE,
+            VERSIONDATE)
+
+        UiDiagnostics.Add("Opened catalogue successfully.")
+        loadData()
     End Sub
 
     Private Sub updateMade()

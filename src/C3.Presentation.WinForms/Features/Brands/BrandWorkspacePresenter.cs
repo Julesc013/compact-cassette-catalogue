@@ -33,6 +33,7 @@ namespace C3.Presentation.WinForms.Features.Brands
         private readonly BrandService service;
         private readonly WorkspaceController workspace;
         private readonly Func<DateTime> clock;
+        private readonly List<string> selectionAnchor = new List<string>();
 
         public BrandWorkspacePresenter(
             BrandService service,
@@ -118,10 +119,13 @@ namespace C3.Presentation.WinForms.Features.Brands
                 .ToList();
             if (values.Count == 0)
             {
+                selectionAnchor.Clear();
                 workspace.State.Selection.Clear();
             }
             else
             {
+                selectionAnchor.Clear();
+                selectionAnchor.AddRange(values.Select(value => value.Code));
                 workspace.State.Selection.Select(
                     FeatureKey,
                     values.Select(value => value.Code));
@@ -217,6 +221,8 @@ namespace C3.Presentation.WinForms.Features.Brands
             Feedback.Show(
                 FeedbackKind.Information,
                 "Brand " + value.Code + " was saved. Save the catalogue to keep this change.");
+            selectionAnchor.Clear();
+            selectionAnchor.Add(value.Code);
             workspace.State.Selection.SelectOnly(FeatureKey, value.Code);
             ReplaceListPreservingSelection();
             RaiseStateChanged();
@@ -312,9 +318,18 @@ namespace C3.Presentation.WinForms.Features.Brands
                     ? "Create a brand to begin describing cassette models."
                     : "Clear or change the notes filter to see other brands.");
 
-            var selectedCodes = workspace.State.Selection.Feature == FeatureKey
-                ? workspace.State.Selection.SelectedIds
-                : new List<string>().AsReadOnly();
+            if (selectionAnchor.Count == 0 &&
+                workspace.State.Selection.Feature == FeatureKey)
+            {
+                selectionAnchor.AddRange(workspace.State.Selection.SelectedIds);
+            }
+
+            var selectedCodes = selectionAnchor
+                .Where(code => service.Find(code) != null)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+            selectionAnchor.Clear();
+            selectionAnchor.AddRange(selectedCodes);
             var visibleSelections = values.Where(value => selectedCodes.Any(code =>
                 string.Equals(code, value.Code, StringComparison.OrdinalIgnoreCase))).ToList();
             if (visibleSelections.Count == 0)

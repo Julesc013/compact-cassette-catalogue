@@ -102,6 +102,10 @@ Friend Module BrandWorkspacePresenterTests
         presenter.Refresh("does-not-match")
         AssertEqual(True, presenter.List.EmptyState.IsVisible, "filtered empty state")
         AssertEqual(False, presenter.Inspector.HasSelection, "filtered selection clears safely")
+        AssertEqual(0, presenter.SelectedCount, "hidden selection cannot drive commands")
+        presenter.Refresh(String.Empty)
+        AssertEqual("MX", presenter.Inspector.Value.Code, "clearing filter restores selection")
+        AssertEqual(1, presenter.SelectedCount, "restored selection drives commands")
     End Sub
 
     Public Sub SharedPatternsExposeExplicitStates()
