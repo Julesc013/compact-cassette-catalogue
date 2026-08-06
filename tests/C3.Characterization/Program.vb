@@ -33,6 +33,9 @@ Module Program
         RunTest("lifecycle state machine exhaustively fails closed", AddressOf LifecycleStateMachineExhaustivelyFailsClosed)
         RunTest("production schema loads every catalogue table", AddressOf ProductionSchemaLoadsEveryCatalogueTable)
         RunTest("typed loader rejects invalid field values", AddressOf TypedLoaderRejectsInvalidFieldValues)
+        RunTest("creation planner closes every prerequisite graph", AddressOf CreationPlannerClosesPrerequisites)
+        RunTest("catalogue choices preserve stable identity", AddressOf CatalogueChoicesPreserveStableIdentity)
+        RunTest("creation dialogs expose explicit result contracts", AddressOf CreationDialogsExposeResultContracts)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -303,6 +306,73 @@ Module Program
         Finally
             DeleteIfPresent(invalidPath)
         End Try
+    End Sub
+
+    Private Sub CreationPlannerClosesPrerequisites()
+        AssertSteps(
+            New CatalogueCreationStep() {
+                CatalogueCreationStep.Brand,
+                CatalogueCreationStep.Model,
+                CatalogueCreationStep.Tape},
+            CatalogueWorkflow.Plan(CatalogueCreationIntent.AddTape, False, False, False),
+            "blank Add Tape")
+        AssertSteps(
+            New CatalogueCreationStep() {
+                CatalogueCreationStep.Model,
+                CatalogueCreationStep.Tape},
+            CatalogueWorkflow.Plan(CatalogueCreationIntent.AddTape, True, False, False),
+            "brand-only Add Tape")
+        AssertSteps(
+            New CatalogueCreationStep() {CatalogueCreationStep.Tape},
+            CatalogueWorkflow.Plan(CatalogueCreationIntent.AddTape, True, True, False),
+            "ready Add Tape")
+        AssertSteps(
+            New CatalogueCreationStep() {
+                CatalogueCreationStep.Brand,
+                CatalogueCreationStep.Model},
+            CatalogueWorkflow.Plan(CatalogueCreationIntent.AddModel, False, False, False),
+            "blank Add Model")
+        AssertSteps(
+            New CatalogueCreationStep() {CatalogueCreationStep.Model},
+            CatalogueWorkflow.Plan(CatalogueCreationIntent.AddModel, True, False, False),
+            "ready Add Model")
+        AssertSteps(
+            New CatalogueCreationStep() {
+                CatalogueCreationStep.Deck,
+                CatalogueCreationStep.RecordSide},
+            CatalogueWorkflow.Plan(CatalogueCreationIntent.RecordSide, True, True, False),
+            "record without deck")
+        AssertSteps(
+            New CatalogueCreationStep() {CatalogueCreationStep.RecordSide},
+            CatalogueWorkflow.Plan(CatalogueCreationIntent.RecordSide, True, True, True),
+            "record with deck")
+    End Sub
+
+    Private Sub CatalogueChoicesPreserveStableIdentity()
+        Dim choice As New CatalogueChoice("MAX-2-XL", "Maxell XLII")
+        AssertEqual("MAX-2-XL", choice.Key, "choice key")
+        AssertEqual("Maxell XLII", choice.Text, "choice text")
+        AssertEqual("Maxell XLII", choice.ToString(), "choice display")
+    End Sub
+
+    Private Sub CreationDialogsExposeResultContracts()
+        For Each formType As Type In New Type() {
+                GetType(frmBrandNew), GetType(frmModelNew),
+                GetType(frmDeckNew), GetType(frmTapeNew)}
+            AssertEqual(True, formType.GetProperty("CreatedKey") IsNot Nothing, formType.Name & " CreatedKey")
+            AssertEqual(True, formType.GetProperty("CreatedDisplayName") IsNot Nothing, formType.Name & " CreatedDisplayName")
+            AssertEqual(True, formType.GetProperty("SuppressSuccessMessage") IsNot Nothing, formType.Name & " SuppressSuccessMessage")
+        Next
+    End Sub
+
+    Private Sub AssertSteps(
+            expected As CatalogueCreationStep(),
+            actual As IList(Of CatalogueCreationStep),
+            name As String)
+        AssertEqual(expected.Length, actual.Count, name & " count")
+        For index As Integer = 0 To expected.Length - 1
+            AssertEqual(expected(index), actual(index), name & " step " & index.ToString(CultureInfo.InvariantCulture))
+        Next
     End Sub
 
     Private Sub ValidateAgainstSchema(xmlPath As String)
