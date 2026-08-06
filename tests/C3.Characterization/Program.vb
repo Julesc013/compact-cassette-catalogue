@@ -50,6 +50,7 @@ Module Program
         RunTest("main workspace hierarchy is Designer-owned", AddressOf MainWorkspaceHierarchyIsDesignerOwned)
         RunTest("main header fields remain layout-owned and reachable", AddressOf MainHeaderFieldsRemainLayoutOwnedAndReachable)
         RunTest("tape editor hierarchy is Designer-owned", AddressOf TapeEditorHierarchyIsDesignerOwned)
+        RunTest("tape model fields and commands remain layout-owned", AddressOf TapeModelFieldsAndCommandsRemainLayoutOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -633,6 +634,30 @@ Module Program
             AssertEqual(False, tape.AutoScroll, "tape form AutoScroll disabled")
             AssertEqual(True, viewport.AutoScroll, "tape viewport AutoScroll enabled")
             AssertEqual(DockStyle.Top, canvas.Dock, "tape canvas top dock")
+        End Using
+    End Sub
+
+    Private Sub TapeModelFieldsAndCommandsRemainLayoutOwned()
+        Using tape As New frmTapeNew()
+            tape.Size = New System.Drawing.Size(800, 600)
+            tape.PerformLayout()
+            Dim modelLayout As TableLayoutPanel = DirectCast(FindControl(tape, "tlpTapeModelFields"), TableLayoutPanel)
+            For Each controlName As String In New String() {
+                    "lblModel", "cmbModel", "btnAddModel", "lblYear", "numYear",
+                    "lblLength", "numLength", "lblRegion", "cmbRegion"}
+                Dim control As Control = FindControl(tape, controlName)
+                AssertEqual(modelLayout, control.Parent, controlName & " Model parent")
+                AssertEqual(True, modelLayout.ClientRectangle.Contains(control.Bounds), controlName & " Model reachability")
+            Next
+
+            Dim commandLayout As Control = FindControl(tape, "tlpTapeCommands")
+            Dim commitLayout As Control = FindControl(tape, "flpTapeCommitCommands")
+            For Each controlName As String In New String() {"btnAddDeck", "lblAdd"}
+                AssertEqual(commandLayout, FindControl(tape, controlName).Parent, controlName & " command reachability")
+            Next
+            For Each controlName As String In New String() {"btnAdd", "btnCancel"}
+                AssertEqual(commitLayout, FindControl(tape, controlName).Parent, controlName & " commit reachability")
+            Next
         End Using
     End Sub
 

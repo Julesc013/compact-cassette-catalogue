@@ -29,6 +29,7 @@ Partial Class frmTapeNew
         Me.tlpTapeMetadata = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpTapeCommands = New System.Windows.Forms.TableLayoutPanel()
         Me.flpTapeCommitCommands = New System.Windows.Forms.FlowLayoutPanel()
+        Me.tlpTapeModelFields = New System.Windows.Forms.TableLayoutPanel()
         Me.cmbModel = New System.Windows.Forms.ComboBox()
         Me.btnAddModel = New System.Windows.Forms.Button()
         Me.lblAdd = New System.Windows.Forms.Label()
@@ -137,6 +138,7 @@ Partial Class frmTapeNew
         Me.tlpTapeMetadata.SuspendLayout()
         Me.tlpTapeCommands.SuspendLayout()
         Me.flpTapeCommitCommands.SuspendLayout()
+        Me.tlpTapeModelFields.SuspendLayout()
         Me.grpSideB.SuspendLayout()
         CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpConfigB.SuspendLayout()
@@ -268,14 +270,45 @@ Partial Class frmTapeNew
         Me.flpTapeCommitCommands.TabIndex = 2
         Me.flpTapeCommitCommands.WrapContents = False
         '
+        'tlpTapeModelFields
+        '
+        Me.tlpTapeModelFields.ColumnCount = 5
+        Me.tlpTapeModelFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpTapeModelFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpTapeModelFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpTapeModelFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpTapeModelFields.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpTapeModelFields.Controls.Add(Me.lblModel, 0, 0)
+        Me.tlpTapeModelFields.Controls.Add(Me.cmbModel, 1, 0)
+        Me.tlpTapeModelFields.SetColumnSpan(Me.cmbModel, 3)
+        Me.tlpTapeModelFields.Controls.Add(Me.btnAddModel, 4, 0)
+        Me.tlpTapeModelFields.Controls.Add(Me.lblYear, 0, 1)
+        Me.tlpTapeModelFields.Controls.Add(Me.numYear, 1, 1)
+        Me.tlpTapeModelFields.Controls.Add(Me.lblLength, 2, 1)
+        Me.tlpTapeModelFields.Controls.Add(Me.numLength, 3, 1)
+        Me.tlpTapeModelFields.Controls.Add(Me.lblRegion, 0, 2)
+        Me.tlpTapeModelFields.Controls.Add(Me.cmbRegion, 1, 2)
+        Me.tlpTapeModelFields.SetColumnSpan(Me.cmbRegion, 4)
+        Me.tlpTapeModelFields.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpTapeModelFields.Location = New System.Drawing.Point(3, 17)
+        Me.tlpTapeModelFields.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpTapeModelFields.Name = "tlpTapeModelFields"
+        Me.tlpTapeModelFields.RowCount = 3
+        Me.tlpTapeModelFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.tlpTapeModelFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.tlpTapeModelFields.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.tlpTapeModelFields.Size = New System.Drawing.Size(339, 94)
+        Me.tlpTapeModelFields.TabIndex = 0
+        '
         'cmbModel
         '
         Me.cmbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbModel.FormattingEnabled = True
-        Me.cmbModel.Location = New System.Drawing.Point(65, 20)
+        Me.cmbModel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmbModel.Location = New System.Drawing.Point(65, 2)
         Me.cmbModel.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbModel.Name = "cmbModel"
-        Me.cmbModel.Size = New System.Drawing.Size(105, 24)
+        Me.cmbModel.Size = New System.Drawing.Size(81, 24)
         Me.cmbModel.Sorted = True
         Me.cmbModel.TabIndex = 1
         '
@@ -283,9 +316,13 @@ Partial Class frmTapeNew
         '
         Me.btnAddModel.AccessibleDescription = "Create a model and select it for this tape."
         Me.btnAddModel.AccessibleName = "Add Model"
-        Me.btnAddModel.Location = New System.Drawing.Point(175, 19)
+        Me.btnAddModel.AutoSize = True
+        Me.btnAddModel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnAddModel.Location = New System.Drawing.Point(246, 2)
+        Me.btnAddModel.Margin = New System.Windows.Forms.Padding(3, 2, 0, 2)
+        Me.btnAddModel.MinimumSize = New System.Drawing.Size(90, 26)
         Me.btnAddModel.Name = "btnAddModel"
-        Me.btnAddModel.Size = New System.Drawing.Size(90, 26)
+        Me.btnAddModel.Size = New System.Drawing.Size(93, 27)
         Me.btnAddModel.TabIndex = 2
         Me.btnAddModel.Text = "Add &Model…"
         Me.btnAddModel.UseVisualStyleBackColor = True
@@ -1267,15 +1304,7 @@ Partial Class frmTapeNew
         '
         'grpModel
         '
-        Me.grpModel.Controls.Add(Me.btnAddModel)
-        Me.grpModel.Controls.Add(Me.cmbRegion)
-        Me.grpModel.Controls.Add(Me.numLength)
-        Me.grpModel.Controls.Add(Me.numYear)
-        Me.grpModel.Controls.Add(Me.lblRegion)
-        Me.grpModel.Controls.Add(Me.lblLength)
-        Me.grpModel.Controls.Add(Me.lblYear)
-        Me.grpModel.Controls.Add(Me.lblModel)
-        Me.grpModel.Controls.Add(Me.cmbModel)
+        Me.grpModel.Controls.Add(Me.tlpTapeModelFields)
         Me.grpModel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpModel.Location = New System.Drawing.Point(0, 0)
         Me.grpModel.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
@@ -1291,15 +1320,17 @@ Partial Class frmTapeNew
         Me.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbRegion.FormattingEnabled = True
         Me.cmbRegion.Items.AddRange(New Object() {"Europe", "USA", "Japan", "Europe/USA", "Europe/Japan", "USA/Japan", "Europe/USA/Japan", "Unkown"})
-        Me.cmbRegion.Location = New System.Drawing.Point(65, 80)
+        Me.cmbRegion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmbRegion.Location = New System.Drawing.Point(65, 64)
         Me.cmbRegion.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbRegion.Name = "cmbRegion"
-        Me.cmbRegion.Size = New System.Drawing.Size(197, 24)
+        Me.cmbRegion.Size = New System.Drawing.Size(271, 24)
         Me.cmbRegion.TabIndex = 25
         '
         'numLength
         '
-        Me.numLength.Location = New System.Drawing.Point(203, 50)
+        Me.numLength.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.numLength.Location = New System.Drawing.Point(179, 36)
         Me.numLength.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.numLength.Maximum = New Decimal(New Integer() {180, 0, 0, 0})
         Me.numLength.Name = "numLength"
@@ -1309,7 +1340,8 @@ Partial Class frmTapeNew
         '
         'numYear
         '
-        Me.numYear.Location = New System.Drawing.Point(65, 50)
+        Me.numYear.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.numYear.Location = New System.Drawing.Point(65, 36)
         Me.numYear.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.numYear.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         Me.numYear.Minimum = New Decimal(New Integer() {1963, 0, 0, 0})
@@ -1321,7 +1353,8 @@ Partial Class frmTapeNew
         'lblRegion
         '
         Me.lblRegion.AutoSize = True
-        Me.lblRegion.Location = New System.Drawing.Point(5, 84)
+        Me.lblRegion.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblRegion.Location = New System.Drawing.Point(3, 69)
         Me.lblRegion.Name = "lblRegion"
         Me.lblRegion.Size = New System.Drawing.Size(57, 17)
         Me.lblRegion.TabIndex = 22
@@ -1330,7 +1363,8 @@ Partial Class frmTapeNew
         'lblLength
         '
         Me.lblLength.AutoSize = True
-        Me.lblLength.Location = New System.Drawing.Point(140, 53)
+        Me.lblLength.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblLength.Location = New System.Drawing.Point(117, 39)
         Me.lblLength.Name = "lblLength"
         Me.lblLength.Size = New System.Drawing.Size(56, 17)
         Me.lblLength.TabIndex = 20
@@ -1339,7 +1373,8 @@ Partial Class frmTapeNew
         'lblYear
         '
         Me.lblYear.AutoSize = True
-        Me.lblYear.Location = New System.Drawing.Point(5, 53)
+        Me.lblYear.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblYear.Location = New System.Drawing.Point(3, 39)
         Me.lblYear.Name = "lblYear"
         Me.lblYear.Size = New System.Drawing.Size(42, 17)
         Me.lblYear.TabIndex = 17
@@ -1348,7 +1383,8 @@ Partial Class frmTapeNew
         'lblModel
         '
         Me.lblModel.AutoSize = True
-        Me.lblModel.Location = New System.Drawing.Point(5, 25)
+        Me.lblModel.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblModel.Location = New System.Drawing.Point(3, 7)
         Me.lblModel.Name = "lblModel"
         Me.lblModel.Size = New System.Drawing.Size(50, 17)
         Me.lblModel.TabIndex = 15
@@ -1426,6 +1462,8 @@ Partial Class frmTapeNew
         Me.tlpTapeCommands.PerformLayout()
         Me.flpTapeCommitCommands.ResumeLayout(False)
         Me.flpTapeCommitCommands.PerformLayout()
+        Me.tlpTapeModelFields.ResumeLayout(False)
+        Me.tlpTapeModelFields.PerformLayout()
         Me.grpSideB.ResumeLayout(False)
         Me.grpSideB.PerformLayout()
         CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1469,6 +1507,7 @@ Partial Class frmTapeNew
     Friend WithEvents tlpTapeMetadata As TableLayoutPanel
     Friend WithEvents tlpTapeCommands As TableLayoutPanel
     Friend WithEvents flpTapeCommitCommands As FlowLayoutPanel
+    Friend WithEvents tlpTapeModelFields As TableLayoutPanel
     Friend WithEvents cmbModel As ComboBox
     Friend WithEvents btnAddModel As Button
     Friend WithEvents lblAdd As Label

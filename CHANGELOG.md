@@ -70,6 +70,11 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   Bulk Add; and Add Deck/Add Tape/Cancel no longer move with the scrollable
   canvas. Form-level scrolling is disabled while the dedicated viewport owns
   both axes.
+- Replaced the last fixed Model-row geometry in `frmTapeNew` with a local
+  three-row table: the model choice stretches beside Add Model, Year and
+  Length retain bounded numeric editors, and Region fills its row. Focused
+  800-pixel and 200% maximum-text observations keep the fields ordered while
+  Add Deck/Add Tape/Cancel remain owned by the non-scrolling command region.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

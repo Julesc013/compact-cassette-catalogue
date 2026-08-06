@@ -186,6 +186,12 @@
       "name": "flpTapeCommitCommands",
       "type": "FlowLayoutPanel",
       "reason": "Keep Add Tape and Cancel ordered together in the persistent command region."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "tlpTapeModelFields",
+      "type": "TableLayoutPanel",
+      "reason": "Keep the Model selector, Add Model command, Year, Length, and Region reachable without fixed sibling geometry."
     }
   ]
 }
