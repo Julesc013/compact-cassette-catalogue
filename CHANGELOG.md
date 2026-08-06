@@ -132,6 +132,13 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   then passed the complete 384-cell mandatory-form matrix. Retained the exact
   `202a9d5...` 128-cell compact-dialog geometry and screenshot subset; all
   ordinary/maximum cells pass at four sizes and four relative font scales.
+- Added a closed conditional-form characterization mode for Console, Find
+  Results, Statistics, Settings, and About. Strengthened the harness to reject
+  named visible controls outside a non-scrollable view or parent and clipped
+  autosizing labels; this exposed the earlier 160/160 result as insufficient.
+- Retained the exact `5b4970d...` conditional discovery result: 58 of 160 cells
+  fail (About 4, Console 2, Find Results 28, Settings 2, Statistics 22). These
+  failures are now the bounded entry authority for five conditional repairs.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,
