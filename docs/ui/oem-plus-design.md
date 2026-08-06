@@ -37,6 +37,14 @@ the same command and editor contracts.
 - Search and filters show that they are active and offer one obvious reset.
 - Empty states explain the next valid action instead of presenting inert space.
 - Errors state what failed, what remained safe, and what the user can do next.
+- Expected missing prerequisites are actionable continuations, not errors: the
+  parent draft remains intact, the created entity is selected by stable identity,
+  and Cancel leaves no partial entities.
+
+The complete goal-first creation contract is defined in
+[goal-first workflows](../product/goal-first-workflows.md). Presentation renders
+those Application contracts; it does not infer dependency rules or coordinate
+ad hoc form-to-form mutation.
 
 The concrete shared presentation contracts and their ownership rules are defined
 in [interaction patterns](interaction-patterns.md). Feature surfaces bind those

@@ -5,6 +5,9 @@ The canonical C3 2.0 dependency-ordered checklist is
 The concise cross-workstream map is
 [`docs/planning/2.0-grand-programme.md`](docs/planning/2.0-grand-programme.md);
 detailed rules remain in their concern-specific owner documents.
+Goal-first creation and prerequisite continuation are owned by
+[`docs/product/goal-first-workflows.md`](docs/product/goal-first-workflows.md)
+and are implemented across Alpha 7-12 rather than as ad hoc form calls.
 Public milestone outcomes are summarized in [`ROADMAP.md`](ROADMAP.md).
 Durable automation progress and the current milestone pointer live in
 [`release/train/2.0.0.json`](release/train/2.0.0.json); C/E/P and package facts

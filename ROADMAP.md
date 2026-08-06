@@ -62,6 +62,8 @@ or issue tracker.
   coordinator, savepoints, recovery, destination leases, and allowed actions.
 - Promote canonical state as the sole active document and prove Brands and Models
   mutations through legacy and native profiles.
+- Introduce typed requirements, suggested actions, continuations, compound plans,
+  and create-and-select results; prove a preserved-draft Model-to-Brand flow.
 
 ## 2.0.0 Alpha 8–9 — permanent Windows experience
 
@@ -69,6 +71,8 @@ or issue tracker.
   prototypes.
 - Replace every accepted desktop workflow feature by feature with keyboard,
   accessibility, DPI, recovery, performance, query, and dual-lane parity gates.
+- Replace prerequisite warning dead ends with goal-first Tape-to-Model-to-Brand
+  and recording/Deck continuations, atomic Apply/Cancel, and compound undo.
 - Remove old forms only after one behavior owner is proven.
 
 ## 2.0.0 Alpha 10 — Application-backed CLI
