@@ -2,6 +2,7 @@ Imports System.Data
 Imports System.Reflection
 Imports System.Text
 Imports System.Threading
+Imports System.Windows.Forms
 Imports Compact_Cassette_Catalogue
 
 Module Program
@@ -9,6 +10,7 @@ Module Program
     Private _failures As Integer
     Private _repositoryRoot As String
 
+    <STAThread()>
     Sub Main()
         _repositoryRoot = FindRepositoryRoot()
 
@@ -38,6 +40,8 @@ Module Program
         RunTest("creation dialogs expose explicit result contracts", AddressOf CreationDialogsExposeResultContracts)
         RunTest("guided creation has no prerequisite dead ends", AddressOf GuidedCreationHasNoDeadEnds)
         RunTest("tape prerequisite detours preserve the active form", AddressOf TapeDetoursPreserveActiveForm)
+        RunTest("legacy windows are resizable and scroll safe", AddressOf LegacyWindowsAreResizableAndScrollSafe)
+        RunTest("inline creation actions remain keyboard reachable", AddressOf InlineCreationActionsRemainKeyboardReachable)
 
         If _failures > 0 Then
             Console.Error.WriteLine("{0} characterization test(s) failed.", _failures)
@@ -389,6 +393,58 @@ Module Program
         AssertEqual(True, tapeSource.Contains("ReloadDeckChoices(createdDeck.Key)"), "new deck selected")
         AssertEqual(False, tapeSource.Contains("Must add a deck before entering recordings."), "recording dead end removed")
     End Sub
+
+    Private Sub LegacyWindowsAreResizableAndScrollSafe()
+        Using main As New frmMain()
+            CatalogueUx.ConfigureMainForm(main)
+            AssertEqual(FormBorderStyle.Sizable, main.FormBorderStyle, "main border")
+            AssertEqual(True, main.MaximizeBox, "main maximize")
+            AssertEqual(True, main.AutoScroll, "main scrolling")
+            AssertEqual(AutoScaleMode.Font, main.AutoScaleMode, "main font scaling")
+            AssertEqual(True, main.MinimumSize.Width <= 800, "main practical minimum width")
+            AssertEqual(True, main.MinimumSize.Height <= 600, "main practical minimum height")
+        End Using
+
+        Using tape As New frmTapeNew()
+            CatalogueUx.ConfigureTapeForm(tape)
+            AssertEqual(FormBorderStyle.Sizable, tape.FormBorderStyle, "tape border")
+            AssertEqual(True, tape.MaximizeBox, "tape maximize")
+            AssertEqual(True, tape.AutoScroll, "tape scrolling")
+            AssertEqual(AutoScaleMode.Font, tape.AutoScaleMode, "tape font scaling")
+        End Using
+
+        Using list As New frmTapes()
+            CatalogueUx.ConfigureListForm(list, "grpTapes", "lstTapes", "grpFilters", "grpActions")
+            Dim resultGroup As Control = FindControl(list, "grpTapes")
+            Dim resultList As Control = FindControl(list, "lstTapes")
+            AssertEqual(FormBorderStyle.Sizable, list.FormBorderStyle, "list border")
+            AssertEqual(True, list.MaximizeBox, "list maximize")
+            AssertEqual(AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right, resultGroup.Anchor, "result group anchor")
+            AssertEqual(DockStyle.Fill, resultList.Dock, "result list fill")
+        End Using
+    End Sub
+
+    Private Sub InlineCreationActionsRemainKeyboardReachable()
+        Dim modelSource As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue\frmModelNew.vb"))
+        Dim tapeSource As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue\frmTapeNew.vb"))
+        AssertEqual(True, modelSource.Contains("Add &Brand"), "model Add Brand mnemonic")
+        AssertEqual(True, tapeSource.Contains("Add &Model"), "tape Add Model mnemonic")
+        AssertEqual(True, tapeSource.Contains("Add &Deck"), "tape Add Deck mnemonic")
+        For Each sourceName As String In New String() {"frmBrands.vb", "frmModels.vb", "frmDecks.vb", "frmTapes.vb"}
+            Dim source As String = File.ReadAllText(Path.Combine(_repositoryRoot, "Compact Cassette Catalogue", sourceName))
+            AssertEqual(True, source.Contains("CatalogueWorkflow.Add"), sourceName & " creation action")
+        Next
+    End Sub
+
+    Private Function FindControl(form As Form, name As String) As Control
+        Dim matches As Control() = form.Controls.Find(name, True)
+        If matches.Length <> 1 Then
+            Throw New InvalidOperationException("Expected one control named " & name & ".")
+        End If
+        Return matches(0)
+    End Function
 
     Private Sub AssertSteps(
             expected As CatalogueCreationStep(),
