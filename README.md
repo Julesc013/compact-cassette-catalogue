@@ -5,21 +5,23 @@
 See [changes](CHANGELOG.md "C3 Changelog"), the [legacy maintenance workboard](TODO.md "C3 1.3 Workboard"), and the [wiki](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki").
 
 > **Repository status:** the available user release remains C3 1.2.0 Beta 1.
-> `dev/1.x` now prepares the intentionally unpublished C3 1.3.0 Alpha 4
-> owner-test preview. Alpha 2 is immutable and complete; the untagged Alpha 3
-> implementation phase and the retained Beta-labelled NO-GO candidate closed
-> the repository-side application and setup repairs. Owner acceptance,
-> historical, and exact target-machine evidence still block Beta promotion. See the
+> `dev/1.x` now prepares the intentionally unpublished C3 1.3.0 Alpha 5
+> Legacy Layout Stabilization checkpoint. Alpha 4 remains an immutable retained
+> owner-test preview whose testing exposed overlap and runtime geometry defects.
+> Alpha 5 preserves its workflows while restoring an original-simple source
+> tree and measured native WinForms layout. Historical and exact target-machine
+> evidence still block Beta promotion. See the
 > [legacy maintenance documentation](docs/README.md).
 > After Alpha, the owner ratified an exact three-lane stable matrix: x86/net40,
 > x64/net48, and native ARM64/net481. The Alpha tag remains immutable historical
 > evidence of its earlier four diagnostic lanes.
 > The bounded three-lane build/package controls and native ARM64 binary proof
-> pass. Alpha 4 tagging and local distribution retention are authorized after
-> their checks; no public release, minimum-OS qualification, feed change, Beta
-> tag, or legacy-ledger promotion is implied.
+> pass. Alpha 5 tagging and local distribution retention are authorized only
+> after its source, layout, accessibility, startup, package, and reproduction
+> checks. No public release, minimum-OS qualification, feed change, Beta tag,
+> or legacy-ledger promotion is implied.
 
-![Screenshot of C3 in use.](https://github.com/Julesc013/compact-cassette-catalogue/blob/master/Resources/demonstration-screenshot.png)
+![Screenshot of C3 in use.](docs/ui/reference/v1.2.0b1/demonstration-screenshot.png)
 
 ## What is it?
 
@@ -93,9 +95,14 @@ release oracle. The later project-splitting refactor is not production ancestry.
 - Alpha 3 was the internal implementation phase for original-application
   reliability and the repaired optional classic VB.NET setup/uninstall
   lifecycle; its uncreated tag/package wave is superseded.
-- Beta 1 projects that completed functional scope without new behaviour. The
-  six retained Candidate ZIPs are authorized; the tag and `legacy/1.x`
-  advancement remain conditional on complete GO.
+- Alpha 4 retained that repository-complete scope for owner testing and exposed
+  the inadequate absolute/runtime-anchor layout mechanism.
+- Alpha 5 restores the original-simple three-project source tree, replaces the
+  presentation geometry with role-appropriate native containers, and requires
+  measured layout, accessibility, performance, startup, and owner visual proof.
+- Beta 1 may project the accepted Alpha 5 source without new behaviour.
+  Beta-labelled artifacts and tags require explicit human approval even after
+  technical eligibility is established.
 - Stable always publishes the qualified portable packages; classic setup is
   included only if its target-machine evidence is accepted.
 
@@ -112,6 +119,11 @@ runtime-DLL graph is part of the release. See the
 The existing DataSet catalogue format remains 1.1.0. No 1.3 milestone introduces
 a new runtime dependency, production assembly, C# source, project split, or UI
 redesign.
+
+The final 1.x production source remains in the original application,
+installer, and uninstaller project directories. The modular `src/` layout
+belongs only to `dev/2.x`; Alpha 5 moves the one shared setup-source exception
+under the Installer directory rather than leaving a hybrid repository.
 
 The **documentation (wiki)** and **quick-start tutorial** can be read [here](https://github.com/Julesc013/compact-cassette-catalogue/wiki "C3 Wiki");
 this will help you get started and explains every function of the software.

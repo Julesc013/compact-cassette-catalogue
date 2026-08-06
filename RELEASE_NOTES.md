@@ -7,6 +7,20 @@ application and classic-setup repairs without claiming Beta status, public
 publication, minimum-operating-system qualification, stable-feed change, or
 `legacy/1.x` advancement.
 
+## Owner-test disposition
+
+Alpha 4 remains immutable and useful, but it is not a Beta candidate. Owner
+testing found overlapping controls, broken resize relationships, and runtime-
+created buttons moving independently of their semantic neighbours. Its
+property-only “sizable/scroll-safe” regression did not measure real control
+geometry.
+
+The ratified next checkpoint is C3 1.3.0 Alpha 5 — Legacy Layout
+Stabilization. It preserves all Alpha 4 workflow, data, setup, and release-
+control work while rebuilding only the presentation geometry under the
+[visual inheritance contract](docs/ui/1x-visual-contract.md). No Alpha 4
+package or tag will be replaced.
+
 ## Alpha test assets
 
 Portable, no-install, no-admin packages:
@@ -95,6 +109,7 @@ the owner's later explicit approval. Stable is `v1.3.0`; the public `VERSION`
 feed remains C3 1.2.0 Beta 1 meanwhile.
 
 See the [Alpha 4 test plan](docs/planning/1.3.0-alpha.4.md),
+[Alpha 5 layout plan](docs/planning/1.3.0-alpha.5.md),
 [Beta 1 plan](docs/planning/1.3.0-beta.1.md),
 [owner authorization](docs/governance/1.3.0-beta1-authorization-2026-08-06.md),
 [defect ledger](docs/testing/1.3.0-alpha3-defect-ledger.md), and

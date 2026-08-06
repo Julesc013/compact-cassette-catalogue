@@ -168,8 +168,55 @@ advancement are authorized only on complete GO; public publication, `master`,
   record binds the exact source, lock, package, and checksum hashes.
 - [x] Copy the verified local test bundle to the root development worktree's
   untracked `tmp/` directory without modifying its `dev/2.x` files.
-- [ ] Obtain owner acceptance results. Any `v1.3.0b1` tag or Beta publication
-  remains a later explicit human decision.
+- [x] Record the owner-test result: Alpha 4 exposed overlapping controls,
+  unstable resize relationships, and runtime widget movement. Preserve its tag
+  and bytes as discovery evidence; do not promote them to Beta.
+
+## Alpha 5 — source topology and legacy layout stabilization
+
+The repository remains identified as Alpha 4 until the implementation and
+qualification gates earn the Alpha 5 transition.
+
+- [x] Ratify the Alpha 5 visual inheritance, native-layout, fidelity, metric,
+  accessibility, performance, and evidence contracts.
+- [x] Choose the original-simple 1.x topology rather than a partial 2.x
+  `src/` migration.
+- [x] Remove ignored `dev/2.x` `src/` build residue from the shared local
+  checkout; no tracked 1.x source existed there.
+- [ ] Move the byte-identical `SetupShared` implementation to
+  `Compact Cassette Catalogue Installer/Shared/`, relink both setup projects
+  and tests, update validators, and pass the topology/genome/source gates.
+- [ ] Reproduce Alpha 4 overlap, clipping, dynamic-command, and handler-
+  geometry failures with a fresh-process STA harness.
+- [ ] Move every known static command into its form Designer and remove the
+  geometry-oriented `CatalogueUx` helpers.
+- [ ] Reconstruct `frmMain` in separate structural and adaptive commits.
+- [ ] Reconstruct `frmTapeNew` in separate structural and adaptive commits.
+- [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.
+- [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
+- [ ] Change Console, Find Results, Statistics, Settings, About, and setup/
+  uninstall pages only when the characterization matrix reproduces a defect.
+- [ ] Complete visible-text, ellipsis, access-key, default/cancel, tab/focus,
+  ErrorProvider, UIA/MSAA, screen-reader, and High Contrast audits.
+- [ ] Add bounded command-state, stable selection restoration, and duplicate-
+  command protection only where a focused regression requires them.
+- [ ] Pass every 800x552/1024x720/1366x728/1920x1040 and
+  100/125/150/200% size/scale/content cell in a fresh process.
+- [ ] Retain geometry JSON, text/reachability results, diagnostic atlases, and
+  native canonical/real-DPI/theme screenshots.
+- [ ] Measure repeated open/resize/close, layout events, handles, memory,
+  subscriptions, list refresh, and first-window latency.
+- [ ] Resolve or retain blocking `UI-START-001` with repeated x86/x64 launch
+  milestone evidence; do not classify it as a layout fix without proof.
+- [ ] Pass the full source/genome/application/setup/package gates after the
+  topology and Designer changes.
+- [ ] Project exact `1.3.0a5 / Alpha 5 / v1.3.0a5` identity only at the final
+  source freeze.
+- [ ] Rebuild all nine executables and reproduce exactly three portable and
+  three setup ZIPs from two clean path-distinct checkouts.
+- [ ] Complete native owner visual/accessibility testing, create annotated
+  `v1.3.0a5`, retain local Alpha packages, and commit post-tag attestation.
+- [ ] Obtain explicit human approval before any Beta-labelled package or tag.
 
 ## Alpha 3 — legacy reliability and classic setup
 
@@ -277,7 +324,7 @@ patch, genome validation, and focused commit.
   publication remains a separate approval and the stable legacy feed remains
   unchanged throughout Beta.
 
-## Beta 1 — bounded legacy usability and layout hardening
+## Beta 1 — bounded legacy usability; Alpha 4 layout proof superseded
 
 - [x] Add a pure Brand/Model/Deck/Tape prerequisite planner in the original
   single WinForms EXE.
@@ -293,14 +340,17 @@ patch, genome validation, and focused commit.
   first invalid control.
 - [x] Add inline creation and empty-list/catalogue actions with one guided
   success summary at most.
-- [x] Make main, tape, and list windows resizable/scroll-safe and harden classic
-  keyboard, mnemonic, tab-order, and accessibility behaviour.
-- [x] Pass automated planner, flow, identity, cancellation, draft, layout, DPI
-  policy, High Contrast policy, and keyboard reachability regressions.
+- [x] Preserve the workflow intent for resizable forms, classic keyboard,
+  mnemonic, tab-order, and accessibility behaviour. Alpha 4's runtime geometry
+  implementation is superseded and reopens under Alpha 5 above.
+- [x] Pass the historical planner, flow, identity, cancellation, draft, DPI
+  policy, High Contrast policy, and keyboard-policy regressions. These do not
+  substitute for Alpha 5's actual geometry/native evidence.
 - [x] Review the single new workflow file and bounded form/control surfaces in
   the baseline-genome allow-list.
-- [x] Rebuild and reproduce all six Beta-labelled ZIPs under a new immutable
-  source-bound Candidate directory; never overwrite the `bbebac...` Candidate.
+- [x] Retain the historical six Beta-labelled NO-GO Candidate ZIPs without
+  overwriting `bbebac...`; they do not authorize or qualify post-Alpha-5 Beta
+  bytes.
 
 ## Stable 1.3.0
 

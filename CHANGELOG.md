@@ -4,6 +4,38 @@
 ## C3 1.3 legacy maintenance
 
 
+### Version 1.3.0 Alpha 5 - planned
+
+Alpha 5 is the ratified Legacy Layout Stabilization checkpoint. It preserves
+Alpha 4 as immutable discovery evidence and replaces its absolute/runtime-
+anchor presentation mechanism with role-appropriate native WinForms layout.
+
+- Defined pixel fidelity for the canonical Windows 7/96-DPI view, metric
+  fidelity for other DPI/font profiles, and semantic fidelity across themes
+  and operating systems.
+- Froze an immutable 1.x visual inheritance contract and local copy of the
+  repository demonstration image rather than following a moving `master` URL.
+- Adopted one C3 96-DPI metric grid, native/system-colour presentation, one
+  inherited form-root font, and consistent `AutoScaleMode.Font` policy.
+- Required separate structural-reparenting and adaptive-behaviour commits for
+  every mandatory form or form family.
+- Selected `TableLayoutPanel`, `FlowLayoutPanel`, docking, scrolling panels,
+  or `SplitContainer` according to window role instead of one universal
+  container.
+- Required Designer ownership of static commands and prohibited runtime fixed
+  geometry in `Load`, `Shown`, and `Resize` handlers.
+- Replaced property-only resize proof with fresh-process geometry, text,
+  reachability, accessibility, performance, and native visual evidence.
+- Tracked the intermittent x64 process-without-window observation separately as
+  `UI-START-001` with first-window milestone instrumentation.
+- Chose the original-simple 1.x source topology: application, installer, and
+  uninstaller roots remain; the shared setup engine will move under Installer
+  `Shared/`; a partial 2.x `src/` migration is prohibited.
+- Kept release identity at Alpha 4 until implementation and qualification earn
+  `1.3.0a5`; no new build, package, tag, publication, feed, `master`,
+  `legacy/1.x`, or `dev/2.x` claim is made by this planning tranche.
+
+
 ### Version 1.3.0 Alpha 4 - 6 August 2026
 
 Alpha 4 is the retained, intentionally unpublished owner-test preview of the
@@ -26,6 +58,10 @@ does not reinterpret missing historical or exact target-machine evidence.
   checkpoint.
 - Made owner acceptance and the remaining historical/target rows explicit
   inputs to the later human decision on `v1.3.0b1`.
+- Retained Alpha 4 unchanged after owner testing found control overlap, broken
+  resize relationships, and runtime widgets moving independently. Those
+  observations define Alpha 5; they do not invalidate Alpha 4's source/build/
+  package hashes or authorize rewriting its tag.
 
 
 ### Version 1.3.0 Beta 1 - 6 August 2026
