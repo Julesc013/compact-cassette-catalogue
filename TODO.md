@@ -263,25 +263,25 @@ patch, genome validation, and focused commit.
 
 ## Beta 1 — bounded legacy usability and layout hardening
 
-- [ ] Add a pure Brand/Model/Deck/Tape prerequisite planner in the original
+- [x] Add a pure Brand/Model/Deck/Tape prerequisite planner in the original
   single WinForms EXE.
-- [ ] Give creation dialogs explicit OK/Cancel and created-key/display-name
+- [x] Give creation dialogs explicit OK/Cancel and created-key/display-name
   result contracts; remove their hidden main-form refresh/title mutations.
-- [ ] Carry stable brand codes, model identifiers, and deck names in combo
+- [x] Carry stable brand codes, model identifiers, and deck names in combo
   choices instead of resolving display text.
-- [ ] Guide Add Tape through missing Brand and Model creation, and Add Model
+- [x] Guide Add Tape through missing Brand and Model creation, and Add Model
   through missing Brand creation.
-- [ ] Preserve an in-progress tape while creating and selecting a new Model or
+- [x] Preserve an in-progress tape while creating and selecting a new Model or
   Deck; treat cancellation as a normal stopped journey.
-- [ ] Replace routine creation exceptions with field validation and focus the
+- [x] Replace routine creation exceptions with field validation and focus the
   first invalid control.
-- [ ] Add inline creation and empty-list/catalogue actions with one guided
+- [x] Add inline creation and empty-list/catalogue actions with one guided
   success summary at most.
-- [ ] Make main, tape, and list windows resizable/scroll-safe and harden classic
+- [x] Make main, tape, and list windows resizable/scroll-safe and harden classic
   keyboard, mnemonic, tab-order, and accessibility behaviour.
-- [ ] Pass automated planner, flow, identity, cancellation, draft, layout, DPI
+- [x] Pass automated planner, flow, identity, cancellation, draft, layout, DPI
   policy, High Contrast policy, and keyboard reachability regressions.
-- [ ] Review the single new workflow file and bounded form/control surfaces in
+- [x] Review the single new workflow file and bounded form/control surfaces in
   the baseline-genome allow-list.
 - [ ] Rebuild and reproduce all six Beta-labelled ZIPs under a new immutable
   source-bound Candidate directory; never overwrite the `bbebac...` Candidate.

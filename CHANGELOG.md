@@ -19,6 +19,20 @@ superseded by this single metadata/build/qualification wave.
 - Added 21 lifecycle/persistence, 8 integrity, and 6 settings/diagnostics
   regressions while retaining the original catalogue 1.1.0 format, project,
   forms, resources, and VB.NET production topology.
+- Added a bounded legacy creation coordinator inside the original EXE: Add
+  Tape now guides Brand -> Model -> Tape, Add Model creates a missing Brand,
+  and recording-side controls open an owned Add Deck detour without discarding
+  the active tape draft.
+- Creation forms now return stable keys and display names, use keyed combo
+  choices and field-level validation, suppress chained guided confirmations,
+  and expose keyboard-reachable inline actions from the creation and list
+  windows.
+- Added a first-tape empty state and made the main, tape, and list windows
+  resizable, font-scaled, scroll-safe, and accessible while preserving the
+  classic WinForms surface and catalogue 1.1.0 schema.
+- Expanded catalogue characterization to 31 cases and reviewed exactly one new
+  production source file plus bounded designer changes through the genome
+  allow-list.
 - Added an authenticated, write-through ten-phase setup transaction journal,
   commit-last installed state, startup recovery/fail-closed behavior, and 30
   process-death phase cases within 85 setup regressions.
@@ -34,6 +48,9 @@ superseded by this single metadata/build/qualification wave.
 - Preserved the owner boundary: Candidate bytes may be retained, but the tag
   and `legacy/1.x` advancement require complete GO; public release, `master`,
   `dev/2.x`, `VERSION`, stable tag, and stable feed changes remain prohibited.
+- Archived the first `bbebac288f4996939124f882d0e9febcf2e5bdae`
+  source-bound NO-GO verdict before restoring the active verdict template for
+  the required UX-hardened Candidate; the old Candidate bytes remain immutable.
 
 
 ### Version 1.3.0 Alpha 3 - 5 August 2026
