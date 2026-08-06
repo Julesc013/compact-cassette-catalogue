@@ -24,8 +24,11 @@ Partial Class frmTapeNew
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTapeNew))
         Me.cmbModel = New System.Windows.Forms.ComboBox()
+        Me.btnAddModel = New System.Windows.Forms.Button()
         Me.lblAdd = New System.Windows.Forms.Label()
         Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnAddDeck = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.grpSideB = New System.Windows.Forms.GroupBox()
         Me.numPeakB = New System.Windows.Forms.NumericUpDown()
         Me.lblPeakB = New System.Windows.Forms.Label()
@@ -153,9 +156,20 @@ Partial Class frmTapeNew
         Me.cmbModel.Location = New System.Drawing.Point(65, 20)
         Me.cmbModel.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbModel.Name = "cmbModel"
-        Me.cmbModel.Size = New System.Drawing.Size(197, 24)
+        Me.cmbModel.Size = New System.Drawing.Size(105, 24)
         Me.cmbModel.Sorted = True
         Me.cmbModel.TabIndex = 1
+        '
+        'btnAddModel
+        '
+        Me.btnAddModel.AccessibleDescription = "Create a model and select it for this tape."
+        Me.btnAddModel.AccessibleName = "Add Model"
+        Me.btnAddModel.Location = New System.Drawing.Point(175, 19)
+        Me.btnAddModel.Name = "btnAddModel"
+        Me.btnAddModel.Size = New System.Drawing.Size(90, 26)
+        Me.btnAddModel.TabIndex = 2
+        Me.btnAddModel.Text = "Add &Model…"
+        Me.btnAddModel.UseVisualStyleBackColor = True
         '
         'lblAdd
         '
@@ -163,18 +177,44 @@ Partial Class frmTapeNew
         Me.lblAdd.Location = New System.Drawing.Point(168, 426)
         Me.lblAdd.Name = "lblAdd"
         Me.lblAdd.Size = New System.Drawing.Size(190, 17)
-        Me.lblAdd.TabIndex = 38
+        Me.lblAdd.TabIndex = 40
         Me.lblAdd.Text = "Changes are saved with the catalogue."
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(15, 421)
+        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAdd.Location = New System.Drawing.Point(673, 423)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(148, 26)
-        Me.btnAdd.TabIndex = 37
+        Me.btnAdd.TabIndex = 38
         Me.btnAdd.Text = "&Add Tape"
         Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'btnAddDeck
+        '
+        Me.btnAddDeck.AccessibleDescription = "Create a recording deck and select it without clearing this tape draft."
+        Me.btnAddDeck.AccessibleName = "Add Deck"
+        Me.btnAddDeck.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAddDeck.Location = New System.Drawing.Point(320, 423)
+        Me.btnAddDeck.Name = "btnAddDeck"
+        Me.btnAddDeck.Size = New System.Drawing.Size(116, 26)
+        Me.btnAddDeck.TabIndex = 37
+        Me.btnAddDeck.Text = "Add &Deck…"
+        Me.btnAddDeck.UseVisualStyleBackColor = True
+        '
+        'btnCancel
+        '
+        Me.btnCancel.AccessibleDescription = "Cancel this creation step and return without adding an item."
+        Me.btnCancel.AccessibleName = "Cancel"
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.Location = New System.Drawing.Point(829, 423)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(148, 26)
+        Me.btnCancel.TabIndex = 39
+        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
         'grpSideB
         '
@@ -1094,6 +1134,7 @@ Partial Class frmTapeNew
         '
         'grpModel
         '
+        Me.grpModel.Controls.Add(Me.btnAddModel)
         Me.grpModel.Controls.Add(Me.cmbRegion)
         Me.grpModel.Controls.Add(Me.numLength)
         Me.grpModel.Controls.Add(Me.numYear)
@@ -1224,10 +1265,14 @@ Partial Class frmTapeNew
         '
         'frmTapeNew
         '
+        Me.AcceptButton = Me.btnAdd
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
+        Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(989, 459)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnAddDeck)
         Me.Controls.Add(Me.grpBulkAdd)
         Me.Controls.Add(Me.grpSideB)
         Me.Controls.Add(Me.grpTaped)
@@ -1243,6 +1288,7 @@ Partial Class frmTapeNew
         Me.MaximizeBox = True
         Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmTapeNew"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add New Tape"
         Me.grpSideB.ResumeLayout(False)
         Me.grpSideB.PerformLayout()
@@ -1282,8 +1328,11 @@ Partial Class frmTapeNew
 
     End Sub
     Friend WithEvents cmbModel As ComboBox
+    Friend WithEvents btnAddModel As Button
     Friend WithEvents lblAdd As Label
     Friend WithEvents btnAdd As Button
+    Friend WithEvents btnAddDeck As Button
+    Friend WithEvents btnCancel As Button
     Friend WithEvents grpSideB As GroupBox
     Friend WithEvents numPeakB As NumericUpDown
     Friend WithEvents lblPeakB As Label

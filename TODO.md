@@ -193,7 +193,9 @@ qualification gates earn the Alpha 5 transition.
   geometry-oriented `CatalogueUx` helpers.
   - [x] Move Brand New and Deck New Cancel commands into reviewed Designer
     declarations with closed default/cancel semantics.
-  - [ ] Move Model New, Tape New, browser, and Main empty-state commands.
+  - [x] Move Model New and Tape New prerequisite/Cancel commands into reviewed
+    Designer declarations and remove their runtime rectangles/event wiring.
+  - [ ] Move browser and Main empty-state commands.
 - [ ] Reconstruct `frmMain` in separate structural and adaptive commits.
 - [ ] Reconstruct `frmTapeNew` in separate structural and adaptive commits.
 - [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.

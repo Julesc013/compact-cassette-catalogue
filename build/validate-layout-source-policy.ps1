@@ -12,6 +12,7 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $sourceRoot = Join-Path $repositoryRoot 'Compact Cassette Catalogue'
 $patterns = [ordered]@{
     'runtime-layout-helper' = 'CatalogueUx\.(?:ConfigureMainForm|ConfigureTapeForm|ConfigureListForm|AddCancelButton|AddActionButton)'
+    'runtime-form-scroll' = '(?<!\.)\bAutoScroll\s*='
     'runtime-client-size' = '(?<!\.)\bClientSize\s*='
     'runtime-bounds' = '\.(?:Bounds|Left|Top|Width|Height)\s*(?:\+|-)?='
     'runtime-visible-control' = '\.Controls\.Add\('

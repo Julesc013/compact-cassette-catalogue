@@ -3,9 +3,6 @@
     Private _createdKey As String
     Private _createdDisplayName As String
     Private _validationErrors As ErrorProvider
-    Private _cancelButton As Button
-    Private _addModelButton As Button
-    Private _addDeckButton As Button
 
     Public ReadOnly Property CreatedKey As String
         Get
@@ -52,7 +49,6 @@
     End Sub
 
     Private Sub ConfigureCreationActions()
-        CatalogueUx.ConfigureTapeForm(Me)
         btnAdd.Text = "&Add Tape"
         btnAdd.AccessibleName = "Add Tape"
         btnAdd.AccessibleDescription = "Add this tape to the current catalogue."
@@ -63,33 +59,13 @@
         chkTapedB.AccessibleName = "Recorded Side B"
         lblAdd.Text = "Changes are saved with the catalogue."
 
-        cmbModel.Width = 105
-        _addModelButton = CatalogueUx.AddActionButton(
-            grpModel,
-            "btnAddModel",
-            "Add &Model…",
-            New Rectangle(175, 19, 90, 26),
-            2,
-            "Create a model and select it for this tape.")
-        AddHandler _addModelButton.Click, AddressOf btnAddModel_Click
-
-        _addDeckButton = CatalogueUx.AddActionButton(
-            Me,
-            "btnAddDeck",
-            "Add &Deck…",
-            New Rectangle(320, ClientSize.Height - 36, 116, 26),
-            38,
-            "Create a recording deck and select it without clearing this tape draft.")
-        _addDeckButton.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        AddHandler _addDeckButton.Click, AddressOf btnAddDeck_Click
-        _cancelButton = CatalogueUx.AddCancelButton(Me, btnAdd)
     End Sub
 
-    Private Sub btnAddModel_Click(sender As Object, e As EventArgs)
+    Private Sub btnAddModel_Click(sender As Object, e As EventArgs) Handles btnAddModel.Click
         AddModelFromTape()
     End Sub
 
-    Private Sub btnAddDeck_Click(sender As Object, e As EventArgs)
+    Private Sub btnAddDeck_Click(sender As Object, e As EventArgs) Handles btnAddDeck.Click
         AddDeckFromTape()
     End Sub
 

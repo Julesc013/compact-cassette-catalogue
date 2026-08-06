@@ -439,13 +439,21 @@ Module Program
     End Sub
 
     Private Sub InlineCreationActionsRemainKeyboardReachable()
-        Dim modelSource As String = File.ReadAllText(Path.Combine(
-            _repositoryRoot, "Compact Cassette Catalogue\frmModelNew.vb"))
-        Dim tapeSource As String = File.ReadAllText(Path.Combine(
-            _repositoryRoot, "Compact Cassette Catalogue\frmTapeNew.vb"))
-        AssertEqual(True, modelSource.Contains("Add &Brand"), "model Add Brand mnemonic")
-        AssertEqual(True, tapeSource.Contains("Add &Model"), "tape Add Model mnemonic")
-        AssertEqual(True, tapeSource.Contains("Add &Deck"), "tape Add Deck mnemonic")
+        Using model As New frmModelNew()
+            AssertEqual(True, FindControl(model, "btnAddBrand").Text.Contains("&"), "model Add Brand mnemonic")
+            AssertEqual(1, model.Controls.Find("btnAddBrand", True).Length, "model Add Brand count")
+        End Using
+        Using tape As New frmTapeNew()
+            AssertEqual(True, FindControl(tape, "btnAddModel").Text.Contains("&"), "tape Add Model mnemonic")
+            AssertEqual(True, FindControl(tape, "btnAddDeck").Text.Contains("&"), "tape Add Deck mnemonic")
+            AssertEqual(1, tape.Controls.Find("btnAddModel", True).Length, "tape Add Model count")
+            AssertEqual(1, tape.Controls.Find("btnAddDeck", True).Length, "tape Add Deck count")
+        End Using
+        For Each sourceName As String In New String() {"frmModelNew.vb", "frmTapeNew.vb"}
+            Dim source As String = File.ReadAllText(Path.Combine(_repositoryRoot, "Compact Cassette Catalogue", sourceName))
+            AssertEqual(False, source.Contains("CatalogueUx.Add"), sourceName & " runtime command creation")
+            AssertEqual(False, source.Contains("New Rectangle"), sourceName & " runtime command rectangle")
+        Next
         For Each sourceName As String In New String() {"frmBrands.vb", "frmModels.vb", "frmDecks.vb", "frmTapes.vb"}
             Dim source As String = File.ReadAllText(Path.Combine(_repositoryRoot, "Compact Cassette Catalogue", sourceName))
             AssertEqual(True, source.Contains("CatalogueWorkflow.Add"), sourceName & " creation action")

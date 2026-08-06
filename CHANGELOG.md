@@ -34,6 +34,10 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   Cancel commands in their Designers, preserving one-instance keyboard/default
   semantics while removing their runtime construction. A closed control-name
   allow-list now rejects unreviewed additions or any baseline control removal.
+- Moved Model New's Add Brand/Cancel and Tape New's Add Model/Add Deck/Cancel
+  commands into their Designers with compile-time event wiring. Removed their
+  runtime rectangles, width/position edits, and layout-helper calls; the exact
+  source-policy inventory fell from 52 findings in 10 files to 37 in 7 files.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

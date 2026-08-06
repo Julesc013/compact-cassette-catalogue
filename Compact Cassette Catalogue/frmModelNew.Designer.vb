@@ -32,9 +32,11 @@ Partial Class frmModelNew
         Me.lblType = New System.Windows.Forms.Label()
         Me.cmbBrand = New System.Windows.Forms.ComboBox()
         Me.lblBrand = New System.Windows.Forms.Label()
+        Me.btnAddBrand = New System.Windows.Forms.Button()
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.grpNotes = New System.Windows.Forms.GroupBox()
         Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.lblAdd = New System.Windows.Forms.Label()
         Me.grpExtra = New System.Windows.Forms.GroupBox()
         Me.lblName = New System.Windows.Forms.Label()
@@ -65,6 +67,7 @@ Partial Class frmModelNew
         '
         'grpBasic
         '
+        Me.grpBasic.Controls.Add(Me.btnAddBrand)
         Me.grpBasic.Controls.Add(Me.lblCode)
         Me.grpBasic.Controls.Add(Me.txtCode)
         Me.grpBasic.Controls.Add(Me.cmbType)
@@ -77,10 +80,22 @@ Partial Class frmModelNew
         Me.grpBasic.Margin = New System.Windows.Forms.Padding(2)
         Me.grpBasic.Name = "grpBasic"
         Me.grpBasic.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpBasic.Size = New System.Drawing.Size(160, 117)
+        Me.grpBasic.Size = New System.Drawing.Size(250, 117)
         Me.grpBasic.TabIndex = 1
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
+        '
+        'btnAddBrand
+        '
+        Me.btnAddBrand.AccessibleDescription = "Create a brand and select it for this model."
+        Me.btnAddBrand.AccessibleName = "Add Brand"
+        Me.btnAddBrand.Location = New System.Drawing.Point(160, 16)
+        Me.btnAddBrand.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddBrand.Name = "btnAddBrand"
+        Me.btnAddBrand.Size = New System.Drawing.Size(84, 23)
+        Me.btnAddBrand.TabIndex = 2
+        Me.btnAddBrand.Text = "Add &Brand…"
+        Me.btnAddBrand.UseVisualStyleBackColor = True
         '
         'lblCode
         '
@@ -156,7 +171,7 @@ Partial Class frmModelNew
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(175, 58)
+        Me.grpNotes.Location = New System.Drawing.Point(265, 58)
         Me.grpNotes.Margin = New System.Windows.Forms.Padding(2)
         Me.grpNotes.Name = "grpNotes"
         Me.grpNotes.Padding = New System.Windows.Forms.Padding(2)
@@ -167,13 +182,28 @@ Partial Class frmModelNew
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(11, 132)
+        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAdd.Location = New System.Drawing.Point(96, 132)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(160, 21)
         Me.btnAdd.TabIndex = 4
         Me.btnAdd.Text = "Add &Model"
         Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'btnCancel
+        '
+        Me.btnCancel.AccessibleDescription = "Cancel this creation step and return without adding an item."
+        Me.btnCancel.AccessibleName = "Cancel"
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.Location = New System.Drawing.Point(264, 132)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(160, 21)
+        Me.btnCancel.TabIndex = 5
+        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
         'lblAdd
         '
@@ -189,7 +219,7 @@ Partial Class frmModelNew
         '
         Me.grpExtra.Controls.Add(Me.lblName)
         Me.grpExtra.Controls.Add(Me.txtName)
-        Me.grpExtra.Location = New System.Drawing.Point(175, 11)
+        Me.grpExtra.Location = New System.Drawing.Point(265, 11)
         Me.grpExtra.Margin = New System.Windows.Forms.Padding(2)
         Me.grpExtra.Name = "grpExtra"
         Me.grpExtra.Padding = New System.Windows.Forms.Padding(2)
@@ -219,9 +249,13 @@ Partial Class frmModelNew
         '
         'frmModelNew
         '
+        Me.AcceptButton = Me.btnAdd
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(346, 163)
+        Me.AutoScroll = True
+        Me.CancelButton = Me.btnCancel
+        Me.ClientSize = New System.Drawing.Size(436, 163)
+        Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.grpExtra)
         Me.Controls.Add(Me.grpBasic)
         Me.Controls.Add(Me.grpNotes)
@@ -232,6 +266,7 @@ Partial Class frmModelNew
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmModelNew"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add New Model"
         Me.grpBasic.ResumeLayout(False)
         Me.grpBasic.PerformLayout()
@@ -247,9 +282,11 @@ Partial Class frmModelNew
     Friend WithEvents lblModel As Label
     Friend WithEvents grpBasic As GroupBox
     Friend WithEvents lblBrand As Label
+    Friend WithEvents btnAddBrand As Button
     Friend WithEvents txtNotes As TextBox
     Friend WithEvents grpNotes As GroupBox
     Friend WithEvents btnAdd As Button
+    Friend WithEvents btnCancel As Button
     Friend WithEvents lblAdd As Label
     Friend WithEvents cmbBrand As ComboBox
     Friend WithEvents cmbType As ComboBox

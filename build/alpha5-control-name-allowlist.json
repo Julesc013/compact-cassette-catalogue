@@ -12,6 +12,36 @@
       "name": "btnCancel",
       "type": "Button",
       "reason": "Replace the runtime-manufactured creation-dialog Cancel command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "btnAddBrand",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured prerequisite Brand command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmModelNew.Designer.vb",
+      "name": "btnCancel",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured creation-dialog Cancel command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "btnAddModel",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured prerequisite Model command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "btnAddDeck",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured prerequisite Deck command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmTapeNew.Designer.vb",
+      "name": "btnCancel",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured creation-dialog Cancel command."
     }
   ]
 }
