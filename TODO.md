@@ -197,7 +197,8 @@ qualification gates earn the Alpha 5 transition.
     Designer declarations and remove their runtime rectangles/event wiring.
   - [x] Move Tapes/Models/Brands/Decks browser Add commands and current action
     stack geometry into reviewed Designer declarations.
-  - [ ] Move the Main empty-state command and overlay into the Designer.
+  - [x] Move the Main empty-state command, guidance, and overlay into the
+    Designer; close their exact control names and event wiring mechanically.
 - [ ] Reconstruct `frmMain` in separate structural and adaptive commits.
 - [ ] Reconstruct `frmTapeNew` in separate structural and adaptive commits.
 - [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.

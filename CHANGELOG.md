@@ -44,6 +44,12 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   `AddHandler` calls, and child movement. Open source-policy findings fell to
   17 and are now limited to the remaining layout helpers, Main overlay, and
   Deck New form-scroll assignment.
+- Declared the Main empty-catalogue panel, guidance, and Add First Tape command
+  in `frmMain.Designer.vb`, retained its guided workflow through compile-time
+  event wiring, and removed runtime construction, fixed rectangles, z-order
+  mutation, and duplicated state fields. The closed control-name exception now
+  covers exactly 14 additions with zero baseline removals; 133 characterization
+  cases pass and the open source-policy inventory is down to 13 findings.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

@@ -72,6 +72,9 @@ Partial Class frmMain
         Me.OpenDownloadsPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.pnlEmptyCatalogue = New System.Windows.Forms.Panel()
+        Me.lblEmptyCatalogue = New System.Windows.Forms.Label()
+        Me.btnAddFirstTape = New System.Windows.Forms.Button()
         Me.grpData = New System.Windows.Forms.GroupBox()
         Me.grpSideB = New System.Windows.Forms.GroupBox()
         Me.numPeakB = New System.Windows.Forms.NumericUpDown()
@@ -183,6 +186,7 @@ Partial Class frmMain
         Me.dlgSaveAs = New System.Windows.Forms.SaveFileDialog()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
+        Me.pnlEmptyCatalogue.SuspendLayout()
         Me.grpData.SuspendLayout()
         Me.grpSideB.SuspendLayout()
         CType(Me.numPeakB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -569,6 +573,47 @@ Partial Class frmMain
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(328, 26)
         Me.AboutToolStripMenuItem.Text = "About Compact Cassette Catalogue"
+        '
+        'pnlEmptyCatalogue
+        '
+        Me.pnlEmptyCatalogue.AccessibleName = "Empty catalogue"
+        Me.pnlEmptyCatalogue.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlEmptyCatalogue.BackColor = System.Drawing.SystemColors.Control
+        Me.pnlEmptyCatalogue.Controls.Add(Me.btnAddFirstTape)
+        Me.pnlEmptyCatalogue.Controls.Add(Me.lblEmptyCatalogue)
+        Me.pnlEmptyCatalogue.Location = New System.Drawing.Point(15, 149)
+        Me.pnlEmptyCatalogue.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.pnlEmptyCatalogue.Name = "pnlEmptyCatalogue"
+        Me.pnlEmptyCatalogue.Size = New System.Drawing.Size(971, 460)
+        Me.pnlEmptyCatalogue.TabIndex = 6
+        Me.pnlEmptyCatalogue.Visible = False
+        '
+        'lblEmptyCatalogue
+        '
+        Me.lblEmptyCatalogue.AccessibleName = "No tapes have been added yet"
+        Me.lblEmptyCatalogue.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblEmptyCatalogue.Location = New System.Drawing.Point(20, 60)
+        Me.lblEmptyCatalogue.Name = "lblEmptyCatalogue"
+        Me.lblEmptyCatalogue.Size = New System.Drawing.Size(931, 110)
+        Me.lblEmptyCatalogue.TabIndex = 0
+        Me.lblEmptyCatalogue.Text = "No tapes have been added yet." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Choose Add First Tape to create Brand " & Global.Microsoft.VisualBasic.ChrW(8594) & " Model " & Global.Microsoft.VisualBasic.ChrW(8594) & " Tape as required."
+        Me.lblEmptyCatalogue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btnAddFirstTape
+        '
+        Me.btnAddFirstTape.AccessibleDescription = "Starts the guided workflow for adding the first tape to this catalogue."
+        Me.btnAddFirstTape.AccessibleName = "Add First Tape"
+        Me.btnAddFirstTape.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.btnAddFirstTape.Location = New System.Drawing.Point(395, 185)
+        Me.btnAddFirstTape.MinimumSize = New System.Drawing.Size(180, 32)
+        Me.btnAddFirstTape.Name = "btnAddFirstTape"
+        Me.btnAddFirstTape.Size = New System.Drawing.Size(180, 32)
+        Me.btnAddFirstTape.TabIndex = 1
+        Me.btnAddFirstTape.Text = "&Add First Tape…"
+        Me.btnAddFirstTape.UseVisualStyleBackColor = True
         '
         'grpData
         '
@@ -1769,6 +1814,7 @@ Partial Class frmMain
         Me.Controls.Add(Me.grpIdentification)
         Me.Controls.Add(Me.grpFind)
         Me.Controls.Add(Me.grpData)
+        Me.Controls.Add(Me.pnlEmptyCatalogue)
         Me.Controls.Add(Me.menuStripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1782,6 +1828,7 @@ Partial Class frmMain
         Me.grpIdentification.PerformLayout()
         Me.menuStripMain.ResumeLayout(False)
         Me.menuStripMain.PerformLayout()
+        Me.pnlEmptyCatalogue.ResumeLayout(False)
         Me.grpData.ResumeLayout(False)
         Me.grpSideB.ResumeLayout(False)
         Me.grpSideB.PerformLayout()
@@ -1847,6 +1894,9 @@ Partial Class frmMain
     Friend WithEvents SearchManufacturersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
     Friend WithEvents ViewStatisticsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents pnlEmptyCatalogue As Panel
+    Friend WithEvents lblEmptyCatalogue As Label
+    Friend WithEvents btnAddFirstTape As Button
     Friend WithEvents grpData As GroupBox
     Friend WithEvents grpFind As GroupBox
     Friend WithEvents txtTerm As TextBox

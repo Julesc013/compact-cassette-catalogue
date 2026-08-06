@@ -46,6 +46,7 @@ Module Program
         RunTest("creation actions expose accessible cancel and detour controls", AddressOf CreationActionsExposeAccessibleControls)
         RunTest("creation dialog cancel commands are Designer-owned", AddressOf CreationDialogCancelCommandsAreDesignerOwned)
         RunTest("browser Add commands are Designer-owned", AddressOf BrowserAddCommandsAreDesignerOwned)
+        RunTest("main empty catalogue surface is Designer-owned", AddressOf MainEmptyCatalogueSurfaceIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -509,6 +510,29 @@ Module Program
         AssertEqual(False, source.Contains("AddActionButton"), description & " runtime Add construction")
         AssertEqual(False, source.Contains("New Rectangle"), description & " runtime Add rectangle")
         AssertEqual(False, source.Contains("grpActions.Top"), description & " runtime Actions movement")
+    End Sub
+
+    Private Sub MainEmptyCatalogueSurfaceIsDesignerOwned()
+        Using main As New frmMain()
+            Dim emptyPanel As Panel = DirectCast(FindControl(main, "pnlEmptyCatalogue"), Panel)
+            Dim guidance As Label = DirectCast(FindControl(main, "lblEmptyCatalogue"), Label)
+            Dim addFirstTape As Button = DirectCast(FindControl(main, "btnAddFirstTape"), Button)
+            AssertEqual(1, main.Controls.Find("pnlEmptyCatalogue", True).Length, "empty panel count")
+            AssertEqual(1, main.Controls.Find("lblEmptyCatalogue", True).Length, "empty guidance count")
+            AssertEqual(1, main.Controls.Find("btnAddFirstTape", True).Length, "empty Add First Tape count")
+            AssertEqual(emptyPanel, guidance.Parent, "empty guidance parent")
+            AssertEqual(emptyPanel, addFirstTape.Parent, "empty command parent")
+            AssertEqual(True, addFirstTape.Text.Contains("&"), "empty command mnemonic")
+            AssertEqual(True, addFirstTape.AccessibleDescription.Length > 0, "empty command description")
+        End Using
+
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", "frmMain.vb"))
+        AssertEqual(False, source.Contains("New Panel"), "runtime empty panel construction")
+        AssertEqual(False, source.Contains("New Label"), "runtime empty label construction")
+        AssertEqual(False, source.Contains("AddActionButton"), "runtime empty command construction")
+        AssertEqual(False, source.Contains("New Rectangle"), "runtime empty rectangle")
+        AssertEqual(False, source.Contains("BringToFront"), "runtime empty z-order mutation")
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

@@ -66,6 +66,24 @@
       "name": "btnAddTape",
       "type": "Button",
       "reason": "Replace the runtime-manufactured browser Add Tape command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "pnlEmptyCatalogue",
+      "type": "Panel",
+      "reason": "Replace the runtime-manufactured empty-catalogue overlay with a Designer-owned surface."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "lblEmptyCatalogue",
+      "type": "Label",
+      "reason": "Replace the runtime-manufactured empty-catalogue guidance with Designer-owned text."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "btnAddFirstTape",
+      "type": "Button",
+      "reason": "Replace the runtime-manufactured empty-catalogue Add First Tape command."
     }
   ]
 }
