@@ -149,6 +149,9 @@ Public Module CatalogueWorkflow
     End Function
 
     Public Function AddBrand(owner As IWin32Window) As Boolean
+        If Not PrepareMainForCreation("adding a brand") Then
+            Return False
+        End If
         Dim created As CatalogueCreationResult = CreateBrand(owner, False, Nothing)
         If created Is Nothing Then
             Return False
@@ -158,10 +161,17 @@ Public Module CatalogueWorkflow
     End Function
 
     Public Function AddModel(owner As IWin32Window) As Boolean
+        If Not PrepareMainForCreation("adding a model") Then
+            Return False
+        End If
         Dim entries As New List(Of String)()
         Dim neededBrand As Boolean = brands.Rows.Count = 0
         Dim created As CatalogueCreationResult = AddModelWithPrerequisites(owner, neededBrand, entries)
         If created Is Nothing Then
+            If entries.Count > 0 Then
+                RefreshMainAfterCreation()
+                ShowJourneySummary(owner, entries)
+            End If
             Return False
         End If
         RefreshMainAfterCreation()
@@ -172,6 +182,9 @@ Public Module CatalogueWorkflow
     End Function
 
     Public Function AddDeck(owner As IWin32Window) As Boolean
+        If Not PrepareMainForCreation("adding a deck") Then
+            Return False
+        End If
         Dim created As CatalogueCreationResult = CreateDeck(owner, False, Nothing)
         If created Is Nothing Then
             Return False
@@ -181,11 +194,17 @@ Public Module CatalogueWorkflow
     End Function
 
     Public Function AddTape(owner As IWin32Window) As Boolean
+        If Not PrepareMainForCreation("adding a new tape") Then
+            Return False
+        End If
         Dim entries As New List(Of String)()
+        Dim startingCounts As Integer() = {
+            brands.Rows.Count, models.Rows.Count, decks.Rows.Count, tapes.Rows.Count}
         Dim preferredModelIdentifier As String = Nothing
         If models.Rows.Count = 0 Then
             Dim createdModel As CatalogueCreationResult = AddModelWithPrerequisites(owner, True, entries)
             If createdModel Is Nothing Then
+                CompleteCancelledJourney(owner, entries, startingCounts)
                 Return False
             End If
             preferredModelIdentifier = createdModel.Key
@@ -196,6 +215,7 @@ Public Module CatalogueWorkflow
             dialog.SuppressSuccessMessage = True
             dialog.StartPosition = FormStartPosition.CenterParent
             If dialog.ShowDialog(owner) <> DialogResult.OK Then
+                CompleteCancelledJourney(owner, entries, startingCounts)
                 Return False
             End If
             entries.Add("Tape: " & dialog.CreatedDisplayName)
@@ -280,14 +300,41 @@ Public Module CatalogueWorkflow
     End Function
 
     Private Sub RefreshMainAfterCreation()
+        Dim main As frmMain = FindOpenMain()
+        If main Is Nothing Then
+            Return
+        End If
+        main.loadData()
+        main.Text = fileName & "* - C3"
+    End Sub
+
+    Private Function PrepareMainForCreation(description As String) As Boolean
+        Dim main As frmMain = FindOpenMain()
+        Return main Is Nothing OrElse main.ResolvePendingTapeEditForCreation(description)
+    End Function
+
+    Private Function FindOpenMain() As frmMain
         For Each openForm As Form In Application.OpenForms
             If TypeOf openForm Is frmMain Then
-                Dim main As frmMain = DirectCast(openForm, frmMain)
-                main.loadData()
-                main.Text = fileName & "* - C3"
-                Exit For
+                Return DirectCast(openForm, frmMain)
             End If
         Next
+        Return Nothing
+    End Function
+
+    Private Sub CompleteCancelledJourney(
+            owner As IWin32Window,
+            entries As IList(Of String),
+            startingCounts As Integer())
+        Dim catalogueChanged As Boolean =
+            startingCounts(0) <> brands.Rows.Count OrElse
+            startingCounts(1) <> models.Rows.Count OrElse
+            startingCounts(2) <> decks.Rows.Count OrElse
+            startingCounts(3) <> tapes.Rows.Count
+        If catalogueChanged Then
+            RefreshMainAfterCreation()
+            ShowJourneySummary(owner, entries)
+        End If
     End Sub
 
     Private Sub ShowJourneySummary(owner As IWin32Window, entries As IList(Of String))

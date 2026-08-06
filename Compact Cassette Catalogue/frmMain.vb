@@ -1575,16 +1575,12 @@ Public Class frmMain
     End Sub
 
     Private Sub addNewTape()
-        If resolvePendingTapeEdit("adding a new tape") Then
-            addNewTapeActual()
-        End If
-    End Sub
-
-    Private Sub addNewTapeActual()
-
         CatalogueWorkflow.AddTape(Me)
-
     End Sub
+
+    Public Function ResolvePendingTapeEditForCreation(description As String) As Boolean
+        Return resolvePendingTapeEdit(description)
+    End Function
 
     Public Sub closeApplication()
         Me.Close()
