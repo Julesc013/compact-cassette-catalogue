@@ -120,6 +120,18 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
 - Retained the exact `62bec3f...` Deck New/Edit atlas: all 64 fresh-process
   ordinary/maximum cells pass at four window sizes and 100/125/150/200%
   relative scales, including Deck Edit's real populated Load handler.
+- Rebuilt Brand New/Edit as fixed autosizing dialogs. Existing Brand/Code and
+  Notes controls now live in semantic table rows, Add/Update and Cancel remain
+  in Designer-owned command bars, Brand Edit has an explicit Cancel result,
+  and form-level scrolling is disabled.
+- Rebuilt Model New/Edit to the same compact-dialog contract while keeping Add
+  Brand inline with the stable-key Brand selector. Basic, Extra, Notes, status,
+  and commit regions now have explicit container ownership; Model Edit also
+  exposes a default Update command and explicit Cancel result.
+- Extended the fresh-process harness with valid Brand/Edit and Model/Edit rows,
+  then passed the complete 384-cell mandatory-form matrix. Retained the exact
+  `202a9d5...` 128-cell compact-dialog geometry and screenshot subset; all
+  ordinary/maximum cells pass at four sizes and four relative font scales.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

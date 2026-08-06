@@ -189,7 +189,7 @@ qualification gates earn the Alpha 5 transition.
 - [x] Reproduce Alpha 4 overlap, dynamic-command, form-scroll/anchor, tab-order,
   and handler-geometry failures with a fresh-process STA harness; retain six
   control-tree JSON records, screenshots, and the 52-item source-policy record.
-- [ ] Move every known static command into its form Designer and remove the
+- [x] Move every known static command into its form Designer and remove the
   geometry-oriented `CatalogueUx` helpers.
   - [x] Move Brand New and Deck New Cancel commands into reviewed Designer
     declarations with closed default/cancel semantics.
@@ -217,7 +217,7 @@ qualification gates earn the Alpha 5 transition.
     local field table and close command-bar ownership/reachability.
   - [ ] Retain the commit-bound Tape New atlas and complete native DPI,
     keyboard, High Contrast, and assistive-technology review.
-- [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.
+- [x] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.
   - [x] Rebuild Brands with a fixed filter pane, fill results list, and
     persistent status/actions footer; remove its runtime layout helper.
   - [x] Rebuild Models to the same fixed-filter/fill-results/persistent-footer
@@ -233,13 +233,19 @@ qualification gates earn the Alpha 5 transition.
     screenshot atlas from the exact pushed adaptive source.
   - [ ] Finish native keyboard, DPI, High Contrast, and assistive-technology
     review for the four browser forms.
-- [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
+- [x] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.
+  - [x] Rebuild Brand New/Edit as fixed autosizing tables with field rows,
+    fill Notes regions, Designer-owned command bars, and explicit Cancel.
+  - [x] Rebuild Model New/Edit to the same compact-dialog contract while
+    retaining Add Brand inline with the stable-key Brand selector.
   - [x] Rebuild Deck New around a dedicated scroll viewport, fixed preferred
     canvas, and persistent Designer-owned status/Add/Cancel command row.
   - [x] Apply the verified dense-form pattern to Deck Edit, add an explicit
     Designer-owned Cancel result, and exercise its real Load path in the harness.
   - [x] Retain the complete 64-cell commit-bound Deck New/Edit geometry and
     screenshot atlas, including the real edit-form Load path.
+  - [x] Retain the complete 128-cell commit-bound Brand/Model New/Edit atlas;
+    all four real form Load paths pass ordinary and maximum-content cells.
   - [ ] Finish native keyboard, DPI, High Contrast, and assistive-technology
     review for Deck New and Deck Edit.
 - [ ] Change Console, Find Results, Statistics, Settings, About, and setup/
@@ -248,7 +254,7 @@ qualification gates earn the Alpha 5 transition.
   ErrorProvider, UIA/MSAA, screen-reader, and High Contrast audits.
 - [ ] Add bounded command-state, stable selection restoration, and duplicate-
   command protection only where a focused regression requires them.
-- [ ] Pass every 800x552/1024x720/1366x728/1920x1040 and
+- [x] Pass every 800x552/1024x720/1366x728/1920x1040 and
   100/125/150/200% size/scale/content cell in a fresh process.
 - [ ] Retain geometry JSON, text/reachability results, diagnostic atlases, and
   native canonical/real-DPI/theme screenshots.

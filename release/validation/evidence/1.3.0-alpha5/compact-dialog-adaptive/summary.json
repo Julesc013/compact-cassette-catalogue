@@ -1,0 +1,1034 @@
+{
+  "schemaVersion": 1,
+  "mode": "QualificationCompactDialogs",
+  "sourceCommit": "202a9d51ffc995ee80b9a2b0678a151063be8a5b",
+  "parentQualificationSummarySha256": "65a7fbfa786264c870201872e0cac2f293dc1ebc97074e95c5442e0bfdef47b1",
+  "executableSha256": "8e2ca045c6d41940601daa3f82dfa7ee1d1228999b3b1626581de14b22d94c7c",
+  "cellCount": 128,
+  "cells": [
+    {
+      "name": "frmBrandNew-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "58ef5d4cce65d96df32ecba1336fd4d8200675f5ce84b27af65c3d4e05dbbb85",
+      "screenshotSha256": "f792f5ec16e143f48005c348b91687fc36cabd190e9255c622c98fba39990c9f"
+    },
+    {
+      "name": "frmBrandNew-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0cb8176e8341d34583c19e69e6bde160ee7117c1382330863d09a613e062965f",
+      "screenshotSha256": "cadba86ef01baf236eae6a78c792ee759b3d535cbdb930a23b78c3b7122ae0d3"
+    },
+    {
+      "name": "frmBrandNew-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4de81afd523b754ad100f0732478e5f37b0f750d80d7ea68bd16993a8826b12b",
+      "screenshotSha256": "80a3080618696dd7e21b3d99ae6ae30d7678f13ffbd466c3b668714887edd75b"
+    },
+    {
+      "name": "frmBrandNew-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9af53d723996c9461f39ce3a8e5a4af34fca8221e96d30bfa0bad2ad006bae9f",
+      "screenshotSha256": "68ac78a51669f3eb6ef490998a124bc33854cf3350108563295abcbcbce58fc6"
+    },
+    {
+      "name": "frmBrandNew-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0782122a14349d1d8d09397d67f4c63d064eb9b9deb1e79dee9b0fc6b84a5070",
+      "screenshotSha256": "e26ddbbb4cf14f21ee2619e84022b0b8e47912f4a01bc525e3705c58eb3d975a"
+    },
+    {
+      "name": "frmBrandNew-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2f971c92f731ba8a88b3ed4549275e0406844780870a1ebcc7988265b6107e61",
+      "screenshotSha256": "333f7773f039ffa0b8d6adaa9369b6762bc7b5e1711407979bb7868c1431fbed"
+    },
+    {
+      "name": "frmBrandNew-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6ccb8849591764bc20d8de31424f38f6b8e533e372dd8023be824d61661106d4",
+      "screenshotSha256": "037ccd8437bad68c1a826dfdb0ee833974815e918808613272d7addabd1db257"
+    },
+    {
+      "name": "frmBrandNew-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "780031a68d9df483a08717cb17351c1f394a51d532a5250ead73e5f1c6896121",
+      "screenshotSha256": "c6a8da872b0bed665c8f9a2e57d78c41d48430525b222ede6df892ebbd0fd1c8"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "99546c5422a60d4ca4b63103b111be2e9b8f29641816833f379bad920faf868c",
+      "screenshotSha256": "f792f5ec16e143f48005c348b91687fc36cabd190e9255c622c98fba39990c9f"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3fc853d6e767adfebd6dba8676a922643172734744c0d90ed622eb0a9f3083dd",
+      "screenshotSha256": "cadba86ef01baf236eae6a78c792ee759b3d535cbdb930a23b78c3b7122ae0d3"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3e4ff3ee8b41fa769cbdf26e6138e0c397c79bc57abbf6df1a44fe4806610fac",
+      "screenshotSha256": "80a3080618696dd7e21b3d99ae6ae30d7678f13ffbd466c3b668714887edd75b"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6d0a736c3012eda655ebf28b918a156c78559c4f3b66f0e9c22751643772ea4b",
+      "screenshotSha256": "68ac78a51669f3eb6ef490998a124bc33854cf3350108563295abcbcbce58fc6"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9488d4a4b45be99c45c7dc35a1e40f257240282aa2536ad0ebd7c6ed79771cad",
+      "screenshotSha256": "e26ddbbb4cf14f21ee2619e84022b0b8e47912f4a01bc525e3705c58eb3d975a"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a4e2e5b9e318f2390c87f2488e8226e0274f821d31884926f2f23708948f6ec3",
+      "screenshotSha256": "333f7773f039ffa0b8d6adaa9369b6762bc7b5e1711407979bb7868c1431fbed"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "797c56bfae7e90e5e9985e6add1c1c16396048bb6f473824193f1cad8c11cda6",
+      "screenshotSha256": "037ccd8437bad68c1a826dfdb0ee833974815e918808613272d7addabd1db257"
+    },
+    {
+      "name": "frmBrandNew-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d28df088e6e5f36640f7b39ef6b28f6a684a57957dfe929387d454ee37ff47f9",
+      "screenshotSha256": "c6a8da872b0bed665c8f9a2e57d78c41d48430525b222ede6df892ebbd0fd1c8"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a76d077108bd5884b1be467ca645af8b58c026a72d1cc6330b681e97c65edb31",
+      "screenshotSha256": "f792f5ec16e143f48005c348b91687fc36cabd190e9255c622c98fba39990c9f"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "30789e051e4fa508cda24d4970b5021d5a9b5ee2217de82cb97b5af56c7c726f",
+      "screenshotSha256": "cadba86ef01baf236eae6a78c792ee759b3d535cbdb930a23b78c3b7122ae0d3"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3e6851719620f491ae24d835090429ef43764f2bd240401f5ad44c0c4b3ffe34",
+      "screenshotSha256": "80a3080618696dd7e21b3d99ae6ae30d7678f13ffbd466c3b668714887edd75b"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "130d5a42e1799bab1324efcb26d29b7a9437cc2ac2839180bd11eac98574e072",
+      "screenshotSha256": "68ac78a51669f3eb6ef490998a124bc33854cf3350108563295abcbcbce58fc6"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b57d9eb1da0fadc1ef55b78025b8ccb953dbfc320cfa0fe4aa47abf139d0a5a8",
+      "screenshotSha256": "e26ddbbb4cf14f21ee2619e84022b0b8e47912f4a01bc525e3705c58eb3d975a"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "73862dec3114cb7a99303247011b7830cd6ab10731c9dd7e2a03d05a0a7bb546",
+      "screenshotSha256": "333f7773f039ffa0b8d6adaa9369b6762bc7b5e1711407979bb7868c1431fbed"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bbd0408481e2d37bd11bcca5fe58a9538d38d2c8a2aebe36f4dac4bcfbb9a528",
+      "screenshotSha256": "037ccd8437bad68c1a826dfdb0ee833974815e918808613272d7addabd1db257"
+    },
+    {
+      "name": "frmBrandNew-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e9f77a87de51f8d812d5bc017a348d3d7583618fe3449cbae9a9e5e38ab44bd9",
+      "screenshotSha256": "c6a8da872b0bed665c8f9a2e57d78c41d48430525b222ede6df892ebbd0fd1c8"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "072947dbfc3ef5e57302d87c44d06c2f1824de3f22e71f98ab05c9f2271cef4c",
+      "screenshotSha256": "f792f5ec16e143f48005c348b91687fc36cabd190e9255c622c98fba39990c9f"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8f0198e7c3584ffa5646edfdaa837ef136207c03c9221dbc925d8d46c19e497e",
+      "screenshotSha256": "cadba86ef01baf236eae6a78c792ee759b3d535cbdb930a23b78c3b7122ae0d3"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5f4d0cddb4b25403c4ac6eabdc177b076b7c0afaf9cbfb593394d4d26ad0713c",
+      "screenshotSha256": "80a3080618696dd7e21b3d99ae6ae30d7678f13ffbd466c3b668714887edd75b"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fdf7b8ed79ae24fae2cf4b8fb9ebdf80cbc58c3376342f64788888183e35ac7b",
+      "screenshotSha256": "68ac78a51669f3eb6ef490998a124bc33854cf3350108563295abcbcbce58fc6"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e4c9e20667dc16a3cfde6e729943921104334cb06f146c20ce28effc9f217892",
+      "screenshotSha256": "e26ddbbb4cf14f21ee2619e84022b0b8e47912f4a01bc525e3705c58eb3d975a"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8a56272c870197b919e1e2f367e45a98ad173a1e0c22753b960af1a29cafcd00",
+      "screenshotSha256": "333f7773f039ffa0b8d6adaa9369b6762bc7b5e1711407979bb7868c1431fbed"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "556ace1882ac3940a843e6dd33380224c4f9c521d546bba2fe74bfe37fd50683",
+      "screenshotSha256": "037ccd8437bad68c1a826dfdb0ee833974815e918808613272d7addabd1db257"
+    },
+    {
+      "name": "frmBrandNew-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b36935e54c3fed75e470764442a0d5a3cb58b82a0bc015933b42fd66bb69109b",
+      "screenshotSha256": "c6a8da872b0bed665c8f9a2e57d78c41d48430525b222ede6df892ebbd0fd1c8"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "921b298020d70e1da64985d28dd5d75ac3ef060690cdafbf41febd220f097989",
+      "screenshotSha256": "044e88f28e8ef93bce8fe7ead926251a2b507f2912b2d161b32a82ab24eae905"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b1cebd4e1371432a4b0d6a448d3c3ddb045560ee6137f53684848e6ac2614139",
+      "screenshotSha256": "4980a16f364b1f480905e2480e678544e84901014466e9d5af68630f8cfb527e"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "107e23fccf77147ec37b6ca528a4f5053a0980f0301aac9fd5b32f0ad32d8e28",
+      "screenshotSha256": "aae12fa0866f0a1114e20c1a864ae5492a346aa91d8d8c2adf841579ed189d51"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "19e9bdd4b3f0659a448202b722ec79462bf5c23f03b4f1bf452f5db36dff2134",
+      "screenshotSha256": "cd89dbbe1f270e4dce3b40b175d023dd05e731292bfeca8d091b0be1aa9bac9b"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e2545fe756c269bd5803fc472ec2f599d278b547815253692083803bdf3a8d73",
+      "screenshotSha256": "61c3226ea627bdbd91537566fb807feb2d0c70dec754f8f53ba8c4c8d2609518"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5374ebc32a42feb06269d492ee10fa103ab77f6a81909bd18f4d3875d9ac0bed",
+      "screenshotSha256": "827fdf46330bec6ff2240622ba97170922e9f18d899445b265d23d3bbfa7da80"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "af5a50a682b25eb61aa2b24150689c45f1eca10ab1b380d437561cce4f2b2d1c",
+      "screenshotSha256": "559e0785f6dc28e66d9c8390d805073358befb638994a8f7688c62a20fc17e8f"
+    },
+    {
+      "name": "frmBrandEdit-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3551e99372acc4aef759860dae2b9e97e4bcc097417a201760e0a4fdd1360791",
+      "screenshotSha256": "7e0ac2dade3d276129ed81092d6a17371a32a3ae68a0b4c13a70e5c55b6a4834"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "22108bfd5e36198786e0cd2e95829abddb3a04abb2a21dc07884b5c17484e0aa",
+      "screenshotSha256": "044e88f28e8ef93bce8fe7ead926251a2b507f2912b2d161b32a82ab24eae905"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ebc7d53656f6eeadffce49d1a5982ec3da7a72b4ca0f2343a860d9412f61406e",
+      "screenshotSha256": "4980a16f364b1f480905e2480e678544e84901014466e9d5af68630f8cfb527e"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6d007e0927b5cd197101b7052bcef710136430d28d1beb48f3e72fcc06908b96",
+      "screenshotSha256": "aae12fa0866f0a1114e20c1a864ae5492a346aa91d8d8c2adf841579ed189d51"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e15f76cf6fc84c63d1fc66c9b6956f76a201d05f146c4ddcf3c3870c3d546eab",
+      "screenshotSha256": "cd89dbbe1f270e4dce3b40b175d023dd05e731292bfeca8d091b0be1aa9bac9b"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "700dfbbc6a5414a3d8ecc1e479faaed80895996558ba9aa013e5f771668a99f2",
+      "screenshotSha256": "61c3226ea627bdbd91537566fb807feb2d0c70dec754f8f53ba8c4c8d2609518"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a888d31748358cdbd22cc006c753af36c3e5c05da6eacb612d22419017c6455e",
+      "screenshotSha256": "827fdf46330bec6ff2240622ba97170922e9f18d899445b265d23d3bbfa7da80"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4d4b20fcc097b557403c1915f1171e92a2a414e9499751da822ca6eb34c1929d",
+      "screenshotSha256": "559e0785f6dc28e66d9c8390d805073358befb638994a8f7688c62a20fc17e8f"
+    },
+    {
+      "name": "frmBrandEdit-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8a3e5621d6606d31d928b9e0f4ae89a02beeb7a63ef949be1e49b318cbb9f22b",
+      "screenshotSha256": "7e0ac2dade3d276129ed81092d6a17371a32a3ae68a0b4c13a70e5c55b6a4834"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4956cb24117fae9c4f5b5c91f550d39ed73f277f8c293e07ede8428fef189ee4",
+      "screenshotSha256": "044e88f28e8ef93bce8fe7ead926251a2b507f2912b2d161b32a82ab24eae905"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0fb8c9eac05a697aa8ac3c1862986c423b500268ab93f024b8956c3a6b49e243",
+      "screenshotSha256": "4980a16f364b1f480905e2480e678544e84901014466e9d5af68630f8cfb527e"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3116a4a1f637520434ec6d79fb426110fcac934c412a0d801165c3429554e9d0",
+      "screenshotSha256": "aae12fa0866f0a1114e20c1a864ae5492a346aa91d8d8c2adf841579ed189d51"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "640c6c1049b425a26b13f716ccc8e8f19649c5ed077a54a15c29de7f56718e27",
+      "screenshotSha256": "cd89dbbe1f270e4dce3b40b175d023dd05e731292bfeca8d091b0be1aa9bac9b"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "73355247223fa19d9244f242112d722dacf9ebde87fd3c85cacd2bc9442bc11d",
+      "screenshotSha256": "61c3226ea627bdbd91537566fb807feb2d0c70dec754f8f53ba8c4c8d2609518"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b880d84e3eceae108a0525d226a9cc3d5cc11e9829c19230cad9a288800b8c98",
+      "screenshotSha256": "827fdf46330bec6ff2240622ba97170922e9f18d899445b265d23d3bbfa7da80"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "5f92fc2984ea7f1c72b225726d839b253dab7dd7e4cb65dc97403a2801fbe6db",
+      "screenshotSha256": "559e0785f6dc28e66d9c8390d805073358befb638994a8f7688c62a20fc17e8f"
+    },
+    {
+      "name": "frmBrandEdit-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "221ae1336f3236b4504b91ca30bf0d02ba84e3d4dfc21b235b40fec01bdc5f94",
+      "screenshotSha256": "7e0ac2dade3d276129ed81092d6a17371a32a3ae68a0b4c13a70e5c55b6a4834"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "21372456ef2229d2154f1fa97324377d2f481c56ae950774614305eae855b9c5",
+      "screenshotSha256": "044e88f28e8ef93bce8fe7ead926251a2b507f2912b2d161b32a82ab24eae905"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a8483fc0bcdeb7bcbca96e0dc40a821c6a929c24edcaf4154b82ed47e32f2464",
+      "screenshotSha256": "4980a16f364b1f480905e2480e678544e84901014466e9d5af68630f8cfb527e"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cf76f45aeff07bde33ac90d28b4bd7910804569dd640de331bb7441ecf561bca",
+      "screenshotSha256": "aae12fa0866f0a1114e20c1a864ae5492a346aa91d8d8c2adf841579ed189d51"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f2d155363400b4b9e13b40f7cfefc4000b9891d450f614229e981800127ec444",
+      "screenshotSha256": "cd89dbbe1f270e4dce3b40b175d023dd05e731292bfeca8d091b0be1aa9bac9b"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bfa3e87983cedfdfd4226140073851058d20055cd4241a13b4b8cfc918a25bd0",
+      "screenshotSha256": "61c3226ea627bdbd91537566fb807feb2d0c70dec754f8f53ba8c4c8d2609518"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3b553c8b866156d9d2e88d14d4ca1270f5b82276f4154c140861e233262900b2",
+      "screenshotSha256": "827fdf46330bec6ff2240622ba97170922e9f18d899445b265d23d3bbfa7da80"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "97b575e1e2b7900ab56a4d7b7a1e0c37d0bfa9e2bb79a37ca14b7ada1494fd4f",
+      "screenshotSha256": "559e0785f6dc28e66d9c8390d805073358befb638994a8f7688c62a20fc17e8f"
+    },
+    {
+      "name": "frmBrandEdit-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d0f32b2fdb6b9737ac570eb601705d72f3b1a4275f62908efcdcf2e7b35f25c8",
+      "screenshotSha256": "7e0ac2dade3d276129ed81092d6a17371a32a3ae68a0b4c13a70e5c55b6a4834"
+    },
+    {
+      "name": "frmModelNew-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "52f80bd3bf3fb9891e51f676bac9d94a50691416c3b305b5fbb3d7404a49cc3a",
+      "screenshotSha256": "5518fbc5990cf4985d79ed34f403705c7ba898bf5512277cead199a527653793"
+    },
+    {
+      "name": "frmModelNew-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ba3dfde5e3b84d6578865fc7a37827d5c79f234c4f430448103f8111f39f2976",
+      "screenshotSha256": "e5542369b2281fdef395701c30bda564d51c4c0aa7740af066c81ae073d4470a"
+    },
+    {
+      "name": "frmModelNew-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "44d4a3116c9e764697006c7a0d512472c838097378df6eed3954d6dd11e93dae",
+      "screenshotSha256": "4ae384abb6db67b3e234b051c39244dc9afd1c8495f447ef04597249ab14a437"
+    },
+    {
+      "name": "frmModelNew-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ec0406bdd3cfe0098a1db207c8378dfbfa079d8cda5e2090e9cb61907f43174a",
+      "screenshotSha256": "973971ddd1f6fd3f43e8a42212df6d5249104ac48b6ca41b1562b90e687ae557"
+    },
+    {
+      "name": "frmModelNew-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7970dcd061139fb4dee29d12ac98a5938a16d92bb9699417f13ccffce60087e0",
+      "screenshotSha256": "63b791cd0b139026085f57a2e90ef4cf307ef9216b27c1f2e835a94ab61a7772"
+    },
+    {
+      "name": "frmModelNew-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "f0334be595b8c8b4a81c00f2d81ac813053662f7666cab345a01195bd1078152",
+      "screenshotSha256": "be2d6cad07458da87c984f1d86f45287206769b4c926322d5656916aa27a9de8"
+    },
+    {
+      "name": "frmModelNew-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b60a97e5ff966fb36a0c50e0af1d340000b166270f14f6a1a088f4a05015a7b4",
+      "screenshotSha256": "b245b0dd47865fb6e6216b8b74574f42c0dc319af70d3aaf371dcc0acf37107c"
+    },
+    {
+      "name": "frmModelNew-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ca6788129b22f5b62fd2b3d411c3a771d535477edfe96cecb2ca124598f6eb32",
+      "screenshotSha256": "3d451276f13d999c6da99bbac71cf648e8587f1108b2a10a1e23dcb127e45c98"
+    },
+    {
+      "name": "frmModelNew-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3f3bc2a6e9e3e435ea2e5a56f967d772aa8bb93af143eaf654b8bb81f5857f1c",
+      "screenshotSha256": "5518fbc5990cf4985d79ed34f403705c7ba898bf5512277cead199a527653793"
+    },
+    {
+      "name": "frmModelNew-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "85608d8ffc5415ffee8bceb899155dff8365cd36e8eb8e4a54a7a78003ebbce1",
+      "screenshotSha256": "e5542369b2281fdef395701c30bda564d51c4c0aa7740af066c81ae073d4470a"
+    },
+    {
+      "name": "frmModelNew-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3f657858510918676914ea791b2527a79be21ba8df34dd097e82b7a7cb440c84",
+      "screenshotSha256": "4ae384abb6db67b3e234b051c39244dc9afd1c8495f447ef04597249ab14a437"
+    },
+    {
+      "name": "frmModelNew-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e01fc84a80ba30cd195f41f01d126afe84eac78c1ab7a83dd76b245551ab88ca",
+      "screenshotSha256": "973971ddd1f6fd3f43e8a42212df6d5249104ac48b6ca41b1562b90e687ae557"
+    },
+    {
+      "name": "frmModelNew-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9952b2180cca1709f8cfb64da42294aaeceea995e9d5fc74b47b6fd7d1ebe5d3",
+      "screenshotSha256": "63b791cd0b139026085f57a2e90ef4cf307ef9216b27c1f2e835a94ab61a7772"
+    },
+    {
+      "name": "frmModelNew-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "434437d1ec5fe83cb78c918b5fe20b13e52f40253107a345bf619c7f00a53fec",
+      "screenshotSha256": "be2d6cad07458da87c984f1d86f45287206769b4c926322d5656916aa27a9de8"
+    },
+    {
+      "name": "frmModelNew-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "78983770e07470b3305386b3abb94880b906cfb979d516664969a49f6d8858d0",
+      "screenshotSha256": "b245b0dd47865fb6e6216b8b74574f42c0dc319af70d3aaf371dcc0acf37107c"
+    },
+    {
+      "name": "frmModelNew-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "448c91ec51d44159da73da598f7683efeb8b8af48827ff1331a6d289c8006b4b",
+      "screenshotSha256": "3d451276f13d999c6da99bbac71cf648e8587f1108b2a10a1e23dcb127e45c98"
+    },
+    {
+      "name": "frmModelNew-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1fe0bbf64eeb47d240215dc087601307e7db11c48d4f8a67d17cdf5db5e21cd8",
+      "screenshotSha256": "5518fbc5990cf4985d79ed34f403705c7ba898bf5512277cead199a527653793"
+    },
+    {
+      "name": "frmModelNew-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c67353026e73e34073032cc87b42d427959c4d7a0b1e2994a9d1b7c2eb629fd6",
+      "screenshotSha256": "e5542369b2281fdef395701c30bda564d51c4c0aa7740af066c81ae073d4470a"
+    },
+    {
+      "name": "frmModelNew-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "494e2b4a57d4baf53f37fdfe1dce2667cea592fa63cbe448e500d31d4c6c0c9a",
+      "screenshotSha256": "4ae384abb6db67b3e234b051c39244dc9afd1c8495f447ef04597249ab14a437"
+    },
+    {
+      "name": "frmModelNew-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9315f19d801634cc2dae5a733cd1df957cc488d0f6c2f88641ab2da1ba4ac01e",
+      "screenshotSha256": "973971ddd1f6fd3f43e8a42212df6d5249104ac48b6ca41b1562b90e687ae557"
+    },
+    {
+      "name": "frmModelNew-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aa72c316a5f77508f423d576b63b40d3df76d209fb791b7778e2abd88bfa7d8a",
+      "screenshotSha256": "63b791cd0b139026085f57a2e90ef4cf307ef9216b27c1f2e835a94ab61a7772"
+    },
+    {
+      "name": "frmModelNew-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7c489dcba59d1937566e6ef1f0ae40b554b2483fe752d67692f4070b133978da",
+      "screenshotSha256": "be2d6cad07458da87c984f1d86f45287206769b4c926322d5656916aa27a9de8"
+    },
+    {
+      "name": "frmModelNew-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9e76a7063f88720d28311b1332bce64b6933e7a851b5036c0d27336b7a793e62",
+      "screenshotSha256": "b245b0dd47865fb6e6216b8b74574f42c0dc319af70d3aaf371dcc0acf37107c"
+    },
+    {
+      "name": "frmModelNew-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "54150d6ba358770f86b8e094d4351747cfdbf65b0a106fd38ccf775bc116939e",
+      "screenshotSha256": "3d451276f13d999c6da99bbac71cf648e8587f1108b2a10a1e23dcb127e45c98"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "247f3013331cb00d7524dd998096ba6a542bf28efc91424c0bc6f9bad0247b96",
+      "screenshotSha256": "5518fbc5990cf4985d79ed34f403705c7ba898bf5512277cead199a527653793"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "54dc2ed8c8e820fe0c98bac1d7dc5ed2aa2ff97423a7f2ed6536fc3c487b80ce",
+      "screenshotSha256": "e5542369b2281fdef395701c30bda564d51c4c0aa7740af066c81ae073d4470a"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ab8347cb440cf255887ff8d75e7c404117c7f0848a7f6114d88a5200cd4963e1",
+      "screenshotSha256": "4ae384abb6db67b3e234b051c39244dc9afd1c8495f447ef04597249ab14a437"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8b871d433e02e02ebf918aeb3ff63db6d00d6f0bf6b838b0a288540df1558189",
+      "screenshotSha256": "973971ddd1f6fd3f43e8a42212df6d5249104ac48b6ca41b1562b90e687ae557"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2bf6a9de3112ba363f1f8d4238d3a5723ccffeb928f722ba39671b20cf12f558",
+      "screenshotSha256": "63b791cd0b139026085f57a2e90ef4cf307ef9216b27c1f2e835a94ab61a7772"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6f413f097ce69c5ba2691cafe68ba8e8cb1c5e617a7e77e83024fae324c47b7c",
+      "screenshotSha256": "be2d6cad07458da87c984f1d86f45287206769b4c926322d5656916aa27a9de8"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "67269ca017f2c88434b3210328f9dd9da0c42a896198bdd065b88bb7beb07dd2",
+      "screenshotSha256": "b245b0dd47865fb6e6216b8b74574f42c0dc319af70d3aaf371dcc0acf37107c"
+    },
+    {
+      "name": "frmModelNew-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "15c2e2f6d9ed8f94fcb5817cb46a27ef54950524daa426ba1be512a21ec59779",
+      "screenshotSha256": "3d451276f13d999c6da99bbac71cf648e8587f1108b2a10a1e23dcb127e45c98"
+    },
+    {
+      "name": "frmModelEdit-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0729231456031bb541e36d6b1fbbde0d3ed2d3731e81890e76ac5a8fc90703e6",
+      "screenshotSha256": "8b009f65316632721e4f26515c6a534263d88af58d26044d29dc67c274f48ca5"
+    },
+    {
+      "name": "frmModelEdit-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0054e4d2c9b4ece109b505d41c7ed689a044a604d717ff13dcecda604cf9c7c4",
+      "screenshotSha256": "942f8769c954eee729a9d7396c391ac3162dbcad1e22dcdd0364e5682c19b32c"
+    },
+    {
+      "name": "frmModelEdit-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0ad61dd7ef77259018e397ddc27b867547029541d266995beecba43c2e32e6f0",
+      "screenshotSha256": "6d224e818997e31778cb9996e426a5eb64aab99a03ecd6489ed4d5f36e6fe6fb"
+    },
+    {
+      "name": "frmModelEdit-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ffd6ee2314b4852ed9a77e226df473d6dd3336beb93e1a9a88aa8d8adfc8cd98",
+      "screenshotSha256": "28e8158cf584d04b723f3e417d7abcea36ccb922fd2453ece454864d87398a3d"
+    },
+    {
+      "name": "frmModelEdit-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "17a9f80e59c8ce517cba54ac4e56947b58711e31f5526b4c4a26f1eddc07580d",
+      "screenshotSha256": "10416b2653d0e40f2696db9c96f70e896a5916ecd31287e6b1a0a9695ea8dd92"
+    },
+    {
+      "name": "frmModelEdit-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7cf90a5a6ef7b91f7c64fea4687ef1892f4944bc3ccdf08892f30f14d14faa81",
+      "screenshotSha256": "6c35125ee420b1ed600efe3764de9ee97c722cc4263a7dc5974b8f05558f588f"
+    },
+    {
+      "name": "frmModelEdit-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b4e987ac7e20e2c035a6e682cc85a7addd9039e62a8760bc05679bded6974552",
+      "screenshotSha256": "a8854cd3ac32fc8c87775d3d1c78025d436f49541c9a7784c83d09b8133f43ab"
+    },
+    {
+      "name": "frmModelEdit-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b0d7dd7676c19dcc673323ba1581c5e7ccbfceb3d5f35b265a3ba25545aee005",
+      "screenshotSha256": "5b8db9f83ed47a3543a9946b4a66ad53126bac7a75a5d1cd395016a81bfd7c07"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a9c05ef0645fa7190c98d3c5828516123887240748aa765f5fc62e4ff62ae0d6",
+      "screenshotSha256": "8b009f65316632721e4f26515c6a534263d88af58d26044d29dc67c274f48ca5"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a838ca785ca4fdf834e0cabde679817afb8d071f546efff7b03120b1ce8b208d",
+      "screenshotSha256": "942f8769c954eee729a9d7396c391ac3162dbcad1e22dcdd0364e5682c19b32c"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "47f748213002765ecb240b22b66670dd73e17973459e66c32c3d19c48ec3c773",
+      "screenshotSha256": "6d224e818997e31778cb9996e426a5eb64aab99a03ecd6489ed4d5f36e6fe6fb"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "94a95428edfc750eafcbc73f76c2e1ced548f7f4487aa575be13d5915350ff1c",
+      "screenshotSha256": "28e8158cf584d04b723f3e417d7abcea36ccb922fd2453ece454864d87398a3d"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "098a92b3161256b2a1baaa3a318534606dd31842012eead1b7eed55b8cc2af68",
+      "screenshotSha256": "10416b2653d0e40f2696db9c96f70e896a5916ecd31287e6b1a0a9695ea8dd92"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3ed149660cfbcebfbfd29cb7f500516da195fa7016f4c72e6a0e00de039e84fe",
+      "screenshotSha256": "6c35125ee420b1ed600efe3764de9ee97c722cc4263a7dc5974b8f05558f588f"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cdb5e0a816535a597b9f4b2cedd1e14606fb6c3eeadb5c2feca21e4f6aa81d9c",
+      "screenshotSha256": "a8854cd3ac32fc8c87775d3d1c78025d436f49541c9a7784c83d09b8133f43ab"
+    },
+    {
+      "name": "frmModelEdit-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "374193c104bb51880fb7376732ff0620ef16094f56eace52497662f1d1f7ca3b",
+      "screenshotSha256": "5b8db9f83ed47a3543a9946b4a66ad53126bac7a75a5d1cd395016a81bfd7c07"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6c5982de9e8a1b96e9b76d5f934a31eecbe621c03dcc83e24051418f755bdf90",
+      "screenshotSha256": "8b009f65316632721e4f26515c6a534263d88af58d26044d29dc67c274f48ca5"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d8bed4e6ee2c9607ccd829a4cef964ebcaefd148b263db0ad48151e61d9be070",
+      "screenshotSha256": "942f8769c954eee729a9d7396c391ac3162dbcad1e22dcdd0364e5682c19b32c"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1beadff73bac7c2b5f8c5b37a2fc870559d103bfbe12e76f5c2406a609555052",
+      "screenshotSha256": "6d224e818997e31778cb9996e426a5eb64aab99a03ecd6489ed4d5f36e6fe6fb"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b0e363b86e3225ab015893ca1d0284a2e34ffe249fc8b2a88705c072e89fadb4",
+      "screenshotSha256": "28e8158cf584d04b723f3e417d7abcea36ccb922fd2453ece454864d87398a3d"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "43873f842ec74cb486b21b71bbdcda8246c042c098c379672e8e9f64f94ee9e6",
+      "screenshotSha256": "10416b2653d0e40f2696db9c96f70e896a5916ecd31287e6b1a0a9695ea8dd92"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a1a7b13725384a41b335691ac1bbe005bb94fcbab7d4f58084a3d5c4643af72a",
+      "screenshotSha256": "6c35125ee420b1ed600efe3764de9ee97c722cc4263a7dc5974b8f05558f588f"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9e3d9ff007e8f3fdbadd276f8f3240f0958384dd8e6a2529f5643e682a2a068a",
+      "screenshotSha256": "a8854cd3ac32fc8c87775d3d1c78025d436f49541c9a7784c83d09b8133f43ab"
+    },
+    {
+      "name": "frmModelEdit-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a793e483bcb4568b8d836a4f6261ec8ba0ca6805a53eeb855755d5f476bf3ec5",
+      "screenshotSha256": "5b8db9f83ed47a3543a9946b4a66ad53126bac7a75a5d1cd395016a81bfd7c07"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "987e3e7f8a3bdba03708548224181535a259a51d394e3dd9cae0837b0dd59cb0",
+      "screenshotSha256": "8b009f65316632721e4f26515c6a534263d88af58d26044d29dc67c274f48ca5"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1107d07c011a50b93d437abb3971ab74c036cd1f522e8ace443717eb6dbfb08c",
+      "screenshotSha256": "942f8769c954eee729a9d7396c391ac3162dbcad1e22dcdd0364e5682c19b32c"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6fc21e08c70cdd7a9b87493a4011884c545ab78969b323baf4f45990ec667ff5",
+      "screenshotSha256": "6d224e818997e31778cb9996e426a5eb64aab99a03ecd6489ed4d5f36e6fe6fb"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1c313aa942e3d9fe167137d80372542b68a3ecdabca34238c393d01adbd4e127",
+      "screenshotSha256": "28e8158cf584d04b723f3e417d7abcea36ccb922fd2453ece454864d87398a3d"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9979fb7a6f2f797e1cc5c971686e8125c62e3a379311f108f0bff35b99d732aa",
+      "screenshotSha256": "10416b2653d0e40f2696db9c96f70e896a5916ecd31287e6b1a0a9695ea8dd92"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ffb8248638a288b6fb3901490858bc6e4c78879dbff0535fe8c831c139c81b88",
+      "screenshotSha256": "6c35125ee420b1ed600efe3764de9ee97c722cc4263a7dc5974b8f05558f588f"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0e1079d6dbe2301ec4ebee1333e85f5081b18f121e61adbf0002d106b64c55c3",
+      "screenshotSha256": "a8854cd3ac32fc8c87775d3d1c78025d436f49541c9a7784c83d09b8133f43ab"
+    },
+    {
+      "name": "frmModelEdit-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bab49d92742ca908f6b16a0a4a7648b3b3beaa1f2b910694bf68e4d6c388933f",
+      "screenshotSha256": "5b8db9f83ed47a3543a9946b4a66ad53126bac7a75a5d1cd395016a81bfd7c07"
+    }
+  ]
+}
