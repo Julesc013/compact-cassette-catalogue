@@ -6,6 +6,10 @@
 
 ### Version 2.0.0 Alpha 6 - In development
 
+- Synchronized the human-facing milestone status with the repository train,
+  documented the deliberate post-convergence-slice development pause, and
+  recorded an exact resumption handoff without freezing or qualifying Alpha 6.
+
 - Added the complete immutable format-neutral catalogue state graph for
   metadata, Brands, cassette models, deck models and units, Tapes, sides, and
   recordings, with strict relationship ownership and orphan/duplicate refusal.

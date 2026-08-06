@@ -5,10 +5,12 @@ recordings, cassette models, brands, and tape decks. Catalogues remain ordinary,
 inspectable local files that users can copy, back up, and move between supported
 builds.
 
-> **Development status:** C3 2.0.0 Alpha 5 is active on `dev/2.x`. Its source is
-> visible, but its binaries, GitHub release, and update feed are intentionally
-> unpublished. C3 1.x development continues on `dev/1.x`; its latest
-> qualified checkpoint is preserved on `legacy/1.x`.
+> **Development status:** C3 2.0.0 Alpha 6 is active on `dev/2.x` and is
+> deliberately paused at a verified integration checkpoint. No Alpha 6
+> candidate or tag exists. Its source is visible, but its binaries, GitHub
+> release, and update feed are intentionally unpublished. C3 1.x development
+> continues on `dev/1.x`; its latest qualified checkpoint is preserved on
+> `legacy/1.x`.
 
 ![C3 main window](assets/screenshots/demonstration-screenshot.png)
 
@@ -20,14 +22,14 @@ undo/redo, an OEM+ accessible WinForms workspace, reproducible distribution, and
 open language-neutral contracts. It is not a big-bang rewrite.
 
 The domain, catalogue, infrastructure, and shared presentation layers are
-explicit C# 7.3 after proven slices. Alpha 5 now routes the first complete
+explicit C# 7.3 after proven slices. Qualified Alpha 5 routes the first complete
 Brands workflow through the same C# form and semantic undo/redo commands in both
 lanes; remaining VB presentation code stays in production until each replacement
 passes its own compatibility and UI gate. C11 belongs to
 Universal Setup/bootstrap work;
 C++11 is reserved for a measured isolated native boundary, never catalogue logic.
 
-After Alpha 5, C3 first converges the complete legacy-editable and native
+Active Alpha 6 is converging the complete legacy-editable and native
 persistence graphs into one native-superset logical catalogue. Only after that
 whole-document boundary passes does `C3.Application` become the document,
 history, save, recovery, and operation owner for permanent WinForms and CLI
@@ -41,7 +43,9 @@ Read the [product vision](docs/product/vision.md),
 [execution plan](docs/planning/2.0-execution-plan.md) for the complete contract.
 Start with the [C3 2.0 grand programme](docs/planning/2.0-grand-programme.md)
 for the concise map across product, architecture, compatibility, interface,
-testing, and release workstreams.
+testing, and release workstreams. The dated
+[development pause handoff](docs/planning/2.0-pause-handoff-2026-08-06.md)
+records the exact safe resumption point without replacing those authorities.
 
 ## Downloads and build lanes
 
