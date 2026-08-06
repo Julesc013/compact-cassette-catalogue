@@ -30,6 +30,7 @@ Partial Class frmBrands
         Me.grpFilters = New System.Windows.Forms.GroupBox()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnAddBrand = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.grpModels = New System.Windows.Forms.GroupBox()
         Me.lstBrands = New System.Windows.Forms.ListView()
@@ -63,7 +64,7 @@ Partial Class frmBrands
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(4, 17)
+        Me.btnRefresh.Location = New System.Drawing.Point(4, 42)
         Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(188, 21)
@@ -74,7 +75,7 @@ Partial Class frmBrands
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(4, 65)
+        Me.Label1.Location = New System.Drawing.Point(4, 90)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(154, 13)
@@ -97,7 +98,7 @@ Partial Class frmBrands
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(99, 42)
+        Me.btnDelete.Location = New System.Drawing.Point(99, 67)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(93, 21)
@@ -105,17 +106,30 @@ Partial Class frmBrands
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
+        'btnAddBrand
+        '
+        Me.btnAddBrand.AccessibleDescription = "Add a brand to the current catalogue."
+        Me.btnAddBrand.AccessibleName = "Add Brand"
+        Me.btnAddBrand.Location = New System.Drawing.Point(4, 17)
+        Me.btnAddBrand.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddBrand.Name = "btnAddBrand"
+        Me.btnAddBrand.Size = New System.Drawing.Size(188, 21)
+        Me.btnAddBrand.TabIndex = 1
+        Me.btnAddBrand.Text = "Add &Brand…"
+        Me.btnAddBrand.UseVisualStyleBackColor = True
+        '
         'grpActions
         '
+        Me.grpActions.Controls.Add(Me.btnAddBrand)
         Me.grpActions.Controls.Add(Me.btnEdit)
         Me.grpActions.Controls.Add(Me.btnRefresh)
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
-        Me.grpActions.Location = New System.Drawing.Point(9, 250)
+        Me.grpActions.Location = New System.Drawing.Point(9, 225)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpActions.Size = New System.Drawing.Size(196, 85)
+        Me.grpActions.Size = New System.Drawing.Size(196, 110)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
@@ -123,7 +137,7 @@ Partial Class frmBrands
         'btnEdit
         '
         Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(4, 42)
+        Me.btnEdit.Location = New System.Drawing.Point(4, 67)
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(93, 21)
@@ -226,6 +240,7 @@ Partial Class frmBrands
     Friend WithEvents grpFilters As GroupBox
     Friend WithEvents btnDelete As Button
     Friend WithEvents grpActions As GroupBox
+    Friend WithEvents btnAddBrand As Button
     Friend WithEvents grpModels As GroupBox
     Friend WithEvents lblResults As Label
     Friend WithEvents txtResults As TextBox

@@ -38,6 +38,12 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   commands into their Designers with compile-time event wiring. Removed their
   runtime rectangles, width/position edits, and layout-helper calls; the exact
   source-policy inventory fell from 52 findings in 10 files to 37 in 7 files.
+- Declared Add Tape/Model/Brand/Deck once in the corresponding browser
+  Designers, projected the former action-stack movement into inspectable
+  design geometry, and removed the runtime button fields, rectangles,
+  `AddHandler` calls, and child movement. Open source-policy findings fell to
+  17 and are now limited to the remaining layout helpers, Main overlay, and
+  Deck New form-scroll assignment.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

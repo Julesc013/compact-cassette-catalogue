@@ -195,7 +195,9 @@ qualification gates earn the Alpha 5 transition.
     declarations with closed default/cancel semantics.
   - [x] Move Model New and Tape New prerequisite/Cancel commands into reviewed
     Designer declarations and remove their runtime rectangles/event wiring.
-  - [ ] Move browser and Main empty-state commands.
+  - [x] Move Tapes/Models/Brands/Decks browser Add commands and current action
+    stack geometry into reviewed Designer declarations.
+  - [ ] Move the Main empty-state command and overlay into the Designer.
 - [ ] Reconstruct `frmMain` in separate structural and adaptive commits.
 - [ ] Reconstruct `frmTapeNew` in separate structural and adaptive commits.
 - [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.

@@ -45,6 +45,7 @@ Module Program
         RunTest("inline creation actions remain keyboard reachable", AddressOf InlineCreationActionsRemainKeyboardReachable)
         RunTest("creation actions expose accessible cancel and detour controls", AddressOf CreationActionsExposeAccessibleControls)
         RunTest("creation dialog cancel commands are Designer-owned", AddressOf CreationDialogCancelCommandsAreDesignerOwned)
+        RunTest("browser Add commands are Designer-owned", AddressOf BrowserAddCommandsAreDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -487,6 +488,27 @@ Module Program
     Private Sub CreationDialogCancelCommandsAreDesignerOwned()
         AssertDesignerOwnedCancel(New frmBrandNew(), "frmBrandNew.vb", "brand")
         AssertDesignerOwnedCancel(New frmDeckNew(), "frmDeckNew.vb", "deck")
+    End Sub
+
+    Private Sub BrowserAddCommandsAreDesignerOwned()
+        AssertDesignerOwnedBrowserAdd(New frmBrands(), "frmBrands.vb", "btnAddBrand", "brand")
+        AssertDesignerOwnedBrowserAdd(New frmModels(), "frmModels.vb", "btnAddModel", "model")
+        AssertDesignerOwnedBrowserAdd(New frmDecks(), "frmDecks.vb", "btnAddDeck", "deck")
+        AssertDesignerOwnedBrowserAdd(New frmTapes(), "frmTapes.vb", "btnAddTape", "tape")
+    End Sub
+
+    Private Sub AssertDesignerOwnedBrowserAdd(form As Form, sourceName As String, buttonName As String, description As String)
+        Using form
+            Dim addButton As Button = DirectCast(FindControl(form, buttonName), Button)
+            AssertEqual(True, addButton.Text.Contains("&"), description & " browser Add mnemonic")
+            AssertEqual(True, addButton.AccessibleDescription.Length > 0, description & " browser Add description")
+            AssertEqual(1, form.Controls.Find(buttonName, True).Length, description & " browser Add count")
+        End Using
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", sourceName))
+        AssertEqual(False, source.Contains("AddActionButton"), description & " runtime Add construction")
+        AssertEqual(False, source.Contains("New Rectangle"), description & " runtime Add rectangle")
+        AssertEqual(False, source.Contains("grpActions.Top"), description & " runtime Actions movement")
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

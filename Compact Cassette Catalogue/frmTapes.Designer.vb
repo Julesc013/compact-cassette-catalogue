@@ -86,6 +86,7 @@ Partial Class frmTapes
         Me.colTitle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnAddTape = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -693,24 +694,37 @@ Partial Class frmTapes
         Me.colNotes.Text = "Notes"
         Me.colNotes.Width = 142
         '
+        'btnAddTape
+        '
+        Me.btnAddTape.AccessibleDescription = "Add a tape and create missing Brand or Model prerequisites."
+        Me.btnAddTape.AccessibleName = "Add Tape"
+        Me.btnAddTape.Location = New System.Drawing.Point(7, 21)
+        Me.btnAddTape.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnAddTape.Name = "btnAddTape"
+        Me.btnAddTape.Size = New System.Drawing.Size(236, 26)
+        Me.btnAddTape.TabIndex = 1
+        Me.btnAddTape.Text = "&Add Tape…"
+        Me.btnAddTape.UseVisualStyleBackColor = True
+        '
         'grpActions
         '
+        Me.grpActions.Controls.Add(Me.btnAddTape)
         Me.grpActions.Controls.Add(Me.btnRefresh)
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
         Me.grpActions.Controls.Add(Me.btnEdit)
-        Me.grpActions.Location = New System.Drawing.Point(15, 720)
+        Me.grpActions.Location = New System.Drawing.Point(15, 689)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpActions.Size = New System.Drawing.Size(249, 105)
+        Me.grpActions.Size = New System.Drawing.Size(249, 136)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(7, 21)
+        Me.btnRefresh.Location = New System.Drawing.Point(7, 52)
         Me.btnRefresh.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(236, 26)
@@ -721,7 +735,7 @@ Partial Class frmTapes
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(5, 80)
+        Me.Label1.Location = New System.Drawing.Point(5, 111)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(190, 17)
         Me.Label1.TabIndex = 13
@@ -730,7 +744,7 @@ Partial Class frmTapes
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(127, 52)
+        Me.btnDelete.Location = New System.Drawing.Point(127, 83)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(115, 26)
@@ -741,7 +755,7 @@ Partial Class frmTapes
         'btnEdit
         '
         Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(7, 52)
+        Me.btnEdit.Location = New System.Drawing.Point(7, 83)
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(115, 26)
@@ -846,6 +860,7 @@ Partial Class frmTapes
     Friend WithEvents chkConditionBetter As CheckBox
     Private WithEvents lblRecordedTo As Label
     Friend WithEvents grpActions As GroupBox
+    Friend WithEvents btnAddTape As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents btnDelete As Button
     Friend WithEvents btnEdit As Button

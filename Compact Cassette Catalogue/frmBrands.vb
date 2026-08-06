@@ -2,7 +2,6 @@
 
     Dim identifiers As New List(Of String)
     Dim identifierCount As Integer = 0
-    Private addBrandButton As Button
 
     Private Sub frmViewBrands_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConfigureListUx()
@@ -11,19 +10,10 @@
 
     Private Sub ConfigureListUx()
         CatalogueUx.ConfigureListForm(Me, "grpModels", "lstBrands", "grpFilters", "grpActions")
-        grpActions.Top -= 25
-        grpActions.Height += 25
-        For Each child As Control In grpActions.Controls
-            child.Top += 25
-        Next
-        addBrandButton = CatalogueUx.AddActionButton(
-            grpActions, "btnAddBrand", "Add &Brand…", New Rectangle(4, 17, 188, 21), 1,
-            "Add a brand to the current catalogue.")
-        AddHandler addBrandButton.Click, AddressOf addBrandButton_Click
         Label1.Text = "Changes are saved with the catalogue."
     End Sub
 
-    Private Sub addBrandButton_Click(sender As Object, e As EventArgs)
+    Private Sub addBrandButton_Click(sender As Object, e As EventArgs) Handles btnAddBrand.Click
         If CatalogueWorkflow.AddBrand(Me) Then
             loadList()
         End If

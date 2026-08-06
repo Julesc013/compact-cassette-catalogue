@@ -48,6 +48,7 @@ Partial Class frmDecks
         Me.colDistortion = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colCondition = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnAddDeck = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -212,24 +213,37 @@ Partial Class frmDecks
         Me.colCondition.Text = "Condition"
         Me.colCondition.Width = 54
         '
+        'btnAddDeck
+        '
+        Me.btnAddDeck.AccessibleDescription = "Add a recording deck to the current catalogue."
+        Me.btnAddDeck.AccessibleName = "Add Deck"
+        Me.btnAddDeck.Location = New System.Drawing.Point(5, 17)
+        Me.btnAddDeck.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddDeck.Name = "btnAddDeck"
+        Me.btnAddDeck.Size = New System.Drawing.Size(194, 21)
+        Me.btnAddDeck.TabIndex = 1
+        Me.btnAddDeck.Text = "Add &Deck…"
+        Me.btnAddDeck.UseVisualStyleBackColor = True
+        '
         'grpActions
         '
+        Me.grpActions.Controls.Add(Me.btnAddDeck)
         Me.grpActions.Controls.Add(Me.btnEdit)
         Me.grpActions.Controls.Add(Me.btnRefresh)
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
-        Me.grpActions.Location = New System.Drawing.Point(11, 237)
+        Me.grpActions.Location = New System.Drawing.Point(11, 212)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpActions.Size = New System.Drawing.Size(204, 84)
+        Me.grpActions.Size = New System.Drawing.Size(204, 109)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(5, 17)
+        Me.btnRefresh.Location = New System.Drawing.Point(5, 42)
         Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(194, 21)
@@ -240,7 +254,7 @@ Partial Class frmDecks
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(4, 65)
+        Me.Label1.Location = New System.Drawing.Point(4, 90)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(144, 13)
@@ -250,7 +264,7 @@ Partial Class frmDecks
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(104, 42)
+        Me.btnDelete.Location = New System.Drawing.Point(104, 67)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(95, 21)
@@ -433,7 +447,7 @@ Partial Class frmDecks
         'btnEdit
         '
         Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(5, 42)
+        Me.btnEdit.Location = New System.Drawing.Point(5, 67)
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(95, 21)
@@ -474,6 +488,7 @@ Partial Class frmDecks
     Friend WithEvents lblResults As Label
     Friend WithEvents grpTapes As GroupBox
     Friend WithEvents grpActions As GroupBox
+    Friend WithEvents btnAddDeck As Button
     Friend WithEvents btnRefresh As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents btnDelete As Button

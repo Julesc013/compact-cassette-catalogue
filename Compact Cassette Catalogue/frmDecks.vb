@@ -2,7 +2,6 @@
 
     Dim identifiers As New List(Of String)
     Dim identifierCount As Integer = 0
-    Private addDeckButton As Button
 
     Private Sub FrmViewDecks_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -19,19 +18,10 @@
 
     Private Sub ConfigureListUx()
         CatalogueUx.ConfigureListForm(Me, "grpTapes", "lstDecks", "grpFilters", "grpActions")
-        grpActions.Top -= 25
-        grpActions.Height += 25
-        For Each child As Control In grpActions.Controls
-            child.Top += 25
-        Next
-        addDeckButton = CatalogueUx.AddActionButton(
-            grpActions, "btnAddDeck", "Add &Deck…", New Rectangle(5, 17, 194, 21), 1,
-            "Add a recording deck to the current catalogue.")
-        AddHandler addDeckButton.Click, AddressOf addDeckButton_Click
         Label1.Text = "Changes are saved with the catalogue."
     End Sub
 
-    Private Sub addDeckButton_Click(sender As Object, e As EventArgs)
+    Private Sub addDeckButton_Click(sender As Object, e As EventArgs) Handles btnAddDeck.Click
         If CatalogueWorkflow.AddDeck(Me) Then
             loadList()
         End If

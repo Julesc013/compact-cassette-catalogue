@@ -35,6 +35,7 @@ Partial Class frmModels
         Me.colNumber = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colNotes = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grpActions = New System.Windows.Forms.GroupBox()
+        Me.btnAddModel = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -131,17 +132,30 @@ Partial Class frmModels
         Me.colNotes.Text = "Notes"
         Me.colNotes.Width = 140
         '
+        'btnAddModel
+        '
+        Me.btnAddModel.AccessibleDescription = "Add a model and create a missing brand when required."
+        Me.btnAddModel.AccessibleName = "Add Model"
+        Me.btnAddModel.Location = New System.Drawing.Point(4, 17)
+        Me.btnAddModel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddModel.Name = "btnAddModel"
+        Me.btnAddModel.Size = New System.Drawing.Size(170, 21)
+        Me.btnAddModel.TabIndex = 1
+        Me.btnAddModel.Text = "Add &Model…"
+        Me.btnAddModel.UseVisualStyleBackColor = True
+        '
         'grpActions
         '
+        Me.grpActions.Controls.Add(Me.btnAddModel)
         Me.grpActions.Controls.Add(Me.btnEdit)
         Me.grpActions.Controls.Add(Me.btnRefresh)
         Me.grpActions.Controls.Add(Me.Label1)
         Me.grpActions.Controls.Add(Me.btnDelete)
-        Me.grpActions.Location = New System.Drawing.Point(11, 331)
+        Me.grpActions.Location = New System.Drawing.Point(11, 306)
         Me.grpActions.Margin = New System.Windows.Forms.Padding(2)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(2)
-        Me.grpActions.Size = New System.Drawing.Size(178, 85)
+        Me.grpActions.Size = New System.Drawing.Size(178, 110)
         Me.grpActions.TabIndex = 3
         Me.grpActions.TabStop = False
         Me.grpActions.Text = "Actions"
@@ -149,7 +163,7 @@ Partial Class frmModels
         'btnEdit
         '
         Me.btnEdit.Enabled = False
-        Me.btnEdit.Location = New System.Drawing.Point(4, 42)
+        Me.btnEdit.Location = New System.Drawing.Point(4, 67)
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(83, 21)
@@ -159,7 +173,7 @@ Partial Class frmModels
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(4, 17)
+        Me.btnRefresh.Location = New System.Drawing.Point(4, 42)
         Me.btnRefresh.Margin = New System.Windows.Forms.Padding(2)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(170, 21)
@@ -170,7 +184,7 @@ Partial Class frmModels
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(4, 65)
+        Me.Label1.Location = New System.Drawing.Point(4, 90)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(144, 13)
@@ -180,7 +194,7 @@ Partial Class frmModels
         'btnDelete
         '
         Me.btnDelete.Enabled = False
-        Me.btnDelete.Location = New System.Drawing.Point(91, 42)
+        Me.btnDelete.Location = New System.Drawing.Point(91, 67)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(83, 21)
@@ -339,6 +353,7 @@ Partial Class frmModels
     Friend WithEvents chkTypeBetter As CheckBox
     Friend WithEvents grpModels As GroupBox
     Friend WithEvents grpActions As GroupBox
+    Friend WithEvents btnAddModel As Button
     Friend WithEvents btnRefresh As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents btnDelete As Button
