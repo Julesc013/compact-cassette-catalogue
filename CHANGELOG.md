@@ -117,6 +117,9 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   the supplied row directly while retaining its global index for persistence.
   The geometry harness now creates a complete representative Deck row and has
   an explicit System.Data dependency, so the actual Load path is characterized.
+- Retained the exact `62bec3f...` Deck New/Edit atlas: all 64 fresh-process
+  ordinary/maximum cells pass at four window sizes and 100/125/150/200%
+  relative scales, including Deck Edit's real populated Load handler.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

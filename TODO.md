@@ -238,8 +238,10 @@ qualification gates earn the Alpha 5 transition.
     canvas, and persistent Designer-owned status/Add/Cancel command row.
   - [x] Apply the verified dense-form pattern to Deck Edit, add an explicit
     Designer-owned Cancel result, and exercise its real Load path in the harness.
-  - [ ] Retain the complete commit-bound Deck New/Edit matrix and finish native
-    keyboard, DPI, High Contrast, and assistive-technology review.
+  - [x] Retain the complete 64-cell commit-bound Deck New/Edit geometry and
+    screenshot atlas, including the real edit-form Load path.
+  - [ ] Finish native keyboard, DPI, High Contrast, and assistive-technology
+    review for Deck New and Deck Edit.
 - [ ] Change Console, Find Results, Statistics, Settings, About, and setup/
   uninstall pages only when the characterization matrix reproduces a defect.
 - [ ] Complete visible-text, ellipsis, access-key, default/cancel, tab/focus,

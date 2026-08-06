@@ -1,0 +1,523 @@
+{
+  "schemaVersion": 1,
+  "scope": "deck-dense-adaptive",
+  "sourceCommit": "62bec3fcacdc7ff4a009db61cb4be9061b032b37",
+  "executableSha256": "525d280e92b4feea06bd3e004b65126c576da96e55941559cc71fed5a4e32701",
+  "cellCount": 64,
+  "passedCount": 64,
+  "failedCount": 0,
+  "cells": [
+    {
+      "name": "frmDeckNew-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2e980370d92f231d0bc9a0453f4c0cd2e6f9340bc9ca50f9bb68c66e22285e2f",
+      "screenshotSha256": "892df7cc30e91c76856c8d41cf8f964e2df4e811fcfe802be4229e1b48e2c0ef"
+    },
+    {
+      "name": "frmDeckNew-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0b46d1acaf85fec61a764babef43e6fb593c7295d407b6e10cc12b9d281bdf60",
+      "screenshotSha256": "666a3d6c1a96cb4d4955716340a6371ef6666b2c9fae45e31b8f17d95664d8de"
+    },
+    {
+      "name": "frmDeckNew-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "4e257c0d4c9de867883728eba23c0bb30eea1d70516f2253ebc336901b87088e",
+      "screenshotSha256": "5d0d884ae5d9f7967463f2e13f11ccf7756adb17b44727f66e7fb64eafcce110"
+    },
+    {
+      "name": "frmDeckNew-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2536edf0a7c91b85a561f3ab14721d03e95234054716b28bf7dbb4f109afed46",
+      "screenshotSha256": "edf7a945dd92c4efea1a0383cddfaeee8c4ced332f1523b1abd691437e5defb9"
+    },
+    {
+      "name": "frmDeckNew-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c21768f484b78d226562bb1f09858ae2eee95fc04f100a4c2647ab7e0e0ab49c",
+      "screenshotSha256": "7ff8b6d54e28d47024e8635e7ca5b45015f24f4b45d05d612a715e5c67ac4d80"
+    },
+    {
+      "name": "frmDeckNew-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "a8cf0e4869393321e080e665cbbaf3ce05647d4868a51e5db7faed2487070780",
+      "screenshotSha256": "2a39d9c01929fe2463f623dc3c451ead1113942ba27c70114f1ea4738fde5c18"
+    },
+    {
+      "name": "frmDeckNew-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d8a2ab5e640cddea432480fa81c812fe82495149d1b0ee5a354438259ecd7d58",
+      "screenshotSha256": "3bbf3622c3134e0778b87dac9fcf8ec74a504c4f8cf9edd21774ef319f4d691d"
+    },
+    {
+      "name": "frmDeckNew-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "bcbf1eecda799bcbf0e69bd0f694f1da3a95d4880053166f25277ac67656d3df",
+      "screenshotSha256": "855fe7ba2769174096003745335d2446b80e9f9e9dc8827a9c1486e79dba1ea2"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7cad9fbc16af0b65738d8801b6ec0ce768035dcdb8aee3fb5e80143de1fae2ba",
+      "screenshotSha256": "3c5f8713c8ef806553d01cf16f10204d04bed384376aa378e60c6b60b94a9e7b"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8d96a4b895c54712ecab294e36f56bd30aed338b7f0c67fa03f5de24693d5098",
+      "screenshotSha256": "fcec7c093b0750feb1509e321b15035ffdcabf92e03192722f8587f30457dd9f"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "aa13d88ae6237cfcd43e32c71f1ce0f882197f3be6dd5eaec6720aedb901d44a",
+      "screenshotSha256": "a5a5e78e3a734d38c908b76e548c0b40d3687bbdc34819f4bf6f4db69c8c64e1"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3c03c5336d51033f5e67a7e985d48038694ff5a62a1bc7d3db53ba125205f319",
+      "screenshotSha256": "4a999759b94c35960ca33fc26901c0fbdb93b9b3362c04eb0909e716f8baa2bd"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "829aaa75d579c3c67e32cfb0a5a77d2c3fb5829d2dbca4198f8624f274de14b2",
+      "screenshotSha256": "7ff8b6d54e28d47024e8635e7ca5b45015f24f4b45d05d612a715e5c67ac4d80"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0cd70b305b34c2eaf0057775c8727b454c36eec58a2aee86a498d1cedc81d981",
+      "screenshotSha256": "2a39d9c01929fe2463f623dc3c451ead1113942ba27c70114f1ea4738fde5c18"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d897bf032edde3bc191135367f5eb076c87fe0ff409ad49d651486e9dbdc26de",
+      "screenshotSha256": "3bbf3622c3134e0778b87dac9fcf8ec74a504c4f8cf9edd21774ef319f4d691d"
+    },
+    {
+      "name": "frmDeckNew-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "985046715f4debfb01998be4646f2f0d14e596f8d63018409d6cc7d49dc7b3f2",
+      "screenshotSha256": "855fe7ba2769174096003745335d2446b80e9f9e9dc8827a9c1486e79dba1ea2"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c812fd26d13e1cb892c6e38b843a4af386a2ddc03ecb5e6eb8e14b5c920b00e1",
+      "screenshotSha256": "fcda7f1a8856e0718722343b60a5aed2c8949eb94611e726b5285560dd7b5be6"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6497530c47db7cc0c6405e94645883f1167da8d92d1a7d98bc2584a3b2bc6a89",
+      "screenshotSha256": "eaa1735911beea659e5602b3bdc4a7c691700cf258ab66ded4425cbeeae91281"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7f184436cdc6391680518ed920d3a706298ab783f7d1d99e53e9b83a3414a009",
+      "screenshotSha256": "fe6eeeb40ab3ce733f0033822a99938cf8daaaeeb30583d5736cb174fa37db81"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "54c10f9cbddeaa80c22cf066512e26bc65f2a03a25c71cff70030ed3b7a17a12",
+      "screenshotSha256": "96cea188d75fbee30819eaefc7b8bfa934e0907e971271d668b4c1b3479338df"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "90258c1c5b12a7cecddf25023a4a0c649ec82bf492ef174e6b82812385532402",
+      "screenshotSha256": "1e9abaa00c3ef45968193f2e2d5f0911c889dd8edc4746ff953895add296a97c"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "6671746e9cb3942bf5aff3208ec91cd0845dd7419185f1d4b0f92d451cff5c04",
+      "screenshotSha256": "8c1fb74e40b30900af030401e9c6cbef5d47cb512d375f3b4fff652b6a6d50a0"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "3a62193afab87dca70001316868f9031d588b03a367d7d9b24bee06cfd73f976",
+      "screenshotSha256": "3bbf3622c3134e0778b87dac9fcf8ec74a504c4f8cf9edd21774ef319f4d691d"
+    },
+    {
+      "name": "frmDeckNew-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cec6d99e6de8bdbd0a7011eada9ef0e3519c060024a51962910c4fe494856b56",
+      "screenshotSha256": "855fe7ba2769174096003745335d2446b80e9f9e9dc8827a9c1486e79dba1ea2"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1e693efc55890e058374ac39a75ead3959ddec5182ff2523540fb7c4269fb116",
+      "screenshotSha256": "2c3c1cc8c2f4172d06a21cb7cf7e31dfdbbc283053d7f968bf874b182aa2b1ea"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "50112ea4d7e67b6f1f23f133999b7004ea20fd526018ed455ae7f5b0e07d994c",
+      "screenshotSha256": "c45aaafe3e92c2ee52d548ca042ffcac35080fb05a45c600fb1345a86934fbd5"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "26783a115a2c4fcbcc78c910eda8d71b4fa5d999514098a6da18047fee6b4b8c",
+      "screenshotSha256": "70a128d662fd64c9209ec502e0579ca257f333def35296a2ba4bf72e78a1456c"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "71245c1c46887ca141b33ae14ce3bcebb038f92682a502ecf8b59d561564e7e2",
+      "screenshotSha256": "7b9e92da1f6a0f3a809528eedfe43f39d2bc656140b3b94475b147ac084ad5ac"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9b1d4f3103bebfdc931fb031fa7eee46849792599ae340c0d2063cccbfdca82c",
+      "screenshotSha256": "3492ec017c07a7d97b3d2459b76862a99b573c4630f70161e6797862551e2e95"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "7a8db4e92c9bda5ce78b845eb85300bd4e016096fd1c201722063768703e0acd",
+      "screenshotSha256": "7d04f962c2b9dcd76cf1f567aaac75b310480747283a0601932ae66be286f234"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cb93658b2cc2435725e7a0c0c6ff5d22af21019d26d9b0455eb45192d689a000",
+      "screenshotSha256": "279dc526e05fd7cdc24974e43c042375797a267c96aacb08eb85e610c4c03d8d"
+    },
+    {
+      "name": "frmDeckNew-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "74d3b4706a0e465dce5505bb17dc2eff648b38f0ca5a66d03eb8ac54059c830f",
+      "screenshotSha256": "2ebd8919539c09a711273a692d25167e34885a4c153846c44f502a5116106005"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fe10af2854ec0cb7409665f8733213df80feeb1d218d7e73c674a7c6802cf59b",
+      "screenshotSha256": "167aa1eb2fb4173c5b9953d668135aebf76a900c59dbaf84728c8850cda35e08"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "95eb6dbf0f01ec078cc4ae2cb0756d8633bb43d2e0f60a6163ce593190c3ead7",
+      "screenshotSha256": "681e1d893ceeb72c6b05656387285e6ebc01a18e8aac3ab55b74cf9095ffc5a6"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "8af026bd30a854a63fafe12fd9f4d96a4859d39f557354bd0b3e86bcca942f5b",
+      "screenshotSha256": "a29c7982a43faa80bd431274bcc40923bf1c982dd8f0ed60283ee4bbb01bae68"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "b588596152eaf4c295fe5ce01143ea24570a0cb11f2a031c8cb6779074beffba",
+      "screenshotSha256": "b976dbf164315814d0199bdbc71ce07f6c5f8aefc5af02484b4eba9bfcc1bf58"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1e096a8a738696b0a5c5467cd08d7fbcee979ed30f2ad23a467224a0eaa3667a",
+      "screenshotSha256": "5a692cbcb28f6f9eefad8c34ee3fd53ce98d78122c8541e606cb20603e72747a"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "269fce5f5a2168e79383ff529bf959ffc9ab85757a2061ed6524a68edbe1774c",
+      "screenshotSha256": "037c0b88b20da1016498ae4a4b99a450d48f32877f0d4aaaa50af7088938f0ee"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "58ae740be69f143d892dbf45595117debf1b5425fc4ee717af22c82ecc85ea7c",
+      "screenshotSha256": "54828c44cce6efe9db4486fa1ecd29b3d53dc510484a33a3696999f6ed3c9edc"
+    },
+    {
+      "name": "frmDeckEdit-800x552-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "62fa73adaaf76162cef4a82d0bb61e9b65fe369b549bf443d95b85ab79e40010",
+      "screenshotSha256": "917fecf917e2a890f29f8c5a067aa002737789e37dfa48d0c1637d0255667391"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "e3e8ed885e4633b42dc63f19240724903b18dd0d47ef69113591e907388e68a6",
+      "screenshotSha256": "8da8da9c11fd522f3c4493ac89226efda0cdd4e574055dc9b7444ae9b61573a3"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2cf57561a2875855a24c1ee063723ee95083420181174d65e9bc438b5aff5b48",
+      "screenshotSha256": "c1db1134fe96923fe0b45e4e76fee5a8a31fbb4b7afb093584c12374460c2026"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "fc9b119a6ba59288a74eb2d2dee69a84227c2f7a0ec22a7d432ff7df94c1dd40",
+      "screenshotSha256": "d503805ac7a474db14e7b02afea948a839bde69b0adcafbf29e702cdefdf35b2"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "542930db15dd2385f3559b42c5bac540d22d414cd4dc42fcca31495b9bb8b458",
+      "screenshotSha256": "98992e276b8d80d1e2e0fc19d6f49a84eb8a4ff46a4d0405cc3de117106a89ee"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "17a00329a02c97b5db6fd7ded1439197a865194323817176809d14b2e5cf0068",
+      "screenshotSha256": "5a692cbcb28f6f9eefad8c34ee3fd53ce98d78122c8541e606cb20603e72747a"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "33b7bcc37d74a66fe013f64bdc5955530e80d043eb349310150f3b9c92096e8f",
+      "screenshotSha256": "037c0b88b20da1016498ae4a4b99a450d48f32877f0d4aaaa50af7088938f0ee"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "91c32126c73192fe8ea53abf6925cc2bf992661261c8ec814672acea9ca9c7ba",
+      "screenshotSha256": "54828c44cce6efe9db4486fa1ecd29b3d53dc510484a33a3696999f6ed3c9edc"
+    },
+    {
+      "name": "frmDeckEdit-1024x720-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "0bf7106750cbe0de4d768d8bbd75a95076489f7a11ad511e43cbc549b6eb7592",
+      "screenshotSha256": "917fecf917e2a890f29f8c5a067aa002737789e37dfa48d0c1637d0255667391"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "42a244fe7966fb318e826e364869547addee1f5d0db45e6f337ba6906fdbbb97",
+      "screenshotSha256": "fba3f826e3bfab5b45178574022d19975f407237d402e8bd6e426b54599b5837"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "cc6a2122b0a8591267397eb7c3c24d0aadb23120ed28b214cb9202fe4bdba809",
+      "screenshotSha256": "c2cba1c4ce1fb29ae12a6e102c7cf7f93c208fba2060bab026adf6583256d1ff"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "24b91f025fd0c4f338a553cad992ad3c54f89f9600c5b01dafa0dce025cb50d2",
+      "screenshotSha256": "f46dc4a685546be6170874d234e02cb08d5ca505fa5496c9a2c81bc5ba76322d"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "590068c541e6f9cea1f3bd84eb279034a4db7277bb6def4483b401dd390c5891",
+      "screenshotSha256": "d40e8978a680ead9fa8b43f652d3433fa13acbb1954248a764d4c58bc99f4356"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "06b1ca630da31c69179d7dd2b373c1ba4bb6ec9810b1bd58c7408f8290e985a6",
+      "screenshotSha256": "f28b7f2bb0820a650077b91234b24226a45b5882728ee8cf137446086da1936b"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "1b7001ac4ff9968204d54e21ed75b6b5358705e5c58b3b221c5954b9ab642a3d",
+      "screenshotSha256": "dc630fb84a1d0fd7df144ff339c3e82673072b785629514b4727b9def1cd77cf"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "9c6d976a594235e0b3ddbee069365a754475fe3b22f03fb83c6c4d94c1614de2",
+      "screenshotSha256": "54828c44cce6efe9db4486fa1ecd29b3d53dc510484a33a3696999f6ed3c9edc"
+    },
+    {
+      "name": "frmDeckEdit-1366x728-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "27e5dcefbc29b6eb8bdd9aa1884bc6a3b09e5edca90379e8a2aa25b7d21e57f7",
+      "screenshotSha256": "917fecf917e2a890f29f8c5a067aa002737789e37dfa48d0c1637d0255667391"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s1.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "c8983d8154e14390f41ba22c1c78f2f752df98a58a714c082bbca6ba62de5fc7",
+      "screenshotSha256": "8aede95f94ef4a53abdee0026d8ef50ca065ebc2b5716344a89ce5870eaa3a75"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s1.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "78b4e9713389aad50da415b8a7b2ca147a6a9922e1a292535f9706f367f3737c",
+      "screenshotSha256": "bba68caba995860e7f5daea63fccd39473e1a10e045f56b5a8ae423dd1f4ac4b"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s1.25-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "463987aba93e3ac5d5a13671c0b9a1eb951a763613463d197da139b5a5eb1999",
+      "screenshotSha256": "bdb9fe3e8acf1b9daf8dfad5b5c0be7f6a52ded78a0081e316d81b9f0d2544f3"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s1.25-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "2a04845f5e5519ab31fe519a5bd67fcbe4346dae043b9d4721c2a4ed6cdd7c1f",
+      "screenshotSha256": "ce40f587988c9807f4b20f6538a3e1d35b256d1170a7f58dee67be6b6810428e"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s1.50-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "d90f2975b0711600a5b7111a518cfcd9d712195fbcf7a5d2fbd43291ece2d0c7",
+      "screenshotSha256": "e55d8166344a0aadcd762503920ad491e3552b921e2dca79a93e8d76f3188f89"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s1.50-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "17acfd0ccba0402a27b58da3f9dcf8641a8e1ae4a181cf9d54b211655fd62395",
+      "screenshotSha256": "3129166dc3798079ec7148b83a3d9b7a3cab825ebb4e0f40c7c8ea992479ee39"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s2.00-ordinary",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "ab61c5ff92e470216cfec151a634f0e94c94e1819c12010fce51226eaa0d56a4",
+      "screenshotSha256": "cf8262eba328bad1c35ea5e0adb2f18f92ff219bec8434e01f4bc5798ab2f0a9"
+    },
+    {
+      "name": "frmDeckEdit-1920x1040-s2.00-maximum",
+      "passed": true,
+      "failureCount": 0,
+      "failures": [],
+      "resultSha256": "999db673cd326f09c8923d13df9a94b764829fe9cee5217589f127880f59b642",
+      "screenshotSha256": "03d119123d6911cf8cdbab7bbbc2244eecb32e5e1418649655149a85b9cb62ea"
+    }
+  ]
+}
