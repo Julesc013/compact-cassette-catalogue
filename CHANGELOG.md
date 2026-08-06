@@ -50,6 +50,14 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   mutation, and duplicated state fields. The closed control-name exception now
   covers exactly 14 additions with zero baseline removals; 133 characterization
   cases pass and the open source-policy inventory is down to 13 findings.
+- Rebuilt the top-level Main workspace around Designer-owned table layouts: a
+  menu/header/editor root, separate elastic header and command columns, an
+  Identification/Scroll row, mutually exclusive editor/empty surfaces, and a
+  dedicated scrollable preferred-width editor canvas. Existing data controls
+  and group boxes are reparented unchanged; form-level `AutoScroll` and the
+  runtime Main layout call are gone. The initial 32-cell Main intersection
+  matrix passes while the separately recorded 800-pixel Find-field adaptation
+  remains open.
 - Tracked the intermittent x64 process-without-window observation separately as
   `UI-START-001` with first-window milestone instrumentation.
 - Implemented the original-simple 1.x source topology: application, installer,

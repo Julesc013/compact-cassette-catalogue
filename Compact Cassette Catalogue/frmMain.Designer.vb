@@ -23,6 +23,14 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
+        Me.tlpMainRoot = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpMainHeader = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpMainHeaderLeft = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpMainIdentification = New System.Windows.Forms.TableLayoutPanel()
+        Me.pnlMainDataHost = New System.Windows.Forms.Panel()
+        Me.pnlEditorViewport = New System.Windows.Forms.Panel()
+        Me.tlpEditorCanvas = New System.Windows.Forms.TableLayoutPanel()
+        Me.tlpEditorMetadata = New System.Windows.Forms.TableLayoutPanel()
         Me.grpIdentification = New System.Windows.Forms.GroupBox()
         Me.lblMax = New System.Windows.Forms.Label()
         Me.txtIndex = New System.Windows.Forms.TextBox()
@@ -184,6 +192,14 @@ Partial Class frmMain
         Me.btnPrevious = New System.Windows.Forms.Button()
         Me.dlgOpen = New System.Windows.Forms.OpenFileDialog()
         Me.dlgSaveAs = New System.Windows.Forms.SaveFileDialog()
+        Me.tlpMainRoot.SuspendLayout()
+        Me.tlpMainHeader.SuspendLayout()
+        Me.tlpMainHeaderLeft.SuspendLayout()
+        Me.tlpMainIdentification.SuspendLayout()
+        Me.pnlMainDataHost.SuspendLayout()
+        Me.pnlEditorViewport.SuspendLayout()
+        Me.tlpEditorCanvas.SuspendLayout()
+        Me.tlpEditorMetadata.SuspendLayout()
         Me.grpIdentification.SuspendLayout()
         Me.menuStripMain.SuspendLayout()
         Me.pnlEmptyCatalogue.SuspendLayout()
@@ -213,6 +229,144 @@ Partial Class frmMain
         Me.grpScroll.SuspendLayout()
         Me.SuspendLayout()
         '
+        'tlpMainRoot
+        '
+        Me.tlpMainRoot.ColumnCount = 1
+        Me.tlpMainRoot.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpMainRoot.Controls.Add(Me.menuStripMain, 0, 0)
+        Me.tlpMainRoot.Controls.Add(Me.tlpMainHeader, 0, 1)
+        Me.tlpMainRoot.Controls.Add(Me.pnlMainDataHost, 0, 2)
+        Me.tlpMainRoot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpMainRoot.Location = New System.Drawing.Point(0, 0)
+        Me.tlpMainRoot.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpMainRoot.Name = "tlpMainRoot"
+        Me.tlpMainRoot.RowCount = 3
+        Me.tlpMainRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpMainRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpMainRoot.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpMainRoot.Size = New System.Drawing.Size(1000, 620)
+        Me.tlpMainRoot.TabIndex = 0
+        '
+        'tlpMainHeader
+        '
+        Me.tlpMainHeader.AutoSize = True
+        Me.tlpMainHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpMainHeader.ColumnCount = 2
+        Me.tlpMainHeader.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpMainHeader.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpMainHeader.Controls.Add(Me.tlpMainHeaderLeft, 0, 0)
+        Me.tlpMainHeader.Controls.Add(Me.grpActions, 1, 0)
+        Me.tlpMainHeader.Dock = System.Windows.Forms.DockStyle.Top
+        Me.tlpMainHeader.Location = New System.Drawing.Point(12, 31)
+        Me.tlpMainHeader.Margin = New System.Windows.Forms.Padding(12, 4, 12, 4)
+        Me.tlpMainHeader.Name = "tlpMainHeader"
+        Me.tlpMainHeader.RowCount = 1
+        Me.tlpMainHeader.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpMainHeader.Size = New System.Drawing.Size(976, 116)
+        Me.tlpMainHeader.TabIndex = 1
+        '
+        'tlpMainHeaderLeft
+        '
+        Me.tlpMainHeaderLeft.AutoSize = True
+        Me.tlpMainHeaderLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpMainHeaderLeft.ColumnCount = 1
+        Me.tlpMainHeaderLeft.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpMainHeaderLeft.Controls.Add(Me.grpFind, 0, 0)
+        Me.tlpMainHeaderLeft.Controls.Add(Me.tlpMainIdentification, 0, 1)
+        Me.tlpMainHeaderLeft.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpMainHeaderLeft.Location = New System.Drawing.Point(0, 0)
+        Me.tlpMainHeaderLeft.Margin = New System.Windows.Forms.Padding(0, 0, 5, 0)
+        Me.tlpMainHeaderLeft.Name = "tlpMainHeaderLeft"
+        Me.tlpMainHeaderLeft.RowCount = 2
+        Me.tlpMainHeaderLeft.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpMainHeaderLeft.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpMainHeaderLeft.Size = New System.Drawing.Size(663, 116)
+        Me.tlpMainHeaderLeft.TabIndex = 0
+        '
+        'tlpMainIdentification
+        '
+        Me.tlpMainIdentification.AutoSize = True
+        Me.tlpMainIdentification.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpMainIdentification.ColumnCount = 2
+        Me.tlpMainIdentification.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpMainIdentification.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpMainIdentification.Controls.Add(Me.grpIdentification, 0, 0)
+        Me.tlpMainIdentification.Controls.Add(Me.grpScroll, 1, 0)
+        Me.tlpMainIdentification.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpMainIdentification.Location = New System.Drawing.Point(0, 58)
+        Me.tlpMainIdentification.Margin = New System.Windows.Forms.Padding(0, 4, 0, 0)
+        Me.tlpMainIdentification.Name = "tlpMainIdentification"
+        Me.tlpMainIdentification.RowCount = 1
+        Me.tlpMainIdentification.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpMainIdentification.Size = New System.Drawing.Size(658, 58)
+        Me.tlpMainIdentification.TabIndex = 1
+        '
+        'pnlMainDataHost
+        '
+        Me.pnlMainDataHost.Controls.Add(Me.grpData)
+        Me.pnlMainDataHost.Controls.Add(Me.pnlEmptyCatalogue)
+        Me.pnlMainDataHost.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlMainDataHost.Location = New System.Drawing.Point(12, 155)
+        Me.pnlMainDataHost.Margin = New System.Windows.Forms.Padding(12, 4, 12, 11)
+        Me.pnlMainDataHost.Name = "pnlMainDataHost"
+        Me.pnlMainDataHost.Size = New System.Drawing.Size(976, 454)
+        Me.pnlMainDataHost.TabIndex = 2
+        '
+        'pnlEditorViewport
+        '
+        Me.pnlEditorViewport.AutoScroll = True
+        Me.pnlEditorViewport.AutoScrollMinSize = New System.Drawing.Size(970, 433)
+        Me.pnlEditorViewport.Controls.Add(Me.tlpEditorCanvas)
+        Me.pnlEditorViewport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlEditorViewport.Location = New System.Drawing.Point(3, 17)
+        Me.pnlEditorViewport.Margin = New System.Windows.Forms.Padding(0)
+        Me.pnlEditorViewport.Name = "pnlEditorViewport"
+        Me.pnlEditorViewport.Size = New System.Drawing.Size(970, 434)
+        Me.pnlEditorViewport.TabIndex = 0
+        '
+        'tlpEditorCanvas
+        '
+        Me.tlpEditorCanvas.AutoSize = True
+        Me.tlpEditorCanvas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpEditorCanvas.ColumnCount = 3
+        Me.tlpEditorCanvas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350.0!))
+        Me.tlpEditorCanvas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpEditorCanvas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpEditorCanvas.Controls.Add(Me.tlpEditorMetadata, 0, 0)
+        Me.tlpEditorCanvas.Controls.Add(Me.grpSideA, 1, 0)
+        Me.tlpEditorCanvas.Controls.Add(Me.grpSideB, 2, 0)
+        Me.tlpEditorCanvas.Dock = System.Windows.Forms.DockStyle.Top
+        Me.tlpEditorCanvas.Location = New System.Drawing.Point(0, 0)
+        Me.tlpEditorCanvas.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpEditorCanvas.MinimumSize = New System.Drawing.Size(930, 433)
+        Me.tlpEditorCanvas.Name = "tlpEditorCanvas"
+        Me.tlpEditorCanvas.RowCount = 1
+        Me.tlpEditorCanvas.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpEditorCanvas.Size = New System.Drawing.Size(970, 433)
+        Me.tlpEditorCanvas.TabIndex = 0
+        '
+        'tlpEditorMetadata
+        '
+        Me.tlpEditorMetadata.AutoSize = True
+        Me.tlpEditorMetadata.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpEditorMetadata.ColumnCount = 1
+        Me.tlpEditorMetadata.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpEditorMetadata.Controls.Add(Me.grpModel, 0, 0)
+        Me.tlpEditorMetadata.Controls.Add(Me.grpBasic, 0, 1)
+        Me.tlpEditorMetadata.Controls.Add(Me.grpTaped, 0, 2)
+        Me.tlpEditorMetadata.Controls.Add(Me.grpNotes, 0, 3)
+        Me.tlpEditorMetadata.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpEditorMetadata.Location = New System.Drawing.Point(0, 0)
+        Me.tlpEditorMetadata.Margin = New System.Windows.Forms.Padding(0, 0, 5, 0)
+        Me.tlpEditorMetadata.Name = "tlpEditorMetadata"
+        Me.tlpEditorMetadata.RowCount = 4
+        Me.tlpEditorMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpEditorMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpEditorMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
+        Me.tlpEditorMetadata.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpEditorMetadata.Size = New System.Drawing.Size(313, 433)
+        Me.tlpEditorMetadata.TabIndex = 0
+        '
         'grpIdentification
         '
         Me.grpIdentification.Controls.Add(Me.lblMax)
@@ -223,12 +377,13 @@ Partial Class frmMain
         Me.grpIdentification.Controls.Add(Me.txtShort)
         Me.grpIdentification.Controls.Add(Me.lblLong)
         Me.grpIdentification.Controls.Add(Me.lblShort)
+        Me.grpIdentification.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpIdentification.Enabled = False
-        Me.grpIdentification.Location = New System.Drawing.Point(15, 91)
-        Me.grpIdentification.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpIdentification.Location = New System.Drawing.Point(0, 0)
+        Me.grpIdentification.Margin = New System.Windows.Forms.Padding(0, 0, 5, 0)
         Me.grpIdentification.Name = "grpIdentification"
         Me.grpIdentification.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpIdentification.Size = New System.Drawing.Size(583, 53)
+        Me.grpIdentification.Size = New System.Drawing.Size(584, 58)
         Me.grpIdentification.TabIndex = 4
         Me.grpIdentification.TabStop = False
         Me.grpIdentification.Text = "Identification"
@@ -577,16 +732,14 @@ Partial Class frmMain
         'pnlEmptyCatalogue
         '
         Me.pnlEmptyCatalogue.AccessibleName = "Empty catalogue"
-        Me.pnlEmptyCatalogue.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlEmptyCatalogue.BackColor = System.Drawing.SystemColors.Control
         Me.pnlEmptyCatalogue.Controls.Add(Me.btnAddFirstTape)
         Me.pnlEmptyCatalogue.Controls.Add(Me.lblEmptyCatalogue)
-        Me.pnlEmptyCatalogue.Location = New System.Drawing.Point(15, 149)
-        Me.pnlEmptyCatalogue.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.pnlEmptyCatalogue.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlEmptyCatalogue.Location = New System.Drawing.Point(0, 0)
+        Me.pnlEmptyCatalogue.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlEmptyCatalogue.Name = "pnlEmptyCatalogue"
-        Me.pnlEmptyCatalogue.Size = New System.Drawing.Size(971, 460)
+        Me.pnlEmptyCatalogue.Size = New System.Drawing.Size(976, 454)
         Me.pnlEmptyCatalogue.TabIndex = 6
         Me.pnlEmptyCatalogue.Visible = False
         '
@@ -617,18 +770,14 @@ Partial Class frmMain
         '
         'grpData
         '
-        Me.grpData.Controls.Add(Me.grpSideB)
-        Me.grpData.Controls.Add(Me.grpTaped)
-        Me.grpData.Controls.Add(Me.grpBasic)
-        Me.grpData.Controls.Add(Me.grpNotes)
-        Me.grpData.Controls.Add(Me.grpSideA)
-        Me.grpData.Controls.Add(Me.grpModel)
+        Me.grpData.Controls.Add(Me.pnlEditorViewport)
+        Me.grpData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpData.Enabled = False
-        Me.grpData.Location = New System.Drawing.Point(15, 149)
-        Me.grpData.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpData.Location = New System.Drawing.Point(0, 0)
+        Me.grpData.Margin = New System.Windows.Forms.Padding(0)
         Me.grpData.Name = "grpData"
         Me.grpData.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpData.Size = New System.Drawing.Size(971, 460)
+        Me.grpData.Size = New System.Drawing.Size(976, 454)
         Me.grpData.TabIndex = 5
         Me.grpData.TabStop = False
         Me.grpData.Text = "Data"
@@ -646,12 +795,13 @@ Partial Class frmMain
         Me.grpSideB.Controls.Add(Me.lblRecordedB)
         Me.grpSideB.Controls.Add(Me.cmbDeckB)
         Me.grpSideB.Controls.Add(Me.lblDeckB)
+        Me.grpSideB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpSideB.Enabled = False
-        Me.grpSideB.Location = New System.Drawing.Point(663, 21)
-        Me.grpSideB.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpSideB.Location = New System.Drawing.Point(663, 0)
+        Me.grpSideB.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
         Me.grpSideB.Name = "grpSideB"
         Me.grpSideB.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpSideB.Size = New System.Drawing.Size(301, 433)
+        Me.grpSideB.Size = New System.Drawing.Size(307, 433)
         Me.grpSideB.TabIndex = 34
         Me.grpSideB.TabStop = False
         Me.grpSideB.Text = "Side B"
@@ -1040,11 +1190,12 @@ Partial Class frmMain
         Me.grpTaped.Controls.Add(Me.lblSides)
         Me.grpTaped.Controls.Add(Me.chkTapedB)
         Me.grpTaped.Controls.Add(Me.chkTapedA)
-        Me.grpTaped.Location = New System.Drawing.Point(281, 21)
-        Me.grpTaped.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpTaped.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpTaped.Location = New System.Drawing.Point(0, 175)
+        Me.grpTaped.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpTaped.Name = "grpTaped"
         Me.grpTaped.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpTaped.Size = New System.Drawing.Size(69, 113)
+        Me.grpTaped.Size = New System.Drawing.Size(345, 113)
         Me.grpTaped.TabIndex = 3
         Me.grpTaped.TabStop = False
         Me.grpTaped.Text = "Taped"
@@ -1085,11 +1236,12 @@ Partial Class frmMain
         Me.grpBasic.Controls.Add(Me.chkPackaged)
         Me.grpBasic.Controls.Add(Me.lblCondition)
         Me.grpBasic.Controls.Add(Me.cmbCondition)
-        Me.grpBasic.Location = New System.Drawing.Point(7, 139)
-        Me.grpBasic.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpBasic.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpBasic.Location = New System.Drawing.Point(0, 117)
+        Me.grpBasic.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpBasic.Name = "grpBasic"
         Me.grpBasic.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpBasic.Size = New System.Drawing.Size(344, 54)
+        Me.grpBasic.Size = New System.Drawing.Size(345, 54)
         Me.grpBasic.TabIndex = 2
         Me.grpBasic.TabStop = False
         Me.grpBasic.Text = "Basic"
@@ -1128,22 +1280,25 @@ Partial Class frmMain
         'grpNotes
         '
         Me.grpNotes.Controls.Add(Me.txtNotes)
-        Me.grpNotes.Location = New System.Drawing.Point(7, 198)
-        Me.grpNotes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpNotes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpNotes.Location = New System.Drawing.Point(0, 292)
+        Me.grpNotes.Margin = New System.Windows.Forms.Padding(0)
+        Me.grpNotes.MinimumSize = New System.Drawing.Size(344, 141)
         Me.grpNotes.Name = "grpNotes"
         Me.grpNotes.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpNotes.Size = New System.Drawing.Size(344, 256)
+        Me.grpNotes.Size = New System.Drawing.Size(345, 141)
         Me.grpNotes.TabIndex = 6
         Me.grpNotes.TabStop = False
         Me.grpNotes.Text = "Notes"
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(7, 21)
-        Me.txtNotes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtNotes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtNotes.Location = New System.Drawing.Point(3, 17)
+        Me.txtNotes.Margin = New System.Windows.Forms.Padding(0)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(329, 227)
+        Me.txtNotes.Size = New System.Drawing.Size(339, 122)
         Me.txtNotes.TabIndex = 1
         Me.txtNotes.WordWrap = False
         '
@@ -1160,12 +1315,13 @@ Partial Class frmMain
         Me.grpSideA.Controls.Add(Me.lblRecordedA)
         Me.grpSideA.Controls.Add(Me.cmbDeckA)
         Me.grpSideA.Controls.Add(Me.lblDeckA)
+        Me.grpSideA.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpSideA.Enabled = False
-        Me.grpSideA.Location = New System.Drawing.Point(356, 21)
-        Me.grpSideA.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpSideA.Location = New System.Drawing.Point(353, 0)
+        Me.grpSideA.Margin = New System.Windows.Forms.Padding(3, 0, 3, 0)
         Me.grpSideA.Name = "grpSideA"
         Me.grpSideA.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpSideA.Size = New System.Drawing.Size(301, 433)
+        Me.grpSideA.Size = New System.Drawing.Size(304, 433)
         Me.grpSideA.TabIndex = 4
         Me.grpSideA.TabStop = False
         Me.grpSideA.Text = "Side A"
@@ -1559,11 +1715,12 @@ Partial Class frmMain
         Me.grpModel.Controls.Add(Me.lblLength)
         Me.grpModel.Controls.Add(Me.lblYear)
         Me.grpModel.Controls.Add(Me.lblModel)
-        Me.grpModel.Location = New System.Drawing.Point(7, 21)
-        Me.grpModel.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpModel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpModel.Location = New System.Drawing.Point(0, 0)
+        Me.grpModel.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpModel.Name = "grpModel"
         Me.grpModel.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpModel.Size = New System.Drawing.Size(269, 113)
+        Me.grpModel.Size = New System.Drawing.Size(345, 113)
         Me.grpModel.TabIndex = 1
         Me.grpModel.TabStop = False
         Me.grpModel.Text = "Model"
@@ -1650,12 +1807,13 @@ Partial Class frmMain
         Me.grpFind.Controls.Add(Me.cmbField)
         Me.grpFind.Controls.Add(Me.txtTerm)
         Me.grpFind.Controls.Add(Me.btnFind)
+        Me.grpFind.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpFind.Enabled = False
-        Me.grpFind.Location = New System.Drawing.Point(15, 32)
-        Me.grpFind.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpFind.Location = New System.Drawing.Point(0, 0)
+        Me.grpFind.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.grpFind.Name = "grpFind"
         Me.grpFind.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpFind.Size = New System.Drawing.Size(657, 54)
+        Me.grpFind.Size = New System.Drawing.Size(658, 54)
         Me.grpFind.TabIndex = 1
         Me.grpFind.TabStop = False
         Me.grpFind.Text = "Find"
@@ -1696,8 +1854,10 @@ Partial Class frmMain
         Me.grpActions.Controls.Add(Me.btnSave)
         Me.grpActions.Controls.Add(Me.btnDelete)
         Me.grpActions.Controls.Add(Me.btnAdd)
-        Me.grpActions.Location = New System.Drawing.Point(677, 32)
-        Me.grpActions.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpActions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpActions.Location = New System.Drawing.Point(673, 0)
+        Me.grpActions.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.grpActions.MinimumSize = New System.Drawing.Size(308, 112)
         Me.grpActions.Name = "grpActions"
         Me.grpActions.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpActions.Size = New System.Drawing.Size(308, 112)
@@ -1758,9 +1918,11 @@ Partial Class frmMain
         '
         Me.grpScroll.Controls.Add(Me.btnNext)
         Me.grpScroll.Controls.Add(Me.btnPrevious)
+        Me.grpScroll.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpScroll.Enabled = False
-        Me.grpScroll.Location = New System.Drawing.Point(603, 91)
-        Me.grpScroll.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grpScroll.Location = New System.Drawing.Point(594, 0)
+        Me.grpScroll.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.grpScroll.MinimumSize = New System.Drawing.Size(69, 53)
         Me.grpScroll.Name = "grpScroll"
         Me.grpScroll.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpScroll.Size = New System.Drawing.Size(69, 53)
@@ -1807,15 +1969,9 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoScroll = True
+        Me.AutoScroll = False
         Me.ClientSize = New System.Drawing.Size(1000, 620)
-        Me.Controls.Add(Me.grpScroll)
-        Me.Controls.Add(Me.grpActions)
-        Me.Controls.Add(Me.grpIdentification)
-        Me.Controls.Add(Me.grpFind)
-        Me.Controls.Add(Me.grpData)
-        Me.Controls.Add(Me.pnlEmptyCatalogue)
-        Me.Controls.Add(Me.menuStripMain)
+        Me.Controls.Add(Me.tlpMainRoot)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.menuStripMain
@@ -1824,6 +1980,19 @@ Partial Class frmMain
         Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmMain"
         Me.Text = "Compact Cassette Catalogue"
+        Me.tlpMainRoot.ResumeLayout(False)
+        Me.tlpMainRoot.PerformLayout()
+        Me.tlpMainHeader.ResumeLayout(False)
+        Me.tlpMainHeader.PerformLayout()
+        Me.tlpMainHeaderLeft.ResumeLayout(False)
+        Me.tlpMainHeaderLeft.PerformLayout()
+        Me.tlpMainIdentification.ResumeLayout(False)
+        Me.pnlMainDataHost.ResumeLayout(False)
+        Me.pnlEditorViewport.ResumeLayout(False)
+        Me.pnlEditorViewport.PerformLayout()
+        Me.tlpEditorCanvas.ResumeLayout(False)
+        Me.tlpEditorCanvas.PerformLayout()
+        Me.tlpEditorMetadata.ResumeLayout(False)
         Me.grpIdentification.ResumeLayout(False)
         Me.grpIdentification.PerformLayout()
         Me.menuStripMain.ResumeLayout(False)
@@ -1869,6 +2038,14 @@ Partial Class frmMain
 
     End Sub
 
+    Friend WithEvents tlpMainRoot As TableLayoutPanel
+    Friend WithEvents tlpMainHeader As TableLayoutPanel
+    Friend WithEvents tlpMainHeaderLeft As TableLayoutPanel
+    Friend WithEvents tlpMainIdentification As TableLayoutPanel
+    Friend WithEvents pnlMainDataHost As Panel
+    Friend WithEvents pnlEditorViewport As Panel
+    Friend WithEvents tlpEditorCanvas As TableLayoutPanel
+    Friend WithEvents tlpEditorMetadata As TableLayoutPanel
     Friend WithEvents grpIdentification As GroupBox
     Friend WithEvents txtLong As TextBox
     Friend WithEvents txtShort As TextBox

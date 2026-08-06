@@ -200,6 +200,11 @@ qualification gates earn the Alpha 5 transition.
   - [x] Move the Main empty-state command, guidance, and overlay into the
     Designer; close their exact control names and event wiring mechanically.
 - [ ] Reconstruct `frmMain` in separate structural and adaptive commits.
+  - [x] Reparent the existing menu, header groups, editor groups, and empty
+    state into a Designer-owned root/header/overlay/viewport hierarchy; remove
+    form-level scrolling and the runtime Main layout call.
+  - [ ] Make Find and Identification fields adaptive at the 800-pixel minimum,
+    complete reachable-text assertions, and retain the qualified Main atlas.
 - [ ] Reconstruct `frmTapeNew` in separate structural and adaptive commits.
 - [ ] Reconstruct the Tapes/Models/Brands/Decks SplitContainer browser family.
 - [ ] Reconstruct compact Brand/Model add/edit dialogs and dense Deck forms.

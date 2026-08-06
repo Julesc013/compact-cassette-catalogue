@@ -47,6 +47,7 @@ Module Program
         RunTest("creation dialog cancel commands are Designer-owned", AddressOf CreationDialogCancelCommandsAreDesignerOwned)
         RunTest("browser Add commands are Designer-owned", AddressOf BrowserAddCommandsAreDesignerOwned)
         RunTest("main empty catalogue surface is Designer-owned", AddressOf MainEmptyCatalogueSurfaceIsDesignerOwned)
+        RunTest("main workspace hierarchy is Designer-owned", AddressOf MainWorkspaceHierarchyIsDesignerOwned)
         RunTest("choice refresh preserves the in-progress tape draft", AddressOf ChoiceRefreshPreservesTapeDraft)
 
         If _failures > 0 Then
@@ -412,13 +413,15 @@ Module Program
 
     Private Sub LegacyWindowsAreResizableAndScrollSafe()
         Using main As New frmMain()
-            CatalogueUx.ConfigureMainForm(main)
             AssertEqual(FormBorderStyle.Sizable, main.FormBorderStyle, "main border")
             AssertEqual(True, main.MaximizeBox, "main maximize")
-            AssertEqual(True, main.AutoScroll, "main scrolling")
+            AssertEqual(False, main.AutoScroll, "main form scrolling")
             AssertEqual(AutoScaleMode.Font, main.AutoScaleMode, "main font scaling")
             AssertEqual(True, main.MinimumSize.Width <= 800, "main practical minimum width")
             AssertEqual(True, main.MinimumSize.Height <= 600, "main practical minimum height")
+            AssertEqual(DockStyle.Fill, FindControl(main, "tlpMainRoot").Dock, "main root fill")
+            AssertEqual(True, DirectCast(FindControl(main, "pnlEditorViewport"), Panel).AutoScroll, "main editor viewport scrolling")
+            AssertEqual(DockStyle.Top, FindControl(main, "tlpEditorCanvas").Dock, "main editor canvas top dock")
         End Using
 
         Using tape As New frmTapeNew()
@@ -524,6 +527,7 @@ Module Program
             AssertEqual(emptyPanel, addFirstTape.Parent, "empty command parent")
             AssertEqual(True, addFirstTape.Text.Contains("&"), "empty command mnemonic")
             AssertEqual(True, addFirstTape.AccessibleDescription.Length > 0, "empty command description")
+            AssertEqual(False, emptyPanel.Visible AndAlso FindControl(main, "grpData").Visible, "empty/editor overlay exclusivity")
         End Using
 
         Dim source As String = File.ReadAllText(Path.Combine(
@@ -533,6 +537,44 @@ Module Program
         AssertEqual(False, source.Contains("AddActionButton"), "runtime empty command construction")
         AssertEqual(False, source.Contains("New Rectangle"), "runtime empty rectangle")
         AssertEqual(False, source.Contains("BringToFront"), "runtime empty z-order mutation")
+    End Sub
+
+    Private Sub MainWorkspaceHierarchyIsDesignerOwned()
+        Using main As New frmMain()
+            Dim root As Control = FindControl(main, "tlpMainRoot")
+            Dim header As Control = FindControl(main, "tlpMainHeader")
+            Dim headerLeft As Control = FindControl(main, "tlpMainHeaderLeft")
+            Dim identificationRow As Control = FindControl(main, "tlpMainIdentification")
+            Dim dataHost As Control = FindControl(main, "pnlMainDataHost")
+            Dim editorViewport As Panel = DirectCast(FindControl(main, "pnlEditorViewport"), Panel)
+            Dim editorCanvas As Control = FindControl(main, "tlpEditorCanvas")
+            Dim metadata As Control = FindControl(main, "tlpEditorMetadata")
+
+            AssertEqual(main, root.Parent, "main root parent")
+            AssertEqual(root, header.Parent, "main header parent")
+            AssertEqual(root, dataHost.Parent, "main data host parent")
+            AssertEqual(headerLeft, FindControl(main, "grpFind").Parent, "Find group parent")
+            AssertEqual(headerLeft, identificationRow.Parent, "Identification row parent")
+            AssertEqual(identificationRow, FindControl(main, "grpIdentification").Parent, "Identification group parent")
+            AssertEqual(identificationRow, FindControl(main, "grpScroll").Parent, "Scroll group parent")
+            AssertEqual(header, FindControl(main, "grpActions").Parent, "Actions group parent")
+            AssertEqual(dataHost, FindControl(main, "grpData").Parent, "editor surface parent")
+            AssertEqual(dataHost, FindControl(main, "pnlEmptyCatalogue").Parent, "empty surface parent")
+            AssertEqual(FindControl(main, "grpData"), editorViewport.Parent, "editor viewport parent")
+            AssertEqual(editorViewport, editorCanvas.Parent, "editor canvas parent")
+            AssertEqual(editorCanvas, metadata.Parent, "metadata parent")
+            AssertEqual(editorCanvas, FindControl(main, "grpSideA").Parent, "Side A parent")
+            AssertEqual(editorCanvas, FindControl(main, "grpSideB").Parent, "Side B parent")
+            For Each groupName As String In New String() {"grpModel", "grpBasic", "grpTaped", "grpNotes"}
+                AssertEqual(metadata, FindControl(main, groupName).Parent, groupName & " metadata parent")
+            Next
+            AssertEqual(False, main.AutoScroll, "main form AutoScroll disabled")
+            AssertEqual(True, editorViewport.AutoScroll, "editor viewport AutoScroll enabled")
+        End Using
+
+        Dim source As String = File.ReadAllText(Path.Combine(
+            _repositoryRoot, "Compact Cassette Catalogue", "frmMain.vb"))
+        AssertEqual(False, source.Contains("CatalogueUx.ConfigureMainForm"), "runtime Main layout helper")
     End Sub
 
     Private Sub AssertDesignerOwnedCancel(form As Form, sourceName As String, description As String)

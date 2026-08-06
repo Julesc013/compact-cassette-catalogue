@@ -84,6 +84,54 @@
       "name": "btnAddFirstTape",
       "type": "Button",
       "reason": "Replace the runtime-manufactured empty-catalogue Add First Tape command."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpMainRoot",
+      "type": "TableLayoutPanel",
+      "reason": "Own the Main menu, header, and fill editor rows without form-level scrolling."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpMainHeader",
+      "type": "TableLayoutPanel",
+      "reason": "Separate the elastic search/identification region from the fixed command region."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpMainHeaderLeft",
+      "type": "TableLayoutPanel",
+      "reason": "Stack Find and Identification/Scroll as semantic header rows."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpMainIdentification",
+      "type": "TableLayoutPanel",
+      "reason": "Keep navigation beside, rather than over, the Identification group."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "pnlMainDataHost",
+      "type": "Panel",
+      "reason": "Provide one fill cell for mutually exclusive editor and empty-catalogue surfaces."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "pnlEditorViewport",
+      "type": "Panel",
+      "reason": "Own editor scrolling without making the form itself an absolute scroll canvas."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpEditorCanvas",
+      "type": "TableLayoutPanel",
+      "reason": "Arrange metadata and equal Side A/Side B columns on a preferred-width canvas."
+    },
+    {
+      "path": "Compact Cassette Catalogue/frmMain.Designer.vb",
+      "name": "tlpEditorMetadata",
+      "type": "TableLayoutPanel",
+      "reason": "Stack existing Model, Basic, Taped, and Notes groups without absolute sibling geometry."
     }
   ]
 }

@@ -373,7 +373,6 @@ Public Class frmMain
     End Sub
 
     Private Sub ConfigureMainUx()
-        CatalogueUx.ConfigureMainForm(Me)
         btnAdd.Text = "&Add Tape…"
         btnAdd.AccessibleName = "Add Tape"
         btnAdd.AccessibleDescription = "Add a tape and create any missing catalogue prerequisites."
@@ -632,6 +631,7 @@ Public Class frmMain
         updatesMask = False
 
         pnlEmptyCatalogue.Visible = tapeCount = 0
+        grpData.Visible = tapeCount <> 0
 
     End Sub
 
