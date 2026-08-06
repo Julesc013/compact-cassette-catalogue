@@ -96,9 +96,10 @@ foreach ($lane in $lanes) {
     }
 
     $executedCount++
-    # Hidden WinForms processes do not expose a discoverable MainWindowHandle,
-    # so use a minimized window for an observable, noninteractive smoke test.
-    $process = Start-Process -FilePath $executable -PassThru -WindowStyle Minimized
+    # A forced-minimized first show can block classic WinForms inside
+    # SetVisibleCore before Load. Use the application's ordinary visible launch
+    # path so this test observes the same first-window contract as a user.
+    $process = Start-Process -FilePath $executable -PassThru -WindowStyle Normal
     try {
         $startupDeadline = [DateTime]::UtcNow.AddSeconds($StartupTimeoutSeconds)
         do {

@@ -385,6 +385,18 @@ Public Class frmMain
         StartupTrace.Record("main.handle-created")
     End Sub
 
+    Protected Overrides Sub SetVisibleCore(value As Boolean)
+        StartupTrace.Record("main.set-visible.enter")
+        MyBase.SetVisibleCore(value)
+        StartupTrace.Record("main.set-visible.complete")
+    End Sub
+
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        StartupTrace.Record("main.on-load.enter")
+        MyBase.OnLoad(e)
+        StartupTrace.Record("main.on-load.complete")
+    End Sub
+
     Protected Overrides Sub OnShown(e As EventArgs)
         MyBase.OnShown(e)
         StartupTrace.Record("main.shown")

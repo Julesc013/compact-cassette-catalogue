@@ -9,11 +9,15 @@ $tracePath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\StartupTrace.
 $applicationPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\ApplicationEvents.vb'
 $mainPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\frmMain.vb'
 $projectPath = Join-Path $repositoryRoot 'Compact Cassette Catalogue\Compact Cassette Catalogue.vbproj'
+$smokePath = Join-Path $repositoryRoot 'build\smoke-launch.ps1'
+$lifecyclePath = Join-Path $repositoryRoot 'build\test-startup-lifecycle.ps1'
 
 $trace = Get-Content -LiteralPath $tracePath -Raw
 $application = Get-Content -LiteralPath $applicationPath -Raw
 $main = Get-Content -LiteralPath $mainPath -Raw
 $project = Get-Content -LiteralPath $projectPath -Raw
+$smoke = Get-Content -LiteralPath $smokePath -Raw
+$lifecycle = Get-Content -LiteralPath $lifecyclePath -Raw
 
 $requiredTraceFragments = @(
     'Environment.GetEnvironmentVariable("C3_STARTUP_TRACE")',
@@ -37,6 +41,10 @@ $milestoneSources = [ordered]@{
     'main.load.enter' = $main
     'main.load.complete' = $main
     'main.handle-created' = $main
+    'main.set-visible.enter' = $main
+    'main.set-visible.complete' = $main
+    'main.on-load.enter' = $main
+    'main.on-load.complete' = $main
     'main.shown' = $main
     'main.first-idle' = $main
 }
@@ -55,5 +63,10 @@ if (-not $project.Contains('<Compile Include="StartupTrace.vb" />')) {
 if ($trace -match '(?im)^\s*(Public|Friend)\s+(Class|Structure)\s+') {
     throw 'Startup instrumentation must remain an internal module and may not add a public object model.'
 }
+foreach ($launchSource in @($smoke, $lifecycle)) {
+    if (-not $launchSource.Contains('-WindowStyle Normal') -or $launchSource.Contains('-WindowStyle Minimized')) {
+        throw 'Startup verification must exercise the ordinary visible first-show path; forced-minimized launch is prohibited.'
+    }
+}
 
-Write-Host 'Startup instrumentation source contract passed: opt-in, fail-safe, high-resolution, one-shot idle, and all nine application milestones present.'
+Write-Host 'Startup instrumentation source contract passed: opt-in, fail-safe, high-resolution, ordinary first-show launch, one-shot idle, and all required milestones present.'
