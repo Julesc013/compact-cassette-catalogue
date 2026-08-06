@@ -1,0 +1,5053 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+  "generatedAtUtc": "2026-08-06T16:36:06.0642271Z",
+  "host": "Microsoft Windows NT 10.0.19045.0",
+  "cycles": 5,
+  "warmRunsPerCycle": 3,
+  "total": 40,
+  "passed": 40,
+  "failed": 0,
+  "results": [
+    {
+      "laneId": "win-x86-net40",
+      "run": 1,
+      "cycle": 1,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:37.3472890Z",
+      "mainWindowHandle": 94637924,
+      "mainWindowElapsedMs": 588.684,
+      "firstIdleElapsedMs": 590.674,
+      "closeElapsedMs": 25.612,
+      "totalElapsedMs": 625.408,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-001-quiescent-cycle-first.tsv",
+      "traceSha256": "09c8bd3957e8777e979b9a03439459249e29018ada7b557bd6a68841bd1cdb50",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:37.6152447Z",
+          "stopwatchTicks": 12370445991867,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:37.6307442Z",
+          "stopwatchTicks": 12370446142781,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:37.6427440Z",
+          "stopwatchTicks": 12370446262802,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:37.7357460Z",
+          "stopwatchTicks": 12370447193818,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:37.7362456Z",
+          "stopwatchTicks": 12370447200247,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:37.7372457Z",
+          "stopwatchTicks": 12370447211104,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:37.8537439Z",
+          "stopwatchTicks": 12370448374171,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:37.8552435Z",
+          "stopwatchTicks": 12370448392284,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:37.8907435Z",
+          "stopwatchTicks": 12370448742743,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:37.8927441Z",
+          "stopwatchTicks": 12370448764315,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:37.9022451Z",
+          "stopwatchTicks": 12370448861997,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:37.9052470Z",
+          "stopwatchTicks": 12370448892358,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:37.9242443Z",
+          "stopwatchTicks": 12370449079575,
+          "processId": 17948,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 2,
+      "cycle": 1,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:37.9864672Z",
+      "mainWindowHandle": 21106618,
+      "mainWindowElapsedMs": 365.461,
+      "firstIdleElapsedMs": 476.668,
+      "closeElapsedMs": 20.569,
+      "totalElapsedMs": 500.161,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-002-immediate-repeat.tsv",
+      "traceSha256": "b9d069853eed11e97f680292327aaff26debc064f1d526b4899b23c2bbe142fc",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:38.0422467Z",
+          "stopwatchTicks": 12370450261320,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:38.0557451Z",
+          "stopwatchTicks": 12370450392571,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:38.0682441Z",
+          "stopwatchTicks": 12370450522518,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:38.1642450Z",
+          "stopwatchTicks": 12370451480411,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:38.1647453Z",
+          "stopwatchTicks": 12370451487324,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:38.1662448Z",
+          "stopwatchTicks": 12370451498993,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:38.3027445Z",
+          "stopwatchTicks": 12370452863336,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:38.3037443Z",
+          "stopwatchTicks": 12370452877225,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:38.3357462Z",
+          "stopwatchTicks": 12370453195376,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:38.3382447Z",
+          "stopwatchTicks": 12370453217814,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:38.3462447Z",
+          "stopwatchTicks": 12370453301151,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:38.3487449Z",
+          "stopwatchTicks": 12370453323044,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:38.3627458Z",
+          "stopwatchTicks": 12370453464293,
+          "processId": 18836,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 3,
+      "cycle": 1,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:38.4885970Z",
+      "mainWindowHandle": 18355520,
+      "mainWindowElapsedMs": 363.834,
+      "firstIdleElapsedMs": 485.766,
+      "closeElapsedMs": 28.236,
+      "totalElapsedMs": 516.475,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-003-immediate-repeat.tsv",
+      "traceSha256": "59ba9d16e5d141483fece9c4f24badb62d44f1ae33f1c0590a7cf2e898b0b96b",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:38.5472447Z",
+          "stopwatchTicks": 12370455312115,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:38.5627443Z",
+          "stopwatchTicks": 12370455466504,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:38.5757445Z",
+          "stopwatchTicks": 12370455596392,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:38.7052450Z",
+          "stopwatchTicks": 12370456887619,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:38.7057450Z",
+          "stopwatchTicks": 12370456893916,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:38.7067444Z",
+          "stopwatchTicks": 12370456906139,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:38.8327443Z",
+          "stopwatchTicks": 12370458163106,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:38.8342462Z",
+          "stopwatchTicks": 12370458181921,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:38.8737482Z",
+          "stopwatchTicks": 12370458576537,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:38.8767464Z",
+          "stopwatchTicks": 12370458602922,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:38.8892438Z",
+          "stopwatchTicks": 12370458730538,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:38.8917450Z",
+          "stopwatchTicks": 12370458753298,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:38.9047435Z",
+          "stopwatchTicks": 12370458886960,
+          "processId": 17284,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 4,
+      "cycle": 1,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:39.0078954Z",
+      "mainWindowHandle": 94834532,
+      "mainWindowElapsedMs": 367.14,
+      "firstIdleElapsedMs": 477.932,
+      "closeElapsedMs": 25.498,
+      "totalElapsedMs": 505.297,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-004-immediate-repeat.tsv",
+      "traceSha256": "956617ad7543b2c68a8340975a00cf9a757d571440921ad078203b32abcac594",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:39.0622444Z",
+          "stopwatchTicks": 12370460460526,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:39.0757449Z",
+          "stopwatchTicks": 12370460596473,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:39.0887455Z",
+          "stopwatchTicks": 12370460727029,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:39.1887439Z",
+          "stopwatchTicks": 12370461726999,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:39.1897436Z",
+          "stopwatchTicks": 12370461734113,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:39.1907444Z",
+          "stopwatchTicks": 12370461746788,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:39.3227445Z",
+          "stopwatchTicks": 12370463066610,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:39.3242433Z",
+          "stopwatchTicks": 12370463081025,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:39.3567445Z",
+          "stopwatchTicks": 12370463402685,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:39.3582447Z",
+          "stopwatchTicks": 12370463422387,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:39.3672448Z",
+          "stopwatchTicks": 12370463511496,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:39.3692450Z",
+          "stopwatchTicks": 12370463530486,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:39.3807446Z",
+          "stopwatchTicks": 12370463644088,
+          "processId": 48412,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 5,
+      "cycle": 2,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:40.5231731Z",
+      "mainWindowHandle": 21303226,
+      "mainWindowElapsedMs": 367.993,
+      "firstIdleElapsedMs": 368.194,
+      "closeElapsedMs": 27.442,
+      "totalElapsedMs": 404.901,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-005-quiescent-cycle-first.tsv",
+      "traceSha256": "6d6efb73d61bbd43687a75db5a5bf161bea50c54b6b0f4c3efcd0654397295f7",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:40.5787456Z",
+          "stopwatchTicks": 12370475626722,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:40.5942438Z",
+          "stopwatchTicks": 12370475778936,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:40.6067438Z",
+          "stopwatchTicks": 12370475904664,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:40.6932443Z",
+          "stopwatchTicks": 12370476771468,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:40.6937451Z",
+          "stopwatchTicks": 12370476776816,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:40.6952447Z",
+          "stopwatchTicks": 12370476789212,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:40.8232439Z",
+          "stopwatchTicks": 12370478071007,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:40.8247439Z",
+          "stopwatchTicks": 12370478085903,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:40.8607452Z",
+          "stopwatchTicks": 12370478444022,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:40.8637447Z",
+          "stopwatchTicks": 12370478475419,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:40.8747441Z",
+          "stopwatchTicks": 12370478583396,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:40.8767437Z",
+          "stopwatchTicks": 12370478606381,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:40.8897433Z",
+          "stopwatchTicks": 12370478736742,
+          "processId": 46168,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 6,
+      "cycle": 2,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:40.9298199Z",
+      "mainWindowHandle": 44896304,
+      "mainWindowElapsedMs": 350.556,
+      "firstIdleElapsedMs": 461.989,
+      "closeElapsedMs": 22.786,
+      "totalElapsedMs": 493.332,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-006-immediate-repeat.tsv",
+      "traceSha256": "afb9133350b6cb58bfc3f4c82a65b68fac905ea217af6e4dbdf3d5b1294dce48",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:40.9867436Z",
+          "stopwatchTicks": 12370479707739,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:41.0012451Z",
+          "stopwatchTicks": 12370479851017,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:41.0132449Z",
+          "stopwatchTicks": 12370479967761,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:41.1002436Z",
+          "stopwatchTicks": 12370480842013,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:41.1012449Z",
+          "stopwatchTicks": 12370480848671,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:41.1022443Z",
+          "stopwatchTicks": 12370480858535,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:41.2157435Z",
+          "stopwatchTicks": 12370481995579,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:41.2177466Z",
+          "stopwatchTicks": 12370482013763,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:41.2552436Z",
+          "stopwatchTicks": 12370482387630,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:41.2572446Z",
+          "stopwatchTicks": 12370482411968,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:41.2662432Z",
+          "stopwatchTicks": 12370482501722,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:41.2692447Z",
+          "stopwatchTicks": 12370482528784,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:41.2817431Z",
+          "stopwatchTicks": 12370482653526,
+          "processId": 25544,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 7,
+      "cycle": 2,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:41.4248965Z",
+      "mainWindowHandle": 63180920,
+      "mainWindowElapsedMs": 345.706,
+      "firstIdleElapsedMs": 447.517,
+      "closeElapsedMs": 23.469,
+      "totalElapsedMs": 472.729,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-007-immediate-repeat.tsv",
+      "traceSha256": "c8f3b54aa34f22f4d7df40c4a0d26e029e3435558c2dcc52b923557965e3b623",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:41.4752437Z",
+          "stopwatchTicks": 12370484590203,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:41.4882464Z",
+          "stopwatchTicks": 12370484721963,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:41.5017452Z",
+          "stopwatchTicks": 12370484855943,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:41.5982454Z",
+          "stopwatchTicks": 12370485819146,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:41.5987460Z",
+          "stopwatchTicks": 12370485825856,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:41.5997459Z",
+          "stopwatchTicks": 12370485836905,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:41.7117445Z",
+          "stopwatchTicks": 12370486954335,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:41.7132449Z",
+          "stopwatchTicks": 12370486968494,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:41.7432434Z",
+          "stopwatchTicks": 12370487268720,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:41.7462445Z",
+          "stopwatchTicks": 12370487298123,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:41.7557445Z",
+          "stopwatchTicks": 12370487396093,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:41.7577444Z",
+          "stopwatchTicks": 12370487415720,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:41.7717435Z",
+          "stopwatchTicks": 12370487554093,
+          "processId": 43504,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 8,
+      "cycle": 2,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:41.9008303Z",
+      "mainWindowHandle": 21499834,
+      "mainWindowElapsedMs": 436.92,
+      "firstIdleElapsedMs": 437.181,
+      "closeElapsedMs": 22.322,
+      "totalElapsedMs": 462.597,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-008-immediate-repeat.tsv",
+      "traceSha256": "80f608289af04c7e0513b48ed852f07a09c58aaea54b9869e8c521b47642f984",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:41.9572444Z",
+          "stopwatchTicks": 12370489410020,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:41.9727451Z",
+          "stopwatchTicks": 12370489566866,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:41.9872431Z",
+          "stopwatchTicks": 12370489709610,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:42.0907443Z",
+          "stopwatchTicks": 12370490743575,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:42.0912438Z",
+          "stopwatchTicks": 12370490750592,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:42.0922444Z",
+          "stopwatchTicks": 12370490762227,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:42.2372455Z",
+          "stopwatchTicks": 12370492209584,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:42.2392462Z",
+          "stopwatchTicks": 12370492227944,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:42.2807454Z",
+          "stopwatchTicks": 12370492646690,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:42.2832454Z",
+          "stopwatchTicks": 12370492670452,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:42.2932445Z",
+          "stopwatchTicks": 12370492771647,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:42.2952443Z",
+          "stopwatchTicks": 12370492792073,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:42.3092432Z",
+          "stopwatchTicks": 12370492930568,
+          "processId": 30880,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 9,
+      "cycle": 3,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:43.3751303Z",
+      "mainWindowHandle": 52041032,
+      "mainWindowElapsedMs": 341.842,
+      "firstIdleElapsedMs": 341.953,
+      "closeElapsedMs": 21.317,
+      "totalElapsedMs": 364.789,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-009-quiescent-cycle-first.tsv",
+      "traceSha256": "45fa1e1ceeee6d0292c81266b089f3a3569e5ee6684f9746ea04cf10cbe9445a",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:43.4257482Z",
+          "stopwatchTicks": 12370504093569,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:43.4372457Z",
+          "stopwatchTicks": 12370504211692,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:43.4502434Z",
+          "stopwatchTicks": 12370504339535,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:43.5327449Z",
+          "stopwatchTicks": 12370505164170,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:43.5332453Z",
+          "stopwatchTicks": 12370505169207,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:43.5337454Z",
+          "stopwatchTicks": 12370505177027,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:43.6402449Z",
+          "stopwatchTicks": 12370506237793,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:43.6412445Z",
+          "stopwatchTicks": 12370506251596,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:43.6727449Z",
+          "stopwatchTicks": 12370506565246,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:43.6747447Z",
+          "stopwatchTicks": 12370506584123,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:43.6827447Z",
+          "stopwatchTicks": 12370506663157,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:43.6837446Z",
+          "stopwatchTicks": 12370506677338,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:43.6952448Z",
+          "stopwatchTicks": 12370506790841,
+          "processId": 42488,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 10,
+      "cycle": 3,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:43.7416759Z",
+      "mainWindowHandle": 55645652,
+      "mainWindowElapsedMs": 440.417,
+      "firstIdleElapsedMs": 440.593,
+      "closeElapsedMs": 25.266,
+      "totalElapsedMs": 467.616,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-010-immediate-repeat.tsv",
+      "traceSha256": "f1dfbd1c0c779415a1d219be04e5d4503d2634520087234e0277965b28f75d79",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:43.7932446Z",
+          "stopwatchTicks": 12370507768696,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:43.8047453Z",
+          "stopwatchTicks": 12370507883923,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:43.8167454Z",
+          "stopwatchTicks": 12370508003084,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:43.9002442Z",
+          "stopwatchTicks": 12370508838803,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:43.9007446Z",
+          "stopwatchTicks": 12370508844817,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:43.9017456Z",
+          "stopwatchTicks": 12370508855800,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:44.0342433Z",
+          "stopwatchTicks": 12370510180028,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:44.0362436Z",
+          "stopwatchTicks": 12370510200784,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:44.0767431Z",
+          "stopwatchTicks": 12370510602955,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:44.0782454Z",
+          "stopwatchTicks": 12370510621806,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:44.0862444Z",
+          "stopwatchTicks": 12370510697729,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:44.0882452Z",
+          "stopwatchTicks": 12370510719771,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:44.1062467Z",
+          "stopwatchTicks": 12370510899763,
+          "processId": 43120,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 11,
+      "cycle": 3,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:44.2110778Z",
+      "mainWindowHandle": 77993276,
+      "mainWindowElapsedMs": 352.59,
+      "firstIdleElapsedMs": 466.805,
+      "closeElapsedMs": 18.548,
+      "totalElapsedMs": 486.98,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-011-immediate-repeat.tsv",
+      "traceSha256": "3d17e71f06c9fc06f8e70cd7ce58c6cbc7c8c70d9ee68c4e6b01051196ed09f9",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:44.3017467Z",
+          "stopwatchTicks": 12370512856911,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:44.3182453Z",
+          "stopwatchTicks": 12370513017898,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:44.3312444Z",
+          "stopwatchTicks": 12370513151552,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:44.4192439Z",
+          "stopwatchTicks": 12370514027769,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:44.4197442Z",
+          "stopwatchTicks": 12370514034982,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:44.4207438Z",
+          "stopwatchTicks": 12370514045527,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:44.5467431Z",
+          "stopwatchTicks": 12370515303247,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:44.5487436Z",
+          "stopwatchTicks": 12370515322548,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:44.5812449Z",
+          "stopwatchTicks": 12370515651776,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:44.5842446Z",
+          "stopwatchTicks": 12370515682417,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:44.5942433Z",
+          "stopwatchTicks": 12370515779214,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:44.5962437Z",
+          "stopwatchTicks": 12370515798979,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:44.6112467Z",
+          "stopwatchTicks": 12370515949251,
+          "processId": 20384,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 12,
+      "cycle": 3,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:44.6995671Z",
+      "mainWindowHandle": 71046486,
+      "mainWindowElapsedMs": 366.962,
+      "firstIdleElapsedMs": 474.74,
+      "closeElapsedMs": 21.608,
+      "totalElapsedMs": 498.695,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-012-immediate-repeat.tsv",
+      "traceSha256": "7c2b223b47f1399083dd7ed98f8670bfcc49a91a64b5db81bbb3df665a085052",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:44.7567452Z",
+          "stopwatchTicks": 12370517403779,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:44.7712441Z",
+          "stopwatchTicks": 12370517549096,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:44.7817455Z",
+          "stopwatchTicks": 12370517655930,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:44.8872442Z",
+          "stopwatchTicks": 12370518708529,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:44.8877439Z",
+          "stopwatchTicks": 12370518716083,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:44.8892439Z",
+          "stopwatchTicks": 12370518727953,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:45.0102457Z",
+          "stopwatchTicks": 12370519940140,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:45.0117447Z",
+          "stopwatchTicks": 12370519954305,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:45.0442433Z",
+          "stopwatchTicks": 12370520281106,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:45.0467466Z",
+          "stopwatchTicks": 12370520302751,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:45.0557441Z",
+          "stopwatchTicks": 12370520395125,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:45.0577455Z",
+          "stopwatchTicks": 12370520414365,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:45.0697446Z",
+          "stopwatchTicks": 12370520533086,
+          "processId": 48240,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 13,
+      "cycle": 4,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:46.2116388Z",
+      "mainWindowHandle": 61149124,
+      "mainWindowElapsedMs": 356.878,
+      "firstIdleElapsedMs": 356.995,
+      "closeElapsedMs": 21.416,
+      "totalElapsedMs": 380.838,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-013-quiescent-cycle-first.tsv",
+      "traceSha256": "79c69d3530ae3329be324f38ed654d8d94398bb154ca4a0880ea747eb45ff667",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:46.2697472Z",
+          "stopwatchTicks": 12370532533102,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:46.2822431Z",
+          "stopwatchTicks": 12370532658301,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:46.2927436Z",
+          "stopwatchTicks": 12370532763281,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:46.3757437Z",
+          "stopwatchTicks": 12370533597066,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:46.3762437Z",
+          "stopwatchTicks": 12370533601502,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:46.3772439Z",
+          "stopwatchTicks": 12370533608982,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:46.4842443Z",
+          "stopwatchTicks": 12370534681713,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:46.4862464Z",
+          "stopwatchTicks": 12370534699440,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:46.5192440Z",
+          "stopwatchTicks": 12370535030558,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:46.5222460Z",
+          "stopwatchTicks": 12370535058188,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:46.5307445Z",
+          "stopwatchTicks": 12370535145457,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:46.5327438Z",
+          "stopwatchTicks": 12370535165124,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:46.5432442Z",
+          "stopwatchTicks": 12370535269397,
+          "processId": 37624,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 14,
+      "cycle": 4,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:46.5940250Z",
+      "mainWindowHandle": 56759694,
+      "mainWindowElapsedMs": 371.834,
+      "firstIdleElapsedMs": 486.127,
+      "closeElapsedMs": 25.694,
+      "totalElapsedMs": 514.578,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-014-immediate-repeat.tsv",
+      "traceSha256": "2e3b92ed03c661c89dd849f95e685eb8ea134e1f313653fe9bddf4c8a6b22699",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:46.6527448Z",
+          "stopwatchTicks": 12370536365619,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:46.6682456Z",
+          "stopwatchTicks": 12370536517514,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:46.6822458Z",
+          "stopwatchTicks": 12370536657512,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:46.7682454Z",
+          "stopwatchTicks": 12370537520024,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:46.7687456Z",
+          "stopwatchTicks": 12370537525690,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:46.7697446Z",
+          "stopwatchTicks": 12370537537166,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:46.8982445Z",
+          "stopwatchTicks": 12370538820798,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:46.9002446Z",
+          "stopwatchTicks": 12370538838211,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:46.9387443Z",
+          "stopwatchTicks": 12370539226313,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:46.9422450Z",
+          "stopwatchTicks": 12370539259959,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:46.9512442Z",
+          "stopwatchTicks": 12370539349376,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:46.9532455Z",
+          "stopwatchTicks": 12370539370063,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:46.9667450Z",
+          "stopwatchTicks": 12370539505043,
+          "processId": 40836,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 15,
+      "cycle": 4,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:47.1113926Z",
+      "mainWindowHandle": 20975548,
+      "mainWindowElapsedMs": 350.387,
+      "firstIdleElapsedMs": 466.208,
+      "closeElapsedMs": 21.158,
+      "totalElapsedMs": 489.696,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-015-immediate-repeat.tsv",
+      "traceSha256": "59d36a96e2623271e30d9a22f552260abadf824efdfd3e82743e1b63bfb6123c",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:47.1632463Z",
+          "stopwatchTicks": 12370541469896,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:47.1762442Z",
+          "stopwatchTicks": 12370541602340,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:47.1857452Z",
+          "stopwatchTicks": 12370541697389,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:47.2962437Z",
+          "stopwatchTicks": 12370542800055,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:47.2967435Z",
+          "stopwatchTicks": 12370542806673,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:47.2982454Z",
+          "stopwatchTicks": 12370542818640,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:47.4162432Z",
+          "stopwatchTicks": 12370544001539,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:47.4177433Z",
+          "stopwatchTicks": 12370544015307,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:47.4787434Z",
+          "stopwatchTicks": 12370544622555,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:47.4807443Z",
+          "stopwatchTicks": 12370544645859,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:47.4902443Z",
+          "stopwatchTicks": 12370544738628,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:47.4917444Z",
+          "stopwatchTicks": 12370544756490,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:47.5032432Z",
+          "stopwatchTicks": 12370544870021,
+          "processId": 29312,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 16,
+      "cycle": 4,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:47.6027717Z",
+      "mainWindowHandle": 32378774,
+      "mainWindowElapsedMs": 330.744,
+      "firstIdleElapsedMs": 438.103,
+      "closeElapsedMs": 20.365,
+      "totalElapsedMs": 460.188,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-016-immediate-repeat.tsv",
+      "traceSha256": "57dd238fdbd4ae3e54d8adfc4fc9ee747241a4a4ecdcfadddc75c3a75bcae04d",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:47.6557437Z",
+          "stopwatchTicks": 12370546396150,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:47.6692454Z",
+          "stopwatchTicks": 12370546530156,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:47.6792438Z",
+          "stopwatchTicks": 12370546630477,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:47.7607466Z",
+          "stopwatchTicks": 12370547444306,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:47.7612456Z",
+          "stopwatchTicks": 12370547450190,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:47.7622466Z",
+          "stopwatchTicks": 12370547458313,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:47.8762432Z",
+          "stopwatchTicks": 12370548600548,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:47.8782430Z",
+          "stopwatchTicks": 12370548617568,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:47.9112446Z",
+          "stopwatchTicks": 12370548950797,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:47.9132446Z",
+          "stopwatchTicks": 12370548971640,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:47.9227455Z",
+          "stopwatchTicks": 12370549062631,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:47.9242448Z",
+          "stopwatchTicks": 12370549081671,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:47.9352445Z",
+          "stopwatchTicks": 12370549192199,
+          "processId": 31520,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 17,
+      "cycle": 5,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:49.0787424Z",
+      "mainWindowHandle": 63772014,
+      "mainWindowElapsedMs": 356.673,
+      "firstIdleElapsedMs": 466.249,
+      "closeElapsedMs": 22.646,
+      "totalElapsedMs": 493.616,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-017-quiescent-cycle-first.tsv",
+      "traceSha256": "df931aa9040cc38abcf6dc956f974670ea19ee8bcc939669755742e2d52376bd",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:49.1397444Z",
+          "stopwatchTicks": 12370561237768,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:49.1532433Z",
+          "stopwatchTicks": 12370561371824,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:49.1667480Z",
+          "stopwatchTicks": 12370561507196,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:49.2682449Z",
+          "stopwatchTicks": 12370562517774,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:49.2687451Z",
+          "stopwatchTicks": 12370562523430,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:49.2697439Z",
+          "stopwatchTicks": 12370562535960,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:49.3747449Z",
+          "stopwatchTicks": 12370563585161,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:49.3767437Z",
+          "stopwatchTicks": 12370563605392,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:49.4152460Z",
+          "stopwatchTicks": 12370563990083,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:49.4182449Z",
+          "stopwatchTicks": 12370564022165,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:49.4297448Z",
+          "stopwatchTicks": 12370564133275,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:49.4317444Z",
+          "stopwatchTicks": 12370564153284,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:49.4447455Z",
+          "stopwatchTicks": 12370564284360,
+          "processId": 30864,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 18,
+      "cycle": 5,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:49.5742159Z",
+      "mainWindowHandle": 58134284,
+      "mainWindowElapsedMs": 435.251,
+      "firstIdleElapsedMs": 435.375,
+      "closeElapsedMs": 21.683,
+      "totalElapsedMs": 459.089,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-018-immediate-repeat.tsv",
+      "traceSha256": "1568eec709415a3627b2368f050e6baa4a7cd296850a39b84f267ac0da2026ae",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:49.6302437Z",
+          "stopwatchTicks": 12370566141526,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:49.6452445Z",
+          "stopwatchTicks": 12370566291990,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:49.6577475Z",
+          "stopwatchTicks": 12370566416297,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:49.7557453Z",
+          "stopwatchTicks": 12370567393257,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:49.7562455Z",
+          "stopwatchTicks": 12370567399423,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:49.7572458Z",
+          "stopwatchTicks": 12370567411580,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:49.8667439Z",
+          "stopwatchTicks": 12370568506133,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:49.8687438Z",
+          "stopwatchTicks": 12370568523165,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:49.9032432Z",
+          "stopwatchTicks": 12370568870242,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:49.9052433Z",
+          "stopwatchTicks": 12370568888097,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:49.9147445Z",
+          "stopwatchTicks": 12370568985720,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:49.9182453Z",
+          "stopwatchTicks": 12370569018686,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:49.9292450Z",
+          "stopwatchTicks": 12370569131170,
+          "processId": 45592,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 19,
+      "cycle": 5,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:50.0347054Z",
+      "mainWindowHandle": 42471300,
+      "mainWindowElapsedMs": 341.012,
+      "firstIdleElapsedMs": 455.288,
+      "closeElapsedMs": 22.017,
+      "totalElapsedMs": 480.736,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-019-immediate-repeat.tsv",
+      "traceSha256": "1e339b8df6bee039e2b67a239b64679649b5865322e382a995e7ec2e7c480bbe",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:50.0877453Z",
+          "stopwatchTicks": 12370570715230,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:50.0992432Z",
+          "stopwatchTicks": 12370570829236,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:50.1127466Z",
+          "stopwatchTicks": 12370570964560,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:50.2052432Z",
+          "stopwatchTicks": 12370571890775,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:50.2057432Z",
+          "stopwatchTicks": 12370571896549,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:50.2067460Z",
+          "stopwatchTicks": 12370571906681,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:50.3292451Z",
+          "stopwatchTicks": 12370573132362,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:50.3312442Z",
+          "stopwatchTicks": 12370573148430,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:50.3612454Z",
+          "stopwatchTicks": 12370573449095,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:50.3627451Z",
+          "stopwatchTicks": 12370573467018,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:50.3722436Z",
+          "stopwatchTicks": 12370573557809,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:50.3732445Z",
+          "stopwatchTicks": 12370573570647,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:50.3852447Z",
+          "stopwatchTicks": 12370573690835,
+          "processId": 46852,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x86-net40",
+      "run": 20,
+      "cycle": 5,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x86-net40\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "9c23a117acbcbf191672c627052aaaa157792520f62ce8ee806c4bf4bb74adfe",
+      "processStartUtc": "2026-08-06T16:35:50.5167311Z",
+      "mainWindowHandle": 64427254,
+      "mainWindowElapsedMs": 446.535,
+      "firstIdleElapsedMs": 447.019,
+      "closeElapsedMs": 38.389,
+      "totalElapsedMs": 491.026,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x86-net40-020-immediate-repeat.tsv",
+      "traceSha256": "593fcbdc9c166a7952bf138d7c5b4021f9677ebab84ca5ed87e80a55692ce4b4",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:50.5682433Z",
+          "stopwatchTicks": 12370575518764,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:50.5802437Z",
+          "stopwatchTicks": 12370575641538,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:50.5917438Z",
+          "stopwatchTicks": 12370575756508,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:50.6782450Z",
+          "stopwatchTicks": 12370576619238,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:50.6787451Z",
+          "stopwatchTicks": 12370576624172,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:50.6792452Z",
+          "stopwatchTicks": 12370576631990,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:50.7997500Z",
+          "stopwatchTicks": 12370577833723,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:50.8012445Z",
+          "stopwatchTicks": 12370577851502,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:50.8342446Z",
+          "stopwatchTicks": 12370578181889,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:50.8362457Z",
+          "stopwatchTicks": 12370578202097,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:50.8442452Z",
+          "stopwatchTicks": 12370578278997,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:50.8467451Z",
+          "stopwatchTicks": 12370578303867,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:50.8607457Z",
+          "stopwatchTicks": 12370578446926,
+          "processId": 9192,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 1,
+      "cycle": 1,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:52.2561347Z",
+      "mainWindowHandle": 27201426,
+      "mainWindowElapsedMs": 528.646,
+      "firstIdleElapsedMs": 636.145,
+      "closeElapsedMs": 22.885,
+      "totalElapsedMs": 661.16,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-001-quiescent-cycle-first.tsv",
+      "traceSha256": "00bbef27cc628bf7e5ef62e3e2e27b024bbe8148773f543fe0aca84ef2393bfc",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:52.4822466Z",
+          "stopwatchTicks": 12370594659957,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:52.4947441Z",
+          "stopwatchTicks": 12370594784662,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:52.5122450Z",
+          "stopwatchTicks": 12370594959107,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:52.6537446Z",
+          "stopwatchTicks": 12370596373676,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:52.6542445Z",
+          "stopwatchTicks": 12370596378134,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:52.6552449Z",
+          "stopwatchTicks": 12370596387683,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:52.7607443Z",
+          "stopwatchTicks": 12370597445708,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:52.7622442Z",
+          "stopwatchTicks": 12370597460395,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:52.7977443Z",
+          "stopwatchTicks": 12370597813568,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:52.8002456Z",
+          "stopwatchTicks": 12370597838880,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:52.8092441Z",
+          "stopwatchTicks": 12370597929662,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:52.8112442Z",
+          "stopwatchTicks": 12370597950205,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:52.8232446Z",
+          "stopwatchTicks": 12370598068356,
+          "processId": 18680,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 2,
+      "cycle": 1,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:52.9188744Z",
+      "mainWindowHandle": 56758388,
+      "mainWindowElapsedMs": 354.191,
+      "firstIdleElapsedMs": 469.757,
+      "closeElapsedMs": 24.76,
+      "totalElapsedMs": 496.945,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-002-immediate-repeat.tsv",
+      "traceSha256": "f357c8d65a3147f2eb85f0a2ac9f3e2c48994dfc71ca11245a7209a2a8d9ebb4",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:52.9662463Z",
+          "stopwatchTicks": 12370599500887,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:52.9777430Z",
+          "stopwatchTicks": 12370599612640,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:52.9907449Z",
+          "stopwatchTicks": 12370599743166,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:53.1067457Z",
+          "stopwatchTicks": 12370600904886,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:53.1072456Z",
+          "stopwatchTicks": 12370600909788,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:53.1082453Z",
+          "stopwatchTicks": 12370600921643,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:53.2122444Z",
+          "stopwatchTicks": 12370601958755,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:53.2137441Z",
+          "stopwatchTicks": 12370601974392,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:53.2557436Z",
+          "stopwatchTicks": 12370602395299,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:53.2577454Z",
+          "stopwatchTicks": 12370602413511,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:53.2667441Z",
+          "stopwatchTicks": 12370602504659,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:53.2687449Z",
+          "stopwatchTicks": 12370602523772,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:53.2837438Z",
+          "stopwatchTicks": 12370602676942,
+          "processId": 45448,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 3,
+      "cycle": 1,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:53.4174882Z",
+      "mainWindowHandle": 14554396,
+      "mainWindowElapsedMs": 451.95,
+      "firstIdleElapsedMs": 452.104,
+      "closeElapsedMs": 26.758,
+      "totalElapsedMs": 481.959,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-003-immediate-repeat.tsv",
+      "traceSha256": "d95ae22ab925329a27e25982cb88c472c2a839cab36004ac443b3e5913e4651b",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:53.4617452Z",
+          "stopwatchTicks": 12370604456942,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:53.4762449Z",
+          "stopwatchTicks": 12370604600539,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:53.4912451Z",
+          "stopwatchTicks": 12370604750821,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:53.6247445Z",
+          "stopwatchTicks": 12370606084349,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:53.6252446Z",
+          "stopwatchTicks": 12370606090226,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:53.6267445Z",
+          "stopwatchTicks": 12370606102533,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:53.7272447Z",
+          "stopwatchTicks": 12370607111695,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:53.7292457Z",
+          "stopwatchTicks": 12370607132060,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:53.7622485Z",
+          "stopwatchTicks": 12370607457581,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:53.7642458Z",
+          "stopwatchTicks": 12370607480793,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:53.7737454Z",
+          "stopwatchTicks": 12370607577154,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:53.7777465Z",
+          "stopwatchTicks": 12370607615400,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:53.7882459Z",
+          "stopwatchTicks": 12370607718415,
+          "processId": 16440,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 4,
+      "cycle": 1,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:53.9012365Z",
+      "mainWindowHandle": 28839776,
+      "mainWindowElapsedMs": 465.559,
+      "firstIdleElapsedMs": 465.726,
+      "closeElapsedMs": 27.666,
+      "totalElapsedMs": 495.337,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-004-immediate-repeat.tsv",
+      "traceSha256": "01343192ea558f16ca31bd6ed7ea343f5ee906a331bcbe39001ede7726f9227d",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:53.9462443Z",
+          "stopwatchTicks": 12370609299808,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:53.9577461Z",
+          "stopwatchTicks": 12370609413443,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:53.9727463Z",
+          "stopwatchTicks": 12370609564704,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:54.1082438Z",
+          "stopwatchTicks": 12370610920260,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:54.1087440Z",
+          "stopwatchTicks": 12370610926151,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:54.1097445Z",
+          "stopwatchTicks": 12370610936781,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:54.2262438Z",
+          "stopwatchTicks": 12370612100044,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:54.2282458Z",
+          "stopwatchTicks": 12370612121006,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:54.2647438Z",
+          "stopwatchTicks": 12370612485993,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:54.2672445Z",
+          "stopwatchTicks": 12370612511571,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:54.2802441Z",
+          "stopwatchTicks": 12370612639260,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:54.2822443Z",
+          "stopwatchTicks": 12370612661616,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:54.2947431Z",
+          "stopwatchTicks": 12370612785840,
+          "processId": 26476,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 5,
+      "cycle": 2,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:55.4026369Z",
+      "mainWindowHandle": 23334828,
+      "mainWindowElapsedMs": 326.851,
+      "firstIdleElapsedMs": 434.772,
+      "closeElapsedMs": 23.607,
+      "totalElapsedMs": 460.412,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-005-quiescent-cycle-first.tsv",
+      "traceSha256": "574ca6ae7d51cec58683fa647ceaf464a18554ddfe1ed5393247ecf4be9676cc",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:55.4502444Z",
+          "stopwatchTicks": 12370624338276,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:55.4622446Z",
+          "stopwatchTicks": 12370624460130,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:55.4742445Z",
+          "stopwatchTicks": 12370624579647,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:55.5962438Z",
+          "stopwatchTicks": 12370625801913,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:55.5967438Z",
+          "stopwatchTicks": 12370625805533,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:55.5977456Z",
+          "stopwatchTicks": 12370625813130,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:55.7042436Z",
+          "stopwatchTicks": 12370626881056,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:55.7062447Z",
+          "stopwatchTicks": 12370626899204,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:55.7412434Z",
+          "stopwatchTicks": 12370627250942,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:55.7432447Z",
+          "stopwatchTicks": 12370627271246,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:55.7527446Z",
+          "stopwatchTicks": 12370627364107,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:55.7547453Z",
+          "stopwatchTicks": 12370627386030,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:55.7682456Z",
+          "stopwatchTicks": 12370627517936,
+          "processId": 44828,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 6,
+      "cycle": 2,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:55.8647367Z",
+      "mainWindowHandle": 78976316,
+      "mainWindowElapsedMs": 482.964,
+      "firstIdleElapsedMs": 483.47,
+      "closeElapsedMs": 29.886,
+      "totalElapsedMs": 516.692,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-006-immediate-repeat.tsv",
+      "traceSha256": "e5f005110cfcde437bcc84c550c33912593c03916253f63c8a61fe6a2cf1081c",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:55.9112451Z",
+          "stopwatchTicks": 12370628950601,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:55.9212458Z",
+          "stopwatchTicks": 12370629051262,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:55.9332460Z",
+          "stopwatchTicks": 12370629171585,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:56.0642441Z",
+          "stopwatchTicks": 12370630482071,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:56.0647440Z",
+          "stopwatchTicks": 12370630486841,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:56.0657455Z",
+          "stopwatchTicks": 12370630496587,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:56.1872430Z",
+          "stopwatchTicks": 12370631708123,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:56.1887469Z",
+          "stopwatchTicks": 12370631723704,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:56.2302431Z",
+          "stopwatchTicks": 12370632139189,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:56.2322455Z",
+          "stopwatchTicks": 12370632159695,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:56.2452447Z",
+          "stopwatchTicks": 12370632288550,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:56.2472445Z",
+          "stopwatchTicks": 12370632309832,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:56.2602450Z",
+          "stopwatchTicks": 12370632441364,
+          "processId": 7740,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 7,
+      "cycle": 2,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:56.3836945Z",
+      "mainWindowHandle": 29036384,
+      "mainWindowElapsedMs": 359.36,
+      "firstIdleElapsedMs": 476.772,
+      "closeElapsedMs": 23.6,
+      "totalElapsedMs": 501.86,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-007-immediate-repeat.tsv",
+      "traceSha256": "a3431d8c27033d7aac55d40edf2ca86fea1ea7adef82749ce481a11bbe85353f",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:56.4307449Z",
+          "stopwatchTicks": 12370634146047,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:56.4432469Z",
+          "stopwatchTicks": 12370634268251,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:56.4547464Z",
+          "stopwatchTicks": 12370634384560,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:56.5727431Z",
+          "stopwatchTicks": 12370635563283,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:56.5727431Z",
+          "stopwatchTicks": 12370635566973,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:56.5737440Z",
+          "stopwatchTicks": 12370635574973,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:56.6732451Z",
+          "stopwatchTicks": 12370636568366,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:56.6752469Z",
+          "stopwatchTicks": 12370636589572,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:56.7142448Z",
+          "stopwatchTicks": 12370636979349,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:56.7172460Z",
+          "stopwatchTicks": 12370637008075,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:56.7282462Z",
+          "stopwatchTicks": 12370637119097,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:56.7297439Z",
+          "stopwatchTicks": 12370637136243,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:56.7467438Z",
+          "stopwatchTicks": 12370637305925,
+          "processId": 21828,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 8,
+      "cycle": 2,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:56.8870044Z",
+      "mainWindowHandle": 14882076,
+      "mainWindowElapsedMs": 345.648,
+      "firstIdleElapsedMs": 454.01,
+      "closeElapsedMs": 21.924,
+      "totalElapsedMs": 478.686,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-008-immediate-repeat.tsv",
+      "traceSha256": "e12d7af8c5a1591aca6db2dade34beb5fb73afc400f67ceb822e9f020ee4ea90",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:56.9337457Z",
+          "stopwatchTicks": 12370639174779,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:56.9442438Z",
+          "stopwatchTicks": 12370639281340,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:56.9577451Z",
+          "stopwatchTicks": 12370639417070,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:57.0697432Z",
+          "stopwatchTicks": 12370640534963,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:57.0702432Z",
+          "stopwatchTicks": 12370640539880,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:57.0712432Z",
+          "stopwatchTicks": 12370640551138,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:57.1757454Z",
+          "stopwatchTicks": 12370641594044,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:57.1772457Z",
+          "stopwatchTicks": 12370641608719,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:57.2137441Z",
+          "stopwatchTicks": 12370641974925,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:57.2157459Z",
+          "stopwatchTicks": 12370641993526,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:57.2302432Z",
+          "stopwatchTicks": 12370642141797,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:57.2332442Z",
+          "stopwatchTicks": 12370642171447,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:57.2492441Z",
+          "stopwatchTicks": 12370642330377,
+          "processId": 8856,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 9,
+      "cycle": 3,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:58.3786251Z",
+      "mainWindowHandle": 23596972,
+      "mainWindowElapsedMs": 347.992,
+      "firstIdleElapsedMs": 348.135,
+      "closeElapsedMs": 23.866,
+      "totalElapsedMs": 374.158,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-009-quiescent-cycle-first.tsv",
+      "traceSha256": "827933f23beff4d52da6cf9afdc6828cb1c8cb372e346499b04facf4c06a78e5",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:58.4252449Z",
+          "stopwatchTicks": 12370654089092,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:58.4362450Z",
+          "stopwatchTicks": 12370654200416,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:58.4507438Z",
+          "stopwatchTicks": 12370654343204,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:58.5617464Z",
+          "stopwatchTicks": 12370655454125,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:58.5622456Z",
+          "stopwatchTicks": 12370655457886,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:58.5627462Z",
+          "stopwatchTicks": 12370655465867,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:58.6587435Z",
+          "stopwatchTicks": 12370656422890,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:58.6602465Z",
+          "stopwatchTicks": 12370656438904,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:58.6937440Z",
+          "stopwatchTicks": 12370656773688,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:58.6957433Z",
+          "stopwatchTicks": 12370656794051,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:58.7047454Z",
+          "stopwatchTicks": 12370656885396,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:58.7072433Z",
+          "stopwatchTicks": 12370656907610,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:58.7167466Z",
+          "stopwatchTicks": 12370657007279,
+          "processId": 312,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 10,
+      "cycle": 3,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:58.7540823Z",
+      "mainWindowHandle": 75826466,
+      "mainWindowElapsedMs": 339.883,
+      "firstIdleElapsedMs": 446.794,
+      "closeElapsedMs": 27.176,
+      "totalElapsedMs": 475.869,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-010-immediate-repeat.tsv",
+      "traceSha256": "2d78fb0389eae5a4a549f3becd40a8df141a19c4258bd12e74dc340b4f0a793d",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:58.7977443Z",
+          "stopwatchTicks": 12370657812969,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:58.8072455Z",
+          "stopwatchTicks": 12370657910572,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:58.8227445Z",
+          "stopwatchTicks": 12370658065657,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:58.9477447Z",
+          "stopwatchTicks": 12370659316078,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:58.9482447Z",
+          "stopwatchTicks": 12370659320402,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:58.9492444Z",
+          "stopwatchTicks": 12370659329782,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:59.0677433Z",
+          "stopwatchTicks": 12370660516131,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:59.0692435Z",
+          "stopwatchTicks": 12370660531925,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:59.1107450Z",
+          "stopwatchTicks": 12370660942579,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:59.1127449Z",
+          "stopwatchTicks": 12370660963963,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:59.1212439Z",
+          "stopwatchTicks": 12370661051202,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:59.1237449Z",
+          "stopwatchTicks": 12370661074645,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:59.1337442Z",
+          "stopwatchTicks": 12370661177229,
+          "processId": 32340,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 11,
+      "cycle": 3,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:59.2324205Z",
+      "mainWindowHandle": 12850476,
+      "mainWindowElapsedMs": 346.886,
+      "firstIdleElapsedMs": 347.02,
+      "closeElapsedMs": 23.113,
+      "totalElapsedMs": 372.42,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-011-immediate-repeat.tsv",
+      "traceSha256": "fee073523bf50bd678d3f162eafba925e40630dc527c49b0aeb069b5a2451edb",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:59.2767451Z",
+          "stopwatchTicks": 12370662604388,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:59.2867449Z",
+          "stopwatchTicks": 12370662702484,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:59.2987445Z",
+          "stopwatchTicks": 12370662825612,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:59.4132447Z",
+          "stopwatchTicks": 12370663968123,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:59.4132447Z",
+          "stopwatchTicks": 12370663972100,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:59.4142463Z",
+          "stopwatchTicks": 12370663981211,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:59.5142447Z",
+          "stopwatchTicks": 12370664979166,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:59.5162453Z",
+          "stopwatchTicks": 12370664999294,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:59.5472461Z",
+          "stopwatchTicks": 12370665312095,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:59.5487446Z",
+          "stopwatchTicks": 12370665327250,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:59.5587453Z",
+          "stopwatchTicks": 12370665423582,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:59.5607443Z",
+          "stopwatchTicks": 12370665442694,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:59.5697445Z",
+          "stopwatchTicks": 12370665537303,
+          "processId": 37684,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 12,
+      "cycle": 3,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:35:59.6061318Z",
+      "mainWindowHandle": 19731752,
+      "mainWindowElapsedMs": 447.319,
+      "firstIdleElapsedMs": 447.446,
+      "closeElapsedMs": 24.554,
+      "totalElapsedMs": 474.261,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-012-immediate-repeat.tsv",
+      "traceSha256": "cbd77f4d77febdc9b9d3d413a563e0004940c1d6dab4fb277f851667c4467751",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:35:59.6477452Z",
+          "stopwatchTicks": 12370666315022,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:35:59.6592441Z",
+          "stopwatchTicks": 12370666430311,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:35:59.6727459Z",
+          "stopwatchTicks": 12370666565659,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:35:59.8067453Z",
+          "stopwatchTicks": 12370667904889,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:35:59.8072455Z",
+          "stopwatchTicks": 12370667911274,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:35:59.8087453Z",
+          "stopwatchTicks": 12370667926934,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:35:59.9277436Z",
+          "stopwatchTicks": 12370669112543,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:35:59.9292435Z",
+          "stopwatchTicks": 12370669127711,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:35:59.9612452Z",
+          "stopwatchTicks": 12370669451987,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:35:59.9627450Z",
+          "stopwatchTicks": 12370669466477,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:35:59.9707451Z",
+          "stopwatchTicks": 12370669545385,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:35:59.9732454Z",
+          "stopwatchTicks": 12370669569267,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:35:59.9837445Z",
+          "stopwatchTicks": 12370669675070,
+          "processId": 46752,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 13,
+      "cycle": 4,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:01.0911431Z",
+      "mainWindowHandle": 62852984,
+      "mainWindowElapsedMs": 342.359,
+      "firstIdleElapsedMs": 450.634,
+      "closeElapsedMs": 25.339,
+      "totalElapsedMs": 480.664,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-013-quiescent-cycle-first.tsv",
+      "traceSha256": "661140fd3771ac4d596e6d491d3fb73795125096859f942299dc46c968e6cff7",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:01.1427433Z",
+          "stopwatchTicks": 12370681267768,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:01.1557470Z",
+          "stopwatchTicks": 12370681397395,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:01.1712454Z",
+          "stopwatchTicks": 12370681551460,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:01.3032436Z",
+          "stopwatchTicks": 12370682867723,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:01.3037438Z",
+          "stopwatchTicks": 12370682872632,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:01.3042438Z",
+          "stopwatchTicks": 12370682882086,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:01.4047447Z",
+          "stopwatchTicks": 12370683884607,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:01.4067454Z",
+          "stopwatchTicks": 12370683903545,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:01.4422448Z",
+          "stopwatchTicks": 12370684262240,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:01.4442458Z",
+          "stopwatchTicks": 12370684281322,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:01.4532455Z",
+          "stopwatchTicks": 12370684370460,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:01.4552450Z",
+          "stopwatchTicks": 12370684391078,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:01.4672431Z",
+          "stopwatchTicks": 12370684512085,
+          "processId": 39808,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 14,
+      "cycle": 4,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:01.5735921Z",
+      "mainWindowHandle": 148376792,
+      "mainWindowElapsedMs": 464.021,
+      "firstIdleElapsedMs": 464.163,
+      "closeElapsedMs": 23.55,
+      "totalElapsedMs": 490.132,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-014-immediate-repeat.tsv",
+      "traceSha256": "a44b66b7d1168891010b175afe0bc81b9cc38b6a98e1d945cd9b6f005008447f",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:01.6217434Z",
+          "stopwatchTicks": 12370686055919,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:01.6317433Z",
+          "stopwatchTicks": 12370686155828,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:01.6467462Z",
+          "stopwatchTicks": 12370686307224,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:01.7742450Z",
+          "stopwatchTicks": 12370687580306,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:01.7747451Z",
+          "stopwatchTicks": 12370687585024,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:01.7757448Z",
+          "stopwatchTicks": 12370687595758,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:01.8767433Z",
+          "stopwatchTicks": 12370688604043,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:01.8782450Z",
+          "stopwatchTicks": 12370688620406,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:01.9162449Z",
+          "stopwatchTicks": 12370689001254,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:01.9177446Z",
+          "stopwatchTicks": 12370689017001,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:01.9252443Z",
+          "stopwatchTicks": 12370689091371,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:01.9272443Z",
+          "stopwatchTicks": 12370689111891,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:01.9397434Z",
+          "stopwatchTicks": 12370689236892,
+          "processId": 31404,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 15,
+      "cycle": 4,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:02.0652466Z",
+      "mainWindowHandle": 9835984,
+      "mainWindowElapsedMs": 490.37,
+      "firstIdleElapsedMs": 490.479,
+      "closeElapsedMs": 25.716,
+      "totalElapsedMs": 518.652,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-015-immediate-repeat.tsv",
+      "traceSha256": "19c8b4d96d390694b9cafaee34c227744fbad15c8157357b8cf9ab709fa7d187",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:02.1142454Z",
+          "stopwatchTicks": 12370690979283,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:02.1262463Z",
+          "stopwatchTicks": 12370691097755,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:02.1402452Z",
+          "stopwatchTicks": 12370691241847,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:02.2902453Z",
+          "stopwatchTicks": 12370692737985,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:02.2907450Z",
+          "stopwatchTicks": 12370692744613,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:02.2917454Z",
+          "stopwatchTicks": 12370692755898,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:02.4592447Z",
+          "stopwatchTicks": 12370694430196,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:02.4607448Z",
+          "stopwatchTicks": 12370694446507,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:02.5177445Z",
+          "stopwatchTicks": 12370695012924,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:02.5197451Z",
+          "stopwatchTicks": 12370695034535,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:02.5297455Z",
+          "stopwatchTicks": 12370695135462,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:02.5327454Z",
+          "stopwatchTicks": 12370695164372,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:02.5452445Z",
+          "stopwatchTicks": 12370695291114,
+          "processId": 45428,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 16,
+      "cycle": 4,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:02.5854241Z",
+      "mainWindowHandle": 28839872,
+      "mainWindowElapsedMs": 459.872,
+      "firstIdleElapsedMs": 460.032,
+      "closeElapsedMs": 26.676,
+      "totalElapsedMs": 489.198,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-016-immediate-repeat.tsv",
+      "traceSha256": "559b62134433e25ff60d3ac89d2ae0e1ef722766930b9b1128e03f27d9b80c7b",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:02.6312432Z",
+          "stopwatchTicks": 12370696151066,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:02.6412450Z",
+          "stopwatchTicks": 12370696247687,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:02.6537455Z",
+          "stopwatchTicks": 12370696372642,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:02.7732444Z",
+          "stopwatchTicks": 12370697571310,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:02.7737442Z",
+          "stopwatchTicks": 12370697577306,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:02.7752455Z",
+          "stopwatchTicks": 12370697587662,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:02.8762430Z",
+          "stopwatchTicks": 12370698598746,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:02.8782443Z",
+          "stopwatchTicks": 12370698620037,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:02.9417444Z",
+          "stopwatchTicks": 12370699252946,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:02.9442444Z",
+          "stopwatchTicks": 12370699278775,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:02.9537444Z",
+          "stopwatchTicks": 12370699376894,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:02.9572451Z",
+          "stopwatchTicks": 12370699409023,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:02.9717431Z",
+          "stopwatchTicks": 12370699555394,
+          "processId": 16396,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 17,
+      "cycle": 5,
+      "profile": "quiescent-cycle-first",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:04.0827244Z",
+      "mainWindowHandle": 148573400,
+      "mainWindowElapsedMs": 366.276,
+      "firstIdleElapsedMs": 481.499,
+      "closeElapsedMs": 26.156,
+      "totalElapsedMs": 509.468,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-017-quiescent-cycle-first.tsv",
+      "traceSha256": "aaf2d0241768f5fda2f78f5558fa4513744838b76d052b14d9aa92539cfebbe3",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:04.1327441Z",
+          "stopwatchTicks": 12370711166028,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:04.1437454Z",
+          "stopwatchTicks": 12370711274223,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:04.1592442Z",
+          "stopwatchTicks": 12370711428822,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:04.2807452Z",
+          "stopwatchTicks": 12370712643664,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:04.2812449Z",
+          "stopwatchTicks": 12370712647831,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:04.2817452Z",
+          "stopwatchTicks": 12370712656175,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:04.3832447Z",
+          "stopwatchTicks": 12370713672168,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:04.3857456Z",
+          "stopwatchTicks": 12370713694136,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:04.4222441Z",
+          "stopwatchTicks": 12370714060163,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:04.4247447Z",
+          "stopwatchTicks": 12370714083733,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:04.4337456Z",
+          "stopwatchTicks": 12370714176752,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:04.4362443Z",
+          "stopwatchTicks": 12370714200433,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:04.4487453Z",
+          "stopwatchTicks": 12370714327407,
+          "processId": 11696,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 18,
+      "cycle": 5,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:04.5952449Z",
+      "mainWindowHandle": 24710970,
+      "mainWindowElapsedMs": 449.618,
+      "firstIdleElapsedMs": 449.716,
+      "closeElapsedMs": 21.944,
+      "totalElapsedMs": 473.202,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-018-immediate-repeat.tsv",
+      "traceSha256": "2fab08e8b4c6b43eeb05b7cd6fcf944bb90c79c8546ea7d6b397b2a1c45e1a93",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:04.6447437Z",
+          "stopwatchTicks": 12370716283377,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:04.6552445Z",
+          "stopwatchTicks": 12370716390377,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:04.6702453Z",
+          "stopwatchTicks": 12370716540834,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:04.8042447Z",
+          "stopwatchTicks": 12370717880611,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:04.8047449Z",
+          "stopwatchTicks": 12370717885722,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:04.8057451Z",
+          "stopwatchTicks": 12370717897222,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:04.9147434Z",
+          "stopwatchTicks": 12370718985426,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:04.9167467Z",
+          "stopwatchTicks": 12370719005213,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:04.9487458Z",
+          "stopwatchTicks": 12370719324825,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:04.9507455Z",
+          "stopwatchTicks": 12370719343588,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:04.9592442Z",
+          "stopwatchTicks": 12370719430844,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:04.9612439Z",
+          "stopwatchTicks": 12370719452192,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:04.9727453Z",
+          "stopwatchTicks": 12370719566660,
+          "processId": 34660,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 19,
+      "cycle": 5,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:05.0700960Z",
+      "mainWindowHandle": 65278072,
+      "mainWindowElapsedMs": 347.359,
+      "firstIdleElapsedMs": 455.041,
+      "closeElapsedMs": 26.736,
+      "totalElapsedMs": 484.207,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-019-immediate-repeat.tsv",
+      "traceSha256": "2bb77f67feb2c59206cb1caa5e4b16507f67bf329ef71df9f4afc56dda48dc9d",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:05.1117454Z",
+          "stopwatchTicks": 12370720955280,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:05.1232446Z",
+          "stopwatchTicks": 12370721068740,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:05.1377446Z",
+          "stopwatchTicks": 12370721216529,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:05.2862450Z",
+          "stopwatchTicks": 12370722702363,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:05.2867447Z",
+          "stopwatchTicks": 12370722706976,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:05.2877453Z",
+          "stopwatchTicks": 12370722716270,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:05.3877438Z",
+          "stopwatchTicks": 12370723715685,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:05.3892440Z",
+          "stopwatchTicks": 12370723732077,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:05.4302445Z",
+          "stopwatchTicks": 12370724139013,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:05.4322445Z",
+          "stopwatchTicks": 12370724157698,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:05.4397443Z",
+          "stopwatchTicks": 12370724237171,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:05.4422439Z",
+          "stopwatchTicks": 12370724259885,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:05.4537447Z",
+          "stopwatchTicks": 12370724376768,
+          "processId": 48868,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    },
+    {
+      "laneId": "win-x64-net48",
+      "run": 20,
+      "cycle": 5,
+      "profile": "immediate-repeat",
+      "passed": true,
+      "failure": null,
+      "cleanupKilled": false,
+      "sourceCommit": "d946aa4fe3326d565d21f94fff48e6dc57dec919",
+      "executablePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\bin\\win-x64-net48\\Release\\Compact Cassette Catalogue.exe",
+      "executableSha256": "e863bbc31db5d3e5b6f06c4479a66e6690b160fa28dbd0bf2588257d040e77a6",
+      "processStartUtc": "2026-08-06T16:36:05.5561263Z",
+      "mainWindowHandle": 148770008,
+      "mainWindowElapsedMs": 365.759,
+      "firstIdleElapsedMs": 480.434,
+      "closeElapsedMs": 24.095,
+      "totalElapsedMs": 506.191,
+      "tracePath": "D:\\Projects\\C3\\compact-cassette-catalogue\\artifacts\\evidence\\startup\\d946aa4fe3326d565d21f94fff48e6dc57dec919\\win-x64-net48-020-immediate-repeat.tsv",
+      "traceSha256": "fac1b9beb9c18d71b425bd166670f421aea05b269592b3ec601e6e6115a72be8",
+      "milestones": [
+        {
+          "sequence": 1,
+          "utc": "2026-08-06T16:36:05.6037452Z",
+          "stopwatchTicks": 12370725877136,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "application.startup.enter"
+        },
+        {
+          "sequence": 2,
+          "utc": "2026-08-06T16:36:05.6167446Z",
+          "stopwatchTicks": 12370726005771,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "application.startup.complete"
+        },
+        {
+          "sequence": 3,
+          "utc": "2026-08-06T16:36:05.6302447Z",
+          "stopwatchTicks": 12370726139351,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.constructor.enter"
+        },
+        {
+          "sequence": 4,
+          "utc": "2026-08-06T16:36:05.7567450Z",
+          "stopwatchTicks": 12370727406814,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.initialize-component.complete"
+        },
+        {
+          "sequence": 5,
+          "utc": "2026-08-06T16:36:05.7572447Z",
+          "stopwatchTicks": 12370727410275,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.set-visible.enter"
+        },
+        {
+          "sequence": 6,
+          "utc": "2026-08-06T16:36:05.7582446Z",
+          "stopwatchTicks": 12370727418603,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.handle-created"
+        },
+        {
+          "sequence": 7,
+          "utc": "2026-08-06T16:36:05.8667442Z",
+          "stopwatchTicks": 12370728505519,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.on-load.enter"
+        },
+        {
+          "sequence": 8,
+          "utc": "2026-08-06T16:36:05.8682465Z",
+          "stopwatchTicks": 12370728522073,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.load.enter"
+        },
+        {
+          "sequence": 9,
+          "utc": "2026-08-06T16:36:05.9042447Z",
+          "stopwatchTicks": 12370728881562,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.load.complete"
+        },
+        {
+          "sequence": 10,
+          "utc": "2026-08-06T16:36:05.9057447Z",
+          "stopwatchTicks": 12370728896914,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.on-load.complete"
+        },
+        {
+          "sequence": 11,
+          "utc": "2026-08-06T16:36:05.9132445Z",
+          "stopwatchTicks": 12370728971456,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.set-visible.complete"
+        },
+        {
+          "sequence": 12,
+          "utc": "2026-08-06T16:36:05.9152443Z",
+          "stopwatchTicks": 12370728990892,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.shown"
+        },
+        {
+          "sequence": 13,
+          "utc": "2026-08-06T16:36:05.9257448Z",
+          "stopwatchTicks": 12370729096906,
+          "processId": 33864,
+          "threadId": 1,
+          "milestone": "main.first-idle"
+        }
+      ]
+    }
+  ]
+}

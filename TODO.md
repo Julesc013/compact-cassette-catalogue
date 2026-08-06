@@ -285,8 +285,10 @@ qualification gates earn the Alpha 5 transition.
   native canonical/real-DPI/theme screenshots.
 - [ ] Measure repeated open/resize/close, layout events, handles, memory,
   subscriptions, list refresh, and first-window latency.
-- [ ] Resolve or retain blocking `UI-START-001` with repeated x86/x64 launch
-  milestone evidence; do not classify it as a layout fix without proof.
+- [x] Resolve `UI-START-001` with repeated x86/x64 launch milestone evidence.
+  The forced-minimized smoke path stalled inside `SetVisibleCore` before
+  `Load`; ordinary visible launch passed 40/40 through first idle and normal
+  close, so this is recorded as a harness correction rather than a layout fix.
 - [ ] Pass the full source/genome/application/setup/package gates after the
   topology and Designer changes.
 - [ ] Project exact `1.3.0a5 / Alpha 5 / v1.3.0a5` identity only at the final

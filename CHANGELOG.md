@@ -26,6 +26,16 @@ anchor presentation mechanism with role-appropriate native WinForms layout.
   geometry in `Load`, `Shown`, and `Resize` handlers.
 - Replaced property-only resize proof with fresh-process geometry, text,
   reachability, accessibility, performance, and native visual evidence.
+- Added opt-in, fail-safe, high-resolution startup milestones from
+  `MyApplication` entry through the first idle event without changing normal
+  startup when tracing is absent.
+- Isolated the Alpha 4 process-without-window report to the smoke harness's
+  forced-minimized first show, corrected both launch tools to exercise the
+  ordinary visible WinForms path, and mechanically prohibited regression to
+  minimized startup.
+- Retained 40/40 clean-HEAD x86/x64 startup lifecycle passes: every launch
+  produced a visible handle, reached first idle, accepted normal close, exited
+  with code zero, and required no cleanup kill.
 - Added the first fresh-process STA geometry runner and retained the Alpha 4
   discovery baseline: all six mandatory workspace/browser cells reproduce the
   prohibited form-scroll/anchor mechanism, the main collision is measured,
