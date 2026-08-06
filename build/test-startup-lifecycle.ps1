@@ -148,7 +148,8 @@ foreach ($lane in $lanes) {
                         $startupElapsed = $timer.Elapsed.TotalMilliseconds
                         $mainWindowHandle = $process.MainWindowHandle.ToInt64()
                     }
-                    if ($firstIdleElapsed -eq $null -and $trace.milestone -contains 'main.first-idle') {
+                    if ($firstIdleElapsed -eq $null -and
+                            @($trace | Where-Object { $_.milestone -ceq 'main.first-idle' }).Count -gt 0) {
                         $firstIdleElapsed = $timer.Elapsed.TotalMilliseconds
                     }
                 } while (($startupElapsed -eq $null -or $firstIdleElapsed -eq $null) -and [DateTime]::UtcNow -lt $deadline)
